@@ -1,6 +1,4 @@
-let int1: Number = 1;
-let obj: Object = {a: ["hello", "bye", 5], b: 8}
-for (let v of obj) {
-    console.log(v);
-}
-console.log(int1);
+type Player = {}
+let [x, y]: number[] = require("./test")() 
+x = 5
+console.log(typeof x)
