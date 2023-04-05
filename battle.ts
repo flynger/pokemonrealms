@@ -1,9 +1,9 @@
 class PokemonBattle {
 
-    partyArray: string[];
+    partyArray: party[];
     currentTurn: number;
 
-    constructor(...parties) {
+    constructor(...parties:party[][]) {
         this.partyArray = parties;
         this.currentTurn = 1;
         console.log(parties)
@@ -27,4 +27,4 @@ class PokemonBattle {
     }
 }
 
-new PokemonBattle("hi", "abc", "fig");
+new PokemonBattle(["hi", "l"], ["abc", "fig"]);
