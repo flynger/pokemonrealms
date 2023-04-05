@@ -1,4 +1,6 @@
 type Player = {}
-let [x, y]: number[] = require("./test")() 
+let [x, y]: number[] = require("./pokemon")() 
 x = 5
-console.log(typeof x)
+let z: String = "testing 123"
+console.log(typeof z)
+console.log('testing')
