@@ -19,7 +19,7 @@ require('locus');
 // server setup
 const app = express();
 var port: number = 80;
-var serverName: String = "Pokemon Realms";
+var name: String = "Pokemon Realms";
 const sessionMiddleware = sessions({
     secret: "e'eF?infFwa%%ofFia*Gesj8\\g4pdO!ih",
     saveUninitialized: true,
