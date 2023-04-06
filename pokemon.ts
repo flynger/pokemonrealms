@@ -1,7 +1,8 @@
 import { Pokedex } from "./pokedex";
 import { Moves } from "./moves";
+import { Abilities } from "./abilities";
 
-const types: {[type: string]: Object} = {
+export const TYPES: {[type: string]: Object} = {
     NORMAL: {
         weakTo: ["FIGHTING"],
         resists: [],
@@ -94,9 +95,13 @@ const types: {[type: string]: Object} = {
     }
 } as const;
 
-export type Type = typeof types[string];
+export type Type = typeof TYPES[string];
 export type Gender = "M"|"F"|"N";
-export type Ability = "0"|"1"|"H";
+export type AbilitySlot = "0"|"1"|"H";
+export type Ability = typeof Abilities[string]["id"];
+export type Move = typeof Moves[string]["id"];
+// const speciesArray = Object.keys(Pokedex);
+export type Species = typeof Pokedex[string]["species"];
 export type Stats = {
     hp?: number,
     atk?: number,
@@ -108,15 +113,24 @@ export type Stats = {
     crit?: -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6,
     evasion?: -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6
 }
-export type Move = typeof Moves[string]["id"];
-// export type Species = typeof Pokedex[string]["species"];
+export enum StatNames {
+    hp = "HP",
+    atk = "Attack",
+    def = "Defense",
+    spa = "Sp. Atk",
+    spd = "Sp. Defense",
+    spe = "Speed",
+    evasion = "evasiveness",
+    accuracy = "accuracy",
+    crit = "critical-hit ratio"
+}
 export type Pokemon = {
     species: string,
     name: string,
     gender: Gender,
     shiny: boolean,
     level: number,
-    ability: Ability,
-    ivs: number,
-    evs: number
+    ability: AbilitySlot,
+    ivs: Stats,
+    evs: Stats
 }

@@ -1,23 +1,41 @@
-import { Ability, Gender, Pokemon, Stats, Type } from "./pokemon";
+import { Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from "./pokemon";
 // import { Move } from "./moves";
-// interface PokedexEntry {
-//     id: number;
-//     species: string;
-//     name: string;
-//     types: Type[];
-//     genderRatio: {[gender in Gender]?: number};
-//     baseStats: Stats;
-//     abilities: {[abilityId in Ability]?: string};
-//     learnset: {
-//         levelup: {[level: string]: Move},
-//         tm: Move[],
-//         tutor: Move[]
-//     }
-//     Evolutions: {
-//         Level: {[level: string]: string};
-//     };
-// }
-export const Pokedex: {[species: string]: object} = {
+interface PokedexEntry {
+    id: number;
+    species: string;
+    baseSpecies?: Species;
+    forme?: string;
+    name: string;
+    types: Type[];
+    genderRatio?: {[gender in Gender]?: number};
+    baseStats: Stats;
+    abilities: {[slot in AbilitySlot]?: Ability};
+    learnset: {
+        levelup: {[level: string]: Move},
+        tm: Move[],
+        tutor: Move[]
+    };
+    Evolutions?: {
+        Level?: {[level: string]: Species},
+        HappinessDay?: {"": Species},
+        HappinessNight?: {"": Species},
+        DayHoldItem?: {[item: string]: Species}, // add Item later
+        Item?: {[item: string]: Species} // add Item later
+    };
+    growthRate: string; // add GrowthRate later
+    heightm: number;
+    weightkg: number;
+    color: string;
+    rareness: number;
+    stepsToHatch: number;
+    eggMoves?: Move[];
+    eggGroups: string[]; // add EggGroup later
+    effortPoints: Stats;
+    otherFormes?: Species[];
+    pokedex: string;
+    experienceYield: number;
+}
+export const Pokedex: {[species: string]: PokedexEntry} = {
     "BULBASAUR": {
         "id": 1,
         "species": "BULBASAUR",
