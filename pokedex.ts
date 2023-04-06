@@ -1,4 +1,23 @@
-export const Pokedex: {[species: string]: Object} = {
+import { Ability, Gender, Pokemon, Stats, Type } from "./pokemon";
+// import { Move } from "./moves";
+// interface PokedexEntry {
+//     id: number;
+//     species: string;
+//     name: string;
+//     types: Type[];
+//     genderRatio: {[gender in Gender]?: number};
+//     baseStats: Stats;
+//     abilities: {[abilityId in Ability]?: string};
+//     learnset: {
+//         levelup: {[level: string]: Move},
+//         tm: Move[],
+//         tutor: Move[]
+//     }
+//     Evolutions: {
+//         Level: {[level: string]: string};
+//     };
+// }
+export const Pokedex: {[species: string]: object} = {
     "BULBASAUR": {
         "id": 1,
         "species": "BULBASAUR",

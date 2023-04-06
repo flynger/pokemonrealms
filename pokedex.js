@@ -1,6 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Pokedex = void 0;
+// import { Move } from "./moves";
+// interface PokedexEntry {
+//     id: number;
+//     species: string;
+//     name: string;
+//     types: Type[];
+//     genderRatio: {[gender in Gender]?: number};
+//     baseStats: Stats;
+//     abilities: {[abilityId in Ability]?: string};
+//     learnset: {
+//         levelup: {[level: string]: Move},
+//         tm: Move[],
+//         tutor: Move[]
+//     }
+//     Evolutions: {
+//         Level: {[level: string]: string};
+//     };
+// }
 exports.Pokedex = {
     "BULBASAUR": {
         "id": 1,
