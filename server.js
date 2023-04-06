@@ -1,8 +1,6 @@
-"use strict";
 /*
 
 */
-Object.defineProperty(exports, "__esModule", { value: true });
 // libraries
 var bodyParser = require("./node_modules/body-parser");
 var cors = require("./node_modules/cors");

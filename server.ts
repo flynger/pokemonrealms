@@ -2,8 +2,6 @@
 
 */
 
-import { Interface } from "readline";
-
 // libraries
 const bodyParser = require("./node_modules/body-parser");
 const cors = require("./node_modules/cors");
