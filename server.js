@@ -13,7 +13,7 @@ var jsonfile = require("./node_modules/jsonfile");
 var sessions = require("./node_modules/express-session");
 var socket = require("./node_modules/socket.io/dist/index");
 var _a = require("./node_modules/unique-names-generator"), uniqueNamesGenerator = _a.uniqueNamesGenerator, adjectives = _a.adjectives, /*colors,*/ animals = _a.animals;
-// require('locus');
+require('locus');
 // server setup
 var app = express();
 var port = 80;
