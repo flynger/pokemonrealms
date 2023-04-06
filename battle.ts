@@ -1,9 +1,15 @@
+import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon'
+import { Party, Input } from './party'
+
 class PokemonBattle {
 
-    partyArray: Party[];
+    partyArray:Party[];
     currentTurn: number;
+    terrain:string
+    weather:string
+    
 
-    constructor(...parties:Party[][]) {
+    constructor(...parties:Party[]) {
         this.partyArray = parties;
         this.currentTurn = 1;
         console.log(parties)
@@ -26,5 +32,3 @@ class PokemonBattle {
         }
     }
 }
-
-new PokemonBattle(["hi", "l"], ["abc", "fig"]);

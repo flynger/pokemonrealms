@@ -102,6 +102,7 @@ export type Ability = typeof Abilities[string]["id"];
 export type Move = typeof Moves[string]["id"];
 // const speciesArray = Object.keys(Pokedex);
 export type Species = typeof Pokedex[string]["species"];
+export type StatStage = -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6;
 export type Stats = {
     hp?: number,
     atk?: number,
@@ -109,9 +110,9 @@ export type Stats = {
     spa?: number,
     spd?: number,
     spe?: number,
-    accuracy?: -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6,
-    crit?: -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6,
-    evasion?: -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6
+    accuracy?: StatStage,
+    crit?: StatStage,
+    evasion?: StatStage
 }
 export enum StatNames {
     hp = "HP",
@@ -132,5 +133,6 @@ export type Pokemon = {
     level: number,
     ability: AbilitySlot,
     ivs: Stats,
-    evs: Stats
+    evs: Stats,
+    moves: Move[]
 }
