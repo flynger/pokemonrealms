@@ -11,14 +11,16 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
     <script>
-
         window.onload = async () => {
+            var wSpeed = 2;
+            var rSpeed = 3.5;
             var player, spritesheet;
             var Input = {
                 RIGHT: false,
                 LEFT: false,
                 UP: false,
-                DOWN: false
+                DOWN: false,
+                SHIFT: false
             }
             function keyDownHandler(event) {
                 if (event.keyCode === 39 || event.keyCode === 68) {
@@ -30,6 +32,9 @@
                     Input.DOWN = true;
                 } else if (event.keyCode === 38 || event.keyCode === 87) {
                     Input.UP = true;
+                }
+                if (event.keyCode === 16) {
+                    Input.SHIFT = true;
                 }
             }
             function keyUpHandler(event) {
@@ -61,12 +66,13 @@
                     x: 0,
                     y: 0
                 },
-                speed: 2,
+                speed: wSpeed,
                 moving: false,
                 sheet: {},
                 animSheet: 2
             }
             PIXI.Assets.add("red", "res/characters/red_walk.png");
+            PIXI.Assets.add("r_red", "res/characters/red_run.png");
             PIXI.Assets.add("blue", "res/characters/blue_walk.png");
             let spritesheetData = {
                 frames: {
@@ -209,6 +215,9 @@
             }
             function draw(delta) {
                 if (!player.moving) {
+                    if (Input.SHIFT) {
+                        player.speed = rSpeed;
+                    }
                     // if player not moving get input
                     if (Input.RIGHT) {
                         if (player.animSheet == 1) {
