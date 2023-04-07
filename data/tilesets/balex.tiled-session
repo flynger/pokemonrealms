@@ -3,10 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/Sandbox/github/PokemonRealms/data/balex.tmx",
+    "activeFile": "Outside.json",
     "expandedProjectPaths": [
         "."
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx": {
             "scale": 0.75,
@@ -15,6 +16,10 @@
                 "x": 16,
                 "y": -58.66666666666674
             }
+        },
+        "Outside.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "Outside.tsx": {
             "scaleInDock": 1,
@@ -26,11 +31,11 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 102,
     "openFiles": [
-        "D:/Sandbox/github/PokemonRealms/data/balex.tmx",
-        "Outside.tsx"
+        "Outside.json"
     ],
     "project": "balex.tiled-project",
     "recentFiles": [
+        "Outside.json",
         "Outside.tsx",
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx"
     ],
