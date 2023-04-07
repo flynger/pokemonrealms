@@ -12,8 +12,7 @@ export type Move = typeof Moves[string]["id"];
 const speciesArray = Object.keys(Pokedex);
 export type Species = typeof speciesArray[number];
 export type StatStage = -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6;
-export type CurrentStats = {
-    hp?: number,
+export type StatStages = {
     atk?: StatStage,
     def?: StatStage,
     spa?: StatStage,
