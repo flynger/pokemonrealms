@@ -1,4 +1,4 @@
-import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon'
+import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, StatStages, Type } from './pokemon'
 import { Party, Input } from './party'
 
 class PokemonBattle {
@@ -27,7 +27,7 @@ class PokemonBattle {
 
             // calculate speed
 
-            pokemon 
+
             // make move loop
 
             //

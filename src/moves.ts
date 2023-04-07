@@ -1,4 +1,4 @@
-import { Stats, Type } from "./pokemon"
+import { StatStages, Type } from "./pokemon"
 interface MoveEntry {
     id: string,
     num: number,
@@ -44,12 +44,12 @@ interface MoveEntry {
     ignoreEvasion?: true,
     sleepUsable?: true,
     zMovePower?: number,
-    boosts?: Stats,
+    boosts?: StatStages,
     selfSwitch?: boolean|"copyvolatile",
     sideCondition?: string,
     zMoveEffect?: string,
     status?: "slp"|"par"|"brn"|"tox"|"psn",
-    zMoveBoost?: Stats,
+    zMoveBoost?: StatStages,
     critRatio?: number,
     isZ?: string
 }
