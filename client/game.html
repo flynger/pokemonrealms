@@ -196,7 +196,7 @@
                 );
                 await spritesheet.parse();
 
-                player.sprite = new PIXI.AnimatedSprite(spritesheet.animations.walkDown);
+                player.sprite = new PIXI.AnimatedSprite(spritesheet.animations.walkLeft);
                 player.sprite.animationSpeed = 0.1;
                 player.sprite.loop = true;
                 app.stage.addChild(player.sprite);
