@@ -11,7 +11,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
     <script>
-        window.onload = () => {
+        window.onload = async () => {
             let rightPressed = false;
             let leftPressed = false;
             let upPressed = false;
@@ -42,28 +42,115 @@
             }
             document.addEventListener("keydown", keyDownHandler, false);
             document.addEventListener("keyup", keyUpHandler, false);
-            let app = new PIXI.Application(
+            const app = new PIXI.Application(
                 {
                     width: 640,
                     height: 360,
                     backgroundColor: 0x333333
                 }
             );
+            let player = {
+                skin: "red",
+                sprite: null,
+                // sprite: PIXI.Sprite.from('res/characters/blue.gif'),
+                target: {
+                    x: 0,
+                    y: 0
+                },
+                speed: 1.5,
+                moving: false,
+                sheet: {}
+            }
             document.body.appendChild(app.view);
-            let sprite = PIXI.Sprite.from('res/characters/blue.gif');
-            app.stage.addChild(sprite);
-            app.ticker.add((delta) => {
-                if (rightPressed) {
-                    sprite.x++;
-                } else if (leftPressed) {
-                    sprite.x--;
+            PIXI.Assets.add("red", "res/characters/red_walk.png");
+            PIXI.Assets.add("blue", "res/characters/blue_walk.png");
+            const textures = await PIXI.Assets.load(['red', 'blue']).then(loadingComplete);
+            console.log(textures);
+            function loadingComplete(e) {
+                createPlayerSheet();
+                player.sprite = new PIXI.AnimatedSprite(player.sheet.lookDown);
+                player.sprite.animationSpeed = 1;
+                player.sprite.loop = false;
+                app.stage.addChild(player.sprite);
+                player.sprite.play();
+                app.ticker.add(draw);
+            }
+            function createPlayerSheet() {
+                let sheet = new PIXI.BaseTexture.from(PIXI.Assets.get(player.skin));
+                let w = 32;
+                let h = 48;
+
+                player.sheet["lookDown"] = [
+                    new PIXI.Texture(sheet, new PIXI.Rectangle(0, 0, w, h))
+                ]
+                player.sheet["lookUp"] = [
+                    new PIXI.Texture(sheet, new PIXI.Rectangle(0, 3 * h, w, h))
+                ]
+                player.sheet["lookRight"] = [
+                    new PIXI.Texture(sheet, new PIXI.Rectangle(0, 2 * h, w, h))
+                ]
+                player.sheet["lookLeft"] = [
+                    new PIXI.Texture(sheet, new PIXI.Rectangle(0, 1 * h, w, h))
+                ]
+            }
+            function draw(delta) {
+                if (!player.moving) {
+                    // if player not moving get input
+                    if (rightPressed) {
+                        player.textures = player.sheet.lookRight;
+                        player.moving = true;
+                        player.target.x = player.sprite.x + 32;
+                        player.target.y = player.sprite.y;
+                    } else if (leftPressed) {
+                        player.moving = true;
+                        player.target.x = player.sprite.x - 32;
+                        player.target.y = player.sprite.y;
+                    } else if (downPressed) {
+                        player.moving = true;
+                        player.target.x = player.sprite.x;
+                        player.target.y = player.sprite.y + 32;
+                    } else if (upPressed) {
+                        player.moving = true;
+                        player.target.x = player.sprite.x;
+                        player.target.y = player.sprite.y - 32;
+                    }
+                } else {
+                    // else move player toward target tile
+                    var distX = player.target.x - player.sprite.x;
+                    var distY = player.target.y - player.sprite.y;
+                    var dx = Math.sign(distX) * player.speed;
+                    var dy = Math.sign(distY) * player.speed;
+                    if ((!player.idle && (Math.abs(distX) <= player.speed && Math.abs(distY) == 0) || (Math.abs(distY) <= player.speed && Math.abs(distX) == 0)) || player.idleCounter == 0) { // <= or == which one?
+                        // if (this.parent.idleCounter == 0) {
+                        //     this.target.x = this.parent.idleX;
+                        //     this.target.y = this.parent.idleY;
+                        //     this.pos.x = this.parent.idleX;
+                        //     this.pos.y = this.parent.idleY;
+                        //     this.speed = 120 / playerData.FPS;
+                        //     this.parent.idle = false;
+                        //     this.parent.idleCounter = 8 * playerData.FPS / 30;
+                        // } else {
+                        player.sprite.x = player.target.x;
+                        player.sprite.y = player.target.y;
+                        // }
+                        // if (this.img.cellX % 2 == 1) this.img.shiftX(1);
+                        player.moving = false;
+                        // this.canMove = !warpCheck(this.pos.x, this.pos.y);
+                    } else {
+                        if (!player.idle) {
+                            player.sprite.x += dx;
+                            player.sprite.y += dy;
+                        } else {
+                            // if (this.parent.idleCounter == 8 * playerData.FPS / 30) {
+                            //     playerData.sounds.bump.setVolume(0.1);
+                            //     playerData.sounds.bump.play();
+                            // }
+                            //console.log(this.parent.idle);
+                            //player.idleCounter--;
+                        }
+                    }
                 }
-                if (downPressed) {
-                    sprite.y++;
-                } else if (upPressed) {
-                    sprite.y--;
-                }
-            });
+            }
         }
     </script>
 </head>
