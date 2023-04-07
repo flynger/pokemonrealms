@@ -61,9 +61,126 @@
                 moving: false,
                 sheet: {}
             }
-            document.body.appendChild(app.view);
             PIXI.Assets.add("red", "res/characters/red_walk.png");
             PIXI.Assets.add("blue", "res/characters/blue_walk.png");
+            let spritesheetData = {
+                frames: {
+                    "walkd1":
+                    {
+                        "frame": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkd2":
+                    {
+                        "frame": { "x": 32, "y": 0, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkd3":
+                    {
+                        "frame": { "x": 64, "y": 0, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkd4":
+                    {
+                        "frame": { "x": 96, "y": 0, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkl1":
+                    {
+                        "frame": { "x": 0, "y": 48, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkl2":
+                    {
+                        "frame": { "x": 32, "y": 48, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkl3":
+                    {
+                        "frame": { "x": 64, "y": 48, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkl4":
+                    {
+                        "frame": { "x": 96, "y": 48, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkr1":
+                    {
+                        "frame": { "x": 0, "y": 96, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkr2":
+                    {
+                        "frame": { "x": 32, "y": 96, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkr3":
+                    {
+                        "frame": { "x": 64, "y": 96, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walkr4":
+                    {
+                        "frame": { "x": 96, "y": 96, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walku1":
+                    {
+                        "frame": { "x": 0, "y": 144, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walku2":
+                    {
+                        "frame": { "x": 32, "y": 144, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walku3":
+                    {
+                        "frame": { "x": 64, "y": 144, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    },
+                    "walku4":
+                    {
+                        "frame": { "x": 96, "y": 144, "w": 32, "h": 48 },
+                        "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+                        "sourceSize": { "w": 32, "h": 48 }
+                    }
+                },
+
+                "animations": {
+                    "walkDown": ["walkd1", "walkd2", "walkd3", "walkd4"],
+                    "walkLeft": ["walkl1", "walkl2", "walkl3", "walkl4"],
+                    "walkRight": ["walkr1", "walkr2", "walkr3", "walkr4"],
+                    "walkUp": ["walku1", "walku2", "walku3", "walku4"]
+
+                },
+
+                "meta": {
+                    "image": "res/characters/red_walk.png",
+                    "format": "RGBA8888",
+                    "size": { "w": 128, "h": 192 },
+                    "scale": "1"
+                }
+            }
+            document.body.appendChild(app.view);
+            // PIXI.Assets.add("red", "res/characters/red_walk.png");
+            // PIXI.Assets.add("blue", "res/characters/blue_walk.png");
             const textures = await PIXI.Assets.load(['red', 'blue']).then(loadingComplete);
             console.log(textures);
             function loadingComplete(e) {
@@ -73,46 +190,13 @@
             async function createPlayerSheet() {
                 let w = 32;
                 let h = 48;
-                let spritesheetData = {
-                    frames: {
-                        "red1":
-                        {
-                            "frame": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                            "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                            "sourceSize": { "w": 32, "h": 48 }
-                        },
-                        "red2":
-                        {
-                            "frame": { "x": 32, "y": 0, "w": 32, "h": 48 },
-                            "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                            "sourceSize": { "w": 32, "h": 48 }
-                        },
-                        "red3":
-                        {
-                            "frame": { "x": 64, "y": 0, "w": 32, "h": 48 },
-                            "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                            "sourceSize": { "w": 32, "h": 48 }
-                        },
-                    },
-
-                    "animations": {
-                        "walk": ["red1", "red2"]
-                    },
-
-                    "meta": {
-                        "image": "res/characters/red_walk.png",
-                        "format": "RGBA8888",
-                        "size": { "w": 128, "h": 192 },
-                        "scale": "1"
-                    }
-                }
-                const spritesheet = new PIXI.Spritesheet(
+                spritesheet = new PIXI.Spritesheet(
                     PIXI.BaseTexture.from(spritesheetData.meta.image),
                     spritesheetData
                 );
                 await spritesheet.parse();
 
-                player.sprite = new PIXI.AnimatedSprite(spritesheet.animations.walk);
+                player.sprite = new PIXI.AnimatedSprite(spritesheet.animations.walkDown);
                 player.sprite.animationSpeed = 0.1;
                 player.sprite.loop = true;
                 app.stage.addChild(player.sprite);
@@ -122,19 +206,26 @@
                 if (!player.moving) {
                     // if player not moving get input
                     if (rightPressed) {
-                        player.textures = player.sheet.lookRight;
+                        player.textures = spritesheet.animations.walkRight;
+                        player.sprite.play();
                         player.moving = true;
                         player.target.x = player.sprite.x + 32;
                         player.target.y = player.sprite.y;
                     } else if (leftPressed) {
+                        player.textures = spritesheet.animations.walkLeft;
+                        player.sprite.play();
                         player.moving = true;
                         player.target.x = player.sprite.x - 32;
                         player.target.y = player.sprite.y;
                     } else if (downPressed) {
+                        player.textures = spritesheet.animations.walkDown;
+                        player.sprite.play();
                         player.moving = true;
                         player.target.x = player.sprite.x;
                         player.target.y = player.sprite.y + 32;
                     } else if (upPressed) {
+                        player.textures = spritesheet.animations.walkRight;
+                        player.sprite.play();
                         player.moving = true;
                         player.target.x = player.sprite.x;
                         player.target.y = player.sprite.y - 32;
