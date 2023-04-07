@@ -12,6 +12,17 @@ export type Move = typeof Moves[string]["id"];
 const speciesArray = Object.keys(Pokedex);
 export type Species = typeof speciesArray[number];
 export type StatStage = -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6;
+export type CurrentStats = {
+    hp?: number,
+    atk?: StatStage,
+    def?: StatStage,
+    spa?: StatStage,
+    spd?: StatStage,
+    spe?: StatStage,
+    accuracy?: StatStage,
+    crit?: StatStage,
+    evasion?: StatStage
+}
 export type Stats = {
     hp?: number,
     atk?: number,
@@ -19,9 +30,6 @@ export type Stats = {
     spa?: number,
     spd?: number,
     spe?: number,
-    accuracy?: StatStage,
-    crit?: StatStage,
-    evasion?: StatStage
 }
 export enum StatNames {
     hp = "HP",

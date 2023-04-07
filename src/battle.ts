@@ -4,6 +4,7 @@ import { Party, Input } from './party'
 class PokemonBattle {
 
     partyArray: Party[];
+    pokemonOnField: Pokemon[];
     currentTurn: number;
     canRun: boolean;
     terrain: string
@@ -25,7 +26,8 @@ class PokemonBattle {
             console.log(`Turn ${this.currentTurn}`);
 
             // calculate speed
-            if(this.partyArray[0].pokemon[this.partyArray[0].input[1]].s > this.partyArray[1].pokemon[this.partyArray[1].input[1]])
+
+            pokemon 
             // make move loop
 
             //
