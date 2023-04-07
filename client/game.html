@@ -11,33 +11,37 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
     <script>
+
         window.onload = async () => {
-            let rightPressed = false;
-            let leftPressed = false;
-            let upPressed = false;
-            let downPressed = false;
+            var player, spritesheet;
+            var Input = {
+                RIGHT: false,
+                LEFT: false,
+                UP: false,
+                DOWN: false
+            }
             function keyDownHandler(event) {
-                if (event.keyCode === 39) {
-                    rightPressed = true;
-                } else if (event.keyCode === 37) {
-                    leftPressed = true;
+                if (event.keyCode === 39 || event.keyCode === 68) {
+                    Input.RIGHT = true;
+                } else if (event.keyCode === 37 || event.keyCode === 65) {
+                    Input.LEFT = true;
                 }
-                if (event.keyCode === 40) {
-                    downPressed = true;
-                } else if (event.keyCode === 38) {
-                    upPressed = true;
+                if (event.keyCode === 40 || event.keyCode === 83) {
+                    Input.DOWN = true;
+                } else if (event.keyCode === 38 || event.keyCode === 87) {
+                    Input.UP = true;
                 }
             }
             function keyUpHandler(event) {
-                if (event.keyCode === 39) {
-                    rightPressed = false;
-                } else if (event.keyCode === 37) {
-                    leftPressed = false;
+                if (event.keyCode === 39 || event.keyCode === 68) {
+                    Input.RIGHT = false;
+                } else if (event.keyCode === 37 || event.keyCode === 65) {
+                    Input.LEFT = false;
                 }
-                if (event.keyCode === 40) {
-                    downPressed = false;
-                } else if (event.keyCode === 38) {
-                    upPressed = false;
+                if (event.keyCode === 40 || event.keyCode === 83) {
+                    Input.DOWN = false;
+                } else if (event.keyCode === 38 || event.keyCode === 87) {
+                    Input.UP = false;
                 }
             }
             document.addEventListener("keydown", keyDownHandler, false);
@@ -49,7 +53,7 @@
                     backgroundColor: 0x333333
                 }
             );
-            let player = {
+            player = {
                 skin: "red",
                 sprite: null,
                 // sprite: PIXI.Sprite.from('res/characters/blue.gif'),
@@ -57,9 +61,10 @@
                     x: 0,
                     y: 0
                 },
-                speed: 4,
+                speed: 2,
                 moving: false,
-                sheet: {}
+                sheet: {},
+                animSheet: 2
             }
             PIXI.Assets.add("red", "res/characters/red_walk.png");
             PIXI.Assets.add("blue", "res/characters/blue_walk.png");
@@ -164,15 +169,18 @@
                 },
 
                 "animations": {
-                    "walkDown": ["walkd1", "walkd2", "walkd3", "walkd4"],
-                    "walkLeft": ["walkl1", "walkl2", "walkl3", "walkl4"],
-                    "walkRight": ["walkr1", "walkr2", "walkr3", "walkr4"],
-                    "walkUp": ["walku1", "walku2", "walku3", "walku4"]
-
+                    "walkDown1": ["walkd2", "walkd3"],
+                    "walkDown2": ["walkd4", "walkd1"],
+                    "walkLeft1": ["walkl2", "walkl3"],
+                    "walkLeft2": ["walkl4", "walkl1"],
+                    "walkRight1": ["walkr2", "walkr3"],
+                    "walkRight2": ["walkr4", "walkr1"],
+                    "walkUp1": ["walku2", "walku3"],
+                    "walkUp2": ["walku4", "walku1"]
                 },
 
                 "meta": {
-                    "image": "res/characters/red_walk.png",
+                    "image": "res/characters/" + player.skin + "_walk.png",
                     "format": "RGBA8888",
                     "size": { "w": 128, "h": 192 },
                     "scale": "1"
@@ -181,13 +189,10 @@
             document.body.appendChild(app.view);
             // PIXI.Assets.add("red", "res/characters/red_walk.png");
             // PIXI.Assets.add("blue", "res/characters/blue_walk.png");
-            const textures = await PIXI.Assets.load(['red', 'blue']).then(loadingComplete);
-            console.log(textures);
-            function loadingComplete(e) {
-                createPlayerSheet();
-                app.ticker.add(draw);
-            }
-            async function createPlayerSheet() {
+            const textures = await PIXI.Assets.load(['red', 'blue']).then((e) => {
+                createPlayer().then(() => app.ticker.add(draw));
+            });
+            async function createPlayer() {
                 let w = 32;
                 let h = 48;
                 spritesheet = new PIXI.Spritesheet(
@@ -196,35 +201,59 @@
                 );
                 await spritesheet.parse();
 
-                player.sprite = new PIXI.AnimatedSprite(spritesheet.animations.walkLeft);
+                player.sprite = new PIXI.AnimatedSprite(spritesheet.animations.walkDown1);
+                player.sprite.texture = player.sprite.textures[1];
                 player.sprite.animationSpeed = 0.1;
-                player.sprite.loop = true;
+                player.sprite.loop = false;
                 app.stage.addChild(player.sprite);
-                player.sprite.play();
             }
             function draw(delta) {
                 if (!player.moving) {
                     // if player not moving get input
-                    if (rightPressed) {
-                        player.textures = spritesheet.animations.walkRight;
+                    if (Input.RIGHT) {
+                        if (player.animSheet == 1) {
+                            player.animSheet = 2;
+                            player.sprite.textures = spritesheet.animations.walkRight2;
+                        } else {
+                            player.animSheet = 1;
+                            player.sprite.textures = spritesheet.animations.walkRight1;
+                        }
                         player.sprite.play();
                         player.moving = true;
                         player.target.x = player.sprite.x + 32;
                         player.target.y = player.sprite.y;
-                    } else if (leftPressed) {
-                        player.textures = spritesheet.animations.walkLeft;
+                    } else if (Input.LEFT) {
+                        if (player.animSheet == 1) {
+                            player.animSheet = 2;
+                            player.sprite.textures = spritesheet.animations.walkLeft2;
+                        } else {
+                            player.animSheet = 1;
+                            player.sprite.textures = spritesheet.animations.walkLeft1;
+                        }
                         player.sprite.play();
                         player.moving = true;
                         player.target.x = player.sprite.x - 32;
                         player.target.y = player.sprite.y;
-                    } else if (downPressed) {
-                        player.textures = spritesheet.animations.walkDown;
+                    } else if (Input.DOWN) {
+                        if (player.animSheet == 1) {
+                            player.animSheet = 2;
+                            player.sprite.textures = spritesheet.animations.walkDown2;
+                        } else {
+                            player.animSheet = 1;
+                            player.sprite.textures = spritesheet.animations.walkDown1;
+                        }
                         player.sprite.play();
                         player.moving = true;
                         player.target.x = player.sprite.x;
                         player.target.y = player.sprite.y + 32;
-                    } else if (upPressed) {
-                        player.textures = spritesheet.animations.walkRight;
+                    } else if (Input.UP) {
+                        if (player.animSheet == 1) {
+                            player.animSheet = 2;
+                            player.sprite.textures = spritesheet.animations.walkUp2;
+                        } else {
+                            player.animSheet = 1;
+                            player.sprite.textures = spritesheet.animations.walkUp1;
+                        }
                         player.sprite.play();
                         player.moving = true;
                         player.target.x = player.sprite.x;
