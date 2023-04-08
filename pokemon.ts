@@ -1,8 +1,8 @@
-import { Pokedex } from "./pokedex";
-import { Moves } from "./moves";
-import { Abilities } from "./abilities";
+import { Pokedex } from "./src/pokedex";
+import { Moves } from "./src/moves";
+import { Abilities } from "./src/abilities";
 
-export const TYPES: {[type: string]: Object} = {
+export const TYPES: {[type: string]: object} = {
     NORMAL: {
         weakTo: ["FIGHTING"],
         resists: [],
