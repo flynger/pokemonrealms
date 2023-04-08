@@ -50,5 +50,7 @@ export type Pokemon = {
     ability: AbilitySlot,
     ivs: Stats,
     evs: Stats,
+    stats: Stats,
+    statStages: StatStage,
     moves: Move[]
 }
