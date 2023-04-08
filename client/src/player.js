@@ -1,13 +1,27 @@
-// class player {
-//     constructor() {
+class player {
+    static walkSpeed = 2;
+    static runSpeed = 3.5;
+    static {
 
-//     }
-// }
+    }
+    #moving = false;
+    constructor(name, avatar, x, y, facing = "down", hasController = false) {
+        this.name = name;
+        this.avatar = avatar;
+        this.hasController = hasController;
+        this.sprite = new PIXI.AnimatedSprite(playerSprites[avatar].animations[facing + "1"]);
+        this.sprite.texture = this.sprite.textures[1];
+        this.sprite.animationSpeed = 0.1;
+        this.sprite.loop = false;
+        this.sprite.x = x;
+        this.sprite.y = y;
+        app.stage.addChild(player.sprite);
+    }
+
+}
 var playerSprites;
-var walkSpeed = 2;
-var runSpeed = 3.5;
 var player = {
-    skin: "red",
+    avatar: "red",
     sprite: null,
     // sprite: PIXI.Sprite.from('res/characters/blue.gif'),
     target: {
@@ -19,99 +33,100 @@ var player = {
     sheet: {},
     animSheet: 2
 }
-let spritesheetData = {
-    frames: {
-        "walkd1":
+
+let genericSheetData = {
+    "frames": {
+        "d1":
         {
             "frame": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkd2":
+        "d2":
         {
             "frame": { "x": 32, "y": 0, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkd3":
+        "d3":
         {
             "frame": { "x": 64, "y": 0, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkd4":
+        "d4":
         {
             "frame": { "x": 96, "y": 0, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkl1":
+        "l1":
         {
             "frame": { "x": 0, "y": 48, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkl2":
+        "l2":
         {
             "frame": { "x": 32, "y": 48, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkl3":
+        "l3":
         {
             "frame": { "x": 64, "y": 48, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkl4":
+        "l4":
         {
             "frame": { "x": 96, "y": 48, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkr1":
+        "r1":
         {
             "frame": { "x": 0, "y": 96, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkr2":
+        "r2":
         {
             "frame": { "x": 32, "y": 96, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkr3":
+        "r3":
         {
             "frame": { "x": 64, "y": 96, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walkr4":
+        "r4":
         {
             "frame": { "x": 96, "y": 96, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walku1":
+        "u1":
         {
             "frame": { "x": 0, "y": 144, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walku2":
+        "u2":
         {
             "frame": { "x": 32, "y": 144, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walku3":
+        "u3":
         {
             "frame": { "x": 64, "y": 144, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
             "sourceSize": { "w": 32, "h": 48 }
         },
-        "walku4":
+        "u4":
         {
             "frame": { "x": 96, "y": 144, "w": 32, "h": 48 },
             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
@@ -120,29 +135,32 @@ let spritesheetData = {
     },
 
     "animations": {
-        "walkDown1": ["walkd2", "walkd3"],
-        "walkDown2": ["walkd4", "walkd1"],
-        "walkLeft1": ["walkl2", "walkl3"],
-        "walkLeft2": ["walkl4", "walkl1"],
-        "walkRight1": ["walkr2", "walkr3"],
-        "walkRight2": ["walkr4", "walkr1"],
-        "walkUp1": ["walku2", "walku3"],
-        "walkUp2": ["walku4", "walku1"]
+        "down1": ["d2", "d3"],
+        "down2": ["d4", "d1"],
+        "left1": ["l2", "l3"],
+        "left2": ["l4", "l1"],
+        "right1": ["r2", "r3"],
+        "right2": ["r4", "r1"],
+        "up1": ["u2", "u3"],
+        "up2": ["u4", "u1"]
     },
 
     "meta": {
-        "image": "res/characters/" + player.skin + "_walk.png",
+        "image": "res/characters/" + player.avatar + "_walk.png",
         "format": "RGBA8888",
         "size": { "w": 128, "h": 192 },
         "scale": "1"
     }
 }
+function createSheet(avatar) {
+    { frames, genericSheetData
+}
 async function createPlayer() {
     let w = 32;
     let h = 48;
     playerSprites = new PIXI.Spritesheet(
-        PIXI.BaseTexture.from(spritesheetData.meta.image),
-        spritesheetData
+        PIXI.BaseTexture.from(playerSheetData.meta.image),
+        playerSheetData
     );
     await playerSprites.parse();
 
