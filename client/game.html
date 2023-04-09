@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>Game</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -10,7 +11,7 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
-    <script src="nav.js"></script>
+    <!-- <script src="nav.js"></script> -->
     <script>
         window.onload = async () => {
             const app = new PIXI.Application(
@@ -34,9 +35,44 @@
     <script src="src/input.js"></script>
     <script src="src/player.js"></script>
     <script src="src/draw.js"></script>
+    <script src="css/style.css"></script>
 </head>
 
 <body>
+    <header ondragstart="return false;" ondrop="return false;">
+        <nav class="navbar navbar-expand-md bg-dark-subtle sticky-top" data-bs-theme="dark">
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 multi-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Play</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="mx-auto order-0">
+                <a class="navbar-brand mx-0" href="#"><img src="res/characters/may.gif"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse"
+                    aria-controls="navbarNav navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 multi-collapse" id="navbarNav2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign-in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 </body>
 
 </html>
