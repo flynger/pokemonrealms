@@ -1,8 +1,8 @@
-import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon'
-import { Party, Input } from './party'
+// import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon'
+// import { Party, Input } from './party'
 
-export interface PokemonBattle {
+// export interface PokemonBattle {
 
-    startTurn(): void;
+//     startTurn(): void;
 
-}
+// }
