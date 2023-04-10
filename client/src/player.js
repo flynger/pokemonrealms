@@ -1,6 +1,6 @@
 class player {
-    static walkSpeed = 2 / 2;
-    static runSpeed = 3.5 / 2;
+    static walkSpeed = 2;
+    static runSpeed = 3.5;
     static playerSprites = {};
     static async initializePlayerSpritesheets() {
         let playerSheetData = {
@@ -150,13 +150,12 @@ class player {
         this.#target = { x, y };
     }
     step(delta) {
-        console.log(delta);
         if (this.#hasController && !this.#moving) {
             // set player speed
             if (Input.SHIFT) {
-                this.speed = player.runSpeed;// * delta;
+                this.speed = player.runSpeed * delta;
             } else {
-                this.speed = player.walkSpeed;// * delta;
+                this.speed = player.walkSpeed * delta;
             }
             // if player not moving get input
             if (Input.RIGHT) {
