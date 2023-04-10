@@ -31,10 +31,10 @@
 //         //check pokemon abilities
 //         if (this.parties[0].pokemon.length > 0 && this.parties[1].pokemon.length > 0) {
 //             console.log(`Turn ${this.currentTurn}`);
-        
+
 //             if (this.parties[0].pokemon.length > 0 && this.parties[1].pokemon.length > 0) {
 //                 console.log(`Turn ${this.currentTurn}`);
-              
+
 //                 this.parties[0].input[0] == "RUN"
 //                   ? this.canRun ? this.Run() : this.DisplayDialog("You cannot run from this battle.")
 //                   : this.parties[1].input[0] == "RUN"
