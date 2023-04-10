@@ -2,6 +2,7 @@ class player {
     static walkSpeed = 2;
     static runSpeed = 3.5;
     static playerSprites = {};
+
     static async initializePlayerSpritesheets() {
         let playerSheetData = {
             "frames": {
@@ -131,9 +132,13 @@ class player {
             await this.playerSprites[avatar].parse();
         }
     }
+
     #moving = false;
     #target;
+    #nextInput = false;
+    #nextShiftInput = false;
     #animSheet = 2;
+
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         this.name = name;
         this.avatar = avatar;
@@ -148,77 +153,68 @@ class player {
         this.sprite.y = y;
         this.#target = { x, y };
     }
+
     step(delta) {
-        if (this.hasController && !this.#moving) {
-            // set player speed
-            if (Input.SHIFT) {
-                this.sprite.animationSpeed = 0.175;
-                this.speed = player.runSpeed * delta;
-                this.sprites = player.playerSprites[this.avatar + "_run"];
+        if (this.hasController) {
+            if (!this.#moving) {
+                // set player speed
+                if (Input.SHIFT || this.#nextShiftInput) {
+                    this.sprite.animationSpeed = 0.175;
+                    this.speed = player.runSpeed * delta;
+                    this.sprites = player.playerSprites[this.avatar + "_run"];
+                } else {
+                    this.sprite.animationSpeed = 0.1;
+                    this.speed = player.walkSpeed * delta;
+                    this.sprites = player.playerSprites[this.avatar + "_walk"];
+                }
+                if (this.sprite.texture != player.playerSprites[this.avatar + "_walk"].animations[this.facing + this.#animSheet][1]) {
+                    //alert("changed texture")
+                    this.sprite.texture = player.playerSprites[this.avatar + "_walk"].animations[this.facing + this.#animSheet][1];
+                }
+                // if player not moving get input
+                if (this.#nextInput == "right" || (!this.#nextInput && Input.RIGHT)) {
+                    this.#nextInput = false;
+                    this.#nextShiftInput = false;
+                    this.setFacing("right");
+                    this.sprite.play();
+                    this.moveTo(this.sprite.x + 32, this.sprite.y);
+                } else if (this.#nextInput == "left" || (!this.#nextInput && Input.LEFT)) {
+                    this.#nextInput = false;
+                    this.#nextShiftInput = false;
+                    this.setFacing("left");
+                    this.sprite.play();
+                    this.moveTo(this.sprite.x - 32, this.sprite.y);
+                } else if (this.#nextInput == "down" || (!this.#nextInput && Input.DOWN)) {
+                    this.#nextInput = false;
+                    this.#nextShiftInput = false;
+                    this.setFacing("down");
+                    this.sprite.play();
+                    this.moveTo(this.sprite.x, this.sprite.y + 32);
+                } else if (this.#nextInput == "up" || (!this.#nextInput && Input.UP)) {
+                    this.#nextInput = false;
+                    this.#nextShiftInput = false;
+                    this.setFacing("up");
+                    this.sprite.play();
+                    this.moveTo(this.sprite.x, this.sprite.y - 32);
+                }
             } else {
-                this.sprite.animationSpeed = 0.1;
-                this.speed = player.walkSpeed * delta;
-                this.sprites = player.playerSprites[this.avatar + "_walk"];
+                // save next shift input
+                if (Input.SHIFT) {
+                    this.#nextShiftInput = true;
+                }
+                // save next input
+                if (Input.RIGHT && this.facing != "right") {
+                    this.#nextInput = "right";
+                } else if (Input.LEFT && this.facing != "left") {
+                    this.#nextInput = "left";
+                } else if (Input.DOWN && this.facing != "down") {
+                    this.#nextInput = "down";
+                } else if (Input.UP && this.facing != "up") {
+                    this.#nextInput = "up";
+                }
             }
-            if (this.sprite.texture != player.playerSprites[this.avatar + "_walk"].animations[this.facing + this.#animSheet][1]) {
-                //alert("changed texture")
-                this.sprite.texture = player.playerSprites[this.avatar + "_walk"].animations[this.facing + this.#animSheet][1];
-            }
-            // if player not moving get input
-            if (Input.RIGHT) {
-                this.facing = "right";
-                if (this.#animSheet == 1) {
-                    this.#animSheet = 2;
-                    this.sprite.textures = this.sprites.animations.right2;
-                } else {
-                    this.#animSheet = 1;
-                    this.sprite.textures = this.sprites.animations.right1;
-                }
-                this.sprite.play();
-                this.#moving = true;
-                this.#target.x = this.sprite.x + 32;
-                this.#target.y = this.sprite.y;
-            } else if (Input.LEFT) {
-                this.facing = "left";
-                if (this.#animSheet == 1) {
-                    this.#animSheet = 2;
-                    this.sprite.textures = this.sprites.animations.left2;
-                } else {
-                    this.#animSheet = 1;
-                    this.sprite.textures = this.sprites.animations.left1;
-                }
-                this.sprite.play();
-                this.#moving = true;
-                this.#target.x = this.sprite.x - 32;
-                this.#target.y = this.sprite.y;
-            } else if (Input.DOWN) {
-                this.facing = "down";
-                if (this.#animSheet == 1) {
-                    this.#animSheet = 2;
-                    this.sprite.textures = this.sprites.animations.down2;
-                } else {
-                    this.#animSheet = 1;
-                    this.sprite.textures = this.sprites.animations.down1;
-                }
-                this.sprite.play();
-                this.#moving = true;
-                this.#target.x = this.sprite.x;
-                this.#target.y = this.sprite.y + 32;
-            } else if (Input.UP) {
-                this.facing = "up";
-                if (this.#animSheet == 1) {
-                    this.#animSheet = 2;
-                    this.sprite.textures = this.sprites.animations.up2;
-                } else {
-                    this.#animSheet = 1;
-                    this.sprite.textures = this.sprites.animations.up1;
-                }
-                this.sprite.play();
-                this.#moving = true;
-                this.#target.x = this.sprite.x;
-                this.#target.y = this.sprite.y - 32;
-            }
-        } else {
+        }
+        if (this.#moving) {
             // else move player toward target tile
             let distX = this.#target.x - this.sprite.x;
             let distY = this.#target.y - this.sprite.y;
@@ -233,5 +229,17 @@ class player {
                 this.sprite.y += dy;
             }
         }
+    }
+
+    setFacing(direction) {
+        this.facing = direction;
+        this.#animSheet = this.#animSheet % 2 + 1;
+        this.sprite.textures = this.sprites.animations[this.facing + this.#animSheet];
+    }
+
+    moveTo(x, y) {
+        this.#target.x = x;
+        this.#target.y = y;
+        this.#moving = true;
     }
 }
