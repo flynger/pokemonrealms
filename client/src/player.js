@@ -104,13 +104,13 @@ class player {
             },
 
             "animations": {
-                "down1": ["d2", "d3"],
+                "down1": ["d2", "d1"],
                 "down2": ["d4", "d1"],
-                "left1": ["l2", "l3"],
+                "left1": ["l2", "l1"],
                 "left2": ["l4", "l1"],
-                "right1": ["r2", "r3"],
+                "right1": ["r2", "r1"],
                 "right2": ["r4", "r1"],
-                "up1": ["u2", "u3"],
+                "up1": ["u2", "u1"],
                 "up2": ["u4", "u1"]
             },
 
@@ -122,26 +122,25 @@ class player {
             }
         }
 
-        let avatars = ["red", "blue"];
+        let avatars = ["red_walk", "red_run", "blue_walk", "blue_run", "oak_walk", "oak_run"];
         for (let avatar of avatars) {
-            //playerSheetData.meta.image = 
             this.playerSprites[avatar] = new PIXI.Spritesheet(
-                PIXI.BaseTexture.from(`res/characters/${avatar}_walk.png`),
+                PIXI.BaseTexture.from(`res/characters/${avatar}.png`),
                 playerSheetData
             );
             await this.playerSprites[avatar].parse();
         }
     }
-    #speed;
     #moving = false;
-    #hasController;
     #target;
     #animSheet = 2;
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         this.name = name;
         this.avatar = avatar;
-        this.#hasController = hasController;
-        this.sprite = new PIXI.AnimatedSprite(player.playerSprites[avatar].animations[facing + this.#animSheet]);
+        this.facing = facing;
+        this.hasController = hasController;
+        this.sprites = player.playerSprites[this.avatar + "_walk"];
+        this.sprite = new PIXI.AnimatedSprite(this.sprites.animations[facing + this.#animSheet]);
         this.sprite.texture = this.sprite.textures[1];
         this.sprite.animationSpeed = 0.1;
         this.sprite.loop = false;
@@ -150,58 +149,69 @@ class player {
         this.#target = { x, y };
     }
     step(delta) {
-        if (this.#hasController && !this.#moving) {
+        if (this.hasController && !this.#moving) {
             // set player speed
             if (Input.SHIFT) {
+                this.sprite.animationSpeed = 0.175;
                 this.speed = player.runSpeed * delta;
+                this.sprites = player.playerSprites[this.avatar + "_run"];
             } else {
+                this.sprite.animationSpeed = 0.1;
                 this.speed = player.walkSpeed * delta;
+                this.sprites = player.playerSprites[this.avatar + "_walk"];
+            }
+            if (this.sprite.texture != player.playerSprites[this.avatar + "_walk"].animations[this.facing + this.#animSheet][1]) {
+                //alert("changed texture")
+                this.sprite.texture = player.playerSprites[this.avatar + "_walk"].animations[this.facing + this.#animSheet][1];
             }
             // if player not moving get input
             if (Input.RIGHT) {
+                this.facing = "right";
                 if (this.#animSheet == 1) {
                     this.#animSheet = 2;
-                    this.sprite.textures = player.playerSprites[this.avatar].animations.right2;
+                    this.sprite.textures = this.sprites.animations.right2;
                 } else {
                     this.#animSheet = 1;
-                    console.log(player.playerSprites[this.avatar]);
-                    this.sprite.textures = player.playerSprites[this.avatar].animations.right1;
+                    this.sprite.textures = this.sprites.animations.right1;
                 }
                 this.sprite.play();
                 this.#moving = true;
                 this.#target.x = this.sprite.x + 32;
                 this.#target.y = this.sprite.y;
             } else if (Input.LEFT) {
+                this.facing = "left";
                 if (this.#animSheet == 1) {
                     this.#animSheet = 2;
-                    this.sprite.textures = player.playerSprites[this.avatar].animations.left2;
+                    this.sprite.textures = this.sprites.animations.left2;
                 } else {
                     this.#animSheet = 1;
-                    this.sprite.textures = player.playerSprites[this.avatar].animations.left1;
+                    this.sprite.textures = this.sprites.animations.left1;
                 }
                 this.sprite.play();
                 this.#moving = true;
                 this.#target.x = this.sprite.x - 32;
                 this.#target.y = this.sprite.y;
             } else if (Input.DOWN) {
+                this.facing = "down";
                 if (this.#animSheet == 1) {
                     this.#animSheet = 2;
-                    this.sprite.textures = player.playerSprites[this.avatar].animations.down2;
+                    this.sprite.textures = this.sprites.animations.down2;
                 } else {
                     this.#animSheet = 1;
-                    this.sprite.textures = player.playerSprites[this.avatar].animations.down1;
+                    this.sprite.textures = this.sprites.animations.down1;
                 }
                 this.sprite.play();
                 this.#moving = true;
                 this.#target.x = this.sprite.x;
                 this.#target.y = this.sprite.y + 32;
             } else if (Input.UP) {
+                this.facing = "up";
                 if (this.#animSheet == 1) {
                     this.#animSheet = 2;
-                    this.sprite.textures = player.playerSprites[this.avatar].animations.up2;
+                    this.sprite.textures = this.sprites.animations.up2;
                 } else {
                     this.#animSheet = 1;
-                    this.sprite.textures = player.playerSprites[this.avatar].animations.up1;
+                    this.sprite.textures = this.sprites.animations.up1;
                 }
                 this.sprite.play();
                 this.#moving = true;
