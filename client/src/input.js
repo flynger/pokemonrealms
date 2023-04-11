@@ -37,3 +37,12 @@ function keyUpHandler(event) {
 }
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+window.addEventListener("blur", () => {
+    Input = {
+        RIGHT: false,
+        LEFT: false,
+        UP: false,
+        DOWN: false,
+        SHIFT: false
+    }
+});

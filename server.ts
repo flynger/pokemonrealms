@@ -12,7 +12,7 @@ import color from "./libs/color";
 
 // server setup
 const app = express();
-const port: number = 80;
+const port: number = 3000;
 const serverName: string = "Pokemon Realms";
 // const sessionMiddleware = sessions({
 //     secret: "fabn^*&@358oua^owbi730r3-0-2hb-nfgvse",
