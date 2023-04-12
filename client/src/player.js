@@ -1,133 +1,144 @@
 class player {
-    static walkSpeed = 2;
-    static runSpeed = 3.5;
+    static walkSpeed = 32 / 15;
+    static runSpeed = 64 / 15; //3.5;
     static playerSprites = {};
 
     static async initializePlayerSpritesheets() {
-        let playerSheetData = {
-            "frames": {
-                "d1":
-                {
-                    "frame": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "d2":
-                {
-                    "frame": { "x": 32, "y": 0, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "d3":
-                {
-                    "frame": { "x": 64, "y": 0, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "d4":
-                {
-                    "frame": { "x": 96, "y": 0, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "l1":
-                {
-                    "frame": { "x": 0, "y": 48, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "l2":
-                {
-                    "frame": { "x": 32, "y": 48, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "l3":
-                {
-                    "frame": { "x": 64, "y": 48, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "l4":
-                {
-                    "frame": { "x": 96, "y": 48, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "r1":
-                {
-                    "frame": { "x": 0, "y": 96, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "r2":
-                {
-                    "frame": { "x": 32, "y": 96, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "r3":
-                {
-                    "frame": { "x": 64, "y": 96, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "r4":
-                {
-                    "frame": { "x": 96, "y": 96, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "u1":
-                {
-                    "frame": { "x": 0, "y": 144, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "u2":
-                {
-                    "frame": { "x": 32, "y": 144, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "u3":
-                {
-                    "frame": { "x": 64, "y": 144, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                },
-                "u4":
-                {
-                    "frame": { "x": 96, "y": 144, "w": 32, "h": 48 },
-                    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                    "sourceSize": { "w": 32, "h": 48 }
-                }
-            },
+        // let playerSheetData = {
+        //     "frames": {
+        //         "d1":
+        //         {
+        //             "frame": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "d2":
+        //         {
+        //             "frame": { "x": 32, "y": 0, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "d3":
+        //         {
+        //             "frame": { "x": 64, "y": 0, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "d4":
+        //         {
+        //             "frame": { "x": 96, "y": 0, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "l1":
+        //         {
+        //             "frame": { "x": 0, "y": 48, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "l2":
+        //         {
+        //             "frame": { "x": 32, "y": 48, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "l3":
+        //         {
+        //             "frame": { "x": 64, "y": 48, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "l4":
+        //         {
+        //             "frame": { "x": 96, "y": 48, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "r1":
+        //         {
+        //             "frame": { "x": 0, "y": 96, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "r2":
+        //         {
+        //             "frame": { "x": 32, "y": 96, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "r3":
+        //         {
+        //             "frame": { "x": 64, "y": 96, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "r4":
+        //         {
+        //             "frame": { "x": 96, "y": 96, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "u1":
+        //         {
+        //             "frame": { "x": 0, "y": 144, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "u2":
+        //         {
+        //             "frame": { "x": 32, "y": 144, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "u3":
+        //         {
+        //             "frame": { "x": 64, "y": 144, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         },
+        //         "u4":
+        //         {
+        //             "frame": { "x": 96, "y": 144, "w": 32, "h": 48 },
+        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
+        //             "sourceSize": { "w": 32, "h": 48 }
+        //         }
+        //     },
 
-            "animations": {
-                "down1": ["d2", "d1"],
-                "down2": ["d4", "d1"],
-                "left1": ["l2", "l1"],
-                "left2": ["l4", "l1"],
-                "right1": ["r2", "r1"],
-                "right2": ["r4", "r1"],
-                "up1": ["u2", "u1"],
-                "up2": ["u4", "u1"]
-            },
+        //     "animations": {
+        //         "down1": ["d2", "d1"],
+        //         "down2": ["d4", "d1"],
+        //         "left1": ["l2", "l1"],
+        //         "left2": ["l4", "l1"],
+        //         "right1": ["r2", "r1"],
+        //         "right2": ["r4", "r1"],
+        //         "up1": ["u2", "u1"],
+        //         "up2": ["u4", "u1"]
+        //     },
 
-            "meta": {
-                "image": "res/characters/red_walk.png",
-                "format": "RGBA8888",
-                "size": { "w": 128, "h": 192 },
-                "scale": "1"
-            }
-        }
+        //     "meta": {
+        //         "image": "res/characters/red_walk.png",
+        //         "format": "RGBA8888",
+        //         "size": { "w": 128, "h": 192 },
+        //         "scale": "1"
+        //     }
+        // }
 
-        let avatars = ["red_walk", "red_run", "blue_walk", "blue_run", "oak_walk", "oak_run"];
+        let avatars = ["red_walk", "red_run"];
         for (let avatar of avatars) {
+            let sheetData = makeHorizontalSheet(avatar, `res/characters/${avatar}.png`, 134, 198, 1, 4, 4, 2, 2, false);
+            sheetData.animations = {
+                "down1": [avatar + "_0_1", avatar + "_0_0"],
+                "down2": [avatar + "_0_3", avatar + "_0_0"],
+                "left1": [avatar + "_1_1", avatar + "_1_0"],
+                "left2": [avatar + "_1_3", avatar + "_1_0"],
+                "right1": [avatar + "_2_1", avatar + "_2_0"],
+                "right2": [avatar + "_2_3", avatar + "_2_0"],
+                "up1": [avatar + "_3_1", avatar + "_3_0"],
+                "up2": [avatar + "_3_3", avatar + "_3_0"]
+            };
             this.playerSprites[avatar] = new PIXI.Spritesheet(
-                PIXI.BaseTexture.from(`res/characters/${avatar}.png`),
-                playerSheetData
+                PIXI.BaseTexture.from(sheetData.meta.image),
+                sheetData
             );
             await this.playerSprites[avatar].parse();
         }
@@ -152,11 +163,33 @@ class player {
         this.sprite.loop = false;
         this.sprite.x = x;
         this.sprite.y = y;
+        if (hasController) {
+            this.sprite.zIndex = 1;
+        }
         this.#target = { x, y };
     }
 
-    step(delta) {
+    step(delta, app) {
+        if (this.#moving) {
+            // else move player toward target tile
+            let distX = this.#target.x - this.sprite.x;
+            let distY = this.#target.y - this.sprite.y;
+            let dx = Math.sign(distX) * this.speed;
+            let dy = Math.sign(distY) * this.speed;
+            if ((Math.abs(distX) <= this.speed && Math.abs(distY) == 0) || (Math.abs(distY) <= this.speed && Math.abs(distX) == 0)) { // <= or == which one?
+                this.sprite.x = this.#target.x;
+                this.sprite.y = this.#target.y;
+                this.#moving = false;
+            } else {
+                this.sprite.x += dx;
+                this.sprite.y += dy;
+            }
+        }
         if (this.hasController && this.#allowInput) {
+            app.stage.pivot.x = this.sprite.x + 16;
+            app.stage.pivot.y = this.sprite.y + 24;
+            app.stage.position.x = app.renderer.width / 2;
+            app.stage.position.y = app.renderer.height / 2;
             if (!this.#moving) {
                 // set player speed
                 if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT || this.#nextShiftInput)) {
@@ -206,6 +239,7 @@ class player {
                     this.setFacing("up", true);
                     this.playIdleAnimation(0.2, 150);
                 } else {
+                    this.#nextShiftInput = false;
                     this.sprite.texture = player.playerSprites[this.avatar + "_walk"].animations[this.facing + this.#animSheet][1];
                 }
             } else {
@@ -223,21 +257,6 @@ class player {
                 } else if (Input.UP && this.facing != "up") {
                     this.#nextInput = "up";
                 }
-            }
-        }
-        if (this.#moving) {
-            // else move player toward target tile
-            let distX = this.#target.x - this.sprite.x;
-            let distY = this.#target.y - this.sprite.y;
-            let dx = Math.sign(distX) * this.speed;
-            let dy = Math.sign(distY) * this.speed;
-            if ((Math.abs(distX) <= this.speed && Math.abs(distY) == 0) || (Math.abs(distY) <= this.speed && Math.abs(distX) == 0)) { // <= or == which one?
-                this.sprite.x = this.#target.x;
-                this.sprite.y = this.#target.y;
-                this.#moving = false;
-            } else {
-                this.sprite.x += dx;
-                this.sprite.y += dy;
             }
         }
     }

@@ -1,3 +1,7 @@
+/* canvas {
+    image-rendering: pixelated;
+} */
+
 @font-face {
     font-family: Power Clear; 
     src: url('../res/fonts/pkmndp.ttf');
