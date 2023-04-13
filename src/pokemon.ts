@@ -43,6 +43,8 @@ export enum StatNames {
 }
 export type Pokemon = {
     species: string,
+    item: string,
+    nature: string,
     name: string,
     gender: Gender,
     shiny: boolean,
@@ -51,6 +53,6 @@ export type Pokemon = {
     ivs: Stats,
     evs: Stats,
     stats: Stats,
-    statStages: StatStage,
+    statStages: StatStages,
     moves: Move[]
 }
