@@ -1,8 +1,13 @@
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+var app;
+var WIDTH = 960, HEIGHT = 540, TILE_SIZE = 32;
+var map = {
+    width: 24,
+    height: 50
+};
+var players = [];
 window.onload = async () => {
-    let WIDTH = 960;
-    let HEIGHT = 540;
-    let ratio = 1.5; Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
+    let ratio = 1.5; //Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
     // PIXI.settings.ROUND_PIXELS = true;
     // app.resize(Math.ceil(WIDTH * ratio), Math.ceil(HEIGHT * ratio));
     let gameDiv = document.getElementById("game");
@@ -22,38 +27,32 @@ window.onload = async () => {
     app.stage.sortableChildren = true;
     PIXI.Assets.add('Outside', 'res/data/Outside.json');
     PIXI.Assets.load(['Outside']).then(() => {
-        let map = {}
         map.tilemap = new PIXI.tilemap.CompositeTilemap();
-        for (let i = 0; i < 100; i++) {
-            for (let j = 0; j < 100; j++) {
+        for (let i = 0; i < map.width; i++) {
+            for (let j = 0; j < map.height; j++) {
                 map.tilemap.tile('grass' + randomNumber(1, 6), i * 32, j * 32);
             }
         }
         // tilemap.zIndex = 0;
         app.stage.addChild(map.tilemap);
         player.initializePlayerSpritesheets().then(() => {
-            let players = [new player("player", "red", 256, 0, "right", true, app)];
-            for (let i = 0; i < 100; i++) {
-                for (let j = 0; j < 100; j++) {
-                    if (randomNumber(1,150) == 1) {
+            players.push(new player("player", "red", 0, 0, "right", true));
+            for (let i = 0; i < map.width; i++) {
+                for (let j = 0; j < map.height; j++) {
+                    if (randomNumber(1, 150) == 1) {
                         let directions = ["left", "down", "right", "up"];
                         players.push(new player("player" + i + "_" + j, "red", i * 32, j * 32, directions[randomNumber(0, 3)]));
                     }
                 }
             }
-            for (let plyr of players) {
-                app.stage.addChild(plyr.sprite);
-            }
-            app.ticker.add((delta) => {
-                for (let plyr of players) {
-                    plyr.step(delta, app);
-                }
-            });
+            app.ticker.add(draw);
         });
     });
 
     function draw(delta) {
-
+        for (let plyr of players) {
+            plyr.step(delta, app);
+        }
     }
 }
 

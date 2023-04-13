@@ -165,6 +165,7 @@ class player {
         this.sprite.x = x;
         this.sprite.y = y;
         this.#target = { x, y };
+        app.stage.addChild(this.sprite);
     }
 
     step(delta, app) {
@@ -184,10 +185,35 @@ class player {
             }
         }
         if (this.hasController && this.#allowInput) {
-            app.stage.pivot.x = this.sprite.x + 16;
-            app.stage.pivot.y = this.sprite.y + 24;
-            app.stage.position.x = app.renderer.width / 2;
-            app.stage.position.y = app.renderer.height / 2;
+            let centerX = this.sprite.x + this.sprite.width / 2;
+            let centerY = this.sprite.y + this.sprite.height / 3;
+            let mapWidth = map.width * TILE_SIZE;
+            let mapHeight = map.height * TILE_SIZE;
+            // camera x
+            if (mapWidth <= WIDTH) {
+                app.stage.pivot.x = (mapWidth - WIDTH) / 2;
+            } else {
+                if (centerX <= WIDTH / 2) {
+                    app.stage.pivot.x = 0;
+                } else if (centerX >= mapWidth - WIDTH / 2) {
+                    app.stage.pivot.x = mapWidth - WIDTH;
+                } else {
+                    app.stage.pivot.x = centerX - WIDTH / 2;
+                }
+            }
+            // camera y
+            if (mapHeight <= HEIGHT) {
+                app.stage.pivot.y = (mapHeight - HEIGHT) / 2;
+            }
+            else {
+                if (centerY <= HEIGHT / 2) {
+                    app.stage.pivot.y = 0;
+                } else if (centerY >= mapHeight - HEIGHT / 2) {
+                    app.stage.pivot.y = mapHeight - HEIGHT;
+                } else {
+                    app.stage.pivot.y = centerY - HEIGHT / 2;
+                }
+            }
             if (!this.#moving) {
                 // set player speed
                 if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT || this.#nextShiftInput)) {
