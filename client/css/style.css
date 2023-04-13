@@ -3,12 +3,16 @@
 } */
 
 @font-face {
-    font-family: Power Clear; 
+    font-family: Power Clear;
     src: url('../res/fonts/pkmndp.ttf');
 }
 
-#logo {
+.PokemonFont {
     font-family: Power Clear;
+}
+
+.navbar-brand {
+    font-size: var(--bs-nav-link-font-size);
 }
 
 #game {
