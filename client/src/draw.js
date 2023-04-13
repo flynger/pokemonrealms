@@ -1,42 +1,63 @@
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 window.onload = async () => {
-    //app.resizeTo = window;
-    // PIXI.Assets.add("red", "res/characters/red_walk.png");
-    //const textures = await PIXI.Assets.load([]).then((e) => {
-    player.initializePlayerSpritesheets().then(() => {
-        let WIDTH = 960;
-        let HEIGHT = 540;
-        let ratio = 1.5; // Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
-        // PIXI.settings.ROUND_PIXELS = true;
-        app = new PIXI.Application(
-            {
-                powerPreference: "high-performance",
-                width: WIDTH * ratio,
-                height: HEIGHT * ratio,
-                backgroundColor: 0x55BB55
+    let WIDTH = 960;
+    let HEIGHT = 540;
+    let ratio = 1.5; Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
+    // PIXI.settings.ROUND_PIXELS = true;
+    // app.resize(Math.ceil(WIDTH * ratio), Math.ceil(HEIGHT * ratio));
+    let gameDiv = document.getElementById("game");
+    gameDiv.style.width = WIDTH * ratio + "px";
+    gameDiv.style.height = HEIGHT * ratio + "px";
+    app = new PIXI.Application(
+        {
+            resizeTo: gameDiv,
+            powerPreference: "high-performance",
+            // width: WIDTH * ratio,
+            // height: HEIGHT * ratio,
+            backgroundColor: 0x000000
+        }
+    );
+    app.stage.scale.x = app.stage.scale.y = ratio;
+    gameDiv.appendChild(app.view);
+    app.stage.sortableChildren = true;
+    PIXI.Assets.add('Outside', 'res/data/Outside.json');
+    PIXI.Assets.load(['Outside']).then(() => {
+        let map = {}
+        map.tilemap = new PIXI.tilemap.CompositeTilemap();
+        for (let i = 0; i < 100; i++) {
+            for (let j = 0; j < 100; j++) {
+                map.tilemap.tile('grass' + randomNumber(1, 6), i * 32, j * 32);
             }
-        );
-        app.stage.scale.x = app.stage.scale.y = ratio;
-        // app.resize(Math.ceil(WIDTH * ratio), Math.ceil(HEIGHT * ratio));
-        app.stage.sortableChildren = true;
-        thisPlayer = new player("player", "red", 256, 150, "right", true, app);
-        otherGuy = new player("otherplayer", "red", 356, 150);
-        app.stage.addChild(thisPlayer.sprite);
-        app.stage.addChild(otherGuy.sprite);
-        app.ticker.add((delta) => {
-            thisPlayer.step(delta, app);
-            otherGuy.step(delta, app);
+        }
+        // tilemap.zIndex = 0;
+        app.stage.addChild(map.tilemap);
+        player.initializePlayerSpritesheets().then(() => {
+            let players = [new player("player", "red", 256, 0, "right", true, app)];
+            for (let i = 0; i < 100; i++) {
+                for (let j = 0; j < 100; j++) {
+                    if (randomNumber(1,150) == 1) {
+                        let directions = ["left", "down", "right", "up"];
+                        players.push(new player("player" + i + "_" + j, "red", i * 32, j * 32, directions[randomNumber(0, 3)]));
+                    }
+                }
+            }
+            for (let plyr of players) {
+                app.stage.addChild(plyr.sprite);
+            }
+            app.ticker.add((delta) => {
+                for (let plyr of players) {
+                    plyr.step(delta, app);
+                }
+            });
         });
-        document.body.appendChild(app.view);
     });
-    //});
 
     function draw(delta) {
 
     }
 }
 
-function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations=true) {
+function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true) {
     let sheet_data = {
         "frames": {
             "d1":
@@ -162,7 +183,11 @@ function makeHorizontalSheet(name, source, width, height, scale, horizontal_tile
                 sheet_data.animations[name + "_" + r].push(name + "_" + r + "_" + c);
             }
         }
-        
+
     }
     return sheet_data;
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

@@ -161,11 +161,9 @@ class player {
         this.sprite.texture = this.sprite.textures[1];
         this.sprite.animationSpeed = 0.1;
         this.sprite.loop = false;
+        this.sprite.anchor.set(0, 1 / 3);
         this.sprite.x = x;
         this.sprite.y = y;
-        if (hasController) {
-            this.sprite.zIndex = 1;
-        }
         this.#target = { x, y };
     }
 
@@ -259,6 +257,9 @@ class player {
                 }
             }
         }
+        if (this.hasController) {
+            this.sprite.zIndex = this.sprite.y + 0.1;
+        } else this.sprite.zIndex = this.sprite.y;
     }
 
     setFacing(direction, setWalkAnimation = false) {
