@@ -13,53 +13,23 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@pixi/tilemap@latest/dist/pixi-tilemap.umd.js"></script>
-    <!-- <script src="nav.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
     <script src="src/input.js"></script>
     <script src="src/player.js"></script>
     <script src="src/draw.js"></script>
+
+    <script>
+        $.get("nav.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+    </script>
+    <div id="nav-placeholder">
+        <nav class="navbar navbar-expand-md bg-dark-subtle sticky-top" data-bs-theme="dark" style="height: 58px;"></nav>
+    </div>
 </head>
 
 <body>
-    <header ondragstart="return false;" ondrop="return false;">
-        <nav class="navbar navbar-expand-md bg-dark-subtle sticky-top" data-bs-theme="dark">
-            <div class="container-fluid">
-                <div class="navbar-collapse collapse w-100 order-1 order-md-0 multi-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link active" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Play</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Settings</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="order-0 d-flex" style="margin-right: 50px; margin-left: 50px;">
-                    <a class="navbar-brand mx-0 mb-0 d-flex align-items-center" style="color: var(--bs-navbar-color);" href="#">
-                        <img class="d-inline-block align-middle mx-auto" width="32px" height="32px" src="res/pokemon/followers/gif/320-b-s.gif">
-                        <span style="margin-left: 5px;">Pokémon Realms</span>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target=".multi-collapse" aria-controls="navbarNav navbarNav2" aria-expanded="false"
-                        aria-label="Toggle navigation"  style="margin-left: 10px;">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse w-100 order-3 multi-collapse" id="navbarNav2">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sign-in</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
     <div id="game"></div>
 </body>
 
