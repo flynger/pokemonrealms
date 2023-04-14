@@ -25,17 +25,7 @@ export function translatePokemon(pokemon: Pokemon): string {
     const level = pokemon.level || "";
     const shiny = pokemon.shiny ? "S" : "";
     const gender = pokemon.gender;
-    const statStages = [
-      pokemon.statStages.atk || "",
-      pokemon.statStages.def || "",
-      pokemon.statStages.spa || "",
-      pokemon.statStages.spd || "",
-      pokemon.statStages.spe || "",
-      pokemon.statStages.accuracy || "",
-      pokemon.statStages.crit || "",
-      pokemon.statStages.evasion || "",
-    ].join(",");
-    return `${species}|${item}|${ability}|${moves}|${nature}|${evs}|${ivs}|${level}|${shiny}|${gender}|${statStages}]`;
+    return `${species}||${item}|${ability}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}]`;
   }
 
   const froslass: Pokemon = {
