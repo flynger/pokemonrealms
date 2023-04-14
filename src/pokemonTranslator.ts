@@ -47,16 +47,6 @@ export function translatePokemon(pokemon: Pokemon): string {
         spe: 252,
     },
     stats: {},
-    statStages: {
-      atk: 0,
-      def: 0,
-      spa: 0,
-      spd: 0,
-      spe: 0,
-      accuracy: 0,
-      crit: 0,
-      evasion: 0,
-    },
     moves: ['Spikes', 'Taunt', 'Destiny Bond', 'Ice Beam'],
   };
 

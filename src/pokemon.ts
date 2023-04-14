@@ -53,6 +53,5 @@ export type Pokemon = {
     ivs: Stats,
     evs: Stats,
     stats: Stats,
-    statStages: StatStages,
     moves: Move[]
 }
