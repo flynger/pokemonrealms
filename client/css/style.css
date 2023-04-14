@@ -11,6 +11,28 @@
     font-family: Power Clear;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #cdcdcd #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #cdcdcd;
+    /* border-radius: 10px; */
+    /* border: 3px solid #ffffff; */
+}
+
 .navbar-brand {
     font-size: var(--bs-nav-link-font-size);
 }
