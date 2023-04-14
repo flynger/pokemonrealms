@@ -1,6 +1,7 @@
 class player {
     static walkSpeed = 32 / 15;
-    static runSpeed = 64 / 15; //3.5;
+    static runSpeed = 64 / 15;
+    static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
     static playerSprites = {};
 
     static async initializePlayerSpritesheets() {
@@ -123,8 +124,12 @@ class player {
         //     }
         // }
 
-        let avatars = ["red_walk", "red_run"];
-        for (let avatar of avatars) {
+        let sprites = [];
+        for (let avatar of this.avatars) {
+            sprites.push(avatar + "_walk");
+            sprites.push(avatar + "_run");
+        }
+        for (let avatar of sprites) {
             let sheetData = makeHorizontalSheet(avatar, `res/characters/${avatar}.png`, 134, 198, 1, 4, 4, 2, 2, false);
             sheetData.animations = {
                 "down1": [avatar + "_0_1", avatar + "_0_0"],
@@ -150,6 +155,9 @@ class player {
     #nextInput = false;
     #nextShiftInput = false;
     #animSheet = 2;
+    #nameTagBackWidth;
+    #nameTagBackOffset;
+    #nameTagTextOffset;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         this.name = name;
@@ -166,6 +174,17 @@ class player {
         this.sprite.y = y;
         this.#target = { x, y };
         app.stage.addChild(this.sprite);
+        this.nameTagText = new PIXI.Text(name, {
+            fontFamily: 'Power Clear',
+            fontSize: 16,
+            fill: 0xffffff
+        });
+        this.#nameTagBackWidth = this.nameTagText.width + 10;
+        this.#nameTagBackOffset = - (this.#nameTagBackWidth) / 2 + 16;
+        this.#nameTagTextOffset = 16 - this.nameTagText.width / 2;
+        app.stage.addChild(this.nameTagText);
+        //obj.drawRect(0, 0, 200, 100);
+
     }
 
     step(delta, app) {
@@ -286,6 +305,13 @@ class player {
         if (this.hasController) {
             this.sprite.zIndex = this.sprite.y + 0.1;
         } else this.sprite.zIndex = this.sprite.y;
+        graphics.alpha = 0.5;
+        graphics.beginFill(0x202020);
+        graphics.drawRoundedRect(this.sprite.x + this.#nameTagBackOffset, this.sprite.y - 29, this.#nameTagBackWidth, 16, 4);
+        graphics.endFill(0x202020);
+        this.nameTagText.zIndex = 100000; //this.sprite.y + 1;
+        this.nameTagText.x = this.sprite.x + this.#nameTagTextOffset;
+        this.nameTagText.y = this.sprite.y - 27;
     }
 
     setFacing(direction, setWalkAnimation = false) {

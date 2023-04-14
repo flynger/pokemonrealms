@@ -1,14 +1,25 @@
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+// PIXI.settings.ROUND_PIXELS = true;
 var app;
+const smoothingFrames = 10; // The number of frames to use for smoothing
+let smoothedFrameDuration = 0; // The smoothed frame duration
+var graphics = new PIXI.Graphics();
+graphics.zIndex = 99999;
 var WIDTH = 960, HEIGHT = 540, TILE_SIZE = 32;
+var ratio = 1.5; //Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
 var map = {
-    width: 24,
-    height: 50
+    width: randomNumber(4, 40),
+    height: randomNumber(4, 40)
 };
 var players = [];
 window.onload = async () => {
-    let ratio = 1.5; //Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
-    // PIXI.settings.ROUND_PIXELS = true;
+    let font = new FontFaceObserver('Power Clear', {});
+    font.load(null, 30000)
+        .then(setupGame)
+        .catch(setupGame);
+}
+
+async function setupGame() {
     // app.resize(Math.ceil(WIDTH * ratio), Math.ceil(HEIGHT * ratio));
     let gameDiv = document.getElementById("game");
     gameDiv.style.width = WIDTH * ratio + "px";
@@ -35,24 +46,45 @@ window.onload = async () => {
         }
         // tilemap.zIndex = 0;
         app.stage.addChild(map.tilemap);
+        app.stage.addChild(graphics);
         player.initializePlayerSpritesheets().then(() => {
             players.push(new player("player", "red", 0, 0, "right", true));
             for (let i = 0; i < map.width; i++) {
                 for (let j = 0; j < map.height; j++) {
                     if (randomNumber(1, 150) == 1) {
                         let directions = ["left", "down", "right", "up"];
-                        players.push(new player("player" + i + "_" + j, "red", i * 32, j * 32, directions[randomNumber(0, 3)]));
+                        let avatars = ["red", "blue", "green", "brendan", "may", "oak"];
+                        let avatarName = avatars[randomNumber(0, avatars.length - 1)];
+                        let num = randomNumber(1, 3);
+                        switch (num) {
+                            case 1:
+                                avatarName = avatarName.toUpperCase();
+                                break;
+                            case 2:
+                                avatarName = avatarName[0].toUpperCase() + avatarName.substring(1);
+                                break;
+                            default:
+                        }
+                        players.push(new player(avatarName + randomNumber(1, 9999), avatarName.toLowerCase(), i * 32, j * 32, directions[randomNumber(0, 3)]));
                     }
                 }
             }
             app.ticker.add(draw);
         });
     });
+}
 
-    function draw(delta) {
-        for (let plyr of players) {
-            plyr.step(delta, app);
-        }
+function draw(deltaTime) {
+    smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
+    graphics.clear();
+    for (let plyr of players) {
+        plyr.step(smoothedFrameDuration, app);
+        //Screen.canvas.drawingContext.font = "16px Power Clear";
+        //Screen.canvas.drawingContext.textAlign = "center";
+        //Screen.canvas.drawingContext.roundRect(plyr.sprite.x - 0.5 * (Screen.canvas.drawingContext.measureText(plyr.name).width + 10) + 16, plyr.sprite.y - 13, Screen.canvas.drawingContext.measureText(plyr.name).width + 10, 16, 4).fill();
+        // Screen.canvas.drawingContext.fillStyle = "#FFFFFF";
+        // Screen.canvas.drawingContext.fillText(Player.name, Player.pos.x + 16, Player.pos.y);
+
     }
 }
 
@@ -189,4 +221,10 @@ function makeHorizontalSheet(name, source, width, height, scale, horizontal_tile
 
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function createNameTag() {
+    let obj = new PIXI.Graphics();
+    obj.beginFill(0x323232, 0.5);
+    drawRoundedRect(x, y, width, height, radius)
 }
