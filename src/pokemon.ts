@@ -2,13 +2,16 @@ import { Pokedex } from "./pokedex";
 import { Moves } from "./moves";
 import { Abilities } from "./abilities";
 import { Types } from "./types"
+import { Items } from "./items";
 
-const typesArray = Object.keys(Types);
-export type Type = typeof typesArray[number];
+const typeArray = Object.keys(Types);
+export type Type = typeof typeArray[number];
 export type Gender = "M"|"F"|"N";
 export type AbilitySlot = "0"|"1"|"H"|"S";
 export type Ability = typeof Abilities[string]["id"];
 export type Move = typeof Moves[string]["id"];
+const itemArray = Object.keys(Items);
+export type Item = typeof itemArray[number];
 const speciesArray = Object.keys(Pokedex);
 export type Species = typeof speciesArray[number];
 export type StatStage = -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6;
@@ -42,13 +45,13 @@ export enum StatNames {
     crit = "critical-hit ratio"
 }
 export type Pokemon = {
-    species: string,
-    item: string,
-    nature: string,
+    species: Species,
     name: string,
     gender: Gender,
     shiny: boolean,
     level: number,
+    item: Item,
+    nature: string,
     ability: AbilitySlot,
     ivs: Stats,
     evs: Stats,

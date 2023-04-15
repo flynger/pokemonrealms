@@ -460,12 +460,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         "pokedex": "Venusaur's flower is said to take on vivid colors if it gets plenty of nutrition and sunlight. The flower's aroma soothes the emotions of people.",
         "experienceYield": 236
     },
-    "VENUSAUR-MEGA": {
+    "VENUSAURMEGA": {
         "id": 3,
         "baseSpecies": "VENUSAUR",
         "forme": "MEGA",
-        "species": "VENUSAUR-MEGA",
-        "name": "Venusaur",
+        "species": "VENUSAURMEGA",
+        "name": "Venusaur-Mega",
         "types": [
             "GRASS",
             "POISON"
@@ -955,12 +955,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         "pokedex": "A Charizard flies about in search of strong opponents. It breathes intense flames that can melt any material. However, it will never torch a weaker foe.",
         "experienceYield": 240
     },
-    "CHARIZARD-MEGAX": {
+    "CHARIZARDMEGAX": {
         "id": 6,
         "baseSpecies": "CHARIZARD",
         "forme": "MEGA-X",
-        "species": "CHARIZARD-MEGAX",
-        "name": "Charizard",
+        "species": "CHARIZARDMEGAX",
+        "name": "Charizard-Mega-X",
         "types": [
             "FIRE",
             "DRAGON"
@@ -989,12 +989,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         ],
         "experienceYield": 240
     },
-    "CHARIZARD-MEGAY": {
+    "CHARIZARDMEGAY": {
         "id": 6,
         "baseSpecies": "CHARIZARD",
         "forme": "MEGA-Y",
-        "species": "CHARIZARD-MEGAY",
-        "name": "Charizard",
+        "species": "CHARIZARDMEGAY",
+        "name": "Charizard-Mega-Y",
         "types": [
             "FIRE",
             "FLYING"
@@ -1471,12 +1471,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         "pokedex": "The waterspouts that protrude from its shell are highly accurate. Their bullets of water can precisely nail tin cans from a distance of over 160 feet.",
         "experienceYield": 239
     },
-    "BLASTOISE-MEGA": {
+    "BLASTOISEMEGA": {
         "id": 9,
         "baseSpecies": "BLASTOISE",
         "forme": "MEGA",
-        "species": "BLASTOISE-MEGA",
-        "name": "Blastoise",
+        "species": "BLASTOISEMEGA",
+        "name": "Blastoise-Mega",
         "types": [
             "WATER"
         ],
@@ -70615,12 +70615,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         "pokedex": "Its body is composed of plasma. It is known to infiltrate electronic devices and wreak havoc.",
         "experienceYield": 154
     },
-    "ROTOM-HEAT": {
+    "ROTOMHEAT": {
         "id": 479,
         "baseSpecies": "ROTOM",
         "forme": "HEAT",
-        "species": "ROTOM-HEAT",
-        "name": "Rotom",
+        "species": "ROTOMHEAT",
+        "name": "Rotom-Heat",
         "gender": "N",
         "types": [
             "ELECTRIC",
@@ -70654,12 +70654,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         ],
         "experienceYield": 154
     },
-    "ROTOM-WASH": {
+    "ROTOMWASH": {
         "id": 479,
         "baseSpecies": "ROTOM",
         "forme": "WASH",
-        "species": "ROTOM-WASH",
-        "name": "Rotom",
+        "species": "ROTOMWASH",
+        "name": "Rotom-Wash",
         "gender": "N",
         "types": [
             "ELECTRIC",
@@ -70693,12 +70693,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         ],
         "experienceYield": 154
     },
-    "ROTOM-FROST": {
+    "ROTOMFROST": {
         "id": 479,
         "baseSpecies": "ROTOM",
         "forme": "FROST",
-        "species": "ROTOM-FROST",
-        "name": "Rotom",
+        "species": "ROTOMFROST",
+        "name": "Rotom-Frost",
         "gender": "N",
         "types": [
             "ELECTRIC",
@@ -70732,12 +70732,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         ],
         "experienceYield": 154
     },
-    "ROTOM-FAN": {
+    "ROTOMFAN": {
         "id": 479,
         "baseSpecies": "ROTOM",
         "forme": "FAN",
-        "species": "ROTOM-FAN",
-        "name": "Rotom",
+        "species": "ROTOMFAN",
+        "name": "Rotom-Fan",
         "gender": "N",
         "types": [
             "ELECTRIC",
@@ -70771,12 +70771,12 @@ export const Pokedex: {[species: string]: PokedexEntry} = {
         ],
         "experienceYield": 154
     },
-    "ROTOM-MOW": {
+    "ROTOMMOW": {
         "id": 479,
         "baseSpecies": "ROTOM",
         "forme": "MOW",
-        "species": "ROTOM-MOW",
-        "name": "Rotom",
+        "species": "ROTOMMOW",
+        "name": "Rotom-Mow",
         "gender": "N",
         "types": [
             "ELECTRIC",
