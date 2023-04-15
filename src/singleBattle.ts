@@ -6,24 +6,42 @@ import { translatePokemon, translateTeam } from './pokemonTranslator';
 class SingleBattle {
     Sim = require('pokemon-showdown');
     stream = new this.Sim.BattleStream();
+    party1: Party;
+    party2: Party;
     p1PackedTeam: string;
     p2PackedTeam: string;
 
-    constructor(p1Pokemon: Pokemon[], p2Pokemon: Pokemon[]) {
+    constructor(party1: Party, party2: Party) {
+        this.party1 = party1;
+        this.party2 = party2;
         let p1PackedStrings: string[] = [];
         let p2PackedStrings: string[] = [];
-        for (let i = 0; i < p1Pokemon.length; i++) {
-            p1PackedStrings.push(translatePokemon(p1Pokemon[i]));
+
+        for (let i = 0; i < this.party1.team.length; i++) {
+            p1PackedStrings.push(translatePokemon(this.party1.team[i]));
         }
-        for (let i = 0; i < p2Pokemon.length; i++) {
-            p2PackedStrings.push(translatePokemon(p2Pokemon[i]));
+
+        for (let i = 0; i < this.party2.team.length; i++) {
+            p2PackedStrings.push(translatePokemon(this.party2.team[i]));
         }
+        
         this.p1PackedTeam = translateTeam(p1PackedStrings);
         this.p2PackedTeam = translateTeam(p2PackedStrings);
     }
 
-    StartBattle(switchID: number) {
-        
+    StartBattle(switchID: number = 0) {
+        let battleOptions = {
+            formatid: 'gen7ou', // the format ID for the battle
+            p1: {
+                name: 'Flynger',
+                team: this.p1PackedTeam
+            },
+            p2: {
+                name: 'Eichardo',
+                team:  this.p2PackedTeam
+            }
+        }
+        this.stream.write('>start')
     }
 }
 
