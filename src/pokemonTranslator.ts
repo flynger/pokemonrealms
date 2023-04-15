@@ -1,5 +1,9 @@
 import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon'
 
+export function translateTeam(packedStrings: string[]): string {
+    return packedStrings.join(']');
+}
+
 export function translatePokemon(pokemon: Pokemon): string {
     const species = pokemon.species;
     const item = pokemon.item || "";
