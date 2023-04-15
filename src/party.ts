@@ -1,4 +1,5 @@
 import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon'
+import { translatePokemon } from './pokemonTranslator';
 
 // first number = action slot, second number = pokemon slot, third number = move slot
 // action slot 0: attack, 1: bag, 2: pokemon, 3: run
@@ -13,5 +14,12 @@ export class Party {
     constructor(name: string, team: Pokemon[]) {
       this.name = name;
       this.team = team;
+    }
+
+    exportToShowdown() {
+        return {
+            name: this.name,
+            team: this.team.map((mon) => translatePokemon(mon)).join(']')
+        }
     }
   }

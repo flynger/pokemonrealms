@@ -3,11 +3,6 @@ import { Pokedex } from "./pokedex";
 import { Item } from './pokemon';
 import { Items } from './items';
 
-
-export function translateTeam(packedStrings: string[]): string {
-  return packedStrings.join(']');
-}
-
 export function translatePokemon(pokemon: Pokemon): string {
   const species: string = Pokedex[pokemon.species].name;
   const name: string = pokemon.name;
