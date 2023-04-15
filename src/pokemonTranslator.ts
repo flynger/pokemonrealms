@@ -7,7 +7,7 @@ export function translateTeam(packedStrings: string[]): string {
 export function translatePokemon(pokemon: Pokemon): string {
     const species = pokemon.species;
     const item = pokemon.item || "";
-    const ability = pokemon.ability || "";
+    const ability = pokemon.ability || "0";
     const moves = pokemon.moves.join(",");
     const nature = pokemon.nature;
     const evs = [
@@ -29,7 +29,7 @@ export function translatePokemon(pokemon: Pokemon): string {
     const level = pokemon.level || "";
     const shiny = pokemon.shiny ? "S" : "";
     const gender = pokemon.gender;
-    return `${species}||${item}|${ability}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}]`;
+    return `${species}||${item}|${ability}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}`;
   }
 
   const froslass: Pokemon = {
