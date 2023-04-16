@@ -1,14 +1,10 @@
-import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon'
-import { Pokedex } from "./pokedex";
-import { Item } from './pokemon';
-// import { Items } from './items';
+import { Pokemon, AbilitySlot, Gender, Species, Item } from './pokemon'
 
 export function translatePokemon(pokemon: Pokemon): string {
-    const species: string = Pokedex[pokemon.species].name;
-    const name: string = pokemon.name;
-    //   const item: string = pokemon.item ? Items[pokemon.item].name : "";
-    const item: string = pokemon.item;
-    const ability: Ability = pokemon.ability || "0";
+    const species: Species = pokemon.species;
+    const name: string = pokemon.name ? pokemon.name : pokemon.species;
+    const item: Item | string = pokemon.item ? pokemon.item : "";
+    const ability: AbilitySlot = pokemon.ability || "0";
     const moves: string = pokemon.moves.join(",");
     const nature: string = pokemon.nature;
     const evs: string = [
@@ -27,7 +23,7 @@ export function translatePokemon(pokemon: Pokemon): string {
         pokemon.ivs.spd || "",
         pokemon.ivs.spe || "",
     ].join(",");
-    const level: string = pokemon.level + "" || "";
+    const level: number | string = pokemon.level || "";
     const shiny: string = pokemon.shiny ? "S" : "";
     const gender: Gender = pokemon.gender;
     return `${species}|${name}|${item}|${ability}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}`;
