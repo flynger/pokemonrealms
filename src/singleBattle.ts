@@ -28,11 +28,13 @@ class SingleBattle {
                 team: this.playerOptions2.team
             }
         }
-        this.stream.write(`>start {"formatid":"gen7ou"}`);
 
-        this.stream.write(`>player p1 ${JSON.stringify(battleOptions.p1)}`);
-        this.stream.write(`>player p2 ${JSON.stringify(battleOptions.p2)}`);
-        this.stream.write('>start')
+        console.log(JSON.stringify(battleOptions));
+        // this.stream.write(`>start {"formatid":"gen7ou"}`);
+
+        // this.stream.write(`>player p1 ${JSON.stringify(battleOptions.p1)}`);
+        // this.stream.write(`>player p2 ${JSON.stringify(battleOptions.p2)}`);
+        // this.stream.write('>start')
     }
 }
 const articuno: Pokemon = {
@@ -44,8 +46,8 @@ const articuno: Pokemon = {
     item: "Leftovers",
     nature: "Modest",
     ability: "0",
-    ivs: { hp: undefined, atk: undefined, def: 30, spa: 30, spd: undefined, spe: undefined },
-    evs: { hp: undefined, atk: undefined, def: undefined, spa: 252, spd: undefined, spe: 4 },
+    ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
+    evs: { hp: 0, atk: 0, def: 0, spa: 252, spd: 0, spe: 4 },
     stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
     moves: ["Ice Beam", "Hurricane", "Substitute", "Roost"]
 };
@@ -59,8 +61,8 @@ const ludicolo: Pokemon = {
     item: "Life Orb",
     nature: "Modest",
     ability: "1",
-    ivs: { hp: undefined, atk: undefined, def: undefined, spa: 252, spd: undefined, spe: 252 },
-    evs: { hp: undefined, atk: undefined, def: undefined, spa: 4, spd: undefined, spe: 252 },
+    ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
+    evs: { hp: 0, atk: 0, def: 0, spa: 4, spd: 0, spe: 252 },
     stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
     moves: ["Surf", "Giga Drain", "Ice Beam", "Rain Dance"]
 };
@@ -74,8 +76,8 @@ const volbeat: Pokemon = {
     item: "Damp Rock",
     nature: "Bold",
     ability: "1",
-    ivs: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
-    evs: { hp: 248, atk: undefined, def: 252, spa: undefined, spd: 8, spe: undefined },
+    ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
+    evs: { hp: 248, atk: 0, def: 252, spa: 0, spd: 8, spe: 0 },
     stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
     moves: ["Tail Glow", "Baton Pass", "Encore", "Rain Dance"]
 };
@@ -89,8 +91,8 @@ const seismitoad: Pokemon = {
     item: "Life Orb",
     nature: "Modest",
     ability: "1",
-    ivs: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: 4, spe: 252 },
-    evs: { hp: undefined, atk: undefined, def: undefined, spa: 252, spd: undefined, spe: 252 },
+    ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
+    evs: { hp: 0, atk: 0, def: 0, spa: 252, spd: 0, spe: 252 },
     stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
     moves: ["Hydro Pump", "Earth Power", "Stealth Rock", "Rain Dance"]
 };
@@ -106,4 +108,4 @@ const party2 = new Party('Eichardo', [
 ]);
 
 const battle = new SingleBattle(party1, party2);
-battle.StartBattle();
+// battle.StartBattle();
