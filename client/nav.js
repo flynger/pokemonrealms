@@ -1,2 +1,0 @@
-document.write('<header ondragstart="return false;" ondrop="return false;"> <nav class="navbar navbar-expand-lg '+
-'navbar-light bg-dark"> <a class="navbar-brand" href="#"><a class="navbar-brand" href="#"><img src="res/characters/may.gif"></a> </nav></header>');
