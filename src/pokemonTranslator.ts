@@ -30,29 +30,29 @@ export function translatePokemon(pokemon: Pokemon): string {
     const level: string = pokemon.level + "" || "";
     const shiny: string = pokemon.shiny ? "S" : "";
     const gender: Gender = pokemon.gender;
-    return `${species}|${name}|${item}|${ability}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}]`;
+    return `${species}|${name}|${item}|${ability}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}`;
 }
 
-const froslass: Pokemon = {
-    species: 'FROSLASS',
-    name: 'Froslass',
-    item: 'focussash',
-    nature: 'Timid',
-    gender: 'F',
-    shiny: false,
-    level: 100,
-    ability: '0',
-    ivs: {},
-    evs: {
-        hp: 0,
-        atk: 0,
-        def: 0,
-        spa: 252,
-        spd: 4,
-        spe: 252,
-    },
-    stats: {},
-    moves: ['Spikes', 'Taunt', 'Destiny Bond', 'Ice Beam'],
-};
+// const froslass: Pokemon = {
+//     species: 'FROSLASS',
+//     name: 'Froslass',
+//     item: 'focussash',
+//     nature: 'Timid',
+//     gender: 'F',
+//     shiny: false,
+//     level: 100,
+//     ability: '0',
+//     ivs: {},
+//     evs: {
+//         hp: 0,
+//         atk: 0,
+//         def: 0,
+//         spa: 252,
+//         spd: 4,
+//         spe: 252,
+//     },
+//     stats: {},
+//     moves: ['Spikes', 'Taunt', 'Destiny Bond', 'Ice Beam'],
+// };
 
-console.log(translatePokemon(froslass));
+// console.log(translatePokemon(froslass));

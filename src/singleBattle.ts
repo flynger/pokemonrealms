@@ -1,7 +1,6 @@
 import { DefaultText } from 'pokemon-showdown/data/text/default';
 import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon';
 import { Party, PlayerOptions } from './party';
-import { translatePokemon } from './pokemonTranslator';
 
 class SingleBattle {
     Sim = require('pokemon-showdown');
@@ -18,6 +17,7 @@ class SingleBattle {
             name: party2.name, 
             team: party2.exportTeam()
         };
+        console.log(this.playerOptions1.team);
     }
 
     StartBattle() {

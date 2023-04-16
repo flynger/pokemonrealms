@@ -2,7 +2,7 @@ import { Pokedex } from "./pokedex";
 import { Moves } from "./moves";
 import { Abilities } from "./abilities";
 import { Types } from "./types"
-import { Items } from "./items";
+import { Items } from "pokemon-showdown/data/items";
 
 const typeArray = Object.keys(Types);
 export type Type = typeof typeArray[number];
