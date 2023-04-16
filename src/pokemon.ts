@@ -50,7 +50,7 @@ export type Pokemon = {
     gender: Gender,
     shiny: boolean,
     level: number,
-    item: Item,
+    item: string,
     nature: string,
     ability: AbilitySlot,
     ivs: Stats,

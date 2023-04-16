@@ -10,11 +10,14 @@ class SingleBattle {
     playerOptions2: PlayerOptions;
 
     constructor(party1: Party, party2: Party) {
-        this.playerOptions1.team = party1.exportTeam();
-        this.playerOptions2.team = party2.exportTeam();
-
-        this.playerOptions1.name = party1.name;
-        this.playerOptions2.name = party2.name;
+        this.playerOptions1 = {
+            name: party1.name, 
+            team: party1.exportTeam()
+        };
+        this.playerOptions2 = {
+            name: party2.name, 
+            team: party2.exportTeam()
+        };
     }
 
     StartBattle() {
@@ -38,7 +41,7 @@ class SingleBattle {
     }
 }
 const articuno: Pokemon = {
-    species: "Articuno",
+    species: "ARTICUNO",
     name: "",
     gender: "N",
     shiny: false,
@@ -53,9 +56,9 @@ const articuno: Pokemon = {
 };
 
 const ludicolo: Pokemon = {
-    species: "Ludicolo",
+    species: "LUDICOLO",
     name: "",
-    gender: "N",
+    gender: "M",
     shiny: false,
     level: 100,
     item: "Life Orb",
@@ -68,7 +71,7 @@ const ludicolo: Pokemon = {
 };
 
 const volbeat: Pokemon = {
-    species: "Volbeat",
+    species: "VOLBEAT",
     name: "",
     gender: "M",
     shiny: false,
@@ -83,9 +86,9 @@ const volbeat: Pokemon = {
 };
 
 const seismitoad: Pokemon = {
-    species: "Seismitoad",
+    species: "SEISMITOAD",
     name: "",
-    gender: "N",
+    gender: "F",
     shiny: false,
     level: 100,
     item: "Life Orb",
@@ -108,4 +111,5 @@ const party2 = new Party('Eichardo', [
 ]);
 
 const battle = new SingleBattle(party1, party2);
+
 // battle.StartBattle();
