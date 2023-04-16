@@ -1,88 +1,109 @@
 import { DefaultText } from 'pokemon-showdown/data/text/default';
 import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon';
-import {Party, PlayerID} from './party';
-import { translatePokemon, translateTeam } from './pokemonTranslator';
+import { Party, PlayerOptions } from './party';
+import { translatePokemon } from './pokemonTranslator';
 
 class SingleBattle {
     Sim = require('pokemon-showdown');
     stream = new this.Sim.BattleStream();
-    party1: Party;
-    party2: Party;
-    p1PackedTeam: string;
-    p2PackedTeam: string;
+    playerOptions1: PlayerOptions;
+    playerOptions2: PlayerOptions;
 
     constructor(party1: Party, party2: Party) {
-        this.party1 = party1;
-        this.party2 = party2;
-        let p1PackedStrings: string[] = [];
-        let p2PackedStrings: string[] = [];
+        this.playerOptions1.team = party1.exportTeam();
+        this.playerOptions2.team = party2.exportTeam();
 
-        for (let i = 0; i < this.party1.team.length; i++) {
-            p1PackedStrings.push(translatePokemon(this.party1.team[i]));
-        }
-
-        for (let i = 0; i < this.party2.team.length; i++) {
-            p2PackedStrings.push(translatePokemon(this.party2.team[i]));
-        }
-        
-        this.p1PackedTeam = translateTeam(p1PackedStrings);
-        this.p2PackedTeam = translateTeam(p2PackedStrings);
+        this.playerOptions1.name = party1.name;
+        this.playerOptions2.name = party2.name;
     }
 
-    StartBattle(switchID: number = 0) {
+    StartBattle() {
         let battleOptions = {
-            formatid: 'gen7ou', // the format ID for the battle
             p1: {
-                name: 'Flynger',
-                team: this.p1PackedTeam
+                name: this.playerOptions1.name,
+                team: this.playerOptions1.team
             },
             p2: {
-                name: 'Eichardo',
-                team:  this.p2PackedTeam
+                name: this.playerOptions2.name,
+                team: this.playerOptions2.team
             }
         }
+        this.stream.write(`>start {"formatid":"gen7ou"}`);
+
+        this.stream.write(`>player p1 ${JSON.stringify(battleOptions.p1)}`);
+        this.stream.write(`>player p2 ${JSON.stringify(battleOptions.p2)}`);
         this.stream.write('>start')
     }
 }
+const articuno: Pokemon = {
+    species: "Articuno",
+    name: "",
+    gender: "N",
+    shiny: false,
+    level: 100,
+    item: "Leftovers",
+    nature: "Modest",
+    ability: "0",
+    ivs: { hp: undefined, atk: undefined, def: 30, spa: 30, spd: undefined, spe: undefined },
+    evs: { hp: undefined, atk: undefined, def: undefined, spa: 252, spd: undefined, spe: 4 },
+    stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
+    moves: ["Ice Beam", "Hurricane", "Substitute", "Roost"]
+};
 
+const ludicolo: Pokemon = {
+    species: "Ludicolo",
+    name: "",
+    gender: "N",
+    shiny: false,
+    level: 100,
+    item: "Life Orb",
+    nature: "Modest",
+    ability: "1",
+    ivs: { hp: undefined, atk: undefined, def: undefined, spa: 252, spd: undefined, spe: 252 },
+    evs: { hp: undefined, atk: undefined, def: undefined, spa: 4, spd: undefined, spe: 252 },
+    stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
+    moves: ["Surf", "Giga Drain", "Ice Beam", "Rain Dance"]
+};
 
-// export function singleBattle(p1Pokemon: Pokemon[], p2Pokemon: Pokemon[]) {
-//     const Sim = require('pokemon-showdown');
-//     const stream = new Sim.BattleStream();
+const volbeat: Pokemon = {
+    species: "Volbeat",
+    name: "",
+    gender: "M",
+    shiny: false,
+    level: 100,
+    item: "Damp Rock",
+    nature: "Bold",
+    ability: "1",
+    ivs: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
+    evs: { hp: 248, atk: undefined, def: 252, spa: undefined, spd: 8, spe: undefined },
+    stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
+    moves: ["Tail Glow", "Baton Pass", "Encore", "Rain Dance"]
+};
 
-//     const battleOptions = {
-//         formatid: 'gen7ou', // the format ID for the battle
-//         p1: {
-//             name: 'Flynger',
-//             team: 'insert packed team here'
-//         },
-//         p2: {
-//             name: 'Eichardo',
-//             team: 'insert packed team here'
-//         }
-//     };
+const seismitoad: Pokemon = {
+    species: "Seismitoad",
+    name: "",
+    gender: "N",
+    shiny: false,
+    level: 100,
+    item: "Life Orb",
+    nature: "Modest",
+    ability: "1",
+    ivs: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: 4, spe: 252 },
+    evs: { hp: undefined, atk: undefined, def: undefined, spa: 252, spd: undefined, spe: 252 },
+    stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
+    moves: ["Hydro Pump", "Earth Power", "Stealth Rock", "Rain Dance"]
+};
 
-//     // Start the battle
-//     stream.write(`>start ${JSON.stringify(battleOptions)}`);
+const party1 = new Party('Flynger', [
+    articuno,
+    ludicolo,
+]);
 
-//     // Write player choices and read protocol messages from the stream
-//     (async () => {
-//         for await (const output of stream) {
-//             console.log(output);
+const party2 = new Party('Eichardo', [
+    volbeat,
+    seismitoad,
+]);
 
-//             // Parse the output to get the battle log for each turn
-//             if (output.startsWith('|turn|')) {
-//                 const turnNumber = output.split('|')[2];
-//                 const log = output.split('\n').slice(1, -1).map(line => line.substr(1)).join('\n');
-//                 console.log(`Turn ${turnNumber} log: ${log}`);
-//             }
-//         }
-//     })();
-
-//     // Example player choices
-//     stream.write('>p1 move 1');
-//     stream.write('>p2 switch 2');
-//     stream.write('>p1 move 2');
-//     stream.write('>p2 move 3');
-//     // etc...
-// }
+const battle = new SingleBattle(party1, party2);
+battle.StartBattle();
