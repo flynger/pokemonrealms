@@ -3,6 +3,7 @@
 
 This file implements the logic for the register page
 */
+
 // handles register page submissions
 $(function () {
     $('#register-form').on('submit', function (e) {
