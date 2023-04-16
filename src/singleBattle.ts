@@ -1,5 +1,5 @@
 import { DefaultText } from 'pokemon-showdown/data/text/default';
-import { Pokemon, Ability, AbilitySlot, Gender, Move, Species, Stats, Type } from './pokemon';
+import { Pokemon } from './pokemon';
 import { Party, PlayerOptions } from './party';
 
 class SingleBattle {
