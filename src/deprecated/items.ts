@@ -1,4 +1,4 @@
-// import { ItemData } from "pokemon-showdown/.sim-dist/dex-items";
+// import { Dex } from "pokemon-showdown";
 
 // export const Items: {[item: string]: ItemData} = {
 // 	abomasite: {
