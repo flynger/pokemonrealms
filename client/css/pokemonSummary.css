@@ -1,5 +1,6 @@
 #pokemon-summary {
     font-family: Power Clear;
+    text-shadow: 2px 2px #000000;
     width: 600px;
     user-select: none;
 }
