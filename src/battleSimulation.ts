@@ -8,7 +8,7 @@ const stream = new Sim.BattleStream();
   }
 })();
 
-//function that takes in multiple pokemon
+// function that takes in multiple pokemon
 
 
 // Start the battle and set player information

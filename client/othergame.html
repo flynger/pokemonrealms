@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pokémon Battle</title>
+    <style>
+        @import "https://fonts.googleapis.com/css?family=VT323";
+
+        div {
+            /* https://css-tricks.com/almanac/properties/i/image-rendering/ */
+            -ms-interpolation-mode: nearest-neighbor;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-pixelated;
+            image-rendering: pixelated;
+
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            font-family: "VT323";
+            color: #434343;
+            text-shadow: 0.25vmin 0.25vmin #878787;
+
+            overflow: hidden;
+        }
+
+        .opening::before,
+        .opening::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: #222;
+
+            transition: top 2s ease-in;
+
+            z-index: 999;
+        }
+
+        .opening::before {
+            content: "LOADING, PLEASE BE PATIENT...";
+            color: white;
+            font-size: 4vmin;
+            text-align: center;
+            line-height: 65vmin;
+            top: 0;
+        }
+
+        .opening::after {
+            top: 50%;
+        }
+
+        .opening.start::before {
+            content: "DONE";
+            top: -50%;
+        }
+
+        .opening.start::after {
+            top: 100%;
+        }
+
+        .wrapper {
+            margin: auto;
+
+            width: 75vmin;
+            height: 75vmin;
+            border: 1px solid #333;
+            position: relative;
+
+            background-color: #222;
+            background-image: url("https://dl.dropbox.com/s/vzdwyjy9f9xpdts/bg_grass.png?raw=1");
+            background-size: 100% 81.75%;
+            background-repeat: no-repeat;
+            background-position: top center;
+
+            z-index: 0;
+        }
+
+        .dialogue {
+            --height: 24%;
+
+            width: 100%;
+            height: var(--height);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+
+        .dialogue:not(.battle) {
+            background-image: url("https://dl.dropbox.com/s/o22816da9e7wpvq/dialogue.png?raw=1");
+        }
+
+        .dialogue.battle {
+            background-image: url("https://dl.dropbox.com/s/7dex5kr9coiodez/battledialogue.png?raw=1");
+            transform: translateX(-50%) translateY(12%);
+        }
+
+        .dialogue>span {
+            display: block;
+            width: 100%;
+            height: 100%;
+
+            --font-size: calc(75vmin * 0.06);
+            --line-height: calc(75vmin * 0.06);
+
+            font-size: var(--font-size);
+            line-height: var(--line-height);
+
+            position: relative;
+            left: var(--font-size);
+            top: var(--line-height);
+        }
+
+        .dialogue.battle>span {
+            color: #fff;
+            left: calc(var(--font-size) / 1.5);
+        }
+
+        .dialogue.battle>span>.indicator {
+            display: inline-block;
+            position: relative;
+
+            background-image: url("https://dl.dropbox.com/s/balld36ulaeur12/indicator.png?raw=1");
+            width: calc(var(--font-size) * 0.5);
+            height: calc(var(--font-size) * 0.5);
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            animation: indicator 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes indicator {
+            0% {
+                transform: translateY(-0.25vmin);
+            }
+
+            50% {
+                transform: translateY(0.25vmin);
+            }
+
+            100% {
+                transform: translateY(-0.25vmin);
+            }
+        }
+
+        .selectionmenu {
+            width: 50%;
+            height: calc(100% - 24%);
+            background-image: url("https://dl.dropbox.com/s/q1wm7krj6y18gtv/selectionmenu.png?raw=1");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        .info {
+            width: var(--width);
+            height: var(--height);
+            position: absolute;
+        }
+
+        .info>.wrap {
+            width: 100%;
+            height: 100%;
+
+            --font-size: calc(75vmin / 2 / 10);
+            font-size: var(--font-size);
+            position: absolute;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .info>.wrap>.healthbar {
+            display: inline-block;
+            height: 100%;
+            background: #70F8A8;
+            position: absolute;
+            bottom: 0;
+            opacity: 1;
+            z-index: -1;
+
+            transition-timing-function: linear;
+        }
+
+        .info>.wrap>.healthbar_bg {
+            display: inline-block;
+            height: 100%;
+            background: #506858;
+            position: absolute;
+            bottom: 0;
+            opacity: 1;
+            z-index: -1;
+        }
+
+        .info.you>.wrap>.name {
+            position: absolute;
+            top: calc(var(--font-size) / 6);
+            left: calc(var(--font-size) * 1.15);
+        }
+
+        .info.you>.wrap>.level {
+            position: absolute;
+            top: calc(var(--font-size) / 6);
+            right: calc(var(--font-size) * 0.55);
+            text-align: right;
+        }
+
+        .info.you>.wrap>.health {
+            position: absolute;
+            bottom: calc(var(--font-size) / 3.15);
+            right: calc(var(--font-size) * 0.65);
+            text-align: right;
+        }
+
+        .info.you>.wrap>.healthbar_bg {
+            width: 14vmin;
+            right: calc(var(--font-size) - 1.5vmin);
+        }
+
+        .info.you>.wrap>.healthbar {
+            width: 14vmin;
+            right: calc(var(--font-size) - 1.5vmin);
+        }
+
+        .info.foe>.wrap>.name {
+            position: absolute;
+            top: calc(var(--font-size) / 6);
+            left: calc(var(--font-size) * 0.5);
+        }
+
+        .info.foe>.wrap>.level {
+            position: absolute;
+            top: calc(var(--font-size) / 6);
+            right: calc(var(--font-size) * 1.05);
+            text-align: right;
+        }
+
+        .info.foe>.wrap>.healthbar_bg {
+            width: 15vmin;
+            right: calc(var(--font-size));
+            transition: all 0.5s;
+        }
+
+        .info.foe>.wrap>.healthbar {
+            width: 15vmin;
+            right: calc(var(--font-size));
+            transition: all 0.5s;
+        }
+
+        .info.foe>.wrap>.health {
+            display: none;
+        }
+
+        .info.you {
+            --width: calc(75vmin / 2.5);
+            --height: calc(var(--width) * 0.356);
+
+            bottom: calc(75vmin * 0.2);
+            right: calc(var(--height) / 3);
+        }
+
+        .info.you>.wrap {
+            background-image: url("https://dl.dropbox.com/s/8akzda7grvyx87i/you_info.png?raw=1");
+        }
+
+        .info.foe {
+            --width: calc(75vmin / 2.5);
+            --height: calc(var(--width) * 0.29);
+
+            top: calc(var(--height) / 2);
+            left: calc(var(--height) / 2);
+        }
+
+        .info.foe>.wrap {
+            background-image: url("https://dl.dropbox.com/s/guo4iqpe7zkva7n/foe_info.png?raw=1");
+        }
+
+        .pokemon {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .pokemon>.hitmarker {
+            background-image: url("https://dl.dropbox.com/s/xoxyd0rkqmotgv8/hitmarker.png?raw=1");
+            width: 30%;
+            height: 30%;
+
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+            z-index: 99;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            opacity: 0;
+        }
+
+        .pokemon.you>.hitmarker {
+            bottom: 35%;
+        }
+
+        .pokemon.you.damaged~.info.you {
+            animation: takeDamageHealthbar 0.075s;
+            animation-iteration-count: 10;
+            animation-delay: 0.5s;
+            animation-timing-function: linear;
+        }
+
+        .pokemon.you.damaged {
+            animation: takeDamagePokemon 0.75s;
+            animation-delay: 0.5s;
+            animation-timing-function: linear;
+        }
+
+        .pokemon.foe.damaged~.info.foe {
+            animation: takeDamageHealthbar 0.075s;
+            animation-iteration-count: 10;
+            animation-delay: 0.5s;
+            animation-timing-function: linear;
+        }
+
+        .pokemon.foe.damaged>canvas {
+            animation: takeDamagePokemon 0.75s;
+            animation-delay: 0.5s;
+            animation-timing-function: linear;
+        }
+
+        .pokemon.you {
+            width: 55%;
+            height: 55%;
+
+            position: absolute;
+            left: 0;
+            bottom: -2vmin;
+        }
+
+        .pokemon.foe {
+            width: 45%;
+            height: 45%;
+
+            position: absolute;
+            right: 4.5%;
+            top: 4.5%;
+
+            background-size: 100%;
+        }
+
+        .pokemon.foe>canvas {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .moveselection {
+            width: 100%;
+            height: 100%;
+
+            position: absolute;
+            top: 0;
+
+            background-image: url("https://dl.dropbox.com/s/bvn2h1759549y42/moveselection.png?raw=1");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .moveselection>.moves {
+            height: 70%;
+            width: 63%;
+
+            position: absolute;
+            top: 15%;
+            left: 2%;
+        }
+
+        .moveselection>.moves>.move {
+            display: flex;
+            width: calc(50% - 6vmin);
+            height: 50%;
+            float: left;
+
+            font-size: 3.75vmin;
+            padding-left: 3vmin;
+
+            cursor: pointer;
+
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .moveselection>.moves>.arrow {
+            width: 3.25vmin;
+            height: 3.25vmin;
+            background-image: url("https://dl.dropbox.com/s/kzvfdy5i1d8k2c9/arrow.png?raw=1");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            position: absolute;
+            transform: translate(0, -50%);
+        }
+
+        .arrow.topleft {
+            top: 25%;
+            left: 0;
+        }
+
+        .arrow.botleft {
+            top: 75%;
+            left: 0;
+        }
+
+        .arrow.topright {
+            top: 25%;
+            left: calc(50% - 3vmin);
+        }
+
+        .arrow.botright {
+            top: 75%;
+            left: calc(50% - 3vmin);
+        }
+
+        .moveselection>.moveinfo {
+            display: flex;
+            flex-direction: column;
+
+            height: 70%;
+            width: 20%;
+
+            position: absolute;
+            top: 15%;
+            right: 2%;
+        }
+
+        .moveselection>.moveinfo>.pp {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 50%;
+
+            font-size: 4.25vmin;
+
+            text-align: center;
+            align-content: center;
+            justify-content: center;
+
+            transform: translate(2vmin, 1vmin);
+        }
+
+        .moveselection>.moveinfo>.type {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 50%;
+
+            font-size: 4.25vmin;
+
+            text-align: left;
+            align-content: center;
+            justify-content: center;
+
+            transform: translate(1.15vmin, -0.25vmin);
+        }
+
+        @keyframes faint_foe {
+            0% {
+                transform: translate(-50%, 0);
+            }
+
+            100% {
+                transform: translate(-50%, 150%);
+            }
+        }
+
+        .pokemon.foe.fainted>canvas {
+            animation: faint_foe 1s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+        }
+
+        @keyframes faint_you {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(150%);
+            }
+        }
+
+        .pokemon.you.fainted {
+            animation: faint_you 1s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+        }
+
+        @keyframes takeDamagePokemon {
+            0% {
+                opacity: 1;
+            }
+
+            12.5% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 1;
+            }
+
+            37.5% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            62.5% {
+                opacity: 0;
+            }
+
+            75% {
+                opacity: 1;
+            }
+
+            87.5% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes takeDamageHealthbar {
+            0% {
+                transform: translateY(0.5vmin);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shaking {
+            0% {
+                transform: translateX(0);
+            }
+
+            23% {
+                transform: translateX(0);
+            }
+
+            33% {
+                transform: translateX(3vmin);
+            }
+
+            43% {
+                transform: translateX(0);
+            }
+
+            56% {
+                transform: translateX(0);
+            }
+
+            66% {
+                transform: translateX(3vmin);
+            }
+
+            76% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .pokemon.shaking {
+            animation: shaking;
+            animation-duration: 0.33s;
+            animation-timing-function: linear;
+        }
+
+        @keyframes hitmarkerFade {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .pokemon.showHitmarker>.hitmarker {
+            animation: hitmarkerFade 0.5s;
+            animation-delay: 0s;
+            animation-timing-function: linear;
+        }
+
+        @keyframes tackle_you {
+            0% {
+                transform: translateX(0);
+            }
+
+            35% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(5vmin);
+            }
+
+            65% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .pokemon.you.tackle {
+            animation: tackle_you;
+            animation-duration: 0.75s;
+            animation-timing-function: linear;
+        }
+
+        @keyframes tackle_foe {
+            0% {
+                transform: translateX(0);
+            }
+
+            35% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(-5vmin);
+            }
+
+            65% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .pokemon.foe.tackle {
+            animation: tackle_foe;
+            animation-duration: 0.75s;
+            animation-timing-function: linear;
+        }
+
+        @keyframes splash {
+            0% {
+                transform: translateY(0) scaleY(1);
+            }
+
+            12.5% {
+                transform: translateY(3vmin) scaleY(0.9);
+            }
+
+            25% {
+                transform: translateY(-1vmin) scaleY(1.1);
+            }
+
+            37.5% {
+                transform: translateY(3vmin) scaleY(0.9);
+            }
+
+            50% {
+                transform: translateY(-1vmin) scaleY(1.1);
+            }
+
+            62.5% {
+                transform: translateY(3vmin) scaleY(0.9);
+            }
+
+            75% {
+                transform: translateY(-1vmin) scaleY(1.1);
+            }
+
+            87.5% {
+                transform: translateY(0) scaleY(1);
+            }
+        }
+
+        .pokemon.splash {
+            animation: splash;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+        }
+    </style>
+    <script>
+        "use strict";
+
+        /*
+              GEN         RANGE
+          1. Kanto      [  0 ... 151] no problems
+          2. Johto      [152 ... 251] no problems
+          3. Hoenn      [252 ... 386] no problems
+          4. Sinnoh     [387 ... 493] no problems
+          5. Unova      [494 ... 649] no problems
+          6. Kalos      [650 ... 721] not all the sprites
+          7. Alola      [722 ... 807] not all the sprites
+        */
+
+        // These settings will result in Pokémon ranging from gen 1 to 5
+        // (as seen in the table above).
+        var min = 0;
+        var max = 649;
+
+        // For these values you could also enter a name, e.g. "bulbasaur".
+        var pokemon_player = Math.floor(Math.random() * (max - min + 1)) + min;
+        var pokemon_foe = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        /*
+        
+          This code would not have been possible without the Pokéapi
+          (https://pokeapi.co/), this is an api which contains a lot
+          of data about the Pokémon games.
+          Also thanks to Mickel Sánchez (https://www.sololearn.com/Profile/4059723)
+          for making the code: "Who's that Pokémon?"
+          (https://code.sololearn.com/WYdGxRGIJQY4/#html). If it weren't for
+          that code, I would have never found out about the Pokéapi
+        
+        */
+
+        alert("- Try to defeat as many opponents as you can!\n- Reload for different Pokémon\n- Check the JS-tab for more information\n- Double tap the move you want to use");
+
+
+        var player = { sprites: {} },
+            foe = { sprites: {} },
+            health_player,
+            health_foe;
+        var foeMoves = [tackle, tackle, splash, doubleslap, doubleslap];
+        var exceptions = ["ho-oh", "porygon-z", "jangmo-o", "hakamo-o", "kommo-o", "nidoran-m", "nidoran-f", "mr-mime", "type-null", "tapu-koko", "tapu-lele", "tapu-bulu", "tapu-fini"];
+
+        var changes = {
+            "farfetchd": "Farfetch'd",
+            "mr-mime": "Mr. Mime",
+            "type-null": "Type: Null",
+            "tapu-koko": "Tapu Koko",
+            "tapu-lele": "Tapu Lele",
+            "tapu-bulu": "Tapu Bulu",
+            "tapu-fini": "Tapu Fini"
+        };
+
+        var moves = {
+            "tackle": tackle,
+            "splash": splash,
+            "doubleslap": doubleslap
+        };
+        var pp = [35, 40, 10];
+        var selectedMove = "tackle";
+
+        onload = function onload() {
+            health_player = parseInt(document.querySelector(".info.you > .wrap > .health").innerHTML.split("/")[1]);
+            health_foe = parseInt(document.querySelector(".info.foe > .wrap > .health").innerHTML.split("/")[1]);
+
+            fetch("https://pokeapi.co/api/v2/pokemon/" + pokemon_player).then(function (x) {
+                return x.json();
+            }).then(function (x) {
+                if (exceptions.indexOf(x.name) == -1) x.name = x.name.split("-")[0];
+                if (!!changes[x.name]) x.name = changes[x.name];
+                var name1 = document.getElementsByClassName("name1");
+                for (var i = 0; i < name1.length; i++) {
+                    name1[i].innerHTML = x.name.toUpperCase();
+                }
+
+                if (x.sprites.back_default == null) {
+                    alert("\n            There is no sprite available for this Pok\xE9mon,\n            please report the id or name in the comments\n             \nID: " + x.id + "\nNAME: " + x.name + "\nSIDE: back");
+                }
+
+                document.querySelector(".pokemon.you").style.backgroundImage = "url('" + x.sprites.back_default + "')";
+
+                player = x;
+            });
+
+            loadFoe();
+        };
+
+        function loadFoe() {
+            var again = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            document.querySelector(".opening").classList.remove("start");
+
+            if (again) pokemon_foe = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            health_foe = parseInt(document.querySelector(".info.foe > .wrap > .health").innerHTML.split("/")[1]);
+
+            fetch("https://pokeapi.co/api/v2/pokemon/" + pokemon_foe).then(function (x) {
+                return x.json();
+            }).then(function (x) {
+                if (exceptions.indexOf(x.name) == -1) x.name = x.name.split("-")[0];
+                if (!!changes[x.name]) x.name = changes[x.name];
+                var name2 = document.getElementsByClassName("name2");
+                for (var i = 0; i < name2.length; i++) {
+                    name2[i].innerHTML = x.name.toUpperCase();
+                }
+
+                if (x.sprites.front_default == null) {
+                    alert("\n            There is no sprite available for this Pok\xE9mon,\n            please report the id or name in the comments\n             \nID: " + x.id + "\nNAME: " + x.name + "\nSIDE: front");
+                }
+
+                var sprite = new Image();
+                sprite.src = x.sprites.front_default;
+                sprite.crossOrigin = "Anonymous";
+
+                sprite.onload = function () {
+                    var canvas = document.querySelector("canvas");
+                    canvas.style.width = "100%";
+                    canvas.style.height = "100%";
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+
+                    var ctx = canvas.getContext("2d");
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.imageSmoothingEnabled = false;
+                    ctx.drawImage(sprite, 0, 0, canvas.width, canvas.height);
+
+                    trimCanvas(ctx);
+
+                    canvas.style.width = "";
+                    canvas.style.height = "";
+
+                    foe = x;
+                };
+
+                document.querySelector(".opening").classList.add("start");
+            });
+        }
+
+        var textSpeed = 25;
+        var textInterval;
+        function say(string) {
+            clearInterval(textInterval);
+            var array = string;
+            array = array.split("<br/>").join("|");
+            array = array.split("");
+            var dialogue = document.querySelector(".dialogue > span");
+            dialogue.innerHTML = "";
+            var index = 0;
+
+            clearInterval(textInterval);
+            var textInterval = setInterval(function () {
+                if (array[index] == "|") dialogue.innerHTML += "<br/>"; else if (array[index] == "@") dialogue.innerHTML += "<span class='indicator'></span>"; else dialogue.innerHTML += array[index];
+
+                index++;
+                if (index >= array.length) clearInterval(textInterval);
+            }, textSpeed);
+        }
+
+        function selectMove(elem) {
+            if (!player.name || !foe.name) return;
+            if (elem.classList.length == 1) return;
+            var move = elem.classList[1];
+            if (move != selectedMove) selectedMove = elem.classList[1]; else {
+                document.querySelector(".moveselection").style.display = "none";
+                ATTACK();
+            }
+
+            var a = document.querySelector(".moveselection > .moves > .arrow");
+            var t = document.querySelector(".moveselection > .moveinfo > .type");
+            var p = document.querySelector(".moveselection > .moveinfo > .pp");
+            switch (elem.id) {
+                case "0":
+                    a.classList.add("topleft");
+                    a.classList.remove("botleft");
+                    a.classList.remove("topright");
+                    a.classList.remove("botright");
+
+                    t.innerHTML = "NORMAL";
+                    p.innerHTML = pp[0] + "/35";
+                    break;
+                case "1":
+                    a.classList.remove("topleft");
+                    a.classList.remove("botleft");
+                    a.classList.add("topright");
+                    a.classList.remove("botright");
+
+                    t.innerHTML = "WATER";
+                    p.innerHTML = pp[1] + "/40";
+                    break;
+                case "2":
+                    a.classList.remove("topleft");
+                    a.classList.add("botleft");
+                    a.classList.remove("topright");
+                    a.classList.remove("botright");
+
+                    t.innerHTML = "NORMAL";
+                    p.innerHTML = pp[2] + "/10";
+                    break;
+                case "3":
+                    a.classList.remove("topleft");
+                    a.classList.remove("botleft");
+                    a.classList.remove("topright");
+                    a.classList.add("botright");
+                    break;
+            }
+        }
+
+        var attacking = false;
+        var attack;
+        function ATTACK() {
+            if (health_player <= 0 || health_foe <= 0 || selectedMove == "-") return;
+
+            if (!player.name) return; else if (attacking === false) {
+                moves[selectedMove]("you");
+                document.querySelector(".selectionmenu").style.display = "none";
+
+                attacking = "you";
+            }
+        }
+
+        function NEXT() {
+            if (health_player <= 0 || health_foe <= 0 || selectedMove == "-" || attacking === false) return;
+
+            if (attacking == "you" && attack == 99) {
+                setTimeout(function () {
+                    foeMoves[Math.floor(Math.random() * foeMoves.length)]("foe");
+                }, 500);
+                attacking = "foe";
+                attack = 90;
+            } else if (attacking == "foe" && attack == 99) {
+                say("What will<br/>" + player.name.toUpperCase() + " do? @");
+                document.querySelector(".moveselection").style.display = "block";
+                attacking = false;
+            }
+        }
+
+        function tackle(dealer) {
+            if (pp[0] == 0) return;
+            pp[0]--;
+
+            var taker = dealer == "you" ? "foe" : "you";
+            if (taker == "you") say("Wild " + foe.name.toUpperCase() + " used<br/>TACKLE! @"); else say(player.name.toUpperCase() + " used<br/>TACKLE! @");
+
+            attack = setTimeout(function () {
+                document.querySelector(".pokemon." + dealer).classList.add("tackle");
+                setTimeout(function () {
+                    document.querySelector(".pokemon." + dealer).classList.remove("tackle");
+                    attack = 99;
+                }, 800);
+
+                takeDamage(taker, true, true, 600);
+            }, 1000);
+        }
+
+        function splash(dealer) {
+            if (pp[1] == 0) return;
+            pp[1]--;
+            var taker = dealer == "you" ? "foe" : "you";
+            if (taker == "you") say("Wild " + foe.name.toUpperCase() + " used<br/>SPLASH!"); else say(player.name.toUpperCase() + " used<br/>SPLASH!");
+
+            attack = setTimeout(function () {
+                document.querySelector(".pokemon." + dealer).classList.add("splash");
+                setTimeout(function () {
+                    document.querySelector(".pokemon." + dealer).classList.remove("splash");
+                    say("But nothing happened! @");
+                    attack = 99;
+                }, 2050);
+            }, 1000);
+        }
+
+        var slapCount;
+        var slaps;
+        var slapInterval;
+        var taker;
+        function doubleslap(dealer) {
+            if (pp[2] == 0) return;
+            pp[2]--;
+
+            taker = dealer == "you" ? "foe" : "you";
+            if (taker == "you") say("Wild " + foe.name.toUpperCase() + " used<br/>DOUBLESLAP!"); else say(player.name.toUpperCase() + " used<br/>DOUBLESLAP!");
+            slapCount = 0;
+            slaps = Math.floor(Math.random() * 4);
+
+            attack = setTimeout(function () {
+                takeDamage(taker, true, true, 1);
+                slapInterval = setInterval(slap, 1500);
+            }, 1000);
+        }
+        function slap() {
+            if (taker == "foe") {
+                if (health_foe <= 0) {
+                    clearInterval(slapInterval);
+                    attack = 99;
+                    return;
+                }
+            } else {
+                if (health_player <= 0) {
+                    clearInterval(slapInterval);
+                    attack = 99;
+                    return;
+                }
+            }
+
+            takeDamage(taker, true, true, 1);
+            slapCount++;
+
+            if (slapCount > slaps) {
+                clearInterval(slapInterval);
+
+                if (taker == "foe") {
+                    if (health_foe <= 0) {
+                        attack = 99;
+                        return;
+                    }
+                } else {
+                    if (health_player <= 0) {
+                        attack = 99;
+                        return;
+                    }
+                }
+
+                setTimeout(function () {
+                    say("Hit " + (slaps + 2) + " time(s)! @");
+                    attack = 99;
+                }, 1500);
+            }
+        }
+
+        function takeDamage(taker, shaking, hitmarker, timeout) {
+            setTimeout(function () {
+                if (shaking) {
+                    document.querySelector(".pokemon." + taker).classList.add("shaking");
+                    setTimeout(function () {
+                        document.querySelector(".pokemon." + taker).classList.remove("shaking");
+                    }, 340);
+                }
+                if (shaking) {
+                    document.querySelector(".pokemon." + taker).classList.add("showHitmarker");
+                    setTimeout(function () {
+                        document.querySelector(".pokemon." + taker).classList.remove("showHitmarker");
+                    }, 550);
+                }
+                document.querySelector(".pokemon." + taker).classList.add("damaged");
+                setTimeout(function () {
+                    document.querySelector(".pokemon." + taker).classList.remove("damaged");
+
+                    var critical = Math.random() < 0.125;
+                    if (taker == "foe") {
+                        health_foe -= 5;
+                        healthTo(Math.round(health_foe), "foe", critical);
+                    } else {
+                        health_player -= 5;
+                        healthTo(Math.round(health_player), "you", critical);
+                    }
+                }, 800);
+            }, timeout);
+        }
+
+        function healthTo(target, taker, crit) {
+            var interval;
+            if (taker == "you") {
+                var health = document.querySelector(".info.you > .wrap > .health");
+                var initialHealth = parseInt(health.innerHTML.split("/")[0]);
+                initialHealth--;
+                health.innerHTML = initialHealth + "/" + health.innerHTML.split("/")[1];
+
+                interval = setInterval(function () {
+                    initialHealth--;
+
+                    health.innerHTML = initialHealth + "/" + health.innerHTML.split("/")[1];
+
+                    if (initialHealth == target) {
+                        clearInterval(interval);
+                        //if(crit)
+                        //  say("A critical hit! @");
+
+                        if (target <= 0) {
+                            health.innerHTML = "0/" + health.innerHTML.split("/")[1];
+                            say(player.name.toUpperCase() + " fainted!");
+                            document.querySelector(".pokemon.you").classList.add("fainted");
+                            return;
+                        }
+                    }
+                }, 100);
+
+                var bar = document.querySelector(".info.you > .wrap > .healthbar");
+                bar.style.transition = "all " + 0.1 * (initialHealth - target) + "s linear";
+                bar.style.width = "calc(14vmin * " + target / parseInt(health.innerHTML.split("/")[1]) + ")";
+                bar.style.right = "calc(var(--font-size) + (14vmin - 14vmin * " + target / parseInt(health.innerHTML.split("/")[1]) + "))";
+            } else {
+                var health = document.querySelector(".info.foe > .wrap > .health");
+                document.querySelector(".info.foe > .wrap > .healthbar").style.width = "calc(15vmin * " + target / parseInt(health.innerHTML.split("/")[1]) + ")";
+                document.querySelector(".info.foe > .wrap > .healthbar").style.right = "calc(var(--font-size) + (15vmin - 15vmin * " + target / parseInt(health.innerHTML.split("/")[1]) + "))";
+                if (target <= 0) {
+                    health.innerHTML = "0/" + health.innerHTML.split("/")[1];
+                    say("Wild " + foe.name.toUpperCase() + " fainted!");
+
+                    document.querySelector(".pokemon.foe").classList.add("fainted");
+
+                    setTimeout(function () {
+
+                        if (confirm("Do you want to take on another Pokémon?")) {
+                            document.querySelector(".pokemon.foe").classList.remove("fainted");
+
+                            document.querySelector(".info.foe > .wrap > .healthbar").style.width = "15vmin";
+                            document.querySelector(".info.foe > .wrap > .healthbar").style.right = "var(--font-size)";
+
+                            loadFoe(true);
+                            attack = 99;
+                            attacking = "foe";
+                            NEXT();
+                        }
+                    }, 3500);
+                    return;
+                }
+            }
+        }
+
+        // https://stackoverflow.com/questions/45866873/cropping-an-html-canvas-to-the-width-height-of-its-visible-pixels-content
+        // ctx is the 2d context of the canvas to be trimmed
+        // This function will return false if the canvas contains no or no non transparent pixels.
+        // Returns true if the canvas contains non transparent pixels
+        function trimCanvas(ctx) {
+            // removes transparent edges
+            var x, y, w, h, top, left, right, bottom, data, idx1, idx2, found, imgData;
+            w = ctx.canvas.width;
+            h = ctx.canvas.height;
+            if (!w && !h) {
+                return false;
+            }
+            imgData = ctx.getImageData(0, 0, w, h);
+            data = new Uint32Array(imgData.data.buffer);
+            idx1 = 0;
+            idx2 = w * h - 1;
+            found = false;
+            // search from top and bottom to find first rows containing a non transparent pixel.
+            for (y = 0; y < h && !found; y += 1) {
+                for (x = 0; x < w; x += 1) {
+                    if (data[idx1++] && !top) {
+                        top = y + 1;
+                        if (bottom) {
+                            // top and bottom found then stop the search
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (data[idx2--] && !bottom) {
+                        bottom = h - y - 1;
+                        if (top) {
+                            // top and bottom found then stop the search
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if (y > h - y && !top && !bottom) {
+                    return false;
+                } // image is completely blank so do nothing
+            }
+            top -= 1; // correct top
+            found = false;
+            // search from left and right to find first column containing a non transparent pixel.
+            for (x = 0; x < w && !found; x += 1) {
+                idx1 = top * w + x;
+                idx2 = top * w + (w - x - 1);
+                for (y = top; y <= bottom; y += 1) {
+                    if (data[idx1] && !left) {
+                        left = x + 1;
+                        if (right) {
+                            // if left and right found then stop the search
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (data[idx2] && !right) {
+                        right = w - x - 1;
+                        if (left) {
+                            // if left and right found then stop the search
+                            found = true;
+                            break;
+                        }
+                    }
+                    idx1 += w;
+                    idx2 += w;
+                }
+            }
+            left -= 1; // correct left
+            if (w === right - left + 1 && h === bottom - top + 1) {
+                return true;
+            } // no need to crop if no change in size
+            w = right - left + 1;
+            h = bottom - top + 1;
+            ctx.canvas.width = w;
+            ctx.canvas.height = h;
+            ctx.putImageData(imgData, -left, -top);
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="opening"></div>
+
+        <div class="pokemon you">
+            <div class="hitmarker"></div>
+        </div>
+        <div class="pokemon foe">
+            <div class="hitmarker"></div><canvas></canvas>
+        </div>
+
+        <div class="dialogue battle" onclick="NEXT()">
+            <span></span>
+
+            <div class="selectionmenu"></div>
+            <div class="moveselection">
+                <div class="moves">
+                    <div class="arrow topleft"></div>
+                    <div class="move tackle" id="0" onclick="selectMove(this)">TACKLE</div>
+                    <div class="move splash" id="1" onclick="selectMove(this)">SPLASH</div>
+                    <div class="move doubleslap" id="2" onclick="selectMove(this)">DOUBLESLAP</div>
+                    <div class="move" id="3" onclick="selectMove(this)">-</div>
+                </div>
+                <div class="moveinfo">
+                    <div class="pp">35/35</div>
+                    <div class="type">NORMAL</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info foe">
+            <div class="wrap">
+                <span class="name name2"></span>
+                <span class="level">Lv5</span>
+                <span class="health">25/25</span>
+                <span class="healthbar_bg"></span>
+                <span class="healthbar"></span>
+            </div>
+        </div>
+        <div class="info you">
+            <div class="wrap">
+                <span class="name name1"></span>
+                <span class="level">Lv5</span>
+                <span class="health">25/25</span>
+                <span class="healthbar_bg"></span>
+                <span class="healthbar"></span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

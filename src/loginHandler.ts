@@ -8,22 +8,22 @@ This file implements server-sided chat functionality including storing user data
 const { json } = require("express");
 
 module.exports = (server) => {
-    //gets the data and exports to server.js
+    // gets the data and exports to server.js
     const jsonfile = require("../node_modules/jsonfile");
     const accounts = jsonfile.readFileSync("./data/accounts.json");
     const playerData = jsonfile.readFileSync("./data/players.json");
-    var { io } = server; // tells you what properties of server are imported
-    let players = server.players = playerData;
+    const { io } = server; // tells you what properties of server are imported
+    const players = server.players = playerData;
     console.log(`accounts: ${JSON.stringify(accounts)}`);
 
-    var loginHandler = {
+    const loginHandler = {
         registerAccount: (req, res) => {
-            let displayName = req.body.username;
-            let username = displayName.toLowerCase();
-            let password = req.body.password;
+            const displayName = req.body.username;
+            const username = displayName.toLowerCase();
+            const password = req.body.password;
             if (accounts[username]) {
                 return { success: false, reason: "An account with the provided username already exists." };
-                //socket.emit("usernameExists");
+                // socket.emit("usernameExists");
             } else if (!/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/.test(password)) {
                 return { success: false, reason: "Invalid password. A password must include 1 lowercase letter, 1 uppercase letter, 1 number, and be at least 8 characters long." };
             } else if (!/^[A-Za-z0-9_]{3,16}$/.test(username)) {
@@ -39,10 +39,10 @@ module.exports = (server) => {
                 return { success: true };
             }
         },
-        //logs in account
+        // logs in account
         loginAccount: (req, res) => {
-            let displayName = req.body.username;
-            let username = req.body.username.toLowerCase();
+            const displayName = req.body.username;
+            const username = req.body.username.toLowerCase();
             if (accounts[username] === req.body.password) {
                 req.session.username = username;
                 req.session.isGuest = false;
@@ -58,7 +58,7 @@ module.exports = (server) => {
                 return { success: false, reason: "The username or password is incorrect." };
             }
         },
-        //saves data after server closes
+        // saves data after server closes
         saveData: () => {
             jsonfile.writeFileSync("./data/players.json", players);
             jsonfile.writeFileSync("./data/accounts.json", accounts);
