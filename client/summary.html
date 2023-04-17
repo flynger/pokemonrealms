@@ -11,138 +11,10 @@
     <script src="libs/jquery-3.6.0.js"></script>
     <script src="libs/jquery-ui.js"></script>
     <link href="libs/jquery-ui.css" rel="stylesheet" />
-    <style>
-        @font-face {
-            font-family: Power Clear;
-            src: url('res/fonts/pkmndp.ttf');
-        }
 
-        #pokemon-summary {
-            font-family: Power Clear;
-            width: 600px;
-            user-select: none;
-        }
+    <link href="/client/css/pokemonSummary.css" rel="stylesheet" />
+    <link href="/client/css/style.css" rel="stylesheet" />
 
-        #sprite {
-            image-rendering: pixelated;
-            width: 200%;
-        }
-
-        #stats li {
-            font-size: 1.2em;
-            /* height: 18px; */
-        }
-
-        #ivs li {
-            font-size: 1.2em;
-            /* height: 18px; */
-        }
-
-        #move-list {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 80%;
-        }
-
-        #move-list li {
-            margin: 0 3px 3px 3px;
-            padding: 0.4em;
-            padding-left: 1.5em;
-            font-size: 1.2em;
-            /* height: 18px; */
-        }
-
-        #move-list li::hover {
-            margin: 0 3px 3px 3px;
-            padding: 0.4em;
-            padding-left: 1.5em;
-            font-size: 1.2em;
-            /* height: 18px; */
-        }
-
-        /* #move-list li span {
-            position: absolute;
-            margin-left: -1.3em;
-        } */
-
-        .card-header {
-            cursor: move;
-        }
-
-        .nav-tabs .nav-link {
-            color: #fff;
-            background-color: #343a40;
-            border-color: #343a40;
-        }
-
-        .nav-tabs .nav-link.active {
-            color: #fff;
-            background-color: #545a60;
-            border-color: #545a60;
-        }
-
-        .list-group-item {
-            background-color: #242a30;
-            color: #fff;
-            position: relative;
-        }
-
-        .list-group-item strong {
-            color: #ffc107;
-        }
-
-        .tab-pane {
-            transition-delay: 500ms;
-            height: 242px;
-            color: #fff;
-            background-color: #343a40;
-            padding: 20px;
-        }
-
-        .tab-pane h3 {
-            color: #ffc107;
-            margin-top: 0;
-        }
-
-        .tab-pane table {
-            width: 350px;
-            color: whitesmoke;
-        }
-
-        .tab-pane td {
-            text-align: right;
-        }
-
-        .tab-pane .table>:not(caption)>*>* {
-            padding: 0.24rem 1rem;
-        }
-
-        .move-item {
-            cursor: ns-resize;
-        }
-
-        .unselectable {
-            user-drag: none;
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-drag: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .blue {
-            color: #0077ff;
-        }
-
-        .green {
-            color: #14f053;
-        }
-
-        .red {
-            color: #ff0000;
-        }
-    </style>
     <script>
         // Make the Pokemon summary screen draggable
         $(function () {
@@ -221,7 +93,7 @@
                                     class="unselectable img-fluid">
                             </div>
                             <div class="col-md-8">
-                                <h3>Charizard Lv. 70 <span class="blue">♂</span></h3>
+                                <h3>Charizard Lv. 70 <span class="red">♀</span></h3>
                                 <p>Ability: Blaze</p>
                                 <p>Types: Fire/Flying</p>
                                 <p>Nature: Modest</p>
@@ -231,96 +103,96 @@
                     </div>
                     <div class="tab-pane" id="stats">
                         <!-- <h3>Stats</h3> -->
-                        <table class="table">
+                        <!-- <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Stat</th>
+                                    <th scope="col">IVs</th>
+                                    <th scope="col">EVs</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">HP</th>
-                                    <td>78</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="red">Attack</th>
-                                    <td class="red">84</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Defense</th>
-                                    <td>78</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="green">Sp. Attack</th>
-                                    <td class="green">109</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sp. Defense</th>
-                                    <td>85</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Speed</th>
-                                    <td>100</td>
-                                </tr>
+                                <td>
+                                    <tr>
+                                        <th scope="row">HP</th>
+                                        <td>25</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Attack</th>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Defense</th>
+                                        <td>17</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sp. Attack</th>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sp. Defense</th>
+                                        <td>23</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Speed</th>
+                                        <td>5</td>
+                                    </tr>
+                                </td>
+                                <td>
+                                    <tr>
+                                        <th scope="row">HP</th>
+                                        <td>44</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Attack</th>
+                                        <td>34</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Defense</th>
+                                        <td>117</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sp. Attack</th>
+                                        <td>125</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sp. Defense</th>
+                                        <td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Speed</th>
+                                        <td>135</td>
+                                    </tr>
+                                </td>
+                                <td>
+                                    <tr>
+                                        <th scope="row">HP</th>
+                                        <td>78</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="red">Attack</th>
+                                        <td class="red">84</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Defense</th>
+                                        <td>78</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="green">Sp. Attack</th>
+                                        <td class="green">109</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sp. Defense</th>
+                                        <td>85</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Speed</th>
+                                        <td>100</td>
+                                    </tr>
+                                </td>
                             </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane" id="ivs">
-                        <!-- <h3>IVs</h3> -->
-                        <table class="stats table">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">HP</th>
-                                    <td>25</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Attack</th>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Defense</th>
-                                    <td>17</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sp. Attack</th>
-                                    <td>15</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sp. Defense</th>
-                                    <td>23</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Speed</th>
-                                    <td>5</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane" id="evs">
-                        <!-- <h3>EVs</h3> -->
-                        <table class="stats table">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">HP</th>
-                                    <td>44</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Attack</th>
-                                    <td>34</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Defense</th>
-                                    <td>117</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sp. Attack</th>
-                                    <td>125</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sp. Defense</th>
-                                    <td>13</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Speed</th>
-                                    <td>135</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        </table> -->
                     </div>
                     <div class="tab-pane" id="moves">
                         <!-- <h3>Moves</h3> -->
@@ -333,8 +205,8 @@
                     </div>
                     <div class="tab-pane" id="details">
                         <h5>Caught Details</h5>
-                        <p>Encountered as a Lv. 5 Charmander on Route 21.</p>
-                        <p>7:13 AM PST, March 21, 2023.</p>
+                        <span id="location-encountered">Encountered as a Lv. 5 Charmander on Route 21.</span>
+                        <span id="date-caught">7:13 AM PST, March 21, 2023.</span>
                     </div>
                 </div>
             </div>
