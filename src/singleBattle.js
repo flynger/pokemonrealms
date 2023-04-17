@@ -19,7 +19,8 @@ class SingleBattle {
                             // if msg is split
                             if (split > 0) {
                                 if (split == 2) {
-                                    console.log(`Send msg to ${splitPlayer}: ${lineArray.join(" => ")}`);
+                                    // console.log(`Send msg to ${splitPlayer}: ${lineArray.join(" => ")}`);
+
                                     // switch (lineArray.shift()) {
                                     //     case "-damage":
                                     //         for (let elem of lineArray) {
@@ -27,7 +28,7 @@ class SingleBattle {
                                     //         }
                                     // }
                                 } else {
-                                    console.log(`Send public: ${line}`);
+                                    // console.log(`Send public: ${line}`);
                                 }
                                 split--;
                             } else {
@@ -51,6 +52,10 @@ class SingleBattle {
                                         messageText = Text.DefaultText.default.startBattle.replace("[TRAINER]", party1.name).replace("[TRAINER]", party2.name);
                                         useArgs = false;
                                         break;
+                                    case "damage":
+                                        args.pokemon = lineArray[0].slice(0);
+                                        args.damagePercentage = lineArray[0].slice(1);
+                                        messageText = Text.DefaultText.default.damagePercentage.replace("[POKEMON]", ).replace("[PERCENTAGE]", );
                                     default:
                                         continue;
                                     //console.log(line);
@@ -64,14 +69,14 @@ class SingleBattle {
                                         messageText = messageText.replace(`[${arg}]`, args[arg]);
                                     }
                                 }
-                                console.log(messageText);
+                                // console.log(messageText);
                             }
                         }
                         break;
                     case "sideupdate":
                     //console.log(outputArray)
                 }
-                //console.log(output);
+                console.log(output);
             }
         })();
 
@@ -93,9 +98,24 @@ class SingleBattle {
         // this.stream.write(`>p2 team 123456`);
     }
 
-    useMove(moveNumber) {
-        this.stream.write(`>p1 move ${moveNumber}`);
-        this.stream.write(`>p2 switch 2`);
+    
+
+    useMove(playerNumber, moveNumber) {
+        if (playerNumber == 1) {
+            this.stream.write(`>p1 move ${moveNumber}`);
+        }
+        else {
+            this.stream.write(`>p2 move ${moveNumber}`)
+        }
+    }
+
+    switch(playerNumber, switchNumber) {
+        if (playerNumber == 1) {
+            this.stream.write(`>p1 switch ${switchNumber}`);
+        }
+        else {
+            this.stream.write(`>p2 switch ${switchNumber}`);
+        }
     }
 }
 const articuno = {
@@ -171,4 +191,7 @@ const party2 = new Party('Eichardo', [
 const battle = new SingleBattle(party1, party2);
 
 battle.startBattle();
-battle.useMove(1);
+battle.useMove(1, 1);
+battle.switch(2, 2);
+battle.switch(1, 2);
+battle.useMove(2, 1);
