@@ -6,6 +6,11 @@
     <title>Pokémon Battle</title>
     <style>
         @import "https://fonts.googleapis.com/css?family=VT323";
+        
+        body {
+            margin:0%;
+
+        }
 
         div {
             /* https://css-tricks.com/almanac/properties/i/image-rendering/ */
@@ -65,10 +70,10 @@
 
         .wrapper {
             margin: auto;
-
-            width: 75vmin;
-            height: 75vmin;
-            border: 1px solid #333;
+            --min-thing: 100vmin;
+            width: var(--min-thing);
+            height: var(--min-thing);
+            border: 0px solid #333;
             position: relative;
 
             background-color: #222;
@@ -109,8 +114,8 @@
             width: 100%;
             height: 100%;
 
-            --font-size: calc(75vmin * 0.06);
-            --line-height: calc(75vmin * 0.06);
+            --font-size: calc(var(--min-thing) * 0.06);
+            --line-height: calc(var(--min-thing) * 0.06);
 
             font-size: var(--font-size);
             line-height: var(--line-height);
@@ -180,7 +185,7 @@
             width: 100%;
             height: 100%;
 
-            --font-size: calc(75vmin / 2 / 10);
+            --font-size: calc(var(--min-thing) / 2 / 10);
             font-size: var(--font-size);
             position: absolute;
 
@@ -272,10 +277,10 @@
         }
 
         .info.you {
-            --width: calc(75vmin / 2.5);
+            --width: calc(var(--min-thing) / 2.5);
             --height: calc(var(--width) * 0.356);
 
-            bottom: calc(75vmin * 0.2);
+            bottom: calc(var(--min-thing) * 0.2);
             right: calc(var(--height) / 3);
         }
 
@@ -284,7 +289,7 @@
         }
 
         .info.foe {
-            --width: calc(75vmin / 2.5);
+            --width: calc(var(--min-thing) / 2.5);
             --height: calc(var(--width) * 0.29);
 
             top: calc(var(--height) / 2);
@@ -405,7 +410,7 @@
             height: 50%;
             float: left;
 
-            font-size: 3.75vmin;
+            font-size: calc(.05 * var(--min-thing));
             padding-left: 3vmin;
 
             cursor: pointer;
