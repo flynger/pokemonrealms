@@ -1,0 +1,120 @@
+#pokemon-summary {
+    font-family: Power Clear;
+    width: 600px;
+    user-select: none;
+}
+
+#sprite {
+    image-rendering: pixelated;
+    width: 200%;
+}
+
+#stats li {
+    font-size: 1.2em;
+    /* height: 18px; */
+}
+
+#move-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+}
+
+#move-list li {
+    margin: 0 3px 3px 3px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.2em;
+    /* height: 18px; */
+}
+
+#move-list li::hover {
+    margin: 0 3px 3px 3px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1.2em;
+    /* height: 18px; */
+}
+
+/* #move-list li span {
+    position: absolute;
+    margin-left: -1.3em;
+} */
+
+.card-header {
+    cursor: move;
+}
+
+.nav-tabs .nav-link {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #545a60;
+    border-color: #545a60;
+}
+
+.list-group-item {
+    background-color: #242a30;
+    color: #fff;
+    position: relative;
+}
+
+.list-group-item strong {
+    color: #ffc107;
+}
+
+.tab-pane {
+    transition-delay: 500ms;
+    height: 242px;
+    color: #fff;
+    background-color: #343a40;
+    padding: 20px;
+}
+
+.tab-pane h3 {
+    color: #ffc107;
+    margin-top: 0;
+}
+
+.tab-pane table {
+    width: 350px;
+    color: whitesmoke;
+}
+
+.tab-pane td {
+    text-align: right;
+}
+
+.tab-pane .table>:not(caption)>*>* {
+    padding: 0.24rem 1rem;
+}
+
+.move-item {
+    cursor: ns-resize;
+}
+
+.unselectable {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.blue {
+    color: #0077ff;
+}
+
+.green {
+    color: #14f053;
+}
+
+.red {
+    color: #ff0000;
+}
