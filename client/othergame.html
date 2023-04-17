@@ -6,9 +6,9 @@
     <title>Pokémon Battle</title>
     <style>
         @import "https://fonts.googleapis.com/css?family=VT323";
-        
+
         body {
-            margin:0%;
+            margin: 0%;
 
         }
 
@@ -26,7 +26,7 @@
 
             font-family: "VT323";
             color: #202020;
-            text-shadow: 0.25vmin 0.25vmin #d0d0c8;
+            text-shadow: calc(var(--min-thing) *0.25 / 75) calc(var(--min-thing) * 0.25 / 75) #d0d0c8;
 
             overflow: hidden;
         }
@@ -49,9 +49,9 @@
         .opening::before {
             content: "LOADING, PLEASE BE PATIENT...";
             color: white;
-            font-size: 4vmin;
+            font-size: calc(var(--min-thing) * 4/75);
             text-align: center;
-            line-height: 65vmin;
+            line-height: calc(var(--min-thing) * 65 / 75);
             top: 0;
         }
 
@@ -149,15 +149,15 @@
 
         @keyframes indicator {
             0% {
-                transform: translateY(-0.25vmin);
+                transform: translateY(calc(var(--min-thing) * -0.25 / 75));
             }
 
             50% {
-                transform: translateY(0.25vmin);
+                transform: translateY(calc(var(--min-thing) * 0.25 / 75));
             }
 
             100% {
-                transform: translateY(-0.25vmin);
+                transform: translateY(calc(var(--min-thing) * -0.25 / 75));
             }
         }
 
@@ -185,7 +185,7 @@
             width: 100%;
             height: 100%;
 
-            --font-size: calc(var(--min-thing) / 2 / 10);
+            --font-size: calc(var(--min-thing) / 20);
             font-size: var(--font-size);
             position: absolute;
 
@@ -238,13 +238,13 @@
         }
 
         .info.you>.wrap>.healthbar_bg {
-            width: 14vmin;
-            right: calc(var(--font-size) - 1.5vmin);
+            width: calc(var(--min-thing) * 14 / 75);
+            right: calc(var(--font-size) + (var(--min-thing) * -1.5 / 75));
         }
 
         .info.you>.wrap>.healthbar {
-            width: 14vmin;
-            right: calc(var(--font-size) - 1.5vmin);
+            width: calc(var(--min-thing) * 14 / 75);
+            right: calc(var(--font-size) + (var(--min-thing) * -1.5 / 75));
         }
 
         .info.foe>.wrap>.name {
@@ -261,13 +261,13 @@
         }
 
         .info.foe>.wrap>.healthbar_bg {
-            width: 15vmin;
+            width: calc(0.2 * var(--min-thing));
             right: calc(var(--font-size));
             transition: all 0.5s;
         }
 
         .info.foe>.wrap>.healthbar {
-            width: 15vmin;
+            width: calc(0.2 * var(--min-thing));
             right: calc(var(--font-size));
             transition: all 0.5s;
         }
@@ -361,7 +361,7 @@
 
             position: absolute;
             left: 0;
-            bottom: -2vmin;
+            bottom: calc(var(--min-thing) * -2 / 75);
         }
 
         .pokemon.foe {
@@ -406,12 +406,12 @@
 
         .moveselection>.moves>.move {
             display: flex;
-            width: calc(50% - 6vmin);
+            width: calc(50% + calc(var(--min-thing) * -6 / 75));
             height: 50%;
             float: left;
 
             font-size: calc(.05 * var(--min-thing));
-            padding-left: 3vmin;
+            padding-left: calc(.04 * var(--min-thing));
 
             cursor: pointer;
 
@@ -420,8 +420,8 @@
         }
 
         .moveselection>.moves>.arrow {
-            width: 3.25vmin;
-            height: 3.25vmin;
+            width: calc(3.25 / 75 * var(--min-thing));
+            height: calc(3.25 / 75 * var(--min-thing));
             background-image: url("https://dl.dropbox.com/s/kzvfdy5i1d8k2c9/arrow.png?raw=1");
             background-size: contain;
             background-repeat: no-repeat;
@@ -443,12 +443,12 @@
 
         .arrow.topright {
             top: 25%;
-            left: calc(50% - 3vmin);
+            left: calc(50% - 0.04 * var(--min-thing));
         }
 
         .arrow.botright {
             top: 75%;
-            left: calc(50% - 3vmin);
+            left: calc(50% - 0.04 * var(--min-thing));
         }
 
         .moveselection>.moveinfo {
@@ -469,13 +469,13 @@
             width: 100%;
             height: 50%;
 
-            font-size: 4.25vmin;
+            font-size: calc(4.25 / 75 * var(--min-thing));
 
             text-align: center;
             align-content: center;
             justify-content: center;
 
-            transform: translate(2vmin, 1vmin);
+            transform: translate(calc(var(--min-thing) * 2 / 75), calc(var(--min-thing) / 75));
         }
 
         .moveselection>.moveinfo>.type {
@@ -484,13 +484,13 @@
             width: 100%;
             height: 50%;
 
-            font-size: 4.25vmin;
+            font-size: calc(var(--min-thing) * 4.25 / 75);
 
             text-align: left;
             align-content: center;
             justify-content: center;
 
-            transform: translate(1.15vmin, -0.25vmin);
+            transform: translate(calc(var(--min-thing) * 1.15 / 75), calc(var(--min-thing) * -0.25 / 75));
         }
 
         @keyframes faint_foe {
@@ -567,7 +567,7 @@
 
         @keyframes takeDamageHealthbar {
             0% {
-                transform: translateY(0.5vmin);
+                transform: translateY(calc(var(--min-thing) * 0.5 / 75));
             }
 
             100% {
@@ -585,7 +585,7 @@
             }
 
             33% {
-                transform: translateX(3vmin);
+                transform: translateX(calc(var(--min-thing) * 3 / 75));
             }
 
             43% {
@@ -597,7 +597,7 @@
             }
 
             66% {
-                transform: translateX(3vmin);
+                transform: translateX(calc(var(--min-thing) * 3 / 75));
             }
 
             76% {
@@ -641,7 +641,7 @@
             }
 
             50% {
-                transform: translateX(5vmin);
+                transform: translateX(calc(var(--min-thing) * 5 / 75));
             }
 
             65% {
@@ -669,7 +669,7 @@
             }
 
             50% {
-                transform: translateX(-5vmin);
+                transform: translateX(calc(var(--min-thing) * -5 / 75));
             }
 
             65% {
@@ -693,27 +693,27 @@
             }
 
             12.5% {
-                transform: translateY(3vmin) scaleY(0.9);
+                transform: translateY(calc(var(--min-thing) * 3 / 75)) scaleY(0.9);
             }
 
             25% {
-                transform: translateY(-1vmin) scaleY(1.1);
+                transform: translateY(calc(var(--min-thing) * -1 / 75)) scaleY(1.1);
             }
 
             37.5% {
-                transform: translateY(3vmin) scaleY(0.9);
+                transform: translateY(calc(var(--min-thing) * 3 / 75)) scaleY(0.9);
             }
 
             50% {
-                transform: translateY(-1vmin) scaleY(1.1);
+                transform: translateY(calc(var(--min-thing) * -1 / 75)) scaleY(1.1);
             }
 
             62.5% {
-                transform: translateY(3vmin) scaleY(0.9);
+                transform: translateY(calc(var(--min-thing) * 3 / 75)) scaleY(0.9);
             }
 
             75% {
-                transform: translateY(-1vmin) scaleY(1.1);
+                transform: translateY(calc(var(--min-thing) * -1 / 75)) scaleY(1.1);
             }
 
             87.5% {
