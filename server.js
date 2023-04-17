@@ -12,8 +12,8 @@ import color from "./libs/color";
 
 // server setup
 const app = express();
-const port: number = 3000;
-const serverName: string = "Pokemon Realms";
+const port = 3000;
+const serverName = "Pokemon Realms";
 // const sessionMiddleware = sessions({
 //     secret: "fabn^*&@358oua^owbi730r3-0-2hb-nfgvse",
 //     saveUninitialized: true,
@@ -32,7 +32,7 @@ const io = new Server(expressServer, {
 // server variable
 const server = {
     io,
-    onlinePlayers: new Array<string>() // Array<Player>
+    onlinePlayers: [] // Array<Player>
 }
 // our source file initialization
 
@@ -46,7 +46,7 @@ app.use(
 // app.use(sessionMiddleware);
 
 // url masks
-app.get("/", (req: any, res: any) => {
+app.get("/", (req, res) => {
     // redirect to game
     res.sendFile('game.html', { root: './client' });
 });
@@ -197,6 +197,6 @@ process.on("exit", (code) => {
 });
 
 // helper functions
-function randomNumber(min: number, max: number) {
+function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }

@@ -1,5 +1,6 @@
 {
   "main": "dist/server.js",
+  "type": "module",
   "scripts": {
     "postinstall": "patch-package",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",

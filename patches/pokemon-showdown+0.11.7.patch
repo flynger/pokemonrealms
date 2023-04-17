@@ -1,13 +1,16 @@
-diff --git a/node_modules/pokemon-showdown/.sim-dist/pokemon.js b/node_modules/pokemon-showdown/.sim-dist/pokemon.js
-index 852ccf6..0e957b1 100644
---- a/node_modules/pokemon-showdown/.sim-dist/pokemon.js
-+++ b/node_modules/pokemon-showdown/.sim-dist/pokemon.js
-@@ -447,7 +447,7 @@ var _dex = require('./dex');
- 		this.baseMaxhp = 0;
- 		this.hp = 0;
- 		this.clearVolatile();
--		this.hp = this.maxhp;
-+		this.hp = 20; //this.hp = this.maxhp;
- 	}
- 
- 	toJSON() {
+diff --git a/node_modules/pokemon-showdown/.sim-dist/pokemon.js.rej b/node_modules/pokemon-showdown/.sim-dist/pokemon.js.rej
+new file mode 100644
+index 0000000..c84437f
+--- /dev/null
++++ b/node_modules/pokemon-showdown/.sim-dist/pokemon.js.rej
+@@ -0,0 +1,10 @@
++diff a/node_modules/pokemon-showdown/.sim-dist/pokemon.js b/node_modules/pokemon-showdown/.sim-dist/pokemon.js	(rejected hunks)
++@@ -447,7 +447,7 @@ var _dex = require('./dex');
++ 		this.baseMaxhp = 0;
++ 		this.hp = 0;
++ 		this.clearVolatile();
++-		this.hp = this.maxhp;
+++		this.hp = 20; //this.hp = this.maxhp;
++ 	}
++ 
++ 	toJSON() {
