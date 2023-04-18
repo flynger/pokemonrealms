@@ -47,6 +47,11 @@
     cursor: move;
 }
 
+.nav-tabs {
+    border-bottom: none;
+    /* var(--bs-card-border-width) solid var(--bs-card-border-color); */
+}
+
 .nav-tabs .nav-link {
     color: #fff;
     background-color: #343a40;
@@ -70,7 +75,6 @@
 }
 
 .tab-pane {
-    transition-delay: 500ms;
     height: 100%;
     min-height: 242px;
     color: #fff;
