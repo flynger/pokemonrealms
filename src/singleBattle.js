@@ -28,19 +28,19 @@ class SingleBattle {
                                             let damageArgs = {};
                                             let damageMessageIndex = 0;
                                             for (let val of lineArray) {
-                                                console.log(`damageMessageIndex: ${damageMessageIndex}, Value: ${val}, length: ${lineArray.length}`);
+                                                // console.log(`damageMessageIndex: ${damageMessageIndex}, Value: ${val}, length: ${lineArray.length}`);
                                                 if (damageMessageIndex === 0) {
                                                     damageArgs.pokemon = val;
-                                                    console.log(`damageArgs.pokemon: ${damageArgs.pokemon}`)
+                                                    // console.log(`damageArgs.pokemon: ${damageArgs.pokemon}`)
                                                 }
                                                 else if (damageMessageIndex === 1) {
                                                     let [numerator, denominator] = val.split("/");
-                                                    console.log(`Numerator: ${numerator}, Denominator: ${denominator}`);
-                                                    console.log(`percentage: ${numerator / denominator}`);
+                                                    // console.log(`Numerator: ${numerator}, Denominator: ${denominator}`);
+                                                    // console.log(`percentage: ${numerator / denominator}`);
 
-                                                    let percentageTaken = previousHpPercentage - (numerator / denominator) * 100;
+                                                    let percentageTaken = previousHpPercentage - numerator;
                                                     console.log(`${damageArgs.pokemon} lost ${percentageTaken} percent of its health!`);
-                                                    previousHpPercentage = (numerator / denominator) * 100;
+                                                    previousHpPercentage = numerator;
                                                     // console.log(previousHpPercentage);
                                                 }
                                                 damageMessageIndex++;
@@ -92,7 +92,7 @@ class SingleBattle {
                     case "sideupdate":
                     //console.log(outputArray)
                 }
-                // console.log(output);
+                console.log(output);
             }
         })();
 
