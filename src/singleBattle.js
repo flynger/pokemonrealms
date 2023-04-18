@@ -151,7 +151,7 @@ class SingleBattle {
                     case "sideupdate":
                     //console.log(outputArray)
                 }
-                // console.log(output);
+                console.log(output);
             }
         })();
 
