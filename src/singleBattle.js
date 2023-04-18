@@ -1,5 +1,6 @@
 import { DefaultText } from 'pokemon-showdown/.data-dist/text/default.js';
 import { MovesText } from 'pokemon-showdown/.data-dist/text/moves.js';
+import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'
 import Pokemon from './pokemon.js';
 import Party from './party.js';
 import Showdown from 'pokemon-showdown';
@@ -73,6 +74,17 @@ class SingleBattle {
                                         case "-damage":
                                             messageText = DefaultText.default.damagePercentage;
                                             args.NICKNAME = lineArray[0].split(": ")[1];
+                                            
+                                            if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
+                                                let effectDetails = lineArray[2].slice(7).split(": ");
+                                                let effectSourceType = effectDetails[0];
+                                                let effectSource = effectDetails[1] || effectDetails[0];
+                                                if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].damage) {
+                                                    messageText = ItemsText[Dex.items.get(effectSource).id].damage;
+                                                } else {
+                                                    messageText = MovesText[Dex.moves.get(effectSource).id].damage;
+                                                }
+                                            }
                                             var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
                                             if (isOwnPokemon) {
                                                 args.PERCENTAGE = previousOwnHpPercentage - newPercentage + "%";
@@ -85,6 +97,18 @@ class SingleBattle {
                                         case "-heal":
                                             args.NICKNAME = lineArray[0].split(": ")[1];
                                             var newPercentage = +lineArray[1].split("/")[0];
+                                            if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
+                                                let effectDetails = lineArray[2].slice(7).split(": ");
+                                                console.log(effectDetails);
+                                                let effectSourceType = effectDetails[0];
+                                                let effectSource = effectDetails[1];
+                                                if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].heal) {
+                                                    messageText = ItemsText[Dex.items.get(effectSource).id].heal;
+                                                } else if (effectSourceType == "move" && MovesText[Dex.moves.get(effectSource).id].heal) {
+                                                    messageText = MovesText[Dex.moves.get(effectSource).id].heal;
+                                                }
+                                            }
+
                                             if (isOwnPokemon) {
                                                 previousOwnHpPercentage = newPercentage;
                                             } else {
@@ -182,7 +206,7 @@ class SingleBattle {
                                         args.STAT = DefaultText[lineArray[1]].statName;
                                         break;
                                     default:
-                                        //messageText = " ";
+                                    //messageText = " ";
                                 }
                             }
                             let firstWordIsName = false;
@@ -329,12 +353,12 @@ const seismitoad = {
 };
 
 const party1 = new Party('flynger', [
-    new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["solarbeam", "fly"]),
+    new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["leechseed", "fly"]),
     new Pokemon("articuno", "uno", "N", undefined, 10, undefined, undefined, "0", undefined, undefined, ["powdersnow"])
 ]);
 
-const party2 = new Party('eichardo', [
-    new Pokemon("pidgey", "Bird", "M", undefined, 11, undefined, undefined, undefined, undefined, undefined, ["gust"]),
+const party2 = new Party('MoldyNano', [
+    new Pokemon("pidgey", "Bird", "M", undefined, 11, "leftovers", undefined, undefined, undefined, undefined, ["gust"]),
     new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
 ]);
 
