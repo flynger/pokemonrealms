@@ -20,27 +20,28 @@ class SingleBattle {
                             // if msg is split
                             if (split > 0) {
                                 if (split === 2) {
-                                    console.log(`Send msg to ${splitPlayer}: ${lineArray.join(" => ")}`);
+                                    // console.log(`Send msg to ${splitPlayer}: ${lineArray.join(" => ")}`);
 
                                     switch (lineArray.shift()) {
                                         case "-damage":
                                             console.log("Damage");
+                                            let damageArgs = {};
                                             let damageMessageIndex = 0;
                                             for (let val of lineArray) {
-                                                let damageArgs = {};
-                                                console.log(`Index: ${damageMessageIndex}, Value: ${val}, length: ${lineArray.length}`);
-                                                switch (damageMessageIndex) {
-                                                    case 0:
-                                                        damageArgs.pokemon = val;
-                                                    case 1:
-                                                        let [numerator, denominator] = val.split("/");
-                                                        console.log(`Numerator: ${numerator}, Denominator: ${denominator}`);
-                                                        console.log(`percentage: ${numerator / denominator}`);
+                                                console.log(`damageMessageIndex: ${damageMessageIndex}, Value: ${val}, length: ${lineArray.length}`);
+                                                if (damageMessageIndex === 0) {
+                                                    damageArgs.pokemon = val;
+                                                    console.log(`damageArgs.pokemon: ${damageArgs.pokemon}`)
+                                                }
+                                                else if (damageMessageIndex === 1) {
+                                                    let [numerator, denominator] = val.split("/");
+                                                    console.log(`Numerator: ${numerator}, Denominator: ${denominator}`);
+                                                    console.log(`percentage: ${numerator / denominator}`);
 
-                                                        let percentageTaken = previousHpPercentage - (numerator / denominator) * 100;
-                                                        console.log(`${damageArgs.pokemon} lost ${percentageTaken} percent of its health!`);
-                                                        previousHpPercentage = (numerator / denominator) * 100;
-                                                        // console.log(previousHpPercentage);
+                                                    let percentageTaken = previousHpPercentage - (numerator / denominator) * 100;
+                                                    console.log(`${damageArgs.pokemon} lost ${percentageTaken} percent of its health!`);
+                                                    previousHpPercentage = (numerator / denominator) * 100;
+                                                    // console.log(previousHpPercentage);
                                                 }
                                                 damageMessageIndex++;
                                             }
