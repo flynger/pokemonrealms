@@ -18,17 +18,18 @@ class SingleBattle {
                             let lineArray = line.slice(1).split("|");
                             // if msg is split
                             if (split > 0) {
-                                if (split == 2) {
-                                    // console.log(`Send msg to ${splitPlayer}: ${lineArray.join(" => ")}`);
+                                if (split === 2) {
+                                    console.log(`Send msg to ${splitPlayer}: ${lineArray.join(" => ")}`);
 
-                                    // switch (lineArray.shift()) {
-                                    //     case "-damage":
-                                    //         for (let elem of lineArray) {
-
-                                    //         }
-                                    // }
+                                    switch (lineArray.shift()) {
+                                        case "-damage":
+                                            for (let elem of lineArray) {
+                                                console.log(elem);
+                                            }
+                                    }
                                 } else {
-                                    // console.log(`Send public: ${line}`);
+                                    //split == 1
+                                    console.log(`Send public: ${line}`);
                                 }
                                 split--;
                             } else {
@@ -52,10 +53,6 @@ class SingleBattle {
                                         messageText = Text.DefaultText.default.startBattle.replace("[TRAINER]", party1.name).replace("[TRAINER]", party2.name);
                                         useArgs = false;
                                         break;
-                                    case "damage":
-                                        args.pokemon = lineArray[0].slice(0);
-                                        args.damagePercentage = lineArray[0].slice(1);
-                                        messageText = Text.DefaultText.default.damagePercentage.replace("[POKEMON]", ).replace("[PERCENTAGE]", );
                                     default:
                                         continue;
                                     //console.log(line);
@@ -76,7 +73,7 @@ class SingleBattle {
                     case "sideupdate":
                     //console.log(outputArray)
                 }
-                console.log(output);
+                // console.log(output);
             }
         })();
 
@@ -98,7 +95,7 @@ class SingleBattle {
         // this.stream.write(`>p2 team 123456`);
     }
 
-    
+
 
     useMove(playerNumber, moveNumber) {
         if (playerNumber == 1) {
