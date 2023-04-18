@@ -10,6 +10,7 @@ class SingleBattle {
             let counter = 0;
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
+                let previousHpPercentage = 100;
                 switch (outputArray.shift()) {
                     case "update":
                         let split = 0; // split counter
@@ -23,8 +24,25 @@ class SingleBattle {
 
                                     switch (lineArray.shift()) {
                                         case "-damage":
-                                            for (let elem of lineArray) {
-                                                console.log(elem);
+                                            console.log("Damage");
+                                            let damageMessageIndex = 0;
+                                            for (let val of lineArray) {
+                                                let damageArgs = {};
+                                                console.log(`Index: ${damageMessageIndex}, Value: ${val}, length: ${lineArray.length}`);
+                                                switch (damageMessageIndex) {
+                                                    case 0:
+                                                        damageArgs.pokemon = val;
+                                                    case 1:
+                                                        let [numerator, denominator] = val.split("/");
+                                                        console.log(`Numerator: ${numerator}, Denominator: ${denominator}`);
+                                                        console.log(`percentage: ${numerator / denominator}`);
+
+                                                        let percentageTaken = previousHpPercentage - (numerator / denominator) * 100;
+                                                        console.log(`${damageArgs.pokemon} lost ${percentageTaken} percent of its health!`);
+                                                        previousHpPercentage = (numerator / denominator) * 100;
+                                                        // console.log(previousHpPercentage);
+                                                }
+                                                damageMessageIndex++;
                                             }
                                     }
                                 } else {
