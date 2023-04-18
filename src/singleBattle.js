@@ -32,7 +32,6 @@ class SingleBattle {
                             if (splitCounter > 0) {
                                 // private information
                                 if (splitCounter == 1) {
-                                    let newPercentage;
                                     //console.log(`Send msg to ${splitPlayer}: ${lineArray.join(" => ")}`);
                                     switch (denoter) {
                                         case "switch":
@@ -50,7 +49,7 @@ class SingleBattle {
                                         case "-damage":
                                             messageText = DefaultText.default.damagePercentage;
                                             args.NICKNAME = lineArray[0].slice(5);
-                                            newPercentage = +lineArray[1].split("/")[0];
+                                            var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
                                             if (isOwnPokemon) {
                                                 args.PERCENTAGE = previousOwnHpPercentage - newPercentage + "%";
                                                 previousOwnHpPercentage = newPercentage;
@@ -61,7 +60,7 @@ class SingleBattle {
                                             break;
                                         case "-heal":
                                             args.NICKNAME = lineArray[0].slice(5);
-                                            newPercentage = +lineArray[1].split("/")[0];
+                                            var newPercentage = +lineArray[1].split("/")[0];
                                             if (isOwnPokemon) {
                                                 previousOwnHpPercentage = newPercentage;
                                             } else {
@@ -94,6 +93,8 @@ class SingleBattle {
                                 splitCounter--;
                             } else {
                                 switch (denoter) {
+                                    case "faint":
+                                        args.NICKNAME = lineArray[0].slice(5);
                                     case "move":
                                         args.NICKNAME = lineArray[0].slice(5);
                                         args.MOVE = lineArray[1];
@@ -151,7 +152,7 @@ class SingleBattle {
                     case "sideupdate":
                     //console.log(outputArray)
                 }
-                console.log(output);
+                //console.log(output);
             }
         })();
 
@@ -166,7 +167,7 @@ class SingleBattle {
     }
 
     startBattle() {
-        this.stream.write(`>start {"formatid":""}`);
+        this.stream.write(`>start {"formatid":"N/A"}`);
         this.stream.write(`>player p1 ${JSON.stringify(this.playerOptions1)}`);
         this.stream.write(`>player p2 ${JSON.stringify(this.playerOptions2)}`);
         // this.stream.write(`>p1 team 123456`);
@@ -257,7 +258,7 @@ const party1 = new Party('Flynger', [
 ]);
 
 const party2 = new Party('Eichardo', [
-    new Pokemon("pidgey", "Bird", "M", undefined, 10, undefined, undefined, undefined, undefined, undefined, ["gust"]),
+    new Pokemon("pidgey", "Bird", "M", undefined, 1, undefined, undefined, undefined, undefined, undefined, ["gust"]),
     new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
 ]);
 
