@@ -1,4 +1,5 @@
 $(function () {
+    $('[data-toggle="tooltip"]').tooltip(); 
     $("#pokemon-summary").draggable({
         handle: "#pokemon-summary-header"
     });

@@ -30,21 +30,41 @@ class SingleBattle {
                             let denoter = lineArray.shift();
                             let messageText = DefaultText.default[denoter[0] == "-" ? denoter.substring(1) : denoter] || " ";
                             if (splitCounter > 0) {
-                                // private information
-                                if (splitCounter == 1) {
-                                    //console.log(`Send msg to ${splitPlayer}: ${lineArray.join(" => ")}`);
+                                // private information and switch out check
+                                if (splitCounter == 2) {
                                     switch (denoter) {
                                         case "switch":
                                             if (isOwnPokemon && ownActivePokemon != null) {
                                                 messageText = DefaultText.default.switchOutOwn;
+                                                args.NICKNAME = ownActivePokemon;
                                             } else if (!isOwnPokemon && enemyActivePokemon != null) {
                                                 messageText = DefaultText.default.switchOut;
+                                                args.NICKNAME = enemyActivePokemon;
                                                 args.TRAINER = party2.name;
                                             } else {
                                                 // add logic to send private data to player
                                                 messageText = " ";
                                             }
+                                            break;
+                                        default:
+                                            messageText = " ";
+                                    }
+                                }
+                                // public information
+                                else {
+                                    switch (denoter) {
+                                        case "switch":
                                             args.NICKNAME = lineArray[0].slice(5);
+                                            args.SPECIES = lineArray[1].split(", ")[0];
+                                            if (isOwnPokemon) {
+                                                messageText = DefaultText.default.switchInOwn;
+                                                ownActivePokemon = args.NICKNAME;
+                                            } else if (!isOwnPokemon) {
+                                                messageText = DefaultText.default.switchIn;
+                                                enemyActivePokemon = args.NICKNAME;
+                                                args.TRAINER = party2.name;
+                                            }
+                                            // add logic to send public data to player
                                             break;
                                         case "-damage":
                                             messageText = DefaultText.default.damagePercentage;
@@ -66,22 +86,6 @@ class SingleBattle {
                                             } else {
                                                 previousEnemyHpPercentage = newPercentage;
                                             }
-                                    }
-                                    // console.log(`Send private: ${line}`);
-                                }
-                                // public information
-                                else {
-                                    switch (denoter) {
-                                        case "switch":
-                                            if (isOwnPokemon) {
-                                                messageText = DefaultText.default.switchInOwn;
-                                            } else if (!isOwnPokemon) {
-                                                messageText = DefaultText.default.switchIn;
-                                                args.TRAINER = party2.name;
-                                            }
-                                            args.NICKNAME = lineArray[0].slice(5);
-                                            args.SPECIES = lineArray[1].split(", ")[0];
-                                            // add logic to send public data to player
                                             break;
                                         default:
                                             messageText = " ";
@@ -95,6 +99,11 @@ class SingleBattle {
                                 switch (denoter) {
                                     case "faint":
                                         args.NICKNAME = lineArray[0].slice(5);
+                                        if (isOwnPokemon) {
+                                            ownActivePokemon = null;
+                                        } else if (isOwnPokemon) {
+                                            ownActivePokemon = null;
+                                        }
                                     case "move":
                                         args.NICKNAME = lineArray[0].slice(5);
                                         args.MOVE = lineArray[1];
@@ -121,7 +130,9 @@ class SingleBattle {
                                         if (effectSourceType == "move") {
                                             messageText = MovesText[Dex.moves.get(effectSource).id].start;
                                         }
-                                        else messageText = DefaultText.default.start;
+                                        else {
+                                            messageText = DefaultText[effectSourceType].start;
+                                        }
                                         args.NICKNAME = lineArray[0].slice(5);
                                         break;
                                     case "-supereffective":
@@ -132,18 +143,24 @@ class SingleBattle {
                                         messageText = " ";
                                 }
                             }
+                            let firstWordIsName = false;
                             if (useArgs) {
                                 if (messageText.includes("[POKEMON]")) {
                                     messageText = messageText.replace("[POKEMON]", isOwnPokemon ? DefaultText.default.pokemon : DefaultText.default.opposingPokemon);
                                 } else if (messageText.includes("[FULLNAME]")) {
                                     messageText = messageText.replace("[FULLNAME]", "[NICKNAME] (**[SPECIES]**)");
                                 }
+
+                                let firstLetter = messageText.search(/[a-zA-Z]/); // find first letter of string
+                                if (firstLetter == messageText.search("[NICKNAME]") || firstLetter == messageText.search("[TRAINER]")) {
+                                    firstWordIsName = true; // protect nicknames & trainer names from capitalization
+                                }
                                 for (let arg in args) {
                                     messageText = messageText.replace(`[${arg}]`, args[arg]);
                                 }
                             }
-                            let firstLetter = messageText.search(/[a-zA-Z]/);
-                            if (firstLetter != messageText.search(/[A-Z]/)) {
+                            let firstLetter = messageText.search(/[a-zA-Z]/); // find first letter of string
+                            if (!firstWordIsName && firstLetter != messageText.search(/[A-Z]/)) {
                                 messageText = messageText.substring(0, firstLetter) + messageText[firstLetter].toUpperCase() + messageText.substring(firstLetter + 1);
                             }
                             console.log(line + " ".repeat(80 - line.length) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
@@ -252,12 +269,12 @@ const seismitoad = {
     moves: ["Hydro Pump", "Earth Power", "Stealth Rock", "Rain Dance"]
 };
 
-const party1 = new Party('Flynger', [
+const party1 = new Party('flynger', [
     new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["leechseed"]),
     new Pokemon("articuno", "uno", "N", undefined, 10, undefined, undefined, "0", undefined, undefined, ["powdersnow"])
 ]);
 
-const party2 = new Party('Eichardo', [
+const party2 = new Party('eichardo', [
     new Pokemon("pidgey", "Bird", "M", undefined, 1, undefined, undefined, undefined, undefined, undefined, ["gust"]),
     new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
 ]);
@@ -266,6 +283,6 @@ const battle = new SingleBattle(party1, party2);
 
 battle.startBattle();
 battle.useMove(1, 1);
-// battle.switchTo(2, 2);
-// battle.switchTo(1, 2);
+battle.switchTo(2, 2);
+battle.switchTo(1, 2);
 battle.useMove(2, 1);
