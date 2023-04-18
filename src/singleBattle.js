@@ -4,18 +4,22 @@ import Pokemon from './pokemon.js';
 import Party from './party.js';
 import Showdown from 'pokemon-showdown';
 const { BattleStream, Dex } = Showdown;
+import * as readline from 'node:readline';
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 class SingleBattle {
     constructor(party1, party2) {
         this.stream = new BattleStream();
         (async () => {
-            let counter = 0;
+            let ownActivePokemon = null;
+            let enemyActivePokemon = null;
+            let previousOwnHpPercentage = 100;
+            let previousEnemyHpPercentage = 100;
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
-                let ownActivePokemon = null;
-                let enemyActivePokemon = null;
-                let previousOwnHpPercentage = 100;
-                let previousEnemyHpPercentage = 100;
                 switch (outputArray.shift()) {
                     case "update":
                         let splitCounter = 0; // split counter
@@ -54,7 +58,7 @@ class SingleBattle {
                                 else {
                                     switch (denoter) {
                                         case "switch":
-                                            args.NICKNAME = lineArray[0].slice(5);
+                                            args.NICKNAME = lineArray[0].split(": ")[1];
                                             args.SPECIES = lineArray[1].split(", ")[0];
                                             if (isOwnPokemon) {
                                                 messageText = DefaultText.default.switchInOwn;
@@ -68,7 +72,7 @@ class SingleBattle {
                                             break;
                                         case "-damage":
                                             messageText = DefaultText.default.damagePercentage;
-                                            args.NICKNAME = lineArray[0].slice(5);
+                                            args.NICKNAME = lineArray[0].split(": ")[1];
                                             var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
                                             if (isOwnPokemon) {
                                                 args.PERCENTAGE = previousOwnHpPercentage - newPercentage + "%";
@@ -79,7 +83,7 @@ class SingleBattle {
                                             }
                                             break;
                                         case "-heal":
-                                            args.NICKNAME = lineArray[0].slice(5);
+                                            args.NICKNAME = lineArray[0].split(": ")[1];
                                             var newPercentage = +lineArray[1].split("/")[0];
                                             if (isOwnPokemon) {
                                                 previousOwnHpPercentage = newPercentage;
@@ -98,14 +102,15 @@ class SingleBattle {
                             } else {
                                 switch (denoter) {
                                     case "faint":
-                                        args.NICKNAME = lineArray[0].slice(5);
+                                        args.NICKNAME = lineArray[0].split(": ")[1];
                                         if (isOwnPokemon) {
                                             ownActivePokemon = null;
                                         } else if (isOwnPokemon) {
                                             ownActivePokemon = null;
                                         }
+                                        break;
                                     case "move":
-                                        args.NICKNAME = lineArray[0].slice(5);
+                                        args.NICKNAME = lineArray[0].split(": ")[1];
                                         args.MOVE = lineArray[1];
                                         break;
                                     case "split":
@@ -119,28 +124,65 @@ class SingleBattle {
                                     case "turn":
                                         args.NUMBER = lineArray[0];
                                         break;
+                                    case "-ability":
+                                        messageText = DefaultText.default.abilityActivation;
+                                        args.NICKNAME = lineArray[0].split(": ")[1];
+                                        args.ABILITY = lineArray[1];
+                                        break;
+                                    case "-boost":
+                                        var amount = lineArray[2];
+                                        if (amount != "1") {
+                                            messageText = DefaultText.default["boost" + amount];
+                                        }
+                                        args.NICKNAME = lineArray[0].split(": ")[1];
+                                        args.STAT = DefaultText[lineArray[1]].statName;
+                                        break;
                                     case "-miss":
                                         isOwnPokemon = !isOwnPokemon;
-                                        args.NICKNAME = lineArray[1].slice(5);
+                                        args.NICKNAME = lineArray[1].split(": ")[1];
                                         break;
-                                    case "-start":
-                                        let effectDetails = lineArray[1].split(": ");
-                                        let effectSourceType = effectDetails[0];
-                                        let effectSource = effectDetails[1];
+                                    case "-prepare":
+                                        messageText = MovesText[Dex.moves.get(lineArray[1]).id].prepare;
+                                        args.NICKNAME = lineArray[0].split(": ")[1];
+                                        break;
+                                    case "-singleturn":
+                                        var effectDetails = lineArray[1].split(": ");
+                                        var effectSourceType = effectDetails[0];
+                                        var effectSource = effectDetails[1];
                                         if (effectSourceType == "move") {
                                             messageText = MovesText[Dex.moves.get(effectSource).id].start;
                                         }
                                         else {
                                             messageText = DefaultText[effectSourceType].start;
                                         }
-                                        args.NICKNAME = lineArray[0].slice(5);
+                                        args.NICKNAME = lineArray[0].split(": ")[1];
+                                        break;
+                                    case "-start":
+                                        // note: fix Substitute unrelated but also Volt Switch
+                                        var effectDetails = lineArray[1].split(": ");
+                                        var effectSourceType = effectDetails[0];
+                                        var effectSource = effectDetails[1];
+                                        if (effectSourceType == "move") {
+                                            messageText = MovesText[Dex.moves.get(effectSource).id].start;
+                                        } else {
+                                            messageText = DefaultText[effectSourceType].start;
+                                        }
+                                        args.NICKNAME = lineArray[0].split(": ")[1];
                                         break;
                                     case "-supereffective":
                                         messageText = DefaultText.default.superEffective;
                                         useArgs = false;
                                         break;
+                                    case "-unboost":
+                                        var amount = lineArray[2];
+                                        if (amount != "1") {
+                                            messageText = DefaultText.default["unboost" + amount];
+                                        }
+                                        args.NICKNAME = lineArray[0].split(": ")[1];
+                                        args.STAT = DefaultText[lineArray[1]].statName;
+                                        break;
                                     default:
-                                        messageText = " ";
+                                        //messageText = " ";
                                 }
                             }
                             let firstWordIsName = false;
@@ -163,13 +205,24 @@ class SingleBattle {
                             if (!firstWordIsName && firstLetter != messageText.search(/[A-Z]/)) {
                                 messageText = messageText.substring(0, firstLetter) + messageText[firstLetter].toUpperCase() + messageText.substring(firstLetter + 1);
                             }
-                            console.log(line + " ".repeat(80 - line.length) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
+                            console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
                         }
                         break;
                     case "sideupdate":
+                        let player = outputArray[0];
+                        let lineArray = outputArray[1].slice(1).split("|");
+                        let denoter = lineArray.shift();
+                        switch (denoter) {
+                            case "request":
+                                let request = JSON.parse(lineArray[0]);
+                                console.log(request);
+                                break;
+                            case "error":
+                                console.log("Bad input for " + player)
+                        }
                     //console.log(outputArray)
                 }
-                //console.log(output);
+                // console.log(output);
             }
         })();
 
@@ -184,11 +237,17 @@ class SingleBattle {
     }
 
     startBattle() {
-        this.stream.write(`>start {"formatid":"N/A"}`);
+        this.stream.write(`>start {"formatid":"gen7ubers"}`);
         this.stream.write(`>player p1 ${JSON.stringify(this.playerOptions1)}`);
         this.stream.write(`>player p2 ${JSON.stringify(this.playerOptions2)}`);
         // this.stream.write(`>p1 team 123456`);
         // this.stream.write(`>p2 team 123456`);
+    }
+
+    startRandomBattle() {
+        this.stream.write(`>start {"formatid":"gen7randombattle"}`);
+        this.stream.write(`>player p1 ${JSON.stringify({ name: this.playerOptions1.name })}`);
+        this.stream.write(`>player p2 ${JSON.stringify({ name: this.playerOptions2.name })}`);
     }
 
     useMove(playerNumber, moveNumber) {
@@ -270,19 +329,34 @@ const seismitoad = {
 };
 
 const party1 = new Party('flynger', [
-    new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["leechseed"]),
+    new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["solarbeam", "fly"]),
     new Pokemon("articuno", "uno", "N", undefined, 10, undefined, undefined, "0", undefined, undefined, ["powdersnow"])
 ]);
 
 const party2 = new Party('eichardo', [
-    new Pokemon("pidgey", "Bird", "M", undefined, 1, undefined, undefined, undefined, undefined, undefined, ["gust"]),
+    new Pokemon("pidgey", "Bird", "M", undefined, 11, undefined, undefined, undefined, undefined, undefined, ["gust"]),
     new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
 ]);
 
 const battle = new SingleBattle(party1, party2);
 
-battle.startBattle();
-battle.useMove(1, 1);
-battle.switchTo(2, 2);
-battle.switchTo(1, 2);
-battle.useMove(2, 1);
+battle.startRandomBattle();
+askInput();
+
+function askInput() {
+    setTimeout(() => {
+        rl.question('Enter p1 input:', input => {
+            battle.stream.write(`>p1 ${input}`);
+            rl.question('Enter p2 input:', input => {
+                battle.stream.write(`>p2 ${input}`);
+                askInput();
+            });
+        });
+    }, 2000);
+}
+
+
+// battle.useMove(1, 1);
+// battle.switchTo(2, 2);
+// battle.switchTo(1, 2);
+// battle.useMove(2, 1);
