@@ -1,8 +1,8 @@
 // libraries
-import express, { Express, Request, Response } from "express";
+import express from "express";
 import { Server } from "socket.io";
 import cors from "cors";
-import color from "./libs/color";
+import { color } from "./libs/color.js";
 // const bodyParser = require("./node_modules/body-parser");
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
