@@ -8,8 +8,8 @@ graphics.zIndex = 99999;
 var WIDTH = 960, HEIGHT = 540, TILE_SIZE = 32;
 var ratio = 1.5; //Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
 var map = {
-    width: 60,
-    height: 45
+    width: randomNumber(4, 40),
+    height: randomNumber(4, 40)
 };
 var players = [];
 window.onload = async () => {
@@ -26,15 +26,15 @@ async function setupGame() {
     gameDiv.style.height = HEIGHT * ratio + "px";
     app = new PIXI.Application(
         {
-//            resizeTo: gameDiv,
+            resizeTo: gameDiv,
             powerPreference: "high-performance",
             // width: WIDTH * ratio,
             // height: HEIGHT * ratio,
             backgroundColor: 0x000000
         }
     );
-//    app.stage.scale.x = app.stage.scale.y = ratio;
-    document.body.appendChild(app.view);
+    app.stage.scale.x = app.stage.scale.y = ratio;
+    gameDiv.appendChild(app.view);
     app.stage.sortableChildren = true;
     PIXI.Assets.add('Outside', 'res/data/Outside.json');
     PIXI.Assets.load(['Outside']).then(() => {

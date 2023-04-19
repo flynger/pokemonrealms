@@ -149,10 +149,6 @@ class player {
         }
     }
 
-    #velocity = {
-        x: 0,
-        y: 0
-    }
     #moving = false;
     #allowInput = true;
     #target;
@@ -176,6 +172,7 @@ class player {
         this.sprite.anchor.set(0, 1 / 3);
         this.sprite.x = x;
         this.sprite.y = y;
+        this.#target = { x, y };
         app.stage.addChild(this.sprite);
         this.nameTagText = new PIXI.Text(name, {
             fontFamily: 'Power Clear',
@@ -190,25 +187,21 @@ class player {
 
     }
 
-    step(deltaTime, app) {
+    step(delta, app) {
         if (this.#moving) {
             // else move player toward target tile
-            this.sprite.x += this.#velocity.x * deltaTime;
-            this.sprite.y += this.#velocity.y * deltaTime;
-            this.#velocity.x = this.#velocity.y = 0;
-            this.#moving = false;
-            // let distX = this.#target.x - this.sprite.x;
-            // let distY = this.#target.y - this.sprite.y;
-            // let dx = Math.sign(distX) * this.speed;
-            // let dy = Math.sign(distY) * this.speed;
-            // if ((Math.abs(distX) <= this.speed && Math.abs(distY) == 0) || (Math.abs(distY) <= this.speed && Math.abs(distX) == 0)) { // <= or == which one?
-            //     this.sprite.x = this.#target.x;
-            //     this.sprite.y = this.#target.y;
-            //     this.#moving = false;
-            // } else {
-            //     this.sprite.x += dx;
-            //     this.sprite.y += dy;
-            // }
+            let distX = this.#target.x - this.sprite.x;
+            let distY = this.#target.y - this.sprite.y;
+            let dx = Math.sign(distX) * this.speed;
+            let dy = Math.sign(distY) * this.speed;
+            if ((Math.abs(distX) <= this.speed && Math.abs(distY) == 0) || (Math.abs(distY) <= this.speed && Math.abs(distX) == 0)) { // <= or == which one?
+                this.sprite.x = this.#target.x;
+                this.sprite.y = this.#target.y;
+                this.#moving = false;
+            } else {
+                this.sprite.x += dx;
+                this.sprite.y += dy;
+            }
         }
         if (this.hasController && this.#allowInput) {
             let centerX = this.sprite.x + this.sprite.width / 2;
@@ -242,67 +235,70 @@ class player {
             }
             if (!this.#moving) {
                 // set player speed
-                if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT/* || this.#nextShiftInput*/)) {
+                if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT || this.#nextShiftInput)) {
                     this.sprite.animationSpeed = 0.175;
-                    this.speed = player.runSpeed;
+                    this.speed = player.runSpeed * delta;
                     this.sprites = player.playerSprites[this.avatar + "_run"];
                 } else {
                     this.sprite.animationSpeed = 0.1;
-                    this.speed = player.walkSpeed;
+                    this.speed = player.walkSpeed * delta;
                     this.sprites = player.playerSprites[this.avatar + "_walk"];
                 }
                 // if player not moving get input
-                if (Input.RIGHT) {
+                if (this.#nextInput == "right" || (this.facing == "right" && !this.#nextInput && Input.RIGHT)) {
                     this.#nextInput = false;
                     this.#nextShiftInput = false;
                     this.setFacing("right");
                     this.sprite.play();
-                    this.#velocity.x = this.speed;
-                    this.#moving = true;
-                }
-                // else if (this.facing != "right" && !this.#nextInput && Input.RIGHT) {
-                //     this.setFacing("right", true);
-                //     this.playIdleAnimation(0.2, 150);
-                // }
-                else if (Input.LEFT) {
+                    this.moveTo(this.sprite.x + 32, this.sprite.y);
+                } else if (this.facing != "right" && !this.#nextInput && Input.RIGHT) {
+                    this.setFacing("right", true);
+                    this.playIdleAnimation(0.2, 150);
+                } else if (this.#nextInput == "left" || (this.facing == "left" && !this.#nextInput && Input.LEFT)) {
                     this.#nextInput = false;
                     this.#nextShiftInput = false;
                     this.setFacing("left");
                     this.sprite.play();
-                    this.#velocity.x = -this.speed;
-                    this.#moving = true;
-                }
-                // else if (this.facing != "left" && !this.#nextInput && Input.LEFT) {
-                //     this.setFacing("left", true);
-                //     this.playIdleAnimation(0.2, 150);
-                // }
-                if (Input.DOWN) {
+                    this.moveTo(this.sprite.x - 32, this.sprite.y);
+                } else if (this.facing != "left" && !this.#nextInput && Input.LEFT) {
+                    this.setFacing("left", true);
+                    this.playIdleAnimation(0.2, 150);
+                } else if (this.#nextInput == "down" || (this.facing == "down" && !this.#nextInput && Input.DOWN)) {
                     this.#nextInput = false;
                     this.#nextShiftInput = false;
                     this.setFacing("down");
                     this.sprite.play();
-                    this.#velocity.y = this.speed;
-                    this.#moving = true;
-                }
-                // else if (this.facing != "down" && !this.#nextInput && Input.DOWN) {
-                //     this.setFacing("down", true);
-                //     this.playIdleAnimation(0.2, 150);
-                // }
-                else if (Input.UP) {
+                    this.moveTo(this.sprite.x, this.sprite.y + 32);
+                } else if (this.facing != "down" && !this.#nextInput && Input.DOWN) {
+                    this.setFacing("down", true);
+                    this.playIdleAnimation(0.2, 150);
+                } else if (this.#nextInput == "up" || (this.facing == "up" && !this.#nextInput && Input.UP)) {
                     this.#nextInput = false;
                     this.#nextShiftInput = false;
                     this.setFacing("up");
                     this.sprite.play();
-                    this.#velocity.y = -this.speed;
-                    this.#moving = true;
-                }
-                // else if (this.facing != "up" && !this.#nextInput && Input.UP) {
-                //     this.setFacing("up", true);
-                //     this.playIdleAnimation(0.2, 150);
-                // }
-                else {
+                    this.moveTo(this.sprite.x, this.sprite.y - 32);
+                } else if (this.facing != "up" && !this.#nextInput && Input.UP) {
+                    this.setFacing("up", true);
+                    this.playIdleAnimation(0.2, 150);
+                } else {
                     this.#nextShiftInput = false;
                     this.sprite.texture = player.playerSprites[this.avatar + "_walk"].animations[this.facing + this.#animSheet][1];
+                }
+            } else {
+                // save next shift input
+                if (Input.SHIFT) {
+                    this.#nextShiftInput = true;
+                }
+                // save next input
+                if (Input.RIGHT && this.facing != "right") {
+                    this.#nextInput = "right";
+                } else if (Input.LEFT && this.facing != "left") {
+                    this.#nextInput = "left";
+                } else if (Input.DOWN && this.facing != "down") {
+                    this.#nextInput = "down";
+                } else if (Input.UP && this.facing != "up") {
+                    this.#nextInput = "up";
                 }
             }
         }
@@ -327,11 +323,11 @@ class player {
         this.sprite.textures = this.sprites.animations[this.facing + this.#animSheet];
     }
 
-    // moveTo(x, y) {
-    //     this.#target.x = x;
-    //     this.#target.y = y;
-    //     this.#moving = true;
-    // }
+    moveTo(x, y) {
+        this.#target.x = x;
+        this.#target.y = y;
+        this.#moving = true;
+    }
 
     playIdleAnimation(speed, duration) {
         this.sprite.animationSpeed = speed;
