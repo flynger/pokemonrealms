@@ -11,7 +11,7 @@ $(function () {
         let data = $("#register-form").serialize();
         $.post("/register", data, (response) => {
             if (response.success) {
-                window.location.href = "/home";
+                window.location.href = "/game";
             } else {
                 $("#register-fail").html(response.reason);
                 $("#register-fail")[0].style.display = "inherit";
