@@ -48,7 +48,7 @@ async function setupGame() {
         app.stage.addChild(map.tilemap);
         app.stage.addChild(graphics);
         player.initializePlayerSpritesheets().then(() => {
-            players.push(new player("player", "red", 0, 0, "right", true));
+            players.push(new player("player", "may", 0, 0, "right", true));
             for (let i = 0; i < map.width; i++) {
                 for (let j = 0; j < map.height; j++) {
                     if (randomNumber(1, 150) == 1) {
