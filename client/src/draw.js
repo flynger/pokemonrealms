@@ -37,6 +37,7 @@ async function setupGame() {
     document.body.appendChild(app.view);
     app.stage.sortableChildren = true;
     PIXI.Assets.add('Outside', 'res/data/Outside.json');
+    PIXI.Assets.add('wildgrass', 'res/tilesets/wildgrass.png');
     PIXI.Assets.load(['Outside']).then(() => {
         map.tilemap = new PIXI.tilemap.CompositeTilemap();
         for (let i = 0; i < map.width; i++) {

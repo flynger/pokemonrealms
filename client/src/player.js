@@ -181,7 +181,6 @@ class player {
         this.#nameTagTextOffset = 16 - this.nameTagText.width / 2;
         app.stage.addChild(this.nameTagText);
         //obj.drawRect(0, 0, 200, 100);
-
     }
 
     step(deltaTime, app) {
