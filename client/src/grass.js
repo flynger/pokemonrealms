@@ -1,8 +1,9 @@
-// // plz go touch grass
+// plz go touch grass
 // class grass {
 //     backSprite;
 //     frontSprite;
 //     constructor(x, y){
 //         this.frontSprite;
+//         this.backSprite;
 //     }
 // }
