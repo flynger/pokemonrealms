@@ -1,6 +1,6 @@
 class player {
     static walkSpeed = 32 / 15;
-    static runSpeed = 64 / 15;
+    static runSpeed = 48 / 15;
     static maxVelocity = 64 / 15;
     static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
     static playerSprites = {};
@@ -164,9 +164,7 @@ class player {
         this.hasController = hasController;
         this.sprites = player.playerSprites[this.avatar + "_walk"];
         this.sprite = new PIXI.AnimatedSprite(this.sprites.animations[facing]);
-        this.sprite.texture = this.sprite.textures[1];
-        this.sprite.animationSpeed = 0.1;
-        this.sprite.loop = false;
+        this.sprite.texture = this.sprite.textures[0];
         this.sprite.anchor.set(0, 1 / 3);
         this.sprite.x = x;
         this.sprite.y = y;
@@ -185,22 +183,6 @@ class player {
     }
 
     step(deltaTime, app) {
-        if (this.#moving) {
-            // move player by velocity
-            let totalVelocity = (this.#velocity.x ** 2 + this.#velocity.y ** 2) ** 0.5;
-            let maxVelocity = this.speed;
-            if (totalVelocity > maxVelocity) {
-                let scaleFactor = maxVelocity / totalVelocity;
-                this.#velocity.x *= scaleFactor;
-                this.#velocity.y *= scaleFactor;
-                totalVelocity = maxVelocity;
-            }
-            this.sprite.x += this.#velocity.x * deltaTime;
-            this.sprite.y += this.#velocity.y * deltaTime;
-            this.#velocity.x = this.#velocity.y = 0;
-            this.sprite.animationSpeed = totalVelocity / 20;
-            this.#moving = false;
-        }
         if (this.hasController) {
             if (this.#allowInput) {
                 let centerX = this.sprite.x + this.sprite.width / 2;
@@ -235,22 +217,26 @@ class player {
                 if (!this.#moving) {
                     // set player speed
                     if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT)) {
-                        this.speed = player.runSpeed;
-                        this.sprites = player.playerSprites[this.avatar + "_run"];
-                    } else if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
                         this.speed = player.walkSpeed;
-                        this.sprites = player.playerSprites[this.avatar + "_walk"];
+                        //this.sprites = player.playerSprites[this.avatar + "_run"];
+                    } else if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
+                        this.speed = player.runSpeed;
+                        //this.sprites = player.playerSprites[this.avatar + "_walk"];
                     } else {
                         this.speed = 0;
                         if (this.sprite.playing) {
                             this.sprite.stop();
-                            this.sprite.texture = player.playerSprites[this.avatar + "_walk"].animations[this.facing][this.sprite.currentFrame % 2 == 1 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame];
+                            this.sprite.texture = player.playerSprites[this.avatar + "_walk"].animations[this.facing][this.sprite.currentFrame % 2 == 1 ? (this.sprite.currentFrame + 1) % 4 : this.sprite.currentFrame];
                         }
                     }
                     // if player not moving get input
                     if (Input.RIGHT) {
-                        this.setFacing("right");
-                        if (!this.sprite.playing) this.sprite.play();
+                        if (this.facing != "right") this.setFacing("right");
+                        if (!this.sprite.playing) {
+                            this.sprite.play();
+                            this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+                            this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+                        }
                         this.#velocity.x = this.speed;
                         this.#moving = true;
                     }
@@ -259,8 +245,12 @@ class player {
                     //     this.playIdleAnimation(0.2, 150);
                     // }
                     else if (Input.LEFT) {
-                        this.setFacing("left");
-                        if (!this.sprite.playing) this.sprite.play();
+                        if (this.facing != "left") this.setFacing("left");
+                        if (!this.sprite.playing) {
+                            this.sprite.play();
+                            this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+                            this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+                        }
                         this.#velocity.x = -this.speed;
                         this.#moving = true;
                     }
@@ -269,8 +259,12 @@ class player {
                     //     this.playIdleAnimation(0.2, 150);
                     // }
                     if (Input.DOWN) {
-                        if (!Input.LEFT && !Input.RIGHT) this.setFacing("down");
-                        else if (!this.sprite.playing) this.sprite.play();
+                        if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
+                        if (!this.sprite.playing) {
+                            this.sprite.play();
+                            this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+                            this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+                        }
                         this.#velocity.y = this.speed;
                         this.#moving = true;
                     }
@@ -279,8 +273,12 @@ class player {
                     //     this.playIdleAnimation(0.2, 150);
                     // }
                     else if (Input.UP) {
-                        if (!Input.LEFT && !Input.RIGHT) this.setFacing("up");
-                        else if (!this.sprite.playing) this.sprite.play();
+                        if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
+                        if (!this.sprite.playing) {
+                            this.sprite.play();
+                            this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+                            this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+                        }
                         this.#velocity.y = -this.speed;
                         this.#moving = true;
                     }
@@ -293,6 +291,22 @@ class player {
             this.sprite.zIndex = this.sprite.y + 0.01;
         } else {
             this.sprite.zIndex = this.sprite.y;
+        }
+        if (this.#moving) {
+            // move player by velocity
+            let totalVelocity = (this.#velocity.x ** 2 + this.#velocity.y ** 2) ** 0.5;
+            let maxVelocity = this.speed;
+            if (totalVelocity > maxVelocity) {
+                let scaleFactor = maxVelocity / totalVelocity;
+                this.#velocity.x *= scaleFactor;
+                this.#velocity.y *= scaleFactor;
+                totalVelocity = maxVelocity;
+            }
+            this.sprite.x += this.#velocity.x * deltaTime;
+            this.sprite.y += this.#velocity.y * deltaTime;
+            this.#velocity.x = this.#velocity.y = 0;
+            this.sprite.animationSpeed = totalVelocity / 15;
+            this.#moving = false;
         }
         graphics.alpha = 0.5;
         graphics.beginFill(0x202020);
