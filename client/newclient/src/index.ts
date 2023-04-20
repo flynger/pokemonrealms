@@ -1,4 +1,4 @@
-import { Application, Sprite } from 'pixi.js'
+import { Application, Sprite } from 'pixi.js';
 
 const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -15,5 +15,7 @@ clampy.anchor.set(0.5);
 
 clampy.x = app.screen.width / 2;
 clampy.y = app.screen.height / 2;
+
+clampy.tint = 0xFFFFFF;
 
 app.stage.addChild(clampy);
