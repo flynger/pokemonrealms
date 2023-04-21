@@ -1,7 +1,7 @@
 // plz go touch grass
 class grass {
     static grassSprites;
-    static async initializeGrassSpriteSheet() {
+    static async initializeGrassSpritesheet() {
         let spriteName = 'wildgrass';
         let sheetData = makeHorizontalSheet('wildgrass', `res/tilesets/wildgrass.png`, 101, 16, 1, 6, 1, 1, 0, false);
         sheetData.animations = {

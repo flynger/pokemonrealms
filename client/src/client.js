@@ -24,34 +24,32 @@ function setupSocket() {
     socket.on("playerData", (name, players) => {
         console.log(players);
         username = name;
-        player.initializePlayerSpritesheets().then(() => {
-            new player(username, "red", 0, 0, "right", true);
-            for (let i = 0; i < map.width; i++) {
-                for (let j = 0; j < map.height; j++) {
-                    if (randomNumber(1, 150) == 1) {
-                        let directions = ["left", "down", "right", "up"];
-                        let avatarName = player.avatars[randomNumber(0, player.avatars.length - 1)];
-                        let num = randomNumber(1, 3);
-                        switch (num) {
-                            case 1:
-                                avatarName = avatarName.toUpperCase();
-                                break;
-                            case 2:
-                                avatarName = avatarName[0].toUpperCase() + avatarName.substring(1);
-                                break;
-                            default:
-                        }
-                        new player(avatarName + randomNumber(1, 9999), avatarName.toLowerCase(), i * 32, j * 32, directions[randomNumber(0, 3)]);
+        new player(username, "red", 0, 0, "right", true);
+        for (let i = 0; i < map.width; i++) {
+            for (let j = 0; j < map.height; j++) {
+                if (randomNumber(1, 150) == 1) {
+                    let directions = ["left", "down", "right", "up"];
+                    let avatarName = player.avatars[randomNumber(0, player.avatars.length - 1)];
+                    let num = randomNumber(1, 3);
+                    switch (num) {
+                        case 1:
+                            avatarName = avatarName.toUpperCase();
+                            break;
+                        case 2:
+                            avatarName = avatarName[0].toUpperCase() + avatarName.substring(1);
+                            break;
+                        default:
                     }
+                    new player(avatarName + randomNumber(1, 9999), avatarName.toLowerCase(), i * 32, j * 32, directions[randomNumber(0, 3)]);
                 }
             }
-            for (let plyr in players) {
-                if (plyr != username) {
-                    new player(plyr, "red", players[plyr].x, players[plyr].y, players[plyr].facing);
-                }
+        }
+        for (let plyr in players) {
+            if (plyr != username) {
+                new player(plyr, "red", players[plyr].x, players[plyr].y, players[plyr].facing);
             }
-            app.ticker.add(draw);
-        });
+        }
+        app.ticker.add(draw);
     });
 
     socket.on("playerMovement", (data) => {

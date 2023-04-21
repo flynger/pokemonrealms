@@ -55,6 +55,7 @@ class player {
             fontSize: 16,
             fill: 0xffffff
         });
+        this.nameTagText.zIndex = 100000;
         this.#nameTagBackWidth = this.nameTagText.width + 10;
         this.#nameTagBackOffset = - (this.#nameTagBackWidth) / 2 + 16;
         this.#nameTagTextOffset = 16 - this.nameTagText.width / 2;
@@ -106,7 +107,7 @@ class player {
         graphics.beginFill(0x202020);
         graphics.drawRoundedRect(this.sprite.x + this.#nameTagBackOffset, this.sprite.y - 29, this.#nameTagBackWidth, 16, 4);
         graphics.endFill(0x202020);
-        this.nameTagText.zIndex = 100000; //this.sprite.y + 1;
+         //this.sprite.y + 1;
         this.nameTagText.x = this.sprite.x + this.#nameTagTextOffset;
         this.nameTagText.y = this.sprite.y - 27;
 

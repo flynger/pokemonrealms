@@ -13,13 +13,13 @@ var map = {
 };
 window.onload = async () => {
     let font = new FontFaceObserver('FireRedRegular', {});
-    font.load(null, 30000)
-        .then(() => {
-            setupGame().then(setupSocket);
-        })
-        .catch(() => {
-            setupGame().then(setupSocket);
-        });
+    await Promise.all([font.load(null, 30000), setupSpritesheets(), setupGame()]);
+    setupSocket();
+}
+
+async function setupSpritesheets() {
+    await player.initializePlayerSpritesheets();
+    await grass.initializeGrassSpritesheet();
 }
 
 async function setupGame() {
@@ -50,32 +50,10 @@ async function setupGame() {
                 map.tilemap.tile('grass' + randomNumber(1, 6), i * 32, j * 32);
             }
         }
+        map.tilemap.tile('wildgrass', 0, 0, { tileWidth: 16, tileHeight: 16, animX: 1, animY: 0, animCountX: 6, animCountY: 1, animDivisor: 1 });
         // tilemap.zIndex = 0;
         app.stage.addChild(map.tilemap);
         app.stage.addChild(graphics);
-        // player.initializePlayerSpritesheets().then(() => {
-        //     new player("player", "may", 0, 0, "right", true);
-        //     for (let i = 0; i < map.width; i++) {
-        //         for (let j = 0; j < map.height; j++) {
-        //             if (randomNumber(1, 150) == 1) {
-        //                 let directions = ["left", "down", "right", "up"];
-        //                 let avatarName = player.avatars[randomNumber(0, player.avatars.length - 1)];
-        //                 let num = randomNumber(1, 3);
-        //                 switch (num) {
-        //                     case 1:
-        //                         avatarName = avatarName.toUpperCase();
-        //                         break;
-        //                     case 2:
-        //                         avatarName = avatarName[0].toUpperCase() + avatarName.substring(1);
-        //                         break;
-        //                     default:
-        //                 }
-        //                 new player(avatarName + randomNumber(1, 9999), avatarName.toLowerCase(), i * 32, j * 32, directions[randomNumber(0, 3)]);
-        //             }
-        //         }
-        //     }
-        //     app.ticker.add(draw);
-        // });
     });
 }
 
@@ -84,11 +62,6 @@ function draw(deltaTime) {
     graphics.clear();
     for (let name in player.players) {
         player.players[name].step(smoothedFrameDuration, app);
-        //Screen.canvas.drawingContext.font = "16px Power Clear";
-        //Screen.canvas.drawingContext.textAlign = "center";
-        //Screen.canvas.drawingContext.roundRect(plyr.sprite.x - 0.5 * (Screen.canvas.drawingContext.measureText(plyr.name).width + 10) + 16, plyr.sprite.y - 13, Screen.canvas.drawingContext.measureText(plyr.name).width + 10, 16, 4).fill();
-        // Screen.canvas.drawingContext.fillStyle = "#FFFFFF";
-        // Screen.canvas.drawingContext.fillText(Player.name, Player.pos.x + 16, Player.pos.y);
 
     }
 }
