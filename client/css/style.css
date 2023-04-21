@@ -7,6 +7,11 @@
     src: url('../res/fonts/pkmndp.ttf');
 }
 
+@font-face {
+    font-family: FireRedRegular;
+    src: url('../res/fonts/pkmndp.ttf');
+}
+
 .PokemonFont {
     font-family: Power Clear;
 }
@@ -41,6 +46,8 @@
     position: absolute;
     left: 50%;
     top: 50%;
+    width: 100%;
+    height: 80%;
     transform: translate3d(-50%, -50%, 0);
     image-rendering: pixelated;
 }
