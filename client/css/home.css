@@ -1,0 +1,6 @@
+#hero{
+    background-image: url("../res/beta_testing.PNG");
+    background-size: cover;
+    min-height: 100vh;
+    image-rendering: pixelated;
+}

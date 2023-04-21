@@ -16,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <link href="css/style.css" rel="stylesheet" />
-
+    <link href="css/home.css" rel="stylesheet" />
 
     <script>
         $.get("nav.html", function (data) {
@@ -30,30 +30,28 @@
 
 <body>
     <main>
-        <div class="px-4 py-5 my-5 text-center">
-            <img class="d-block mx-auto mb-4" style="overflow-x: visible;" src="res/beta_testing.PNG" width="10%"
-                height="20%">
-            <h1 class="display-5 fw-bold PokemonFont">Pokémon Realms</h1>
+        <div class="px-4 py-5 my-5 text-center bg-image PokemonFont" id="hero">
+            <h1 class="display-5 fw-bold">Pokémon Realms</h1>
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4"> <b>Play the Newest Online Pokemon MMO!</b></p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" class="btn btn-success btn-lg px-4 gap-3">Join Today!</button>
+                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Join Today!</button>
                 </div>
             </div>
         </div>
-        <div class="container-fluid text-center align-self-center ">
+        <div class="container-fluid text-center align-self-center border-top py-5">
             <div class="row row-cols-3">
-                <div class="feature col mb-5 thumb">
-                    <span class="PokemonFont">test</span>
-                    <img class="mx-5 img-fluid" src="res/Placeholder_view_vector.svg" width="80%">
+                <div class="feature col mb-5 align-self-center">
+                    <span class="PokemonFont-b">Gen 1 - 4 Pokémon</span>
+                    <img class="img-fluid rounded-2" src="https://pbs.twimg.com/media/BLNw_ijCYAAHujA.jpg" width="80%">
                 </div>
-                <div class="feature col mb-5">
-                    <span class="PokemonFont">test</span>
-                    <img class="mx-5 img-fluid" src="res/Placeholder_view_vector.svg" width="80%">
+                <div class="feature col mb-5 align-self-center">
+                    <span class="PokemonFont-b">Explore the World of Pokémon!</span>
+                    <img class="img-fluid rounded-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgcO7iAk0ND2tlS7YaVhLZzdDfVUMH1u8o4Q&usqp=CAU" width="80%">
                 </div>
-                <div class="feature col mb-5">
-                    <span class="PokemonFont">test</span>
-                    <img class="mx-5 img-fluid" src="res/Placeholder_view_vector.svg" width="80%">
+                <div class="feature col mb-5 align-self-center">
+                    <span class="PokemonFont-b">Catch All the Pokémon!</span>
+                    <img class="img-fluid rounded-2" src="res/Placeholder_view_vector.svg" width="80%">
                 </div>
             </div>
         </div>

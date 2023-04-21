@@ -11,9 +11,18 @@
     font-family: FireRedRegular;
     src: url('../res/fonts/pkmndp.ttf');
 }
+@font-face {
+    font-family: Power Clear Bold;
+    src: url("../res/fonts/pkmndpb.ttf");
+}
 
 .PokemonFont {
     font-family: Power Clear;
+}
+
+.PokemonFont-b {
+    font-family: Power Clear Bold;
+    font-size: large;
 }
 
 /* ===== Scrollbar CSS ===== */
