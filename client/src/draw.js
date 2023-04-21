@@ -26,14 +26,15 @@ async function setupGame() {
     gameDiv.style.height = HEIGHT * ratio + "px";
     app = new PIXI.Application(
         {
-//            resizeTo: gameDiv,
+            resizeTo: gameDiv,
             powerPreference: "high-performance",
+            antialias: true,
             // width: WIDTH * ratio,
             // height: HEIGHT * ratio,
             backgroundColor: 0x000000
         }
     );
-//    app.stage.scale.x = app.stage.scale.y = ratio;
+    app.stage.scale.x = app.stage.scale.y = ratio;
     document.body.appendChild(app.view);
     app.stage.sortableChildren = true;
     PIXI.Assets.add('Outside', 'res/data/Outside.json');
@@ -49,13 +50,12 @@ async function setupGame() {
         app.stage.addChild(map.tilemap);
         app.stage.addChild(graphics);
         player.initializePlayerSpritesheets().then(() => {
-            players.push(new player("player", "red", 0, 0, "right", true));
+            players.push(new player("player", "may", 0, 0, "right", true));
             for (let i = 0; i < map.width; i++) {
                 for (let j = 0; j < map.height; j++) {
                     if (randomNumber(1, 150) == 1) {
                         let directions = ["left", "down", "right", "up"];
-                        let avatars = ["red", "blue", "green", "brendan", "may", "oak"];
-                        let avatarName = avatars[randomNumber(0, avatars.length - 1)];
+                        let avatarName = player.avatars[randomNumber(0, player.avatars.length - 1)];
                         let num = randomNumber(1, 3);
                         switch (num) {
                             case 1:

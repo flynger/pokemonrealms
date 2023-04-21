@@ -122,7 +122,7 @@ app.get("/", (req, res) => {
 //     io.emit("playersOnline", server.onlinePlayers);
 // }, 5000);
 
-// io.on("connection", (socket) => {
+io.on("connection", (socket) => {
 //     // get socket's session details
 //     let { session, sessionID } = socket.request;
 //     let username: String = socket.username = session.username;
@@ -142,13 +142,13 @@ app.get("/", (req, res) => {
 //     // server.players[username].board = null;
 //     // server.onlinePlayers.push(server.players[username].displayName);
 
-//     // connect event
-//     console.log(color.green, socket.id);
+    // connect event
+    console.log(color.green, socket.id);
 
-//     // add events
-//     socket.on("ping", (callback) => {
-//         callback();
-//     });
+    // add events
+    socket.on("ping", (callback) => {
+        callback();
+    });
 
 //     // chat and room events
 //     socket.on("joinRoom", (data) => {
@@ -166,22 +166,22 @@ app.get("/", (req, res) => {
 //         // chatHandler.processChat(socket, data)
 //     });
 
-//     // add disconnect event
-//     socket.on("disconnect", () => {
-//         console.log(color.red, socket.id);
-//         // server.players[username].connected = false;
+    // add disconnect event
+    socket.on("disconnect", () => {
+        console.log(color.red, socket.id);
+        // server.players[username].connected = false;
 
-//         // server.onlinePlayers.splice(server.onlinePlayers.indexOf(server.players[username].displayName), 1);
-//         // console.log(server.onlinePlayers);
-//         delete session.socket;
-//         // if (session.isGuest) {
-//         //     delete server.players[username];
-//         // }
-//     });
+        // server.onlinePlayers.splice(server.onlinePlayers.indexOf(server.players[username].displayName), 1);
+        // console.log(server.onlinePlayers);
+        //delete session.socket;
+        // if (session.isGuest) {
+        //     delete server.players[username];
+        // }
+    });
 //     // send username
 //     socket.emit("username", username);
 //     socket.emit("playersOnline", server.onlinePlayers);
-// });
+});
 
 /* to broadcast event to all users: io.sockets.emit(key, data);
    to broadcast event to a single socket (without reference): io.sockets.sockets.get(socketid).emit(key, data);
