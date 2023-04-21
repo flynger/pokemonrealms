@@ -4,8 +4,9 @@ class player {
     static decelerationConstant = 0.4;
     static minDeceleration = 0.1;
     //static maxVelocity = 48 / 15;
-    static avatars = ["red", "green", "blue", "brendan", "may", "oak", "bug_catcher"];
+    static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
     static playerSprites = {};
+    static players = {};
 
     static async initializePlayerSpritesheets() {
         for (let avatar of this.avatars) {
@@ -37,6 +38,7 @@ class player {
     #nameTagTextOffset;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
+        player.players[name] = this;
         this.name = name;
         this.avatar = avatar;
         this.facing = facing;
@@ -49,7 +51,7 @@ class player {
         this.sprite.y = y;
         app.stage.addChild(this.sprite);
         this.nameTagText = new PIXI.Text(name, {
-            fontFamily: 'Power Clear',
+            fontFamily: 'FireRedRegular',
             fontSize: 16,
             fill: 0xffffff
         });
@@ -95,7 +97,8 @@ class player {
             }
             if (this.#velocity.x == 0 && this.#velocity.y == 0) {
                 //if (this.sprite.playing) {
-                this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame % 2 == 1 ? (this.sprite.currentFrame + 1) % 4 : this.sprite.currentFrame];
+                this.sprite.currentFrame = this.sprite.currentFrame % 2 == 1 ? (this.sprite.currentFrame + 1) % 4 : this.sprite.currentFrame;
+                this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
                 //}
                 this.#moving = false;
             } else {
@@ -106,6 +109,7 @@ class player {
                     this.sprite.animationSpeed = totalVelocity / 15;
                 } else this.sprite.stop();
             }
+            if (this.hasController) sendLocation();
         }
         graphics.alpha = 0.5;
         graphics.beginFill(0x202020);
@@ -221,4 +225,15 @@ class player {
         this.#allowInput = false;
         setTimeout(() => this.#allowInput = true, ms);
     }
+}
+
+function sendLocation() {
+    //console.log("sending packet '" + type + "'");
+    let thisPlayer = player.players[username];
+    socket.emit("playerMovement", {
+        x: thisPlayer.sprite.x,
+        y: thisPlayer.sprite.y,
+        facing: thisPlayer.facing,
+        currentFrame: thisPlayer.sprite.currentFrame
+    });
 }

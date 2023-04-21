@@ -11,19 +11,22 @@ var map = {
     width: 60,
     height: 45
 };
-var players = [];
 window.onload = async () => {
-    let font = new FontFaceObserver('Power Clear', {});
+    let font = new FontFaceObserver('FireRedRegular', {});
     font.load(null, 30000)
-        .then(setupGame)
-        .catch(setupGame);
+        .then(() => {
+            setupGame().then(setupSocket);
+        })
+        .catch(() => {
+            setupGame().then(setupSocket);
+        });
 }
 
 async function setupGame() {
     // app.resize(Math.ceil(WIDTH * ratio), Math.ceil(HEIGHT * ratio));
     let gameDiv = document.getElementById("game");
-    gameDiv.style.width = WIDTH * ratio + "px";
-    gameDiv.style.height = HEIGHT * ratio + "px";
+    // gameDiv.style.width = WIDTH * ratio + "px";
+    // gameDiv.style.height = HEIGHT * ratio + "px";
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,
@@ -34,13 +37,14 @@ async function setupGame() {
             backgroundColor: 0x000000
         }
     );
-    app.stage.scale.x = app.stage.scale.y = ratio;
+    //app.stage.scale.x = app.stage.scale.y = ratio;
     document.body.appendChild(app.view);
     app.stage.sortableChildren = true;
     PIXI.Assets.add('Outside', 'res/data/Outside.json');
     PIXI.Assets.add('wildgrass', 'res/tilesets/wildgrass.png');
     PIXI.Assets.load(['Outside', 'wildgrass']).then(() => {
         map.tilemap = new PIXI.tilemap.CompositeTilemap();
+        map.tilemap.zIndex = -1;
         for (let i = 0; i < map.width; i++) {
             for (let j = 0; j < map.height; j++) {
                 map.tilemap.tile('grass' + randomNumber(1, 6), i * 32, j * 32);
@@ -49,37 +53,37 @@ async function setupGame() {
         // tilemap.zIndex = 0;
         app.stage.addChild(map.tilemap);
         app.stage.addChild(graphics);
-        player.initializePlayerSpritesheets().then(() => {
-            players.push(new player("player", "may", 0, 0, "right", true));
-            for (let i = 0; i < map.width; i++) {
-                for (let j = 0; j < map.height; j++) {
-                    if (randomNumber(1, 150) == 1) {
-                        let directions = ["left", "down", "right", "up"];
-                        let avatarName = player.avatars[randomNumber(0, player.avatars.length - 1)];
-                        let num = randomNumber(1, 3);
-                        switch (num) {
-                            case 1:
-                                avatarName = avatarName.toUpperCase();
-                                break;
-                            case 2:
-                                avatarName = avatarName[0].toUpperCase() + avatarName.substring(1);
-                                break;
-                            default:
-                        }
-                        players.push(new player(avatarName + randomNumber(1, 9999), avatarName.toLowerCase(), i * 32, j * 32, directions[randomNumber(0, 3)]));
-                    }
-                }
-            }
-            app.ticker.add(draw);
-        });
+        // player.initializePlayerSpritesheets().then(() => {
+        //     new player("player", "may", 0, 0, "right", true);
+        //     for (let i = 0; i < map.width; i++) {
+        //         for (let j = 0; j < map.height; j++) {
+        //             if (randomNumber(1, 150) == 1) {
+        //                 let directions = ["left", "down", "right", "up"];
+        //                 let avatarName = player.avatars[randomNumber(0, player.avatars.length - 1)];
+        //                 let num = randomNumber(1, 3);
+        //                 switch (num) {
+        //                     case 1:
+        //                         avatarName = avatarName.toUpperCase();
+        //                         break;
+        //                     case 2:
+        //                         avatarName = avatarName[0].toUpperCase() + avatarName.substring(1);
+        //                         break;
+        //                     default:
+        //                 }
+        //                 new player(avatarName + randomNumber(1, 9999), avatarName.toLowerCase(), i * 32, j * 32, directions[randomNumber(0, 3)]);
+        //             }
+        //         }
+        //     }
+        //     app.ticker.add(draw);
+        // });
     });
 }
 
 function draw(deltaTime) {
     smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
     graphics.clear();
-    for (let plyr of players) {
-        plyr.step(smoothedFrameDuration, app);
+    for (let name in player.players) {
+        player.players[name].step(smoothedFrameDuration, app);
         //Screen.canvas.drawingContext.font = "16px Power Clear";
         //Screen.canvas.drawingContext.textAlign = "center";
         //Screen.canvas.drawingContext.roundRect(plyr.sprite.x - 0.5 * (Screen.canvas.drawingContext.measureText(plyr.name).width + 10) + 16, plyr.sprite.y - 13, Screen.canvas.drawingContext.measureText(plyr.name).width + 10, 16, 4).fill();
