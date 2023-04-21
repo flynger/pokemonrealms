@@ -187,14 +187,6 @@ class player {
     }
 
     step(deltaTime, app) {
-        if (this.hasController) {
-            if (this.#allowInput) {
-                this.centerCameraOnSelf();
-            }
-            this.sprite.zIndex = this.sprite.y + 0.01;
-        } else {
-            this.sprite.zIndex = this.sprite.y;
-        }
         if (this.#moving) {
             // move player by velocity
             if (!Input.RIGHT && !Input.LEFT) {
@@ -233,7 +225,6 @@ class player {
                     this.sprite.animationSpeed = totalVelocity / 15;
                 } else this.sprite.stop();
             }
-            if (this.hasController) sendLocation();
         }
         graphics.alpha = 0.5;
         graphics.beginFill(0x202020);
@@ -242,6 +233,16 @@ class player {
         this.nameTagText.zIndex = 100000; //this.sprite.y + 1;
         this.nameTagText.x = this.sprite.x + this.#nameTagTextOffset;
         this.nameTagText.y = this.sprite.y - 27;
+
+        if (this.hasController) {
+            this.sendLocation();
+            if (this.#allowInput) {
+                this.centerCameraOnSelf();
+            }
+            this.sprite.zIndex = this.sprite.y + 0.01;
+        } else {
+            this.sprite.zIndex = this.sprite.y;
+        }
     }
 
     setFacing(direction, setWalkAnimation = false) {
@@ -349,15 +350,14 @@ class player {
         this.#allowInput = false;
         setTimeout(() => this.#allowInput = true, ms);
     }
-}
 
-function sendLocation() {
-    //console.log("sending packet '" + type + "'");
-    let thisPlayer = player.players[username];
-    socket.emit("playerMovement", {
-        x: thisPlayer.sprite.x,
-        y: thisPlayer.sprite.y,
-        facing: thisPlayer.facing,
-        currentFrame: thisPlayer.sprite.currentFrame
-    });
+    sendLocation() {
+        //console.log("sending packet '" + type + "'");
+        socket.emit("playerMovement", {
+            x: this.sprite.x,
+            y: this.sprite.y,
+            facing: this.facing,
+            currentFrame: this.sprite.currentFrame
+        });
+    }
 }

@@ -44,7 +44,7 @@ async function setupGame() {
     PIXI.Assets.add('wildgrass', 'res/tilesets/wildgrass.png');
     PIXI.Assets.load(['Outside']).then(() => {
         map.tilemap = new PIXI.tilemap.CompositeTilemap();
-        map.tilemap.zIndex = -1;
+        map.tilemap.zIndex = -5;
         for (let i = 0; i < map.width; i++) {
             for (let j = 0; j < map.height; j++) {
                 map.tilemap.tile('grass' + randomNumber(1, 6), i * 32, j * 32);
