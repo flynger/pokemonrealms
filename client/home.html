@@ -17,18 +17,47 @@
 
     <link href="css/style.css" rel="stylesheet" />
 
+
     <script>
         $.get("nav.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
         });
     </script>
     <div id="nav-placeholder">
-        <nav class="navbar navbar-expand-md bg-dark-subtle sticky-top" data-bs-theme="dark" style="height: 58px;"></nav>
+        <nav class="navbar navbar-expand-md bg-dark-subtle" data-bs-theme="dark" style="height: 58px;"></nav>
     </div>
 </head>
 
 <body>
-    <div id="game"></div>
+    <main>
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" style="overflow-x: visible;" src="res/beta_testing.PNG" width="10%"
+                height="20%">
+            <h1 class="display-5 fw-bold PokemonFont">Pokémon Realms</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4"> <b>Play the Newest Online Pokemon MMO!</b></p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="button" class="btn btn-success btn-lg px-4 gap-3">Join Today!</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid text-center align-self-center ">
+            <div class="row row-cols-3">
+                <div class="feature col mb-5 thumb">
+                    <span class="PokemonFont">test</span>
+                    <img class="mx-5 img-fluid" src="res/Placeholder_view_vector.svg" width="80%">
+                </div>
+                <div class="feature col mb-5">
+                    <span class="PokemonFont">test</span>
+                    <img class="mx-5 img-fluid" src="res/Placeholder_view_vector.svg" width="80%">
+                </div>
+                <div class="feature col mb-5">
+                    <span class="PokemonFont">test</span>
+                    <img class="mx-5 img-fluid" src="res/Placeholder_view_vector.svg" width="80%">
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

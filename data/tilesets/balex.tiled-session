@@ -3,12 +3,20 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Outside.json",
+    "activeFile": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
     "expandedProjectPaths": [
         "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 824,
+                "y": 449.33333333333326
+            }
+        },
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx": {
             "scale": 0.75,
             "selectedLayer": 1,
@@ -18,7 +26,7 @@
             }
         },
         "Outside.json": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "Outside.tsx": {
@@ -31,11 +39,13 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 102,
     "openFiles": [
-        "Outside.json"
+        "Outside.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json"
     ],
     "project": "balex.tiled-project",
     "recentFiles": [
         "Outside.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
         "Outside.tsx",
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx"
     ],

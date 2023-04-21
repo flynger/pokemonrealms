@@ -10,7 +10,7 @@ $(function () {
         let data = $("#login-form").serialize();
         $.post("/login", data, (response) => {
             if (response.success) {
-                window.location.href = "/home";
+                window.location.href = "/game";
             } else {
                 $("#login-fail").html(response.reason);
                 $("#login-fail")[0].style.display = "inherit";

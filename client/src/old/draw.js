@@ -8,8 +8,8 @@ graphics.zIndex = 99999;
 var WIDTH = 960, HEIGHT = 540, TILE_SIZE = 32;
 var ratio = 1.5; //Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
 var map = {
-    width: 60,
-    height: 45
+    width: randomNumber(4, 40),
+    height: randomNumber(4, 40)
 };
 var players = [];
 window.onload = async () => {
@@ -26,18 +26,17 @@ async function setupGame() {
     gameDiv.style.height = HEIGHT * ratio + "px";
     app = new PIXI.Application(
         {
-//            resizeTo: gameDiv,
+            resizeTo: gameDiv,
             powerPreference: "high-performance",
             // width: WIDTH * ratio,
             // height: HEIGHT * ratio,
             backgroundColor: 0x000000
         }
     );
-//    app.stage.scale.x = app.stage.scale.y = ratio;
-    document.body.appendChild(app.view);
+    app.stage.scale.x = app.stage.scale.y = ratio;
+    gameDiv.appendChild(app.view);
     app.stage.sortableChildren = true;
     PIXI.Assets.add('Outside', 'res/data/Outside.json');
-    PIXI.Assets.add('wildgrass', 'res/tilesets/wildgrass.png');
     PIXI.Assets.load(['Outside']).then(() => {
         map.tilemap = new PIXI.tilemap.CompositeTilemap();
         for (let i = 0; i < map.width; i++) {
@@ -49,7 +48,7 @@ async function setupGame() {
         app.stage.addChild(map.tilemap);
         app.stage.addChild(graphics);
         player.initializePlayerSpritesheets().then(() => {
-            players.push(new player("player", "red", 0, 0, "right", true));
+            players.push(new player("player", "may", 0, 0, "right", true));
             for (let i = 0; i < map.width; i++) {
                 for (let j = 0; j < map.height; j++) {
                     if (randomNumber(1, 150) == 1) {
