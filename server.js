@@ -84,11 +84,11 @@ app.get("/", (req, res) => {
 // });
 app.get("/login", (req, res) => {
     // send client login page if not logged in
-    if (!req.session.username) {
+    //if (!req.session.username) {
         res.sendFile('login.html', { root: './public' });
-    }
+    //}
     // redirect client to game page if logged in
-    else res.redirect("/play");
+    //else res.redirect("/play");
 });
 // app.post("/login", (req, res) => {
 //     // handle login request and send response

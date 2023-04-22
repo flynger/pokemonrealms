@@ -12,14 +12,14 @@ var map = {
     height: 45
 };
 window.onload = async () => {
-    let font = new FontFaceObserver('FireRedRegular', {});
+    let font = new FontFaceObserver('Power Clear', {});
     await Promise.all([font.load(null, 30000), setupSpritesheets(), setupGame()]);
     setupSocket();
 }
 
 async function setupSpritesheets() {
     await player.initializePlayerSpritesheets();
-    await grass.initializeGrassSpritesheet();
+    //await grass.initializeGrassSpritesheet();
 }
 
 async function setupGame() {

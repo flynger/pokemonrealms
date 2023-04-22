@@ -24,7 +24,7 @@ function setupSocket() {
     socket.on("playerData", (name, players) => {
         console.log(players);
         username = name;
-        new player(username, "red", 0, 0, "right", true);
+        new player(username, "red", 0, 0, "right", true).sendLocation();
         for (let i = 0; i < map.width; i++) {
             for (let j = 0; j < map.height; j++) {
                 if (randomNumber(1, 150) == 1) {

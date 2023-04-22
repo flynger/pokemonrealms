@@ -51,7 +51,7 @@ class player {
         this.sprite.y = y;
         app.stage.addChild(this.sprite);
         this.nameTagText = new PIXI.Text(name, {
-            fontFamily: 'FireRedRegular',
+            fontFamily: 'Power Clear',
             fontSize: 16,
             fill: 0xffffff
         });
@@ -63,22 +63,28 @@ class player {
         //obj.drawRect(0, 0, 200, 100);
     }
 
-    step(deltaTime, app) {
+    step(deltaTime) {
         if (this.#moving) {
             // move player by velocity
             if (!Input.RIGHT && !Input.LEFT) {
-                let speedX = Math.abs(this.#velocity.x);
-                let signX = Math.sign(this.#velocity.x);
-                let decelerationX = Math.max(player.decelerationConstant * speedX / this.speed, player.minDeceleration);
-                let decelerationXAmount = speedX < decelerationX ? -this.#velocity.x : -signX * decelerationX;
-                this.#velocity.x += decelerationXAmount;
+                if (!Input.UP && !Input.DOWN) {
+                    let speedX = Math.abs(this.#velocity.x);
+                    let signX = Math.sign(this.#velocity.x);
+                    let decelerationX = Math.max(player.decelerationConstant * speedX / this.speed, player.minDeceleration);
+                    let decelerationXAmount = speedX < decelerationX * deltaTime * 2 ? -this.#velocity.x : -signX * decelerationX * deltaTime * 2;
+                    this.#velocity.x += decelerationXAmount;
+                }
+                else this.#velocity.x = 0;
             }
             if (!Input.UP && !Input.DOWN) {
-                let speedY = Math.abs(this.#velocity.y);
-                let signY = Math.sign(this.#velocity.y);
-                let decelerationY = Math.max(player.decelerationConstant * speedY / this.speed, player.minDeceleration);
-                let decelerationYAmount = speedY < decelerationY ? -this.#velocity.y : -signY * decelerationY;
-                this.#velocity.y += decelerationYAmount;
+                if (!Input.RIGHT && !Input.LEFT) {
+                    let speedY = Math.abs(this.#velocity.y);
+                    let signY = Math.sign(this.#velocity.y);
+                    let decelerationY = Math.max(player.decelerationConstant * speedY / this.speed, player.minDeceleration);
+                    let decelerationYAmount = speedY < decelerationY * deltaTime * 2 ? -this.#velocity.y : -signY * decelerationY * deltaTime * 2;
+                    this.#velocity.y += decelerationYAmount;
+                }
+                else this.#velocity.y = 0;
             }
             let totalVelocity = (this.#velocity.x ** 2 + this.#velocity.y ** 2) ** 0.5;
             let maxVelocity = this.speed;
@@ -102,17 +108,17 @@ class player {
                     this.sprite.animationSpeed = totalVelocity / 15;
                 } else this.sprite.stop();
             }
+            if (this.hasController) this.sendLocation();
         }
         graphics.alpha = 0.5;
         graphics.beginFill(0x202020);
         graphics.drawRoundedRect(this.sprite.x + this.#nameTagBackOffset, this.sprite.y - 29, this.#nameTagBackWidth, 16, 4);
         graphics.endFill(0x202020);
-         //this.sprite.y + 1;
+        //this.sprite.y + 1;
         this.nameTagText.x = this.sprite.x + this.#nameTagTextOffset;
         this.nameTagText.y = this.sprite.y - 27;
 
         if (this.hasController) {
-            this.sendLocation();
             if (this.#allowInput) {
                 this.centerCameraOnSelf();
             }
