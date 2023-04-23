@@ -7,14 +7,20 @@
     src: url('../res/fonts/pkmndp.ttf');
 }
 
-@font-face {
+/* @font-face {
     font-family: FireRedRegular;
     src: url('../res/fonts/pkmndp.ttf');
-}
+} */
+
 @font-face {
     font-family: Power Clear Bold;
     src: url("../res/fonts/pkmndpb.ttf");
 }
+
+/* @font-face {
+    font-family: 'Pokemon Font Regular';
+    src: url('../res/fonts/pokemon_pixel_font.ttf');
+} */
 
 .PokemonFont {
     font-family: Power Clear;
@@ -49,14 +55,4 @@
 
 .navbar-brand {
     font-size: var(--bs-nav-link-font-size);
-}
-
-#game {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100%;
-    height: 80%;
-    transform: translate3d(-50%, -50%, 0);
-    image-rendering: pixelated;
 }
