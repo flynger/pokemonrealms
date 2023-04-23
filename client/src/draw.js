@@ -1,4 +1,4 @@
-// PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 PIXI.settings.ROUND_PIXELS = true;
 //PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
@@ -50,14 +50,15 @@ async function setupGame() {
     // app.stage.filters=[blurFilter1];
     document.body.appendChild(app.view);
 
-    PIXI.Assets.add('Outside', 'res/data/Outside.json');
-    PIXI.Assets.load(['Outside']).then(() => {
+    // PIXI.Assets.add('Outside', 'res/data/Outside.json');
+    PIXI.Assets.add('gen4hgss', 'res/data/gen4hgss.json');
+    PIXI.Assets.load([/*'Outside', */'gen4hgss']).then(() => {
         map.tilemap = new PIXI.tilemap.CompositeTilemap();
         map.tilemap.zIndex = -1000;
         for (let i = 0; i < map.width; i++) {
             for (let j = 0; j < map.height; j++) {
-                let num = randomNumber(1, 5);
-                map.tilemap.tile('grass' + num, i * 32, j * 32);
+                let possibleTiles = ["grass", "grass", "grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass", "grass", "grass", "grass", "grass","grass","grass","grass","grass","grass","grass","grass","grass1","grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
+                map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
             }
         }
         for (let x = 0; x < 16; x++) {
@@ -85,7 +86,7 @@ function draw(deltaTime) {
     }
 }
 
-function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true) {
+function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true, v_cutoff = 0) {
     let sheet_data = {
         "frames": {
 
@@ -105,9 +106,9 @@ function makeHorizontalSheet(name, source, width, height, scale, horizontal_tile
         }
         for (let c = 0; c < horizontal_tiles; c++) {
             sheet_data.frames[name + "_" + r + "_" + c] = {
-                "frame": { "x": c * (tile_width + h_padding), "y": r * (tile_height + v_padding), "w": tile_width, "h": tile_height },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": tile_width, "h": tile_height },
-                "sourceSize": { "w": tile_width, "h": tile_height }
+                "frame": { "x": c * (tile_width + h_padding), "y": r * (tile_height + v_padding), "w": tile_width, "h": tile_height - v_cutoff },
+                "spriteSourceSize": { "x": 0, "y": 0, "w": tile_width, "h": tile_height - v_cutoff },
+                "sourceSize": { "w": tile_width, "h": tile_height - v_cutoff }
             }
             if (createAnimations) {
                 sheet_data.animations[name + "_" + r].push(name + "_" + r + "_" + c);

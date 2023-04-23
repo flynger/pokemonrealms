@@ -22,7 +22,19 @@ class player {
                 PIXI.BaseTexture.from(sheetData.meta.image),
                 sheetData
             );
-            await this.#playerSprites[spriteName].parse();
+            let spriteName2 = avatar + "_head";
+            let sheetData2 = makeHorizontalSheet(spriteName2, `res/characters/${spriteName}.png`, 134, 198, 1, 4, 4, 2, 2, false, 14);
+            sheetData2.animations = {
+                "down": [spriteName2 + "_0_0", spriteName2 + "_0_1", spriteName2 + "_0_2", spriteName2 + "_0_3"],
+                "left": [spriteName2 + "_1_0", spriteName2 + "_1_1", spriteName2 + "_1_2", spriteName2 + "_1_3"],
+                "right": [spriteName2 + "_2_0", spriteName2 + "_2_1", spriteName2 + "_2_2", spriteName2 + "_2_3"],
+                "up": [spriteName2 + "_3_0", spriteName2 + "_3_1", spriteName2 + "_3_2", spriteName2 + "_3_3"]
+            };
+            this.#playerSprites[spriteName2] = new PIXI.Spritesheet(
+                PIXI.BaseTexture.from(sheetData2.meta.image),
+                sheetData2
+            );
+            await Promise.all([this.#playerSprites[spriteName].parse(), this.#playerSprites[spriteName2].parse()]);
         }
     }
 
