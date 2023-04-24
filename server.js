@@ -54,16 +54,16 @@ app.get("/", (req, res) => {
 //     // redirect to game
 //     res.redirect("/play");
 // });
-// app.get("/play", (req, res) => {
-//     // game page
-//     res.sendFile('play.html', { root: './public' });
-// });
+app.get("/game", (req, res) => {
+    // game page
+    res.sendFile('game.html', { root: './client' });
+});
 // app.get("/profile", (req, res) => {
 //     // get the requested username parameter
 //     let requestedUsername: String = req.query.name ? req.query.name.toLowerCase() : req.session.username ? req.session.username : "";
 //     // send profile page if player exists, else redirect to login
 //     // if (requestedUsername && server.players.hasOwnProperty(requestedUsername)) {
-//     //     res.sendFile('profile.html', { root: './public' });
+//     //     res.sendFile('profile.html', { root: './client' });
 //     // } else res.redirect("/login");
 // });
 // app.post("/profile", (req, res) => {
@@ -79,32 +79,40 @@ app.get("/", (req, res) => {
 // });
 // app.get("/settings", (req, res) => {
 //     // settings page
-//     res.sendFile('settings.html', { root: './public' });
+//     res.sendFile('settings.html', { root: './client' });
 // });
 app.get("/login", (req, res) => {
     // send client login page if not logged in
-    if (!req.session.username) {
-        res.sendFile('login.html', { root: './public' });
-    }
+    // if (!req.session.username) {
+        res.sendFile('login.html', { root: './client' });
+  
     // redirect client to game page if logged in
-    else res.redirect("/play");
+    // else res.redirect("/play");
 });
-// app.post("/login", (req, res) => {
-//     // handle login request and send response
-//     // res.send(loginHandler.loginAccount(req, res));
-// });
-// app.get("/register", (req, res) => {
-//     // send client register page if not logged in
-//     if (!req.session.username) {
-//         res.sendFile('register.html', { root: './public' });
-//     }
-//     // redirect client to game page if logged in
-//     else res.redirect("/play");
-// });
-// app.post("/register", (req, res) => {
-//     // handle register request and send response
-//     // res.send(loginHandler.registerAccount(req, res));
-// });
+app.post("/login", (req, res) => {
+    // handle login request and send response
+    res.send(loginHandler.loginAccount(req, res));
+});
+app.get("/register", (req, res) => {
+    // send client register page if not logged in
+    // if (!req.session.username) {
+        res.sendFile('register.html', { root: './client' });
+    // }
+    // redirect client to game page if logged in
+    // else res.redirect("/game");
+});
+app.post("/register", (req, res) => {
+    // handle register request and send response
+    res.send(loginHandler.registerAccount(req, res));
+});
+app.get("/home", (req, res) => {
+    // sends the home page when requested
+    res.sendFile('home.html', { root: './client'});
+});
+app.get("/game", (req, res) => {
+    // sends the home page when requested
+    res.send('game.html', { root: './client'});
+});
 // app.get("/logout", (req, res) => {
 //     // logout user if logged in
 //     if (req.session.username) {
