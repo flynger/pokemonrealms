@@ -32,6 +32,7 @@ const io = new Server(expressServer, {
 // server variable
 const server = {
     io,
+    players: {},
     onlinePlayers: [] // Array<Player>
 }
 // our source file initialization
@@ -112,6 +113,11 @@ app.get("/home", (req, res) => {
 app.get("/game", (req, res) => {
     // sends the home page when requested
     res.send('game.html', { root: './client'});
+    //if (!req.session.username) {
+       // res.sendFile('login.html', { root: './public' });
+    //}
+    // redirect client to game page if logged in
+    //else res.redirect("/play");
 });
 // app.get("/logout", (req, res) => {
 //     // logout user if logged in
@@ -131,52 +137,71 @@ app.get("/game", (req, res) => {
 // }, 5000);
 
 io.on("connection", (socket) => {
-//     // get socket's session details
-//     let { session, sessionID } = socket.request;
-//     let username: String = socket.username = session.username;
-//     // if (!session.username) {
-//     //     // assign guest account if not logged in
-//     //     session.isGuest = true;
-//     //     let displayName: String = "Guest " + uniqueNamesGenerator({
-//     //         dictionaries: [adjectives, animals],
-//     //         separator: " ",
-//     //         style: "capital"
-//     //     });
-//     //     socket.username = username = session.username = displayName.toLowerCase();//sessionID;
-//     //     server.players[username] = { username, displayName, isGuest: true, connected: true };
-//     // }
-//     // server.players[username].connected = true;
-//     // server.players[username].socket = session.socket = socket;
-//     // server.players[username].board = null;
-//     // server.onlinePlayers.push(server.players[username].displayName);
+    //     // get socket's session details
+    //     let { session, sessionID } = socket.request;
+    //     let username: String = socket.username = session.username;
+    //     // if (!session.username) {
+    //     //     // assign guest account if not logged in
+    //     //     session.isGuest = true;
+    //     //     let displayName: String = "Guest " + uniqueNamesGenerator({
+    //     //         dictionaries: [adjectives, animals],
+    //     //         separator: " ",
+    //     //         style: "capital"
+    //     //     });
+    //     //     socket.username = username = session.username = displayName.toLowerCase();//sessionID;
+    //     //     server.players[username] = { username, displayName, isGuest: true, connected: true };
+    //     // }
+    //     // server.players[username].connected = true;
+    //     // server.players[username].socket = session.socket = socket;
+    //     // server.players[username].board = null;
+    //     // server.onlinePlayers.push(server.players[username].displayName);
 
     // connect event
     console.log(color.green, socket.id);
+    let username = false;
+    while (username === false || (username && username in server.players)) {
+        username = "player" + (Math.floor(Math.random() * 9998) + 1);
+    }
+    server.players[username] = {
+        x: 0,
+        y: 0,
+        facing: "right"
+    };
 
     // add events
     socket.on("ping", (callback) => {
         callback();
     });
 
-//     // chat and room events
-//     socket.on("joinRoom", (data) => {
-//         // handle room join request
-//         // let result = chatHandler.joinSocketToRoom(socket, data.requestedRoom);
-//         // if (result.error) {
-//         //     socket.emit("roomJoinFailure", { room: data.requestedRoom, error: result.error });
-//         // } else if (result.success) {
-//         //     socket.emit("roomJoinSuccess", { room: data.requestedRoom, messages: [`You connected as user: ${server.players[username].displayName}`, "Joined chat: " + data.requestedRoom] });
-//         // }
-//     });
+    //     // chat and room events
+    //     socket.on("joinRoom", (data) => {
+    //         // handle room join request
+    //         // let result = chatHandler.joinSocketToRoom(socket, data.requestedRoom);
+    //         // if (result.error) {
+    //         //     socket.emit("roomJoinFailure", { room: data.requestedRoom, error: result.error });
+    //         // } else if (result.success) {
+    //         //     socket.emit("roomJoinSuccess", { room: data.requestedRoom, messages: [`You connected as user: ${server.players[username].displayName}`, "Joined chat: " + data.requestedRoom] });
+    //         // }
+    //     });
 
-//     socket.on("chatMessage", (data) => {
-//         // handle chat packet
-//         // chatHandler.processChat(socket, data)
-//     });
+    socket.on("playerMovement", (data) => {
+        data.name = username;
+        server.players[username].x = data.x;
+        server.players[username].y = data.y;
+        server.players[username].facing = data.facing;
+        socket.broadcast.emit("playerMovement", data);
+    });
+
+    socket.on("chatMessage", (data) => {
+        // handle chat packet
+        // chatHandler.processChat(socket, data)
+    });
 
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(color.red, socket.id);
+        delete server.players[username];
+        socket.broadcast.emit("playerDisconnect", username);
         // server.players[username].connected = false;
 
         // server.onlinePlayers.splice(server.onlinePlayers.indexOf(server.players[username].displayName), 1);
@@ -186,9 +211,9 @@ io.on("connection", (socket) => {
         //     delete server.players[username];
         // }
     });
-//     // send username
-//     socket.emit("username", username);
-//     socket.emit("playersOnline", server.onlinePlayers);
+    // send username
+    socket.emit("playerData", username, server.players);
+    //     socket.emit("playersOnline", server.onlinePlayers);
 });
 
 /* to broadcast event to all users: io.sockets.emit(key, data);

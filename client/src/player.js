@@ -1,137 +1,14 @@
 class player {
     static walkSpeed = 32 / 15;
     static runSpeed = 48 / 15;
-    static decelerationConstant = 0.4;
-    static minDeceleration = 0.1;
+    static #decelerationConstant = 0.4;
+    static #minDeceleration = 0.1;
     //static maxVelocity = 48 / 15;
-    static avatars = ["red", "green", "blue", "brendan", "may", "oak", "bug_catcher"];
-    static playerSprites = {};
+    static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
+    static #playerSprites = {};
+    static players = {};
 
     static async initializePlayerSpritesheets() {
-        // let playerSheetData = {
-        //     "frames": {
-        //         "d1":
-        //         {
-        //             "frame": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "d2":
-        //         {
-        //             "frame": { "x": 32, "y": 0, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "d3":
-        //         {
-        //             "frame": { "x": 64, "y": 0, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "d4":
-        //         {
-        //             "frame": { "x": 96, "y": 0, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "l1":
-        //         {
-        //             "frame": { "x": 0, "y": 48, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "l2":
-        //         {
-        //             "frame": { "x": 32, "y": 48, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "l3":
-        //         {
-        //             "frame": { "x": 64, "y": 48, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "l4":
-        //         {
-        //             "frame": { "x": 96, "y": 48, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "r1":
-        //         {
-        //             "frame": { "x": 0, "y": 96, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "r2":
-        //         {
-        //             "frame": { "x": 32, "y": 96, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "r3":
-        //         {
-        //             "frame": { "x": 64, "y": 96, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "r4":
-        //         {
-        //             "frame": { "x": 96, "y": 96, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "u1":
-        //         {
-        //             "frame": { "x": 0, "y": 144, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "u2":
-        //         {
-        //             "frame": { "x": 32, "y": 144, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "u3":
-        //         {
-        //             "frame": { "x": 64, "y": 144, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         },
-        //         "u4":
-        //         {
-        //             "frame": { "x": 96, "y": 144, "w": 32, "h": 48 },
-        //             "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-        //             "sourceSize": { "w": 32, "h": 48 }
-        //         }
-        //     },
-
-        //     "animations": {
-        //         "down1": ["d2", "d1"],
-        //         "down2": ["d4", "d1"],
-        //         "left1": ["l2", "l1"],
-        //         "left2": ["l4", "l1"],
-        //         "right1": ["r2", "r1"],
-        //         "right2": ["r4", "r1"],
-        //         "up1": ["u2", "u1"],
-        //         "up2": ["u4", "u1"]
-        //     },
-
-        //     "meta": {
-        //         "image": "res/characters/red_walk.png",
-        //         "format": "RGBA8888",
-        //         "size": { "w": 128, "h": 192 },
-        //         "scale": "1"
-        //     }
-        // }
-
-        // let sprites = [];
-        // for (let avatar of this.avatars) {
-        //     sprites.push(avatar + "_walk");
-        //     sprites.push(avatar + "_run");
-        // }
         for (let avatar of this.avatars) {
             let spriteName = avatar + "_walk";
             let sheetData = makeHorizontalSheet(spriteName, `res/characters/${spriteName}.png`, 134, 198, 1, 4, 4, 2, 2, false);
@@ -141,11 +18,23 @@ class player {
                 "right": [spriteName + "_2_0", spriteName + "_2_1", spriteName + "_2_2", spriteName + "_2_3"],
                 "up": [spriteName + "_3_0", spriteName + "_3_1", spriteName + "_3_2", spriteName + "_3_3"]
             };
-            this.playerSprites[spriteName] = new PIXI.Spritesheet(
+            this.#playerSprites[spriteName] = new PIXI.Spritesheet(
                 PIXI.BaseTexture.from(sheetData.meta.image),
                 sheetData
             );
-            await this.playerSprites[spriteName].parse();
+            let spriteName2 = avatar + "_head";
+            let sheetData2 = makeHorizontalSheet(spriteName2, `res/characters/${spriteName}.png`, 134, 198, 1, 4, 4, 2, 2, false, 14);
+            sheetData2.animations = {
+                "down": [spriteName2 + "_0_0", spriteName2 + "_0_1", spriteName2 + "_0_2", spriteName2 + "_0_3"],
+                "left": [spriteName2 + "_1_0", spriteName2 + "_1_1", spriteName2 + "_1_2", spriteName2 + "_1_3"],
+                "right": [spriteName2 + "_2_0", spriteName2 + "_2_1", spriteName2 + "_2_2", spriteName2 + "_2_3"],
+                "up": [spriteName2 + "_3_0", spriteName2 + "_3_1", spriteName2 + "_3_2", spriteName2 + "_3_3"]
+            };
+            this.#playerSprites[spriteName2] = new PIXI.Spritesheet(
+                PIXI.BaseTexture.from(sheetData2.meta.image),
+                sheetData2
+            );
+            await Promise.all([this.#playerSprites[spriteName].parse(), this.#playerSprites[spriteName2].parse()]);
         }
     }
 
@@ -155,98 +44,167 @@ class player {
     }
     #moving = false;
     #allowInput = true;
-    #animSheet = 2;
     #nameTagBackWidth;
     #nameTagBackOffset;
     #nameTagTextOffset;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
+        player.players[name] = this;
         this.name = name;
         this.avatar = avatar;
         this.facing = facing;
         this.hasController = hasController;
-        this.sprites = player.playerSprites[this.avatar + "_walk"];
+        this.sprites = player.#playerSprites[this.avatar + "_walk"];
         this.sprite = new PIXI.AnimatedSprite(this.sprites.animations[facing]);
         this.sprite.texture = this.sprite.textures[0];
         this.sprite.anchor.set(0, 1 / 3);
         this.sprite.x = x;
         this.sprite.y = y;
-        app.stage.addChild(this.sprite);
+        gameContainer.addChild(this.sprite);
         this.nameTagText = new PIXI.Text(name, {
             fontFamily: 'Power Clear',
-            fontSize: 16,
+            fontSize: 16 * ratio,
+            padding: ratio,
             fill: 0xffffff
         });
-        this.#nameTagBackWidth = this.nameTagText.width + 10;
+        this.nameTagBack = new PIXI.Graphics();
+        this.nameTagBack.alpha = 0.8;
+        this.#nameTagBackWidth = (this.nameTagText.width) / ratio + 10;
         this.#nameTagBackOffset = - (this.#nameTagBackWidth) / 2 + 16;
-        this.#nameTagTextOffset = 16 - this.nameTagText.width / 2;
-        app.stage.addChild(this.nameTagText);
-        //obj.drawRect(0, 0, 200, 100);
+        this.#nameTagTextOffset = 16 * ratio - this.nameTagText.width / 2;
+        textContainer.addChild(this.nameTagBack);
+        textContainer.addChild(this.nameTagText);
     }
 
-    step(deltaTime, app) {
+    step(deltaTime) {
+        if (this.#moving) {
+            this.decelerate(deltaTime);
+            this.move(deltaTime);
+            if (this.hasController) this.sendLocation();
+        }
+
+        // redraw name tag bounding box
+        this.nameTagBack.clear();
+        this.nameTagBack.beginFill(0x303030);
+        this.nameTagBack.drawRoundedRect((this.sprite.x + this.#nameTagBackOffset) * ratio, (this.sprite.y - 29 - ratio) * ratio, this.#nameTagBackWidth * ratio, (16 + ratio) * ratio, 4 * ratio);
+        this.nameTagBack.endFill(0x303030);
+        // update name text position
+        this.nameTagText.x = this.sprite.x * ratio + this.#nameTagTextOffset + 1;
+        this.nameTagText.y = (this.sprite.y - 27) * ratio;
+        // update z-indices
+       this.sprite.y;
+
         if (this.hasController) {
+            this.nameTagBack.zIndex = this.nameTagText.zIndex = 100000;
             if (this.#allowInput) {
+                // check for next input
+                //if (!this.#moving) {
+                // set player speed
+                if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT)) {
+                    this.speed = player.walkSpeed;
+                } else if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
+                    this.speed = player.runSpeed;
+                }
+                // if player not moving get input
+                if (Input.RIGHT) {
+                    if (this.facing != "right") this.setFacing("right");
+                    if (!this.sprite.playing) {
+                        this.sprite.play();
+                        this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+                        this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+                    }
+                    this.#velocity.x = this.speed;
+                    this.#moving = true;
+                } else if (Input.LEFT) {
+                    if (this.facing != "left") this.setFacing("left");
+                    if (!this.sprite.playing) {
+                        this.sprite.play();
+                        this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+                        this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+                    }
+                    this.#velocity.x = -this.speed;
+                    this.#moving = true;
+                }
+
+                if (Input.DOWN) {
+                    if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
+                    if (!this.sprite.playing) {
+                        this.sprite.play();
+                        this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+                        this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+                    }
+                    this.#velocity.y = this.speed;
+                    this.#moving = true;
+                } else if (Input.UP) {
+                    if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
+                    if (!this.sprite.playing) {
+                        this.sprite.play();
+                        this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+                        this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+                    }
+                    this.#velocity.y = -this.speed;
+                    this.#moving = true;
+                }
                 this.centerCameraOnSelf();
             }
             this.sprite.zIndex = this.sprite.y + 0.01;
         } else {
-            this.sprite.zIndex = this.sprite.y;
+            this.nameTagBack.zIndex = this.nameTagText.zIndex = this.sprite.zIndex = this.sprite.y;
         }
-        if (this.#moving) {
-            // move player by velocity
-            if (!Input.RIGHT && !Input.LEFT) {
-                let speedX = Math.abs(this.#velocity.x);
-                let signX = Math.sign(this.#velocity.x);
-                let decelerationX = Math.max(player.decelerationConstant * speedX / this.speed, player.minDeceleration);
-                let decelerationXAmount = speedX < decelerationX ? -this.#velocity.x : -signX * decelerationX;
-                this.#velocity.x += decelerationXAmount;
-            }
-            if (!Input.UP && !Input.DOWN) {
-                let speedY = Math.abs(this.#velocity.y);
-                let signY = Math.sign(this.#velocity.y);
-                let decelerationY = Math.max(player.decelerationConstant * speedY / this.speed, player.minDeceleration);
-                let decelerationYAmount = speedY < decelerationY ? -this.#velocity.y : -signY * decelerationY;
-                this.#velocity.y += decelerationYAmount;
-            }
-            let totalVelocity = (this.#velocity.x ** 2 + this.#velocity.y ** 2) ** 0.5;
-            let maxVelocity = this.speed;
-            if (totalVelocity > maxVelocity) {
-                let scaleFactor = maxVelocity / totalVelocity;
-                this.#velocity.x *= scaleFactor;
-                this.#velocity.y *= scaleFactor;
-                totalVelocity = maxVelocity;
-            }
-            if (this.#velocity.x == 0 && this.#velocity.y == 0) {
-                //if (this.sprite.playing) {
-                this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame % 2 == 1 ? (this.sprite.currentFrame + 1) % 4 : this.sprite.currentFrame];
-                //}
-                this.#moving = false;
-            } else {
-                this.sprite.x += this.#velocity.x * deltaTime;
-                this.sprite.y += this.#velocity.y * deltaTime;
-
-                if (totalVelocity == this.speed || this.sprite.currentFrame % 2 == 0) {
-                    this.sprite.animationSpeed = totalVelocity / 15;
-                } else this.sprite.stop();
-            }
-        }
-        graphics.alpha = 0.5;
-        graphics.beginFill(0x202020);
-        graphics.drawRoundedRect(this.sprite.x + this.#nameTagBackOffset, this.sprite.y - 29, this.#nameTagBackWidth, 16, 4);
-        graphics.endFill(0x202020);
-        this.nameTagText.zIndex = 100000; //this.sprite.y + 1;
-        this.nameTagText.x = this.sprite.x + this.#nameTagTextOffset;
-        this.nameTagText.y = this.sprite.y - 27;
     }
 
     setFacing(direction, setWalkAnimation = false) {
         this.facing = direction;
-        // this.#animSheet = this.#animSheet % 2 + 1;
-        // if (setWalkAnimation && this.sprites != player.playerSprites[this.avatar + "_walk"]) {
-        //     this.sprites = player.playerSprites[this.avatar + "_walk"];
-        // }
         this.sprite.textures = this.sprites.animations[this.facing];
+    }
+
+    decelerate(deltaTime) {
+        // decelerate player
+        if (!Input.RIGHT && !Input.LEFT) {
+            if (!Input.UP && !Input.DOWN) {
+                let speedX = Math.abs(this.#velocity.x);
+                let signX = Math.sign(this.#velocity.x);
+                let decelerationX = Math.max(player.#decelerationConstant * speedX / this.speed, player.#minDeceleration);
+                let decelerationXAmount = speedX < decelerationX * deltaTime * 2 ? -this.#velocity.x : -signX * decelerationX * deltaTime * 2;
+                this.#velocity.x += decelerationXAmount;
+            }
+            else this.#velocity.x = 0;
+        }
+        if (!Input.UP && !Input.DOWN) {
+            if (!Input.RIGHT && !Input.LEFT) {
+                let speedY = Math.abs(this.#velocity.y);
+                let signY = Math.sign(this.#velocity.y);
+                let decelerationY = Math.max(player.#decelerationConstant * speedY / this.speed, player.#minDeceleration);
+                let decelerationYAmount = speedY < decelerationY * deltaTime * 2 ? -this.#velocity.y : -signY * decelerationY * deltaTime * 2;
+                this.#velocity.y += decelerationYAmount;
+            }
+            else this.#velocity.y = 0;
+        }
+    }
+
+    move(deltaTime) {
+        // move player by velocity
+        let totalVelocity = (this.#velocity.x ** 2 + this.#velocity.y ** 2) ** 0.5;
+        let maxVelocity = this.speed;
+        if (totalVelocity > maxVelocity) {
+            let scaleFactor = maxVelocity / totalVelocity;
+            this.#velocity.x *= scaleFactor;
+            this.#velocity.y *= scaleFactor;
+            totalVelocity = maxVelocity;
+        }
+        if (this.#velocity.x == 0 && this.#velocity.y == 0) {
+            if (this.sprite.currentFrame % 2 == 1) {
+                this.sprite.gotoAndStop((this.sprite.currentFrame + 1) % 4);
+            } else this.sprite.stop();
+            this.#moving = false;
+        } else {
+            this.sprite.x += this.#velocity.x * deltaTime;
+            this.sprite.y += this.#velocity.y * deltaTime;
+
+            if (totalVelocity == this.speed || this.sprite.currentFrame % 2 == 0) {
+                this.sprite.animationSpeed = totalVelocity / 15;
+            } else this.sprite.stop();
+        }
     }
 
     // moveTo(x, y) {
@@ -271,6 +229,7 @@ class player {
                 app.stage.pivot.x = centerX - WIDTH / 2;
             }
         }
+        app.stage.pivot.x *= ratio;
         // camera y
         if (mapHeight <= HEIGHT) {
             app.stage.pivot.y = (mapHeight - HEIGHT) / 2;
@@ -283,56 +242,7 @@ class player {
                 app.stage.pivot.y = centerY - HEIGHT / 2;
             }
         }
-        // check for next input
-        //if (!this.#moving) {
-        // set player speed
-        if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT)) {
-            this.speed = player.walkSpeed;
-            //this.sprites = player.playerSprites[this.avatar + "_run"];
-        } else if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
-            this.speed = player.runSpeed;
-            //this.sprites = player.playerSprites[this.avatar + "_walk"];
-        }
-        // if player not moving get input
-        if (Input.RIGHT) {
-            if (this.facing != "right") this.setFacing("right");
-            if (!this.sprite.playing) {
-                this.sprite.play();
-                this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-                this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
-            }
-            this.#velocity.x = this.speed;
-            this.#moving = true;
-        } else if (Input.LEFT) {
-            if (this.facing != "left") this.setFacing("left");
-            if (!this.sprite.playing) {
-                this.sprite.play();
-                this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-                this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
-            }
-            this.#velocity.x = -this.speed;
-            this.#moving = true;
-        }
-
-        if (Input.DOWN) {
-            if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
-            if (!this.sprite.playing) {
-                this.sprite.play();
-                this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-                this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
-            }
-            this.#velocity.y = this.speed;
-            this.#moving = true;
-        } else if (Input.UP) {
-            if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
-            if (!this.sprite.playing) {
-                this.sprite.play();
-                this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-                this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
-            }
-            this.#velocity.y = -this.speed;
-            this.#moving = true;
-        }
+        app.stage.pivot.y *= ratio;
     }
 
     playIdleAnimation(speed, duration) {
@@ -344,5 +254,15 @@ class player {
     disableInputFor(ms) {
         this.#allowInput = false;
         setTimeout(() => this.#allowInput = true, ms);
+    }
+
+    sendLocation() {
+        //console.log("sending packet '" + type + "'");
+        socket.emit("playerMovement", {
+            x: this.sprite.x,
+            y: this.sprite.y,
+            facing: this.facing,
+            currentFrame: this.sprite.currentFrame
+        });
     }
 }

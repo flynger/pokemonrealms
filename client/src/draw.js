@@ -1,22 +1,28 @@
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-// PIXI.settings.ROUND_PIXELS = true;
+PIXI.settings.ROUND_PIXELS = true;
+//PIXI.settings.RESOLUTION = 1;
+PIXI.Container.defaultSortableChildren = true;
 var app;
-const smoothingFrames = 10; // The number of frames to use for smoothing
+const gameContainer = new PIXI.Container();
+const textContainer = new PIXI.Container();
+const smoothingFrames = 15; // The number of frames to use for smoothing
 let smoothedFrameDuration = 0; // The smoothed frame duration
-var graphics = new PIXI.Graphics();
-graphics.zIndex = 99999;
-var WIDTH = 960, HEIGHT = 540, TILE_SIZE = 32;
-var ratio = 1.5; //Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
+var WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
+var ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
 var map = {
     width: 60,
     height: 45
 };
-var players = [];
+
 window.onload = async () => {
     let font = new FontFaceObserver('Power Clear', {});
-    font.load(null, 30000)
-        .then(setupGame)
-        .catch(setupGame);
+    await Promise.all([font.load(null, 30000), setupSpritesheets(), setupGame()]);
+    setupSocket();
+}
+
+async function setupSpritesheets() {
+    await player.initializePlayerSpritesheets();
+    await grass.initializeGrassSpritesheet();
 }
 
 async function setupGame() {
@@ -28,170 +34,63 @@ async function setupGame() {
         {
             resizeTo: gameDiv,
             powerPreference: "high-performance",
-            antialias: true,
+            hello: true,
+            // antialias: true,
+            // resolution: window.devicePixelRatio || 1,
             // width: WIDTH * ratio,
             // height: HEIGHT * ratio,
             backgroundColor: 0x000000
         }
     );
-    app.stage.scale.x = app.stage.scale.y = ratio;
+    // WIDTH = gameDiv.style.width, HEIGHT = gameDiv.style.height, TILE_SIZE = 32;
+    // ratio = Math.min(+gameDiv.style.width / WIDTH, +gameDiv.style.height / HEIGHT);
+    gameContainer.scale.x = gameContainer.scale.y = ratio;
+    // app.stage.sortableChildren = true;
+    // const blurFilter1 = new PIXI.filters.BlurFilter();
+    // app.stage.filters=[blurFilter1];
     document.body.appendChild(app.view);
-    app.stage.sortableChildren = true;
-    PIXI.Assets.add('Outside', 'res/data/Outside.json');
-    PIXI.Assets.add('wildgrass', 'res/tilesets/wildgrass.png');
-    PIXI.Assets.load(['Outside']).then(() => {
+
+    // PIXI.Assets.add('Outside', 'res/data/Outside.json');
+    PIXI.Assets.add('gen4hgss', 'res/data/gen4hgss.json');
+    PIXI.Assets.load([/*'Outside', */'gen4hgss']).then(() => {
         map.tilemap = new PIXI.tilemap.CompositeTilemap();
+        map.tilemap.zIndex = -1000;
         for (let i = 0; i < map.width; i++) {
             for (let j = 0; j < map.height; j++) {
-                map.tilemap.tile('grass' + randomNumber(1, 6), i * 32, j * 32);
+                let possibleTiles = ["grass", "grass", "grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass", "grass", "grass", "grass", "grass","grass","grass","grass","grass","grass","grass","grass","grass1","grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
+                map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
             }
         }
-        // tilemap.zIndex = 0;
-        app.stage.addChild(map.tilemap);
-        app.stage.addChild(graphics);
-        player.initializePlayerSpritesheets().then(() => {
-            players.push(new player("player", "may", 0, 0, "right", true));
-            for (let i = 0; i < map.width; i++) {
-                for (let j = 0; j < map.height; j++) {
-                    if (randomNumber(1, 150) == 1) {
-                        let directions = ["left", "down", "right", "up"];
-                        let avatarName = player.avatars[randomNumber(0, player.avatars.length - 1)];
-                        let num = randomNumber(1, 3);
-                        switch (num) {
-                            case 1:
-                                avatarName = avatarName.toUpperCase();
-                                break;
-                            case 2:
-                                avatarName = avatarName[0].toUpperCase() + avatarName.substring(1);
-                                break;
-                            default:
-                        }
-                        players.push(new player(avatarName + randomNumber(1, 9999), avatarName.toLowerCase(), i * 32, j * 32, directions[randomNumber(0, 3)]));
-                    }
-                }
+        for (let x = 0; x < 16; x++) {
+            for (let y = 0; y < 32; y++) {
+                new grass(x * 32, y * 32);
             }
-            app.ticker.add(draw);
-        });
+        }
+
+        //map.tilemap.tile('wildgrass', 0, 0, { tileWidth: 16, tileHeight: 16, animX: 1, animY: 0, animCountX: 6, animCountY: 1, animDivisor: 1 });
+        // tilemap.zIndex = 0;
+        gameContainer.addChild(map.tilemap);
+        // gameContainer.addChild(graphics);
+        app.stage.addChild(gameContainer);
+        app.stage.addChild(textContainer);
     });
 }
 
 function draw(deltaTime) {
     smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
-    graphics.clear();
-    for (let plyr of players) {
-        plyr.step(smoothedFrameDuration, app);
-        //Screen.canvas.drawingContext.font = "16px Power Clear";
-        //Screen.canvas.drawingContext.textAlign = "center";
-        //Screen.canvas.drawingContext.roundRect(plyr.sprite.x - 0.5 * (Screen.canvas.drawingContext.measureText(plyr.name).width + 10) + 16, plyr.sprite.y - 13, Screen.canvas.drawingContext.measureText(plyr.name).width + 10, 16, 4).fill();
-        // Screen.canvas.drawingContext.fillStyle = "#FFFFFF";
-        // Screen.canvas.drawingContext.fillText(Player.name, Player.pos.x + 16, Player.pos.y);
-
+    for (let name in player.players) {
+        player.players[name].step(smoothedFrameDuration, app);
+    }
+    for (let grss of grass.grasses) {
+        grss.step();
     }
 }
 
-function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true) {
+function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true, v_cutoff = 0) {
     let sheet_data = {
         "frames": {
-            "d1":
-            {
-                "frame": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "d2":
-            {
-                "frame": { "x": 32, "y": 0, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "d3":
-            {
-                "frame": { "x": 64, "y": 0, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "d4":
-            {
-                "frame": { "x": 96, "y": 0, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "l1":
-            {
-                "frame": { "x": 0, "y": 48, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "l2":
-            {
-                "frame": { "x": 32, "y": 48, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "l3":
-            {
-                "frame": { "x": 64, "y": 48, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "l4":
-            {
-                "frame": { "x": 96, "y": 48, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "r1":
-            {
-                "frame": { "x": 0, "y": 96, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "r2":
-            {
-                "frame": { "x": 32, "y": 96, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "r3":
-            {
-                "frame": { "x": 64, "y": 96, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "r4":
-            {
-                "frame": { "x": 96, "y": 96, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "u1":
-            {
-                "frame": { "x": 0, "y": 144, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "u2":
-            {
-                "frame": { "x": 32, "y": 144, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "u3":
-            {
-                "frame": { "x": 64, "y": 144, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            },
-            "u4":
-            {
-                "frame": { "x": 96, "y": 144, "w": 32, "h": 48 },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 48 },
-                "sourceSize": { "w": 32, "h": 48 }
-            }
+
         },
-
-        "animations": {},
-
         "meta": {
             "image": source,
             "format": "RGBA8888",
@@ -207,9 +106,9 @@ function makeHorizontalSheet(name, source, width, height, scale, horizontal_tile
         }
         for (let c = 0; c < horizontal_tiles; c++) {
             sheet_data.frames[name + "_" + r + "_" + c] = {
-                "frame": { "x": c * (tile_width + h_padding), "y": r * (tile_height + v_padding), "w": tile_width, "h": tile_height },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": tile_width, "h": tile_height },
-                "sourceSize": { "w": tile_width, "h": tile_height }
+                "frame": { "x": c * (tile_width + h_padding), "y": r * (tile_height + v_padding), "w": tile_width, "h": tile_height - v_cutoff },
+                "spriteSourceSize": { "x": 0, "y": 0, "w": tile_width, "h": tile_height - v_cutoff },
+                "sourceSize": { "w": tile_width, "h": tile_height - v_cutoff }
             }
             if (createAnimations) {
                 sheet_data.animations[name + "_" + r].push(name + "_" + r + "_" + c);
@@ -228,4 +127,12 @@ function createNameTag() {
     let obj = new PIXI.Graphics();
     obj.beginFill(0x323232, 0.5);
     drawRoundedRect(x, y, width, height, radius)
+}
+
+function collide(ab, bb) {
+    // graphics.beginFill(0xFF0000);
+    // graphics.drawRect(ab.x, ab.y, ab.width, ab.height);
+    // graphics.drawRect(bb.x, bb.y, bb.width, bb.height);
+    // graphics.endFill(0xFF0000);
+    return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
 }
