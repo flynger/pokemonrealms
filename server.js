@@ -192,6 +192,7 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("playerMovement", data);
     });
 
+
     socket.on("chatMessage", (data) => {
         // handle chat packet
         // chatHandler.processChat(socket, data)

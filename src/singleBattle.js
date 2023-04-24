@@ -6,13 +6,15 @@ import Party from './party.js';
 import Showdown from 'pokemon-showdown';
 const { BattleStream, Dex } = Showdown;
 import * as readline from 'node:readline';
+import { is } from 'express/lib/request';
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
 class SingleBattle {
-    constructor(party1, party2) {
+    constructor(isrunnable, party1, party2) {
+        this.isrunnable = isrunnable;
         this.stream = new BattleStream();
         (async () => {
             let ownActivePokemon = null;
@@ -74,7 +76,7 @@ class SingleBattle {
                                         case "-damage":
                                             messageText = DefaultText.default.damagePercentage;
                                             args.NICKNAME = lineArray[0].split(": ")[1];
-                                            
+
                                             if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
                                                 let effectDetails = lineArray[2].slice(7).split(": ");
                                                 let effectSourceType = effectDetails[0];
@@ -290,6 +292,16 @@ class SingleBattle {
         else {
             this.stream.write(`>p2 switch ${switchNumber}`);
         }
+    }
+
+    run() {
+        if (this.isrunnable) {
+            this.endBattle();
+        }
+    }
+
+    endBattle() {
+
     }
 }
 const articuno = {
