@@ -14,7 +14,6 @@ const rl = readline.createInterface({
 
 class SingleBattle {
     constructor(isrunnable, party1, party2) {
-        this.isrunnable = isrunnable;
         this.stream = new BattleStream();
         (async () => {
             let ownActivePokemon = null;
@@ -251,6 +250,8 @@ class SingleBattle {
                 // console.log(output);
             }
         })();
+        
+        this.isrunnable = isrunnable;
 
         this.playerOptions1 = {
             name: party1.name,
