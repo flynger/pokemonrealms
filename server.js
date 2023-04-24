@@ -55,9 +55,9 @@ app.get("/", (req, res) => {
 //     // redirect to game
 //     res.redirect("/play");
 // });
-app.get("/game", (req, res) => {
+app.get("/play", (req, res) => {
     // game page
-    res.sendFile('game.html', { root: './client' });
+    res.sendFile('play.html', { root: './client' });
 });
 // app.get("/profile", (req, res) => {
 //     // get the requested username parameter
@@ -110,9 +110,9 @@ app.get("/home", (req, res) => {
     // sends the home page when requested
     res.sendFile('home.html', { root: './client'});
 });
-app.get("/game", (req, res) => {
+app.get("/play", (req, res) => {
     // sends the home page when requested
-    res.send('game.html', { root: './client'});
+    res.send('play.html', { root: './client'});
     //if (!req.session.username) {
        // res.sendFile('login.html', { root: './public' });
     //}
