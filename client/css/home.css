@@ -1,6 +1,16 @@
-#hero{
+/* @keyframes moveHero {
+    from { background-position: 0 0; }
+    to { background-position: 0 -1268px; }
+} */
+
+/* add keyframe in future by making it loop back on itself */
+#hero {
     background-image: url("../res/beta_testing.PNG");
     background-size: cover;
     min-height: 100vh;
     image-rendering: pixelated;
+    overflow: visible;
+    /* animation: moveHero 10s linear infinite; */
+
+    background-attachment: fixed;
 }

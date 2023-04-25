@@ -17,7 +17,8 @@
 
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/home.css" rel="stylesheet" />
-
+    <script src="src/home.js"></script>
+    
     <script>
         $.get("nav.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
@@ -30,13 +31,13 @@
 
 <body>
     <main>
-        <div class="px-4 py-5 text-center bg-image PokemonFont" id="hero">
-            <div class="container bg-light py-2 px-5 rounded-3" style="max-width: max-content;">
-                <h1 class="display-5 fw-bold">Pokémon Realms</h1>
+        <div class="px-4 py-5 text-center bg-image d-flex align-items-center parallax" id="hero">
+            <div class="container bg-light py-2 px-5 rounded-3" style="max-width: max-content; --bs-bg-opacity: 0.85;">
+                <h1 class="display-5 fw-bold PokemonFont">Pokémon Realms</h1>
                 <div class="col-lg-6 mx-auto">
-                    <p class="lead mb-4 PokemonFont"><b>Play the Newest Online Pokemon MMO!</b></p>
+                    <p class="lead mb-4">Play the Newest Online Pokemon MMO!</p>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Join Today!</button>
+                        <button type="button" class="btn btn-dark btn-lg px-4 gap-3">Join Today!</button>
                     </div>
                 </div>
             </div>
