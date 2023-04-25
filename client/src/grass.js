@@ -27,8 +27,8 @@ class grass {
         this.frontSprite.animationSpeed = 0.2;
         this.frontSprite.currentFrame = 3;
         this.frontSprite.texture = grass.grassSprites.animations['frontGrass'][3];
-        this.backSprite.zIndex = y - 6;
-        this.frontSprite.zIndex = y + 3;
+        this.backSprite.zIndex = -5; y - 6;
+        this.frontSprite.zIndex = -5; y + 3;
         this.backSprite.x = this.frontSprite.x = x;
         this.backSprite.y = this.frontSprite.y = y;
         this.animating = false;
@@ -44,15 +44,8 @@ class grass {
                 continue;
             }
             playerInGrass = true;
-            let playerBounds = player.players[name].sprite.getBounds();
-            playerBounds.y += 40;
-            playerBounds.height = 8;
-            playerBounds.x += 2;
-            playerBounds.width = 28;
-            let grassBounds = this.frontSprite.getBounds();
-            grassBounds.width = 28;
-            grassBounds.x += 2;
-            if (!collide(playerBounds, grassBounds)) {
+            if (!collide(player.players[name].getHitbox(), this.getHitbox())) {
+                //player.players[name].bodySprite.alpha = 1;
                 delete this.passers[name];
             }
         }
@@ -65,28 +58,22 @@ class grass {
         // }
         for (let name in player.players) {
             if (!this.passers[name]) {
-                let playerBounds = player.players[name].sprite.getBounds();
-                playerBounds.y += 40;
-                playerBounds.height = 8;
-                playerBounds.x += 2;
-                playerBounds.width = 28;
-                // let backGrassBounds = this.backSprite.getBounds();
-                // if (collide(playerBounds, backGrassBounds)) {
-                //     this.passers[name] = true;
-                //     this.backSprite.gotoAndPlay(0);
-                // }
-                let grassBounds = this.frontSprite.getBounds();
-                grassBounds.width = 28;
-                grassBounds.x += 2;
-                if (collide(playerBounds, grassBounds)) {
+                if (collide(player.players[name].getHitbox(), this.getHitbox())) {
                     this.passers[name] = true;
+                    player.players[name].bodySprite.alpha = 0.25;
                     this.backSprite.gotoAndPlay(0);
                     this.frontSprite.gotoAndPlay(0);
-                    this.frontSprite.onComplete = () => {
-                        //this.animating = false;
-                    };
                 }
             }
         }
+    }
+
+    getHitbox() {
+        let grassBounds = this.frontSprite.getBounds();
+        grassBounds.width = 20 * ratio;
+        grassBounds.x += 6 * ratio;
+        grassBounds.height = 12 * ratio;
+        grassBounds.y += 20 * ratio;
+        return grassBounds;
     }
 }

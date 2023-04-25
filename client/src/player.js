@@ -23,7 +23,7 @@ class player {
                 sheetData
             );
             let spriteName2 = avatar + "_head";
-            let sheetData2 = makeHorizontalSheet(spriteName2, `res/characters/${spriteName}.png`, 134, 198, 1, 4, 4, 2, 2, false, 14);
+            let sheetData2 = makeHorizontalSheet(spriteName2, `res/characters/${spriteName}.png`, 134, 198, 1, 4, 4, 2, 2, false, 12);
             sheetData2.animations = {
                 "down": [spriteName2 + "_0_0", spriteName2 + "_0_1", spriteName2 + "_0_2", spriteName2 + "_0_3"],
                 "left": [spriteName2 + "_1_0", spriteName2 + "_1_1", spriteName2 + "_1_2", spriteName2 + "_1_3"],
@@ -34,7 +34,19 @@ class player {
                 PIXI.BaseTexture.from(sheetData2.meta.image),
                 sheetData2
             );
-            await Promise.all([this.#playerSprites[spriteName].parse(), this.#playerSprites[spriteName2].parse()]);
+            let spriteName3 = avatar + "_body";
+            let sheetData3 = makeHorizontalSheet(spriteName3, `res/characters/${spriteName}.png`, 134, 198, 1, 4, 4, 2, 2, false, 0, 36);
+            sheetData3.animations = {
+                "down": [spriteName3 + "_0_0", spriteName3 + "_0_1", spriteName3 + "_0_2", spriteName3 + "_0_3"],
+                "left": [spriteName3 + "_1_0", spriteName3 + "_1_1", spriteName3 + "_1_2", spriteName3 + "_1_3"],
+                "right": [spriteName3 + "_2_0", spriteName3 + "_2_1", spriteName3 + "_2_2", spriteName3 + "_2_3"],
+                "up": [spriteName3 + "_3_0", spriteName3 + "_3_1", spriteName3 + "_3_2", spriteName3 + "_3_3"]
+            };
+            this.#playerSprites[spriteName3] = new PIXI.Spritesheet(
+                PIXI.BaseTexture.from(sheetData3.meta.image),
+                sheetData3
+            );
+            await Promise.all([this.#playerSprites[spriteName].parse(), this.#playerSprites[spriteName2].parse(), this.#playerSprites[spriteName3].parse()]);
         }
     }
 
@@ -48,18 +60,25 @@ class player {
     #nameTagBackOffset;
     #nameTagTextOffset;
 
+    grassesInside = [];
+
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         player.players[name] = this;
         this.name = name;
         this.avatar = avatar;
         this.facing = facing;
         this.hasController = hasController;
-        this.sprites = player.#playerSprites[this.avatar + "_walk"];
+        this.sprites = player.#playerSprites[this.avatar + "_head"];
+        this.bodySprites = player.#playerSprites[this.avatar + "_body"];
         this.sprite = new PIXI.AnimatedSprite(this.sprites.animations[facing]);
+        this.bodySprite = new PIXI.AnimatedSprite(this.bodySprites.animations[facing]);
         this.sprite.texture = this.sprite.textures[0];
+        this.bodySprite.texture = this.bodySprite.textures[0];
         this.sprite.anchor.set(0, 1 / 3);
         this.sprite.x = x;
         this.sprite.y = y;
+        this.bodySprite.y = 24;
+        this.sprite.addChild(this.bodySprite);
         gameContainer.addChild(this.sprite);
         this.nameTagText = new PIXI.Text(name, {
             fontFamily: 'Power Clear',
@@ -92,7 +111,7 @@ class player {
         this.nameTagText.x = this.sprite.x * ratio + this.#nameTagTextOffset + 1;
         this.nameTagText.y = (this.sprite.y - 27) * ratio;
         // update z-indices
-       this.sprite.y;
+        this.sprite.y;
 
         if (this.hasController) {
             this.nameTagBack.zIndex = this.nameTagText.zIndex = 100000;
@@ -108,40 +127,24 @@ class player {
                 // if player not moving get input
                 if (Input.RIGHT) {
                     if (this.facing != "right") this.setFacing("right");
-                    if (!this.sprite.playing) {
-                        this.sprite.play();
-                        this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-                        this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
-                    }
+                    this.animate();
                     this.#velocity.x = this.speed;
                     this.#moving = true;
                 } else if (Input.LEFT) {
                     if (this.facing != "left") this.setFacing("left");
-                    if (!this.sprite.playing) {
-                        this.sprite.play();
-                        this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-                        this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
-                    }
+                    this.animate();
                     this.#velocity.x = -this.speed;
                     this.#moving = true;
                 }
 
                 if (Input.DOWN) {
                     if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
-                    if (!this.sprite.playing) {
-                        this.sprite.play();
-                        this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-                        this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
-                    }
+                    this.animate();
                     this.#velocity.y = this.speed;
                     this.#moving = true;
                 } else if (Input.UP) {
                     if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
-                    if (!this.sprite.playing) {
-                        this.sprite.play();
-                        this.sprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-                        this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
-                    }
+                    this.animate();
                     this.#velocity.y = -this.speed;
                     this.#moving = true;
                 }
@@ -153,9 +156,29 @@ class player {
         }
     }
 
+    getHitbox() {
+        let playerBounds = this.bodySprite.getBounds();
+        playerBounds.width = 28 * ratio;
+        playerBounds.x += 2 * ratio;
+        playerBounds.height = 20 * ratio;
+        playerBounds.y -= 4 * ratio;
+        return playerBounds;
+    }
+
     setFacing(direction, setWalkAnimation = false) {
         this.facing = direction;
         this.sprite.textures = this.sprites.animations[this.facing];
+        this.bodySprite.textures = this.bodySprites.animations[this.facing];
+    }
+
+    animate() {
+        if (!this.sprite.playing) {
+            this.sprite.play();
+            this.bodySprite.play();
+            this.sprite.currentFrame = this.bodySprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
+            this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+            this.bodySprite.texture = this.bodySprites.animations[this.facing][this.bodySprite.currentFrame];
+        }
     }
 
     decelerate(deltaTime) {
@@ -195,15 +218,22 @@ class player {
         if (this.#velocity.x == 0 && this.#velocity.y == 0) {
             if (this.sprite.currentFrame % 2 == 1) {
                 this.sprite.gotoAndStop((this.sprite.currentFrame + 1) % 4);
-            } else this.sprite.stop();
+                this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
+            } else {
+                this.sprite.stop();
+                this.bodySprite.stop();
+            }
             this.#moving = false;
         } else {
             this.sprite.x += this.#velocity.x * deltaTime;
             this.sprite.y += this.#velocity.y * deltaTime;
 
             if (totalVelocity == this.speed || this.sprite.currentFrame % 2 == 0) {
-                this.sprite.animationSpeed = totalVelocity / 15;
-            } else this.sprite.stop();
+                this.sprite.animationSpeed = this.bodySprite.animationSpeed = totalVelocity / 15;
+            } else {
+                this.sprite.stop();
+                this.bodySprite.stop();
+            }
         }
     }
 

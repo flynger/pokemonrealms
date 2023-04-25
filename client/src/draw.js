@@ -3,6 +3,7 @@ PIXI.settings.ROUND_PIXELS = true;
 //PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
 var app;
+//let graphics = new PIXI.Graphics();
 const gameContainer = new PIXI.Container();
 const textContainer = new PIXI.Container();
 const smoothingFrames = 15; // The number of frames to use for smoothing
@@ -70,6 +71,7 @@ async function setupGame() {
         //map.tilemap.tile('wildgrass', 0, 0, { tileWidth: 16, tileHeight: 16, animX: 1, animY: 0, animCountX: 6, animCountY: 1, animDivisor: 1 });
         // tilemap.zIndex = 0;
         gameContainer.addChild(map.tilemap);
+        // textContainer.addChild(graphics);
         // gameContainer.addChild(graphics);
         app.stage.addChild(gameContainer);
         app.stage.addChild(textContainer);
@@ -86,7 +88,7 @@ function draw(deltaTime) {
     }
 }
 
-function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true, v_cutoff = 0) {
+function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true, v_cutoff_bottom = 0, v_cutoff_top = 0) {
     let sheet_data = {
         "frames": {
 
@@ -106,9 +108,9 @@ function makeHorizontalSheet(name, source, width, height, scale, horizontal_tile
         }
         for (let c = 0; c < horizontal_tiles; c++) {
             sheet_data.frames[name + "_" + r + "_" + c] = {
-                "frame": { "x": c * (tile_width + h_padding), "y": r * (tile_height + v_padding), "w": tile_width, "h": tile_height - v_cutoff },
-                "spriteSourceSize": { "x": 0, "y": 0, "w": tile_width, "h": tile_height - v_cutoff },
-                "sourceSize": { "w": tile_width, "h": tile_height - v_cutoff }
+                "frame": { "x": c * (tile_width + h_padding), "y": r * (tile_height + v_padding) + v_cutoff_top, "w": tile_width, "h": tile_height - v_cutoff_top - v_cutoff_bottom },
+                // "spriteSourceSize": { "x": 0, "y": 0, "w": tile_width, "h": tile_height - v_cutoff_top - v_cutoff_bottom },
+                // "sourceSize": { "w": tile_width, "h": tile_height - v_cutoff_top - v_cutoff_bottom }
             }
             if (createAnimations) {
                 sheet_data.animations[name + "_" + r].push(name + "_" + r + "_" + c);

@@ -34,7 +34,7 @@
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "D:/Sandbox/github/PokemonRealms/client/res/tilesets",
+    "last.imagePath": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/client/res/tilesets",
     "map.fixedSize": false,
     "map.lastUsedFormat": "tmx",
     "map.width": 102,
@@ -43,11 +43,12 @@
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json"
     ],
     "project": "balex.tiled-project",
+    "property.type": "int",
     "recentFiles": [
         "Outside.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
         "Outside.tsx",
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx"
     ],
-    "tileset.lastUsedFormat": "tsx"
+    "tileset.lastUsedFormat": "json"
 }
