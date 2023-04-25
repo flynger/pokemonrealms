@@ -33,13 +33,15 @@ class grass {
                 continue;
             }
             playerInGrass = true;
-            if (!collideAbove(passer.getHitbox(), this.getHitbox())) {
-                passer.currentlyOccupiedGrasses.splice(passer.currentlyOccupiedGrasses.indexOf(this), 1);
-                if (passer.currentlyOccupiedGrasses.length == 0) {
-                    player.players[name].bodySprite.alpha = 1;
-                }
-                delete this.passers[name];
+            let leftCollided = collide(passer.getLeftHitbox(), this.getHitbox());
+            let rightCollided = collide(passer.getRightHitbox(), this.getHitbox());
+            if (!leftCollided && passer.leftHitboxCollidingObject == this) {
+                passer.leftHitboxCollidingObject = null;
             }
+            if (!rightCollided && passer.rightHitboxCollidingObject == this) {
+                passer.rightHitboxCollidingObject = null;
+            }
+            if (!rightCollided && !leftCollided) delete this.passers[name];
         }
         // if (playerInGrass) {
         //     this.backSprite.alpha = 0.7;
@@ -51,10 +53,16 @@ class grass {
         for (let name in player.players) {
             if (!this.passers[name]) {
                 let passer = player.players[name];
-                if (collideAbove(passer.getHitbox(), this.getHitbox())) {
+                let leftCollided = collide(passer.getLeftHitbox(), this.getHitbox());
+                let rightCollided = collide(passer.getRightHitbox(), this.getHitbox());
+                if (leftCollided || rightCollided) {
+                    if (leftCollided) {
+                        passer.leftHitboxCollidingObject = this;
+                    }
+                    if (rightCollided) {
+                        passer.rightHitboxCollidingObject = this;
+                    }
                     this.passers[name] = true;
-                    passer.currentlyOccupiedGrasses.push(this);
-                    passer.bodySprite.alpha = 0.25;
                     // this.backSprite.gotoAndPlay(0);
                     // this.frontSprite.gotoAndPlay(0);
                 }
@@ -63,11 +71,11 @@ class grass {
     }
 
     getHitbox() {
-        let grassBounds = this.sprite.getBounds();
-        grassBounds.width = 16;
-        grassBounds.x += 8;
-        grassBounds.height = 12;
-        grassBounds.y += 20;
-        return grassBounds;
+        return {
+            x: this.sprite.x,
+            y: this.sprite.y + 16,
+            width: 32,
+            height: 16
+        };
     }
 }

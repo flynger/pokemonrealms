@@ -4,6 +4,7 @@ PIXI.settings.ROUND_PIXELS = true;
 PIXI.Container.defaultSortableChildren = true;
 var app;
 let graphics = new PIXI.Graphics();
+graphics.zIndex = 1000;
 const gameContainer = new PIXI.Container();
 const textContainer = new PIXI.Container();
 const smoothingFrames = 15; // The number of frames to use for smoothing
@@ -73,11 +74,15 @@ async function setupGame() {
             new grass(x * 32, y * 32);
         }
     }
+    for (let x = 20; x < 24; x++) {
+        for (let y = 2; y < 20; y++) {
+            new grass(x * 32, y * 32);
+        }
+    }
 
     //map.tilemap.tile('wildgrass', 0, 0, { tileWidth: 16, tileHeight: 16, animX: 1, animY: 0, animCountX: 6, animCountY: 1, animDivisor: 1 });
     // tilemap.zIndex = 0;
     gameContainer.addChild(map.tilemap);
-    // textContainer.addChild(graphics);
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
     app.stage.addChild(textContainer);
@@ -91,6 +96,9 @@ function draw(deltaTime) {
     }
     for (let grss of grass.grasses) {
         grss.step();
+    }
+    for (let name in player.players) {
+        player.players[name].endFrame();
     }
 }
 

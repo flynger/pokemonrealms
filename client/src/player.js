@@ -60,7 +60,8 @@ class player {
     #nameTagBackOffset;
     #nameTagTextOffset;
 
-    currentlyOccupiedGrasses = [];
+    leftHitboxCollidingObject = null;
+    rightHitboxCollidingObject = null;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         player.players[name] = this;
@@ -156,13 +157,32 @@ class player {
         }
     }
 
-    getHitbox() {
-        let playerBounds = this.bodySprite.getBounds();
-        playerBounds.width = 28;
-        playerBounds.x += 2;
-        playerBounds.height = 18;
-        playerBounds.y -= 4;
-        return playerBounds;
+    endFrame() {
+        if (this.leftHitboxCollidingObject == null || this.rightHitboxCollidingObject == null) {
+            this.nameTagText.text = "not colliding";
+            this.bodySprite.alpha = 1;
+        } else { 
+            this.nameTagText.text = "colliding";
+            this.bodySprite.alpha = 0.25;
+        }
+    }
+
+    getLeftHitbox() {
+        return {
+            x: this.sprite.x,
+            y: this.sprite.y + 20,
+            width: 16,
+            height: 16
+        };
+    }
+
+    getRightHitbox() {
+        return {
+            x: this.sprite.x + 16,
+            y: this.sprite.y + 20,
+            width: 16,
+            height: 16
+        };
     }
 
     setFacing(direction, setWalkAnimation = false) {
