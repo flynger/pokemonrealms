@@ -158,10 +158,10 @@ class player {
 
     getHitbox() {
         let playerBounds = this.bodySprite.getBounds();
-        playerBounds.width = 28 * ratio;
-        playerBounds.x += 2 * ratio;
-        playerBounds.height = 20 * ratio;
-        playerBounds.y -= 4 * ratio;
+        playerBounds.width = 28;
+        playerBounds.x += 2;
+        playerBounds.height = 18;
+        playerBounds.y -= 4;
         return playerBounds;
     }
 

@@ -3,7 +3,7 @@ PIXI.settings.ROUND_PIXELS = true;
 //PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
 var app;
-//let graphics = new PIXI.Graphics();
+let graphics = new PIXI.Graphics();
 const gameContainer = new PIXI.Container();
 const textContainer = new PIXI.Container();
 const smoothingFrames = 15; // The number of frames to use for smoothing
@@ -15,13 +15,15 @@ var map = {
     height: 45
 };
 
+var gen5exteriorSheet;
 window.onload = async () => {
     let promises = [];
     let font = new FontFaceObserver('Power Clear', {});
     promises.push(font.load(null, 30000));
     PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
     PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
-    promises.push(PIXI.Assets.load(['gen4hgss', 'gen5exterior']));
+    gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
+    promises.push(PIXI.Assets.load(['gen4hgss']));
     await Promise.all(promises);
     await setupSpritesheets();
     await setupGame();
@@ -30,7 +32,7 @@ window.onload = async () => {
 
 async function setupSpritesheets() {
     await player.initializePlayerSpritesheets();
-    await grass.initializeGrassSpritesheet();
+    // await grass.initializeGrassSpritesheet();
 }
 
 async function setupGame() {
@@ -66,8 +68,8 @@ async function setupGame() {
             map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
         }
     }
-    for (let x = 0; x < 16; x++) {
-        for (let y = 0; y < 32; y++) {
+    for (let x = 2; x < 16; x++) {
+        for (let y = 2; y < 20; y++) {
             new grass(x * 32, y * 32);
         }
     }
@@ -76,12 +78,13 @@ async function setupGame() {
     // tilemap.zIndex = 0;
     gameContainer.addChild(map.tilemap);
     // textContainer.addChild(graphics);
-    // gameContainer.addChild(graphics);
+    gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
     app.stage.addChild(textContainer);
 }
 
 function draw(deltaTime) {
+    graphics.clear();
     smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
     for (let name in player.players) {
         player.players[name].step(smoothedFrameDuration, app);
@@ -140,4 +143,12 @@ function collide(ab, bb) {
     // graphics.drawRect(bb.x, bb.y, bb.width, bb.height);
     // graphics.endFill(0xFF0000);
     return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
+}
+
+function collideAbove(ab, bb) {
+    graphics.beginFill(0xFF0000);
+    graphics.drawRect(ab.x, ab.y, ab.width, ab.height);
+    graphics.drawRect(bb.x, bb.y, bb.width, bb.height);
+    graphics.endFill(0xFF0000);
+    return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y + ab.height <= bb.y + bb.height;
 }
