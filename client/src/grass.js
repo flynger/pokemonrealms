@@ -25,31 +25,26 @@ class grass {
         grass.grasses.push(this);
     }
     step() {
-        let playerInGrass = false;
         for (let name in this.passers) {
             let passer = player.players[name];
             if (!passer) {
                 delete this.passers[name];
                 continue;
             }
-            playerInGrass = true;
             let leftCollided = collide(passer.getLeftHitbox(), this.getHitbox());
             let rightCollided = collide(passer.getRightHitbox(), this.getHitbox());
             if (!leftCollided && passer.leftHitboxCollidingObject == this) {
                 passer.leftHitboxCollidingObject = null;
+            } else if (leftCollided && passer.leftHitboxCollidingObject != this) {
+                passer.leftHitboxCollidingObject = this;
             }
             if (!rightCollided && passer.rightHitboxCollidingObject == this) {
                 passer.rightHitboxCollidingObject = null;
+            } else if (rightCollided && passer.rightHitboxCollidingObject != this) {
+                passer.rightHitboxCollidingObject = this;
             }
             if (!rightCollided && !leftCollided) delete this.passers[name];
         }
-        // if (playerInGrass) {
-        //     this.backSprite.alpha = 0.7;
-        //     this.frontSprite.alpha = 0.7;
-        // } else {
-        //     this.backSprite.alpha = 1;
-        //     this.frontSprite.alpha = 1;
-        // }
         for (let name in player.players) {
             if (!this.passers[name]) {
                 let passer = player.players[name];
