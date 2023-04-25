@@ -49,15 +49,15 @@ app.use(
 // url masks
 app.get("/", (req, res) => {
     // redirect to game
-    res.sendFile('game.html', { root: './client' });
+    res.sendFile('home.html', { root: './client' });
 });
 // app.get("/home", (req, res) => {
 //     // redirect to game
 //     res.redirect("/game");
 // });
-app.get("/game", (req, res) => {
+app.get("/play", (req, res) => {
     // game page
-    res.sendFile('game.html', { root: './client' });
+    res.sendFile('play.html', { root: './client' });
 });
 // app.get("/profile", (req, res) => {
 //     // get the requested username parameter

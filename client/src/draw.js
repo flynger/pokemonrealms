@@ -1,4 +1,4 @@
-PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+// PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 PIXI.settings.ROUND_PIXELS = true;
 //PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
@@ -51,7 +51,7 @@ async function setupGame() {
     document.body.appendChild(app.view);
 
     // PIXI.Assets.add('Outside', 'res/data/Outside.json');
-    PIXI.Assets.add('gen4hgss', 'res/data/gen4hgss.json');
+    PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
     PIXI.Assets.load([/*'Outside', */'gen4hgss']).then(() => {
         map.tilemap = new PIXI.tilemap.CompositeTilemap();
         map.tilemap.zIndex = -1000;
