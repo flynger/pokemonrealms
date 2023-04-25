@@ -53,11 +53,11 @@ app.get("/", (req, res) => {
 });
 // app.get("/home", (req, res) => {
 //     // redirect to game
-//     res.redirect("/play");
+//     res.redirect("/game");
 // });
-app.get("/play", (req, res) => {
+app.get("/game", (req, res) => {
     // game page
-    res.sendFile('play.html', { root: './client' });
+    res.sendFile('game.html', { root: './client' });
 });
 // app.get("/profile", (req, res) => {
 //     // get the requested username parameter
@@ -88,7 +88,7 @@ app.get("/login", (req, res) => {
         res.sendFile('login.html', { root: './client' });
   
     // redirect client to game page if logged in
-    // else res.redirect("/play");
+    // else res.redirect("/game");
 });
 app.post("/login", (req, res) => {
     // handle login request and send response
@@ -110,14 +110,14 @@ app.get("/home", (req, res) => {
     // sends the home page when requested
     res.sendFile('home.html', { root: './client'});
 });
-app.get("/play", (req, res) => {
+app.get("/game", (req, res) => {
     // sends the home page when requested
-    res.send('play.html', { root: './client'});
+    res.send('game.html', { root: './client'});
     //if (!req.session.username) {
        // res.sendFile('login.html', { root: './public' });
     //}
     // redirect client to game page if logged in
-    //else res.redirect("/play");
+    //else res.redirect("/game");
 });
 // app.get("/logout", (req, res) => {
 //     // logout user if logged in
