@@ -9,6 +9,12 @@ class grass {
             "backGrass": [spriteName + "_0_1", spriteName + "_0_0"],
             "frontGrass": [spriteName + "_0_2", spriteName + "_0_3", spriteName + "_0_4", spriteName + "_0_5"]
         };
+
+        // let newSheetData = makeHorizontalSheet('gen5grass', `res/tilesets/wildgrass.png`, 202, 32, 1, 6, 1, 1, 0, false);
+        // sheetData.animations = {
+        //     "backGrass": [spriteName + "_0_1", spriteName + "_0_0"],
+        //     "frontGrass": [spriteName + "_0_2", spriteName + "_0_3", spriteName + "_0_4", spriteName + "_0_5"]
+        // };
         this.grassSprites = new PIXI.Spritesheet(
             PIXI.BaseTexture.from(sheetData.meta.image),
             sheetData
@@ -22,7 +28,7 @@ class grass {
         this.backSprite.loop = false;
         this.backSprite.currentFrame = 1;
         this.backSprite.texture = grass.grassSprites.animations['backGrass'][1];
-        this.frontSprite = new PIXI.AnimatedSprite(grass.grassSprites.animations['frontGrass']);
+        this.frontSprite = new PIXI.AnimatedSprite(PIXI.BaseTexture.from('gen5grass'));
         this.frontSprite.loop = false;
         this.frontSprite.animationSpeed = 0.2;
         this.frontSprite.currentFrame = 3;

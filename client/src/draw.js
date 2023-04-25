@@ -16,8 +16,15 @@ var map = {
 };
 
 window.onload = async () => {
+    let promises = [];
     let font = new FontFaceObserver('Power Clear', {});
-    await Promise.all([font.load(null, 30000), setupSpritesheets(), setupGame()]);
+    promises.push(font.load(null, 30000));
+    PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
+    PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
+    promises.push(PIXI.Assets.load(['gen4hgss', 'gen5exterior']));
+    await Promise.all(promises);
+    await setupSpritesheets();
+    await setupGame();
     setupSocket();
 }
 
@@ -51,31 +58,27 @@ async function setupGame() {
     // app.stage.filters=[blurFilter1];
     document.body.appendChild(app.view);
 
-    // PIXI.Assets.add('Outside', 'res/data/Outside.json');
-    PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
-    PIXI.Assets.load([/*'Outside', */'gen4hgss']).then(() => {
-        map.tilemap = new PIXI.tilemap.CompositeTilemap();
-        map.tilemap.zIndex = -1000;
-        for (let i = 0; i < map.width; i++) {
-            for (let j = 0; j < map.height; j++) {
-                let possibleTiles = ["grass", "grass", "grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass","grass", "grass", "grass", "grass", "grass","grass","grass","grass","grass","grass","grass","grass","grass1","grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
-                map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
-            }
+    map.tilemap = new PIXI.tilemap.CompositeTilemap();
+    map.tilemap.zIndex = -1000;
+    for (let i = 0; i < map.width; i++) {
+        for (let j = 0; j < map.height; j++) {
+            let possibleTiles = ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass1", "grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
+            map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
         }
-        for (let x = 0; x < 16; x++) {
-            for (let y = 0; y < 32; y++) {
-                new grass(x * 32, y * 32);
-            }
+    }
+    for (let x = 0; x < 16; x++) {
+        for (let y = 0; y < 32; y++) {
+            new grass(x * 32, y * 32);
         }
+    }
 
-        //map.tilemap.tile('wildgrass', 0, 0, { tileWidth: 16, tileHeight: 16, animX: 1, animY: 0, animCountX: 6, animCountY: 1, animDivisor: 1 });
-        // tilemap.zIndex = 0;
-        gameContainer.addChild(map.tilemap);
-        // textContainer.addChild(graphics);
-        // gameContainer.addChild(graphics);
-        app.stage.addChild(gameContainer);
-        app.stage.addChild(textContainer);
-    });
+    //map.tilemap.tile('wildgrass', 0, 0, { tileWidth: 16, tileHeight: 16, animX: 1, animY: 0, animCountX: 6, animCountY: 1, animDivisor: 1 });
+    // tilemap.zIndex = 0;
+    gameContainer.addChild(map.tilemap);
+    // textContainer.addChild(graphics);
+    // gameContainer.addChild(graphics);
+    app.stage.addChild(gameContainer);
+    app.stage.addChild(textContainer);
 }
 
 function draw(deltaTime) {
