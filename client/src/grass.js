@@ -39,13 +39,17 @@ class grass {
     step() {
         let playerInGrass = false;
         for (let name in this.passers) {
-            if (!player.players[name]) {
+            let passer = player.players[name];
+            if (!passer) {
                 delete this.passers[name];
                 continue;
             }
             playerInGrass = true;
-            if (!collide(player.players[name].getHitbox(), this.getHitbox())) {
-                //player.players[name].bodySprite.alpha = 1;
+            if (!collide(passer.getHitbox(), this.getHitbox())) {
+                passer.currentlyOccupiedGrasses.splice(passer.currentlyOccupiedGrasses.indexOf(this), 1);
+                if (passer.currentlyOccupiedGrasses.length == 0) {
+                    player.players[name].bodySprite.alpha = 1;
+                }
                 delete this.passers[name];
             }
         }
@@ -58,9 +62,11 @@ class grass {
         // }
         for (let name in player.players) {
             if (!this.passers[name]) {
-                if (collide(player.players[name].getHitbox(), this.getHitbox())) {
+                let passer = player.players[name];
+                if (collide(passer.getHitbox(), this.getHitbox())) {
                     this.passers[name] = true;
-                    player.players[name].bodySprite.alpha = 0.25;
+                    passer.currentlyOccupiedGrasses.push(this);
+                    passer.bodySprite.alpha = 0.25;
                     this.backSprite.gotoAndPlay(0);
                     this.frontSprite.gotoAndPlay(0);
                 }
@@ -70,8 +76,8 @@ class grass {
 
     getHitbox() {
         let grassBounds = this.frontSprite.getBounds();
-        grassBounds.width = 20 * ratio;
-        grassBounds.x += 6 * ratio;
+        grassBounds.width = 16 * ratio;
+        grassBounds.x += 8 * ratio;
         grassBounds.height = 12 * ratio;
         grassBounds.y += 20 * ratio;
         return grassBounds;

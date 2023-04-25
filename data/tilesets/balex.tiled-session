@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
+    "activeFile": "kyledove.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -13,8 +13,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 824,
-                "y": 449.33333333333326
+                "x": 1302.6666666666665,
+                "y": 608
             }
         },
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx": {
@@ -32,6 +32,10 @@
         "Outside.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "kyledove.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 2
         }
     },
     "last.imagePath": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/client/res/tilesets",
@@ -40,13 +44,15 @@
     "map.width": 102,
     "openFiles": [
         "Outside.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json"
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
+        "kyledove.json"
     ],
     "project": "balex.tiled-project",
     "property.type": "int",
     "recentFiles": [
         "Outside.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
+        "kyledove.json",
         "Outside.tsx",
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx"
     ],

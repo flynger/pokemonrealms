@@ -60,7 +60,7 @@ class player {
     #nameTagBackOffset;
     #nameTagTextOffset;
 
-    grassesInside = [];
+    currentlyOccupiedGrasses = [];
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         player.players[name] = this;
