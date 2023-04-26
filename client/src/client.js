@@ -68,6 +68,7 @@ function setupSocket() {
             players[name].nameTagBack.destroy();
             players[name].headSprite.destroy();
             players[name].bodySprite.destroy();
+            players[name].grassUpdate(true);
             delete players[name];
         }
     });

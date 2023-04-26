@@ -67,8 +67,8 @@ async function setupGame() {
     );
     gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
     let colorMatrix = new PIXI.filters.ColorMatrixFilter();
-    app.stage.filters = [colorMatrix];
-    colorMatrix.brightness(0.9);
+    gameContainer.filters = [colorMatrix];
+    colorMatrix.brightness(1);
     // WIDTH = gameDiv.style.width, HEIGHT = gameDiv.style.height, TILE_SIZE = 32;
     // ratio = Math.min(+gameDiv.style.width / WIDTH, +gameDiv.style.height / HEIGHT);
     // app.stage.sortableChildren = true;
@@ -104,14 +104,14 @@ async function setupGame() {
 function draw(deltaTime) {
     graphics.clear();
     smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
-    for (let name in player.players) {
-        player.players[name].step(smoothedFrameDuration, app);
+    for (let name in players) {
+        players[name].step(smoothedFrameDuration, app);
     }
-    for (let grss of grass.grasses) {
-        grss.step();
-    }
+    // for (let grss of grass.grasses) {
+    //     grss.step();
+    // }
     for (let name in player.players) {
-        player.players[name].endFrame();
+        players[name].endFrame();
     }
 }
 

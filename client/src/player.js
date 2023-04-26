@@ -93,6 +93,7 @@ class player {
         }
 
         this.nameTagStep(); // name tag frame update
+        this.grassUpdate(); // grass update
         this.headSprite.zIndex = this.y; // update z-index
     }
 
@@ -125,6 +126,21 @@ class player {
         this.nameTagText.y = this.headSprite.y - 27;
 
         this.nameTagBack.zIndex = this.nameTagText.zIndex = this.hasController ? 100000 : this.headSprite.y;
+    }
+
+    grassUpdate(removeSelf = false) {
+        let leftTile = this.x - this.x % 32;
+        let rightTile = leftTile + 32;
+        let topTile = this.y - this.y % 32;
+        let bottomTile = topTile + 32;
+        for (let x = leftTile; x <= rightTile; x += 32) {
+            for (let y = topTile; y <= bottomTile; y += 32) {
+                if (grasses[[x, y]]) {
+                    console.log(x, y);
+                    grasses[[x, y]].update(this);
+                }
+            }
+        }
     }
 
     createSprites() {
@@ -358,4 +374,4 @@ class player {
         });
     }
 }
-var players = player.players;
+const players = player.players;
