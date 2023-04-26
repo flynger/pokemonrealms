@@ -129,14 +129,11 @@ class player {
     }
 
     grassUpdate(removeSelf = false) {
-        let leftTile = this.x - this.x % 32;
-        let rightTile = leftTile + 32;
-        let topTile = this.y - this.y % 32;
-        let bottomTile = topTile + 32;
-        for (let x = leftTile; x <= rightTile; x += 32) {
-            for (let y = topTile; y <= bottomTile; y += 32) {
+        let leftTile = 32 * Math.floor(this.x / 32);
+        let topTile = 32 * Math.floor(this.y / 32);
+        for (let x = leftTile; x <= leftTile + 32; x += 32) {
+            for (let y = topTile; y <= topTile + 64; y += 32) {
                 if (grasses[[x, y]]) {
-                    console.log(x, y);
                     grasses[[x, y]].update(this);
                 }
             }

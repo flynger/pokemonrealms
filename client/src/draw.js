@@ -79,21 +79,14 @@ async function setupGame() {
         for (let j = 0; j < map.height; j++) {
             let possibleTiles = ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass1", "grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
             map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
-        }
-    }
-    for (let x = 2; x < 16; x++) {
-        for (let y = 2; y < 20; y++) {
-            new grass(x * 32, y * 32);
-        }
-    }
-    for (let x = 20; x < 24; x++) {
-        for (let y = 2; y < 20; y++) {
-            new grass(x * 32, y * 32);
+
+            if ((i + j + 1) % randomNumber(4,10) == 0 || (i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
+                new grass(i * 32, j * 32);
+            }
         }
     }
 
     //map.tilemap.tile('wildgrass', 0, 0, { tileWidth: 16, tileHeight: 16, animX: 1, animY: 0, animCountX: 6, animCountY: 1, animDivisor: 1 });
-    // tilemap.zIndex = 0;
     gameContainer.addChild(map.tilemap);
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
