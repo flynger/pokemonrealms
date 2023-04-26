@@ -136,7 +136,6 @@ class player {
         for (let x = leftTile; x <= rightTile; x += 32) {
             for (let y = topTile; y <= bottomTile; y += 32) {
                 if (grasses[[x, y]]) {
-                    console.log(x, y);
                     grasses[[x, y]].update(this);
                 }
             }
