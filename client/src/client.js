@@ -21,8 +21,7 @@ function setupSocket() {
     }, 1000);
 
     //connect command
-    socket.on("playerData", (name, players) => {
-        console.log(players);
+    socket.on("playerData", (name, playersObject) => {
         username = name;
         new player(username, "red", 0, 0, "right", true).sendLocation();
         // for (let i = 0; i < map.width; i++) {
@@ -44,9 +43,9 @@ function setupSocket() {
         //         }
         //     }
         // }
-        for (let plyr in players) {
+        for (let plyr in playersObject) {
             if (plyr != username) {
-                new player(plyr, "red", players[plyr].x, players[plyr].y, players[plyr].facing);
+                new player(plyr, "red", playersObject[plyr].x, playersObject[plyr].y, playersObject[plyr].facing);
             }
         }
         app.ticker.add(draw);
@@ -54,22 +53,22 @@ function setupSocket() {
 
     socket.on("playerMovement", (data) => {
         let { name, x, y, facing, currentFrame } = data;
-        if (!player.players[name]) new player(name, "red", x, y, facing);
+        if (!players[name]) new player(name, "red", x, y, facing);
         else {
-            player.players[name].sprite.x = x;
-            player.players[name].sprite.y = y;
-            player.players[name].setFacing(facing);
+            players[name].setPosition(x, y);
+            players[name].setFacing(facing);
         }
-        player.players[name].sprite.currentFrame = currentFrame;
+        players[name].headSprite.currentFrame = players[name].bodySprite.currentFrame = currentFrame;
     });
 
     socket.on("playerDisconnect", (name) => {
         // when a player disconnects
-        if (player.players[name]) {
-            player.players[name].nameTagText.destroy();
-            player.players[name].nameTagBack.destroy();
-            player.players[name].sprite.destroy();
-            delete player.players[name];
+        if (name in players) {
+            players[name].nameTagText.destroy();
+            players[name].nameTagBack.destroy();
+            players[name].headSprite.destroy();
+            players[name].bodySprite.destroy();
+            delete players[name];
         }
     });
 

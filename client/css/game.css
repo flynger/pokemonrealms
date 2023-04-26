@@ -8,6 +8,7 @@ body {
     top: 50%; */
     /* width: 100%;
     height: 80%; */
+    aspect-ratio: auto 1184 / 540;
     transform: translate3d(-50%, -50%, 0);
     image-rendering: pixelated;
 }

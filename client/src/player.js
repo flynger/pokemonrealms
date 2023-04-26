@@ -66,96 +66,34 @@ class player {
     bottomHitboxCollidingObject = null;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
-        player.players[name] = this;
+        players[name] = this; // create a reference in player.players
         this.name = name;
         this.avatar = avatar;
         this.facing = facing;
         this.hasController = hasController;
-        this.sprites = player.#playerSprites[this.avatar + "_head"];
-        this.bodySprites = player.#playerSprites[this.avatar + "_body"];
-        this.sprite = new PIXI.AnimatedSprite(this.sprites.animations[facing]);
-        this.bodySprite = new PIXI.AnimatedSprite(this.bodySprites.animations[facing]);
-        this.sprite.texture = this.sprite.textures[0];
-        this.bodySprite.texture = this.bodySprite.textures[0];
-        this.sprite.anchor.set(0, 1 / 3);
-        this.sprite.x = x;
-        this.sprite.y = y;
-        this.bodySprite.y = 24;
-        this.sprite.addChild(this.bodySprite);
-        gameContainer.addChild(this.sprite);
-        this.nameTagText = new PIXI.Text(name, {
-            fontFamily: 'Power Clear',
-            fontSize: 16 * ratio,
-            padding: ratio,
-            fill: 0xffffff
-        });
-        this.nameTagBack = new PIXI.Graphics();
-        this.nameTagBack.alpha = 0.8;
-        this.#nameTagBackWidth = (this.nameTagText.width) / ratio + 10;
-        this.#nameTagBackOffset = - (this.#nameTagBackWidth) / 2 + 16;
-        this.#nameTagTextOffset = 16 * ratio - this.nameTagText.width / 2;
-        textContainer.addChild(this.nameTagBack);
-        textContainer.addChild(this.nameTagText);
+        this.createSprites();
+        this.setPosition(x, y);
+        this.renderName();
     }
 
     step(deltaTime) {
+        // movement logic
         if (this.#moving) {
             this.decelerate(deltaTime);
             this.move(deltaTime);
             if (this.hasController) this.sendLocation();
         }
 
-        // redraw name tag bounding box
-        this.nameTagBack.clear();
-        this.nameTagBack.beginFill(0x303030);
-        this.nameTagBack.drawRoundedRect((this.sprite.x + this.#nameTagBackOffset) * ratio, (this.sprite.y - 29 - ratio) * ratio, this.#nameTagBackWidth * ratio, (16 + ratio) * ratio, 4 * ratio);
-        this.nameTagBack.endFill(0x303030);
-        // update name text position
-        this.nameTagText.x = this.sprite.x * ratio + this.#nameTagTextOffset + 1;
-        this.nameTagText.y = (this.sprite.y - 27) * ratio;
-        // update z-indices
-        this.sprite.zIndex = this.sprite.y;
-
+        // input and camera logic
         if (this.hasController) {
-            this.nameTagBack.zIndex = this.nameTagText.zIndex = 100000;
             if (this.#allowInput) {
-                // check for next input
-                //if (!this.#moving) {
-                // set player speed
-                if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT)) {
-                    this.speed = player.walkSpeed;
-                } else if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
-                    this.speed = player.runSpeed;
-                }
-                // if player not moving get input
-                if (Input.RIGHT) {
-                    if (this.facing != "right") this.setFacing("right");
-                    this.animate();
-                    this.#velocity.x = this.speed;
-                    this.#moving = true;
-                } else if (Input.LEFT) {
-                    if (this.facing != "left") this.setFacing("left");
-                    this.animate();
-                    this.#velocity.x = -this.speed;
-                    this.#moving = true;
-                }
-
-                if (Input.DOWN) {
-                    if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
-                    this.animate();
-                    this.#velocity.y = this.speed;
-                    this.#moving = true;
-                } else if (Input.UP) {
-                    if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
-                    this.animate();
-                    this.#velocity.y = -this.speed;
-                    this.#moving = true;
-                }
+                this.checkForInput();
                 this.centerCameraOnSelf();
             }
-        } else {
-            this.nameTagBack.zIndex = this.nameTagText.zIndex = this.sprite.y;
         }
+
+        this.nameTagStep(); // name tag frame update
+        this.headSprite.zIndex = this.y; // update z-index
     }
 
     endFrame() {
@@ -168,55 +106,103 @@ class player {
         }
     }
 
-    getTopHitbox() {
-        return {
-            x: this.sprite.x + 9,
-            y: this.sprite.y + 18,
-            width: 14,
-            height: 2
+    nameTagStep() {
+        // update name tag offsets
+        this.#nameTagBackWidth = this.nameTagText.width + 10;
+        this.#nameTagBackOffset = - this.#nameTagBackWidth / 2 + 16;
+        this.#nameTagTextOffset = - this.nameTagText.width / 2 + 16;
+
+        // redraw name tag bounding box
+        this.nameTagBack.clear();
+        this.nameTagBack.beginFill(0x303030);
+        this.nameTagBack.drawRoundedRect(this.headSprite.x + this.#nameTagBackOffset, this.headSprite.y - 31, this.#nameTagBackWidth, 18, 4);
+        this.nameTagBack.endFill(0x303030);
+
+        // update name text position
+        this.nameTagText.scale.x = 1 / ratio;
+        this.nameTagText.scale.y = 1 / ratio;
+        this.nameTagText.x = this.headSprite.x + this.#nameTagTextOffset + 1;
+        this.nameTagText.y = this.headSprite.y - 27;
+
+        this.nameTagBack.zIndex = this.nameTagText.zIndex = this.hasController ? 100000 : this.headSprite.y;
+    }
+
+    createSprites() {
+        this.sprites = player.#playerSprites[this.avatar + "_head"];
+        this.bodySprites = player.#playerSprites[this.avatar + "_body"];
+        this.headSprite = new PIXI.AnimatedSprite(this.sprites.animations[this.facing]);
+        this.bodySprite = new PIXI.AnimatedSprite(this.bodySprites.animations[this.facing]);
+        this.headSprite.texture = this.headSprite.textures[0];
+        this.bodySprite.texture = this.bodySprite.textures[0];
+        this.headSprite.anchor.set(0, 1 / 3);
+        this.bodySprite.y = 24;
+        this.headSprite.addChild(this.bodySprite);
+        gameContainer.addChild(this.headSprite);
+    }
+
+    renderName() {
+        if (this.nameTagText) {
+            this.nameTagText.destroy();
+            this.nameTagBack.destroy();
         }
+        this.nameTagText = new PIXI.Text(this.name + (this.hasController ? " (You)" : ""), {
+            fontFamily: 'Power Clear',
+            fontSize: 16 * ratio,
+            padding: ratio,
+            fill: 0xffffff
+        });
+        this.nameTagBack = new PIXI.Graphics();
+        this.nameTagBack.alpha = 0.8;
+        textContainer.addChild(this.nameTagBack);
+        textContainer.addChild(this.nameTagText);
     }
 
-    getBottomHitbox() {
-        return {
-            x: this.sprite.x + 9,
-            y: this.sprite.y + 33,
-            width: 14,
-            height: 2
+    checkForInput() {
+        // set player speed
+        if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT)) {
+            this.speed = player.walkSpeed;
+        } else if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
+            this.speed = player.runSpeed;
         }
-    }
 
+        // check for keydown
+        if (Input.RIGHT) {
+            if (this.facing != "right") this.setFacing("right");
+            this.animate();
+            this.#velocity.x = this.speed;
+            this.#moving = true;
+        } else if (Input.LEFT) {
+            if (this.facing != "left") this.setFacing("left");
+            this.animate();
+            this.#velocity.x = -this.speed;
+            this.#moving = true;
+        }
 
-    getLeftHitbox() {
-        return {
-            x: this.sprite.x + 7,
-            y: this.sprite.y + 18,
-            width: 2,
-            height: 17
-        };
-    }
-
-    getRightHitbox() {
-        return {
-            x: this.sprite.x + 23,
-            y: this.sprite.y + 18,
-            width: 2,
-            height: 17
-        };
+        if (Input.DOWN) {
+            if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
+            this.animate();
+            this.#velocity.y = this.speed;
+            this.#moving = true;
+        } else if (Input.UP) {
+            if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
+            this.animate();
+            this.#velocity.y = -this.speed;
+            this.#moving = true;
+        }
     }
 
     setFacing(direction, setWalkAnimation = false) {
         this.facing = direction;
-        this.sprite.textures = this.sprites.animations[this.facing];
+        this.headSprite.textures = this.sprites.animations[this.facing];
         this.bodySprite.textures = this.bodySprites.animations[this.facing];
     }
 
     animate() {
-        if (!this.sprite.playing) {
-            this.sprite.play();
+        if (!this.headSprite.playing) {
+            this.headSprite.play();
             this.bodySprite.play();
-            this.sprite.currentFrame = this.bodySprite.currentFrame = this.sprite.currentFrame % 2 == 0 ? this.sprite.currentFrame + 1 : this.sprite.currentFrame;
-            this.sprite.texture = this.sprites.animations[this.facing][this.sprite.currentFrame];
+            this.headSprite.currentFrame = this.bodySprite.currentFrame = this.headSprite.currentFrame % 2 == 0 ? this.headSprite.currentFrame + 1 : this.headSprite.currentFrame;
+            this.headSprite.texture = this.sprites.animations[this.facing][this.headSprite.currentFrame];
             this.bodySprite.texture = this.bodySprites.animations[this.facing][this.bodySprite.currentFrame];
         }
     }
@@ -256,35 +242,33 @@ class player {
             totalVelocity = maxVelocity;
         }
         if (this.#velocity.x == 0 && this.#velocity.y == 0) {
-            if (this.sprite.currentFrame % 2 == 1) {
-                this.sprite.gotoAndStop((this.sprite.currentFrame + 1) % 4);
+            if (this.headSprite.currentFrame % 2 == 1) {
+                this.headSprite.gotoAndStop((this.headSprite.currentFrame + 1) % 4);
                 this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
             } else {
-                this.sprite.stop();
+                this.headSprite.stop();
                 this.bodySprite.stop();
             }
             this.#moving = false;
         } else {
-            this.sprite.x += this.#velocity.x * deltaTime;
-            this.sprite.y += this.#velocity.y * deltaTime;
-
-            if (totalVelocity == this.speed || this.sprite.currentFrame % 2 == 0) {
-                this.sprite.animationSpeed = this.bodySprite.animationSpeed = totalVelocity / 15;
+            this.setPosition(this.x + this.#velocity.x * deltaTime, this.y + this.#velocity.y * deltaTime)
+            if (totalVelocity == this.speed || this.headSprite.currentFrame % 2 == 0) {
+                this.headSprite.animationSpeed = this.bodySprite.animationSpeed = totalVelocity / 15;
             } else {
-                this.sprite.stop();
+                this.headSprite.stop();
                 this.bodySprite.stop();
             }
         }
     }
 
-    // moveTo(x, y) {
-    //     this.#target.x = x;
-    //     this.#target.y = y;
-    //     this.#moving = true;
-    // }
+    setPosition(x, y) {
+        this.x = this.headSprite.x = x;
+        this.y = this.headSprite.y = y;
+    }
+
     centerCameraOnSelf() {
-        let centerX = this.sprite.x + this.sprite.width / 2;
-        let centerY = this.sprite.y + this.sprite.height / 3;
+        let centerX = this.headSprite.x + this.headSprite.width / 2;
+        let centerY = this.headSprite.y + this.headSprite.height / 3;
         let mapWidth = map.width * TILE_SIZE;
         let mapHeight = map.height * TILE_SIZE;
         // camera x
@@ -316,8 +300,8 @@ class player {
     }
 
     playIdleAnimation(speed, duration) {
-        this.sprite.animationSpeed = speed;
-        this.sprite.play();
+        this.headSprite.animationSpeed = speed;
+        this.headSprite.play();
         this.disableInputFor(duration);
     }
 
@@ -326,13 +310,52 @@ class player {
         setTimeout(() => this.#allowInput = true, ms);
     }
 
+    // hitbox methods
+    getTopHitbox() {
+        return {
+            x: this.x + 9,
+            y: this.y + 18,
+            width: 14,
+            height: 2
+        }
+    }
+
+    getBottomHitbox() {
+        return {
+            x: this.x + 9,
+            y: this.y + 33,
+            width: 14,
+            height: 2
+        }
+    }
+
+
+    getLeftHitbox() {
+        return {
+            x: this.x + 7,
+            y: this.y + 18,
+            width: 2,
+            height: 17
+        };
+    }
+
+    getRightHitbox() {
+        return {
+            x: this.x + 23,
+            y: this.y + 18,
+            width: 2,
+            height: 17
+        };
+    }
+
+    // emit methods
     sendLocation() {
-        //console.log("sending packet '" + type + "'");
         socket.emit("playerMovement", {
-            x: this.sprite.x,
-            y: this.sprite.y,
+            x: this.x,
+            y: this.y,
             facing: this.facing,
-            currentFrame: this.sprite.currentFrame
+            currentFrame: this.headSprite.currentFrame
         });
     }
 }
+var players = player.players;

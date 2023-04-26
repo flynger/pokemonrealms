@@ -1,4 +1,4 @@
-// PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 PIXI.settings.ROUND_PIXELS = true;
 //PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
@@ -33,6 +33,16 @@ window.onload = async () => {
     setupSocket();
 }
 
+window.onresize = () => {
+    let gameDiv = document.getElementById("game");
+    ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
+    gameDiv.style.width = WIDTH * ratio + "px";
+    gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
+    for (let name in player.players) {
+        player.players[name].renderName();
+    }
+}
+
 async function setupSpritesheets() {
     await player.initializePlayerSpritesheets();
     // await grass.initializeGrassSpritesheet();
@@ -42,26 +52,26 @@ async function setupGame() {
     // app.resize(Math.ceil(WIDTH * ratio), Math.ceil(HEIGHT * ratio));
     let gameDiv = document.getElementById("game");
     gameDiv.style.width = WIDTH * ratio + "px";
-    gameDiv.style.height = HEIGHT * ratio + "px";
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,
+            autoResize: true,
             powerPreference: "high-performance",
             hello: true,
-            // antialias: true,
+            antialias: true,
             // resolution: window.devicePixelRatio || 1,
             // width: WIDTH * ratio,
             // height: HEIGHT * ratio,
             backgroundColor: 0x000000
         }
     );
+    gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
+    let colorMatrix = new PIXI.filters.ColorMatrixFilter();
+    app.stage.filters = [colorMatrix];
+    colorMatrix.brightness(0.9);
     // WIDTH = gameDiv.style.width, HEIGHT = gameDiv.style.height, TILE_SIZE = 32;
     // ratio = Math.min(+gameDiv.style.width / WIDTH, +gameDiv.style.height / HEIGHT);
-    gameContainer.scale.x = gameContainer.scale.y = ratio;
     // app.stage.sortableChildren = true;
-    // const blurFilter1 = new PIXI.filters.BlurFilter();
-    // app.stage.filters=[blurFilter1];
-    document.body.appendChild(app.view);
 
     map.tilemap = new PIXI.tilemap.CompositeTilemap();
     map.tilemap.zIndex = -1000;
@@ -88,6 +98,7 @@ async function setupGame() {
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
     app.stage.addChild(textContainer);
+    document.body.appendChild(app.view);
 }
 
 function draw(deltaTime) {
