@@ -112,7 +112,7 @@ class player {
         this.nameTagText.x = this.sprite.x * ratio + this.#nameTagTextOffset + 1;
         this.nameTagText.y = (this.sprite.y - 27) * ratio;
         // update z-indices
-        this.sprite.y;
+        this.sprite.zIndex = this.sprite.y;
 
         if (this.hasController) {
             this.nameTagBack.zIndex = this.nameTagText.zIndex = 100000;
@@ -151,9 +151,8 @@ class player {
                 }
                 this.centerCameraOnSelf();
             }
-            this.sprite.zIndex = this.sprite.y + 0.01;
         } else {
-            this.nameTagBack.zIndex = this.nameTagText.zIndex = this.sprite.zIndex = this.sprite.y;
+            this.nameTagBack.zIndex = this.nameTagText.zIndex = this.sprite.y;
         }
     }
 
@@ -169,18 +168,18 @@ class player {
 
     getLeftHitbox() {
         return {
-            x: this.sprite.x,
+            x: this.sprite.x + 7,
             y: this.sprite.y + 20,
-            width: 16,
+            width: 4,
             height: 16
         };
     }
 
     getRightHitbox() {
         return {
-            x: this.sprite.x + 16,
+            x: this.sprite.x + 21,
             y: this.sprite.y + 20,
-            width: 16,
+            width: 4,
             height: 16
         };
     }

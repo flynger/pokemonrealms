@@ -18,7 +18,7 @@ class grass {
     passers = {};
     constructor(x, y) {
         this.sprite = new PIXI.Sprite(gen5exteriorSheet.textures['grass']);
-        this.sprite.zIndex = y - 16;
+        this.sprite.zIndex = y - 19;
         this.sprite.x = x;
         this.sprite.y = y;
         gameContainer.addChild(this.sprite);
