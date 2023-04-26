@@ -25,14 +25,17 @@ class grass {
         grass.grasses.push(this);
     }
     step() {
+        let hitBox = this.getHitbox();
         for (let name in this.passers) {
             let passer = player.players[name];
             if (!passer) {
                 delete this.passers[name];
                 continue;
             }
-            let leftCollided = collide(passer.getLeftHitbox(), this.getHitbox());
-            let rightCollided = collide(passer.getRightHitbox(), this.getHitbox());
+            let leftCollided = collide(passer.getLeftHitbox(), hitBox);
+            let rightCollided = collide(passer.getRightHitbox(), hitBox);
+            let topCollided = collide(passer.getTopHitbox(), hitBox);
+            let bottomCollided = collide(passer.getBottomHitbox(), hitBox);
             if (!leftCollided && passer.leftHitboxCollidingObject == this) {
                 passer.leftHitboxCollidingObject = null;
             } else if (leftCollided && passer.leftHitboxCollidingObject != this) {
@@ -43,24 +46,43 @@ class grass {
             } else if (rightCollided && passer.rightHitboxCollidingObject != this) {
                 passer.rightHitboxCollidingObject = this;
             }
+            if (!topCollided && passer.topHitboxCollidingObject == this) {
+                passer.topHitboxCollidingObject = null;
+            } else if (topCollided && passer.topHitboxCollidingObject != this) {
+                passer.topHitboxCollidingObject = this;
+            }
+            if (!bottomCollided && passer.bottomHitboxCollidingObject == this) {
+                passer.bottomHitboxCollidingObject = null;
+            } else if (bottomCollided && passer.bottomHitboxCollidingObject != this) {
+                passer.bottomHitboxCollidingObject = this;
+            }
             if (!rightCollided && !leftCollided) delete this.passers[name];
         }
         for (let name in player.players) {
             if (!this.passers[name]) {
                 let passer = player.players[name];
-                let leftCollided = collide(passer.getLeftHitbox(), this.getHitbox());
-                let rightCollided = collide(passer.getRightHitbox(), this.getHitbox());
-                if (leftCollided || rightCollided) {
-                    if (leftCollided) {
-                        passer.leftHitboxCollidingObject = this;
-                    }
-                    if (rightCollided) {
-                        passer.rightHitboxCollidingObject = this;
-                    }
+                let leftCollided = collide(passer.getLeftHitbox(), hitBox);
+                let rightCollided = collide(passer.getRightHitbox(), hitBox);
+                let topCollided = collide(passer.getTopHitbox(), hitBox);
+                let bottomCollided = collide(passer.getBottomHitbox(), hitBox);
+                if (leftCollided) {
+                    passer.leftHitboxCollidingObject = this;
                     this.passers[name] = true;
-                    // this.backSprite.gotoAndPlay(0);
-                    // this.frontSprite.gotoAndPlay(0);
                 }
+                if (rightCollided) {
+                    passer.rightHitboxCollidingObject = this;
+                    this.passers[name] = true;
+                }
+                if (topCollided) {
+                    passer.topHitboxCollidingObject = this;
+                    this.passers[name] = true;
+                }
+                if (bottomCollided) {
+                    passer.bottomHitboxCollidingObject = this;
+                    this.passers[name] = true;
+                }
+                // this.backSprite.gotoAndPlay(0);
+                // this.frontSprite.gotoAndPlay(0);
             }
         }
     }
@@ -68,9 +90,9 @@ class grass {
     getHitbox() {
         return {
             x: this.sprite.x,
-            y: this.sprite.y + 16,
+            y: this.sprite.y,
             width: 32,
-            height: 16
+            height: 32
         };
     }
 }

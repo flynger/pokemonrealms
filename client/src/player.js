@@ -62,6 +62,8 @@ class player {
 
     leftHitboxCollidingObject = null;
     rightHitboxCollidingObject = null;
+    topHitboxCollidingObject = null;
+    bottomHitboxCollidingObject = null;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         player.players[name] = this;
@@ -157,14 +159,33 @@ class player {
     }
 
     endFrame() {
-        if (this.leftHitboxCollidingObject == null || this.rightHitboxCollidingObject == null) {
+        if (this.leftHitboxCollidingObject == null || this.rightHitboxCollidingObject == null || this.topHitboxCollidingObject == null || this.bottomHitboxCollidingObject == null) {
             this.nameTagText.text = "not colliding";
             this.bodySprite.alpha = 1;
-        } else { 
+        } else {
             this.nameTagText.text = "colliding";
             this.bodySprite.alpha = 0.25;
         }
     }
+
+    getTopHitbox() {
+        return {
+            x: this.sprite.x + 11,
+            y: this.sprite.y + 16,
+            width: 10,
+            height: 4
+        }
+    }
+
+    getBottomHitbox() {
+        return {
+            x: this.sprite.x + 11,
+            y: this.sprite.y + 36,
+            width: 10,
+            height: 4
+        }
+    }
+
 
     getLeftHitbox() {
         return {
