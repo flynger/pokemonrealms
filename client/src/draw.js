@@ -17,15 +17,17 @@ var map = {
 };
 
 var gen5exteriorSheet;
+
 window.onload = async () => {
+    // setup promises
     let promises = [];
     let font = new FontFaceObserver('Power Clear', {});
     promises.push(font.load(null, 30000));
-    PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
     PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
-    gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
+    PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
     promises.push(PIXI.Assets.load(['gen4hgss']));
     await Promise.all(promises);
+    gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
     await setupSpritesheets();
     await setupGame();
     setupSocket();
@@ -148,7 +150,7 @@ function createNameTag() {
 function collide(ab, bb) {
     // graphics.beginFill(0xFF0000);
     // graphics.drawRect(ab.x, ab.y, ab.width, ab.height);
-    // graphics.drawRect(bb.x, bb.y, bb.width, bb.height);
+    // //graphics.drawRect(bb.x, bb.y, bb.width, bb.height);
     // graphics.endFill(0xFF0000);
     return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
 }

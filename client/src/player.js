@@ -160,29 +160,29 @@ class player {
 
     endFrame() {
         if (this.leftHitboxCollidingObject == null || this.rightHitboxCollidingObject == null || this.topHitboxCollidingObject == null || this.bottomHitboxCollidingObject == null) {
-            this.nameTagText.text = "not colliding";
+            //this.nameTagText.text = "not colliding";
             this.bodySprite.alpha = 1;
         } else {
-            this.nameTagText.text = "colliding";
+            //this.nameTagText.text = "colliding";
             this.bodySprite.alpha = 0.25;
         }
     }
 
     getTopHitbox() {
         return {
-            x: this.sprite.x + 11,
-            y: this.sprite.y + 16,
-            width: 10,
-            height: 4
+            x: this.sprite.x + 9,
+            y: this.sprite.y + 18,
+            width: 14,
+            height: 2
         }
     }
 
     getBottomHitbox() {
         return {
-            x: this.sprite.x + 11,
-            y: this.sprite.y + 36,
-            width: 10,
-            height: 4
+            x: this.sprite.x + 9,
+            y: this.sprite.y + 33,
+            width: 14,
+            height: 2
         }
     }
 
@@ -190,18 +190,18 @@ class player {
     getLeftHitbox() {
         return {
             x: this.sprite.x + 7,
-            y: this.sprite.y + 20,
-            width: 4,
-            height: 16
+            y: this.sprite.y + 18,
+            width: 2,
+            height: 17
         };
     }
 
     getRightHitbox() {
         return {
-            x: this.sprite.x + 21,
-            y: this.sprite.y + 20,
-            width: 4,
-            height: 16
+            x: this.sprite.x + 23,
+            y: this.sprite.y + 18,
+            width: 2,
+            height: 17
         };
     }
 

@@ -8,7 +8,7 @@
                 "h": 32
             }
         },
-        "grass": {
+        "wildgrass": {
             "frame": {
                 "x": 224,
                 "y": 160,
