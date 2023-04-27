@@ -21,32 +21,14 @@ function setupSocket() {
     }, 1000);
 
     //connect command
-    socket.on("playerData", (name, playersObject) => {
+    socket.on("playerData", (name, playersArray) => {
+        console.log(playersArray);
         username = name;
-        new player(username, "red", 0, 0, "right", true).sendLocation();
-        // for (let i = 0; i < map.width; i++) {
-        //     for (let j = 0; j < map.height; j++) {
-        //         if (randomNumber(1, 150) == 1) {
-        //             let directions = ["left", "down", "right", "up"];
-        //             let avatarName = player.avatars[randomNumber(0, player.avatars.length - 1)];
-        //             let num = randomNumber(1, 3);
-        //             switch (num) {
-        //                 case 1:
-        //                     avatarName = avatarName.toUpperCase();
-        //                     break;
-        //                 case 2:
-        //                     avatarName = avatarName[0].toUpperCase() + avatarName.substring(1);
-        //                     break;
-        //                 default:
-        //             }
-        //             new player(avatarName + randomNumber(1, 9999), avatarName.toLowerCase(), i * 32, j * 32, directions[randomNumber(0, 3)]);
-        //         }
-        //     }
-        // }
-        for (let plyr in playersObject) {
-            if (plyr != username) {
-                new player(plyr, "red", playersObject[plyr].x, playersObject[plyr].y, playersObject[plyr].facing);
+        for (let plyr of playersArray) {
+            if (plyr.name == username) {
+                new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true).sendLocation();
             }
+            else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
         }
         app.ticker.add(draw);
     });

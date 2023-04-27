@@ -38,7 +38,6 @@ io.engine.use(sessionMiddleware);
 // server variable
 const server = {
     io,
-    players: {},
     onlinePlayers: [] // Array<Player>
 }
 // our source file initialization
@@ -110,7 +109,7 @@ app.get("/register", (req, res) => {
 });
 app.post("/register", (req, res) => {
     // handle register request and send response
-    res.send(loginHandler.registerAccount(req, res));
+    res.send(LoginHandler.registerAccount(req, res));
 });
 app.get("/home", (req, res) => {
     // sends the home page when requested
@@ -150,24 +149,24 @@ io.on("connection", (socket) => {
 
     let username = req.session.username;
     let displayName;
+    let isGuest = true;
     if (username) {
-        displayName = server.players[username].displayName;
+        if (players[username].connected) {
+            socket.disconnect();
+        }
+        displayName = players[username].displayName;
+        isGuest = false;
     } else {
-        while (!username || (username && username in server.players)) {
+        while (!username || (username && username in players)) {
             displayName = username = "player" + (Math.floor(Math.random() * 9998) + 1);
         }
     }
 
     // create player if doesn't exist
-    if (!server.players[username]) {
-        server.players[username] = {
-            name: username,
-            displayName: displayName,
-            x: 0,
-            y: 0,
-            facing: "right"
-        };
+    if (!players[username]) {
+        players[username] = new Player(username, displayName);
     }
+    players[username].connected = true;
 
     // add events
     socket.on("ping", (callback) => {
@@ -187,9 +186,9 @@ io.on("connection", (socket) => {
 
     socket.on("playerMovement", (data) => {
         data.name = username;
-        server.players[username].x = data.x;
-        server.players[username].y = data.y;
-        server.players[username].facing = data.facing;
+        players[username].x = data.x;
+        players[username].y = data.y;
+        players[username].facing = data.facing;
         socket.broadcast.emit("playerMovement", data);
     });
 
@@ -202,7 +201,11 @@ io.on("connection", (socket) => {
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(color.red, socket.id);
-        delete server.players[username];
+        if (isGuest) {
+            delete players[username];
+        } else {
+            players[username].connected = false;
+        }
         socket.broadcast.emit("playerDisconnect", username);
         // server.players[username].connected = false;
 
@@ -214,7 +217,7 @@ io.on("connection", (socket) => {
         // }
     });
     // send username
-    socket.emit("playerData", username, server.players);
+    socket.emit("playerData", username, Object.values(players).filter((player) => player.connected));
     //     socket.emit("playersOnline", server.onlinePlayers);
 });
 

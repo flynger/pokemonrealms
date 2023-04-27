@@ -5,6 +5,7 @@ export default class Player {
         this.x = x;
         this.y = y;
         this.facing = facing;
+        this.connected = false;
     }
 
     export() {
