@@ -207,14 +207,6 @@ io.on("connection", (socket) => {
             players[username].connected = false;
         }
         socket.broadcast.emit("playerDisconnect", username);
-        // server.players[username].connected = false;
-
-        // server.onlinePlayers.splice(server.onlinePlayers.indexOf(server.players[username].displayName), 1);
-        // console.log(server.onlinePlayers);
-        //delete session.socket;
-        // if (session.isGuest) {
-        //     delete server.players[username];
-        // }
     });
     // send username
     socket.emit("playerData", username, Object.values(players).filter((player) => player.connected));
