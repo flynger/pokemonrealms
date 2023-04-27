@@ -12,3 +12,15 @@ body {
     /* transform: translate3d(-50%, -50%, 0); */
     image-rendering: pixelated;
 }
+
+#draggable {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+}
+
+#settings-holder {
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+}
