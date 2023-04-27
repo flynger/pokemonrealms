@@ -16,7 +16,7 @@ export class LoginHandler {
         const password = req.body.password;
         const passwordRepeat = req.body.passwordRepeat;
         if (password !== passwordRepeat) {
-            return { success: false, reason: "Lil bro can't type" };
+            return { success: false, reason: "Those passwords didn’t match. Try again." };
         } else if (accounts[username]) {
             return { success: false, reason: "An account with the provided username already exists." };
             // socket.emit("usernameExists");
