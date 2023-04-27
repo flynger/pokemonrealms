@@ -31,6 +31,8 @@ function setupSocket() {
             else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
         }
         app.ticker.add(draw);
+        document.body.append(app.view);
+        $('#message').modal('hide');
     });
 
     socket.on("playerMovement", (data) => {
@@ -57,6 +59,19 @@ function setupSocket() {
 
     socket.on("pong", (ms) => {
         latency = ms;
+    });
+
+    socket.on("disconnect", (reason) => {
+        $('#message').modal({ backdrop: 'static', keyboard: false });
+        $('#message').modal('show');
+        $('#message-title').text("Disconnected from server");
+        $('#message-body').text(reason);
+        $('#blueModalBtn').text("Go home");
+        $('#grayModalBtn').text("Exit game");
+        $('#blueModalBtn').on('click', () => window.location.href = "/home");
+        $('#grayModalBtn').on('click', () => window.location.href = "https://www.google.com");
+        $('#blueModalBtn').show();
+        $('#grayModalBtn').show();
     });
 
     // //tells the server a chat message was sent

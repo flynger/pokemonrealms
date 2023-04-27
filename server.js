@@ -152,7 +152,7 @@ io.on("connection", (socket) => {
     let isGuest = true;
     if (username) {
         if (players[username].connected) {
-            socket.disconnect();
+            socket.disconnect(true);
         }
         displayName = players[username].displayName;
         isGuest = false;
