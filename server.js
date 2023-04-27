@@ -3,7 +3,12 @@ import express from "express";
 import { Server } from "socket.io";
 import cors from "cors";
 import { color } from "./libs/color.js";
-// const bodyParser = require("./node_modules/body-parser");
+import bodyParser from "body-parser";
+import sessions from "express-session";
+
+// our files
+import Player from "./src/player.js";
+import { players, accounts, LoginHandler } from "./src/loginHandler.js";
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
 // const sessions = require("./node_modules/express-session");
@@ -14,12 +19,12 @@ import { color } from "./libs/color.js";
 const app = express();
 const port = 3000;
 const serverName = "Pokemon Realms";
-// const sessionMiddleware = sessions({
-//     secret: "fabn^*&@358oua^owbi730r3-0-2hb-nfgvse",
-//     saveUninitialized: true,
-//     cookie: { maxAge: 365 * 24 * 60 * 60 * 1000 },
-//     resave: false
-// });
+const sessionMiddleware = sessions({
+    secret: "changethis",
+    saveUninitialized: true,
+    cookie: { maxAge: 365 * 24 * 60 * 60 * 1000 },
+    resave: false
+});
 
 // express and socket.io initialization
 const expressServer = app.listen(port, () => console.log(color.blue, `Starting Server: ${serverName} on port ${port}`));
@@ -27,6 +32,7 @@ const io = new Server(expressServer, {
     pingInterval: 900,
     pingTimeout: 5000
 });
+io.engine.use(sessionMiddleware);
 // io.use((socket: any, next: any) => sessionMiddleware(socket.request, {}, next)); // gives request
 
 // server variable
@@ -38,13 +44,13 @@ const server = {
 // our source file initialization
 
 app.use(express.static("./client"));
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
     cors({
         origin: "*",
     })
 );
-// app.use(sessionMiddleware);
+app.use(sessionMiddleware);
 
 // url masks
 app.get("/", (req, res) => {
@@ -85,19 +91,19 @@ app.get("/play", (req, res) => {
 app.get("/login", (req, res) => {
     // send client login page if not logged in
     // if (!req.session.username) {
-        res.sendFile('login.html', { root: './client' });
-  
+    res.sendFile('login.html', { root: './client' });
+
     // redirect client to game page if logged in
     // else res.redirect("/game");
 });
 app.post("/login", (req, res) => {
     // handle login request and send response
-    res.send(loginHandler.loginAccount(req, res));
+    res.send(LoginHandler.loginAccount(req, res));
 });
 app.get("/register", (req, res) => {
     // send client register page if not logged in
     // if (!req.session.username) {
-        res.sendFile('register.html', { root: './client' });
+    res.sendFile('register.html', { root: './client' });
     // }
     // redirect client to game page if logged in
     // else res.redirect("/game");
@@ -108,13 +114,13 @@ app.post("/register", (req, res) => {
 });
 app.get("/home", (req, res) => {
     // sends the home page when requested
-    res.sendFile('home.html', { root: './client'});
+    res.sendFile('home.html', { root: './client' });
 });
 app.get("/game", (req, res) => {
     // sends the home page when requested
-    res.send('game.html', { root: './client'});
+    res.send('game.html', { root: './client' });
     //if (!req.session.username) {
-       // res.sendFile('login.html', { root: './public' });
+    // res.sendFile('login.html', { root: './public' });
     //}
     // redirect client to game page if logged in
     //else res.redirect("/game");
@@ -137,36 +143,31 @@ app.get("/game", (req, res) => {
 // }, 5000);
 
 io.on("connection", (socket) => {
-    //     // get socket's session details
-    //     let { session, sessionID } = socket.request;
-    //     let username: String = socket.username = session.username;
-    //     // if (!session.username) {
-    //     //     // assign guest account if not logged in
-    //     //     session.isGuest = true;
-    //     //     let displayName: String = "Guest " + uniqueNamesGenerator({
-    //     //         dictionaries: [adjectives, animals],
-    //     //         separator: " ",
-    //     //         style: "capital"
-    //     //     });
-    //     //     socket.username = username = session.username = displayName.toLowerCase();//sessionID;
-    //     //     server.players[username] = { username, displayName, isGuest: true, connected: true };
-    //     // }
-    //     // server.players[username].connected = true;
-    //     // server.players[username].socket = session.socket = socket;
-    //     // server.players[username].board = null;
-    //     // server.onlinePlayers.push(server.players[username].displayName);
-
-    // connect event
     console.log(color.green, socket.id);
-    let username = false;
-    while (username === false || (username && username in server.players)) {
-        username = "player" + (Math.floor(Math.random() * 9998) + 1);
+
+    const req = socket.request;
+    console.log(req.session.username);
+
+    let username = req.session.username;
+    let displayName;
+    if (username) {
+        displayName = server.players[username].displayName;
+    } else {
+        while (!username || (username && username in server.players)) {
+            displayName = username = "player" + (Math.floor(Math.random() * 9998) + 1);
+        }
     }
-    server.players[username] = {
-        x: 0,
-        y: 0,
-        facing: "right"
-    };
+
+    // create player if doesn't exist
+    if (!server.players[username]) {
+        server.players[username] = {
+            name: username,
+            displayName: displayName,
+            x: 0,
+            y: 0,
+            facing: "right"
+        };
+    }
 
     // add events
     socket.on("ping", (callback) => {
@@ -225,6 +226,7 @@ io.on("connection", (socket) => {
 process.on("SIGINT", () => process.exit(0));
 
 process.on("exit", (code) => {
+    // io.sockets.emit("disconnect", {});
     console.log(`Process exited with code: ${code}`);
     // loginHandler.saveData();
     // console.log("Account data saved successfully");
