@@ -15,6 +15,9 @@ $(function () {
             } else {
                 $("#register-fail").html(response.reason);
                 $("#register-fail")[0].style.display = "inherit";
+                $("#register-fail").addClass("mb-3");
+                $("#formTOSContainer").removeClass("mb-5");
+                $("#formTOSContainer").addClass("mb-2");
             }
         });
     });

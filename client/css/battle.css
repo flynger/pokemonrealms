@@ -1,0 +1,19 @@
+#battle-UI {
+    position: absolute;
+    height: 768px;
+    width: 1024px;
+    top: 5%;
+    left: 18%;
+    background-image: url('../res/battle/grass_bg.png');
+    background-size: cover;
+}
+
+#action-background {
+    position: inherit;
+    bottom: 0px;
+    height: 192px;
+    width: inherit;
+    background-image: url('../res/gui/battle/overlay_command.png');
+    background-size: cover;
+    image-rendering: pixelated;
+}
