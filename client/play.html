@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/pixi-filters@latest/dist/pixi-filters.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"></script>
-    
+
     <!-- <script src="nav.js"></script> -->
     <script src="libs/fontfaceobserver.js"></script>
     <script src="src/client.js"></script>
@@ -29,6 +29,7 @@
     <link href="css/game.css" rel="stylesheet" />
 
     <script>
+
         $.get("nav.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
         });
@@ -39,7 +40,93 @@
 </head>
 
 <body>
-    <div id="game"></div>
+    
+
+
+    
+
+    
+    <div id="game" class="d-flex justify-content-center align-items-center w-100">
+        <div class="toast-container" id="settings-holder">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header" id="draggable">
+                    <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                    <strong class="me-auto">Settings</strong>
+                    <small>Game</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Graphics Settings
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary position-fixed bottom-0 end-0" id="liveToastBtn" onclick="toastBootstrap.show()">Show live toast</button>
+    </div>
 </body>
+
+<script>
+    
+    const toastTrigger = document.getElementById('liveToastBtn');
+        const toastLiveExample = document.getElementById('liveToast');
+        console.log(toastTrigger)
+        console.log(toastLiveExample)
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        toastLiveExample.autohide = false;
+        // toastTrigger.addEventListener('click', () => {
+            // toastBootstrap.show();
+            // console.log("got to click");
+        // });
+        dragElement(document.getElementById("settings-holder"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
 
 </html>
