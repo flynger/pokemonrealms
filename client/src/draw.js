@@ -11,7 +11,8 @@ const gameContainer = new PIXI.Container();
 const textContainer = new PIXI.Container();
 const smoothingFrames = 15; // The number of frames to use for smoothing
 var smoothedFrameDuration = 0; // The smoothed frame duration
-var WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
+const WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
+const BATTLE_WIDTH = 631.5;
 var ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
 var map = {
     width: 60,
@@ -21,6 +22,7 @@ var gen4hgssSheet;
 var gen5exteriorSheet;
 var kyledoveSheet;
 
+var gameDiv, battleUI;
 
 $(window).on('load', function () {
     $('#message').modal({ backdrop: 'static', keyboard: false });
@@ -28,8 +30,15 @@ $(window).on('load', function () {
     $('#message-title').text("Loading...");
     $('#blueModalBtn').hide();
     $('#grayModalBtn').hide();
+    // $('#battle-UI').hide();
     setup();
 });
+
+// sets the game and UI size
+function setGameSize() {
+    gameDiv.style.width = WIDTH * ratio + "px";
+    battleUI.style.width = BATTLE_WIDTH * ratio + "px";
+}
 
 async function setup() {
     // setup promises
@@ -45,9 +54,8 @@ async function setup() {
 }
 
 window.onresize = () => {
-    let gameDiv = document.getElementById("game");
     ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
-    gameDiv.style.width = WIDTH * ratio + "px";
+    setGameSize();
     gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
     for (let name in players) {
         players[name].renderName();
@@ -67,8 +75,9 @@ async function setupSpritesheets() {
 }
 
 async function setupGame() {
-    let gameDiv = document.getElementById("game");
-    gameDiv.style.width = WIDTH * ratio + "px";
+    gameDiv = document.getElementById("game");
+    battleUI = document.getElementById("battle-UI");
+    setGameSize();
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,

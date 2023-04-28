@@ -29,7 +29,7 @@
 
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/game.css" rel="stylesheet" />
-
+  <link href="css/battle.css" rel="stylesheet">
   <script>
 
     $.get("nav.html", function (data) {
@@ -61,7 +61,14 @@
       </div>
     </div>
   </div>
+
   <div id="game" class="d-flex justify-content-center align-items-center w-100">
+    <div id="battle-UI" class="bg-image">
+      <div id="overlays" class="bg-image">
+        <div id=""><img src="../res/gui/battle/cursor_shift.png"></div>
+      </div>
+    </div>
+
     <div class="toast-container" id="settings-holder">
       <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header" id="draggable">
@@ -91,11 +98,8 @@
 </body>
 
 <script>
-
   const toastTrigger = document.getElementById('liveToastBtn');
   const toastLiveExample = document.getElementById('liveToast');
-  console.log(toastTrigger)
-  console.log(toastLiveExample)
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
   toastLiveExample.autohide = false;
   // toastTrigger.addEventListener('click', () => {

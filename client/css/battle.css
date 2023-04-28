@@ -1,18 +1,16 @@
 #battle-UI {
-    position: absolute;
-    height: 768px;
-    width: 1024px;
-    top: 5%;
-    left: 18%;
+    position: relative;
+    aspect-ratio: auto 1024 / 768;
     background-image: url('../res/battle/grass_bg.png');
     background-size: cover;
+    image-rendering: pixelated;
 }
 
-#action-background {
-    position: inherit;
-    bottom: 0px;
-    height: 192px;
+#overlays {
+    position: absolute;
     width: inherit;
+    height: 24.427%;
+    bottom: 0%;
     background-image: url('../res/gui/battle/overlay_command.png');
     background-size: cover;
     image-rendering: pixelated;
