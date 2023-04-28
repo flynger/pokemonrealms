@@ -145,7 +145,6 @@ io.on("connection", (socket) => {
     console.log(color.green, socket.id);
 
     const req = socket.request;
-    console.log(req.session.username);
 
     let username = req.session.username;
     let displayName;
