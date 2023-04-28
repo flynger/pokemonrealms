@@ -50,7 +50,7 @@ class player {
         }
     }
 
-    #velocity = {
+    velocity = {
         x: 0,
         y: 0
     }
@@ -135,8 +135,9 @@ class player {
             for (let y = topTile; y <= topTile + 64; y += 32) {
                 if (grasses[[x, y]]) {
                     grasses[[x, y]].update(this);
-                } else if (logs[[x, y]]) {
-                    grasses[[x, y]].update(this);
+                }
+                if (colliders[[x, y]]) {
+                    colliders[[x, y]].collide(this);
                 }
             }
         }
@@ -184,24 +185,24 @@ class player {
         if (Input.RIGHT) {
             if (this.facing != "right") this.setFacing("right");
             this.animate();
-            this.#velocity.x = this.speed;
+            this.velocity.x = this.speed;
             this.#moving = true;
         } else if (Input.LEFT) {
             if (this.facing != "left") this.setFacing("left");
             this.animate();
-            this.#velocity.x = -this.speed;
+            this.velocity.x = -this.speed;
             this.#moving = true;
         }
 
         if (Input.DOWN) {
             if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
             this.animate();
-            this.#velocity.y = this.speed;
+            this.velocity.y = this.speed;
             this.#moving = true;
         } else if (Input.UP) {
             if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
             this.animate();
-            this.#velocity.y = -this.speed;
+            this.velocity.y = -this.speed;
             this.#moving = true;
         }
     }
@@ -226,37 +227,37 @@ class player {
         // decelerate player
         if (!Input.RIGHT && !Input.LEFT) {
             if (!Input.UP && !Input.DOWN) {
-                let speedX = Math.abs(this.#velocity.x);
-                let signX = Math.sign(this.#velocity.x);
+                let speedX = Math.abs(this.velocity.x);
+                let signX = Math.sign(this.velocity.x);
                 let decelerationX = Math.max(player.#decelerationConstant * speedX / this.speed, player.#minDeceleration);
-                let decelerationXAmount = speedX < decelerationX * deltaTime * 2 ? -this.#velocity.x : -signX * decelerationX * deltaTime * 2;
-                this.#velocity.x += decelerationXAmount;
+                let decelerationXAmount = speedX < decelerationX * deltaTime * 2 ? -this.velocity.x : -signX * decelerationX * deltaTime * 2;
+                this.velocity.x += decelerationXAmount;
             }
-            else this.#velocity.x = 0;
+            else this.velocity.x = 0;
         }
         if (!Input.UP && !Input.DOWN) {
             if (!Input.RIGHT && !Input.LEFT) {
-                let speedY = Math.abs(this.#velocity.y);
-                let signY = Math.sign(this.#velocity.y);
+                let speedY = Math.abs(this.velocity.y);
+                let signY = Math.sign(this.velocity.y);
                 let decelerationY = Math.max(player.#decelerationConstant * speedY / this.speed, player.#minDeceleration);
-                let decelerationYAmount = speedY < decelerationY * deltaTime * 2 ? -this.#velocity.y : -signY * decelerationY * deltaTime * 2;
-                this.#velocity.y += decelerationYAmount;
+                let decelerationYAmount = speedY < decelerationY * deltaTime * 2 ? -this.velocity.y : -signY * decelerationY * deltaTime * 2;
+                this.velocity.y += decelerationYAmount;
             }
-            else this.#velocity.y = 0;
+            else this.velocity.y = 0;
         }
     }
 
     move(deltaTime) {
         // move player by velocity
-        let totalVelocity = (this.#velocity.x ** 2 + this.#velocity.y ** 2) ** 0.5;
+        let totalVelocity = (this.velocity.x ** 2 + this.velocity.y ** 2) ** 0.5;
         let maxVelocity = this.speed;
         if (totalVelocity > maxVelocity) {
             let scaleFactor = maxVelocity / totalVelocity;
-            this.#velocity.x *= scaleFactor;
-            this.#velocity.y *= scaleFactor;
+            this.velocity.x *= scaleFactor;
+            this.velocity.y *= scaleFactor;
             totalVelocity = maxVelocity;
         }
-        if (this.#velocity.x == 0 && this.#velocity.y == 0) {
+        if (this.velocity.x == 0 && this.velocity.y == 0) {
             if (this.headSprite.currentFrame % 2 == 1) {
                 this.headSprite.gotoAndStop((this.headSprite.currentFrame + 1) % 4);
                 this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
@@ -266,7 +267,7 @@ class player {
             }
             this.#moving = false;
         } else {
-            this.setPosition(this.x + this.#velocity.x * deltaTime, this.y + this.#velocity.y * deltaTime)
+            this.setPosition(this.x + this.velocity.x * deltaTime, this.y + this.velocity.y * deltaTime)
             if (totalVelocity == this.speed || this.headSprite.currentFrame % 2 == 0) {
                 this.headSprite.animationSpeed = this.bodySprite.animationSpeed = totalVelocity / 15;
             } else {

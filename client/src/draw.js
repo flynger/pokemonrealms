@@ -153,10 +153,10 @@ function randomNumber(min, max) {
 }
 
 function collide(ab, bb) {
-    // graphics.beginFill(0xFF0000);
-    // graphics.drawRect(ab.x, ab.y, ab.width, ab.height);
-    // //graphics.drawRect(bb.x, bb.y, bb.width, bb.height);
-    // graphics.endFill(0xFF0000);
+    graphics.beginFill(0xFF0000);
+    graphics.drawRect(ab.x, ab.y, ab.width, ab.height);
+    //graphics.drawRect(bb.x, bb.y, bb.width, bb.height);
+    graphics.endFill(0xFF0000);
     return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
 }
 
