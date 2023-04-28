@@ -1,0 +1,30 @@
+{
+    "frames": {
+        "log1": {
+            "frame": {
+                "x": 160,
+                "y": 96,
+                "w": 32,
+                "h": 32
+            }
+        },
+        "log2": {
+            "frame": {
+                "x": 192,
+                "y": 96,
+                "w": 32,
+                "h": 32
+            }
+        }
+    },
+    "animations": {},
+    "meta": {
+        "image": "../tilesets/kyledove.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 256,
+            "h": 6720
+        },
+        "scale": 1
+    }
+}

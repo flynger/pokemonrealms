@@ -135,6 +135,8 @@ class player {
             for (let y = topTile; y <= topTile + 64; y += 32) {
                 if (grasses[[x, y]]) {
                     grasses[[x, y]].update(this);
+                } else if (logs[[x, y]]) {
+                    grasses[[x, y]].update(this);
                 }
             }
         }

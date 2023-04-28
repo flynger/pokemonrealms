@@ -19,7 +19,7 @@ var map = {
 };
 var gen4hgssSheet;
 var gen5exteriorSheet;
-
+var kyledoveSheet;
 
 
 $(window).on('load', function () {
@@ -49,17 +49,19 @@ window.onresize = () => {
     ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
     gameDiv.style.width = WIDTH * ratio + "px";
     gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
-    for (let name in player.players) {
-        player.players[name].renderName();
+    for (let name in players) {
+        players[name].renderName();
     }
 }
 
 async function setupSpritesheets() {
-    PIXI.Assets.add('Particle', 'res/particle.png');
+    PIXI.Assets.add('Particle', '../res/particle.png');
     PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
     PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
+    PIXI.Assets.add('kyledove', '../res/data/kyledove.json');
     gen4hgssSheet = await PIXI.Assets.load(['gen4hgss']);
     gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
+    kyledoveSheet = await PIXI.Assets.load('kyledove');
     await player.initializePlayerSpritesheets();
     // await grass.initializeGrassSpritesheet();
 }
@@ -78,13 +80,10 @@ async function setupGame() {
         }
     );
     gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
+    
     let colorMatrix = new PIXI.filters.ColorMatrixFilter();
     gameContainer.filters = [colorMatrix];
     colorMatrix.brightness(1);
-    // WIDTH = gameDiv.style.width, HEIGHT = gameDiv.style.height, TILE_SIZE = 32;
-    // ratio = Math.min(+gameDiv.style.width / WIDTH, +gameDiv.style.height / HEIGHT);
-    // app.stage.sortableChildren = true;
-
     map.tilemap = new PIXI.tilemap.CompositeTilemap();
     map.tilemap.zIndex = -1000;
     for (let i = 0; i < map.width; i++) {
@@ -94,11 +93,11 @@ async function setupGame() {
 
             if ((i + j + 1) % randomNumber(4, 10) == 0 || (i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
                 new grass(i * 32, j * 32);
+            } else if (randomNumber(1, 90) == 1) {
+                new log(i * 32, j * 32);
             }
         }
     }
-
-    //map.tilemap.tile('wildgrass', 0, 0, { tileWidth: 16, tileHeight: 16, animX: 1, animY: 0, animCountX: 6, animCountY: 1, animDivisor: 1 });
     gameContainer.addChild(map.tilemap);
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
@@ -111,10 +110,7 @@ function draw(deltaTime) {
     for (let name in players) {
         players[name].step(smoothedFrameDuration, app);
     }
-    // for (let grss of grass.grasses) {
-    //     grss.step();
-    // }
-    for (let name in player.players) {
+    for (let name in players) {
         players[name].endFrame();
     }
 }
