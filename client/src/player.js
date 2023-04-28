@@ -128,16 +128,41 @@ class player {
         this.nameTagBack.zIndex = this.nameTagText.zIndex = this.hasController ? 100000 : this.headSprite.y;
     }
 
+    collide(hitbox) {
+        let leftCollided = collide(this.getLeftHitbox(), hitbox);
+        let rightCollided = collide(this.getRightHitbox(), hitbox);
+        let topCollided = collide(this.getTopHitbox(), hitbox);
+        let bottomCollided = collide(this.getBottomHitbox(), hitbox);
+        return {
+            left: leftCollided,
+            right: rightCollided,
+            top: topCollided,
+            bottom: bottomCollided
+        }
+    }
+
+    collideCheck() {
+        let leftTile = 32 * Math.floor(this.x / 32);
+        let topTile = 32 * Math.floor(this.y / 32);
+        for (let x = leftTile; x <= leftTile + 32; x += 32) {
+            for (let y = topTile; y <= topTile + 64; y += 32) {
+                if (colliders[[x, y]]) {
+                    if (this.collide(colliders[[x, y]])) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     grassUpdate(removeSelf = false) {
         let leftTile = 32 * Math.floor(this.x / 32);
         let topTile = 32 * Math.floor(this.y / 32);
         for (let x = leftTile; x <= leftTile + 32; x += 32) {
             for (let y = topTile; y <= topTile + 64; y += 32) {
                 if (grasses[[x, y]]) {
-                    grasses[[x, y]].update(this);
-                }
-                if (colliders[[x, y]]) {
-                    colliders[[x, y]].collide(this);
+                    grasses[[x, y]].update(this, removeSelf);
                 }
             }
         }
@@ -345,22 +370,21 @@ class player {
         }
     }
 
-
     getLeftHitbox() {
         return {
             x: this.x + 7,
-            y: this.y + 18,
+            y: this.y + 20,
             width: 2,
-            height: 17
+            height: 13
         };
     }
 
     getRightHitbox() {
         return {
             x: this.x + 23,
-            y: this.y + 18,
+            y: this.y + 20,
             width: 2,
-            height: 17
+            height: 13
         };
     }
 
