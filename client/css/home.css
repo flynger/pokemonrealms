@@ -3,6 +3,17 @@
     to { background-position: 0 -1268px; }
 } */
 
+.card {
+    width: 28%;
+    min-width: 300px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.08);
+}
+
 /* add keyframe in future by making it loop back on itself */
 #hero {
     background-image: url("../res/beta_testing.PNG");
@@ -13,4 +24,10 @@
     /* animation: moveHero 10s linear infinite; */
 
     background-attachment: fixed;
+}
+
+#hero-text {
+    min-width: 260px;
+    width: 35%;
+    --bs-bg-opacity: 0.85;
 }
