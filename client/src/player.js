@@ -80,6 +80,7 @@ class player {
         // movement logic
         if (this.#moving) {
             this.decelerate(deltaTime);
+            this.collideCheck();
             this.move(deltaTime);
             if (this.hasController) this.sendLocation();
         }
@@ -128,16 +129,61 @@ class player {
         this.nameTagBack.zIndex = this.nameTagText.zIndex = this.hasController ? 100000 : this.headSprite.y;
     }
 
-    collide(hitbox) {
-        let leftCollided = collide(this.getLeftHitbox(), hitbox);
-        let rightCollided = collide(this.getRightHitbox(), hitbox);
-        let topCollided = collide(this.getTopHitbox(), hitbox);
-        let bottomCollided = collide(this.getBottomHitbox(), hitbox);
-        return {
-            left: leftCollided,
-            right: rightCollided,
-            top: topCollided,
-            bottom: bottomCollided
+    willCollide(hitbox) {
+        let newHitbox = { ...hitbox };
+        newHitbox.x -= this.velocity.x;
+        newHitbox.y -= this.velocity.y;
+        let leftCollided = collide(this.getLeftHitbox(), newHitbox);
+        let rightCollided = collide(this.getRightHitbox(), newHitbox);
+        let topCollided = collide(this.getTopHitbox(), newHitbox);
+        let bottomCollided = collide(this.getBottomHitbox(), newHitbox);
+        if (leftCollided || rightCollided || topCollided || bottomCollided) {
+            return {
+                left: leftCollided,
+                right: rightCollided,
+                top: topCollided,
+                bottom: bottomCollided
+            }
+        }
+        return false;
+    }
+
+    collideLogic(hitbox) {
+        let collisionData = this.willCollide(hitbox);
+        if (collisionData) {
+            if (this.velocity.x != 0) {
+                if (collisionData.left) {
+                    this.velocity.x += 0.1;
+                    // if (this.velocity.x >= 0) {
+                    //     this.velocity.x = 0;
+                    //     return;
+                    // }
+                }
+                if (collisionData.right) {
+                    this.velocity.x -= 0.1;
+                    // if (this.velocity.x <= 0) {
+                    //     this.velocity.x = 0;
+                    //     return;
+                    // }
+                }
+            }
+            if (this.velocity.y != 0) {
+                if (collisionData.top) {
+                    this.velocity.y += 0.1;
+                    // if (this.velocity.y >= 0) {
+                    //     this.velocity.y = 0;
+                    //     return;
+                    // }
+                }
+                if (collisionData.bottom) {
+                    this.velocity.y -= 0.1;
+                    // if (this.velocity.y <= 0) {
+                    //     this.velocity.y = 0;
+                    //     return;
+                    // }
+                }
+            }
+            this.collideLogic(hitbox);
         }
     }
 
@@ -147,13 +193,10 @@ class player {
         for (let x = leftTile; x <= leftTile + 32; x += 32) {
             for (let y = topTile; y <= topTile + 64; y += 32) {
                 if (colliders[[x, y]]) {
-                    if (this.collide(colliders[[x, y]])) {
-                        return true;
-                    }
+                    this.collideLogic(colliders[[x, y]]);
                 }
             }
         }
-        return false;
     }
 
     grassUpdate(removeSelf = false) {
