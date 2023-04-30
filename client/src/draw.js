@@ -1,4 +1,4 @@
-// PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 PIXI.settings.ROUND_PIXELS = true;
 //PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
@@ -7,10 +7,12 @@ PIXI.Container.defaultSortableChildren = true;
 var engine = Matter.Engine.create({
     gravity: {
         scale: 0
-    }
+    },
+    // velocityIterations: 8,
+    // positionIterations: 12
 });
-var runner = Matter.Runner.create();
-Matter.Runner.run(runner, engine);
+// var runner = Matter.Runner.create();
+// Matter.Runner.run(runner, engine);
 
 // PIXI drawing engine
 var app;
@@ -199,6 +201,10 @@ function draw(deltaTime) {
     for (let name in players) {
         players[name].step(smoothedFrameDuration, app);
     }
+    for (let grss in grasses) {
+        grasses[grss].step();
+    }
+    Matter.Engine.update(engine);
     for (let name in players) {
         players[name].endFrame();
     }

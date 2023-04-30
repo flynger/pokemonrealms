@@ -59,10 +59,7 @@ class player {
     #nameTagBackOffset;
     #nameTagTextOffset;
 
-    leftHitboxCollidingObject = null;
-    rightHitboxCollidingObject = null;
-    topHitboxCollidingObject = null;
-    bottomHitboxCollidingObject = null;
+    grassCounter = 0;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         players[name] = this; // create a reference in player.players
@@ -92,7 +89,7 @@ class player {
     }
 
     endFrame() {
-        if (this.leftHitboxCollidingObject == null || this.rightHitboxCollidingObject == null || this.topHitboxCollidingObject == null || this.bottomHitboxCollidingObject == null) {
+        if (this.grassCounter == 0) {
             //this.nameTagText.text = "not colliding";
             this.bodySprite.alpha = 1;
         } else {
@@ -149,9 +146,9 @@ class player {
         this.headSprite.x = this.position.x - 16;
         this.headSprite.y = this.position.y - player.rigidBodyOffset - player.rigidBodyHeight / 2;
         if (this.headSprite.playing) {
-            console.log(this.velocity);
             let totalVelocity = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
             if (totalVelocity <= 0.0001 && this.speed == 0) {
+                Matter.Body.setVelocity(this.rigidBody, { x: 0, y: 0});
                 if (this.headSprite.currentFrame % 2 == 1) {
                     this.headSprite.gotoAndStop((this.headSprite.currentFrame + 1) % 4);
                     this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
@@ -195,27 +192,27 @@ class player {
                 this.speed = player.runSpeed;
             }
 
-            let movementVector = Matter.Vector.create(0, 0);
+            let movementVector = { x: 0, y: 0};
             // check for keydown
             if (Input.UP && !Input.DOWN) {
                 if (Input.LEFT == Input.RIGHT && this.facing != "up") this.setFacing("up");
                 this.animate();
-                movementVector = Matter.Vector.add(movementVector, Matter.Vector.create(0, -this.speed));
+                movementVector.y -= this.speed;
             }
             if (Input.DOWN && !Input.UP) {
                 if (Input.LEFT == Input.RIGHT && this.facing != "down") this.setFacing("down");
                 this.animate();
-                movementVector = Matter.Vector.add(movementVector, Matter.Vector.create(0, this.speed));
+                movementVector.y += this.speed;
             }
             if (Input.LEFT && !Input.RIGHT) {
                 if (this.facing != "left") this.setFacing("left");
                 this.animate();
-                movementVector = Matter.Vector.add(movementVector, Matter.Vector.create(-this.speed, 0));
+                movementVector.x -= this.speed;
             }
             if (Input.RIGHT && !Input.LEFT) {
                 if (this.facing != "right") this.setFacing("right");
                 this.animate();
-                movementVector = Matter.Vector.add(movementVector, Matter.Vector.create(this.speed, 0));
+                movementVector.x += this.speed;
             }
             movementVector = Matter.Vector.mult(Matter.Vector.normalise(movementVector), this.speed);
             Matter.Body.setVelocity(this.rigidBody, movementVector);

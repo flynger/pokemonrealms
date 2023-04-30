@@ -9,7 +9,7 @@ class log {
         this.leftSprite.y = this.rightSprite.y = y;
         gameContainer.addChild(this.leftSprite);
         gameContainer.addChild(this.rightSprite);
-        colliders[[x, y]] = new collider(x, y, 32, 32);
-        colliders[[x + 32, y]] = new collider(x + 32, y, 32, 32);
+        colliders[[x, y]] = new collider(x, y, 64, 32);
+        //colliders[[x + 32, y]] = new collider(x + 32, y, 32, 32);
     }
 }

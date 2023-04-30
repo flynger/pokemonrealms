@@ -10,6 +10,23 @@ class grass {
         this.sprite.y = y;
         gameContainer.addChild(this.sprite);
         grasses[[x, y]] = this;
+        this.rigidBody = Matter.Bodies.rectangle(x + 16, y + 16, 32, 32);
+        Matter.Body.setStatic(this.rigidBody, true);
+    }
+
+    step() {
+        for (let name in players) {
+            let passer = players[name];
+            let playerInThisGrass = this.passers.hasOwnProperty(name);
+            let collision = Matter.Collision.collides(passer.rigidBody, this.rigidBody);
+            if (playerInThisGrass && collision == null) {
+                passer.grassCounter--;
+                delete this.passers[name];
+            } else if(!playerInThisGrass && collision != null) {
+                passer.grassCounter++;
+                this.passers[name] = true;
+            }
+        }
     }
 
     update(passer, removePlayer = false) {
