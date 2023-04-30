@@ -1,5 +1,5 @@
 export default class Player {
-    constructor(name, displayName, x = 256, y = 256, facing = "right") {
+    constructor(name, displayName, x = 256, y = 254, facing = "right") {
         this.name = name;
         this.displayName = displayName;
         this.x = x;
