@@ -1,9 +1,10 @@
 class player {
-    static walkSpeed = 32 / 15;
-    static runSpeed = 48 / 15;
-    static #decelerationConstant = 0.4;
-    static #minDeceleration = 0.1;
-    //static maxVelocity = 48 / 15;
+    static walkSpeed = 1.5;
+    static runSpeed = 2.5;
+    static friction = 0.15;
+    static rigidBodyWidth = 16;
+    static rigidBodyHeight = 20;
+    static rigidBodyOffset = 14;
     static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
     static #playerSprites = {};
     static players = {};
@@ -54,8 +55,6 @@ class player {
         x: 0,
         y: 0
     }
-    #moving = false;
-    #allowInput = true;
     #nameTagBackWidth;
     #nameTagBackOffset;
     #nameTagTextOffset;
@@ -72,30 +71,24 @@ class player {
         this.facing = facing;
         this.hasController = hasController;
         this.createSprites();
-        this.setPosition(x, y);
+        if (hasController) {
+            this.createRigidBody(x, y);
+            this.updateSprite();
+        }
         this.renderName();
     }
 
     step(deltaTime) {
-        // movement logic
-        if (this.#moving) {
-            this.decelerate(deltaTime);
-            this.collideCheck();
-            this.move(deltaTime);
-            if (this.hasController) this.sendLocation();
-        }
-
         // input and camera logic
         if (this.hasController) {
-            if (this.#allowInput) {
-                this.checkForInput();
-                this.centerCameraOnSelf();
-            }
+            this.checkForInput();
+            this.centerCameraOnSelf();
+            this.updateSprite();
+            this.sendLocation();
         }
-
         this.nameTagStep(); // name tag frame update
-        this.grassUpdate(); // grass update
-        this.headSprite.zIndex = this.y; // update z-index
+        //this.grassUpdate(); // grass update
+        this.headSprite.zIndex = this.headSprite.y; // update z-index
     }
 
     endFrame() {
@@ -129,86 +122,13 @@ class player {
         this.nameTagBack.zIndex = this.nameTagText.zIndex = this.hasController ? 100000 : this.headSprite.y;
     }
 
-    willCollide(hitbox) {
-        let newHitbox = { ...hitbox };
-        newHitbox.x -= this.velocity.x;
-        newHitbox.y -= this.velocity.y;
-        let leftCollided = collide(this.getLeftHitbox(), newHitbox);
-        let rightCollided = collide(this.getRightHitbox(), newHitbox);
-        let topCollided = collide(this.getTopHitbox(), newHitbox);
-        let bottomCollided = collide(this.getBottomHitbox(), newHitbox);
-        if (leftCollided || rightCollided || topCollided || bottomCollided) {
-            return {
-                left: leftCollided,
-                right: rightCollided,
-                top: topCollided,
-                bottom: bottomCollided
-            }
-        }
-        return false;
-    }
-
-    collideLogic(hitbox) {
-        let collisionData = this.willCollide(hitbox);
-        if (collisionData) {
-            if (this.velocity.x != 0) {
-                if (collisionData.left) {
-                    this.velocity.x += 0.1;
-                    // if (this.velocity.x >= 0) {
-                    //     this.velocity.x = 0;
-                    //     return;
-                    // }
-                }
-                if (collisionData.right) {
-                    this.velocity.x -= 0.1;
-                    // if (this.velocity.x <= 0) {
-                    //     this.velocity.x = 0;
-                    //     return;
-                    // }
-                }
-            }
-            if (this.velocity.y != 0) {
-                if (collisionData.top) {
-                    this.velocity.y += 0.1;
-                    // if (this.velocity.y >= 0) {
-                    //     this.velocity.y = 0;
-                    //     return;
-                    // }
-                }
-                if (collisionData.bottom) {
-                    this.velocity.y -= 0.1;
-                    // if (this.velocity.y <= 0) {
-                    //     this.velocity.y = 0;
-                    //     return;
-                    // }
-                }
-            }
-            this.collideLogic(hitbox);
-        }
-    }
-
-    collideCheck() {
-        let leftTile = 32 * Math.floor(this.x / 32);
-        let topTile = 32 * Math.floor(this.y / 32);
-        for (let x = leftTile; x <= leftTile + 32; x += 32) {
-            for (let y = topTile; y <= topTile + 64; y += 32) {
-                if (colliders[[x, y]]) {
-                    this.collideLogic(colliders[[x, y]]);
-                }
-            }
-        }
-    }
-
-    grassUpdate(removeSelf = false) {
-        let leftTile = 32 * Math.floor(this.x / 32);
-        let topTile = 32 * Math.floor(this.y / 32);
-        for (let x = leftTile; x <= leftTile + 32; x += 32) {
-            for (let y = topTile; y <= topTile + 64; y += 32) {
-                if (grasses[[x, y]]) {
-                    grasses[[x, y]].update(this, removeSelf);
-                }
-            }
-        }
+    createRigidBody(x, y) {
+        this.rigidBody = Matter.Bodies.rectangle(x + 16, y + player.rigidBodyOffset + player.rigidBodyHeight / 2, player.rigidBodyWidth, player.rigidBodyHeight);
+        this.rigidBody.frictionAir = player.friction;
+        this.position = this.rigidBody.position;
+        this.velocity = this.rigidBody.velocity;
+        Matter.Body.setInertia(this.rigidBody, Infinity);
+        Matter.Composite.add(engine.world, this.rigidBody);
     }
 
     createSprites() {
@@ -222,6 +142,30 @@ class player {
         this.bodySprite.y = 24;
         this.headSprite.addChild(this.bodySprite);
         gameContainer.addChild(this.headSprite);
+    }
+
+    updateSprite() {
+        this.headSprite.x = this.position.x - 16;
+        this.headSprite.y = this.position.y - player.rigidBodyOffset - player.rigidBodyHeight / 2;
+        if (this.headSprite.playing) {
+            console.log(this.velocity);
+            let totalVelocity = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
+            if (totalVelocity <= 0.0001 && this.speed == 0) {
+                if (this.headSprite.currentFrame % 2 == 1) {
+                    this.headSprite.gotoAndStop((this.headSprite.currentFrame + 1) % 4);
+                    this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
+                } else {
+                    this.headSprite.stop();
+                    this.bodySprite.stop();
+                }
+            } else {
+                //if (totalVelocity / 10 > 0.0) {
+                this.headSprite.animationSpeed = this.bodySprite.animationSpeed = totalVelocity / 10;
+                //} else {
+                //    this.headSprite.animationSpeed = this.bodySprite.animationSpeed = 0;
+                //}
+            }
+        }
     }
 
     renderName() {
@@ -243,39 +187,41 @@ class player {
 
     checkForInput() {
         // set player speed
-        if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT)) {
-            this.speed = player.walkSpeed;
-        } else if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
-            this.speed = player.runSpeed;
-        }
+        if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
+            if (Input.SHIFT) {
+                this.speed = player.walkSpeed;
+            } else {
+                this.speed = player.runSpeed;
+            }
 
-        // check for keydown
-        if (Input.RIGHT) {
-            if (this.facing != "right") this.setFacing("right");
-            this.animate();
-            this.velocity.x = this.speed;
-            this.#moving = true;
-        } else if (Input.LEFT) {
-            if (this.facing != "left") this.setFacing("left");
-            this.animate();
-            this.velocity.x = -this.speed;
-            this.#moving = true;
-        }
-
-        if (Input.DOWN) {
-            if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
-            this.animate();
-            this.velocity.y = this.speed;
-            this.#moving = true;
-        } else if (Input.UP) {
-            if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
-            this.animate();
-            this.velocity.y = -this.speed;
-            this.#moving = true;
-        }
+            let movementVector = Matter.Vector.create(0, 0);
+            // check for keydown
+            if (Input.UP && !Input.DOWN) {
+                if (Input.LEFT == Input.RIGHT && this.facing != "up") this.setFacing("up");
+                this.animate();
+                movementVector = Matter.Vector.add(movementVector, Matter.Vector.create(0, -this.speed));
+            }
+            if (Input.DOWN && !Input.UP) {
+                if (Input.LEFT == Input.RIGHT && this.facing != "down") this.setFacing("down");
+                this.animate();
+                movementVector = Matter.Vector.add(movementVector, Matter.Vector.create(0, this.speed));
+            }
+            if (Input.LEFT && !Input.RIGHT) {
+                if (this.facing != "left") this.setFacing("left");
+                this.animate();
+                movementVector = Matter.Vector.add(movementVector, Matter.Vector.create(-this.speed, 0));
+            }
+            if (Input.RIGHT && !Input.LEFT) {
+                if (this.facing != "right") this.setFacing("right");
+                this.animate();
+                movementVector = Matter.Vector.add(movementVector, Matter.Vector.create(this.speed, 0));
+            }
+            movementVector = Matter.Vector.mult(Matter.Vector.normalise(movementVector), this.speed);
+            Matter.Body.setVelocity(this.rigidBody, movementVector);
+        } else this.speed = 0;
     }
 
-    setFacing(direction, setWalkAnimation = false) {
+    setFacing(direction) {
         this.facing = direction;
         this.headSprite.textures = this.sprites.animations[this.facing];
         this.bodySprite.textures = this.bodySprites.animations[this.facing];
@@ -289,65 +235,6 @@ class player {
             this.headSprite.texture = this.sprites.animations[this.facing][this.headSprite.currentFrame];
             this.bodySprite.texture = this.bodySprites.animations[this.facing][this.bodySprite.currentFrame];
         }
-    }
-
-    decelerate(deltaTime) {
-        // decelerate player
-        if (!Input.RIGHT && !Input.LEFT) {
-            if (!Input.UP && !Input.DOWN) {
-                let speedX = Math.abs(this.velocity.x);
-                let signX = Math.sign(this.velocity.x);
-                let decelerationX = Math.max(player.#decelerationConstant * speedX / this.speed, player.#minDeceleration);
-                let decelerationXAmount = speedX < decelerationX * deltaTime * 2 ? -this.velocity.x : -signX * decelerationX * deltaTime * 2;
-                this.velocity.x += decelerationXAmount;
-            }
-            else this.velocity.x = 0;
-        }
-        if (!Input.UP && !Input.DOWN) {
-            if (!Input.RIGHT && !Input.LEFT) {
-                let speedY = Math.abs(this.velocity.y);
-                let signY = Math.sign(this.velocity.y);
-                let decelerationY = Math.max(player.#decelerationConstant * speedY / this.speed, player.#minDeceleration);
-                let decelerationYAmount = speedY < decelerationY * deltaTime * 2 ? -this.velocity.y : -signY * decelerationY * deltaTime * 2;
-                this.velocity.y += decelerationYAmount;
-            }
-            else this.velocity.y = 0;
-        }
-    }
-
-    move(deltaTime) {
-        // move player by velocity
-        let totalVelocity = (this.velocity.x ** 2 + this.velocity.y ** 2) ** 0.5;
-        let maxVelocity = this.speed;
-        if (totalVelocity > maxVelocity) {
-            let scaleFactor = maxVelocity / totalVelocity;
-            this.velocity.x *= scaleFactor;
-            this.velocity.y *= scaleFactor;
-            totalVelocity = maxVelocity;
-        }
-        if (this.velocity.x == 0 && this.velocity.y == 0) {
-            if (this.headSprite.currentFrame % 2 == 1) {
-                this.headSprite.gotoAndStop((this.headSprite.currentFrame + 1) % 4);
-                this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
-            } else {
-                this.headSprite.stop();
-                this.bodySprite.stop();
-            }
-            this.#moving = false;
-        } else {
-            this.setPosition(this.x + this.velocity.x * deltaTime, this.y + this.velocity.y * deltaTime)
-            if (totalVelocity == this.speed || this.headSprite.currentFrame % 2 == 0) {
-                this.headSprite.animationSpeed = this.bodySprite.animationSpeed = totalVelocity / 15;
-            } else {
-                this.headSprite.stop();
-                this.bodySprite.stop();
-            }
-        }
-    }
-
-    setPosition(x, y) {
-        this.x = this.headSprite.x = x;
-        this.y = this.headSprite.y = y;
     }
 
     centerCameraOnSelf() {
@@ -383,59 +270,11 @@ class player {
         app.stage.pivot.y *= ratio;
     }
 
-    playIdleAnimation(speed, duration) {
-        this.headSprite.animationSpeed = speed;
-        this.headSprite.play();
-        this.disableInputFor(duration);
-    }
-
-    disableInputFor(ms) {
-        this.#allowInput = false;
-        setTimeout(() => this.#allowInput = true, ms);
-    }
-
-    // hitbox methods
-    getTopHitbox() {
-        return {
-            x: this.x + 9,
-            y: this.y + 18,
-            width: 14,
-            height: 2
-        }
-    }
-
-    getBottomHitbox() {
-        return {
-            x: this.x + 9,
-            y: this.y + 33,
-            width: 14,
-            height: 2
-        }
-    }
-
-    getLeftHitbox() {
-        return {
-            x: this.x + 7,
-            y: this.y + 20,
-            width: 2,
-            height: 13
-        };
-    }
-
-    getRightHitbox() {
-        return {
-            x: this.x + 23,
-            y: this.y + 20,
-            width: 2,
-            height: 13
-        };
-    }
-
     // emit methods
     sendLocation() {
         socket.emit("playerMovement", {
-            x: this.x,
-            y: this.y,
+            x: this.headSprite.x,
+            y: this.headSprite.y,
             facing: this.facing,
             currentFrame: this.headSprite.currentFrame
         });

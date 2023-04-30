@@ -39,7 +39,8 @@ function setupSocket() {
         let { name, x, y, facing, currentFrame } = data;
         if (!players[name]) new player(name, "red", x, y, facing);
         else {
-            players[name].setPosition(x, y);
+            players[name].headSprite.x = x;
+            players[name].headSprite.y = y;
             players[name].setFacing(facing);
         }
         players[name].headSprite.currentFrame = players[name].bodySprite.currentFrame = currentFrame;
@@ -52,7 +53,7 @@ function setupSocket() {
             players[name].nameTagBack.destroy();
             players[name].headSprite.destroy();
             players[name].bodySprite.destroy();
-            players[name].grassUpdate(true);
+            //players[name].grassUpdate(true);
             delete players[name];
         }
     });

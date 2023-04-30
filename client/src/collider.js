@@ -1,11 +1,16 @@
 class collider {
     static colliders = {};
     constructor(x, y, width, height) {
+        colliders[[x, y]] = this;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        colliders[[x, y]] = this;
+        this.rigidBody = Matter.Bodies.rectangle(x + width / 2, y + height / 2, width, height);
+        this.rigidBody.friction = 0;
+        Matter.Composite.add(engine.world, this.rigidBody);
+        Matter.Body.setStatic(this.rigidBody, true);
+        // Matter.Body.setMass(this.rigidBody, 100);
     }
 
     collide(passer) {

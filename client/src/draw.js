@@ -1,8 +1,18 @@
-PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+// PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 PIXI.settings.ROUND_PIXELS = true;
 //PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
 
+// physics engine
+var engine = Matter.Engine.create({
+    gravity: {
+        scale: 0
+    }
+});
+var runner = Matter.Runner.create();
+Matter.Runner.run(runner, engine);
+
+// PIXI drawing engine
 var app;
 var graphics = new PIXI.Graphics();
 
@@ -89,6 +99,20 @@ async function setupGame() {
         }
     );
     gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
+
+    // physics debugging code
+    // let render = Matter.Render.create({
+    //     element: gameDiv,
+    //     engine: engine,
+    //     options: {
+    //       width: WIDTH,
+    //       height: HEIGHT,
+    //       wireframes: false,
+    //       background: "#fff",
+    //       showAngleIndicator: true,
+    //     }
+    // });
+    // Matter.Render.run(render);
 
     let colorMatrix = new PIXI.filters.ColorMatrixFilter();
     gameContainer.filters = [colorMatrix];
