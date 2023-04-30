@@ -125,6 +125,7 @@ class player {
     createRigidBody(x, y) {
         this.rigidBody = Matter.Bodies.rectangle(x + 16, y + player.rigidBodyOffset + player.rigidBodyHeight / 2, player.rigidBodyWidth, player.rigidBodyHeight);
         this.rigidBody.frictionAir = player.friction;
+        this.rigidBody.friction = 0;
         this.position = this.rigidBody.position;
         this.velocity = this.rigidBody.velocity;
         Matter.Body.setInertia(this.rigidBody, Infinity);
