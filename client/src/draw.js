@@ -7,7 +7,7 @@ PIXI.Container.defaultSortableChildren = true;
 var engine = Matter.Engine.create({
     gravity: {
         scale: 0
-    },
+    }
     // velocityIterations: 8,
     // positionIterations: 12
 });
@@ -90,6 +90,7 @@ async function setupGame() {
     gameDiv = document.getElementById("game");
     battleUI = document.getElementById("battle-UI");
     setGameSize();
+    initializeSummaryUI();
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,
@@ -204,7 +205,7 @@ function draw(deltaTime) {
     for (let grss in grasses) {
         grasses[grss].step();
     }
-    Matter.Engine.update(engine);
+    Matter.Engine.update(engine, 100 / 3 * smoothedFrameDuration);
     for (let name in players) {
         players[name].endFrame();
     }
@@ -262,4 +263,3 @@ function collideAbove(ab, bb) {
     // graphics.endFill(0xFF0000);
     return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y + ab.height <= bb.y + bb.height;
 }
-

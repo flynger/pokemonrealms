@@ -68,10 +68,8 @@ class player {
         this.facing = facing;
         this.hasController = hasController;
         this.createSprites();
-        if (hasController) {
-            this.createRigidBody(x, y);
-            this.updateSprite();
-        }
+        this.createRigidBody(x, y);
+        this.updateSprite();
         this.renderName();
     }
 
@@ -123,6 +121,7 @@ class player {
         this.rigidBody = Matter.Bodies.rectangle(x + 16, y + player.rigidBodyOffset + player.rigidBodyHeight / 2, player.rigidBodyWidth, player.rigidBodyHeight);
         this.rigidBody.frictionAir = player.friction;
         this.rigidBody.friction = 0;
+        this.rigidBody.collisionFilter.group = -1;
         this.position = this.rigidBody.position;
         this.velocity = this.rigidBody.velocity;
         Matter.Body.setInertia(this.rigidBody, Infinity);
@@ -164,6 +163,13 @@ class player {
                 //}
             }
         }
+    }
+
+    moveTo(x, y) {
+        this.headSprite.x = x;
+        this.position.x = x + 16;
+        this.headSprite.y = y;
+        this.position.y = this.headSprite.y + player.rigidBodyOffset + player.rigidBodyHeight / 2;
     }
 
     renderName() {

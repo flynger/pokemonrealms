@@ -39,8 +39,7 @@ function setupSocket() {
         let { name, x, y, facing, currentFrame } = data;
         if (!players[name]) new player(name, "red", x, y, facing);
         else {
-            players[name].headSprite.x = x;
-            players[name].headSprite.y = y;
+            players[name].moveTo(x, y);
             players[name].setFacing(facing);
         }
         players[name].headSprite.currentFrame = players[name].bodySprite.currentFrame = currentFrame;
