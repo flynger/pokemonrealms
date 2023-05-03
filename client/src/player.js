@@ -167,9 +167,8 @@ class player {
 
     moveTo(x, y) {
         this.headSprite.x = x;
-        this.position.x = x + 16;
         this.headSprite.y = y;
-        this.position.y = this.headSprite.y + player.rigidBodyOffset + player.rigidBodyHeight / 2;
+        Matter.Body.setPosition(this.rigidBody, { x: x + 16, y: y + player.rigidBodyOffset + player.rigidBodyHeight / 2 })
     }
 
     renderName() {
@@ -191,7 +190,7 @@ class player {
 
     checkForInput() {
         // set player speed
-        if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
+        if (Input.RIGHT != Input.LEFT || Input.UP != Input.DOWN) {
             if (Input.SHIFT) {
                 this.speed = player.walkSpeed;
             } else {
