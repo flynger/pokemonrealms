@@ -58,6 +58,11 @@ function setupSocket() {
         }
     });
 
+    socket.on("reply", (output) => {
+        console.log("cao ni ba");
+        console.log(output);
+    })
+
     socket.on("pong", (ms) => {
         latency = ms;
     });
@@ -307,4 +312,7 @@ function setupSocket() {
     //     $("#face").off();
     //     $(".difficulty-select").off();
     // })
+}
+function sendData() {
+    socket.emit("startBattle", {});
 }

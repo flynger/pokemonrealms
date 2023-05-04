@@ -7,7 +7,10 @@ import bodyParser from "body-parser";
 import sessions from "express-session";
 
 // our files
+import Party from './src/party.js';
+import Pokemon from './src/pokemon.js';
 import Player from "./src/player.js";
+import SingleBattle from "./src/singleBattle.js";
 import { players, accounts, LoginHandler } from "./src/loginHandler.js";
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
@@ -149,6 +152,7 @@ io.on("connection", (socket) => {
     let username = req.session.username;
     let displayName;
     let isGuest = true;
+    let battle = null;
     if (username) {
         if (players[username].connected) {
             socket.disconnect(true);
@@ -196,6 +200,24 @@ io.on("connection", (socket) => {
         // handle chat packet
         // chatHandler.processChat(socket, data)
     });
+
+    socket.on("startBattle", () => {
+        const party1 = new Party('flynger', [
+            new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["leechseed", "fly"]),
+            new Pokemon("articuno", "uno", "N", undefined, 10, undefined, undefined, "0", undefined, undefined, ["powdersnow"])
+        ]);
+        
+        const party2 = new Party('MoldyNano', [
+            new Pokemon("pidgey", "Bird", "M", undefined, 11, "leftovers", undefined, undefined, undefined, undefined, ["gust"]),
+            new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
+        ]);
+        if (battle == null) {
+            battle = new SingleBattle(party1, party2);
+            battle.startBattle();
+        }
+        console.log("cao ni ma");
+        socket.emit("reply", {output: battle.output});
+    })
 
     // add disconnect event
     socket.on("disconnect", () => {

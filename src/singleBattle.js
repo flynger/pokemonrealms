@@ -6,15 +6,15 @@ import Party from './party.js';
 import Showdown from 'pokemon-showdown';
 const { BattleStream, Dex } = Showdown;
 import * as readline from 'node:readline';
-import { is } from 'express/lib/request';
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-class SingleBattle {
-    constructor(isrunnable, party1, party2) {
+export default class SingleBattle {
+    constructor(party1, party2, canRun = false) {
         this.stream = new BattleStream();
+        this.output = "";
         (async () => {
             let ownActivePokemon = null;
             let enemyActivePokemon = null;
@@ -230,6 +230,7 @@ class SingleBattle {
                             if (!firstWordIsName && firstLetter != messageText.search(/[A-Z]/)) {
                                 messageText = messageText.substring(0, firstLetter) + messageText[firstLetter].toUpperCase() + messageText.substring(firstLetter + 1);
                             }
+                            this.output += messageText + "\n";
                             console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
                         }
                         break;
@@ -251,7 +252,7 @@ class SingleBattle {
             }
         })();
         
-        this.isrunnable = isrunnable;
+        this.canRun = canRun;
 
         this.playerOptions1 = {
             name: party1.name,
@@ -296,7 +297,7 @@ class SingleBattle {
     }
 
     run() {
-        if (this.isrunnable) {
+        if (this.canRun) {
             this.endBattle();
         }
     }
