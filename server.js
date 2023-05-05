@@ -169,7 +169,7 @@ io.on("connection", (socket) => {
     if (!players[username]) {
         players[username] = new Player(username, displayName);
     }
-    players[username].connected = true;
+    players[username].setSocket(socket);
 
     // add events
     socket.on("ping", (callback) => {
@@ -202,35 +202,26 @@ io.on("connection", (socket) => {
     });
 
     socket.on("startBattle", () => {
-        const party1 = new Party('flynger', [
-            new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["leechseed", "fly"]),
-            new Pokemon("articuno", "uno", "N", undefined, 10, undefined, undefined, "0", undefined, undefined, ["powdersnow"])
-        ]);
-        
-        const party2 = new Party('MoldyNano', [
-            new Pokemon("pidgey", "Bird", "M", undefined, 11, "leftovers", undefined, undefined, undefined, undefined, ["gust"]),
-            new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
-        ]);
         if (battle == null) {
+            const party1 = new Party(username, []);
+            const party2 = new Party('MoldyNano', []);
             battle = new SingleBattle(party1, party2);
-            battle.startBattle();
+            battle.startRandomBattle();
+            console.log("Received start battle request");
         }
-        console.log("cao ni ma");
-        socket.emit("reply", {output: battle.output});
-    })
+    });
 
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(color.red, socket.id);
+        players[username].deleteSocket();
         if (isGuest) {
             delete players[username];
-        } else {
-            players[username].connected = false;
         }
         socket.broadcast.emit("playerDisconnect", username);
     });
     // send username
-    socket.emit("playerData", username, Object.values(players).filter((player) => player.connected));
+    socket.emit("playerData", username, Object.values(players).filter((player) => player.connected).map((player) => player.export()));
     //     socket.emit("playersOnline", server.onlinePlayers);
 });
 

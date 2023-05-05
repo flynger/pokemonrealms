@@ -1,15 +1,16 @@
 import { DefaultText } from 'pokemon-showdown/.data-dist/text/default.js';
 import { MovesText } from 'pokemon-showdown/.data-dist/text/moves.js';
 import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'
+import { players } from './loginHandler.js';
 import Pokemon from './pokemon.js';
 import Party from './party.js';
 import Showdown from 'pokemon-showdown';
 const { BattleStream, Dex } = Showdown;
-import * as readline from 'node:readline';
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// import * as readline from 'node:readline';
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
 export default class SingleBattle {
     constructor(party1, party2, canRun = false) {
@@ -119,9 +120,6 @@ export default class SingleBattle {
                                         default:
                                             messageText = " ";
                                     }
-                                    //splitCounter == 1
-                                    //console.log(`Send public: ${line}`);
-
                                 }
                                 splitCounter--;
                             } else {
@@ -230,9 +228,23 @@ export default class SingleBattle {
                             if (!firstWordIsName && firstLetter != messageText.search(/[A-Z]/)) {
                                 messageText = messageText.substring(0, firstLetter) + messageText[firstLetter].toUpperCase() + messageText.substring(firstLetter + 1);
                             }
-                            this.output += messageText + "\n";
+
+                            if (messageText != " ") {
+                                // TODO: make a room for battle emits later
+                                let p1 = players[party1.name];
+                                if (p1 && p1.connected) {
+                                    p1.socket.emit("battleData", messageText);
+                                }
+                                let p2 = players[party2.name];
+                                if (p2 && p2.connected) {
+                                    p2.socket.emit("battleData", messageText);
+                                }
+                                this.output += messageText + "\n";
+                            }
+
                             console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
                         }
+
                         break;
                     case "sideupdate":
                         let player = outputArray[0];
@@ -251,7 +263,7 @@ export default class SingleBattle {
                 // console.log(output);
             }
         })();
-        
+
         this.canRun = canRun;
 
         this.playerOptions1 = {
@@ -376,10 +388,10 @@ const party2 = new Party('MoldyNano', [
     new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
 ]);
 
-const battle = new SingleBattle(party1, party2);
+//const battle = new SingleBattle(party1, party2);
 
-battle.startRandomBattle();
-askInput();
+// battle.startRandomBattle();
+// askInput();
 
 function askInput() {
     setTimeout(() => {

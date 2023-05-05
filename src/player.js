@@ -8,6 +8,16 @@ export default class Player {
         this.connected = false;
     }
 
+    setSocket(socket) {
+        this.socket = socket;
+        this.connected = true;
+    }
+
+    deleteSocket() {
+        delete this.socket;
+        this.connected = false;
+    }
+
     export() {
         return {
             name: this.name,

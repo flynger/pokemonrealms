@@ -283,4 +283,4 @@ class player {
         });
     }
 }
-const players = player.players;
+var players = player.players;

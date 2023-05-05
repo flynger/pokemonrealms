@@ -42,6 +42,7 @@ $(window).on('load', function () {
     $('#message-title').text("Loading...");
     $('#blueModalBtn').hide();
     $('#grayModalBtn').hide();
+    $('#pokemon-summary').hide();
     // $('#battle-UI').hide();
     setup();
 });

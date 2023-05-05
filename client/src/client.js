@@ -22,6 +22,10 @@ function setupSocket() {
 
     //connect command
     socket.on("playerData", (name, playersArray) => {
+        // add fix for reconnect properly instead of jank reload
+        if (Object.values(players).length > 0) {
+            window.location.reload();
+        }
         console.log(playersArray);
         username = name;
         for (let plyr of playersArray) {
@@ -58,8 +62,7 @@ function setupSocket() {
         }
     });
 
-    socket.on("reply", (output) => {
-        console.log("cao ni ba");
+    socket.on("battleData", (output) => {
         console.log(output);
     })
 
@@ -78,6 +81,7 @@ function setupSocket() {
         $('#grayModalBtn').on('click', () => window.location.href = "https://www.google.com");
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
+        document.body.removeChild(app.view);
     });
 
     // //tells the server a chat message was sent
