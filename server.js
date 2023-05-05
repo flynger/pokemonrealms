@@ -214,10 +214,12 @@ io.on("connection", (socket) => {
 
     socket.on("moveInput", (moveNumber) => {
         battle.useMove(1, moveNumber);
+        battle.useMove(2, moveNumber);
     });
 
     socket.on("switchInput", (switchNumber) =>{
         battle.switchTo(1, switchNumber);
+        battle.switchTo(2, switchNumber);
     });
 
     // add disconnect event
