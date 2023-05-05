@@ -208,7 +208,16 @@ io.on("connection", (socket) => {
             battle = new SingleBattle(party1, party2);
             battle.startRandomBattle();
             console.log("Received start battle request");
+            io.emit()
         }
+    });
+
+    socket.on("moveInput", (moveNumber) => {
+        battle.useMove(1, moveNumber);
+    });
+
+    socket.on("switchInput", (switchNumber) =>{
+        battle.switchTo(1, switchNumber);
     });
 
     // add disconnect event
