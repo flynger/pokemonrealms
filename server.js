@@ -152,7 +152,6 @@ io.on("connection", (socket) => {
     let username = req.session.username;
     let displayName;
     let isGuest = true;
-    let battle = null;
     if (username) {
         if (players[username].connected) {
             socket.disconnect(true);
@@ -201,8 +200,25 @@ io.on("connection", (socket) => {
         // chatHandler.processChat(socket, data)
     });
 
+    socket.on("battleRequest", (player) => {
+        player = player.toLowerCase();
+        if (players[player] && players[player].connected) {
+            if (!players[username].requests.hasOwnProperty(player)) {
+                players[player].socket.emit("battleRequest", displayName);
+                players[player].requests.username = true;
+            }
+            if (username.battle == null) {
+                const party1 = new Party(username, []);
+                const party2 = new Party(players[player].displayName, []);
+                battle = new SingleBattle(party1, party2);
+                battle.startRandomBattle();
+                console.log("Received start battle request");
+            }
+        }
+    });
+
     socket.on("startBattle", () => {
-        if (battle == null) {
+        if (username.battle == null) {
             const party1 = new Party(username, []);
             const party2 = new Party('MoldyNano', []);
             battle = new SingleBattle(party1, party2);
@@ -212,12 +228,12 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("moveInput", (moveNumber) => {
+    socket.on("moveInput", (data) => {
         battle.useMove(1, moveNumber);
         battle.useMove(2, moveNumber);
     });
 
-    socket.on("switchInput", (switchNumber) =>{
+    socket.on("switchInput", (switchNumber) => {
         battle.switchTo(1, switchNumber);
         battle.switchTo(2, switchNumber);
     });
