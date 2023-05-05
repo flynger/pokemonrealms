@@ -6,6 +6,9 @@ export default class Player {
         this.y = y;
         this.facing = facing;
         this.connected = false;
+        this.socket = null;
+        this.requests = {};
+        this.battle = null;
     }
 
     setSocket(socket) {
@@ -14,7 +17,7 @@ export default class Player {
     }
 
     deleteSocket() {
-        delete this.socket;
+        this.socket = null;
         this.connected = false;
     }
 
