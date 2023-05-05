@@ -6,7 +6,7 @@
     image-rendering: pixelated;
 }
 
-#overlays {
+#overlay {
     position: absolute;
     width: inherit;
     height: 24.427%;
@@ -14,4 +14,31 @@
     background-image: url('../res/gui/battle/overlay_command.png');
     background-size: cover;
     image-rendering: pixelated;
+}
+
+.battle-button {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    right: 26.172%;
+    top: 10.417%;
+    background-image: url('../res/gui/battle/cursor_command.png');
+    width: 122px;
+    height: 39px;
+}
+
+#button-1 {
+    background-position: -134px -4px;
+    scale: var(--scale);
+}
+
+#button-2 {
+    scale: var(--scale);
+}
+
+#button-3 {
+    scale: var(--scale);
+}
+
+#button-4 {
+    scale: var(--scale);
 }
