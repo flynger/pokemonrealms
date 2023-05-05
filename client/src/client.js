@@ -63,13 +63,16 @@ function setupSocket() {
     });
 
     socket.on("battleRequest", (user) => {
-        // $('#message').modal({ backdrop: 'static', keyboard: false });
+        $('#message').modal({ backdrop: 'static' });
         $('#message').modal('show');
-        $('#message-title').text("Disconnected from server");
+        $('#message-title').text("Battle request");
         $('#message-body').text(user + " has sent you a battle request. Accept?");
         $('#blueModalBtn').text("Let's battle!");
-        $('#grayModalBtn').text("Reject");
-        $('#blueModalBtn').on('click', () => battleRequest(user));
+        $('#grayModalBtn').text("Ignore");
+        $('#blueModalBtn').on('click', () => {
+            battleRequest(user);
+            $('#message').modal('hide');
+        });
         $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();

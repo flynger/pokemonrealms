@@ -276,6 +276,10 @@ export default class SingleBattle {
         };
     }
 
+    getPlayerNumber(player) {
+        return this.playerOptions1.name == player ? 1 : this.playerOptions2.name == player ? 2 : -1;
+    }
+
     startBattle() {
         this.stream.write(`>start {"formatid":"gen7ubers"}`);
         this.stream.write(`>player p1 ${JSON.stringify(this.playerOptions1)}`);
