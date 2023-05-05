@@ -51,6 +51,7 @@ $(window).on('load', function () {
 function setGameSize() {
     gameDiv.style.width = WIDTH * ratio + "px";
     battleUI.style.width = BATTLE_WIDTH * ratio + "px";
+    $('.battle-button').css({ "--scale": ratio})
 }
 
 async function setup() {
