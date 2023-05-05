@@ -64,7 +64,7 @@ function setupSocket() {
 
     socket.on("battleData", (output) => {
         console.log(output);
-    })
+    });
 
     socket.on("pong", (ms) => {
         latency = ms;
@@ -317,6 +317,9 @@ function setupSocket() {
     //     $(".difficulty-select").off();
     // })
 }
-function sendData() {
+function startBattle() {
     socket.emit("startBattle", {});
+    // socket.emit("startBattle", {});
+    // socket.emit("moveInput", 2);
+    // socket.emit("switchInput", 2);
 }
