@@ -14,13 +14,24 @@ const { BattleStream, Dex } = Showdown;
 
 export default class SingleBattle {
     constructor(party1, party2, canRun = false) {
+        this.canRun = canRun;
+
+        this.player1 = {
+            name: party1.name,
+            team: party1.exportTeam()
+        };
+        this.player2 = {
+            name: party2.name,
+            team: party2.exportTeam()
+        };
+        
         this.stream = new BattleStream();
         this.output = "";
         (async () => {
-            let ownActivePokemon = null;
-            let enemyActivePokemon = null;
-            let previousOwnHpPercentage = 100;
-            let previousEnemyHpPercentage = 100;
+            this.player1.activePokemon = null;
+            this.player2.activePokemon = null;
+            this.player1.previousHpPercent = 100;
+            this.player2.previousHpPercent = 100;
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
                 switch (outputArray.shift()) {
@@ -41,12 +52,12 @@ export default class SingleBattle {
                                 if (splitCounter == 2) {
                                     switch (denoter) {
                                         case "switch":
-                                            if (isOwnPokemon && ownActivePokemon != null) {
+                                            if (isOwnPokemon && this.player1.activePokemon != null) {
                                                 messageText = DefaultText.default.switchOutOwn;
-                                                args.NICKNAME = ownActivePokemon;
-                                            } else if (!isOwnPokemon && enemyActivePokemon != null) {
+                                                args.NICKNAME = this.player1.activePokemon;
+                                            } else if (!isOwnPokemon && this.player2.activePokemon != null) {
                                                 messageText = DefaultText.default.switchOut;
-                                                args.NICKNAME = enemyActivePokemon;
+                                                args.NICKNAME = this.player2.activePokemon;
                                                 args.TRAINER = party2.name;
                                             } else {
                                                 // add logic to send private data to player
@@ -65,10 +76,10 @@ export default class SingleBattle {
                                             args.SPECIES = lineArray[1].split(", ")[0];
                                             if (isOwnPokemon) {
                                                 messageText = DefaultText.default.switchInOwn;
-                                                ownActivePokemon = args.NICKNAME;
+                                                this.player1.activePokemon = args.NICKNAME;
                                             } else if (!isOwnPokemon) {
                                                 messageText = DefaultText.default.switchIn;
-                                                enemyActivePokemon = args.NICKNAME;
+                                                this.player2.activePokemon = args.NICKNAME;
                                                 args.TRAINER = party2.name;
                                             }
                                             // add logic to send public data to player
@@ -89,11 +100,11 @@ export default class SingleBattle {
                                             }
                                             var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
                                             if (isOwnPokemon) {
-                                                args.PERCENTAGE = previousOwnHpPercentage - newPercentage + "%";
-                                                previousOwnHpPercentage = newPercentage;
+                                                args.PERCENTAGE = this.player1.previousHpPercent - newPercentage + "%";
+                                                this.player1.previousHpPercent = newPercentage;
                                             } else {
-                                                args.PERCENTAGE = previousEnemyHpPercentage - newPercentage + "%";
-                                                previousEnemyHpPercentage = newPercentage;
+                                                args.PERCENTAGE = this.player2.previousHpPercent - newPercentage + "%";
+                                                this.player2.previousHpPercent = newPercentage;
                                             }
                                             break;
                                         case "-heal":
@@ -112,9 +123,9 @@ export default class SingleBattle {
                                             }
 
                                             if (isOwnPokemon) {
-                                                previousOwnHpPercentage = newPercentage;
+                                                this.player1.previousHpPercent = newPercentage;
                                             } else {
-                                                previousEnemyHpPercentage = newPercentage;
+                                                this.player2.previousHpPercent = newPercentage;
                                             }
                                             break;
                                         default:
@@ -127,9 +138,9 @@ export default class SingleBattle {
                                     case "faint":
                                         args.NICKNAME = lineArray[0].split(": ")[1];
                                         if (isOwnPokemon) {
-                                            ownActivePokemon = null;
+                                            this.player1.activePokemon = null;
                                         } else if (isOwnPokemon) {
-                                            ownActivePokemon = null;
+                                            this.player1.activePokemon = null;
                                         }
                                         break;
                                     case "move":
@@ -263,39 +274,30 @@ export default class SingleBattle {
                 // console.log(output);
             }
         })();
-
-        this.canRun = canRun;
-
-        this.playerOptions1 = {
-            name: party1.name,
-            team: party1.exportTeam()
-        };
-        this.playerOptions2 = {
-            name: party2.name,
-            team: party2.exportTeam()
-        };
     }
 
-    getPlayerNumber(player) {
-        return this.playerOptions1.name == player ? 1 : this.playerOptions2.name == player ? 2 : -1;
+    //generateOutput(playerId)
+
+    getPlayerId(player) {
+        return this.player1.name == player ? 1 : this.player2.name == player ? 2 : -1;
     }
 
     startBattle() {
         this.stream.write(`>start {"formatid":"gen7ubers"}`);
-        this.stream.write(`>player p1 ${JSON.stringify(this.playerOptions1)}`);
-        this.stream.write(`>player p2 ${JSON.stringify(this.playerOptions2)}`);
+        this.stream.write(`>player p1 ${JSON.stringify(this.player1)}`);
+        this.stream.write(`>player p2 ${JSON.stringify(this.player2)}`);
         // this.stream.write(`>p1 team 123456`);
         // this.stream.write(`>p2 team 123456`);
     }
 
     startRandomBattle() {
         this.stream.write(`>start {"formatid":"gen7randombattle"}`);
-        this.stream.write(`>player p1 ${JSON.stringify({ name: this.playerOptions1.name })}`);
-        this.stream.write(`>player p2 ${JSON.stringify({ name: this.playerOptions2.name })}`);
+        this.stream.write(`>player p1 ${JSON.stringify({ name: this.player1.name })}`);
+        this.stream.write(`>player p2 ${JSON.stringify({ name: this.player2.name })}`);
     }
 
-    useMove(playerNumber, moveNumber) {
-        if (playerNumber == 1) {
+    useMove(playerId, moveNumber) {
+        if (playerId == 1) {
             this.stream.write(`>p1 move ${moveNumber}`);
         }
         else {
@@ -303,8 +305,8 @@ export default class SingleBattle {
         }
     }
 
-    switchTo(playerNumber, switchNumber) {
-        if (playerNumber == 1) {
+    switchTo(playerId, switchNumber) {
+        if (playerId == 1) {
             this.stream.write(`>p1 switch ${switchNumber}`);
         }
         else {
