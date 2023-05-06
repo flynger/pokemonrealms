@@ -203,8 +203,8 @@ io.on("connection", (socket) => {
                 otherPlayer.socket.emit("battleRequest", displayName);
                 otherPlayer.requests[username] = true;
             } else {
-                const party1 = new Party(displayName, []);
-                const party2 = new Party(otherPlayer.displayName, []);
+                const party2 = new Party(displayName, []);
+                const party1 = new Party(otherPlayer.displayName, []);
                 thisPlayer.battle = otherPlayer.battle = new SingleBattle(party1, party2);
                 thisPlayer.battle.startRandomBattle();
                 console.log("Starting match with 2 players...");
@@ -223,14 +223,16 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("moveInput", (data) => {
-        battle.useMove(1, moveNumber);
-        battle.useMove(2, moveNumber);
+    socket.on("moveInput", (moveNumber) => {
+        if (thisPlayer.battle != null) {
+            thisPlayer.battle.useMove(displayName, moveNumber);
+        }
     });
 
     socket.on("switchInput", (switchNumber) => {
-        battle.switchTo(1, switchNumber);
-        battle.switchTo(2, switchNumber);
+        if (thisPlayer.battle != null) {
+            thisPlayer.battle.switchTo(displayName, switchNumber);
+        }
     });
 
     // add disconnect event

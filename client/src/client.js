@@ -82,6 +82,10 @@ function setupSocket() {
         console.log(output);
     });
 
+    socket.on("battleOptions", (options) => {
+        console.log(options);
+    });
+
     socket.on("pong", (ms) => {
         latency = ms;
     });
@@ -102,7 +106,10 @@ function setupSocket() {
 }
 function battleRequest(user) {
     socket.emit("battleRequest", user);
-    // socket.emit("startBattle", {});
-    // socket.emit("moveInput", 2);
-    // socket.emit("switchInput", 2);
+}
+function useMove(move) {
+    socket.emit("moveInput", move);
+}
+function switchTo(slot) {
+    socket.emit("switchInput", slot);
 }

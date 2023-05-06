@@ -201,13 +201,14 @@ async function setupGame() {
 function draw(deltaTime) {
     graphics.clear();
     smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
+    //console.log( { deltaTime, smoothedFrameDuration });
     for (let name in players) {
-        players[name].step(smoothedFrameDuration, app);
+        players[name].step();
     }
     for (let grss in grasses) {
         grasses[grss].step();
     }
-    Matter.Engine.update(engine, 100 / 3 * smoothedFrameDuration);
+    Matter.Engine.update(engine, 100 / 3 * deltaTime);
     for (let name in players) {
         players[name].endFrame();
     }
