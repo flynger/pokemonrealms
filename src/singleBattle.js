@@ -121,13 +121,18 @@ export default class SingleBattle {
                                 let effectSource = effectDetails[1] || effectDetails[0];
                                 if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].damage) {
                                     messageText = ItemsText[Dex.items.get(effectSource).id].damage;
+                                } else if (effectSourceType == effectSource) {
+                                    if (MovesText[Dex.moves.get(effectSource).id] && MovesText[Dex.moves.get(effectSource).id].damage) {
+                                        messageText = MovesText[Dex.moves.get(effectSource).id].damage;
+                                    }
+                                    else messageText = DefaultText[effectSource].damage;
                                 } else {
                                     //messageText = MovesText[Dex.moves.get(effectSource).id].damage;
                                 }
                             }
                             var thisPartyData = this["player" + side].data;
                             var oldMonHP = thisPartyData.side.pokemon.find((mon) => mon.ident == pokemonIdentity).condition.split("/");
-                            var oldPercentage = Math.ceil(+oldMonHP[0] / +oldMonHP[1] * 100);
+                            var oldPercentage = Math.ceil(+oldMonHP[0] / +oldMonHP[1].split(" ")[0] * 100);
                             var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
                             args.PERCENTAGE = oldPercentage - newPercentage + "%";
                             break;
@@ -138,13 +143,14 @@ export default class SingleBattle {
                             var newPercentage = +lineArray[1].split("/")[0];
                             if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
                                 let effectDetails = lineArray[2].slice(7).split(": ");
-                                console.log(effectDetails);
                                 let effectSourceType = effectDetails[0];
                                 let effectSource = effectDetails[1];
                                 if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].heal) {
                                     messageText = ItemsText[Dex.items.get(effectSource).id].heal;
                                 } else if (effectSourceType == "move" && MovesText[Dex.moves.get(effectSource).id].heal) {
                                     messageText = MovesText[Dex.moves.get(effectSource).id].heal;
+                                } else if (effectSourceType == "drain") {
+                                    messageText = DefaultText.drain.heal;
                                 }
                             }
                             break;
@@ -219,6 +225,10 @@ export default class SingleBattle {
                         }
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         break;
+                    case "-status":
+                        var statusEffect = lineArray[1];
+                        messageText = DefaultText[statusEffect].start;
+                        args.NICKNAME = lineArray[0].split(": ")[1];
                     case "-supereffective":
                         messageText = DefaultText.default.superEffective;
                         useArgs = false;

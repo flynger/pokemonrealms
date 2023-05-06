@@ -28,14 +28,7 @@ function setupSocket() {
         }
         console.log(playersArray);
         username = name;
-        for (let plyr of playersArray) {
-            if (plyr.name == username) {
-                new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true).sendLocation();
-            }
-            else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
-        }
-        app.ticker.add(draw);
-        document.body.append(app.view);
+        loadPlayersAndGame(playersArray);
         $('#message').modal('hide');
     });
 
