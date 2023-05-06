@@ -24,6 +24,9 @@ export default class SingleBattle {
             name: party2.name,
             team: party2.exportTeam()
         };
+
+        this.perspective = '1';
+        this.otherPerspective = '2';
         
         this.stream = new BattleStream();
         this.output = "";
@@ -43,7 +46,7 @@ export default class SingleBattle {
                             let args = {}; //args to replace their respective fields in default.ts
                             let useArgs = true; // whether to replace args or not
 
-                            let isOwnPokemon = lineArray.length > 1 && (lineArray[1].includes("p1") || lineArray[1].includes("p2")) ? lineArray[1].slice(0, 2) == "p1" : null; // whether the message is about your pokemon or the opponent's
+                            let isOwnPokemon = lineArray.length > 1 && (lineArray[1].includes("p" + perspective) || lineArray[1].includes("p" + this.otherPerspective)) ? lineArray[1].slice(0, 2) == "p1" : null; // whether the message is about your pokemon or the opponent's
                             // if msg is split
                             let denoter = lineArray.shift();
                             let messageText = DefaultText.default[denoter[0] == "-" ? denoter.substring(1) : denoter] || " ";
@@ -76,10 +79,10 @@ export default class SingleBattle {
                                             args.SPECIES = lineArray[1].split(", ")[0];
                                             if (isOwnPokemon) {
                                                 messageText = DefaultText.default.switchInOwn;
-                                                this.player1.activePokemon = args.NICKNAME;
+                                                this["player" + this.perspective].activePokemon = args.NICKNAME;
                                             } else if (!isOwnPokemon) {
                                                 messageText = DefaultText.default.switchIn;
-                                                this.player2.activePokemon = args.NICKNAME;
+                                                this["player" + this.otherPerspective].activePokemon = args.NICKNAME;
                                                 args.TRAINER = party2.name;
                                             }
                                             // add logic to send public data to player
@@ -100,11 +103,11 @@ export default class SingleBattle {
                                             }
                                             var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
                                             if (isOwnPokemon) {
-                                                args.PERCENTAGE = this.player1.previousHpPercent - newPercentage + "%";
-                                                this.player1.previousHpPercent = newPercentage;
+                                                args.PERCENTAGE = this["player" + this.perspective].previousHpPercent - newPercentage + "%";
+                                                this["player" + this.perspective].previousHpPercent = newPercentage;
                                             } else {
-                                                args.PERCENTAGE = this.player2.previousHpPercent - newPercentage + "%";
-                                                this.player2.previousHpPercent = newPercentage;
+                                                args.PERCENTAGE = this["player" + this.otherPerspective].previousHpPercent - newPercentage + "%";
+                                                this["player" + this.otherPerspective].previousHpPercent = newPercentage;
                                             }
                                             break;
                                         case "-heal":
@@ -123,9 +126,9 @@ export default class SingleBattle {
                                             }
 
                                             if (isOwnPokemon) {
-                                                this.player1.previousHpPercent = newPercentage;
+                                                this["player" + this.perspective].previousHpPercent = newPercentage;
                                             } else {
-                                                this.player2.previousHpPercent = newPercentage;
+                                                this["player" + this.otherPerspective].previousHpPercent = newPercentage;
                                             }
                                             break;
                                         default:
@@ -138,9 +141,9 @@ export default class SingleBattle {
                                     case "faint":
                                         args.NICKNAME = lineArray[0].split(": ")[1];
                                         if (isOwnPokemon) {
-                                            this.player1.activePokemon = null;
+                                            this["player" + this.perspective].activePokemon = null;
                                         } else if (isOwnPokemon) {
-                                            this.player1.activePokemon = null;
+                                            this["player" + this.otherPerspective].activePokemon = null;
                                         }
                                         break;
                                     case "move":
