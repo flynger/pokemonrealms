@@ -28,8 +28,8 @@
 .fight-button {
     position: absolute;
     aspect-ratio: auto 126 / 38;
-    right: 26.172%;
-    top: 16.417%;
+    right: 31.406%;
+    top: 19%;
     background-image: url('../res/gui/battle/cursor_command.png');
     width: 122px;
     height: 39px;
@@ -39,8 +39,8 @@
 .pkmn-button {
     position: absolute;
     aspect-ratio: auto 126 / 38;
-    right: 5.172%;
-    top: 16.417%;
+    right: 7%;
+    top: 19%;
     background-image: url('../res/gui/battle/cursor_command.png');
     width: 122px;
     height: 39px;
@@ -49,8 +49,8 @@
 .bag-button {
     position: absolute;
     aspect-ratio: auto 126 / 38;
-    right: 26.172%;
-    bottom: 11.417%;
+    right: 31.406%;
+    bottom: 16%;
     background-image: url('../res/gui/battle/cursor_command.png');
     width: 122px;
     height: 39px;
@@ -59,8 +59,8 @@
 .run-button {
     position: absolute;
     aspect-ratio: auto 126 / 38;
-    right: 5.172%;
-    bottom: 11.417%;
+    right: 7%;
+    bottom: 16%;
     background-image: url('../res/gui/battle/cursor_command.png');
     width: 122px;
     height: 39px;

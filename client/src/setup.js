@@ -26,7 +26,7 @@ function setGameSize() {
     gameDiv.style.width = WIDTH * ratio + "px";
     gameDiv.style.height = HEIGHT * ratio + "px";
     var r = document.querySelector(':root');
-    r.style.setProperty('--scale', ratio);
+    r.style.setProperty('--scale', 1.2 * ratio);
     //$('.battle-button').css({ "--scale": ratio})
 }
 
