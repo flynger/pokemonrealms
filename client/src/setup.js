@@ -8,7 +8,8 @@ $(window).on('load', function () {
     $('#blueModalBtn').hide();
     $('#grayModalBtn').hide();
     $('#pokemon-summary').hide();
-    //$('#battle-UI').hide();
+    // $('#battle-UI').hide();
+    $('#overlay-fight').hide();
     setup();
 });
 

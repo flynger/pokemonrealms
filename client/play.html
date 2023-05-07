@@ -32,6 +32,7 @@
   <script src="src/collider.js"></script>
   <script src="src/draw.js"></script>
   <script src="src/setup.js"></script>
+  <script src="src/battle.js"></script>
 
   <link href="libs/jquery-ui.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
@@ -72,10 +73,15 @@
   <div id="game" class="d-flex justify-content-center align-items-center w-100">
     <div id="battle-UI" class="bg-image">
       <div id="overlay" class="bg-image">
-        <div id="button-1" class="fight-button bg-image" onclick="alert()"></div>
+        <div id="button-1" class="fight-button bg-image" onclick="showFightButtons()"></div>
         <div id="button-2" class="pkmn-button bg-image" onclick="alert()"></div>
         <div id="button-3" class="bag-button bg-image" onclick="alert()"></div>
-        <div id="button-4" class="run-button bg-image" onclick="alert()"></div>
+        <div id="button-4" class="run-button bg-image" onclick="runFromBattle()"></div>
+        <!-- <div id="button-2" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
+        <div id="button-3" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
+        <div id="button-4" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div> -->
+      </div>
+      <div id="overlay-fight" class="bg-image">
         <!-- <div id="button-2" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
         <div id="button-3" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
         <div id="button-4" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div> -->

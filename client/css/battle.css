@@ -3,7 +3,6 @@
     aspect-ratio: auto 1024 / 768;
     background-image: url('../res/battle/grass_bg.png');
     background-size: cover;
-    image-rendering: pixelated;
 }
 
 #overlay {
@@ -13,7 +12,15 @@
     bottom: 0%;
     background-image: url('../res/gui/battle/overlay_command.png');
     background-size: cover;
-    image-rendering: pixelated;
+}
+
+#overlay-fight {
+    position: absolute;
+    width: inherit;
+    height: 24.427%;
+    bottom: 0%;
+    background-image: url('../res/gui/battle/overlay_fight.png');
+    background-size: cover;
 }
 
 .fight-button {
