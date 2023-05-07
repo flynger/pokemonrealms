@@ -16,11 +16,42 @@
     image-rendering: pixelated;
 }
 
-.battle-button {
+.fight-button {
     position: absolute;
     aspect-ratio: auto 126 / 38;
     right: 26.172%;
-    top: 10.417%;
+    top: 16.417%;
+    background-image: url('../res/gui/battle/cursor_command.png');
+    width: 122px;
+    height: 39px;
+    /* scale: 100%; */
+}
+
+.pkmn-button {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    right: 5.172%;
+    top: 16.417%;
+    background-image: url('../res/gui/battle/cursor_command.png');
+    width: 122px;
+    height: 39px;
+}
+
+.bag-button {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    right: 26.172%;
+    bottom: 11.417%;
+    background-image: url('../res/gui/battle/cursor_command.png');
+    width: 122px;
+    height: 39px;
+}
+
+.run-button {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    right: 5.172%;
+    bottom: 11.417%;
     background-image: url('../res/gui/battle/cursor_command.png');
     width: 122px;
     height: 39px;
@@ -31,14 +62,41 @@
     scale: var(--scale);
 }
 
+#button-1:hover {
+    cursor: pointer;
+    background-position: -4px -4px;
+    scale: var(--scale);
+}
+
 #button-2 {
+    background-position: -134px -50px;
+    scale: var(--scale);
+}
+
+#button-2:hover {
+    cursor: pointer;
+    background-position: -4px -50px;
     scale: var(--scale);
 }
 
 #button-3 {
+    background-position: -134px -95px;
+    scale: var(--scale);
+}
+
+#button-3:hover {
+    cursor: pointer;
+    background-position: -4px -95px;
     scale: var(--scale);
 }
 
 #button-4 {
+    background-position: -134px -140px;
+    scale: var(--scale);
+}
+
+#button-4:hover {
+    cursor: pointer;
+    background-position: -4px -140px;
     scale: var(--scale);
 }
