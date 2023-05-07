@@ -23,16 +23,6 @@ const gameContainer = new PIXI.Container();
 const textContainer = new PIXI.Container();
 const smoothingFrames = 15; // The number of frames to use for smoothing
 var smoothedFrameDuration = 0; // The smoothed frame duration
-const WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
-const BATTLE_WIDTH = 631.5;
-var ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
-var map = {
-    width: 60,
-    height: 45
-};
-var gen4hgssSheet;
-var gen5exteriorSheet;
-var kyledoveSheet;
 
 function draw(deltaTime) {
     graphics.clear();

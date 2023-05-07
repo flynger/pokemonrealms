@@ -1,3 +1,12 @@
+const WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
+var ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
+var map = {
+    width: 60,
+    height: 45
+};
+var gen4hgssSheet;
+var gen5exteriorSheet;
+var kyledoveSheet;
 
 var gameDiv, battleUI;
 
@@ -8,15 +17,14 @@ $(window).on('load', function () {
     $('#blueModalBtn').hide();
     $('#grayModalBtn').hide();
     $('#pokemon-summary').hide();
-    // $('#battle-UI').hide();
-    $('#overlay-fight').hide();
+    $('#game').hide();
     setup();
 });
 
 // sets the game and UI size
 function setGameSize() {
     gameDiv.style.width = WIDTH * ratio + "px";
-    battleUI.style.width = BATTLE_WIDTH * ratio + "px";
+    gameDiv.style.height = HEIGHT * ratio + "px";
     var r = document.querySelector(':root');
     r.style.setProperty('--scale', ratio);
     //$('.battle-button').css({ "--scale": ratio})
@@ -173,5 +181,7 @@ function loadPlayersAndGame(playersArray) {
         else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
     }
     app.ticker.add(draw);
-    document.body.append(app.view);
+    gameDiv.prepend(app.view);
+    $('#game').show();
+    $('#battle-UI').show();
 }
