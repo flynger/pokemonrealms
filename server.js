@@ -1,3 +1,7 @@
+Array.prototype.remove = function (elem) {
+    this.splice(this.indexOf(elem), 1);
+}
+
 // libraries
 import express from "express";
 import { Server } from "socket.io";
@@ -39,10 +43,7 @@ io.engine.use(sessionMiddleware);
 // io.use((socket: any, next: any) => sessionMiddleware(socket.request, {}, next)); // gives request
 
 // server variable
-const server = {
-    io,
-    onlinePlayers: [] // Array<Player>
-}
+var onlinePlayers = []; // Array<Player>
 // our source file initialization
 
 app.use(express.static("./client"));

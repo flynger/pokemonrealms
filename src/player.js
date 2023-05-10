@@ -1,4 +1,6 @@
 export default class Player {
+    static onlinePlayers = [];
+
     constructor(name, displayName, x = 256, y = 254, facing = "right") {
         this.name = name;
         this.displayName = displayName;
@@ -14,11 +16,13 @@ export default class Player {
     setSocket(socket) {
         this.socket = socket;
         this.connected = true;
+        Player.onlinePlayers.push(this.displayName);
     }
 
     deleteSocket() {
         this.socket = null;
         this.connected = false;
+        Player.onlinePlayers.remove(this.displayName);
     }
 
     export() {
