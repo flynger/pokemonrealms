@@ -289,7 +289,7 @@ export default class SingleBattle {
         this.stream.write(`>player p1 ${JSON.stringify({ name: this.playerOptions1.name })}`);
         this.stream.write(`>player p2 ${JSON.stringify({ name: this.playerOptions2.name })}`);
     }
-
+    //a
     useMove(playerNumber, moveNumber) {
         if (playerNumber == 1) {
             this.stream.write(`>p1 move ${moveNumber}`);
