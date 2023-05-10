@@ -11,6 +11,7 @@ import bodyParser from "body-parser";
 import sessions from "express-session";
 
 // our files
+import Map from './src/map.js';
 import Party from './src/party.js';
 import Pokemon from './src/pokemon.js';
 import Player from "./src/player.js";
@@ -40,11 +41,6 @@ const io = new Server(expressServer, {
     pingTimeout: 5000
 });
 io.engine.use(sessionMiddleware);
-// io.use((socket: any, next: any) => sessionMiddleware(socket.request, {}, next)); // gives request
-
-// server variable
-var onlinePlayers = []; // Array<Player>
-// our source file initialization
 
 app.use(express.static("./client"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -60,37 +56,10 @@ app.get("/", (req, res) => {
     // redirect to game
     res.sendFile('home.html', { root: './client' });
 });
-// app.get("/home", (req, res) => {
-//     // redirect to game
-//     res.redirect("/game");
-// });
 app.get("/play", (req, res) => {
     // game page
     res.sendFile('play.html', { root: './client' });
 });
-// app.get("/profile", (req, res) => {
-//     // get the requested username parameter
-//     let requestedUsername: String = req.query.name ? req.query.name.toLowerCase() : req.session.username ? req.session.username : "";
-//     // send profile page if player exists, else redirect to login
-//     // if (requestedUsername && server.players.hasOwnProperty(requestedUsername)) {
-//     //     res.sendFile('profile.html', { root: './client' });
-//     // } else res.redirect("/login");
-// });
-// app.post("/profile", (req, res) => {
-//     // get the requested username parameter
-//     let requestedUsername: String = req.query.name ? req.query.name.toLowerCase() : req.session.username ? req.session.username : "";
-//     // send profile data if player exists
-//     // if (requestedUsername && server.players.hasOwnProperty(requestedUsername)) {
-//     //     let { username, displayName, wins, losses, gamesCreated, connected } = server.players[requestedUsername];
-//     //     res.send({ success: true, data: { username, displayName, wins, losses, gamesCreated, connected } });
-//     // } else {
-//     //     res.send({ success: false });
-//     // }
-// });
-// app.get("/settings", (req, res) => {
-//     // settings page
-//     res.sendFile('settings.html', { root: './client' });
-// });
 app.get("/login", (req, res) => {
     // send client login page if not logged in
     // if (!req.session.username) {
@@ -128,23 +97,45 @@ app.get("/game", (req, res) => {
     // redirect client to game page if logged in
     //else res.redirect("/game");
 });
-// app.get("/logout", (req, res) => {
-//     // logout user if logged in
-//     if (req.session.username) {
-//         res.clearCookie("signedIn");
-//         delete req.session.username;
-//         delete req.session.isGuest;
-//     }
-//     // redirect client to login page
-//     res.redirect("/login");
-// });
+app.get("/logout", (req, res) => {
+    // logout user if logged in
+    if (req.session.username) {
+        // res.clearCookie("signedIn");
+        delete req.session.username;
+        delete req.session.isGuest;
+    }
+    // redirect client to login page
+    res.redirect("/login");
+});
 
 // // update global player list every 5 seconds
 // setInterval(() => {
 //     console.log("sending global players list");
 //     io.emit("playersOnline", server.onlinePlayers);
 // }, 5000);
-
+var time = "morning";
+var encounters = {
+    grass: {
+        morning: [],
+        day: [
+            {
+                species: "RATTATA",
+                weight: 1,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "PIDGEY",
+                weight: 1,
+                minLevel: 2,
+                maxLevel: 4
+            }
+        ],
+        night: [],
+        frequency: 8
+    }
+}
+var map = new Map(encounters);
 io.on("connection", (socket) => {
     console.log(color.green, socket.id);
 
@@ -185,6 +176,11 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("playerMovement", data);
     });
 
+    socket.on("grassEnter", () => {
+        if (map.grassCheck()) {
+            map.createEncounter();
+        }
+    });
 
     socket.on("chatMessage", (data) => {
         // handle chat packet
