@@ -28,14 +28,7 @@ function setupSocket() {
         }
         console.log(playersArray);
         username = name;
-        for (let plyr of playersArray) {
-            if (plyr.name == username) {
-                new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true).sendLocation();
-            }
-            else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
-        }
-        app.ticker.add(draw);
-        document.body.append(app.view);
+        loadPlayersAndGame(playersArray);
         $('#message').modal('hide');
     });
 
@@ -63,13 +56,16 @@ function setupSocket() {
     });
 
     socket.on("battleRequest", (user) => {
-        // $('#message').modal({ backdrop: 'static', keyboard: false });
+        $('#message').modal({ backdrop: 'static' });
         $('#message').modal('show');
-        $('#message-title').text("Disconnected from server");
+        $('#message-title').text("Battle request");
         $('#message-body').text(user + " has sent you a battle request. Accept?");
         $('#blueModalBtn').text("Let's battle!");
-        $('#grayModalBtn').text("Reject");
-        $('#blueModalBtn').on('click', () => battleRequest(user));
+        $('#grayModalBtn').text("Ignore");
+        $('#blueModalBtn').on('click', () => {
+            battleRequest(user);
+            $('#message').modal('hide');
+        });
         $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
@@ -77,6 +73,10 @@ function setupSocket() {
 
     socket.on("battleData", (output) => {
         console.log(output);
+    });
+
+    socket.on("battleOptions", (options) => {
+        console.log(options);
     });
 
     socket.on("pong", (ms) => {
@@ -99,7 +99,10 @@ function setupSocket() {
 }
 function battleRequest(user) {
     socket.emit("battleRequest", user);
-    // socket.emit("startBattle", {});
-    // socket.emit("moveInput", 2);
-    // socket.emit("switchInput", 2);
+}
+function useMove(move) {
+    socket.emit("moveInput", move);
+}
+function switchTo(slot) {
+    socket.emit("switchInput", slot);
 }

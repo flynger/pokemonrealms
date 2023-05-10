@@ -11,12 +11,13 @@ import { translatePokemon } from './pokemonTranslator.js';
 // }
 
 export default class Party {
-    constructor(name, team) {
+    constructor(name, team, isPlayer = true) {
         this.name = name;
         this.team = team;
+        this.isPlayer = isPlayer;
     }
 
     exportTeam() {
         return this.team.map((mon) => translatePokemon(mon)).join(']');
-    }   
+    }
 }
