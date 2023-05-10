@@ -168,23 +168,13 @@ io.on("connection", (socket) => {
     if (!players[username]) {
         players[username] = new Player(username, displayName);
     }
+    let thisPlayer = players[username];
     players[username].setSocket(socket);
 
     // add events
     socket.on("ping", (callback) => {
         callback();
     });
-
-    //     // chat and room events
-    //     socket.on("joinRoom", (data) => {
-    //         // handle room join request
-    //         // let result = chatHandler.joinSocketToRoom(socket, data.requestedRoom);
-    //         // if (result.error) {
-    //         //     socket.emit("roomJoinFailure", { room: data.requestedRoom, error: result.error });
-    //         // } else if (result.success) {
-    //         //     socket.emit("roomJoinSuccess", { room: data.requestedRoom, messages: [`You connected as user: ${server.players[username].displayName}`, "Joined chat: " + data.requestedRoom] });
-    //         // }
-    //     });
 
     socket.on("playerMovement", (data) => {
         data.name = username;
@@ -200,25 +190,30 @@ io.on("connection", (socket) => {
         // chatHandler.processChat(socket, data)
     });
 
-    socket.on("battleRequest", (player) => {
-        player = player.toLowerCase();
-        if (players[player] && players[player].connected) {
-            if (!players[username].requests.hasOwnProperty(player)) {
-                players[player].socket.emit("battleRequest", displayName);
-                players[player].requests.username = true;
-            }
-            if (username.battle == null) {
-                const party1 = new Party(username, []);
-                const party2 = new Party(players[player].displayName, []);
-                battle = new SingleBattle(party1, party2);
-                battle.startRandomBattle();
-                console.log("Received start battle request");
+    socket.on("battleRequest", (user) => {
+        user = user.toLowerCase(); // convert name to username
+        let otherPlayer = players[user];
+        if (!otherPlayer) {
+            socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
+            return;
+        }
+        if (otherPlayer.connected && otherPlayer.battle == null && thisPlayer.battle == null) {
+            // if other player hasnt sent request, send
+            if (!thisPlayer.requests.hasOwnProperty(user)) {
+                otherPlayer.socket.emit("battleRequest", displayName);
+                otherPlayer.requests[username] = true;
+            } else {
+                const party2 = new Party(displayName, []);
+                const party1 = new Party(otherPlayer.displayName, []);
+                thisPlayer.battle = otherPlayer.battle = new SingleBattle(party1, party2);
+                thisPlayer.battle.startRandomBattle();
+                console.log("Starting match with 2 players...");
             }
         }
     });
 
     socket.on("startBattle", () => {
-        if (username.battle == null) {
+        if (players[username].battle == null) {
             const party1 = new Party(username, []);
             const party2 = new Party('MoldyNano', []);
             battle = new SingleBattle(party1, party2);
@@ -228,14 +223,16 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("moveInput", (data) => {
-        battle.useMove(1, moveNumber);
-        battle.useMove(2, moveNumber);
+    socket.on("moveInput", (moveNumber) => {
+        if (thisPlayer.battle != null) {
+            thisPlayer.battle.useMove(displayName, moveNumber);
+        }
     });
 
     socket.on("switchInput", (switchNumber) => {
-        battle.switchTo(1, switchNumber);
-        battle.switchTo(2, switchNumber);
+        if (thisPlayer.battle != null) {
+            thisPlayer.battle.switchTo(displayName, switchNumber);
+        }
     });
 
     // add disconnect event
