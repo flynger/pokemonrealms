@@ -17,6 +17,7 @@ import Pokemon from './src/pokemon.js';
 import Player from "./src/player.js";
 import SingleBattle from "./src/singleBattle.js";
 import { players, accounts, LoginHandler } from "./src/loginHandler.js";
+import WildEncounter from "./src/wildEncounter.js";
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
 // const sessions = require("./node_modules/express-session");
@@ -177,8 +178,10 @@ io.on("connection", (socket) => {
     });
 
     socket.on("grassEnter", () => {
-        if (map.grassCheck()) {
-            map.createEncounter();
+        if (!thisPlayer.battle && map.grassCheck()) {
+            let encounter = map.createEncounter();
+            thisPlayer.battle = new WildEncounter(thisPlayer, encounter);
+            thisPlayer.battle.startBattle();
         }
     });
 
@@ -216,7 +219,6 @@ io.on("connection", (socket) => {
             battle = new SingleBattle(party1, party2);
             battle.startRandomBattle();
             console.log("Received start battle request");
-            io.emit()
         }
     });
 

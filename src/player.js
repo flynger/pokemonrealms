@@ -1,5 +1,8 @@
+import Pokemon from "./pokemon.js";
+
 export default class Player {
     static onlinePlayers = [];
+    static starterOptions = ["BULBASAUR", "CHARMANDER", "SQUIRTLE"];
 
     constructor(name, displayName, x = 256, y = 254, facing = "right") {
         this.name = name;
@@ -11,6 +14,17 @@ export default class Player {
         this.socket = null;
         this.requests = {};
         this.battle = null;
+        this.starter = false;
+        this.party = [];
+        this.box = [];
+        this.pickStarter();
+    }
+
+    pickStarter(starter) {
+        if (this.starter == false) {
+            this.starter = Player.starterOptions.includes(starter) ? starter : "PORYGON";
+            this.party.push(new Pokemon(this.starter, "", "?", "?", 5, ""));
+        }
     }
 
     setSocket(socket) {

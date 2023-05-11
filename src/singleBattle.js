@@ -2,8 +2,6 @@ import { DefaultText } from 'pokemon-showdown/.data-dist/text/default.js';
 import { MovesText } from 'pokemon-showdown/.data-dist/text/moves.js';
 import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'
 import { players } from './loginHandler.js';
-import Pokemon from './pokemon.js';
-import Party from './party.js';
 import Showdown from 'pokemon-showdown';
 const { BattleStream, Dex } = Showdown;
 // import * as readline from 'node:readline';
@@ -13,7 +11,11 @@ const { BattleStream, Dex } = Showdown;
 // });
 
 export default class SingleBattle {
+    text = {
+        opposingPokemon: DefaultText.default.opposingPokemon
+    }
     constructor(party1, party2, canRun = false) {
+        console.log("Making a battle...");
         this.canRun = canRun;
         this.player1 = party1;
         this.player2 = party2;
@@ -51,7 +53,7 @@ export default class SingleBattle {
                         }
                     //console.log(outputArray)
                 }
-                // console.log(output);
+                console.log(output);
             }
         })();
     }
@@ -248,7 +250,7 @@ export default class SingleBattle {
             let firstWordIsName = false;
             if (useArgs) {
                 if (messageText.includes("[POKEMON]")) {
-                    messageText = messageText.replace("[POKEMON]", isOwnPokemon ? DefaultText.default.pokemon : DefaultText.default.opposingPokemon);
+                    messageText = messageText.replace("[POKEMON]", isOwnPokemon ? DefaultText.default.pokemon : this.text.opposingPokemon);
                 } else if (messageText.includes("[FULLNAME]")) {
                     messageText = messageText.replace("[FULLNAME]", "[NICKNAME] (**[SPECIES]**)");
                 }
@@ -333,80 +335,6 @@ export default class SingleBattle {
 
     }
 }
-const articuno = {
-    species: "ARTICUNO",
-    name: "",
-    gender: "N",
-    shiny: false,
-    level: 100,
-    item: "Leftovers",
-    nature: "Modest",
-    ability: "0",
-    ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
-    evs: { hp: 0, atk: 0, def: 0, spa: 252, spd: 0, spe: 4 },
-    stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
-    moves: ["Ice Beam", "Hurricane", "Substitute", "Roost"]
-};
-
-const ludicolo = {
-    species: "LUDICOLO",
-    name: "",
-    gender: "M",
-    shiny: false,
-    level: 100,
-    item: "Life Orb",
-    nature: "Modest",
-    ability: "1",
-    ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
-    evs: { hp: 0, atk: 0, def: 0, spa: 4, spd: 0, spe: 252 },
-    stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
-    moves: ["Surf", "Giga Drain", "Ice Beam", "Rain Dance"]
-};
-
-const volbeat = {
-    species: "VOLBEAT",
-    name: "",
-    gender: "M",
-    shiny: false,
-    level: 100,
-    item: "Damp Rock",
-    nature: "Bold",
-    ability: "1",
-    ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
-    evs: { hp: 248, atk: 0, def: 252, spa: 0, spd: 8, spe: 0 },
-    stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
-    moves: ["Tail Glow", "Baton Pass", "Encore", "Rain Dance"]
-};
-
-const seismitoad = {
-    species: "SEISMITOAD",
-    name: "",
-    gender: "F",
-    shiny: false,
-    level: 100,
-    item: "Life Orb",
-    nature: "Modest",
-    ability: "1",
-    ivs: { hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31 },
-    evs: { hp: 0, atk: 0, def: 0, spa: 252, spd: 0, spe: 252 },
-    stats: { hp: undefined, atk: undefined, def: undefined, spa: undefined, spd: undefined, spe: undefined },
-    moves: ["Hydro Pump", "Earth Power", "Stealth Rock", "Rain Dance"]
-};
-
-// const party1s = new Party('flynger', [
-//     new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["leechseed", "fly"]),
-//     new Pokemon("articuno", "uno", "N", undefined, 10, undefined, undefined, "0", undefined, undefined, ["powdersnow"])
-// ]);
-
-// const party2s = new Party('MoldyNano', [
-//     new Pokemon("pidgey", "Bird", "M", undefined, 11, "leftovers", undefined, undefined, undefined, undefined, ["gust"]),
-//     new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
-// ]);
-
-//const battle = new SingleBattle(party1, party2);
-
-// battle.startRandomBattle();
-// askInput();
 
 function askInput() {
     setTimeout(() => {
@@ -419,9 +347,3 @@ function askInput() {
         });
     }, 2000);
 }
-
-
-// battle.useMove(1, 1);
-// battle.switchTo(2, 2);
-// battle.switchTo(1, 2);
-// battle.useMove(2, 1);

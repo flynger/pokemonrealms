@@ -94,7 +94,7 @@ function setupSocket() {
         $('#grayModalBtn').on('click', () => window.location.href = "https://www.google.com");
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
-        document.body.removeChild(app.view);
+        gameDiv.removeChild(app.view);
     });
 }
 function battleRequest(user) {
