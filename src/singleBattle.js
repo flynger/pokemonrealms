@@ -12,8 +12,10 @@ const { BattleStream, Dex } = Showdown;
 
 export default class SingleBattle {
     text = {
-        opposingPokemon: DefaultText.default.opposingPokemon
+        opposingPokemon: DefaultText.default.opposingPokemon,
+        switchIn: DefaultText.default.switchIn
     }
+    
     constructor(party1, party2, canRun = false) {
         console.log("Making a battle...");
         this.canRun = canRun;
@@ -105,7 +107,7 @@ export default class SingleBattle {
                             if (isOwnPokemon) {
                                 messageText = DefaultText.default.switchInOwn;
                             } else if (!isOwnPokemon) {
-                                messageText = DefaultText.default.switchIn;
+                                messageText = this.text.switchIn;
                                 args.TRAINER = this["player" + side].name;
                             }
                             // add logic to send public data to player
