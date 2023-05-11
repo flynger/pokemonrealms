@@ -304,16 +304,10 @@ export default class SingleBattle {
         this.stream.write(`>player p1 ${JSON.stringify({ name: this.player1.name })}`);
         this.stream.write(`>player p2 ${JSON.stringify({ name: this.player2.name })}`);
     }
-<<<<<<< HEAD
-    //a
-    useMove(playerNumber, moveNumber) {
-        if (playerNumber == 1) {
-=======
 
     useMove(partyName, moveNumber) {
         let playerId = this.getPlayerId(partyName);
         if (playerId == 1) {
->>>>>>> 917a41eaf5eb86f0869360717656f12786066e83
             this.stream.write(`>p1 move ${moveNumber}`);
         } else if (playerId == 2) {
             this.stream.write(`>p2 move ${moveNumber}`)
@@ -399,15 +393,15 @@ const seismitoad = {
     moves: ["Hydro Pump", "Earth Power", "Stealth Rock", "Rain Dance"]
 };
 
-const party1s = new Party('flynger', [
-    new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["leechseed", "fly"]),
-    new Pokemon("articuno", "uno", "N", undefined, 10, undefined, undefined, "0", undefined, undefined, ["powdersnow"])
-]);
+// const party1s = new Party('flynger', [
+//     new Pokemon("bulbasaur", "bulby", "M", undefined, 7, undefined, undefined, "0", undefined, undefined, ["leechseed", "fly"]),
+//     new Pokemon("articuno", "uno", "N", undefined, 10, undefined, undefined, "0", undefined, undefined, ["powdersnow"])
+// ]);
 
-const party2s = new Party('MoldyNano', [
-    new Pokemon("pidgey", "Bird", "M", undefined, 11, "leftovers", undefined, undefined, undefined, undefined, ["gust"]),
-    new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
-]);
+// const party2s = new Party('MoldyNano', [
+//     new Pokemon("pidgey", "Bird", "M", undefined, 11, "leftovers", undefined, undefined, undefined, undefined, ["gust"]),
+//     new Pokemon("butterfree", "sad", "M", undefined, 15, undefined, undefined, "0", undefined, undefined, ["confusion"])
+// ]);
 
 //const battle = new SingleBattle(party1, party2);
 

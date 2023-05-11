@@ -1,4 +1,4 @@
-export default Pokedex = {
+const Pokedex = {
     "BULBASAUR": {
         "id": 1,
         "species": "BULBASAUR",
@@ -112915,3 +112915,4 @@ export default Pokedex = {
         "experienceYield": 0
     }
 }
+export default Pokedex;

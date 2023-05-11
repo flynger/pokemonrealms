@@ -1,4 +1,4 @@
-import Pokedex from "./pokedex";
+import Pokedex from "./pokedex.js";
 // const statNames = {
 //     hp: "HP",
 //     atk: "Attack",
@@ -20,19 +20,27 @@ export default class Pokemon {
         // gender initialization
         if (Pokedex[species].gender) {
             this.gender = Pokedex[species].gender;
-        } else if (Pokedex[species].genderRatio && !Pokedex[species].genderRatio[gender]) {
+        } else if (!Pokedex[species].genderRatio || !Pokedex[species].genderRatio.hasOwnProperty(gender)) {
             let genderRatio = Pokedex[species].genderRatio || { M: 0.5, F: 0.5 };
-            this.gender = Math.random() < genderRatio.M ? genderRatio.M : genderRatio.F;
+            this.gender = Math.random() < genderRatio.M ? "M" : "F";
         } else this.gender = gender;
 
+        if (Pokedex[species].genderRatio) console.log(Pokedex[species].genderRatio.hasOwnProperty(gender));
         this.shiny = typeof shiny == "boolean" ? shiny : randomNumber(1, Pokemon.shinyChance) == 1;
         this.level = level;
         this.heldItem = heldItem;
         this.nature = nature || "Serious";
-        this.abilitySlot = abilitySlot || randomNumber(0, 1) + "";
+
+        // ability code
+        if (abilitySlot && Pokedex[species].abilities.hasOwnProperty(abilitySlot)) {
+            this.abilitySlot = abilitySlot;
+        } else {
+            this.abilitySlot = Pokedex[species].abilities[1] ? randomNumber(0, 1) + "" : "0";
+        }
+
         this.ivs = ivs || new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31));
         this.evs = evs || new Stats(0, 0, 0, 0, 0, 0);
-        this.moves = moves;
+        this.moves = moves || ["Tackle"];
     }
 }
 class Stats {
