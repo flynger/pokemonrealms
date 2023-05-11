@@ -1,7 +1,12 @@
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip(); 
+function initializeSummaryUI() {
+    $("#summaryBtn").on("click", () => {
+        $("#pokemon-summary").toggle();
+    });
+    $('[data-toggle="tooltip"]').tooltip();
+    // dragElement(document.getElementById("pokemon-summary"));
     $("#pokemon-summary").draggable({
-        handle: "#pokemon-summary-header"
+        handle: "#pokemon-summary-header",
+        containment: "parent"
     });
     // Initialize the move list as sortable
     $("#move-list").sortable({
@@ -16,24 +21,24 @@ $(function () {
             //updateMoveOrder();
         }
     });
+}
 
-    // Function to update the move order in the backend
-    function updateMoveOrder() {
-        var moveOrder = [];
-        $(".move-item").each(function () {
-            moveOrder.push($(this).data("move-id"));
-        });
+// Function to update the move order in the backend
+function updateMoveOrder() {
+    var moveOrder = [];
+    $(".move-item").each(function () {
+        moveOrder.push($(this).data("move-id"));
+    });
 
-        // Send the move order to the backend using AJAX
-        $.ajax({
-            type: "POST",
-            url: "update_move_order.php",
-            data: {
-                move_order: moveOrder
-            },
-            success: function (response) {
-                // Handle the response from the backend
-            }
-        });
-    }
-});
+    // Send the move order to the backend using AJAX
+    $.ajax({
+        type: "POST",
+        url: "update_move_order.php",
+        data: {
+            move_order: moveOrder
+        },
+        success: function (response) {
+            // Handle the response from the backend
+        }
+    });
+}

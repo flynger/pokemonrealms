@@ -1,19 +1,111 @@
 #battle-UI {
     position: absolute;
-    height: 768px;
-    width: 1024px;
-    top: 5%;
-    left: 18%;
+    width: 53%;
+    aspect-ratio: auto 1024 / 768;
     background-image: url('../res/battle/grass_bg.png');
+    background-size: cover;
+    display: none;
+}
+
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 24.427%;
+    bottom: 0%;
+    background-image: url('../res/gui/battle/overlay_command.png');
     background-size: cover;
 }
 
-#action-background {
-    position: inherit;
-    bottom: 0px;
-    height: 192px;
-    width: inherit;
-    background-image: url('../res/gui/battle/overlay_command.png');
+#overlay-fight {
+    position: absolute;
+    width: 100%;
+    height: 24.427%;
+    bottom: 0%;
+    background-image: url('../res/gui/battle/overlay_fight.png');
     background-size: cover;
-    image-rendering: pixelated;
+}
+
+.fight-button {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    right: 31.406%;
+    top: 19%;
+    background-image: url('../res/gui/battle/cursor_command.png');
+    width: 122px;
+    height: 39px;
+    /* scale: 100%; */
+}
+
+.pkmn-button {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    right: 7%;
+    top: 19%;
+    background-image: url('../res/gui/battle/cursor_command.png');
+    width: 122px;
+    height: 39px;
+}
+
+.bag-button {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    right: 31.406%;
+    bottom: 16%;
+    background-image: url('../res/gui/battle/cursor_command.png');
+    width: 122px;
+    height: 39px;
+}
+
+.run-button {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    right: 7%;
+    bottom: 16%;
+    background-image: url('../res/gui/battle/cursor_command.png');
+    width: 122px;
+    height: 39px;
+}
+
+#button-1 {
+    background-position: -134px -4px;
+    scale: var(--scale);
+}
+
+#button-1:hover {
+    cursor: pointer;
+    background-position: -4px -4px;
+    scale: var(--scale);
+}
+
+#button-2 {
+    background-position: -134px -50px;
+    scale: var(--scale);
+}
+
+#button-2:hover {
+    cursor: pointer;
+    background-position: -4px -50px;
+    scale: var(--scale);
+}
+
+#button-3 {
+    background-position: -134px -95px;
+    scale: var(--scale);
+}
+
+#button-3:hover {
+    cursor: pointer;
+    background-position: -4px -95px;
+    scale: var(--scale);
+}
+
+#button-4 {
+    background-position: -134px -140px;
+    scale: var(--scale);
+}
+
+#button-4:hover {
+    cursor: pointer;
+    background-position: -4px -140px;
+    scale: var(--scale);
 }

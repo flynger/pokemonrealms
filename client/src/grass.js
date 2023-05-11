@@ -1,6 +1,12 @@
 // plz go touch grass
 class grass {
     static grasses = {};
+    static collisionDepth = 8;
+
+    static collisionOccurred(collision) {
+        return collision != null && collision.depth >= this.collisionDepth;
+    }
+
     passers = {};
 
     constructor(x, y) {
@@ -10,6 +16,24 @@ class grass {
         this.sprite.y = y;
         gameContainer.addChild(this.sprite);
         grasses[[x, y]] = this;
+        this.rigidBody = Matter.Bodies.rectangle(x + 16, y + 16, 32, 32);
+        Matter.Body.setStatic(this.rigidBody, true);
+    }
+
+    step() {
+        for (let name in players) {
+            let passer = players[name];
+            let playerInThisGrass = this.passers.hasOwnProperty(name);
+            let hasCollisionOccurred = grass.collisionOccurred(Matter.Collision.collides(passer.rigidBody, this.rigidBody));
+            if (playerInThisGrass && !hasCollisionOccurred) {
+                passer.grassCounter--;
+                delete this.passers[name];
+            } else if(!playerInThisGrass && hasCollisionOccurred) {
+                if (name == username) socket.emit("grassEnter", {});
+                passer.grassCounter++;
+                this.passers[name] = true;
+            }
+        }
     }
 
     update(passer, removePlayer = false) {

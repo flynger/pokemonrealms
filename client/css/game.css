@@ -2,6 +2,12 @@ body {
     overflow: hidden;
 }
 
+.draggable {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+}
+
 #game {
     position: absolute;
     /* left: 50%;
@@ -13,14 +19,6 @@ body {
     image-rendering: pixelated;
 }
 
-#draggable {
-    padding: 10px;
-    cursor: move;
-    z-index: 10;
-}
-
 #settings-holder {
-    position: absolute;
     z-index: 9;
-    text-align: center;
 }

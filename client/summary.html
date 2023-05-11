@@ -15,11 +15,12 @@
     <link href="css/pokemonSummary.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
 
-    <script src="src/pokemonSummary.js"></script>
+    <script src="libs/drag.js"></script>
+
 </head>
 
 <body>
-    <!-- <div class="container p-3" id="pokemon-summary">
+    <div class="container p-3" id="pokemon-summary">
         <div class="card bg-dark text-white">
             <div id="pokemon-summary-header" class="card-header">
                 <h5 class="card-title mb-0">Pokémon Summary</h5>
@@ -60,9 +61,15 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Stat</th>
-                                    <th scope="col" class="text-end"><span data-toggle="tooltip" title="Individual Values are fixed, randomly generated values from 0 to 31. They contribute to the final stat value of a Pokémon.">IVs</span></th>
-                                    <th scope="col" class="text-end"><span data-toggle="tooltip" title="Effort Values are usually obtained from defeating Pokémon in battle. They contribute to the final stat value of a Pokémon.">EVs</span></th>
-                                    <th scope="col" class="text-end"><span data-toggle="tooltip" title="The actual stat value a Pokémon uses in battle. Depends on a Pokémon's base stats, level, IVs, EVs, and nature.">Stat Value</span></th>
+                                    <th scope="col" class="text-end"><span data-toggle="tooltip"
+                                            title="Individual Values are fixed, randomly generated values from 0 to 31. They contribute to the final stat value of a Pokémon.">IVs</span>
+                                    </th>
+                                    <th scope="col" class="text-end"><span data-toggle="tooltip"
+                                            title="Effort Values are usually obtained from defeating Pokémon in battle. They contribute to the final stat value of a Pokémon.">EVs</span>
+                                    </th>
+                                    <th scope="col" class="text-end"><span data-toggle="tooltip"
+                                            title="The actual stat value a Pokémon uses in battle. Depends on a Pokémon's base stats, level, IVs, EVs, and nature.">Stat
+                                            Value</span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,10 +80,13 @@
                                     <td>78</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><span data-toggle="tooltip" title="Decreased by 10% due to Modest nature." class="red">Attack</span></th>
+                                    <th scope="row"><span data-toggle="tooltip"
+                                            title="Decreased by 10% due to Modest nature." class="red">Attack</span>
+                                    </th>
                                     <td><span data-toggle="tooltip" title="No good">3</span></td>
                                     <td>34</td>
-                                    <td><span data-toggle="tooltip" title="Decreased by 10% due to Modest nature." class="red">109</span></td>
+                                    <td><span data-toggle="tooltip" title="Decreased by 10% due to Modest nature."
+                                            class="red">109</span></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Defense</th>
@@ -85,10 +95,13 @@
                                     <td>78</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><span data-toggle="tooltip" title="Increased by 10% due to Modest nature." class="green">Sp. Attack</span></th>
+                                    <th scope="row"><span data-toggle="tooltip"
+                                            title="Increased by 10% due to Modest nature." class="green">Sp.
+                                            Attack</span></th>
                                     <td><span data-toggle="tooltip" title="OK">15</span></td>
                                     <td>125</td>
-                                    <td><span data-toggle="tooltip" title="Increased by 10% due to Modest nature." class="green">109</span></td>
+                                    <td><span data-toggle="tooltip" title="Increased by 10% due to Modest nature."
+                                            class="green">109</span></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Sp. Defense</th>
@@ -121,32 +134,11 @@
                 </div>
             </div>
         </div>
-    </div> -->
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
 </body>
+
+<footer>
+    <script src="src/pokemonSummary.js"></script>
+</footer>
 
 </html>

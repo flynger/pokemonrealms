@@ -16,7 +16,7 @@
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/home.css" rel="stylesheet" />
     <script src="src/home.js"></script>
-    
+
     <script>
         $.get("nav.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
@@ -30,7 +30,7 @@
 <body>
     <main>
         <div class="px-4 py-5 text-center bg-image d-flex align-items-center parallax" id="hero">
-            <div class="container bg-light py-2 px-5 rounded-3" style="min-width: 300px; width: 35%; --bs-bg-opacity: 0.85;">
+            <div class="container bg-light py-2 px-5 rounded-3" id="hero-text">
                 <h1 class="display-5 fw-bold PokemonFont">Pokémon Realms</h1>
                 <div class="col-lg-6 mx-auto">
                     <p class="lead mb-4">Play the Newest Online Pokemon MMO!</p>
@@ -40,22 +40,20 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid text-center align-self-center border-top py-5">
+        <div class="container-fluid text-center align-self-center my-5">
             <div class="row row-cols-3">
-                <div class="feature col mb-5 align-self-center">
-                    <p class="PokemonFont-b">Featuring Gen 1 - 4 Pokémon</p>
-                    <img class="img-fluid rounded-2" src="https://pbs.twimg.com/media/BLNw_ijCYAAHujA.jpg" width="50%"
-                        height="20%">
+                <div class="card col mb-5 mx-auto border-0">
+                    <h1 class="card-title my-3 PokemonFont fw-bolder">Featuring Gen 1 - 4 Pokémon</h1>
+                    <img class="card-img-bottom img-fluid align-self-center" src="https://pbs.twimg.com/media/BLNw_ijCYAAHujA.jpg">
                 </div>
-                <div class="feature col mb-5 align-self-center">
-                    <p class="PokemonFont-b">Explore the World of Pokémon!</p>
-                    <img class="img-fluid rounded-2"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgcO7iAk0ND2tlS7YaVhLZzdDfVUMH1u8o4Q&usqp=CAU"
-                        width="80%">
+                <div class="card col mb-5 mx-auto border-0">
+                    <h1 class="card-title my-3 PokemonFont fw-bolder">Explore the World of Pokémon!</h1>
+                    <img class="card-img-bottom img-fluid align-self-center"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgcO7iAk0ND2tlS7YaVhLZzdDfVUMH1u8o4Q&usqp=CAU">
                 </div>
-                <div class="feature col mb-5 align-self-center">
-                    <p class="PokemonFont-b">Catch All the Pokémon!</p>
-                    <img class="img-fluid rounded-2" src="res/Placeholder_view_vector.svg" width="80%">
+                <div class="card col mb-5 mx-auto border-0">
+                    <h1 class="card-title my-3 PokemonFont fw-bolder">Catch All the Pokémon!</h1>
+                    <img class="img-fluid align-self-center " src="res/Placeholder_view_vector.svg">
                 </div>
             </div>
         </div>

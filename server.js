@@ -1,3 +1,7 @@
+Array.prototype.remove = function (elem) {
+    this.splice(this.indexOf(elem), 1);
+}
+
 // libraries
 import express from "express";
 import { Server } from "socket.io";
@@ -7,7 +11,11 @@ import bodyParser from "body-parser";
 import sessions from "express-session";
 
 // our files
+import Map from './src/map.js';
+import Party from './src/party.js';
+import Pokemon from './src/pokemon.js';
 import Player from "./src/player.js";
+import SingleBattle from "./src/singleBattle.js";
 import { players, accounts, LoginHandler } from "./src/loginHandler.js";
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
@@ -33,14 +41,6 @@ const io = new Server(expressServer, {
     pingTimeout: 5000
 });
 io.engine.use(sessionMiddleware);
-// io.use((socket: any, next: any) => sessionMiddleware(socket.request, {}, next)); // gives request
-
-// server variable
-const server = {
-    io,
-    onlinePlayers: [] // Array<Player>
-}
-// our source file initialization
 
 app.use(express.static("./client"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -56,37 +56,10 @@ app.get("/", (req, res) => {
     // redirect to game
     res.sendFile('home.html', { root: './client' });
 });
-// app.get("/home", (req, res) => {
-//     // redirect to game
-//     res.redirect("/game");
-// });
 app.get("/play", (req, res) => {
     // game page
     res.sendFile('play.html', { root: './client' });
 });
-// app.get("/profile", (req, res) => {
-//     // get the requested username parameter
-//     let requestedUsername: String = req.query.name ? req.query.name.toLowerCase() : req.session.username ? req.session.username : "";
-//     // send profile page if player exists, else redirect to login
-//     // if (requestedUsername && server.players.hasOwnProperty(requestedUsername)) {
-//     //     res.sendFile('profile.html', { root: './client' });
-//     // } else res.redirect("/login");
-// });
-// app.post("/profile", (req, res) => {
-//     // get the requested username parameter
-//     let requestedUsername: String = req.query.name ? req.query.name.toLowerCase() : req.session.username ? req.session.username : "";
-//     // send profile data if player exists
-//     // if (requestedUsername && server.players.hasOwnProperty(requestedUsername)) {
-//     //     let { username, displayName, wins, losses, gamesCreated, connected } = server.players[requestedUsername];
-//     //     res.send({ success: true, data: { username, displayName, wins, losses, gamesCreated, connected } });
-//     // } else {
-//     //     res.send({ success: false });
-//     // }
-// });
-// app.get("/settings", (req, res) => {
-//     // settings page
-//     res.sendFile('settings.html', { root: './client' });
-// });
 app.get("/login", (req, res) => {
     // send client login page if not logged in
     // if (!req.session.username) {
@@ -124,23 +97,45 @@ app.get("/game", (req, res) => {
     // redirect client to game page if logged in
     //else res.redirect("/game");
 });
-// app.get("/logout", (req, res) => {
-//     // logout user if logged in
-//     if (req.session.username) {
-//         res.clearCookie("signedIn");
-//         delete req.session.username;
-//         delete req.session.isGuest;
-//     }
-//     // redirect client to login page
-//     res.redirect("/login");
-// });
+app.get("/logout", (req, res) => {
+    // logout user if logged in
+    if (req.session.username) {
+        // res.clearCookie("signedIn");
+        delete req.session.username;
+        delete req.session.isGuest;
+    }
+    // redirect client to login page
+    res.redirect("/login");
+});
 
 // // update global player list every 5 seconds
 // setInterval(() => {
 //     console.log("sending global players list");
 //     io.emit("playersOnline", server.onlinePlayers);
 // }, 5000);
-
+var time = "morning";
+var encounters = {
+    grass: {
+        morning: [],
+        day: [
+            {
+                species: "RATTATA",
+                weight: 1,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "PIDGEY",
+                weight: 1,
+                minLevel: 2,
+                maxLevel: 4
+            }
+        ],
+        night: [],
+        frequency: 8
+    }
+}
+var map = new Map(encounters);
 io.on("connection", (socket) => {
     console.log(color.green, socket.id);
 
@@ -165,23 +160,13 @@ io.on("connection", (socket) => {
     if (!players[username]) {
         players[username] = new Player(username, displayName);
     }
-    players[username].connected = true;
+    let thisPlayer = players[username];
+    players[username].setSocket(socket);
 
     // add events
     socket.on("ping", (callback) => {
         callback();
     });
-
-    //     // chat and room events
-    //     socket.on("joinRoom", (data) => {
-    //         // handle room join request
-    //         // let result = chatHandler.joinSocketToRoom(socket, data.requestedRoom);
-    //         // if (result.error) {
-    //         //     socket.emit("roomJoinFailure", { room: data.requestedRoom, error: result.error });
-    //         // } else if (result.success) {
-    //         //     socket.emit("roomJoinSuccess", { room: data.requestedRoom, messages: [`You connected as user: ${server.players[username].displayName}`, "Joined chat: " + data.requestedRoom] });
-    //         // }
-    //     });
 
     socket.on("playerMovement", (data) => {
         data.name = username;
@@ -191,24 +176,73 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("playerMovement", data);
     });
 
+    socket.on("grassEnter", () => {
+        if (map.grassCheck()) {
+            map.createEncounter();
+        }
+    });
 
     socket.on("chatMessage", (data) => {
         // handle chat packet
         // chatHandler.processChat(socket, data)
     });
 
+    socket.on("battleRequest", (user) => {
+        user = user.toLowerCase(); // convert name to username
+        let otherPlayer = players[user];
+        if (!otherPlayer) {
+            socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
+            return;
+        }
+        if (otherPlayer.connected && otherPlayer.battle == null && thisPlayer.battle == null) {
+            // if other player hasnt sent request, send
+            if (!thisPlayer.requests.hasOwnProperty(user)) {
+                otherPlayer.socket.emit("battleRequest", displayName);
+                otherPlayer.requests[username] = true;
+            } else {
+                const party2 = new Party(displayName, []);
+                const party1 = new Party(otherPlayer.displayName, []);
+                thisPlayer.battle = otherPlayer.battle = new SingleBattle(party1, party2);
+                thisPlayer.battle.startRandomBattle();
+                console.log("Starting match with 2 players...");
+            }
+        }
+    });
+
+    socket.on("startBattle", () => {
+        if (players[username].battle == null) {
+            const party1 = new Party(username, []);
+            const party2 = new Party('MoldyNano', []);
+            battle = new SingleBattle(party1, party2);
+            battle.startRandomBattle();
+            console.log("Received start battle request");
+            io.emit()
+        }
+    });
+
+    socket.on("moveInput", (moveNumber) => {
+        if (thisPlayer.battle != null) {
+            thisPlayer.battle.useMove(displayName, moveNumber);
+        }
+    });
+
+    socket.on("switchInput", (switchNumber) => {
+        if (thisPlayer.battle != null) {
+            thisPlayer.battle.switchTo(displayName, switchNumber);
+        }
+    });
+
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(color.red, socket.id);
+        players[username].deleteSocket();
         if (isGuest) {
             delete players[username];
-        } else {
-            players[username].connected = false;
         }
         socket.broadcast.emit("playerDisconnect", username);
     });
     // send username
-    socket.emit("playerData", username, Object.values(players).filter((player) => player.connected));
+    socket.emit("playerData", username, Object.values(players).filter((player) => player.connected).map((player) => player.export()));
     //     socket.emit("playersOnline", server.onlinePlayers);
 });
 

@@ -1,10 +1,11 @@
 class player {
-    static walkSpeed = 1.5;
-    static runSpeed = 2.5;
-    static friction = 0.15;
-    static rigidBodyWidth = 16;
-    static rigidBodyHeight = 20;
-    static rigidBodyOffset = 14;
+    static walkSpeed = 32 / 15;
+    static runSpeed = 48 / 15;
+    static #decelerationConstant = 0.4;
+    static #minDeceleration = 0.1;
+    static rigidBodyWidth;
+    static rigidBodyHeight;
+    static rigidBodyOffset;
     static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
     static #playerSprites = {};
     static players = {};
@@ -55,11 +56,16 @@ class player {
         x: 0,
         y: 0
     }
+    #moving = false;
+    #allowInput = true;
     #nameTagBackWidth;
     #nameTagBackOffset;
     #nameTagTextOffset;
 
-    grassCounter = 0;
+    leftHitboxCollidingObject = null;
+    rightHitboxCollidingObject = null;
+    topHitboxCollidingObject = null;
+    bottomHitboxCollidingObject = null;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
         players[name] = this; // create a reference in player.players
@@ -67,27 +73,35 @@ class player {
         this.avatar = avatar;
         this.facing = facing;
         this.hasController = hasController;
-        this.createSprites();
         this.createRigidBody(x, y);
-        this.updateSprite();
+        this.createSprites();
         this.renderName();
     }
 
     step(deltaTime) {
+        // movement logic
+        //this.position
+        if (this.#moving) {
+            this.decelerate(deltaTime);
+            this.move(deltaTime);
+            if (this.hasController) this.sendLocation();
+        }
+
         // input and camera logic
         if (this.hasController) {
-            this.checkForInput();
-            this.centerCameraOnSelf();
-            this.updateSprite();
-            this.sendLocation();
+            if (this.#allowInput) {
+                this.checkForInput();
+                this.centerCameraOnSelf();
+            }
         }
+
         this.nameTagStep(); // name tag frame update
-        //this.grassUpdate(); // grass update
-        this.headSprite.zIndex = this.headSprite.y; // update z-index
+        this.grassUpdate(); // grass update
+        this.headSprite.zIndex = this.position.y; // update z-index
     }
 
     endFrame() {
-        if (this.grassCounter == 0) {
+        if (this.leftHitboxCollidingObject == null || this.rightHitboxCollidingObject == null || this.topHitboxCollidingObject == null || this.bottomHitboxCollidingObject == null) {
             //this.nameTagText.text = "not colliding";
             this.bodySprite.alpha = 1;
         } else {
@@ -117,14 +131,21 @@ class player {
         this.nameTagBack.zIndex = this.nameTagText.zIndex = this.hasController ? 100000 : this.headSprite.y;
     }
 
+    grassUpdate(removeSelf = false) {
+        let leftTile = 32 * Math.floor(this.position.x / 32);
+        let topTile = 32 * Math.floor(this.position.y / 32);
+        for (let x = leftTile; x <= leftTile + 32; x += 32) {
+            for (let y = topTile; y <= topTile + 64; y += 32) {
+                if (grasses[[x, y]]) {
+                    grasses[[x, y]].update(this, removeSelf);
+                }
+            }
+        }
+    }
+
     createRigidBody(x, y) {
-        this.rigidBody = Matter.Bodies.rectangle(x + 16, y + player.rigidBodyOffset + player.rigidBodyHeight / 2, player.rigidBodyWidth, player.rigidBodyHeight);
-        this.rigidBody.frictionAir = player.friction;
-        this.rigidBody.friction = 0;
-        this.rigidBody.collisionFilter.group = -1;
+        this.rigidBody = Matter.Bodies.rectangle(x + (32 - player.rigidBodyWidth) / 2, y + player.rigidBodyOffset, player.rigidBodyWidth, player.rigidBodyHeight);
         this.position = this.rigidBody.position;
-        this.velocity = this.rigidBody.velocity;
-        Matter.Body.setInertia(this.rigidBody, Infinity);
         Matter.Composite.add(engine.world, this.rigidBody);
     }
 
@@ -139,36 +160,6 @@ class player {
         this.bodySprite.y = 24;
         this.headSprite.addChild(this.bodySprite);
         gameContainer.addChild(this.headSprite);
-    }
-
-    updateSprite() {
-        this.headSprite.x = this.position.x - 16;
-        this.headSprite.y = this.position.y - player.rigidBodyOffset - player.rigidBodyHeight / 2;
-        if (this.headSprite.playing) {
-            let totalVelocity = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
-            if (totalVelocity <= 0.0001 && this.speed == 0) {
-                Matter.Body.setVelocity(this.rigidBody, { x: 0, y: 0});
-                if (this.headSprite.currentFrame % 2 == 1) {
-                    this.headSprite.gotoAndStop((this.headSprite.currentFrame + 1) % 4);
-                    this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
-                } else {
-                    this.headSprite.stop();
-                    this.bodySprite.stop();
-                }
-            } else {
-                //if (totalVelocity / 10 > 0.0) {
-                this.headSprite.animationSpeed = this.bodySprite.animationSpeed = totalVelocity / 10;
-                //} else {
-                //    this.headSprite.animationSpeed = this.bodySprite.animationSpeed = 0;
-                //}
-            }
-        }
-    }
-
-    moveTo(x, y) {
-        this.headSprite.x = x;
-        this.headSprite.y = y;
-        Matter.Body.setPosition(this.rigidBody, { x: x + 16, y: y + player.rigidBodyOffset + player.rigidBodyHeight / 2 })
     }
 
     renderName() {
@@ -190,41 +181,39 @@ class player {
 
     checkForInput() {
         // set player speed
-        if (Input.RIGHT != Input.LEFT || Input.UP != Input.DOWN) {
-            if (Input.SHIFT) {
-                this.speed = player.walkSpeed;
-            } else {
-                this.speed = player.runSpeed;
-            }
+        if ((Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) && (Input.SHIFT)) {
+            this.speed = player.walkSpeed;
+        } else if (Input.RIGHT || Input.LEFT || Input.UP || Input.DOWN) {
+            this.speed = player.runSpeed;
+        }
 
-            let movementVector = { x: 0, y: 0};
-            // check for keydown
-            if (Input.UP && !Input.DOWN) {
-                if (Input.LEFT == Input.RIGHT && this.facing != "up") this.setFacing("up");
-                this.animate();
-                movementVector.y -= this.speed;
-            }
-            if (Input.DOWN && !Input.UP) {
-                if (Input.LEFT == Input.RIGHT && this.facing != "down") this.setFacing("down");
-                this.animate();
-                movementVector.y += this.speed;
-            }
-            if (Input.LEFT && !Input.RIGHT) {
-                if (this.facing != "left") this.setFacing("left");
-                this.animate();
-                movementVector.x -= this.speed;
-            }
-            if (Input.RIGHT && !Input.LEFT) {
-                if (this.facing != "right") this.setFacing("right");
-                this.animate();
-                movementVector.x += this.speed;
-            }
-            movementVector = Matter.Vector.mult(Matter.Vector.normalise(movementVector), this.speed);
-            Matter.Body.setVelocity(this.rigidBody, movementVector);
-        } else this.speed = 0;
+        // check for keydown
+        if (Input.RIGHT) {
+            if (this.facing != "right") this.setFacing("right");
+            this.animate();
+            this.velocity.x = this.speed;
+            this.#moving = true;
+        } else if (Input.LEFT) {
+            if (this.facing != "left") this.setFacing("left");
+            this.animate();
+            this.velocity.x = -this.speed;
+            this.#moving = true;
+        }
+
+        if (Input.DOWN) {
+            if (!Input.LEFT && !Input.RIGHT && this.facing != "down") this.setFacing("down");
+            this.animate();
+            this.velocity.y = this.speed;
+            this.#moving = true;
+        } else if (Input.UP) {
+            if (!Input.LEFT && !Input.RIGHT && this.facing != "up") this.setFacing("up");
+            this.animate();
+            this.velocity.y = -this.speed;
+            this.#moving = true;
+        }
     }
 
-    setFacing(direction) {
+    setFacing(direction, setWalkAnimation = false) {
         this.facing = direction;
         this.headSprite.textures = this.sprites.animations[this.facing];
         this.bodySprite.textures = this.bodySprites.animations[this.facing];
@@ -238,6 +227,67 @@ class player {
             this.headSprite.texture = this.sprites.animations[this.facing][this.headSprite.currentFrame];
             this.bodySprite.texture = this.bodySprites.animations[this.facing][this.bodySprite.currentFrame];
         }
+    }
+
+    decelerate(deltaTime) {
+        // decelerate player
+        if (!Input.RIGHT && !Input.LEFT) {
+            if (!Input.UP && !Input.DOWN) {
+                let speedX = Math.abs(this.velocity.x);
+                let signX = Math.sign(this.velocity.x);
+                let decelerationX = Math.max(player.#decelerationConstant * speedX / this.speed, player.#minDeceleration);
+                let decelerationXAmount = speedX < decelerationX * deltaTime * 2 ? -this.velocity.x : -signX * decelerationX * deltaTime * 2;
+                this.velocity.x += decelerationXAmount;
+            }
+            else this.velocity.x = 0;
+        }
+        if (!Input.UP && !Input.DOWN) {
+            if (!Input.RIGHT && !Input.LEFT) {
+                let speedY = Math.abs(this.velocity.y);
+                let signY = Math.sign(this.velocity.y);
+                let decelerationY = Math.max(player.#decelerationConstant * speedY / this.speed, player.#minDeceleration);
+                let decelerationYAmount = speedY < decelerationY * deltaTime * 2 ? -this.velocity.y : -signY * decelerationY * deltaTime * 2;
+                this.velocity.y += decelerationYAmount;
+            }
+            else this.velocity.y = 0;
+        }
+    }
+
+    move(deltaTime) {
+        // move player by velocity
+        let totalVelocity = (this.velocity.x ** 2 + this.velocity.y ** 2) ** 0.5;
+        let maxVelocity = this.speed;
+        if (totalVelocity > maxVelocity) {
+            let scaleFactor = maxVelocity / totalVelocity;
+            this.velocity.x *= scaleFactor;
+            this.velocity.y *= scaleFactor;
+            totalVelocity = maxVelocity;
+        }
+        if (this.velocity.x == 0 && this.velocity.y == 0) {
+            if (this.headSprite.currentFrame % 2 == 1) {
+                this.headSprite.gotoAndStop((this.headSprite.currentFrame + 1) % 4);
+                this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
+            } else {
+                this.headSprite.stop();
+                this.bodySprite.stop();
+            }
+            this.#moving = false;
+        } else {
+            this.setPosition(this.position.x + this.velocity.x * deltaTime, this.position.y + this.velocity.y * deltaTime)
+            if (totalVelocity == this.speed || this.headSprite.currentFrame % 2 == 0) {
+                this.headSprite.animationSpeed = this.bodySprite.animationSpeed = totalVelocity / 15;
+            } else {
+                this.headSprite.stop();
+                this.bodySprite.stop();
+            }
+        }
+    }
+
+    setPosition(x, y) {
+        this.headSprite.x = x;
+        this.position.x = this.headSprite.x + (32 - player.rigidBodyWidth) / 2;
+        this.headSprite.y = y;
+        this.position.y
     }
 
     centerCameraOnSelf() {
@@ -273,14 +323,62 @@ class player {
         app.stage.pivot.y *= ratio;
     }
 
+    playIdleAnimation(speed, duration) {
+        this.headSprite.animationSpeed = speed;
+        this.headSprite.play();
+        this.disableInputFor(duration);
+    }
+
+    disableInputFor(ms) {
+        this.#allowInput = false;
+        setTimeout(() => this.#allowInput = true, ms);
+    }
+
+    // hitbox methods
+    getTopHitbox() {
+        return {
+            x: this.position.x + 9,
+            y: this.position.y + 18,
+            width: 14,
+            height: 2
+        }
+    }
+
+    getBottomHitbox() {
+        return {
+            x: this.position.x + 9,
+            y: this.position.y + 33,
+            width: 14,
+            height: 2
+        }
+    }
+
+    getLeftHitbox() {
+        return {
+            x: this.position.x + 7,
+            y: this.position.y + 18,
+            width: 2,
+            height: 17
+        };
+    }
+
+    getRightHitbox() {
+        return {
+            x: this.position.x + 23,
+            y: this.position.y + 18,
+            width: 2,
+            height: 17
+        };
+    }
+
     // emit methods
     sendLocation() {
         socket.emit("playerMovement", {
-            x: this.headSprite.x,
-            y: this.headSprite.y,
+            x: this.position.x,
+            y: this.position.y,
             facing: this.facing,
             currentFrame: this.headSprite.currentFrame
         });
     }
 }
-var players = player.players;
+const players = player.players;

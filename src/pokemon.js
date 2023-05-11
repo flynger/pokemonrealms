@@ -1,36 +1,4 @@
-// import { Dex } from "pokemon-showdown";
-// const moves = Dex.moves.all().map(move => move.name);
-// const items = Dex.items.all().map(item => item.name);
-// const species = Dex.species.all().map(mon => mon.name);
-// const abilities = Dex.abilities.all().map(ability => ability.name);
-
-// // const typeArray = Object.keys(Types);
-// // export type Type = typeof typeArray[number];
-// export type Gender = "M"|"F"|"N";
-// export type AbilitySlot = "0"|"1"|"H"|"S";
-// export type Ability = typeof abilities[number];
-// export type Move = typeof moves[number];
-// export type Species = typeof species[number];
-// export type HeldItem = typeof items[number];
-// // export type StatStage = -6|-5|-4|-3|-2|-1|0|1|2|3|4|5|6;
-// // export type StatStages = {
-// //     atk?: StatStage,
-// //     def?: StatStage,
-// //     spa?: StatStage,
-// //     spd?: StatStage,
-// //     spe?: StatStage,
-// //     accuracy?: StatStage,
-// //     crit?: StatStage,
-// //     evasion?: StatStage
-// // }
-// export type Stats = {
-//     hp?: number,
-//     atk?: number,
-//     def?: number,
-//     spa?: number,
-//     spd?: number,
-//     spe?: number,
-// }
+import Pokedex from "./pokedex.js";
 // const statNames = {
 //     hp: "HP",
 //     atk: "Attack",
@@ -44,19 +12,35 @@
 // }
 export default class Pokemon {
     static shinyChance = 8192;
-    
-    constructor(species, name, gender, shiny, level, heldItem, nature, abilitySlot, ivs, evs, moves) {
+
+    constructor(species, name = "", gender, shiny, level = -1, heldItem = "", nature, abilitySlot, ivs, evs, moves) {
         this.species = species;
-        this.name = name || "";
-        this.gender = gender;
+        this.name = name;
+
+        // gender initialization
+        if (Pokedex[species].gender) {
+            this.gender = Pokedex[species].gender;
+        } else if (!Pokedex[species].genderRatio || !Pokedex[species].genderRatio.hasOwnProperty(gender)) {
+            let genderRatio = Pokedex[species].genderRatio || { M: 0.5, F: 0.5 };
+            this.gender = Math.random() < genderRatio.M ? "M" : "F";
+        } else this.gender = gender;
+
+        if (Pokedex[species].genderRatio) console.log(Pokedex[species].genderRatio.hasOwnProperty(gender));
         this.shiny = typeof shiny == "boolean" ? shiny : randomNumber(1, Pokemon.shinyChance) == 1;
-        this.level = level || 1;
-        this.heldItem = heldItem || "";
+        this.level = level;
+        this.heldItem = heldItem;
         this.nature = nature || "Serious";
-        this.abilitySlot = abilitySlot || randomNumber(0, 1) + "";
+
+        // ability code
+        if (abilitySlot && Pokedex[species].abilities.hasOwnProperty(abilitySlot)) {
+            this.abilitySlot = abilitySlot;
+        } else {
+            this.abilitySlot = Pokedex[species].abilities[1] ? randomNumber(0, 1) + "" : "0";
+        }
+
         this.ivs = ivs || new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31));
         this.evs = evs || new Stats(0, 0, 0, 0, 0, 0);
-        this.moves = moves;
+        this.moves = moves || ["Tackle"];
     }
 }
 class Stats {

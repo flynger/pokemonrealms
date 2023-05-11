@@ -1,8 +1,20 @@
-// PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 PIXI.settings.ROUND_PIXELS = true;
 //PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
 
+// physics engine
+var engine = Matter.Engine.create({
+    gravity: {
+        scale: 0
+    }
+    // velocityIterations: 8,
+    // positionIterations: 12
+});
+// var runner = Matter.Runner.create();
+// Matter.Runner.run(runner, engine);
+
+// PIXI drawing engine
 var app;
 var graphics = new PIXI.Graphics();
 
@@ -11,105 +23,18 @@ const gameContainer = new PIXI.Container();
 const textContainer = new PIXI.Container();
 const smoothingFrames = 15; // The number of frames to use for smoothing
 var smoothedFrameDuration = 0; // The smoothed frame duration
-var WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
-var ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
-var map = {
-    width: 60,
-    height: 45
-};
-var gen4hgssSheet;
-var gen5exteriorSheet;
-var kyledoveSheet;
-
-
-$(window).on('load', function () {
-    $('#message').modal({ backdrop: 'static', keyboard: false });
-    $('#message').modal('show');
-    $('#message-title').text("Loading...");
-    $('#blueModalBtn').hide();
-    $('#grayModalBtn').hide();
-    setup();
-});
-
-async function setup() {
-    // setup promises
-    let font = new FontFaceObserver('Power Clear', {});
-    $('#message-body').text("Loading fonts...");
-    await font.load(null, 30000);
-    $('#message-body').text("Loading spritesheets...");
-    await setupSpritesheets();
-    $('#message-body').text("Setting up game...");
-    await setupGame();
-    $('#message-body').text("Establishing connection to server...");
-    setupSocket();
-}
-
-window.onresize = () => {
-    let gameDiv = document.getElementById("game");
-    ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
-    gameDiv.style.width = WIDTH * ratio + "px";
-    gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
-    for (let name in players) {
-        players[name].renderName();
-    }
-}
-
-async function setupSpritesheets() {
-    PIXI.Assets.add('Particle', '../res/particle.png');
-    PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
-    PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
-    PIXI.Assets.add('kyledove', '../res/data/kyledove.json');
-    gen4hgssSheet = await PIXI.Assets.load(['gen4hgss']);
-    gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
-    kyledoveSheet = await PIXI.Assets.load('kyledove');
-    await player.initializePlayerSpritesheets();
-    // await grass.initializeGrassSpritesheet();
-}
-
-async function setupGame() {
-    let gameDiv = document.getElementById("game");
-    gameDiv.style.width = WIDTH * ratio + "px";
-    app = new PIXI.Application(
-        {
-            resizeTo: gameDiv,
-            autoResize: true,
-            powerPreference: "high-performance",
-            hello: true,
-            antialias: true,
-            backgroundColor: 0x000000
-        }
-    );
-    gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
-    
-    let colorMatrix = new PIXI.filters.ColorMatrixFilter();
-    gameContainer.filters = [colorMatrix];
-    colorMatrix.brightness(1);
-    map.tilemap = new PIXI.tilemap.CompositeTilemap();
-    map.tilemap.zIndex = -1000;
-    for (let i = 0; i < map.width; i++) {
-        for (let j = 0; j < map.height; j++) {
-            let possibleTiles = ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass1", "grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
-            map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
-
-            if ((i + j + 1) % randomNumber(4, 10) == 0 || (i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
-                new grass(i * 32, j * 32);
-            } else if (randomNumber(1, 90) == 1) {
-                new log(i * 32, j * 32);
-            }
-        }
-    }
-    gameContainer.addChild(map.tilemap);
-    gameContainer.addChild(graphics);
-    app.stage.addChild(gameContainer);
-    app.stage.addChild(textContainer);
-}
 
 function draw(deltaTime) {
     graphics.clear();
     smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
+    //console.log( { deltaTime, smoothedFrameDuration });
     for (let name in players) {
-        players[name].step(smoothedFrameDuration, app);
+        players[name].step();
     }
+    for (let grss in grasses) {
+        grasses[grss].step();
+    }
+    Matter.Engine.update(engine, 100 / 3 * smoothedFrameDuration);
     for (let name in players) {
         players[name].endFrame();
     }
