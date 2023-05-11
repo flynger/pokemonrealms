@@ -77,7 +77,7 @@ export default class SingleBattle {
                             var pokemonArgs = lineArray[0].split(": ");
                             var side = pokemonArgs[0][1];
                             var thisParty = this["player" + side];
-                            if (thisParty.data && !thisParty.nextData.forcedSwitch) {
+                            if (thisParty.data && !thisParty.data.teamPreview && !thisParty.nextData.forcedSwitch) {
                                 if (isOwnPokemon) {
                                     messageText = DefaultText.default.switchOutOwn;
                                 } else {
