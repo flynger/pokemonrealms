@@ -213,7 +213,7 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("tradeRequest", (user, pokemon) => {
+    socket.on("tradeRequest", (user, pokemonSlot) => {
         user = user.toLowerCase(); // convert name to username
         let otherPlayer = players[user];
         if (!otherPlayer) {
@@ -222,17 +222,19 @@ io.on("connection", (socket) => {
         }
         if (otherPlayer.connected && otherPlayer.battle == null && thisPlayer.battle == null) {
             // if other player hasnt sent request, send
-            otherPlayer.socket.emit("tradeRequest", user, pokemon);
+            console.log(`${username} requests a trade with ${user}`);
+            otherPlayer.socket.emit("tradeRequest", username, thisPlayer.party[pokemonSlot]);
         }
     });
 
-    socket.on("tradeAccept", (data) => {
+    socket.on("acceptTrade", (data) => {
         let player1 = players[data.player1.toLowerCase()];
         let player2 = players[ data.player2.toLowerCase()];
+        console.log(`Trading ${player1.party[data.pokemon1]} for ${player2.party[data.pokemon2]}`);
         temp = player1.party[data.pokemonSlot1];
         player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
         player2.part[data.pokemonSlot2] = temp;
-        socket.emit("tradeAccept", (data));
+        socket.emit("acceptTrade", (data));
     })
 
     socket.on("startBattle", () => {

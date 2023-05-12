@@ -75,16 +75,27 @@ function setupSocket() {
         $('#message').modal({ backdrop: 'static' });
         $('#message').modal('show');
         $('#message-title').text("Trade Request");
-        $('#message-body').text(user + " has sent you a trade request for " + pokemon.name + ". Accept?");
+        const pokemonName = pokemon ? pokemon.name || pokemon.species : '';
+        $('#message-body').text(`${user} has sent you a trade request for ${pokemonName}. Accept?`);
         $('#blueModalBtn').text("Accept!");
         $('#grayModalBtn').text("Decline");
         $('#blueModalBtn').on('click', () => {
-            acceptTrade(user, pokemon);
+            acceptTrade(user, {
+                player1: user,
+                player2: username,
+                pokemonSlot1: 1,
+                pokemonSlot2: 1
+            });
             $('#message').modal('hide');
         });
         $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
+    });
+
+    socket.on("acceptTrade", (data) => {
+        //do trade animation
+        console.log(`Succesfully traded`)
     });
 
     socket.on("battleStart", () => {
@@ -121,6 +132,7 @@ function setupSocket() {
         gameDiv.removeChild(app.view);
     });
 }
+
 function battleRequest(user) {
     socket.emit("battleRequest", user);
 }
