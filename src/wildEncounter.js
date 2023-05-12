@@ -4,7 +4,8 @@ import Party from "./party.js";
 export default class WildEncounter extends SingleBattle {
     text = {
         opposingPokemon: "the wild [NICKNAME]",
-        switchIn: "A wild [NICKNAME] appeared!"
+        switchIn: "A wild [NICKNAME] appeared!",
+        endBattle: "Successfully ran away from the battle!"
     }
     
     constructor(player, encounter) {
@@ -13,7 +14,9 @@ export default class WildEncounter extends SingleBattle {
         this.encounter = encounter;
     }
 
-    getBattle() {
-        return this.battle;
+    run() {
+        if (this.canRun) {
+            this.endBattle();
+        }
     }
 }

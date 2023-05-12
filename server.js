@@ -248,6 +248,12 @@ io.on("connection", (socket) => {
         }
     });
 
+    socket.on("endBattle", () => {
+        if (players[username].battle && players[username].battle.canRun) {
+            players[username].battle.run();
+        }
+    });
+
     socket.on("moveInput", (moveNumber) => {
         if (thisPlayer.battle != null) {
             thisPlayer.battle.useMove(displayName, moveNumber);

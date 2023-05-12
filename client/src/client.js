@@ -115,6 +115,11 @@ function setupSocket() {
         battleOptions = options;
     });
 
+    socket.on("endBattle", (message) => {
+        battleDialogue.push(message);
+        if (!dialoguePlaying) nextDialogue();
+    });
+
     socket.on("pong", (ms) => {
         latency = ms;
     });

@@ -1,5 +1,5 @@
 $(function () {
-    $("#overlay").hide();
+    // $("#overlay").hide();
     $("#overlay-fight").hide();
 });
 
@@ -9,7 +9,9 @@ function showFightButtons() {
 
 function runFromBattle() {
     $('#battle-UI').hide();
+    socket.emit("endBattle");
 }
+
 var battleOptions;
 
 var battleDialogue = [];

@@ -4,7 +4,7 @@ import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js';
 import { AbilitiesText } from 'pokemon-showdown/.data-dist/text/abilities.js';
 import { players } from './loginHandler.js';
 import Showdown from 'pokemon-showdown';
-const { BattleStream, Dex } = Showdown;
+const { BattleStream, getPlayerStreams, Dex } = Showdown;
 // import * as readline from 'node:readline';
 // const rl = readline.createInterface({
 //     input: process.stdin,
@@ -14,9 +14,10 @@ const { BattleStream, Dex } = Showdown;
 export default class SingleBattle {
     text = {
         opposingPokemon: DefaultText.default.opposingPokemon,
-        switchIn: DefaultText.default.switchIn
+        switchIn: DefaultText.default.switchIn,
+        endBattle: "Battle ended"
     }
-    
+
     constructor(party1, party2, canRun = false) {
         console.log("Making a battle...");
         this.canRun = canRun;
@@ -340,14 +341,19 @@ export default class SingleBattle {
         }
     }
 
-    run() {
-        if (this.canRun) {
-            this.endBattle();
-        }
-    }
-
     endBattle() {
-
+        this.stream.destroy();
+        delete this.stream;
+        let players = [1, 2];
+        for (let id of players) {
+            if (this["player" + id].isPlayer) {
+                let player = players[this["player" + id].name];
+                if (player) {
+                    player.battle = null;
+                    if (player.connected) player.socket.emit("endBattle", this.text.endBattle);
+                }
+            }
+        }
     }
 }
 
