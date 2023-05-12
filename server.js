@@ -179,6 +179,7 @@ io.on("connection", (socket) => {
 
     socket.on("grassEnter", () => {
         if (!thisPlayer.battle && map.grassCheck()) {
+            socket.emit("battleStart", {});
             let encounter = map.createEncounter();
             thisPlayer.battle = new WildEncounter(thisPlayer, encounter);
             thisPlayer.battle.startBattle();

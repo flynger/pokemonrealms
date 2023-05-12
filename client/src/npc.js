@@ -1,4 +1,3 @@
-import Player from "../../src/player";
 class npc {
     static npcs = {};
     constructor(x, y) {

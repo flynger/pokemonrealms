@@ -1,5 +1,3 @@
-import { translatePokemon } from './pokemonTranslator.js';
-
 // first number = action slot, second number = pokemon slot, third number = move slot
 // action slot 0: attack, 1: bag, 2: pokemon, 3: run
 // export type Input = ["MOVE", 0 | 1 | 2 | 3] | ["BAG", string] | ["POKEMON", 0 | 1 | 2 | 3 | 4 | 5] | ["RUN"];
@@ -20,4 +18,19 @@ export default class Party {
     exportTeam() {
         return this.team.map((mon) => translatePokemon(mon)).join(']');
     }
+}
+
+function translatePokemon(pokemon) {
+    const species = pokemon.species;
+    const name = pokemon.name;
+    const heldItem = pokemon.heldItem;
+    const abilitySlot = pokemon.abilitySlot;
+    const moves = pokemon.moves.join(",");
+    const nature = pokemon.nature;
+    const evs = pokemon.evs.toArray().join(",");
+    const ivs = pokemon.ivs.toArray().join(",");
+    const level = pokemon.level || "";
+    const shiny = pokemon.shiny ? "S" : "";
+    const gender = pokemon.gender;
+    return `${name}|${species}|${heldItem}|${abilitySlot}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}|`;
 }

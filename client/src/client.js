@@ -71,12 +71,20 @@ function setupSocket() {
         $('#grayModalBtn').show();
     });
 
+    socket.on("battleStart", () => {
+        players[username].busy = true;
+        $("#battle-UI").show();
+    });
+
     socket.on("battleData", (output) => {
         console.log(output);
+        battleDialogue.push(output);
+        if (!dialoguePlaying) nextDialogue();
     });
 
     socket.on("battleOptions", (options) => {
         console.log(options);
+        battleOptions = options;
     });
 
     socket.on("pong", (ms) => {

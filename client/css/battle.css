@@ -6,6 +6,7 @@
     background-image: url('../res/battle/grass_bg.png');
     background-size: cover;
     display: none;
+    user-select: none;
 }
 
 #overlay {
@@ -35,13 +36,14 @@
     background-size: cover;
 }
 
-#text-box {
+#dialogue {
     position: absolute;
-    width: 90.167%;
+    width: 89.767%;
     height: 96.196%;
-    bottom: 0%;
-    right: 4.916%;
-    font-size: 2vw;
+    bottom: -4%;
+    right: 4.56%;
+    font-size: 3vw;
+    overflow: hidden;
 }
 
 .fight-button {

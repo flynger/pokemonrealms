@@ -8,7 +8,7 @@ export default class WildEncounter extends SingleBattle {
     }
     
     constructor(player, encounter) {
-        super(new Party(player.displayName, player.party), new Party("Wild Pokemon", [encounter], false), true);
+        super(new Party("Wild Pokemon", [encounter], false), new Party(player.displayName, player.party), true);
         this.player = player;
         this.encounter = encounter;
     }

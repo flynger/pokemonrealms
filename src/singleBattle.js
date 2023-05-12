@@ -1,6 +1,7 @@
 import { DefaultText } from 'pokemon-showdown/.data-dist/text/default.js';
 import { MovesText } from 'pokemon-showdown/.data-dist/text/moves.js';
-import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'
+import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js';
+import { AbilitiesText } from 'pokemon-showdown/.data-dist/text/abilities.js';
 import { players } from './loginHandler.js';
 import Showdown from 'pokemon-showdown';
 const { BattleStream, Dex } = Showdown;
@@ -29,8 +30,8 @@ export default class SingleBattle {
                 let outputArray = output.split("\n");
                 switch (outputArray.shift()) {
                     case "update":
-                        this.createBattlePerspective(outputArray, "1");
-                        this.createBattlePerspective(outputArray, "2");
+                        if (this.player1.isPlayer) this.createBattlePerspective(outputArray, "1");
+                        if (this.player2.isPlayer) this.createBattlePerspective(outputArray, "2");
                         this.player1.data = this.player1.nextData;
                         this.player2.data = this.player2.nextData;
                         break;
@@ -55,7 +56,6 @@ export default class SingleBattle {
                         }
                     //console.log(outputArray)
                 }
-                console.log(output);
             }
         })();
     }
@@ -188,6 +188,19 @@ export default class SingleBattle {
                         messageText = DefaultText.default.abilityActivation;
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         args.ABILITY = lineArray[1];
+                        if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
+                            let effectDetails = lineArray[2].slice(7).split(": ");
+                            let effectSourceType = effectDetails[0];
+                            let effectSource = effectDetails[1] || effectDetails[0];
+                            if (effectSourceType == "ability") {
+                                if (AbilitiesText[Dex.abilities.get(effectSource).id].changeAbility) {
+                                    messageText = AbilitiesText[Dex.abilities.get(effectSource).id].changeAbility;
+                                }
+                            }
+                        }
+                        if (lineArray[3] && lineArray[3].startsWith("[of] ")) {
+                            args.SOURCE = lineArray[3].slice(5).split(": ")[1];
+                        }
                         break;
                     case "-boost":
                         var amount = lineArray[2];
@@ -279,7 +292,7 @@ export default class SingleBattle {
                 console.log(messageText);
                 this.output += messageText + "\n";
             }
-            console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
+            //console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
         }
     }
 
@@ -296,11 +309,11 @@ export default class SingleBattle {
             name: this.player2.name,
             team: this.player2.exportTeam()
         };
-        this.stream.write(`>start {"formatid":"gen7ubers"}`);
+        this.stream.write(`>start {"formatid":"gen7custom"}`);
         this.stream.write(`>player p1 ${JSON.stringify(player1)}`);
         this.stream.write(`>player p2 ${JSON.stringify(player2)}`);
-        this.stream.write(`>p1 team 123456`);
-        this.stream.write(`>p2 team 123456`);
+        // this.stream.write(`>p1 team 123456`);
+        // this.stream.write(`>p2 team 123456`);
     }
 
     startRandomBattle() {
