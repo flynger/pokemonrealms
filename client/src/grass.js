@@ -29,7 +29,7 @@ class grass {
                 passer.grassCounter--;
                 delete this.passers[name];
             } else if(!playerInThisGrass && hasCollisionOccurred) {
-                if (name == username) socket.emit("grassEnter", {});
+                if (name == username && (passer.velocity.x != 0 || passer.velocity.y != 0)) socket.emit("grassEnter", {});
                 passer.grassCounter++;
                 this.passers[name] = true;
             }
