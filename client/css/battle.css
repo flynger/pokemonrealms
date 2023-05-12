@@ -1,10 +1,12 @@
 #battle-UI {
     position: absolute;
     width: 53%;
+    height: 89.392%;
     aspect-ratio: auto 1024 / 768;
     background-image: url('../res/battle/grass_bg.png');
     background-size: cover;
     display: none;
+    user-select: none;
 }
 
 #overlay {
@@ -23,6 +25,25 @@
     bottom: 0%;
     background-image: url('../res/gui/battle/overlay_fight.png');
     background-size: cover;
+}
+
+#overlay-message {
+    position: absolute;
+    width: 100%;
+    height: 24.427%;
+    bottom: 0%;
+    background-image: url('../res/gui/battle/overlay_message.png');
+    background-size: cover;
+}
+
+#dialogue {
+    position: absolute;
+    width: 89.767%;
+    height: 96.196%;
+    bottom: -4%;
+    right: 4.56%;
+    font-size: 3vw;
+    overflow: hidden;
 }
 
 .fight-button {

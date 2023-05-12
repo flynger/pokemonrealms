@@ -1,6 +1,6 @@
 class player {
     static walkSpeed = 1.5;
-    static runSpeed = 2.5;
+    static runSpeed = 2.4;
     static friction = 0.15;
     static rigidBodyWidth = 16;
     static rigidBodyHeight = 20;
@@ -67,6 +67,7 @@ class player {
         this.avatar = avatar;
         this.facing = facing;
         this.hasController = hasController;
+        this.busy = false;
         this.createSprites();
         this.createRigidBody(x, y);
         this.updateSprite();
@@ -76,7 +77,7 @@ class player {
     step(deltaTime) {
         // input and camera logic
         if (this.hasController) {
-            this.checkForInput();
+            if (!this.busy) this.checkForInput();
             this.centerCameraOnSelf();
             this.updateSprite();
             this.sendLocation();
