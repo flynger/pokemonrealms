@@ -343,7 +343,6 @@ export default class SingleBattle {
 
     endBattle() {
         this.stream.destroy();
-        delete this.stream;
         let players = [1, 2];
         for (let id of players) {
             if (this["player" + id].isPlayer) {

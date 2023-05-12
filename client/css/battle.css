@@ -5,7 +5,7 @@
     aspect-ratio: auto 1024 / 768;
     background-image: url('../res/battle/grass_bg.png');
     background-size: cover;
-    /* display: none; */
+    display: none;
     user-select: none;
 }
 

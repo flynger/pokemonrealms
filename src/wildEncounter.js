@@ -15,8 +15,6 @@ export default class WildEncounter extends SingleBattle {
     }
 
     run() {
-        if (this.canRun) {
-            this.endBattle();
-        }
+        this.endBattle();
     }
 }

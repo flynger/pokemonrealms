@@ -1,5 +1,5 @@
 $(function () {
-    // $("#overlay").hide();
+    $("#overlay").hide();
     $("#overlay-fight").hide();
 });
 
@@ -8,14 +8,13 @@ function showFightButtons() {
 }
 
 function runFromBattle() {
-    $('#battle-UI').hide();
     socket.emit("endBattle");
 }
 
 var battleOptions;
 
 var battleDialogue = [];
-var textSpeed = 50;
+var textSpeed = 60;
 var textInterval;
 var dialoguePlaying = false;
 function nextDialogue() {
@@ -32,8 +31,8 @@ function nextDialogue() {
                 if (battleDialogue.length > 0) nextDialogue();
                 else {
                     dialoguePlaying = false;
-                    $("#overlay-fight").show();
                     $("#overlay").show();
+                    $("#overlay-fight").show();
                 }
             }, 500);
         }
