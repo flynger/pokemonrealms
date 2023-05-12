@@ -228,12 +228,13 @@ io.on("connection", (socket) => {
     });
 
     socket.on("acceptTrade", (data) => {
+        console.log("data " + data);
         let player1 = players[data.player1.toLowerCase()];
         let player2 = players[ data.player2.toLowerCase()];
         console.log(`Trading ${player1.party[data.pokemon1]} for ${player2.party[data.pokemon2]}`);
-        temp = player1.party[data.pokemonSlot1];
+        let temp = player1.party[data.pokemonSlot1];
         player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
-        player2.part[data.pokemonSlot2] = temp;
+        player2.party[data.pokemonSlot2] = temp;
         socket.emit("acceptTrade", (data));
     })
 

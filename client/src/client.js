@@ -80,7 +80,8 @@ function setupSocket() {
         $('#blueModalBtn').text("Accept!");
         $('#grayModalBtn').text("Decline");
         $('#blueModalBtn').on('click', () => {
-            acceptTrade(user, {
+            console.log(`username: ${username} user: ${user}`);
+            acceptTrade({
                 player1: user,
                 player2: username,
                 pokemonSlot1: 1,
