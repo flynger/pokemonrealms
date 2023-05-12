@@ -14,6 +14,7 @@ export default class Player {
         this.socket = null;
         this.requests = {};
         this.battle = null;
+        this.trade = null;
         this.starter = false;
         this.party = [];
         this.box = [];
