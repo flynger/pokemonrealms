@@ -213,6 +213,28 @@ io.on("connection", (socket) => {
         }
     });
 
+    socket.on("tradeRequest", (user, pokemon) => {
+        user = user.toLowerCase(); // convert name to username
+        let otherPlayer = players[user];
+        if (!otherPlayer) {
+            socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
+            return;
+        }
+        if (otherPlayer.connected && otherPlayer.battle == null && thisPlayer.battle == null) {
+            // if other player hasnt sent request, send
+            otherPlayer.socket.emit("tradeRequest", user, pokemon);
+        }
+    });
+
+    socket.on("tradeAccept", (data) => {
+        let player1 = players[data.player1.toLowerCase()];
+        let player2 = players[ data.player2.toLowerCase()];
+        temp = player1.party[data.pokemonSlot1];
+        player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
+        player2.part[data.pokemonSlot2] = temp;
+        socket.emit("tradeAccept", (data));
+    })
+
     socket.on("startBattle", () => {
         if (players[username].battle == null) {
             const party1 = new Party(username, []);

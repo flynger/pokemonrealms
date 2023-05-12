@@ -71,6 +71,22 @@ function setupSocket() {
         $('#grayModalBtn').show();
     });
 
+    socket.on("tradeRequest", (user, pokemon) => {
+        $('#message').modal({ backdrop: 'static' });
+        $('#message').modal('show');
+        $('#message-title').text("Trade Request");
+        $('#message-body').text(user + " has sent you a trade request for " + pokemon.name + ". Accept?");
+        $('#blueModalBtn').text("Accept!");
+        $('#grayModalBtn').text("Decline");
+        $('#blueModalBtn').on('click', () => {
+            acceptTrade(user, pokemon);
+            $('#message').modal('hide');
+        });
+        $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
+        $('#blueModalBtn').show();
+        $('#grayModalBtn').show();
+    });
+
     socket.on("battleStart", () => {
         players[username].busy = true;
         $("#battle-UI").show();
@@ -113,4 +129,10 @@ function useMove(move) {
 }
 function switchTo(slot) {
     socket.emit("switchInput", slot);
+}
+function tradeRequest(user, pokemon) {
+    socket.emit("tradeRequest", user, pokemon);
+}
+function acceptTrade(data) {
+    socket.emit("acceptTrade", data);
 }
