@@ -218,8 +218,8 @@
     </div>
 
     <div class="toast-container position-absolute text-center" id="settings-holder">
-      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header draggable" id="settings-holder-header">
+      <div id="liveToast" class="toast bg-dark text-white" role="alert" aria-live="assertive" aria-atomic="true" style="opacity: 0.9;">
+        <div class="toast-header draggable bg-white" id="settings-holder-header" style="opacity: 0.9;">
           <!-- <img src="..." class="rounded me-2" alt="..."> -->
           <strong class="me-auto">Settings</strong>
           <small>Game</small>
@@ -273,7 +273,7 @@
       <button type="button" id="summaryBtn" class="btn btn-sm btn-dark rounded-5 mx-1"><img src="res/items/pokeball.png" class="object-fit-scale"></button>
       <button type="button" id="inventoryBtn" class="btn btn-sm btn-dark rounded-5 mx-1"><img src="res/gui/icons/backpack_sprite_closed.png" class="object-fit-scale"></button>
     </div>
-    <button type="button" class="btn btn-primary position-absolute bottom-0 end-0" id="liveToastBtn"
+    <button type="button" class="btn btn-dark position-absolute bottom-0 end-0" id="liveToastBtn"
       onclick="toastBootstrap.show()">Settings</button>
   </div>
 </body>

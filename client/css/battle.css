@@ -43,7 +43,7 @@
     width: 100%;
     height: 24.427%;
     bottom: 0%;
-    background-image: url('../res/battle/overlay_command.png');
+    background-image: url('../res/battle/gui/overlay_command.png');
     background-size: cover;
 }
 
@@ -52,7 +52,7 @@
     width: 100%;
     height: 24.427%;
     bottom: 0%;
-    background-image: url('../res/battle/overlay_fight.png');
+    background-image: url('../res/battle/gui/overlay_fight.png');
     background-size: cover;
 }
 
@@ -61,7 +61,7 @@
     width: 100%;
     height: 24.427%;
     bottom: 0%;
-    background-image: url('../res/battle/overlay_message.png');
+    background-image: url('../res/battle/gui/overlay_message.png');
     background-size: cover;
 }
 
@@ -104,7 +104,7 @@
     height: 39px;
     scale: calc(1.3 * var(--scale));
     transform-origin: right bottom;
-    background-image: url('../res/battle/cursor_command.png');
+    background-image: url('../res/battle/gui/cursor_command.png');
     background-position-x: -134px;
 }
 
