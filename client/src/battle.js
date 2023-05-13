@@ -1,6 +1,6 @@
 $(function () {
-    // $("#overlay").hide();
-    // $("#overlay-fight").hide();
+    $("#overlay").hide();
+    $("#overlay-fight").hide();
 });
 
 function showFightButtons() {
@@ -16,7 +16,7 @@ function runFromBattle() {
 var battleOptions;
 var battleOver = false;
 var battleDialogue = [];
-var textSpeed = 80;
+var textSpeed = 50;
 var textInterval;
 var dialoguePlaying = false;
 function nextDialogue() {
@@ -38,12 +38,13 @@ function nextDialogue() {
                         $('#battle-UI').hide();
                         players[username].busy = false;
                         battleOver = false;
+                        app.view.style.filter = "none";
                     } else {
                         $("#overlay").show();
                         $("#overlay-fight").show();
                     }
                 }
-            }, 500);
+            }, 800);
         }
     }, 1000 / textSpeed);
 }

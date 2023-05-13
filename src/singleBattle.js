@@ -17,6 +17,7 @@ export default class SingleBattle {
         opposingPokemon: DefaultText.default.opposingPokemon,
         switchIn: DefaultText.default.switchIn,
         turn: DefaultText.default.turn,
+        startBattle: DefaultText.default.startBattle,
         endBattle: "Battle ended"
     }
 
@@ -181,7 +182,7 @@ export default class SingleBattle {
                         splitCounter = 2;
                         continue;
                     case "start":
-                        messageText = DefaultText.default.startBattle.replace("[TRAINER]", this.player1.name).replace("[TRAINER]", this.player2.name);
+                        messageText = this.text.startBattle.replace("[TRAINER]", this.player1.name).replace("[TRAINER]", this.player2.name);
                         useArgs = false;
                         break;
                     case "turn":

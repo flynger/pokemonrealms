@@ -7,6 +7,7 @@ export default class WildEncounter extends SingleBattle {
         opposingPokemon: "the wild [NICKNAME]",
         switchIn: "A wild [NICKNAME] appeared!",
         turn: " ",
+        startBattle: " ",
         endBattle: "Successfully ran away from the battle!"
     }
     

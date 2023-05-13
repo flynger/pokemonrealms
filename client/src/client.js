@@ -99,8 +99,9 @@ function setupSocket() {
         console.log(`Succesfully traded`)
     });
 
-    socket.on("battleStart", () => {
+    socket.on("startBattle", () => {
         players[username].busy = true;
+        app.view.style.filter = "blur(0.2em)";
         $("#battle-UI").show();
     });
 
