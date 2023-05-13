@@ -72,6 +72,27 @@
     overflow: hidden;
 }
 
+.grassbase0 {
+    position: absolute;
+    top: 60%;
+    left: -18%;
+    width: 400px;
+    height: 64px;
+    scale: calc(1 * var(--scale));
+    background-image: url('../res/battle/grass_base0.png');
+    background-position-x:-112px;
+}
+
+.grassbase1 {
+    position: absolute;
+    top: 100px;
+    left: 220px;
+    width: 256px;
+    height: 128px;
+    scale: calc(1 * var(--scale));
+    background-image: url('../res/battle/grass_base1.png');
+}
+
 .command div {
     position: absolute;
     aspect-ratio: auto 126 / 38;
