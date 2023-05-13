@@ -9,12 +9,14 @@ function showFightButtons() {
 
 function runFromBattle() {
     socket.emit("endBattle");
+    $("#overlay").hide();
+    $("#overlay-fight").hide();
 }
 
 var battleOptions;
-
+var battleOver = false;
 var battleDialogue = [];
-var textSpeed = 60;
+var textSpeed = 80;
 var textInterval;
 var dialoguePlaying = false;
 function nextDialogue() {
@@ -30,9 +32,16 @@ function nextDialogue() {
             setTimeout(() => {
                 if (battleDialogue.length > 0) nextDialogue();
                 else {
+                    $('#dialogue').html("");
                     dialoguePlaying = false;
-                    $("#overlay").show();
-                    $("#overlay-fight").show();
+                    if (battleOver) {
+                        $('#battle-UI').hide();
+                        players[username].busy = false;
+                        battleOver = false;
+                    } else {
+                        $("#overlay").show();
+                        $("#overlay-fight").show();
+                    }
                 }
             }, 500);
         }

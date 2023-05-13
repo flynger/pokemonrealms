@@ -13,8 +13,10 @@ const { BattleStream, getPlayerStreams, Dex } = Showdown;
 
 export default class SingleBattle {
     text = {
+        fullName: "[NICKNAME] (**[SPECIES]**)",
         opposingPokemon: DefaultText.default.opposingPokemon,
         switchIn: DefaultText.default.switchIn,
+        turn: DefaultText.default.turn,
         endBattle: "Battle ended"
     }
 
@@ -183,6 +185,7 @@ export default class SingleBattle {
                         useArgs = false;
                         break;
                     case "turn":
+                        messageText = this.text.turn;
                         args.NUMBER = lineArray[0];
                         break;
                     case "-ability":
@@ -268,7 +271,7 @@ export default class SingleBattle {
                 if (messageText.includes("[POKEMON]")) {
                     messageText = messageText.replace("[POKEMON]", isOwnPokemon ? DefaultText.default.pokemon : this.text.opposingPokemon);
                 } else if (messageText.includes("[FULLNAME]")) {
-                    messageText = messageText.replace("[FULLNAME]", "[NICKNAME] (**[SPECIES]**)");
+                    messageText = messageText.replace("[FULLNAME]", this.text.fullName);
                 }
 
                 let firstLetter = messageText.search(/[a-zA-Z]/); // find first letter of string
@@ -343,8 +346,8 @@ export default class SingleBattle {
 
     endBattle() {
         this.stream.destroy();
-        let players = [1, 2];
-        for (let id of players) {
+        let ids = [1, 2];
+        for (let id of ids) {
             if (this["player" + id].isPlayer) {
                 let player = players[this["player" + id].name];
                 if (player) {

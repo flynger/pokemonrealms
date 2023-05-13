@@ -70,6 +70,7 @@
     right: 4.56%;
     font-size: 3vw;
     overflow: hidden;
+    word-break: keep-all;
 }
 
 .command div {

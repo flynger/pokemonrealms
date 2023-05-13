@@ -3,8 +3,10 @@ import Party from "./party.js";
 
 export default class WildEncounter extends SingleBattle {
     text = {
+        fullName: "[NICKNAME]",
         opposingPokemon: "the wild [NICKNAME]",
         switchIn: "A wild [NICKNAME] appeared!",
+        turn: " ",
         endBattle: "Successfully ran away from the battle!"
     }
     

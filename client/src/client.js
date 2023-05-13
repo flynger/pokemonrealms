@@ -116,12 +116,9 @@ function setupSocket() {
     });
 
     socket.on("endBattle", (message) => {
+        battleOver = true;
         battleDialogue.push(message);
         if (!dialoguePlaying) nextDialogue();
-        setTimeout(() => {
-            $('#battle-UI').hide();
-            players[username].busy = false;
-        }, 2000);
     });
 
     socket.on("pong", (ms) => {

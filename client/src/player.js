@@ -77,7 +77,7 @@ class player {
     step(deltaTime) {
         // input and camera logic
         if (this.hasController) {
-            if (!this.busy) this.checkForInput();
+            this.checkForInput();
             this.centerCameraOnSelf();
             this.updateSprite();
             this.sendLocation();
@@ -191,7 +191,7 @@ class player {
 
     checkForInput() {
         // set player speed
-        if (Input.RIGHT != Input.LEFT || Input.UP != Input.DOWN) {
+        if (!this.busy && (Input.RIGHT != Input.LEFT || Input.UP != Input.DOWN)) {
             if (Input.SHIFT) {
                 this.speed = player.walkSpeed;
             } else {
