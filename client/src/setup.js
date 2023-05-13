@@ -183,5 +183,5 @@ function loadPlayersAndGame(playersArray) {
     app.ticker.add(draw);
     gameDiv.prepend(app.view);
     $('#game').show();
-    // $('#battle-UI').show();
+    $('#battle-UI').show();
 }
