@@ -22,7 +22,6 @@
     image-rendering: pixelated;
     overflow: visible;
     /* animation: moveHero 10s linear infinite; */
-
     background-attachment: fixed;
 }
 
@@ -30,4 +29,5 @@
     min-width: 260px;
     width: 35%;
     --bs-bg-opacity: 0.85;
+    backdrop-filter: blur(3px);
 }
