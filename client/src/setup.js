@@ -71,7 +71,6 @@ async function setupGame() {
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,
-            autoResize: true,
             powerPreference: "high-performance",
             hello: true,
             antialias: true,

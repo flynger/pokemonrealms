@@ -1,14 +1,6 @@
 {
-  "main": "dist/server.js",
+  "main": "server.js",
   "type": "module",
-  "scripts": {
-    "postinstall": "patch-package",
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build": "tsc",
-    "prestart": "npm run build",
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "dependencies": {
     "@pixi/particle-emitter": "^5.0.8",
     "cookie-parser": "^1.4.6",
