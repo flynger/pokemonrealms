@@ -1,6 +1,7 @@
 $(function () {
-    $("#overlay").hide();
-    $("#overlay-fight").hide();
+    // $("#overlay").hide();
+    // $("#overlay-fight").hide();
+    $('#battle-UI').show();
 });
 
 function showFightButtons() {

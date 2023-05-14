@@ -105,6 +105,66 @@
     background-image: url('../res/battle/grass_base1.png');
 }
 
+.fight-command div {
+    position: absolute;
+    aspect-ratio: auto 184 / 38;
+    width: 184px;
+    height: 38px;
+    scale: calc((1.37104752604 + 0.0033)* var(--scale));
+    transform-origin: left bottom;
+    background-image: url('../res/battle/gui/cursor_fight.png');
+    background-position: -196px -4px;
+    /* line-height: 38px; */
+}
+
+.movename {
+    position: absolute;
+    font-size: 85%;
+    top: 10%;
+    margin-left: 14%;
+}
+
+.movetype {
+    /* bottom: 12%; */
+    position: absolute;
+    left: 2%;
+    bottom: -5%;
+    scale: 0.35;
+}
+
+.movepp {
+    position: absolute;
+    font-size: 70%;
+    left: 30%;
+    bottom: 5%;
+}
+
+.fight-command .move1 {
+    left: 1.6%;
+    bottom: 50%;
+}
+
+.fight-command .move2 {
+    left: 38.4%;
+    bottom: 50%;
+}
+
+.fight-command .move3 {
+    left: 1.6%;
+    bottom: 6.2%;
+}
+
+.fight-command .move4 {
+    left: 38.4%;
+    bottom: 6.2%;
+}
+
+.fight-command div:hover {
+    cursor: pointer;
+    transition-duration: 0.2s;
+    filter: brightness(0.7);
+}
+
 .command div {
     position: absolute;
     aspect-ratio: auto 126 / 38;

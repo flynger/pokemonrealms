@@ -22,3 +22,67 @@ body {
 #settings-holder {
     z-index: 9;
 }
+
+.type {
+    background-image: url("../res/gui/icons/types.png");
+    background-repeat: no-repeat;
+    width: 64px;
+    height: 28px;
+}
+.type.normal {
+    background-position-y: 0px;
+}
+.type.fighting {
+    background-position-y: -28px;
+}
+.type.flying {
+    background-position-y: -56px;
+}
+.type.poison {
+    background-position-y: -84px;
+}
+.type.ground {
+    background-position-y: -112px;
+}
+.type.rock {
+    background-position-y: -140px;
+}
+.type.bug {
+    background-position-y: -168px;
+}
+.type.ghost {
+    background-position-y: -196px;
+}
+.type.steel {
+    background-position-y: -224px;
+}
+.type.unknown {
+    background-position-y: -252px;
+}
+.type.fire {
+    background-position-y: -280px;
+}
+.type.water {
+    background-position-y: -308px;
+}
+.type.grass {
+    background-position-y: -336px;
+}
+.type.electric {
+    background-position-y: -364px;
+}
+.type.psychic {
+    background-position-y: -392px;
+}
+.type.ice {
+    background-position-y: -420px;
+}
+.type.dragon {
+    background-position-y: -448px;
+}
+.type.dark {
+    background-position-y: -476px;
+}
+.type.fairy {
+    background-position-y: -504px;
+}
