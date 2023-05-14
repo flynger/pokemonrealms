@@ -59,6 +59,7 @@ export default class SingleBattle {
                         }
                     //console.log(outputArray)
                 }
+                console.log(this.stream.battle.sides[0]); // Player battle and side data !!!
             }
         })();
     }

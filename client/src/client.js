@@ -100,24 +100,24 @@ function setupSocket() {
     });
 
     socket.on("startBattle", (playerPokemon, wildPokemon) => {
-        players[username].busy = true;
-        app.view.style.filter = "blur(0.2em)";
         $("#battle-UI").show();
-        console.log("HELLOW");
-        console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)
         showPokemonYou(playerPokemon);
         showPokemonFoe(wildPokemon);
+        players[username].busy = true;
+        app.view.style.filter = "blur(0.2em)";
+        console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)
     });
 
     socket.on("battleData", (data) => {
-        console.log(battleData);
+        console.log(data);
         battleData.push(...data);
         if (!dialoguePlaying) nextAction();
     });
 
     socket.on("battleOptions", (options) => {
-        console.log(options);
+        console.log(options.active[0].moves);
         battleOptions = options;
+        updateMoveChoices();
     });
 
     socket.on("endBattle", (data) => {

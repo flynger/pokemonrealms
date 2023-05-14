@@ -139,22 +139,22 @@
     bottom: 5%;
 }
 
-.fight-command .move1 {
+.fight-command #move1 {
     left: 1.6%;
     bottom: 50%;
 }
 
-.fight-command .move2 {
+.fight-command #move2 {
     left: 38.4%;
     bottom: 50%;
 }
 
-.fight-command .move3 {
+.fight-command #move3 {
     left: 1.6%;
     bottom: 6.2%;
 }
 
-.fight-command .move4 {
+.fight-command #move4 {
     left: 38.4%;
     bottom: 6.2%;
 }

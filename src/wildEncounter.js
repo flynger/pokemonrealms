@@ -17,6 +17,11 @@ export default class WildEncounter extends SingleBattle {
         this.encounter = encounter;
     }
 
+    useMove(partyName, moveNumber) {
+        super.useMove(partyName, moveNumber)
+        this.stream.write(`>p1 move 1`);
+    }
+
     run() {
         this.endBattle();
     }

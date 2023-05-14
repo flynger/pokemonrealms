@@ -35,8 +35,9 @@ async function setup() {
     let font = new FontFaceObserver('Power Clear', {});
     $('#message-body').text("Loading fonts...");
     await font.load(null, 30000);
-    $('#message-body').text("Loading spritesheets...");
+    $('#message-body').text("Loading spritesheets and data...");
     await setupSpritesheets();
+    await fetch('../res/data/moves.json').then((response) => response.json()).then((json) => Moves = json);
     $('#message-body').text("Setting up game...");
     await setupGame();
     $('#message-body').text("Establishing connection to server...");

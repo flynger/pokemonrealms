@@ -25,6 +25,9 @@ export default class Player {
         if (this.starter == false) {
             this.starter = Player.starterOptions.includes(starter) ? starter : "PORYGON";
             this.party.push(new Pokemon(this.starter, "", "?", "?", 5, ""));
+            this.party[0].learnMove("confusion");
+            this.party[0].learnMove("zapcannon");
+            this.party[0].learnMove("icebeam");
         }
     }
 

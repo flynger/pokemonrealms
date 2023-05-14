@@ -40,7 +40,12 @@ export default class Pokemon {
 
         this.ivs = ivs || new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31));
         this.evs = evs || new Stats(0, 0, 0, 0, 0, 0);
-        this.moves = moves || ["Tackle"];
+        this.moves = moves || ["tackle"];
+    }
+
+    learnMove(move) {
+        if (this.moves.length < 4) this.moves.push(move);
+        else return Error("Pokemon already has 4 moves");
     }
 }
 class Stats {

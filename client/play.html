@@ -261,14 +261,14 @@
       </div>
       <div id="overlay-message" class="bg-image">
         <div id="dialogue" class="px-2">
-
+          Waiting for server...
         </div>
       </div>
       <div id="overlay-fight" class="fight-command">
-        <div class="move1 ground"><span class="movename">Stomping Tantrum</span><span class="movetype type ground"></span><span class="movepp">PP 40/40</span></div>
-        <div class="move2 fighting"><span class="movename">Dynamic Punch</span><span class="movetype type fighting"></span><span class="movepp">PP 40/40</span></div>
-        <div class="move3 normal"><span class="movename">Quick Attack</span><span class="movetype type normal"></span><span class="movepp">PP 40/40</span></div>
-        <div class="move4 electric"><span class="movename">Zap Cannon</span><span class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
+        <div id="move1" class="ground" onclick="useMove(1)"><span class="movename">Stomping Tantrum</span><span class="movetype type ground"></span><span class="movepp">PP 40/40</span></div>
+        <div id="move2" class="fighting" onclick="useMove(2)"><span class="movename">Dynamic Punch</span><span class="movetype type fighting"></span><span class="movepp">PP 40/40</span></div>
+        <div id="move3" class="normal" onclick="useMove(3)"><span class="movename">Quick Attack</span><span class="movetype type normal"></span><span class="movepp">PP 40/40</span></div>
+        <div id="move4" class="electric" onclick="useMove(4)"><span class="movename">Zap Cannon</span><span class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
       </div>
       <div id="overlay" class="bg-image command">
         <div class="fight bg-image" onclick="showFightButtons()"></div>
