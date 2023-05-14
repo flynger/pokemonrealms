@@ -71,7 +71,7 @@ function nextAction() {
     }, 1000 / textSpeed);
 }
 
-function changePokemonTo(id, species) {
+function showPokemonYou(species) {
     species = species.toLowerCase();
     var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani-back/${species}.gif`;
 
