@@ -99,10 +99,14 @@ function setupSocket() {
         console.log(`Succesfully traded`)
     });
 
-    socket.on("startBattle", () => {
+    socket.on("startBattle", (playerPokemon, wildPokemon) => {
         players[username].busy = true;
         app.view.style.filter = "blur(0.2em)";
         $("#battle-UI").show();
+        console.log("HELLOW");
+        console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)
+        showPokemonYou(playerPokemon);
+        showPokemonFoe(wildPokemon);
     });
 
     socket.on("battleData", (output) => {

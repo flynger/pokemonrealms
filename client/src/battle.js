@@ -19,6 +19,10 @@ var battleDialogue = [];
 var textSpeed = 50;
 var textInterval;
 var dialoguePlaying = false;
+var pokemonImage = "https://play.pokemonshowdown.com/sprites/gen5ani-back/bulbasaur.gif";
+
+// Set the image source URL
+$("#player-pokemon").attr("src", pokemonImage);
 function nextDialogue() {
     dialoguePlaying = true;
     clearInterval(textInterval);
@@ -47,4 +51,18 @@ function nextDialogue() {
             }, 800);
         }
     }, 1000 / textSpeed);
+}
+
+function showPokemonYou(species) {
+    species = species.toLowerCase();
+    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani-back/${species}.gif`;
+
+    // Set the image source URL
+    $("#pokemon-you").attr("src", imageUrl);
+}
+
+function showPokemonFoe(species) {
+    species = species.toLowerCase();
+    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani/${species}.gif`;
+    $("#pokemon-foe").attr("src", imageUrl);
 }
