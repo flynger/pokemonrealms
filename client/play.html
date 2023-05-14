@@ -73,7 +73,8 @@
   <div id="game" class="d-flex justify-content-center align-items-center w-100">
 
     <div class="toast-container position-absolute text-center" id="settings-holder">
-      <div id="liveToast" class="toast bg-dark text-white" role="alert" aria-live="assertive" aria-atomic="true" style="opacity: 0.9;" data-bs-autohide="false">
+      <div id="liveToast" class="toast bg-dark text-white" role="alert" aria-live="assertive" aria-atomic="true"
+        style="opacity: 0.9;" data-bs-autohide="false">
         <div class="toast-header draggable bg-white" id="settings-holder-header" style="opacity: 0.9;">
           <!-- <img src="..." class="rounded me-2" alt="..."> -->
           <strong class="me-auto">Settings</strong>
@@ -133,120 +134,120 @@
     <button type="button" class="btn btn-dark position-absolute bottom-0 end-0" id="liveToastBtn"
       onclick="toastBootstrap.show()">Settings</button>
 
-      <div class="container p-3" id="pokemon-summary">
-        <div class="card bg-dark text-white">
-          <div id="pokemon-summary-header" class="card-header">
-            <h5 class="card-title mb-0">Pokémon Summary</h5>
-          </div>
-          <div class="card-body p-0">
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item">
-                <a class="unselectable nav-link active" data-bs-toggle="tab" href="#info">Info</a>
-              </li>
-              <li class="nav-item">
-                <a class="unselectable nav-link" data-bs-toggle="tab" href="#stats">Stats</a>
-              </li>
-              <li class="nav-item">
-                <a class="unselectable nav-link" data-bs-toggle="tab" href="#moves">Moves</a>
-              </li>
-              <li class="nav-item">
-                <a class="unselectable nav-link" data-bs-toggle="tab" href="#details">Details</a>
-              </li>
-            </ul>
-            <div class="tab-content p-3">
-              <div class="tab-pane show active" id="info">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img id="sprite" src="res/pokemon/sprites/front/normal/6.png" alt="Charizard"
-                      class="unselectable img-fluid">
-                  </div>
-                  <div class="col-md-8">
-                    <h3>Charizard Lv. 70 <span class="red">♀</span></h3>
-                    <p>Ability: Blaze</p>
-                    <p>Types: Fire/Flying</p>
-                    <p>Nature: Modest</p>
-                    <p>OT: ashketchum12</p>
-                  </div>
+    <div class="container p-3" id="pokemon-summary">
+      <div class="card bg-dark text-white">
+        <div id="pokemon-summary-header" class="card-header">
+          <h5 class="card-title mb-0">Pokémon Summary</h5>
+        </div>
+        <div class="card-body p-0">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="unselectable nav-link active" data-bs-toggle="tab" href="#info">Info</a>
+            </li>
+            <li class="nav-item">
+              <a class="unselectable nav-link" data-bs-toggle="tab" href="#stats">Stats</a>
+            </li>
+            <li class="nav-item">
+              <a class="unselectable nav-link" data-bs-toggle="tab" href="#moves">Moves</a>
+            </li>
+            <li class="nav-item">
+              <a class="unselectable nav-link" data-bs-toggle="tab" href="#details">Details</a>
+            </li>
+          </ul>
+          <div class="tab-content p-3">
+            <div class="tab-pane show active" id="info">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img id="sprite" src="res/pokemon/sprites/front/normal/6.png" alt="Charizard"
+                    class="unselectable img-fluid">
+                </div>
+                <div class="col-md-8">
+                  <h3>Charizard Lv. 70 <span class="red">♀</span></h3>
+                  <p>Ability: Blaze</p>
+                  <p>Types: Fire/Flying</p>
+                  <p>Nature: Modest</p>
+                  <p>OT: ashketchum12</p>
                 </div>
               </div>
-              <div class="tab-pane" id="stats">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Stat</th>
-                      <th scope="col" class="text-end"><span data-toggle="tooltip"
-                          title="Individual Values are fixed, randomly generated values from 0 to 31. They contribute to the final stat value of a Pokémon.">IVs</span>
-                      </th>
-                      <th scope="col" class="text-end"><span data-toggle="tooltip"
-                          title="Effort Values are usually obtained from defeating Pokémon in battle. They contribute to the final stat value of a Pokémon.">EVs</span>
-                      </th>
-                      <th scope="col" class="text-end"><span data-toggle="tooltip"
-                          title="The actual stat value a Pokémon uses in battle. Depends on a Pokémon's base stats, level, IVs, EVs, and nature.">Stat
-                          Value</span></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">HP</th>
-                      <td><span data-toggle="tooltip" title="Pretty good">25</span></td>
-                      <td>44</td>
-                      <td>78</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><span data-toggle="tooltip" title="Decreased by 10% due to Modest nature."
-                          class="red">Attack</span></th>
-                      <td><span data-toggle="tooltip" title="No good">3</span></td>
-                      <td>34</td>
-                      <td><span data-toggle="tooltip" title="Decreased by 10% due to Modest nature."
-                          class="red">109</span></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Defense</th>
-                      <td><span data-toggle="tooltip" title="OK">17</span></td>
-                      <td>117</td>
-                      <td>78</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"><span data-toggle="tooltip" title="Increased by 10% due to Modest nature."
-                          class="green">Sp. Attack</span></th>
-                      <td><span data-toggle="tooltip" title="OK">15</span></td>
-                      <td>125</td>
-                      <td><span data-toggle="tooltip" title="Increased by 10% due to Modest nature."
-                          class="green">109</span></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Sp. Defense</th>
-                      <td><span data-toggle="tooltip" title="Pretty good">23</span></td>
-                      <td>13</td>
-                      <td>85</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Speed</th>
-                      <td><span data-toggle="tooltip" title="No good">3</span></td>
-                      <td>135</td>
-                      <td>100</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="tab-pane" id="moves">
-                <ul id="move-list" class="list-group">
-                  <li class="list-group-item move-item" data-move-id="1">Flamethrower</li>
-                  <li class="list-group-item move-item" data-move-id="2">Air Slash</li>
-                  <li class="list-group-item move-item" data-move-id="3">Seismic Toss</li>
-                  <li class="list-group-item move-item" data-move-id="4">Fly</li>
-                </ul>
-              </div>
-              <div class="tab-pane" id="details">
-                <h5>Caught Details</h5>
-                <p id="location-encountered">Encountered as a Lv. 5 Charmander on Route 21.</p>
-                <p id="date-caught">7:13 AM PST, March 21, 2023.</p>
-              </div>
+            </div>
+            <div class="tab-pane" id="stats">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Stat</th>
+                    <th scope="col" class="text-end"><span data-toggle="tooltip"
+                        title="Individual Values are fixed, randomly generated values from 0 to 31. They contribute to the final stat value of a Pokémon.">IVs</span>
+                    </th>
+                    <th scope="col" class="text-end"><span data-toggle="tooltip"
+                        title="Effort Values are usually obtained from defeating Pokémon in battle. They contribute to the final stat value of a Pokémon.">EVs</span>
+                    </th>
+                    <th scope="col" class="text-end"><span data-toggle="tooltip"
+                        title="The actual stat value a Pokémon uses in battle. Depends on a Pokémon's base stats, level, IVs, EVs, and nature.">Stat
+                        Value</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">HP</th>
+                    <td><span data-toggle="tooltip" title="Pretty good">25</span></td>
+                    <td>44</td>
+                    <td>78</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><span data-toggle="tooltip" title="Decreased by 10% due to Modest nature."
+                        class="red">Attack</span></th>
+                    <td><span data-toggle="tooltip" title="No good">3</span></td>
+                    <td>34</td>
+                    <td><span data-toggle="tooltip" title="Decreased by 10% due to Modest nature."
+                        class="red">109</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Defense</th>
+                    <td><span data-toggle="tooltip" title="OK">17</span></td>
+                    <td>117</td>
+                    <td>78</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><span data-toggle="tooltip" title="Increased by 10% due to Modest nature."
+                        class="green">Sp. Attack</span></th>
+                    <td><span data-toggle="tooltip" title="OK">15</span></td>
+                    <td>125</td>
+                    <td><span data-toggle="tooltip" title="Increased by 10% due to Modest nature."
+                        class="green">109</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Sp. Defense</th>
+                    <td><span data-toggle="tooltip" title="Pretty good">23</span></td>
+                    <td>13</td>
+                    <td>85</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Speed</th>
+                    <td><span data-toggle="tooltip" title="No good">3</span></td>
+                    <td>135</td>
+                    <td>100</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane" id="moves">
+              <ul id="move-list" class="list-group">
+                <li class="list-group-item move-item" data-move-id="1">Flamethrower</li>
+                <li class="list-group-item move-item" data-move-id="2">Air Slash</li>
+                <li class="list-group-item move-item" data-move-id="3">Seismic Toss</li>
+                <li class="list-group-item move-item" data-move-id="4">Fly</li>
+              </ul>
+            </div>
+            <div class="tab-pane" id="details">
+              <h5>Caught Details</h5>
+              <p id="location-encountered">Encountered as a Lv. 5 Charmander on Route 21.</p>
+              <p id="date-caught">7:13 AM PST, March 21, 2023.</p>
             </div>
           </div>
         </div>
       </div>
-      
+    </div>
+
     <div id="battle-UI" class="PokemonFont bg-image" ondragstart="return false;">
       <div class="grassbase0"></div>
       <div class="grassbase1"></div>
@@ -263,16 +264,17 @@
 
         </div>
       </div>
-      <div id="overlay-fight" class="bg-image">
-        <!-- <div id="button-2" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
-          <div id="button-3" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
-          <div id="button-4" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div> -->
+      <div id="overlay-fight" class="fight-command">
+        <div class="move1 ground"><span class="movename">Stomping Tantrum</span><span class="movetype type ground"></span><span class="movepp">PP 40/40</span></div>
+        <div class="move2 fighting"><span class="movename">Dynamic Punch</span><span class="movetype type fighting"></span><span class="movepp">PP 40/40</span></div>
+        <div class="move3 normal"><span class="movename">Quick Attack</span><span class="movetype type normal"></span><span class="movepp">PP 40/40</span></div>
+        <div class="move4 electric"><span class="movename">Zap Cannon</span><span class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
       </div>
       <div id="overlay" class="bg-image command">
-        <div id="button-1" class="fight bg-image" onclick="showFightButtons()"></div>
-        <div id="button-2" class="pkmn bg-image" onclick="alert()"></div>
-        <div id="button-3" class="bag bg-image" onclick="alert()"></div>
-        <div id="button-4" class="run bg-image" onclick="runFromBattle()"></div>
+        <div class="fight bg-image" onclick="showFightButtons()"></div>
+        <div class="pkmn bg-image" onclick="alert()"></div>
+        <div class="bag bg-image" onclick="alert()"></div>
+        <div class="run bg-image" onclick="runFromBattle()"></div>
         <!-- <div id="button-2" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
           <div id="button-3" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
           <div id="button-4" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div> -->

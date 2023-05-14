@@ -28,7 +28,6 @@ export default class SingleBattle {
         this.player2 = party2;
 
         this.stream = new BattleStream();
-        this.output = "";
         (async () => {
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
@@ -65,6 +64,7 @@ export default class SingleBattle {
     }
 
     createBattlePerspective(showdownOutputArray, thisPlayer = "1") {
+        let battleData = [];
         console.log("\n" + this["player" + thisPlayer].name + "'s perspective: \n");
         let splitCounter = 0; // split counter
         for (const line of showdownOutputArray) {
@@ -288,16 +288,21 @@ export default class SingleBattle {
                 messageText = messageText.substring(0, firstLetter) + messageText[firstLetter].toUpperCase() + messageText.substring(firstLetter + 1);
             }
 
-            if (this["player" + thisPlayer].isPlayer && messageText != " ") {
-                // TODO: make a room for battle emits later
-                let player = players[this["player" + thisPlayer].name];
-                if (player && player.connected) {
-                    player.socket.emit("battleData", messageText);
-                }
-                console.log(messageText);
-                this.output += messageText + "\n";
+            // add battle message packet
+            if (messageText != " ") {
+                battleData.push({
+                    message: messageText
+                });
+                console.log(battleData);
             }
             //console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
+        }
+        if (battleData.length > 0 && this["player" + thisPlayer].isPlayer) {
+            // TODO: make a room for battle emits later
+            let player = players[this["player" + thisPlayer].name];
+            if (player && player.connected) {
+                player.socket.emit("battleData", battleData);
+            }
         }
     }
 
@@ -353,7 +358,10 @@ export default class SingleBattle {
                 let player = players[this["player" + id].name];
                 if (player) {
                     player.battle = null;
-                    if (player.connected) player.socket.emit("endBattle", this.text.endBattle);
+                    if (player.connected) player.socket.emit("endBattle", {
+                        message: this.text.endBattle,
+                        battleOver: true
+                    });
                 }
             }
         }

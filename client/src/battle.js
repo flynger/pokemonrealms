@@ -1,6 +1,7 @@
 $(function () {
-    $("#overlay").hide();
-    $("#overlay-fight").hide();
+    // $("#overlay").hide();
+    // $("#overlay-fight").hide();
+    $('#battle-UI').show();
 });
 
 function showFightButtons() {
@@ -15,18 +16,15 @@ function runFromBattle() {
 
 var battleOptions;
 var battleOver = false;
-var battleDialogue = [];
-var textSpeed = 50;
+var battleData = [];
+var textSpeed = 60;
 var textInterval;
 var dialoguePlaying = false;
-var pokemonImage = "https://play.pokemonshowdown.com/sprites/gen5ani-back/bulbasaur.gif";
-
-// Set the image source URL
-$("#player-pokemon").attr("src", pokemonImage);
 function nextDialogue() {
     dialoguePlaying = true;
     clearInterval(textInterval);
-    var letters = battleDialogue.shift().split("");
+    var nextData = battleData.shift();
+    var letters = nextData.message.split("");
     $('#dialogue').html("");
     var index = 0;
     var textInterval = setInterval(function () {
@@ -34,11 +32,12 @@ function nextDialogue() {
         if (index >= letters.length) {
             clearInterval(textInterval);
             setTimeout(() => {
-                if (battleDialogue.length > 0) nextDialogue();
-                else {
+                if (battleData.length > 0) {
+                    nextAction();
+                } else {
                     $('#dialogue').html("");
                     dialoguePlaying = false;
-                    if (battleOver) {
+                    if (nextData.battleOver) {
                         $('#battle-UI').hide();
                         players[username].busy = false;
                         battleOver = false;

@@ -109,10 +109,10 @@ function setupSocket() {
         showPokemonFoe(wildPokemon);
     });
 
-    socket.on("battleData", (output) => {
-        console.log(output);
-        battleDialogue.push(output);
-        if (!dialoguePlaying) nextDialogue();
+    socket.on("battleData", (data) => {
+        console.log(battleData);
+        battleData.push(...data);
+        if (!dialoguePlaying) nextAction();
     });
 
     socket.on("battleOptions", (options) => {
@@ -120,10 +120,9 @@ function setupSocket() {
         battleOptions = options;
     });
 
-    socket.on("endBattle", (message) => {
-        battleOver = true;
-        battleDialogue.push(message);
-        if (!dialoguePlaying) nextDialogue();
+    socket.on("endBattle", (data) => {
+        battleData.push(data);
+        if (!dialoguePlaying) nextAction();
     });
 
     socket.on("pong", (ms) => {
