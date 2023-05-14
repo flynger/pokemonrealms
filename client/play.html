@@ -23,6 +23,7 @@
   <script src="libs/drag.js"></script>
 
   <script src="src/pokemonSummary.js"></script>
+  <script src="src/inventory.js"></script>
 
   <script src="src/client.js"></script>
   <script src="src/input.js"></script>
@@ -39,6 +40,7 @@
   <link href="css/game.css" rel="stylesheet" />
   <link href="css/battle.css" rel="stylesheet">
   <link href="css/pokemonSummary.css" rel="stylesheet">
+  <link href="css/inventory.css" rel="stylesheet">
   <script>
     $.get("nav.html", function (data) {
       $("#nav-placeholder").replaceWith(data);
@@ -248,6 +250,20 @@
       </div>
     </div>
 
+    <div class="container p-3" id="inventory-UI">
+      <div id="inventoryHeader">
+        <h3>Inventory</h3>
+        <button id="closeBtn"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="inventoryItems" class="list-group">
+        <!-- Dummy inventory items -->
+        <a href="#" class="list-group-item list-group-item-action">Item 1</a>
+        <a href="#" class="list-group-item list-group-item-action">Item 2</a>
+        <a href="#" class="list-group-item list-group-item-action">Item 3</a>
+      </div>
+    </div>
+
+
     <div id="battle-UI" class="PokemonFont bg-image" ondragstart="return false;">
       <div class="grassbase0"></div>
       <div class="grassbase1"></div>
@@ -265,10 +281,14 @@
         </div>
       </div>
       <div id="overlay-fight" class="fight-command">
-        <div id="move1" class="ground" onclick="useMove(1)"><span class="movename">Stomping Tantrum</span><span class="movetype type ground"></span><span class="movepp">PP 40/40</span></div>
-        <div id="move2" class="fighting" onclick="useMove(2)"><span class="movename">Dynamic Punch</span><span class="movetype type fighting"></span><span class="movepp">PP 40/40</span></div>
-        <div id="move3" class="normal" onclick="useMove(3)"><span class="movename">Quick Attack</span><span class="movetype type normal"></span><span class="movepp">PP 40/40</span></div>
-        <div id="move4" class="electric" onclick="useMove(4)"><span class="movename">Zap Cannon</span><span class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
+        <div id="move1" class="ground" onclick="useMove(1)"><span class="movename">Stomping Tantrum</span><span
+            class="movetype type ground"></span><span class="movepp">PP 40/40</span></div>
+        <div id="move2" class="fighting" onclick="useMove(2)"><span class="movename">Dynamic Punch</span><span
+            class="movetype type fighting"></span><span class="movepp">PP 40/40</span></div>
+        <div id="move3" class="normal" onclick="useMove(3)"><span class="movename">Quick Attack</span><span
+            class="movetype type normal"></span><span class="movepp">PP 40/40</span></div>
+        <div id="move4" class="electric" onclick="useMove(4)"><span class="movename">Zap Cannon</span><span
+            class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
       </div>
       <div id="overlay" class="bg-image command">
         <div class="fight bg-image" onclick="showFightButtons()"></div>
