@@ -18,6 +18,9 @@ export default class SingleBattle {
         switchIn: DefaultText.default.switchIn,
         turn: DefaultText.default.turn,
         startBattle: DefaultText.default.startBattle,
+        winBattle: DefaultText.default.winBattle,
+        loseBattle: "You lost to **[TRAINER]**!",
+        tieBattle: DefaultText.default.tieBattle,
         endBattle: "Battle ended"
     }
 
@@ -59,7 +62,7 @@ export default class SingleBattle {
                         }
                     //console.log(outputArray)
                 }
-                console.log(this.stream.battle.sides[0]); // Player battle and side data !!!
+                //console.log(this.stream.battle.sides[0]); // Player battle and side data !!!
             }
         })();
     }
@@ -190,6 +193,26 @@ export default class SingleBattle {
                         messageText = this.text.turn;
                         args.NUMBER = lineArray[0];
                         break;
+                    case "win":
+                        var winner = lineArray[0];
+                        if (winner == this["player" + thisPlayer].name) {
+                            messageText = this.text.winBattle;
+                            args.TRAINER = winner;
+                        } else {
+                            messageText = this.text.loseBattle;
+                            if (!this.player1.isPlayer) {
+                                messageText = messageText.replaceAll("[TRAINER]", "[TRAINER" + thisPlayer + "]");
+                                args["TRAINER" + thisPlayer] = this["player" + thisPlayer].name;
+                            } else {
+                                args.TRAINER = winner;
+                            }
+                        }
+                        this.endBattle();
+                        break;
+                    case "tie":
+                        messageText = this.text.tieBattle.replace("[TRAINER]", this.player1.isPlayer ? this.player1.name : this.player2.name).replace("[TRAINER]", this.player2.name);
+                        this.endBattle();
+                        break;
                     case "-ability":
                         messageText = DefaultText.default.abilityActivation;
                         args.NICKNAME = lineArray[0].split(": ")[1];
@@ -238,13 +261,14 @@ export default class SingleBattle {
                         break;
                     case "-start":
                         // note: fix Substitute unrelated but also Volt Switch
+                        console.log(line);
                         var effectDetails = lineArray[1].split(": ");
                         var effectSourceType = effectDetails[0];
-                        var effectSource = effectDetails[1];
-                        if (effectSourceType == "move") {
+                        var effectSource = effectDetails[1] || effectSourceType;
+                        if (MovesText[Dex.moves.get(effectSource).id]) {
                             messageText = MovesText[Dex.moves.get(effectSource).id].start;
                         } else {
-                            messageText = DefaultText[effectSourceType].start;
+                            messageText = DefaultText[effectSourceType] ? DefaultText[effectSourceType].start : "Debug: " + effectSource + " start on [NICKNAME]";
                         }
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         break;
@@ -277,11 +301,11 @@ export default class SingleBattle {
                 }
 
                 let firstLetter = messageText.search(/[a-zA-Z]/); // find first letter of string
-                if (firstLetter == messageText.search("[NICKNAME]") || firstLetter == messageText.search("[TRAINER]")) {
+                if (firstLetter == messageText.search("[NICKNAME]") || firstLetter == messageText.search("[TRAINER]") || firstLetter == messageText.search("[TRAINER1]") || firstLetter == messageText.search("[TRAINER2]")) {
                     firstWordIsName = true; // protect nicknames & trainer names from capitalization
                 }
                 for (let arg in args) {
-                    messageText = messageText.replace(`[${arg}]`, args[arg]);
+                    messageText = messageText.replaceAll(`[${arg}]`, args[arg]);
                 }
             }
             let firstLetter = messageText.search(/[a-zA-Z]/); // find first letter of string
@@ -294,7 +318,6 @@ export default class SingleBattle {
                 battleData.push({
                     message: messageText
                 });
-                console.log(battleData);
             }
             //console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
         }
@@ -302,6 +325,7 @@ export default class SingleBattle {
             // TODO: make a room for battle emits later
             let player = players[this["player" + thisPlayer].name];
             if (player && player.connected) {
+                console.log(battleData);
                 player.socket.emit("battleData", battleData);
             }
         }
@@ -351,21 +375,27 @@ export default class SingleBattle {
         }
     }
 
-    endBattle() {
-        this.stream.destroy();
+    endBattle(forced = false) {
         let ids = [1, 2];
         for (let id of ids) {
             if (this["player" + id].isPlayer) {
-                let player = players[this["player" + id].name];
+                let player = players[this["player" + id].name.toLowerCase()];
                 if (player) {
                     player.battle = null;
-                    if (player.connected) player.socket.emit("endBattle", {
-                        message: this.text.endBattle,
-                        battleOver: true
-                    });
+                    if (forced && player.connected) {
+                        player.socket.emit("endBattle", {
+                            message: this.text.endBattle.replace("[TRAINER]", player.displayName),
+                            battleOver: true
+                        });
+                    } 
                 }
             }
         }
+    }
+
+    destroy() {
+        this.endBattle(true);
+        this.stream.destroy();
     }
 }
 

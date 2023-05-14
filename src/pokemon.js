@@ -12,35 +12,53 @@ import Pokedex from "./pokedex.js";
 // }
 export default class Pokemon {
     static shinyChance = 8192;
+    static hiddenAbilityChance = 64;
 
-    constructor(species, name = "", gender, shiny, level = -1, heldItem = "", nature, abilitySlot, ivs, evs, moves) {
+    constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature = "Serious", abilitySlot, ivs, evs, moves, originalTrainer, owner}) {
         this.species = species;
         this.name = name;
 
         // gender initialization
         if (Pokedex[species].gender) {
             this.gender = Pokedex[species].gender;
-        } else if (!Pokedex[species].genderRatio || !Pokedex[species].genderRatio.hasOwnProperty(gender)) {
-            let genderRatio = Pokedex[species].genderRatio || { M: 0.5, F: 0.5 };
-            this.gender = Math.random() < genderRatio.M ? "M" : "F";
+        } else if (!Pokedex[species].genderRatio && gender != "M" && gender != "F"){
+            this.gender = Math.random() < 0.5 ? "M" : "F";
+        } else if (Pokedex[species].genderRatio && !Pokedex[species].genderRatio.hasOwnProperty(gender)) {
+            this.gender = Math.random() < Pokedex[species].genderRatio.M ? "M" : "F";
         } else this.gender = gender;
 
         if (Pokedex[species].genderRatio) console.log(Pokedex[species].genderRatio.hasOwnProperty(gender));
         this.shiny = typeof shiny == "boolean" ? shiny : randomNumber(1, Pokemon.shinyChance) == 1;
         this.level = level;
         this.heldItem = heldItem;
-        this.nature = nature || "Serious";
+        this.nature = nature;
 
         // ability code
         if (abilitySlot && Pokedex[species].abilities.hasOwnProperty(abilitySlot)) {
             this.abilitySlot = abilitySlot;
         } else {
-            this.abilitySlot = Pokedex[species].abilities[1] ? randomNumber(0, 1) + "" : "0";
+            if (Pokedex[species].abilities["H"] && randomNumber(1, Pokemon.hiddenAbilityChance) == 1) {
+                this.abilitySlot = "H";
+            } else this.abilitySlot = Pokedex[species].abilities["1"] ? randomNumber(0, 1) + "" : "0";
         }
 
         this.ivs = ivs || new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31));
         this.evs = evs || new Stats(0, 0, 0, 0, 0, 0);
-        this.moves = moves || ["tackle"];
+
+        // generate moves
+        var possibleMoves = [];
+        for (let move in Pokedex[species].learnset.levelup) {
+            console.log(move);
+            if (+move <= level)
+                possibleMoves.push(Pokedex[species].learnset.levelup[move]);
+            else break;
+        }
+        while (possibleMoves.length > 4) {
+            possibleMoves.splice(randomNumber(0, possibleMoves.length - 1), 1);
+        }
+        possibleMoves.shuffle();
+        console.log(possibleMoves);
+        this.moves = possibleMoves;
     }
 
     learnMove(move) {

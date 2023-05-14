@@ -1,6 +1,8 @@
 import Pokemon from "./pokemon.js";
 
 export default class Map {
+    static time = "day";
+
     constructor(encounters, encounterRate =  1 / 8) {
         this.encounters = encounters;
         this.encounterRate = encounterRate;
@@ -20,14 +22,14 @@ export default class Map {
     }
 
     createEncounter() {
-        let encounterPool = this.encounters.grass.day;
+        let encounterPool = this.encounters.grass[Map.time];
         let encounterWeight = this.getTotalWeight(encounterPool);
         let rng = Math.floor(Math.random() * encounterWeight) + 1;
         let counter = 0;
         for (let encounter of encounterPool) {
             counter += encounter.weight;
             if (counter >= rng) {
-                let randomEncounter = new Pokemon(encounter.species, "", "?", "?", randomNumber(encounter.minLevel, encounter.maxLevel), "");
+                let randomEncounter = new Pokemon(encounter.species, randomNumber(encounter.minLevel, encounter.maxLevel), {});
                 console.log(randomEncounter);
                 return randomEncounter;
             }

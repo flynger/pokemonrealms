@@ -8,11 +8,14 @@ export default class WildEncounter extends SingleBattle {
         switchIn: "A wild [NICKNAME] appeared!",
         turn: " ",
         startBattle: " ",
-        endBattle: "Successfully ran away from the battle!"
+        winBattle: "[TRAINER] defeated the wild Pokémon and gained exp!",
+        loseBattle: "[TRAINER] is out of usable Pokémon! [TRAINER] whited out.",
+        tieBattle: "[TRAINER] is out of usable Pokémon! [TRAINER] whited out.",
+        endBattle: "[TRAINER] escaped the battle!"
     }
     
     constructor(player, encounter) {
-        super(new Party("Wild Pokemon", [encounter], false), new Party(player.displayName, player.party), true);
+        super(new Party("Wild Pokémon", [encounter], false), new Party(player.displayName, player.party), true);
         this.player = player;
         this.encounter = encounter;
     }
@@ -23,6 +26,6 @@ export default class WildEncounter extends SingleBattle {
     }
 
     run() {
-        this.endBattle();
+        this.destroy();
     }
 }

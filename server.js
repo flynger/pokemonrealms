@@ -1,6 +1,13 @@
 Array.prototype.remove = function (elem) {
     this.splice(this.indexOf(elem), 1);
 }
+Array.prototype.shuffle = function () {
+    for (let i = this.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [this[i], this[j]] = [this[j], this[i]];
+    }
+    return this;
+}
 
 // libraries
 import express from "express";
@@ -114,7 +121,6 @@ app.get("/logout", (req, res) => {
 //     console.log("sending global players list");
 //     io.emit("playersOnline", server.onlinePlayers);
 // }, 5000);
-var time = "morning";
 var encounters = {
     grass: {
         morning: [],
@@ -230,7 +236,7 @@ io.on("connection", (socket) => {
     socket.on("acceptTrade", (data) => {
         console.log("data " + data);
         let player1 = players[data.player1.toLowerCase()];
-        let player2 = players[ data.player2.toLowerCase()];
+        let player2 = players[data.player2.toLowerCase()];
         console.log(`Trading ${player1.party[data.pokemon1]} for ${player2.party[data.pokemon2]}`);
         let temp = player1.party[data.pokemonSlot1];
         player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
@@ -238,15 +244,15 @@ io.on("connection", (socket) => {
         socket.emit("acceptTrade", (data));
     })
 
-    socket.on("startBattle", () => {
-        if (players[username].battle == null) {
-            const party1 = new Party(username, []);
-            const party2 = new Party('MoldyNano', []);
-            battle = new SingleBattle(party1, party2);
-            battle.startRandomBattle();
-            console.log("Received start battle request");
-        }
-    });
+    // socket.on("startBattle", () => {
+    //     if (players[username].battle == null) {
+    //         const party1 = new Party(username, []);
+    //         const party2 = new Party('MoldyNano', []);
+    //         battle = new SingleBattle(party1, party2);
+    //         battle.startRandomBattle();
+    //         console.log("Received start battle request");
+    //     }
+    // });
 
     socket.on("endBattle", () => {
         if (players[username].battle && players[username].battle.canRun) {

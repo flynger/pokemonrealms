@@ -1,11 +1,14 @@
 var Moves; // moves json fetched on setup
 
 $(function () {
+    // $('#battle-UI').show();
     $("#overlay").hide();
     $("#overlay-fight").hide();
-    $('#battle-UI').show(() => {
-        $('#battle-UI').hide();
-    });
+    $("#overlay-message").show();
+    // $('#battle-UI').hide();
+    // $('#battle-UI').show(() => {
+    //     $('#battle-UI').hide();
+    // });
 });
 
 function showFightButtons() {
@@ -28,7 +31,7 @@ function runFromBattle() {
 var battleOptions;
 var battleOver = false;
 var battleData = [];
-var textSpeed = 60;
+var textSpeed = 60; // 60
 var textInterval;
 var dialoguePlaying = false;
 function nextAction() {
@@ -68,7 +71,7 @@ function nextAction() {
     }, 1000 / textSpeed);
 }
 
-function showPokemonYou(species) {
+function changePokemonTo(id, species) {
     species = species.toLowerCase();
     var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani-back/${species}.gif`;
 
