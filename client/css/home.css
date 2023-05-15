@@ -7,7 +7,7 @@
     width: 28%;
     min-width: 300px;
     overflow: hidden;
-    transition: all 0.3s;
+    transition-duration: 0.3s;
 }
 
 .card:hover {

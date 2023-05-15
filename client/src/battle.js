@@ -54,8 +54,6 @@ function nextAction() {
                 if (battleData.length > 0) {
                     nextAction();
                 } else {
-                    $('#dialogue').html("Waiting for server...");
-                    dialoguePlaying = false;
                     if (nextData.battleOver) {
                         $('#battle-UI').hide();
                         players[username].busy = false;
@@ -65,6 +63,8 @@ function nextAction() {
                         $("#overlay").show();
                         // $("#overlay-fight").show();
                     }
+                    $('#dialogue').html("");
+                    dialoguePlaying = false;
                 }
             }, 800);
         }
