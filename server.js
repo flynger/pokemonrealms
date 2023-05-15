@@ -119,14 +119,18 @@ app.get("/logout", (req, res) => {
 // update global player list every 5 seconds
 var ticker = 0;
 setInterval(() => {
-    ticker++;
-    if (ticker == 3) {
-        ticker = 0;
-        Map.time = Map.times[(Map.times.indexOf(Map.time) + 1 ) % Map.times.length];
+    ticker += 30;
+    if (ticker % 100 == 60) {
+        ticker += 40;
+        Map.updateTime(ticker);
+        io.emit("timeChange", {
+            time: Map.time,
+            exactTime: ticker
+        });
     }
     // console.log("sending global players list");
     // io.emit("playersOnline", server.onlinePlayers);
-}, 25000);
+}, 2500);
 var encounters = {
     grass: {
         morning: [
@@ -339,6 +343,7 @@ io.on("connection", (socket) => {
     });
     // send username
     socket.emit("playerData", username, Object.values(players).filter((player) => player.connected).map((player) => player.export()));
+    socket.emit("timeChange", Map.time);
     //     socket.emit("playersOnline", server.onlinePlayers);
 });
 

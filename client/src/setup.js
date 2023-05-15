@@ -1,6 +1,8 @@
 const WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
 var ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
 var map = {
+    name: "Route 1",
+    submapName: "Area 1",
     width: 60,
     height: 45
 };
