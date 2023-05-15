@@ -18,6 +18,23 @@ function initInventoryUI() {
       minHeight: 200,
       containment: "parent"
     });
-  }
   
-  initInventoryUI();
+    // populate the inventory items with dummy data
+    var inventoryItems = [
+      { name: "Potion", count: 10 },
+      { name: "Revive", count: 2 },
+      { name: "PokeBall", count: 5 },
+      { name: "Master Ball", count: 99 }
+    ];
+  
+    var $inventoryItems = $("#inventoryItems");
+  
+    $.each(inventoryItems, function(index, item) {
+      var $inventoryItem = $("<div>", { class: "inventory-item" });
+      var $itemName = $("<div>", { class: "item-name", text: item.name });
+      var $itemCount = $("<div>", { class: "item-count", text: "x" + item.count });
+  
+      $inventoryItem.append($itemName).append($itemCount);
+      $inventoryItems.append($inventoryItem);
+    });
+  }
