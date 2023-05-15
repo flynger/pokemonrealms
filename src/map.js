@@ -1,6 +1,7 @@
 import Pokemon from "./pokemon.js";
 
 export default class Map {
+    static times = ["morning", "day", "night"];
     static time = "day";
 
     constructor(encounters, encounterRate =  1 / 8) {

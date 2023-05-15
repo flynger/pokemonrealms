@@ -116,29 +116,85 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
 });
 
-// // update global player list every 5 seconds
-// setInterval(() => {
-//     console.log("sending global players list");
-//     io.emit("playersOnline", server.onlinePlayers);
-// }, 5000);
+// update global player list every 5 seconds
+var ticker = 0;
+setInterval(() => {
+    ticker++;
+    if (ticker == 3) {
+        ticker = 0;
+        Map.time = Map.times[(Map.times.indexOf(Map.time) + 1 ) % Map.times.length];
+    }
+    // console.log("sending global players list");
+    // io.emit("playersOnline", server.onlinePlayers);
+}, 25000);
 var encounters = {
     grass: {
-        morning: [],
-        day: [
+        morning: [
             {
-                species: "RATTATA",
-                weight: 1,
+                species: "PIDGEY",
+                weight: 10,
                 minLevel: 2,
                 maxLevel: 4
             },
             {
+                species: "LEDYBA",
+                weight: 10,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "SENTRET",
+                weight: 5,
+                minLevel: 3,
+                maxLevel: 3
+            },
+            {
+                species: "FURRET",
+                weight: 1,
+                minLevel: 6,
+                maxLevel: 6
+            }
+        ],
+        day: [
+            {
                 species: "PIDGEY",
+                weight: 10,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "RATTATA",
+                weight: 10,
+                minLevel: 2,
+                maxLevel: 2
+            },
+            {
+                species: "SENTRET",
+                weight: 5,
+                minLevel: 3,
+                maxLevel: 3
+            },
+            {
+                species: "FURRET",
+                weight: 1,
+                minLevel: 6,
+                maxLevel: 6
+            }
+        ],
+        night: [
+            {
+                species: "RATTATA",
+                weight: 1,
+                minLevel: 2,
+                maxLevel: 6
+            },
+            {
+                species: "HOOTHOOT",
                 weight: 1,
                 minLevel: 2,
                 maxLevel: 4
             }
         ],
-        night: [],
         frequency: 8
     }
 }
