@@ -120,7 +120,7 @@ class player {
 
     createRigidBody(x, y) {
         this.rigidBody = Matter.Bodies.rectangle(x + 16, y + player.rigidBodyOffset + player.rigidBodyHeight / 2, player.rigidBodyWidth, player.rigidBodyHeight);
-        this.rigidBody.frictionAir = player.friction;
+        this.rigidBody.frictionAir = 0;
         this.rigidBody.friction = 0;
         this.rigidBody.collisionFilter.group = -1;
         this.position = this.rigidBody.position;
@@ -197,6 +197,7 @@ class player {
             } else {
                 this.speed = player.runSpeed;
             }
+            this.rigidBody.frictionAir = 0;
 
             let movementVector = { x: 0, y: 0};
             // check for keydown
@@ -222,7 +223,10 @@ class player {
             }
             movementVector = Matter.Vector.mult(Matter.Vector.normalise(movementVector), this.speed);
             Matter.Body.setVelocity(this.rigidBody, movementVector);
-        } else this.speed = 0;
+        } else {
+            this.speed = 0;
+            this.rigidBody.frictionAir = player.friction;
+        }
     }
 
     setFacing(direction) {

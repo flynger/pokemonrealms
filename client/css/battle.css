@@ -113,7 +113,7 @@
     scale: calc((1.37104752604 + 0.0033)* var(--scale));
     transform-origin: left bottom;
     background-image: url('../res/battle/gui/cursor_fight.png');
-    background-position: -196px -4px;
+    background-position-x: -4px;
     /* line-height: 38px; */
 }
 
@@ -161,8 +161,65 @@
 
 .fight-command div:hover {
     cursor: pointer;
-    transition-duration: 0.2s;
-    filter: brightness(0.7);
+    filter: brightness(0.75);
+}
+
+.fight-command>.normal {
+    background-position-y: -4px;
+}
+.fight-command>.fighting {
+    background-position-y: -50px;
+}
+.fight-command>.flying {
+    background-position-y: -96px;
+}
+.fight-command>.poison {
+    background-position-y: -142px;
+}
+.fight-command>.ground {
+    background-position-y: -188px;
+}
+.fight-command>.rock {
+    background-position-y: -234px;
+}
+.fight-command>.bug {
+    background-position-y: -280px;
+}
+.fight-command>.ghost {
+    background-position-y: -326px;
+}
+.fight-command>.steel {
+    background-position-y: -372px;
+}
+.fight-command>.unknown {
+    background-position-y: -418px;
+}
+.fight-command>.fire {
+    background-position-y: -464px;
+}
+.fight-command>.water {
+    background-position-y: -510px;
+}
+.fight-command>.grass {
+    background-position-y: -556px;
+}
+.fight-command>.electric {
+    background-position-y: -602px;
+}
+.fight-command>.psychic {
+    background-position-y: -648px;
+}
+.fight-command>.ice {
+    background-position-y: -694px;
+}
+.fight-command>.dragon {
+    background-position-y: -740px;
+}
+.fight-command>.dark {
+    background-position-y: -786px;
+}
+.fight-command>.fairy {
+    background-position-y: -832px;
 }
 
 .command div {

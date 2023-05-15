@@ -108,7 +108,7 @@ async function setupGame() {
             if (/*(i + j + 1) % randomNumber(4, 10) == 0 || */(i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
                 new grass(i * 32, j * 32);
             } else if (randomNumber(1, 90) == 1) {
-                new log(i * 32, j * 32);
+                //new log(i * 32, j * 32);
             }
         }
     }
