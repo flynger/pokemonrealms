@@ -27,6 +27,17 @@
     transform: translate(-50%, 10%);
 }
 
+.databox.you {
+    position: absolute;
+    scale: calc(1.37104752604 * var(--scale));
+    transform-origin: right bottom;
+    right: 0%;
+    bottom: 32%;
+    width: 260px;
+    height: 84px;
+    background-image: url('../res/battle/gui/databox_normal.png');
+}
+
 .pokemon.foe {
     position: absolute;
     top: 15%;
@@ -44,6 +55,17 @@
     left: 50%;
     transform: translate(-50%, 0%);
     user-select: none;
+}
+
+.databox.foe {
+    position: absolute;
+    scale: calc(1.37104752604 * var(--scale));
+    transform-origin: left top;
+    left: 0%;
+    top: 9.375%;
+    width: 260px;
+    height: 62px;
+    background-image: url('../res/battle/gui/databox_normal_foe.png');
 }
 
 #overlay {
@@ -110,7 +132,7 @@
     aspect-ratio: auto 184 / 38;
     width: 184px;
     height: 38px;
-    scale: calc((1.37104752604 + 0.0033)* var(--scale));
+    scale: calc((1.37104752604 + 0.0033) * var(--scale));
     transform-origin: left bottom;
     background-image: url('../res/battle/gui/cursor_fight.png');
     background-position-x: -4px;
@@ -167,57 +189,75 @@
 .fight-command>.normal {
     background-position-y: -4px;
 }
+
 .fight-command>.fighting {
     background-position-y: -50px;
 }
+
 .fight-command>.flying {
     background-position-y: -96px;
 }
+
 .fight-command>.poison {
     background-position-y: -142px;
 }
+
 .fight-command>.ground {
     background-position-y: -188px;
 }
+
 .fight-command>.rock {
     background-position-y: -234px;
 }
+
 .fight-command>.bug {
     background-position-y: -280px;
 }
+
 .fight-command>.ghost {
     background-position-y: -326px;
 }
+
 .fight-command>.steel {
     background-position-y: -372px;
 }
+
 .fight-command>.unknown {
     background-position-y: -418px;
 }
+
 .fight-command>.fire {
     background-position-y: -464px;
 }
+
 .fight-command>.water {
     background-position-y: -510px;
 }
+
 .fight-command>.grass {
     background-position-y: -556px;
 }
+
 .fight-command>.electric {
     background-position-y: -602px;
 }
+
 .fight-command>.psychic {
     background-position-y: -648px;
 }
+
 .fight-command>.ice {
     background-position-y: -694px;
 }
+
 .fight-command>.dragon {
     background-position-y: -740px;
 }
+
 .fight-command>.dark {
     background-position-y: -786px;
 }
+
 .fight-command>.fairy {
     background-position-y: -832px;
 }
