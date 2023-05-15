@@ -21,10 +21,10 @@ function initInventoryUI() {
   
     // populate the inventory items with dummy data
     var inventoryItems = [
-      { name: "Potion", count: 10 },
-      { name: "Revive", count: 2 },
-      { name: "PokeBall", count: 5 },
-      { name: "Master Ball", count: 99 }
+      { name: "Potion", quantity: 10 },
+      { name: "Revive", quantity: 2 },
+      { name: "PokeBall", quantity: 5 },
+      { name: "Master Ball", quantity: 99 }
     ];
   
     var $inventoryItems = $("#inventoryItems");
@@ -32,9 +32,9 @@ function initInventoryUI() {
     $.each(inventoryItems, function(index, item) {
       var $inventoryItem = $("<div>", { class: "inventory-item" });
       var $itemName = $("<div>", { class: "item-name", text: item.name });
-      var $itemCount = $("<div>", { class: "item-count", text: "x" + item.count });
+      var $itemCount = $("<div>", { class: "item-count", text: "x" + item.quantity });
   
-      $inventoryItem.append($itemName).append($itemCount);
+      $inventoryItem.append($itemName, $itemCount);
       $inventoryItems.append($inventoryItem);
     });
   }
