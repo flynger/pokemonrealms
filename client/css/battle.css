@@ -7,6 +7,7 @@
     background-size: cover;
     display: none;
     user-select: none;
+    --scale-coefficient : 1.37104752604;
 }
 
 .pokemon.you {
@@ -27,14 +28,17 @@
     transform: translate(-50%, 10%);
 }
 
-.databox.you {
+.databox {
     position: absolute;
-    scale: calc(1.37104752604 * var(--scale));
-    transform-origin: right bottom;
-    right: 0%;
-    bottom: 32%;
+    scale: calc(var(--scale-coefficient) * var(--scale));
     width: 260px;
     height: 84px;
+}
+
+.databox.you {
+    right: 0%;
+    bottom: 32%;
+    transform-origin: right bottom;
     background-image: url('../res/battle/gui/databox_normal.png');
 }
 
@@ -58,13 +62,9 @@
 }
 
 .databox.foe {
-    position: absolute;
-    scale: calc(1.37104752604 * var(--scale));
-    transform-origin: left top;
     left: 0%;
     top: 9.375%;
-    width: 260px;
-    height: 62px;
+    transform-origin: left top;
     background-image: url('../res/battle/gui/databox_normal_foe.png');
 }
 
@@ -132,7 +132,7 @@
     aspect-ratio: auto 184 / 38;
     width: 184px;
     height: 38px;
-    scale: calc((1.37104752604 + 0.0033) * var(--scale));
+    scale: calc((var(--scale-coefficient) + 0.0033) * var(--scale));
     transform-origin: left bottom;
     background-image: url('../res/battle/gui/cursor_fight.png');
     background-position-x: -4px;

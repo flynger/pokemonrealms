@@ -73,6 +73,10 @@ function nextAction() {
 
 function showPokemonYou(species) {
     species = species.toLowerCase();
+    
+    // TEMP: change to nickname of pokemon when possible
+    $('#pokemon-name-you').text(species[0].toUpperCase() + species.slice(1));
+
     var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani-back/${species}.gif`;
 
     // Set the image source URL
@@ -81,6 +85,7 @@ function showPokemonYou(species) {
 
 function showPokemonFoe(species) {
     species = species.toLowerCase();
+    $('#pokemon-name-foe').text(species[0].toUpperCase() + species.slice(1));
     var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani/${species}.gif`;
     $("#pokemon-foe").attr("src", imageUrl);
 }
