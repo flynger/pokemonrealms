@@ -1,6 +1,6 @@
 class player {
-    static walkSpeed = 1.5;
-    static runSpeed = 2.4;
+    static walkSpeed = 1.2;
+    static runSpeed = 2;
     static friction = 0.15;
     static rigidBodyWidth = 16;
     static rigidBodyHeight = 20;

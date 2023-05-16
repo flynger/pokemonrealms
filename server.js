@@ -117,40 +117,69 @@ app.get("/logout", (req, res) => {
 });
 
 // update global player list every 5 seconds
-var ticker = 0;
+var ticker = 600;
+Map.updateTime(ticker); 
 setInterval(() => {
-    ticker += 30;
+    ticker += 15;
     if (ticker % 100 == 60) {
         ticker += 40;
-        Map.updateTime(ticker);
-        io.emit("timeChange", {
-            time: Map.time,
-            exactTime: ticker
-        });
+        if (ticker == 2400) {
+            ticker = 0;
+        }
     }
+    
+    Map.updateTime(ticker); 
+    io.emit("timeChange", {
+        time: Map.time,
+        exactTime: ticker
+    });
     // console.log("sending global players list");
     // io.emit("playersOnline", server.onlinePlayers);
-}, 2500);
+}, 15000);
 var encounters = {
     grass: {
         morning: [
             {
                 species: "PIDGEY",
-                weight: 10,
+                weight: 35,
                 minLevel: 2,
                 maxLevel: 4
             },
             {
                 species: "LEDYBA",
-                weight: 10,
+                weight: 35,
                 minLevel: 2,
                 maxLevel: 4
             },
             {
                 species: "SENTRET",
-                weight: 5,
+                weight: 15,
                 minLevel: 3,
                 maxLevel: 3
+            },
+            {
+                species: "BUTTERFREE",
+                weight: 5,
+                minLevel: 7,
+                maxLevel: 7
+            },
+            {
+                species: "BEEDRILL",
+                weight: 5,
+                minLevel: 7,
+                maxLevel: 7
+            },
+            {
+                species: "PIDGEOTTO",
+                weight: 1,
+                minLevel: 7,
+                maxLevel: 7
+            },
+            {
+                species: "PIKACHU",
+                weight: 1,
+                minLevel: 4,
+                maxLevel: 7
             },
             {
                 species: "FURRET",
@@ -173,10 +202,34 @@ var encounters = {
                 maxLevel: 2
             },
             {
+                species: "CATERPIE",
+                weight: 7,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "WEEDLE",
+                weight: 7,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
                 species: "SENTRET",
                 weight: 5,
                 minLevel: 3,
                 maxLevel: 3
+            },
+            {
+                species: "PIDGEOTTO",
+                weight: 1,
+                minLevel: 7,
+                maxLevel: 7
+            },
+            {
+                species: "PIKACHU",
+                weight: 1,
+                minLevel: 4,
+                maxLevel: 7
             },
             {
                 species: "FURRET",
@@ -343,7 +396,10 @@ io.on("connection", (socket) => {
     });
     // send username
     socket.emit("playerData", username, Object.values(players).filter((player) => player.connected).map((player) => player.export()));
-    socket.emit("timeChange", Map.time);
+    socket.emit("timeChange", {
+        time: Map.time,
+        exactTime: ticker
+    });
     //     socket.emit("playersOnline", server.onlinePlayers);
 });
 

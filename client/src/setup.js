@@ -100,6 +100,10 @@ async function setupGame() {
     let colorMatrix = new PIXI.filters.ColorMatrixFilter();
     gameContainer.filters = [colorMatrix];
     colorMatrix.brightness(1);
+
+    // map initialization
+    $("#mapName").html(map.name);
+    $("#submapName").html(map.submapName);
     map.tilemap = new PIXI.tilemap.CompositeTilemap();
     map.tilemap.zIndex = -1000;
     for (let i = 0; i < map.width; i++) {

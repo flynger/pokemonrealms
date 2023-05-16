@@ -22,9 +22,19 @@ function setupSocket() {
     }, 1000);
 
     socket.on("timeChange", (data) => {
-        $("#mapName").html(map.name);
-        $("#submapName").html(map.submapName);
-        $("#timeLabel").html(data.exactTime + " - " + data.time.charAt(0).toUpperCase() + data.time.slice(1))
+        console.log(data);
+        let timeString = "" + data.exactTime;
+        while (timeString.length < 4) {
+            timeString = "0" + timeString;
+        }
+        let hour = timeString.slice(0, 2);
+        let minute = timeString.slice(2, 4);
+        if (hour == "00") hour = "12"; // set hour 0 to 12
+        if (+hour > 12) hour = +hour - 12 + ""; // keep hour within 1 to 12
+        if (hour[0] == "0") hour = hour[1]; // remove leading 0 if single digit hour
+        timeString = hour + ":" + minute + " " + (data.exactTime < 1200 ? "AM" : "PM")
+        let timeOfDay = data.time[0].toUpperCase() + data.time.slice(1);
+        $("#timeLabel").html(timeOfDay + " - " + timeString);
     });
 
     //connect command
