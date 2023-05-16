@@ -7,12 +7,28 @@
 //     //avatar: string;
 //     team: string;
 // }
+import BattleAI from "./battleAI.js";
 
 export default class Party {
-    constructor(name, team, isPlayer = true) {
+    // TODO: Add party ID to party class to prevent scuffness
+    constructor(id, name, team, isPlayer = true) {
+        this.id = id;
         this.name = name;
         this.team = team;
         this.isPlayer = isPlayer;
+        this.hasAI = !isPlayer;
+        this.stream = null;
+        if (!isPlayer) {
+            this.AI = new BattleAI(this);
+        }
+    }
+
+    useMove(moveInput) {
+        this.stream.write(`>p${this.id} move ${moveInput}`);
+    }
+
+    switchTo(switchInput) {
+        this.stream.write(`>p${this.id} switch ${switchInput}`);
     }
 
     exportTeam() {

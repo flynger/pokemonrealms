@@ -22,7 +22,6 @@ function setupSocket() {
     }, 1000);
 
     socket.on("timeChange", (data) => {
-        console.log(data);
         let timeString = "" + data.exactTime;
         while (timeString.length < 4) {
             timeString = "0" + timeString;
@@ -163,12 +162,6 @@ function setupSocket() {
 
 function battleRequest(user) {
     socket.emit("battleRequest", user);
-}
-function useMove(move) {
-    socket.emit("moveInput", move);
-}
-function switchTo(slot) {
-    socket.emit("switchInput", slot);
 }
 function tradeRequest(user, pokemon) {
     socket.emit("tradeRequest", user, pokemon);

@@ -22,6 +22,10 @@ function useMove(num) {
     $("#overlay-message").show();
 }
 
+function switchTo(slot) {
+    socket.emit("switchInput", slot);
+}
+
 function runFromBattle() {
     socket.emit("endBattle");
     $("#overlay").hide();

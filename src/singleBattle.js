@@ -30,7 +30,7 @@ export default class SingleBattle {
         this.player1 = party1;
         this.player2 = party2;
 
-        this.stream = new BattleStream();
+        this.stream = this.player1.stream = this.player2.stream = new BattleStream();
         (async () => {
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
@@ -47,15 +47,20 @@ export default class SingleBattle {
                         let denoter = lineArray.shift();
                         switch (denoter) {
                             case "request":
+                                let party = this["player" + playerId];
                                 let options = JSON.parse(lineArray[0]);
-                                if (this["player" + playerId].isPlayer) {
-                                    let player = players[this["player" + playerId].name];
+                                if (party.isPlayer) {
+                                    let player = players[party.name];
                                     if (player && player.connected) {
                                         player.socket.emit("battleOptions", options);
                                     }
+                                } else if (party.hasAI) {
+                                    party.AI.setOptions(options);
+                                } else {
+                                    throw Error("Party wasn't recognized as Player or AI.");
                                 }
-                                this["player" + playerId].nextData = options;
-                                console.log(options);
+                                party.nextData = options;
+                                // console.log(options);
                                 break;
                             case "error":
                                 console.log("Bad input for " + this["player" + playerId].name)
@@ -69,9 +74,10 @@ export default class SingleBattle {
 
     createBattlePerspective(showdownOutputArray, thisPlayer = "1") {
         let battleData = [];
-        console.log("\n" + this["player" + thisPlayer].name + "'s perspective: \n");
+        // console.log("\n" + this["player" + thisPlayer].name + "'s perspective: \n");
         let splitCounter = 0; // split counter
         for (const line of showdownOutputArray) {
+            console.log(line);
             let lineArray = line.slice(1).split("|");
             let args = {}; //args to replace their respective fields in default.ts
             let useArgs = true; // whether to replace args or not
@@ -357,23 +363,21 @@ export default class SingleBattle {
         this.stream.write(`>player p2 ${JSON.stringify({ name: this.player2.name })}`);
     }
 
-    useMove(partyName, moveNumber) {
-        let playerId = this.getPlayerId(partyName);
-        if (playerId == 1) {
-            this.stream.write(`>p1 move ${moveNumber}`);
-        } else if (playerId == 2) {
-            this.stream.write(`>p2 move ${moveNumber}`)
-        }
-    }
+    // useMove(playerId, moveInput) {
+    //     if (this["player" + playerId]) {
+    //         this.stream.write(`>p${playerId} move ${moveInput}`);
+    //     } else {
+    //         throw Error("Turn input wasn't recognized as being from a valid Party.");
+    //     }
+    // }
 
-    switchTo(partyName, switchNumber) {
-        let playerId = this.getPlayerId(partyName);
-        if (playerId == 1) {
-            this.stream.write(`>p1 switch ${switchNumber}`);
-        } else if (playerId == 2) {
-            this.stream.write(`>p2 switch ${switchNumber}`);
-        }
-    }
+    // switchTo(playerId, switchInput) {
+    //     if (this["player" + playerId]) {
+    //         this.stream.write(`>p${playerId} switch ${switchInput}`);
+    //     } else {
+    //         throw Error("Turn input wasn't recognized as being from a valid Party.");
+    //     }
+    // }
 
     endBattle(forced = false) {
         let ids = [1, 2];

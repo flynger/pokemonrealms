@@ -8,6 +8,9 @@ Array.prototype.shuffle = function () {
     }
     return this;
 }
+Array.prototype.random = function () {
+    return this[randomNumber(0, this.length - 1)];
+}
 
 // libraries
 import express from "express";
@@ -142,8 +145,8 @@ var encounters = {
             {
                 species: "PIDGEY",
                 weight: 35,
-                minLevel: 2,
-                maxLevel: 4
+                minLevel: 5,
+                maxLevel: 9
             },
             {
                 species: "LEDYBA",
@@ -391,6 +394,9 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log(displayName + " disconnected.");
         players[username].deleteSocket();
+        if (players[username].battle) {
+            players[username].battle.endBattle(true);
+        }
         if (isGuest) {
             delete players[username];
         }
