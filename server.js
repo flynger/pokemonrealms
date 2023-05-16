@@ -145,8 +145,8 @@ var encounters = {
             {
                 species: "PIDGEY",
                 weight: 35,
-                minLevel: 5,
-                maxLevel: 9
+                minLevel: 2,
+                maxLevel: 4
             },
             {
                 species: "LEDYBA",
