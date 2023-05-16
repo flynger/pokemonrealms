@@ -34,6 +34,7 @@
   <script src="src/draw.js"></script>
   <script src="src/setup.js"></script>
   <script src="src/battle.js"></script>
+  <script src="src/nav.js"></script>
 
   <link href="libs/jquery-ui.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
@@ -41,11 +42,7 @@
   <link href="css/battle.css" rel="stylesheet">
   <link href="css/pokemonSummary.css" rel="stylesheet">
   <link href="css/inventory.css" rel="stylesheet">
-  <script>
-    $.get("nav.html", function (data) {
-      $("#nav-placeholder").replaceWith(data);
-    });
-  </script>
+
   <div id="nav-placeholder">
     <nav class="navbar navbar-expand-md bg-dark-subtle" data-bs-theme="dark" style="height: 58px;"></nav>
   </div>
@@ -284,7 +281,7 @@
         <p id="pokemon-name-foe" class="battle-text"></p>
         <div class="hp foe"></div>
       </div>
-      <div id="overlay-message" class="bg-image">
+      <div id="overlay-message" class="battle-text">
         <div id="dialogue" class="px-2">
           Waiting for server...
         </div>
