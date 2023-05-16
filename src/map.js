@@ -7,7 +7,7 @@ export default class Map {
     static updateTime(time) {
         if (time >= 600 && time < 1200) {
             this.time = "morning";
-        } else if (time >= 1200 && time <= 1800) {
+        } else if (time >= 1200 && time < 1800) {
             this.time = "day";
         } else {
             this.time = "night";
