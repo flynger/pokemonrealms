@@ -177,6 +177,7 @@
     left: 2%;
     bottom: -5%;
     scale: 0.35;
+    image-rendering: auto;
 }
 
 .movepp {
