@@ -10,6 +10,12 @@
     --scale-coefficient: 1.37104752604;
 }
 
+.battle-text {
+    font-size: 1.5em;
+    color: rgb(72, 72, 72);
+    text-shadow: 1px 1px rgb(184, 184, 184);
+}
+
 .pokemon.you {
     position: absolute;
     bottom: 24.427%;
@@ -31,14 +37,6 @@
 .databox {
     position: absolute;
     scale: calc(var(--scale-coefficient) * var(--scale));
-}
-
-.pokemon-name {
-    display: flex;
-    align-items: center;
-    font-size: 1.5em;
-    color: rgb(72, 72, 72);
-    text-shadow: 1px 1px rgb(184, 184, 184);
 }
 
 .databox.you {
@@ -288,6 +286,26 @@
     background-position-y: -832px;
 }
 
+.fight-command .cancel {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    width: 122px;
+    height: 39px;
+    scale: calc(var(--scale));
+    transform-origin: right bottom;
+    background-image: url('../res/battle/gui/cursor_command.png');
+    background-position-x: -134px;
+    background-position-y: -418px;
+    right: 2.25%;
+    bottom: 5%;
+}
+
+.fight-command .cancel:hover {
+    cursor: pointer;
+    background-position-x: -4px;
+    filter: brightness(1); 
+}
+
 .command div {
     position: absolute;
     aspect-ratio: auto 126 / 38;
@@ -321,6 +339,15 @@
     background-position-y: -141px;
     right: 3%;
     bottom: 6%;
+}
+
+#command-message {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    scale: calc(var(--scale-coefficient) * var(--scale));
+    transform-origin: left top;
+    overflow-wrap: break-word;
 }
 
 .command div:hover {
