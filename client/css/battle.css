@@ -1,3 +1,5 @@
+
+
 #battle-UI {
     position: absolute;
     width: 59.289%;
@@ -42,6 +44,10 @@
     background-image: url('../res/battle/gui/databox_normal.png');
 }
 
+#pokemon-name-you {
+
+}
+
 .pokemon.foe {
     position: absolute;
     top: 15%;
@@ -66,6 +72,10 @@
     top: 9.375%;
     transform-origin: left top;
     background-image: url('../res/battle/gui/databox_normal_foe.png');
+}
+
+#pokemon-name-foe {
+    
 }
 
 #overlay {
