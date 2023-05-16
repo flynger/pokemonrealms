@@ -1,5 +1,3 @@
-
-
 #battle-UI {
     position: absolute;
     width: 59.289%;
@@ -33,13 +31,13 @@
 .databox {
     position: absolute;
     scale: calc(var(--scale-coefficient) * var(--scale));
-    width: 260px;
-    height: 84px;
 }
 
 .databox.you {
     right: 0%;
     bottom: 32%;
+    width: 260px;
+    height: 84px;
     transform-origin: right bottom;
     background-image: url('../res/battle/gui/databox_normal.png');
 }
@@ -70,6 +68,8 @@
 .databox.foe {
     left: 0%;
     top: 9.375%;
+    width: 260px;
+    height: 62px;
     transform-origin: left top;
     background-image: url('../res/battle/gui/databox_normal_foe.png');
 }
