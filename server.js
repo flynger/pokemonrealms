@@ -270,10 +270,12 @@ io.on("connection", (socket) => {
         }
         displayName = players[username].displayName;
         isGuest = false;
+        console.log(displayName + " logged in.");
     } else {
         while (!username || (username && username in players)) {
             displayName = username = "player" + (Math.floor(Math.random() * 9998) + 1);
         }
+        console.log("Guest logged in as " + displayName + ".");
     }
 
     // create player if doesn't exist
@@ -387,7 +389,7 @@ io.on("connection", (socket) => {
 
     // add disconnect event
     socket.on("disconnect", () => {
-        console.log(color.red, socket.id);
+        console.log(displayName + " disconnected.");
         players[username].deleteSocket();
         if (isGuest) {
             delete players[username];
