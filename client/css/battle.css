@@ -7,7 +7,7 @@
     background-size: cover;
     display: none;
     user-select: none;
-    --scale-coefficient : 1.37104752604;
+    --scale-coefficient: 1.37104752604;
 }
 
 .pokemon.you {
@@ -33,7 +33,16 @@
     scale: calc(var(--scale-coefficient) * var(--scale));
 }
 
+.pokemon-name {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    color: rgb(72, 72, 72);
+    text-shadow: 1px 1px rgb(184, 184, 184);
+}
+
 .databox.you {
+    position: absolute;
     right: 0%;
     bottom: 32%;
     width: 260px;
@@ -43,7 +52,10 @@
 }
 
 #pokemon-name-you {
-
+    position: absolute;
+    left: 16%;
+    top: 4.762%;
+    height: 40.476%;
 }
 
 .pokemon.foe {
@@ -66,6 +78,7 @@
 }
 
 .databox.foe {
+    position: absolute;
     left: 0%;
     top: 9.375%;
     width: 260px;
@@ -75,7 +88,10 @@
 }
 
 #pokemon-name-foe {
-    
+    position: absolute;
+    left: 3%;
+    top: 6.452%;
+    height: 54.838%;
 }
 
 #overlay {
