@@ -276,12 +276,12 @@
         <div class="hitmarker"></div>
       </div>
       <div class="databox you bg-image">
-        <p id="pokemon-name-you" class="pokemon-name"></p>
+        <p id="pokemon-name-you" class="battle-text"></p>
         <div class="hp you"> </div>
         <div class="xpbar you"></div>
       </div>
       <div class="databox foe bg-image">
-        <p id="pokemon-name-foe" class="pokemon-name"></p>
+        <p id="pokemon-name-foe" class="battle-text"></p>
         <div class="hp foe"></div>
       </div>
       <div id="overlay-message" class="bg-image">
@@ -298,8 +298,10 @@
             class="movetype type normal"></span><span class="movepp">PP 40/40</span></div>
         <div id="move4" class="electric" onclick="useMove(4)"><span class="movename">Zap Cannon</span><span
             class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
+        <div class="cancel" onclick="cancelFight()"></div>
       </div>
       <div id="overlay" class="bg-image command">
+        <p id="command-message" class="battle-text"></p>
         <div class="fight bg-image" onclick="showFightButtons()"></div>
         <div class="pkmn bg-image" onclick="alert()"></div>
         <div class="bag bg-image" onclick="alert()"></div>
