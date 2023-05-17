@@ -16,6 +16,31 @@
     text-shadow: 1px 1px rgb(184, 184, 184);
 }
 
+
+.databox {
+    position: absolute;
+    scale: calc(var(--scale-coefficient) * var(--scale));
+}
+
+.hp {
+    position: absolute;
+    background-image: url('../res/battle/gui/overlay_hp.png');
+    width: 96px;
+    height: 6px;
+}
+
+.hp.g{
+    background-position-y: -1px;
+}
+
+.hp.y{
+    background-position-y: -10px;
+}
+
+.hp.r{
+    background-position-y: -19px;
+}
+
 .pokemon.you {
     position: absolute;
     bottom: 24.427%;
@@ -34,11 +59,6 @@
     transform: translate(-50%, 10%);
 }
 
-.databox {
-    position: absolute;
-    scale: calc(var(--scale-coefficient) * var(--scale));
-}
-
 .databox.you {
     position: absolute;
     right: 0%;
@@ -54,6 +74,11 @@
     left: 16%;
     top: 4.762%;
     height: 40.476%;
+}
+
+#hp-you {
+    left: 52.308%;
+    top: 47.619%;
 }
 
 .pokemon.foe {
@@ -90,6 +115,11 @@
     left: 3%;
     top: 6.452%;
     height: 54.838%;
+}
+
+#hp-foe {
+    left: 45.385%;
+    top: 64.516%;
 }
 
 #overlay {
