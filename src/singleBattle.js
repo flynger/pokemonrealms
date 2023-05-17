@@ -125,6 +125,10 @@ export default class SingleBattle {
                                 message = this.text.switchIn;
                                 args.TRAINER = this["player" + side].name;
                             }
+                            battleDataProperties = {
+                                side: side == thisPlayer ? "you" : "foe",
+                                switchIn: lineArray[1]
+                            };
                             // add logic to send public data to player
                             break;
                         case "-damage":

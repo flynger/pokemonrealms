@@ -27,6 +27,7 @@
     background-image: url('../res/battle/gui/overlay_hp.png');
     width: 96px;
     height: 6px;
+    transition-duration: 0.666s;
 }
 
 .hp.g{

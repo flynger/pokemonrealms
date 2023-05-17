@@ -11,7 +11,7 @@ import Pokedex from "./pokedex.js";
 //     crit: "critical-hit ratio"
 // }
 export default class Pokemon {
-    static shinyChance = 8192;
+    static shinyChance = 1;
     static hiddenAbilityChance = 64;
 
     constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature = "Serious", abilitySlot, ivs, evs, moves, originalTrainer, owner}) {
