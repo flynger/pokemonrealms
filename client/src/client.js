@@ -124,15 +124,15 @@ function setupSocket() {
         console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)
     });
 
-    socket.on("battleData", (data) => {
-        console.log(data);
-        battleData.push(...data);
+    socket.on("battleData", (newBattleData) => {
+        console.log({ newBattleData });
+        battleData.push(...newBattleData);
         if (!dialoguePlaying) nextAction();
     });
 
-    socket.on("battleOptions", (options) => {
-        console.log(options.active[0].moves);
-        battleOptions = options;
+    socket.on("battleOptions", (newBattleOptions) => {
+        console.log({ moves: newBattleOptions.active[0].moves });
+        battleOptions = newBattleOptions;
         updateMoveChoices();
     });
 
