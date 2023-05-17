@@ -29,16 +29,26 @@
     height: 6px;
 }
 
-.hp.g{
+.hp.g {
     background-position-y: -1px;
 }
 
-.hp.y{
+.hp.y {
     background-position-y: -10px;
 }
 
-.hp.r{
+.hp.r {
     background-position-y: -19px;
+}
+
+#xp {
+    position: absolute;
+    background-image: url('../res/battle/gui/overlay_exp.png');
+    width: 192px;
+    height: 4px;
+    background-position-y: 0px;
+    left: 15.385%;
+    top: 88.095%;
 }
 
 .pokemon.you {
@@ -335,7 +345,7 @@
 .fight-command .cancel:hover {
     cursor: pointer;
     background-position-x: -4px;
-    filter: brightness(1); 
+    filter: brightness(1);
 }
 
 .command div {
