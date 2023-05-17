@@ -42,7 +42,7 @@ function setupSocket() {
         if (Object.values(players).length > 0) {
             window.location.reload();
         }
-        console.log(playersArray);
+        console.log({ playersArray });
         username = name;
         loadPlayersAndGame(playersArray);
         $('#message').modal('hide');
