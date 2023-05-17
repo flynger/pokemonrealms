@@ -23,8 +23,8 @@ export default class Player {
 
     pickStarter(starter) {
         if (this.starter == false) {
-            this.starter = Player.starterOptions.includes(starter) ? starter : "SNORLAX";
-            this.party.push(new Pokemon(this.starter, 20, { gender: "M", originalTrainer: "Professor Oak", owner: this.displayName }));
+            this.starter = Player.starterOptions.includes(starter) ? starter : "EKANS";
+            this.party.push(new Pokemon(this.starter, 12, { gender: "M", originalTrainer: "Professor Oak", owner: this.displayName }));
         }
     }
 
