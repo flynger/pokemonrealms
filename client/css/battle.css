@@ -13,7 +13,7 @@
 .battle-text {
     font-size: 1.5em;
     color: rgb(72, 72, 72);
-    text-shadow: 1px 1px rgb(184, 184, 184);
+    text-shadow: 0.05em 0.05em rgb(184, 184, 184);
 }
 
 
@@ -50,6 +50,39 @@
     background-position-y: 0px;
     left: 40px;
     top: 74px;
+}
+
+.lvl{
+    position: absolute;
+    background-image: url('../res/battle/gui/overlay_lv.png');
+    width: 22px;
+    height: 14px;
+}
+
+.lvl.you{
+    right: 65px;
+    top: 16px;
+}
+
+#lvl-you {
+    font-size: 1.1em;
+    font-weight: bold;
+    position: absolute;
+    left: 194px;
+    top: 9px;
+}
+
+.lvl.foe{
+    right: 84px;
+    top: 16px;
+}
+
+#lvl-foe {
+    font-size: 1.1em;
+    font-weight: bold;
+    position: absolute;
+    left: 177px;
+    top: 9px;
 }
 
 .pokemon.you {
@@ -129,8 +162,44 @@
 }
 
 #hp-foe {
-    left: 45.385%;
-    top: 64.516%;
+    left: 118px;
+    top: 40px;
+}
+
+@keyframes faint_foe {
+    0% {
+        transform: translateY(0);
+        height: auto;
+    }
+
+    100% {
+        transform: translateY(150%);
+        height: 0px;
+    }
+}
+
+.pokemon.foe.fainted {
+    animation: faint_foe 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes faint_you {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(150%);
+    }
+}
+
+.pokemon.you.fainted {
+    animation: faint_you 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
 }
 
 #overlay {
@@ -168,7 +237,6 @@
     right: 4.56%;
     font-size: 3vw;
     overflow: hidden;
-    text-shadow: 3px 3px rgb(184, 184, 184);
 }
 
 .grassbase0 {
