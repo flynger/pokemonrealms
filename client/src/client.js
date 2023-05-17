@@ -117,8 +117,8 @@ function setupSocket() {
 
     socket.on("startBattle", (playerPokemon, wildPokemon) => {
         $("#battle-UI").show();
-        showPokemonYou(playerPokemon);
-        showPokemonFoe(wildPokemon);
+        // showPokemonYou(playerPokemon);
+        // showPokemonFoe(wildPokemon);
         players[username].busy = true;
         app.view.style.filter = "blur(0.2em)";
         console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)
