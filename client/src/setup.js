@@ -11,6 +11,7 @@ var gen5exteriorSheet;
 var kyledoveSheet;
 
 var gameDiv, battleUI;
+var colorMatrix;
 
 $(window).on('load', function () {
     $('#message').modal({ backdrop: 'static', keyboard: false });
@@ -97,9 +98,10 @@ async function setupGame() {
     // });
     // Matter.Render.run(render);
 
-    let colorMatrix = new PIXI.filters.ColorMatrixFilter();
+    colorMatrix = new PIXI.filters.ColorMatrixFilter();
     gameContainer.filters = [colorMatrix];
-    colorMatrix.brightness(1);
+    // colorMatrix.brightness(1.4, true);
+    // colorMatrix.tint(0xFFBB66, true);
 
     // map initialization
     $("#mapName").html(map.name);

@@ -27,6 +27,21 @@ function setupSocket() {
             timeString = "0" + timeString;
         }
         let hour = timeString.slice(0, 2);
+
+        let timeFromMidnight;
+        let night = false;
+        if (+hour < 6) {
+            timeFromMidnight = +timeString;
+            night = true;
+            
+        } else if (+hour >= 18) {
+            timeFromMidnight = 2400 - +timeString;
+            night = true;
+        }
+        if (night) {
+            let rg = (Math.floor(100 + 0.26 * timeFromMidnight)).toString(16);
+            colorMatrix.tint("#" + rg.repeat(2) + "FF");
+        }
         let minute = timeString.slice(2, 4);
         if (hour == "00") hour = "12"; // set hour 0 to 12
         if (+hour > 12) hour = +hour - 12 + ""; // keep hour within 1 to 12

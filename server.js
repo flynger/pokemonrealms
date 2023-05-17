@@ -138,7 +138,7 @@ setInterval(() => {
     });
     // console.log("sending global players list");
     // io.emit("playersOnline", server.onlinePlayers);
-}, 15000);
+}, 150);
 var encounters = {
     grass: {
         morning: [
