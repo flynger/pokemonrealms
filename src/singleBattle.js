@@ -30,7 +30,7 @@ export default class SingleBattle {
         this.player1 = party1;
         this.player2 = party2;
 
-        this.stream = new BattleStream();
+        this.stream = this.player1.stream = this.player2.stream = new BattleStream();
         (async () => {
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
@@ -47,15 +47,20 @@ export default class SingleBattle {
                         let denoter = lineArray.shift();
                         switch (denoter) {
                             case "request":
+                                let party = this["player" + playerId];
                                 let options = JSON.parse(lineArray[0]);
-                                if (this["player" + playerId].isPlayer) {
-                                    let player = players[this["player" + playerId].name];
+                                if (party.isPlayer) {
+                                    let player = players[party.name];
                                     if (player && player.connected) {
                                         player.socket.emit("battleOptions", options);
                                     }
+                                } else if (party.hasAI) {
+                                    party.AI.setOptions(options);
+                                } else {
+                                    throw Error("Party wasn't recognized as Player or AI.");
                                 }
-                                this["player" + playerId].nextData = options;
-                                console.log(options);
+                                party.nextData = options;
+                                // console.log(options);
                                 break;
                             case "error":
                                 console.log("Bad input for " + this["player" + playerId].name)
@@ -69,16 +74,18 @@ export default class SingleBattle {
 
     createBattlePerspective(showdownOutputArray, thisPlayer = "1") {
         let battleData = [];
-        console.log("\n" + this["player" + thisPlayer].name + "'s perspective: \n");
+        // console.log("\n" + this["player" + thisPlayer].name + "'s perspective: \n");
         let splitCounter = 0; // split counter
         for (const line of showdownOutputArray) {
+            console.log(line);
             let lineArray = line.slice(1).split("|");
             let args = {}; //args to replace their respective fields in default.ts
+            let battleDataProperties = {};
             let useArgs = true; // whether to replace args or not
 
             let isOwnPokemon = lineArray.length > 1 && (lineArray[1].includes("p1") || lineArray[1].includes("p2")) ? lineArray[1].slice(0, 2) == "p" + thisPlayer : null; // whether the message is about your pokemon or the opponent's
             let denoter = lineArray.shift();
-            let messageText = DefaultText.default[denoter[0] == "-" ? denoter.substring(1) : denoter] || " ";
+            let message = DefaultText.default[denoter[0] == "-" ? denoter.substring(1) : denoter] || " ";
             if (splitCounter > 0) {
                 // private information and switch out check
                 if (splitCounter == 2) {
@@ -89,19 +96,19 @@ export default class SingleBattle {
                             var thisParty = this["player" + side];
                             if (thisParty.data && !thisParty.data.teamPreview && !thisParty.nextData.forcedSwitch) {
                                 if (isOwnPokemon) {
-                                    messageText = DefaultText.default.switchOutOwn;
+                                    message = DefaultText.default.switchOutOwn;
                                 } else {
-                                    messageText = DefaultText.default.switchOut;
+                                    message = DefaultText.default.switchOut;
                                     args.TRAINER = thisParty.name;
                                 }
                                 args.NICKNAME = thisParty.data.side.pokemon.find((mon) => mon.active).ident.split(": ")[1];
                             } else {
                                 // add logic to send private data to player
-                                messageText = " ";
+                                message = " ";
                             }
                             break;
                         default:
-                            messageText = " ";
+                            message = " ";
                     }
                 }
                 // public information
@@ -113,15 +120,19 @@ export default class SingleBattle {
                             args.NICKNAME = pokemonArgs[1];
                             args.SPECIES = lineArray[1].split(", ")[0];
                             if (isOwnPokemon) {
-                                messageText = DefaultText.default.switchInOwn;
+                                message = DefaultText.default.switchInOwn;
                             } else if (!isOwnPokemon) {
-                                messageText = this.text.switchIn;
+                                message = this.text.switchIn;
                                 args.TRAINER = this["player" + side].name;
                             }
+                            battleDataProperties = {
+                                side: side == thisPlayer ? "you" : "foe",
+                                switchIn: lineArray[1]
+                            };
                             // add logic to send public data to player
                             break;
                         case "-damage":
-                            messageText = DefaultText.default.damagePercentage;
+                            message = DefaultText.default.damagePercentage;
                             var pokemonArgs = lineArray[0].split(": ");
                             var pokemonIdentity = pokemonArgs[0].slice(0, -1) + ": " + pokemonArgs[1];
                             var side = pokemonArgs[0][1];
@@ -132,14 +143,14 @@ export default class SingleBattle {
                                 let effectSourceType = effectDetails[0];
                                 let effectSource = effectDetails[1] || effectDetails[0];
                                 if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].damage) {
-                                    messageText = ItemsText[Dex.items.get(effectSource).id].damage;
+                                    message = ItemsText[Dex.items.get(effectSource).id].damage;
                                 } else if (effectSourceType == effectSource) {
                                     if (MovesText[Dex.moves.get(effectSource).id] && MovesText[Dex.moves.get(effectSource).id].damage) {
-                                        messageText = MovesText[Dex.moves.get(effectSource).id].damage;
+                                        message = MovesText[Dex.moves.get(effectSource).id].damage;
                                     }
-                                    else messageText = DefaultText[effectSource].damage;
+                                    else message = DefaultText[effectSource].damage;
                                 } else {
-                                    //messageText = MovesText[Dex.moves.get(effectSource).id].damage;
+                                    //message = MovesText[Dex.moves.get(effectSource).id].damage;
                                 }
                             }
                             var thisPartyData = this["player" + side].data;
@@ -147,6 +158,10 @@ export default class SingleBattle {
                             var oldPercentage = Math.ceil(+oldMonHP[0] / +oldMonHP[1].split(" ")[0] * 100);
                             var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
                             args.PERCENTAGE = oldPercentage - newPercentage + "%";
+                            battleDataProperties = {
+                                side: side == thisPlayer ? "you" : "foe",
+                                damageHPTo: newPercentage
+                            };
                             break;
                         case "-heal":
                             var pokemonArgs = lineArray[0].split(": ");
@@ -158,16 +173,16 @@ export default class SingleBattle {
                                 let effectSourceType = effectDetails[0];
                                 let effectSource = effectDetails[1];
                                 if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].heal) {
-                                    messageText = ItemsText[Dex.items.get(effectSource).id].heal;
+                                    message = ItemsText[Dex.items.get(effectSource).id].heal;
                                 } else if (effectSourceType == "move" && MovesText[Dex.moves.get(effectSource).id].heal) {
-                                    messageText = MovesText[Dex.moves.get(effectSource).id].heal;
+                                    message = MovesText[Dex.moves.get(effectSource).id].heal;
                                 } else if (effectSourceType == "drain") {
-                                    messageText = DefaultText.drain.heal;
+                                    message = DefaultText.drain.heal;
                                 }
                             }
                             break;
                         default:
-                            messageText = " ";
+                            message = " ";
                     }
                 }
                 splitCounter--;
@@ -186,22 +201,22 @@ export default class SingleBattle {
                         splitCounter = 2;
                         continue;
                     case "start":
-                        messageText = this.text.startBattle.replace("[TRAINER]", this.player1.name).replace("[TRAINER]", this.player2.name);
+                        message = this.text.startBattle.replace("[TRAINER]", this.player1.name).replace("[TRAINER]", this.player2.name);
                         useArgs = false;
                         break;
                     case "turn":
-                        messageText = this.text.turn;
+                        message = this.text.turn;
                         args.NUMBER = lineArray[0];
                         break;
                     case "win":
                         var winner = lineArray[0];
                         if (winner == this["player" + thisPlayer].name) {
-                            messageText = this.text.winBattle;
+                            message = this.text.winBattle;
                             args.TRAINER = winner;
                         } else {
-                            messageText = this.text.loseBattle;
+                            message = this.text.loseBattle;
                             if (!this.player1.isPlayer) {
-                                messageText = messageText.replaceAll("[TRAINER]", "[TRAINER" + thisPlayer + "]");
+                                message = message.replaceAll("[TRAINER]", "[TRAINER" + thisPlayer + "]");
                                 args["TRAINER" + thisPlayer] = this["player" + thisPlayer].name;
                             } else {
                                 args.TRAINER = winner;
@@ -210,11 +225,11 @@ export default class SingleBattle {
                         this.endBattle();
                         break;
                     case "tie":
-                        messageText = this.text.tieBattle.replace("[TRAINER]", this.player1.isPlayer ? this.player1.name : this.player2.name).replace("[TRAINER]", this.player2.name);
+                        message = this.text.tieBattle.replace("[TRAINER]", this.player1.isPlayer ? this.player1.name : this.player2.name).replace("[TRAINER]", this.player2.name);
                         this.endBattle();
                         break;
                     case "-ability":
-                        messageText = DefaultText.default.abilityActivation;
+                        message = DefaultText.default.abilityActivation;
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         args.ABILITY = lineArray[1];
                         if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
@@ -223,7 +238,7 @@ export default class SingleBattle {
                             let effectSource = effectDetails[1] || effectDetails[0];
                             if (effectSourceType == "ability") {
                                 if (AbilitiesText[Dex.abilities.get(effectSource).id].changeAbility) {
-                                    messageText = AbilitiesText[Dex.abilities.get(effectSource).id].changeAbility;
+                                    message = AbilitiesText[Dex.abilities.get(effectSource).id].changeAbility;
                                 }
                             }
                         }
@@ -234,7 +249,7 @@ export default class SingleBattle {
                     case "-boost":
                         var amount = lineArray[2];
                         if (amount != "1") {
-                            messageText = DefaultText.default["boost" + amount];
+                            message = DefaultText.default["boost" + amount];
                         }
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         args.STAT = DefaultText[lineArray[1]].statName;
@@ -244,7 +259,7 @@ export default class SingleBattle {
                         args.NICKNAME = lineArray[1].split(": ")[1];
                         break;
                     case "-prepare":
-                        messageText = MovesText[Dex.moves.get(lineArray[1]).id].prepare;
+                        message = MovesText[Dex.moves.get(lineArray[1]).id].prepare;
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         break;
                     case "-singleturn":
@@ -252,10 +267,10 @@ export default class SingleBattle {
                         var effectSourceType = effectDetails[0];
                         var effectSource = effectDetails[1];
                         if (effectSourceType == "move") {
-                            messageText = MovesText[Dex.moves.get(effectSource).id].start;
+                            message = MovesText[Dex.moves.get(effectSource).id].start;
                         }
                         else {
-                            messageText = DefaultText[effectSourceType].start;
+                            message = DefaultText[effectSourceType].start;
                         }
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         break;
@@ -266,60 +281,61 @@ export default class SingleBattle {
                         var effectSourceType = effectDetails[0];
                         var effectSource = effectDetails[1] || effectSourceType;
                         if (MovesText[Dex.moves.get(effectSource).id]) {
-                            messageText = MovesText[Dex.moves.get(effectSource).id].start;
+                            message = MovesText[Dex.moves.get(effectSource).id].start;
                         } else {
-                            messageText = DefaultText[effectSourceType] ? DefaultText[effectSourceType].start : "Debug: " + effectSource + " start on [NICKNAME]";
+                            message = DefaultText[effectSourceType] ? DefaultText[effectSourceType].start : "Debug: " + effectSource + " start on [NICKNAME]";
                         }
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         break;
                     case "-status":
                         var statusEffect = lineArray[1];
-                        messageText = DefaultText[statusEffect].start;
+                        message = DefaultText[statusEffect].start;
                         args.NICKNAME = lineArray[0].split(": ")[1];
                     case "-supereffective":
-                        messageText = DefaultText.default.superEffective;
+                        message = DefaultText.default.superEffective;
                         useArgs = false;
                         break;
                     case "-unboost":
                         var amount = lineArray[2];
                         if (amount != "1") {
-                            messageText = DefaultText.default["unboost" + amount];
+                            message = DefaultText.default["unboost" + amount];
                         }
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         args.STAT = DefaultText[lineArray[1]].statName;
                         break;
                     default:
-                    //messageText = " ";
+                    //message = " ";
                 }
             }
             let firstWordIsName = false;
             if (useArgs) {
-                if (messageText.includes("[POKEMON]")) {
-                    messageText = messageText.replace("[POKEMON]", isOwnPokemon ? DefaultText.default.pokemon : this.text.opposingPokemon);
-                } else if (messageText.includes("[FULLNAME]")) {
-                    messageText = messageText.replace("[FULLNAME]", this.text.fullName);
+                if (message.includes("[POKEMON]")) {
+                    message = message.replace("[POKEMON]", isOwnPokemon ? DefaultText.default.pokemon : this.text.opposingPokemon);
+                } else if (message.includes("[FULLNAME]")) {
+                    message = message.replace("[FULLNAME]", this.text.fullName);
                 }
 
-                let firstLetter = messageText.search(/[a-zA-Z]/); // find first letter of string
-                if (firstLetter == messageText.search("[NICKNAME]") || firstLetter == messageText.search("[TRAINER]") || firstLetter == messageText.search("[TRAINER1]") || firstLetter == messageText.search("[TRAINER2]")) {
+                let firstLetter = message.search(/[a-zA-Z]/); // find first letter of string
+                if (firstLetter == message.search("[NICKNAME]") || firstLetter == message.search("[TRAINER]") || firstLetter == message.search("[TRAINER1]") || firstLetter == message.search("[TRAINER2]")) {
                     firstWordIsName = true; // protect nicknames & trainer names from capitalization
                 }
                 for (let arg in args) {
-                    messageText = messageText.replaceAll(`[${arg}]`, args[arg]);
+                    message = message.replaceAll(`[${arg}]`, args[arg]);
                 }
             }
-            let firstLetter = messageText.search(/[a-zA-Z]/); // find first letter of string
-            if (!firstWordIsName && firstLetter != messageText.search(/[A-Z]/)) {
-                messageText = messageText.substring(0, firstLetter) + messageText[firstLetter].toUpperCase() + messageText.substring(firstLetter + 1);
+            let firstLetter = message.search(/[a-zA-Z]/); // find first letter of string
+            if (!firstWordIsName && firstLetter != message.search(/[A-Z]/)) {
+                message = message.substring(0, firstLetter) + message[firstLetter].toUpperCase() + message.substring(firstLetter + 1);
             }
 
             // add battle message packet
-            if (messageText != " ") {
+            if (message != " ") {
                 battleData.push({
-                    message: messageText
+                    message,
+                    ...battleDataProperties
                 });
             }
-            //console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + messageText); // formatting to compare old output to our new, processed output
+            //console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + message); // formatting to compare old output to our new, processed output
         }
         if (battleData.length > 0 && this["player" + thisPlayer].isPlayer) {
             // TODO: make a room for battle emits later
@@ -357,23 +373,21 @@ export default class SingleBattle {
         this.stream.write(`>player p2 ${JSON.stringify({ name: this.player2.name })}`);
     }
 
-    useMove(partyName, moveNumber) {
-        let playerId = this.getPlayerId(partyName);
-        if (playerId == 1) {
-            this.stream.write(`>p1 move ${moveNumber}`);
-        } else if (playerId == 2) {
-            this.stream.write(`>p2 move ${moveNumber}`)
-        }
-    }
+    // useMove(playerId, moveInput) {
+    //     if (this["player" + playerId]) {
+    //         this.stream.write(`>p${playerId} move ${moveInput}`);
+    //     } else {
+    //         throw Error("Turn input wasn't recognized as being from a valid Party.");
+    //     }
+    // }
 
-    switchTo(partyName, switchNumber) {
-        let playerId = this.getPlayerId(partyName);
-        if (playerId == 1) {
-            this.stream.write(`>p1 switch ${switchNumber}`);
-        } else if (playerId == 2) {
-            this.stream.write(`>p2 switch ${switchNumber}`);
-        }
-    }
+    // switchTo(playerId, switchInput) {
+    //     if (this["player" + playerId]) {
+    //         this.stream.write(`>p${playerId} switch ${switchInput}`);
+    //     } else {
+    //         throw Error("Turn input wasn't recognized as being from a valid Party.");
+    //     }
+    // }
 
     endBattle(forced = false) {
         let ids = [1, 2];
@@ -387,7 +401,7 @@ export default class SingleBattle {
                             message: this.text.endBattle.replace("[TRAINER]", player.displayName),
                             battleOver: true
                         });
-                    } 
+                    }
                 }
             }
         }

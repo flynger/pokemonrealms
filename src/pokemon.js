@@ -11,7 +11,7 @@ import Pokedex from "./pokedex.js";
 //     crit: "critical-hit ratio"
 // }
 export default class Pokemon {
-    static shinyChance = 8192;
+    static shinyChance = 1;
     static hiddenAbilityChance = 64;
 
     constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature = "Serious", abilitySlot, ivs, evs, moves, originalTrainer, owner}) {
@@ -27,7 +27,6 @@ export default class Pokemon {
             this.gender = Math.random() < Pokedex[species].genderRatio.M ? "M" : "F";
         } else this.gender = gender;
 
-        if (Pokedex[species].genderRatio) console.log(Pokedex[species].genderRatio.hasOwnProperty(gender));
         this.shiny = typeof shiny == "boolean" ? shiny : randomNumber(1, Pokemon.shinyChance) == 1;
         this.level = level;
         this.heldItem = heldItem;
@@ -48,7 +47,6 @@ export default class Pokemon {
         // generate moves
         var possibleMoves = [];
         for (let move in Pokedex[species].learnset.levelup) {
-            console.log(move);
             if (+move <= level)
                 possibleMoves.push(Pokedex[species].learnset.levelup[move]);
             else break;

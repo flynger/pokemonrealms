@@ -8,6 +8,9 @@ Array.prototype.shuffle = function () {
     }
     return this;
 }
+Array.prototype.random = function () {
+    return this[randomNumber(0, this.length - 1)];
+}
 
 // libraries
 import express from "express";
@@ -116,29 +119,142 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
 });
 
-// // update global player list every 5 seconds
-// setInterval(() => {
-//     console.log("sending global players list");
-//     io.emit("playersOnline", server.onlinePlayers);
-// }, 5000);
+// update global player list every 5 seconds
+var ticker = 600;
+Map.updateTime(ticker); 
+setInterval(() => {
+    ticker += 15;
+    if (ticker % 100 == 60) {
+        ticker += 40;
+        if (ticker == 2400) {
+            ticker = 0;
+        }
+    }
+    
+    Map.updateTime(ticker); 
+    io.emit("timeChange", {
+        time: Map.time,
+        exactTime: ticker
+    });
+    // console.log("sending global players list");
+    // io.emit("playersOnline", server.onlinePlayers);
+}, 15000);
 var encounters = {
     grass: {
-        morning: [],
-        day: [
+        morning: [
             {
-                species: "RATTATA",
-                weight: 1,
+                species: "PIDGEY",
+                weight: 35,
                 minLevel: 2,
                 maxLevel: 4
             },
             {
+                species: "LEDYBA",
+                weight: 35,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "SENTRET",
+                weight: 15,
+                minLevel: 3,
+                maxLevel: 3
+            },
+            {
+                species: "BUTTERFREE",
+                weight: 5,
+                minLevel: 7,
+                maxLevel: 7
+            },
+            {
+                species: "BEEDRILL",
+                weight: 5,
+                minLevel: 7,
+                maxLevel: 7
+            },
+            {
+                species: "PIDGEOTTO",
+                weight: 1,
+                minLevel: 7,
+                maxLevel: 7
+            },
+            {
+                species: "PIKACHU",
+                weight: 1,
+                minLevel: 4,
+                maxLevel: 7
+            },
+            {
+                species: "FURRET",
+                weight: 1,
+                minLevel: 6,
+                maxLevel: 6
+            }
+        ],
+        day: [
+            {
                 species: "PIDGEY",
+                weight: 10,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "RATTATA",
+                weight: 10,
+                minLevel: 2,
+                maxLevel: 2
+            },
+            {
+                species: "CATERPIE",
+                weight: 7,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "WEEDLE",
+                weight: 7,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "SENTRET",
+                weight: 5,
+                minLevel: 3,
+                maxLevel: 3
+            },
+            {
+                species: "PIDGEOTTO",
+                weight: 1,
+                minLevel: 7,
+                maxLevel: 7
+            },
+            {
+                species: "PIKACHU",
+                weight: 1,
+                minLevel: 4,
+                maxLevel: 7
+            },
+            {
+                species: "FURRET",
+                weight: 1,
+                minLevel: 6,
+                maxLevel: 6
+            }
+        ],
+        night: [
+            {
+                species: "RATTATA",
+                weight: 1,
+                minLevel: 2,
+                maxLevel: 6
+            },
+            {
+                species: "HOOTHOOT",
                 weight: 1,
                 minLevel: 2,
                 maxLevel: 4
             }
         ],
-        night: [],
         frequency: 8
     }
 }
@@ -157,10 +273,12 @@ io.on("connection", (socket) => {
         }
         displayName = players[username].displayName;
         isGuest = false;
+        console.log(displayName + " logged in.");
     } else {
         while (!username || (username && username in players)) {
             displayName = username = "player" + (Math.floor(Math.random() * 9998) + 1);
         }
+        console.log("Guest logged in as " + displayName + ".");
     }
 
     // create player if doesn't exist
@@ -274,8 +392,11 @@ io.on("connection", (socket) => {
 
     // add disconnect event
     socket.on("disconnect", () => {
-        console.log(color.red, socket.id);
+        console.log(displayName + " disconnected.");
         players[username].deleteSocket();
+        if (players[username].battle) {
+            players[username].battle.endBattle(true);
+        }
         if (isGuest) {
             delete players[username];
         }
@@ -283,6 +404,10 @@ io.on("connection", (socket) => {
     });
     // send username
     socket.emit("playerData", username, Object.values(players).filter((player) => player.connected).map((player) => player.export()));
+    socket.emit("timeChange", {
+        time: Map.time,
+        exactTime: ticker
+    });
     //     socket.emit("playersOnline", server.onlinePlayers);
 });
 

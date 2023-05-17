@@ -22,6 +22,10 @@ function useMove(num) {
     $("#overlay-message").show();
 }
 
+function switchTo(slot) {
+    socket.emit("switchInput", slot);
+}
+
 function runFromBattle() {
     socket.emit("endBattle");
     $("#overlay").hide();
@@ -43,10 +47,19 @@ function nextAction() {
     }
     clearInterval(textInterval);
     var nextData = battleData.shift();
-    var letters = nextData.message.split("");
+    var letters = processFormatting(nextData.message, nextData.message.split(""));
+    if ("damageHPTo" in nextData) {
+        $("#hp-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
+        setTimeout(() => {
+            textInterval = createTextInterval(nextData, letters)
+        }, 666);
+    }
+    else textInterval = createTextInterval(nextData, letters);
+}
+function createTextInterval(nextData, letters) {
     $('#dialogue').html("");
     var index = 0;
-    var textInterval = setInterval(function () {
+    return setInterval(function () {
         $('#dialogue').html($('#dialogue').html() + letters[index++]);
         if (index >= letters.length) {
             clearInterval(textInterval);
@@ -54,8 +67,6 @@ function nextAction() {
                 if (battleData.length > 0) {
                     nextAction();
                 } else {
-                    $('#dialogue').html("Waiting for server...");
-                    dialoguePlaying = false;
                     if (nextData.battleOver) {
                         $('#battle-UI').hide();
                         players[username].busy = false;
@@ -65,14 +76,38 @@ function nextAction() {
                         $("#overlay").show();
                         // $("#overlay-fight").show();
                     }
+                    $('#dialogue').html("");
+                    dialoguePlaying = false;
                 }
             }, 800);
         }
     }, 1000 / textSpeed);
 }
 
+function processFormatting(message, letters) {
+    if (message.includes("**")) {
+        let b1 = message.indexOf("**");
+        message = message.replace("**", "BB");
+        let b2 = message.indexOf("**");
+        message = message.replace("**", "BB");
+        letters[b1] = "<b>";
+        letters[b2] = "</b>";
+        letters.splice(b2 + 1, 1);
+        letters.splice(b1 + 1, 1);
+    }
+    console.log(letters);
+    return letters;
+}
+
 function showPokemonYou(species) {
     species = species.toLowerCase();
+
+    let name = species[0].toUpperCase() + species.slice(1);
+    // TEMP: change to nickname of pokemon when possible
+    $('#pokemon-name-you').text(name);
+    $("#hp-you").width(96);
+    $('#command-message').html("What will<br>" + name + " do?");
+
     var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani-back/${species}.gif`;
 
     // Set the image source URL
@@ -81,8 +116,18 @@ function showPokemonYou(species) {
 
 function showPokemonFoe(species) {
     species = species.toLowerCase();
+
+    // TEMP: change to nickname of pokemon when possible
+    $('#pokemon-name-foe').text(species[0].toUpperCase() + species.slice(1));
+    $("#hp-foe").width(96);
+
     var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani/${species}.gif`;
     $("#pokemon-foe").attr("src", imageUrl);
+}
+
+function cancelFight() {
+    $("#overlay-fight").hide();
+    $('#overlay').show();
 }
 
 function updateMoveChoices() {

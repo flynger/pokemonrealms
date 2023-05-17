@@ -7,6 +7,7 @@ var link = window.location.host;
 var socket;
 var latency = -1;
 var username;
+var time;
 
 function setupSocket() {
     socket = io.connect(link);
@@ -20,13 +21,28 @@ function setupSocket() {
         });
     }, 1000);
 
+    socket.on("timeChange", (data) => {
+        let timeString = "" + data.exactTime;
+        while (timeString.length < 4) {
+            timeString = "0" + timeString;
+        }
+        let hour = timeString.slice(0, 2);
+        let minute = timeString.slice(2, 4);
+        if (hour == "00") hour = "12"; // set hour 0 to 12
+        if (+hour > 12) hour = +hour - 12 + ""; // keep hour within 1 to 12
+        if (hour[0] == "0") hour = hour[1]; // remove leading 0 if single digit hour
+        timeString = hour + ":" + minute + " " + (data.exactTime < 1200 ? "AM" : "PM")
+        let timeOfDay = data.time[0].toUpperCase() + data.time.slice(1);
+        $("#timeLabel").html(timeOfDay + " - " + timeString);
+    });
+
     //connect command
     socket.on("playerData", (name, playersArray) => {
         // add fix for reconnect properly instead of jank reload
         if (Object.values(players).length > 0) {
             window.location.reload();
         }
-        console.log(playersArray);
+        console.log({ playersArray });
         username = name;
         loadPlayersAndGame(playersArray);
         $('#message').modal('hide');
@@ -53,22 +69,6 @@ function setupSocket() {
             //players[name].grassUpdate(true);
             delete players[name];
         }
-    });
-
-    socket.on("battleRequest", (user) => {
-        $('#message').modal({ backdrop: 'static' });
-        $('#message').modal('show');
-        $('#message-title').text("Battle request");
-        $('#message-body').text(user + " has sent you a battle request. Accept?");
-        $('#blueModalBtn').text("Let's battle!");
-        $('#grayModalBtn').text("Ignore");
-        $('#blueModalBtn').on('click', () => {
-            battleRequest(user);
-            $('#message').modal('hide');
-        });
-        $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
-        $('#blueModalBtn').show();
-        $('#grayModalBtn').show();
     });
 
     socket.on("tradeRequest", (user, pokemon) => {
@@ -99,6 +99,22 @@ function setupSocket() {
         console.log(`Succesfully traded`)
     });
 
+    socket.on("battleRequest", (user) => {
+        $('#message').modal({ backdrop: 'static' });
+        $('#message').modal('show');
+        $('#message-title').text("Battle request");
+        $('#message-body').text(user + " has sent you a battle request. Accept?");
+        $('#blueModalBtn').text("Let's battle!");
+        $('#grayModalBtn').text("Ignore");
+        $('#blueModalBtn').on('click', () => {
+            battleRequest(user);
+            $('#message').modal('hide');
+        });
+        $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
+        $('#blueModalBtn').show();
+        $('#grayModalBtn').show();
+    });
+
     socket.on("startBattle", (playerPokemon, wildPokemon) => {
         $("#battle-UI").show();
         showPokemonYou(playerPokemon);
@@ -108,15 +124,15 @@ function setupSocket() {
         console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)
     });
 
-    socket.on("battleData", (data) => {
-        console.log(data);
-        battleData.push(...data);
+    socket.on("battleData", (newBattleData) => {
+        console.log({ newBattleData });
+        battleData.push(...newBattleData);
         if (!dialoguePlaying) nextAction();
     });
 
-    socket.on("battleOptions", (options) => {
-        console.log(options.active[0].moves);
-        battleOptions = options;
+    socket.on("battleOptions", (newBattleOptions) => {
+        console.log({ moves: newBattleOptions.active[0].moves });
+        battleOptions = newBattleOptions;
         updateMoveChoices();
     });
 
@@ -146,12 +162,6 @@ function setupSocket() {
 
 function battleRequest(user) {
     socket.emit("battleRequest", user);
-}
-function useMove(move) {
-    socket.emit("moveInput", move);
-}
-function switchTo(slot) {
-    socket.emit("switchInput", slot);
 }
 function tradeRequest(user, pokemon) {
     socket.emit("tradeRequest", user, pokemon);

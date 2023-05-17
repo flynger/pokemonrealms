@@ -7,6 +7,49 @@
     background-size: cover;
     display: none;
     user-select: none;
+    --scale-coefficient: 1.37104752604;
+}
+
+.battle-text {
+    font-size: 1.5em;
+    color: rgb(72, 72, 72);
+    text-shadow: 1px 1px rgb(184, 184, 184);
+}
+
+
+.databox {
+    position: absolute;
+    scale: calc(var(--scale-coefficient) * var(--scale));
+}
+
+.hp {
+    position: absolute;
+    background-image: url('../res/battle/gui/overlay_hp.png');
+    width: 96px;
+    height: 6px;
+    transition-duration: 0.666s;
+}
+
+.hp.g {
+    background-position-y: -1px;
+}
+
+.hp.y {
+    background-position-y: -10px;
+}
+
+.hp.r {
+    background-position-y: -19px;
+}
+
+#xp {
+    position: absolute;
+    background-image: url('../res/battle/gui/overlay_exp.png');
+    width: 192px;
+    height: 4px;
+    background-position-y: 0px;
+    left: 15.385%;
+    top: 88.095%;
 }
 
 .pokemon.you {
@@ -27,6 +70,28 @@
     transform: translate(-50%, 10%);
 }
 
+.databox.you {
+    position: absolute;
+    right: 0%;
+    bottom: 32%;
+    width: 260px;
+    height: 84px;
+    transform-origin: right bottom;
+    background-image: url('../res/battle/gui/databox_normal.png');
+}
+
+#pokemon-name-you {
+    position: absolute;
+    left: 16%;
+    top: 4.762%;
+    height: 40.476%;
+}
+
+#hp-you {
+    left: 52.308%;
+    top: 47.619%;
+}
+
 .pokemon.foe {
     position: absolute;
     top: 15%;
@@ -44,6 +109,28 @@
     left: 50%;
     transform: translate(-50%, 0%);
     user-select: none;
+}
+
+.databox.foe {
+    position: absolute;
+    left: 0%;
+    top: 9.375%;
+    width: 260px;
+    height: 62px;
+    transform-origin: left top;
+    background-image: url('../res/battle/gui/databox_normal_foe.png');
+}
+
+#pokemon-name-foe {
+    position: absolute;
+    left: 3%;
+    top: 6.452%;
+    height: 54.838%;
+}
+
+#hp-foe {
+    left: 45.385%;
+    top: 64.516%;
 }
 
 #overlay {
@@ -81,6 +168,7 @@
     right: 4.56%;
     font-size: 3vw;
     overflow: hidden;
+    text-shadow: 3px 3px rgb(184, 184, 184);
 }
 
 .grassbase0 {
@@ -110,7 +198,7 @@
     aspect-ratio: auto 184 / 38;
     width: 184px;
     height: 38px;
-    scale: calc((1.37104752604 + 0.0033)* var(--scale));
+    scale: calc((var(--scale-coefficient) + 0.0033) * var(--scale));
     transform-origin: left bottom;
     background-image: url('../res/battle/gui/cursor_fight.png');
     background-position-x: -4px;
@@ -130,6 +218,7 @@
     left: 2%;
     bottom: -5%;
     scale: 0.35;
+    image-rendering: auto;
 }
 
 .movepp {
@@ -167,59 +256,97 @@
 .fight-command>.normal {
     background-position-y: -4px;
 }
+
 .fight-command>.fighting {
     background-position-y: -50px;
 }
+
 .fight-command>.flying {
     background-position-y: -96px;
 }
+
 .fight-command>.poison {
     background-position-y: -142px;
 }
+
 .fight-command>.ground {
     background-position-y: -188px;
 }
+
 .fight-command>.rock {
     background-position-y: -234px;
 }
+
 .fight-command>.bug {
     background-position-y: -280px;
 }
+
 .fight-command>.ghost {
     background-position-y: -326px;
 }
+
 .fight-command>.steel {
     background-position-y: -372px;
 }
+
 .fight-command>.unknown {
     background-position-y: -418px;
 }
+
 .fight-command>.fire {
     background-position-y: -464px;
 }
+
 .fight-command>.water {
     background-position-y: -510px;
 }
+
 .fight-command>.grass {
     background-position-y: -556px;
 }
+
 .fight-command>.electric {
     background-position-y: -602px;
 }
+
 .fight-command>.psychic {
     background-position-y: -648px;
 }
+
 .fight-command>.ice {
     background-position-y: -694px;
 }
+
 .fight-command>.dragon {
     background-position-y: -740px;
 }
+
 .fight-command>.dark {
     background-position-y: -786px;
 }
+
 .fight-command>.fairy {
     background-position-y: -832px;
+}
+
+.fight-command .cancel {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    width: 122px;
+    height: 39px;
+    scale: calc(var(--scale));
+    transform-origin: right bottom;
+    background-image: url('../res/battle/gui/cursor_command.png');
+    background-position-x: -134px;
+    background-position-y: -418px;
+    right: 2.25%;
+    bottom: 5%;
+}
+
+.fight-command .cancel:hover {
+    cursor: pointer;
+    background-position-x: -4px;
+    filter: brightness(1);
 }
 
 .command div {
@@ -255,6 +382,15 @@
     background-position-y: -141px;
     right: 3%;
     bottom: 6%;
+}
+
+#command-message {
+    position: absolute;
+    left: 5%;
+    top: 10%;
+    scale: calc(var(--scale-coefficient) * var(--scale));
+    transform-origin: left top;
+    overflow-wrap: break-word;
 }
 
 .command div:hover {

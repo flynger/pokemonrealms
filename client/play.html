@@ -34,6 +34,7 @@
   <script src="src/draw.js"></script>
   <script src="src/setup.js"></script>
   <script src="src/battle.js"></script>
+  <script src="src/nav.js"></script>
 
   <link href="libs/jquery-ui.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
@@ -41,11 +42,7 @@
   <link href="css/battle.css" rel="stylesheet">
   <link href="css/pokemonSummary.css" rel="stylesheet">
   <link href="css/inventory.css" rel="stylesheet">
-  <script>
-    $.get("nav.html", function (data) {
-      $("#nav-placeholder").replaceWith(data);
-    });
-  </script>
+
   <div id="nav-placeholder">
     <nav class="navbar navbar-expand-md bg-dark-subtle" data-bs-theme="dark" style="height: 58px;"></nav>
   </div>
@@ -126,10 +123,10 @@
     </div>
 
     <div class="d-flex flex-column position-absolute top-0 end-0">
-      <button type="button" class="btn btn-lg btn-dark rounded-0" disabled>Route
-        1</button>
-      <button type="button" class="btn btn-sm btn-dark rounded-0 end-0" style="width: 70%; align-self: flex-end;"
-        disabled>Area 1</button>
+      <button id="mapName" type="button" class="btn btn-lg btn-dark rounded-0" disabled></button>
+      <button id="submapName" type="button" class="btn btn-sm btn-dark rounded-0 end-0"
+        style="width: 70%; align-self: flex-end;" disabled></button>
+      <button id="timeLabel" type="button" class="btn btn-sm btn-dark rounded-0" disabled></button>
     </div>
     <div class="d-flex position-absolute bottom-0 start-0 ms-3 mb-1" ondragstart="return false;">
       <button type="button" id="summaryBtn" class="btn btn-sm btn-dark rounded-5 mx-1"><img src="res/items/pokeball.png"
@@ -279,7 +276,16 @@
         <img id="pokemon-foe" src="https://play.pokemonshowdown.com/sprites/gen5ani/bulbasaur.gif">
         <div class="hitmarker"></div>
       </div>
-      <div id="overlay-message" class="bg-image">
+      <div class="databox you bg-image">
+        <p id="pokemon-name-you" class="battle-text"></p>
+        <div id="hp-you" class="hp g"></div>
+        <div id="xp"></div>
+      </div>
+      <div class="databox foe bg-image">
+        <p id="pokemon-name-foe" class="battle-text"></p>
+        <div id="hp-foe" class="hp g"></div>
+      </div>
+      <div id="overlay-message" class="battle-text">
         <div id="dialogue" class="px-2">
           Waiting for server...
         </div>
@@ -293,8 +299,10 @@
             class="movetype type normal"></span><span class="movepp">PP 40/40</span></div>
         <div id="move4" class="electric" onclick="useMove(4)"><span class="movename">Zap Cannon</span><span
             class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
+        <div class="cancel" onclick="cancelFight()"></div>
       </div>
       <div id="overlay" class="bg-image command">
+        <p id="command-message" class="battle-text"></p>
         <div class="fight bg-image" onclick="showFightButtons()"></div>
         <div class="pkmn bg-image" onclick="alert()"></div>
         <div class="bag bg-image" onclick="alert()"></div>

@@ -16,12 +16,8 @@
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/home.css" rel="stylesheet" />
     <script src="src/home.js"></script>
+    <script src="src/nav.js"></script>
 
-    <script>
-        $.get("nav.html", function (data) {
-            $("#nav-placeholder").replaceWith(data);
-        });
-    </script>
     <div id="nav-placeholder">
         <nav class="navbar navbar-expand-md bg-dark-subtle" data-bs-theme="dark" style="height: 58px;"></nav>
     </div>
@@ -35,7 +31,7 @@
                 <div class="col-lg-6 mx-auto">
                     <p class="lead mb-4">Play the Newest Online Pokemon MMO!</p>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <button type="button" class="btn btn-dark btn-lg px-4 gap-3">Join Today!</button>
+                        <button type="button" class="btn btn-dark btn-lg px-4 gap-3" onclick="location.href = 'register'">Join Today!</button>
                     </div>
                 </div>
             </div>
@@ -44,7 +40,7 @@
             <div class="row row-cols-3">
                 <div class="card col mb-5 mx-auto border-0">
                     <h1 class="card-title my-3 PokemonFont fw-bolder">Featuring Gen 1 - 4 Pokémon</h1>
-                    <img class="card-img-bottom img-fluid align-self-center" src="https://pbs.twimg.com/media/BLNw_ijCYAAHujA.jpg">
+                    <img class="card-img-bottom img-fluid align-self-center" src="res/gen1-4_starters.png">
                 </div>
                 <div class="card col mb-5 mx-auto border-0">
                     <h1 class="card-title my-3 PokemonFont fw-bolder">Explore the World of Pokémon!</h1>

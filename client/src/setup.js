@@ -1,6 +1,8 @@
 const WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
 var ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
 var map = {
+    name: "Route 1",
+    submapName: "Area 1",
     width: 60,
     height: 45
 };
@@ -98,6 +100,10 @@ async function setupGame() {
     let colorMatrix = new PIXI.filters.ColorMatrixFilter();
     gameContainer.filters = [colorMatrix];
     colorMatrix.brightness(1);
+
+    // map initialization
+    $("#mapName").html(map.name);
+    $("#submapName").html(map.submapName);
     map.tilemap = new PIXI.tilemap.CompositeTilemap();
     map.tilemap.zIndex = -1000;
     for (let i = 0; i < map.width; i++) {
