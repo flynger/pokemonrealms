@@ -48,8 +48,8 @@
     width: 192px;
     height: 4px;
     background-position-y: 0px;
-    left: 15.385%;
-    top: 88.095%;
+    left: 40px;
+    top: 74px;
 }
 
 .pokemon.you {
@@ -88,8 +88,8 @@
 }
 
 #hp-you {
-    left: 52.308%;
-    top: 47.619%;
+    left: 136px;
+    top: 40px;
 }
 
 .pokemon.foe {
