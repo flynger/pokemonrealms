@@ -127,6 +127,7 @@ export default class SingleBattle {
                             }
                             battleDataProperties = {
                                 side: side == thisPlayer ? "you" : "foe",
+                                nickname: pokemonArgs[1],
                                 switchIn: lineArray[1]
                             };
                             // add logic to send public data to player
@@ -188,6 +189,13 @@ export default class SingleBattle {
                 splitCounter--;
             } else {
                 switch (denoter) {
+                    case "cant":
+                        args.NICKNAME = lineArray[0].split(": ")[1];
+                        let reason = lineArray[1];
+                        if (lineArray[2]) args.MOVE = lineArray[2];
+                        if (DefaultText[reason]) message = DefaultText[reason].cant;
+                        else message = DefaultText.default.cant;
+                        break;
                     case "faint":
                         var pokemonArgs = lineArray[0].split(": ");
                         var side = pokemonArgs[0][1];
@@ -246,6 +254,27 @@ export default class SingleBattle {
                             args.SOURCE = lineArray[3].slice(5).split(": ")[1];
                         }
                         break;
+                    case "-activate":
+                        args.NICKNAME = lineArray[0].split(": ")[1];
+                        let activateDetails = lineArray[1].split(": ");
+                        let activateSourceType = activateDetails[0];
+                        let activateSource = activateDetails[1] || activateDetails[0];
+                        if (activateSourceType == "move") {
+                            if (MovesText[Dex.moves.get(activateSource).id].start) {
+                                message = MovesText[Dex.moves.get(activateSource).id].start;
+                            }
+                        } else if (activateSourceType == "ability") {
+                            if (AbilitiesText[Dex.abilities.get(activateSource).id].start) {
+                                message = AbilitiesText[Dex.abilities.get(activateSource).id].start;
+                            } else {
+                                args.ABILITY = activateSource;
+                                message = DefaultText.default.abilityActivation;
+                            }
+                        }
+                        if (lineArray[2] && lineArray[2].startsWith("[of] ")) {
+                            args.SOURCE = lineArray[2].slice(5).split(": ")[1];
+                        }
+                        break;
                     case "-boost":
                         var amount = lineArray[2];
                         if (amount != "1") {
@@ -254,6 +283,10 @@ export default class SingleBattle {
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         args.STAT = DefaultText[lineArray[1]].statName;
                         break;
+                    case "-curestatus":
+                        args.NICKNAME = lineArray[0].split(": ")[1];
+                        let status = lineArray[1];
+                        message = DefaultText[status] ? DefaultText[status].end : "Debug: " + status + " start on [NICKNAME]";
                     case "-miss":
                         isOwnPokemon = !isOwnPokemon;
                         args.NICKNAME = lineArray[1].split(": ")[1];
@@ -291,6 +324,7 @@ export default class SingleBattle {
                         var statusEffect = lineArray[1];
                         message = DefaultText[statusEffect].start;
                         args.NICKNAME = lineArray[0].split(": ")[1];
+                        break;
                     case "-supereffective":
                         message = DefaultText.default.superEffective;
                         useArgs = false;

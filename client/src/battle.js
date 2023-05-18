@@ -47,6 +47,15 @@ function nextAction() {
     }
     clearInterval(textInterval);
     var nextData = battleData.shift();
+    if (nextData.switchIn) {
+        let pokemonData = nextData.switchIn.split(', ');
+        let side = nextData.side;
+        let nickname = nextData.nickname;
+        let species = pokemonData[0].toLowerCase();
+        let level = pokemonData[1].slice(1);
+        let shiny = pokemonData[3] == "shiny";
+        showPokemon(side, species, nickname, level, shiny);
+    }
     var letters = processFormatting(nextData.message, nextData.message.split(""));
     if ("damageHPTo" in nextData) {
         $("#hp-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
@@ -72,6 +81,8 @@ function createTextInterval(nextData, letters) {
                         players[username].busy = false;
                         battleOver = false;
                         app.view.style.filter = "none";
+                        clearPokemon("you");
+                        clearPokemon("foe");
                     } else {
                         $("#overlay").show();
                         // $("#overlay-fight").show();
@@ -99,30 +110,22 @@ function processFormatting(message, letters) {
     return letters;
 }
 
-function showPokemonYou(species) {
-    species = species.toLowerCase();
-
-    let name = species[0].toUpperCase() + species.slice(1);
-    // TEMP: change to nickname of pokemon when possible
-    $('#pokemon-name-you').text(name);
-    $("#hp-you").width(96);
-    $('#command-message').html("What will<br>" + name + " do?");
-
-    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani-back/${species}.gif`;
-
-    // Set the image source URL
-    $("#pokemon-you").attr("src", imageUrl);
+function showPokemon(side, species, name, level, shiny) {
+    if (side == "you") {
+        $('#command-message').html("What will<br>" + name + " do?");
+    }
+    $('#pokemon-name-' + side).html((shiny ? "<span class='shiny' data-toggle='tooltip' title='Shiny!'>" : "") + name + (shiny ? "</span>" : ""));
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#lvl-' + side).html(level);
+    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
+    $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
 }
 
-function showPokemonFoe(species) {
-    species = species.toLowerCase();
-
-    // TEMP: change to nickname of pokemon when possible
-    $('#pokemon-name-foe').text(species[0].toUpperCase() + species.slice(1));
-    $("#hp-foe").width(96);
-
-    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani/${species}.gif`;
-    $("#pokemon-foe").attr("src", imageUrl);
+function clearPokemon(side) {
+    $("#pokemon-" + side).attr("src", "");
+    $('#pokemon-name-' + side).html("");
+    $('#lvl-' + side).html("");
+    $("#hp-" + side).width(96);
 }
 
 function cancelFight() {

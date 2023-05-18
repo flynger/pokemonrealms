@@ -28,6 +28,23 @@ function setupSocket() {
         }
         let hour = timeString.slice(0, 2);
         let minute = timeString.slice(2, 4);
+
+        let timeFromMidnight;
+        let nightEffects = false;
+        if (+hour < 6 || timeString == "0600") {
+            timeFromMidnight = 100 * (+hour + +minute / 60);
+            nightEffects = true;
+            
+        } else if (+hour >= 18) {
+            timeFromMidnight = 2400 - 100 * (+hour + +minute / 60);
+            nightEffects = true;
+        }
+        if (nightEffects) {
+            let rg = (Math.floor(150 + 105 / 600 * timeFromMidnight)).toString(16);
+            console.log( { timeString, timeFromMidnight, rg });
+            colorMatrix.tint("#" + rg.repeat(2) + "FF");
+        }
+        
         if (hour == "00") hour = "12"; // set hour 0 to 12
         if (+hour > 12) hour = +hour - 12 + ""; // keep hour within 1 to 12
         if (hour[0] == "0") hour = hour[1]; // remove leading 0 if single digit hour
@@ -117,8 +134,8 @@ function setupSocket() {
 
     socket.on("startBattle", (playerPokemon, wildPokemon) => {
         $("#battle-UI").show();
-        showPokemonYou(playerPokemon);
-        showPokemonFoe(wildPokemon);
+        // showPokemonYou(playerPokemon);
+        // showPokemonFoe(wildPokemon);
         players[username].busy = true;
         app.view.style.filter = "blur(0.2em)";
         console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)

@@ -120,10 +120,10 @@ app.get("/logout", (req, res) => {
 });
 
 // update global player list every 5 seconds
-var ticker = 600;
+var ticker = 2350;
 Map.updateTime(ticker); 
 setInterval(() => {
-    ticker += 15;
+    ticker += 5;
     if (ticker % 100 == 60) {
         ticker += 40;
         if (ticker == 2400) {
@@ -138,7 +138,7 @@ setInterval(() => {
     });
     // console.log("sending global players list");
     // io.emit("playersOnline", server.onlinePlayers);
-}, 15000);
+}, 5000);
 var encounters = {
     grass: {
         morning: [
