@@ -176,7 +176,9 @@ function setupSocket() {
         gameDiv.removeChild(app.view);
     });
 }
-
+function openPokemart(id) {
+    socket.emit("openPokemart", id);
+}
 function battleRequest(user) {
     socket.emit("battleRequest", user);
 }

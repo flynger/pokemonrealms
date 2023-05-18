@@ -9,6 +9,16 @@ export default class Pokemart {
             }
         }
     }
+
+    buyItem(player, itemID) {
+        if (this.catalog.filter((item) => item.id == itemID).length > 0) {
+            console.log("Player purchased " + itemID);
+        }
+    }
+
+    sellItem(player, itemID) {
+
+    }
 }
 
 var testmart = new Pokemart([

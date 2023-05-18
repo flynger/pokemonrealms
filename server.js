@@ -22,12 +22,14 @@ import sessions from "express-session";
 
 // our files
 import Map from './src/map.js';
+import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'; // held items only
 import Party from './src/party.js';
 import Pokemon from './src/pokemon.js';
 import Player from "./src/player.js";
 import SingleBattle from "./src/singleBattle.js";
 import { players, accounts, LoginHandler } from "./src/loginHandler.js";
 import WildEncounter from "./src/wildEncounter.js";
+import Pokemart from "./src/pokemart.js";
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
 // const sessions = require("./node_modules/express-session");
@@ -139,6 +141,13 @@ setInterval(() => {
     // console.log("sending global players list");
     // io.emit("playersOnline", server.onlinePlayers);
 }, 5000);
+var testmart = new Pokemart([
+    { id: "pokeball", price: 200 },
+    { id: "greatball", price: 650 },
+    { id: "aloraichiumz", price: 200 },
+    { id: "aguavberry", price: 5 },
+    { id: "thunderstone", price: 10000 }
+]);
 var encounters = {
     grass: {
         morning: [
@@ -313,6 +322,11 @@ io.on("connection", (socket) => {
     socket.on("chatMessage", (data) => {
         // handle chat packet
         // chatHandler.processChat(socket, data)
+    });
+
+    socket.on("openPokemart", (id) => {
+        console.log(testmart);
+        testmart.buyItem(username, id);
     });
 
     socket.on("battleRequest", (user) => {
