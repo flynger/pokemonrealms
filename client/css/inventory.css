@@ -27,20 +27,12 @@
 }
 
 #inventoryHeader {
-  padding: 0;
+  padding-bottom: 5%;
   color: white;
 }
 
 #inventoryHeader:hover {
   cursor: move;
-}
-
-#closeBtn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 24px;
-  color: #333;
 }
 
 #inventoryItems {
@@ -50,9 +42,7 @@
   color: white;
 }
 
-.item-count {
-  display: inline-block;
-  margin-left: 5px;
-  font-size: 12px;
-  color: #666;
-}
+/* .item-image {
+
+} */
+
