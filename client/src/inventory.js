@@ -18,6 +18,24 @@ function initInventoryUI() {
       minHeight: 200,
       containment: "parent"
     });
+
+    function addItem(itemName) {
+      // Create a new accordion item
+      let itemNumber = ($('#item-list .accordion-item').length + 1);
+      let newItem = $('<div class="accordion-item">' +
+        '<h2 class="accordion-header" id="heading' + itemNumber + '>' +
+        '<button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" dat-bs-target="#collapse' + itemNumber + 'aria-expanded="false" aria-controls="collapse' + itemNumber +'>' +
+        '<img class="item-image" src="res/items/' + itemName + '.png">' + itemName +
+        '</button>' +
+        '</h2>' +
+        '<div id="collapse"' + itemNumber + 'class="accordion-collapse collapse" aria-labelledby="heading' + itemNumber + '">' +
+        '<div class="accordion-body bg-dark text-white">New item content</div>' +
+        '</div>' +
+        '</div>');
+    
+      // Append the new item to the accordion
+      $('#item-list').append(newItem);
+    }
   
     // populate the inventory items with dummy data
     var inventoryItems = [
