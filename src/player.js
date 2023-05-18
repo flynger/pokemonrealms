@@ -1,3 +1,4 @@
+import Inventory from "./inventory.js";
 import Pokemon from "./pokemon.js";
 
 export default class Player {
@@ -19,7 +20,7 @@ export default class Player {
         this.party = [];
         this.box = [];
         this.balance = 500;
-        this.inventory = {};
+        this.inventory = new Inventory();
         this.pickStarter();
     }
 
