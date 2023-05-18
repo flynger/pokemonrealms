@@ -18,6 +18,7 @@ export default class Player {
         this.starter = false;
         this.party = [];
         this.box = [];
+        this.balance = 500;
         this.pickStarter();
     }
 
