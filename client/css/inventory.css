@@ -57,10 +57,22 @@
   padding: 0.5em 0.65em;
 }
 
+.item-image {
+  width: 2.5em;
+  /* height: 36px; */
+  padding-right: 0.5em;
+}
+
 .accordion-button::after {
   filter: brightness(100);
 }
 
-.item-image {
-  width: 2.5em;
+.accordion-button:focus {
+  /* box-shadow: none; */
 }
+/* .item-image {
+
+.accordion-button::after {
+  filter: brightness(100);
+}
+*/
