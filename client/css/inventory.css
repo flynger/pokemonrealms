@@ -15,8 +15,8 @@
   position: absolute;
   font-family: Power Clear;
   font-size: 1em;
-  width: 50%;
-  height: 70%;
+  width: 30%;
+  height: 60%;
   border: 1px solid #343a40;
   border-radius: 0.4em;
   padding-right: 0;
@@ -49,11 +49,18 @@
 #item-list {
   max-height: calc(100% - 70px);
   overflow-y: auto;
-  padding: 10px;
+  /* padding: 10px; */
   color: white;
 }
 
-/* .item-image {
+.item-label {
+  padding: 0.5em 0.65em;
+}
 
-} */
+.accordion-button::after {
+  filter: brightness(100);
+}
 
+.item-image {
+  width: 2.5em;
+}

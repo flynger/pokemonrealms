@@ -37,9 +37,9 @@ function addItem(itemName, itemQuantity) {
   // Create a new accordion item
   console.log(`adding ${itemQuantity} of ${itemName}`);
   let itemNumber = $('#item-list .accordion-item').length + 1;
-  let newItem = $('<div class="accordion-item">' +
+  let newItem = $('<div class="accordion-item item">' +
     '<h2 class="accordion-header" id="heading' + itemNumber + '">' +
-    '<button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + itemNumber + '" aria-expanded="false" aria-controls="collapse' + itemNumber + '">' +
+    '<button class="accordion-button collapsed bg-dark text-white item-label" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + itemNumber + '" aria-expanded="false" aria-controls="collapse' + itemNumber + '" data-bs-parent="#item-list">' +
     '<img class="item-image" src="res/items/' + String(itemName).replace(" ", "").toLowerCase() + '.png">' + itemName + ' x' + itemNumber +
     '</button>' +
     '</h2>' +
