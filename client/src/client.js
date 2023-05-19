@@ -41,7 +41,7 @@ function setupSocket() {
         }
         if (nightEffects) {
             let rg = (Math.floor(150 + 105 / 600 * timeFromMidnight)).toString(16);
-            console.log( { timeString, timeFromMidnight, rg });
+            // console.log( { timeString, timeFromMidnight, rg });
             colorMatrix.tint("#" + rg.repeat(2) + "FF");
         }
         
@@ -158,6 +158,20 @@ function setupSocket() {
         if (!dialoguePlaying) nextAction();
     });
 
+    socket.on("pokemartData", (catalog) => {
+        console.log({ catalog });
+    });
+
+    socket.on("balanceUpdate", (newBalance) => {
+        console.log({ newBalance });
+    });
+    
+    socket.on("inventoryUpdate", (newInventory) => {
+        console.log({ newInventory });
+        inventory = newInventory;
+        updateInventory();
+    });
+
     socket.on("pong", (ms) => {
         latency = ms;
     });
@@ -178,6 +192,12 @@ function setupSocket() {
 }
 function openPokemart(id) {
     socket.emit("openPokemart", id);
+}
+function buyItem(id, quantity) {
+    socket.emit("buyItem", { id, quantity });
+}
+function sellItem(id, quantity) {
+    socket.emit("sellItem", { id, quantity });
 }
 function battleRequest(user) {
     socket.emit("battleRequest", user);

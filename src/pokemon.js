@@ -55,7 +55,7 @@ export default class Pokemon {
             possibleMoves.splice(randomNumber(0, possibleMoves.length - 1), 1);
         }
         possibleMoves.shuffle();
-        console.log(possibleMoves);
+        //console.log(possibleMoves);
         this.moves = possibleMoves;
     }
 

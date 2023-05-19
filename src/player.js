@@ -21,6 +21,8 @@ export default class Player {
         this.box = [];
         this.balance = 500;
         this.inventory = new Inventory();
+        this.inventory.addItem("pokeball", 5);
+        this.inventory.addItem("potion", 3);
         this.pickStarter();
     }
 

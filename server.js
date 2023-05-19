@@ -144,7 +144,7 @@ setInterval(() => {
 var testmart = new Pokemart([
     { id: "pokeball", price: 200 },
     { id: "greatball", price: 650 },
-    { id: "aloraichiumz", price: 200 },
+    { id: "revive", price: 200 },
     { id: "aguavberry", price: 5 },
     { id: "thunderstone", price: 10000 }
 ]);
@@ -324,11 +324,6 @@ io.on("connection", (socket) => {
         // chatHandler.processChat(socket, data)
     });
 
-    socket.on("openPokemart", (id) => {
-        console.log(testmart);
-        testmart.buyItem(username, id);
-    });
-
     socket.on("battleRequest", (user) => {
         user = user.toLowerCase(); // convert name to username
         let otherPlayer = players[user];
@@ -376,16 +371,6 @@ io.on("connection", (socket) => {
         socket.emit("acceptTrade", (data));
     })
 
-    // socket.on("startBattle", () => {
-    //     if (players[username].battle == null) {
-    //         const party1 = new Party(username, []);
-    //         const party2 = new Party('MoldyNano', []);
-    //         battle = new SingleBattle(party1, party2);
-    //         battle.startRandomBattle();
-    //         console.log("Received start battle request");
-    //     }
-    // });
-
     socket.on("endBattle", () => {
         if (players[username].battle && players[username].battle.canRun) {
             players[username].battle.run();
@@ -404,6 +389,25 @@ io.on("connection", (socket) => {
         }
     });
 
+    socket.on("openPokemart", () => {
+        console.log(testmart);
+        socket.emit("pokemartData", testmart.catalog);
+    });
+
+    socket.on("buyItem", ({ id, quantity }) => {
+        if (testmart.buyItem(thisPlayer, id, quantity)) {
+            socket.emit("balanceUpdate", thisPlayer.balance);
+            socket.emit("inventoryUpdate", thisPlayer.inventory.items);
+        }
+    });
+
+    socket.on("sellItem", ({ id, quantity }) => {
+        if (testmart.sellItem(thisPlayer, id, quantity)) {
+            socket.emit("balanceUpdate", thisPlayer.balance);
+            socket.emit("inventoryUpdate", thisPlayer.inventory.items);
+        }
+    });
+
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(displayName + " disconnected.");
@@ -418,6 +422,8 @@ io.on("connection", (socket) => {
     });
     // send username
     socket.emit("playerData", username, Object.values(players).filter((player) => player.connected).map((player) => player.export()));
+    socket.emit("balanceUpdate", thisPlayer.balance);
+    socket.emit("inventoryUpdate", thisPlayer.inventory.items);
     socket.emit("timeChange", {
         time: Map.time,
         exactTime: ticker
