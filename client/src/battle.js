@@ -33,7 +33,7 @@ function runFromBattle() {
 }
 
 var battleOptions;
-var battleOver = false;
+var battleActive = false;
 var battleData = [];
 var textSpeed = 75; // 60
 var textInterval;
@@ -58,7 +58,7 @@ function nextAction() {
     }
     var letters = processFormatting(nextData.message, nextData.message.split(""));
     if ("damageHPTo" in nextData) {
-        $("#hp-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
+        $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
         setTimeout(() => {
             textInterval = createTextInterval(nextData, letters)
         }, 666);
@@ -79,7 +79,7 @@ function createTextInterval(nextData, letters) {
                     if (nextData.battleOver) {
                         $('#battle-UI').hide();
                         players[username].busy = false;
-                        battleOver = false;
+                        battleActive = false;
                         app.view.style.filter = "none";
                         clearPokemon("you");
                         clearPokemon("foe");
@@ -125,7 +125,7 @@ function clearPokemon(side) {
     $("#pokemon-" + side).attr("src", "");
     $('#pokemon-name-' + side).html("");
     $('#lvl-' + side).html("");
-    $("#hp-" + side).width(96);
+    $("#hpbar-" + side).width(96);
 }
 
 function cancelFight() {
