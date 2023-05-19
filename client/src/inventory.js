@@ -1,3 +1,5 @@
+import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'; // held items only
+
 function initInventoryUI() {
   // add click event listener to the inventory btton to toggle the UI
   console.log("initializing inventoryUI");

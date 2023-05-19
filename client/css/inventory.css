@@ -27,8 +27,12 @@
 }
 
 #inventoryHeader {
-  padding-bottom: 5%;
+  padding-bottom: 2%;
   color: white;
+}
+
+#inventoryTitle {
+  font-size: 2em;
 }
 
 #inventoryHeader:hover {
@@ -43,7 +47,7 @@
 }
 
 #item-list {
-  max-height: calc(100% - 50px);
+  max-height: calc(100% - 70px);
   overflow-y: auto;
   padding: 10px;
   color: white;
