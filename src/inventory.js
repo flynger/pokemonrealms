@@ -1,3 +1,4 @@
+import Items from "./items.js";
 export default class Inventory {
     constructor(items = {}) {
         this.items = items;
@@ -7,6 +8,8 @@ export default class Inventory {
         if (!this.hasItem(item)) {
             this.items[item] = {
                 id: item,
+                name: Items[item].name,
+                desc: Items[item].desc || "No description provided.",
                 quantity: 0
             };
         }

@@ -1,4 +1,4 @@
-import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'; // held items only
+import Items from "./items.js"
 export default class Pokemart {
     static sellValue = 0.5;
 
@@ -6,9 +6,10 @@ export default class Pokemart {
         this.catalog = {};
         for (let item of items) {
             this.catalog[item.id] = item;
-            if (ItemsText[item.id]) {
-                item.name = ItemsText[item.id].name;
-                item.desc = ItemsText[item.id].desc;
+            if (Items[item.id]) {
+                item.category = Items[item.id].category;
+                item.name = Items[item.id].name;
+                item.desc = Items[item.id].shortDesc;
             }
         }
     }

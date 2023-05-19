@@ -41,22 +41,23 @@ function updateInventory() {
   console.log("updating inventory...");
   $('#item-list').html("");
   $.each(inventoryItems, function (index, item) {
-    addItem(item.id, item.quantity);
+    addItem(item);
   });
 }
 
-function addItem(itemId, itemQuantity) {
+function addItem(item) {
+  let { id, name, quantity, desc } = item;
   // Create a new accordion item
-  console.log(`adding ${itemQuantity} of ${itemId}`);
+  console.log(`adding ${quantity} of ${id}`);
   let itemNumber = $('#item-list .accordion-item').length + 1;
   let newItem = $('<div class="accordion-item item">' +
     '<h2 class="accordion-header" id="heading' + itemNumber + '">' +
     '<button class="accordion-button collapsed bg-dark text-white item-label" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + itemNumber + '" aria-expanded="false" aria-controls="collapse' + itemNumber + '">' +
-    '<img class="item-image" src="res/items/' + itemId + '.png">' + itemId + ' x' + itemQuantity +
+    '<img class="item-image" src="res/items/' + id + '.png">' + name + ' x' + quantity +
     '</button>' +
     '</h2>' +
     '<div id="collapse' + itemNumber + '" class="accordion-collapse collapse" aria-labelledby="heading' + itemNumber + '" data-bs-parent="#item-list">' +
-    '<div class="accordion-body bg-dark text-white">' + 'enter description here' + '</div>' +
+    '<div class="accordion-body bg-dark text-white">' + desc + '</div>' +
     '</div>' +
     '</div>');
 

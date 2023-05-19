@@ -253,12 +253,24 @@ var encounters = {
         night: [
             {
                 species: "RATTATA",
-                weight: 1,
+                weight: 5,
                 minLevel: 2,
                 maxLevel: 6
             },
             {
                 species: "HOOTHOOT",
+                weight: 5,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "TIRTOUGA",
+                weight: 1,
+                minLevel: 2,
+                maxLevel: 4
+            },
+            {
+                species: "SQUIRTLE",
                 weight: 1,
                 minLevel: 2,
                 maxLevel: 4
