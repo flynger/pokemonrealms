@@ -43,11 +43,24 @@
         --bs-btn-hover-bg:red;
         --bs-btn-hover-border-color:red;
     }
+    .secondary {
+        --bs-btn-bg:red;
+        --bs-btn-border-color:red;
+        --bs-btn-hover-bg:red;
+        --bs-btn-hover-border-color:red;
+        color:white;
+        height: 15;
+    }
+    .draggable {
+        padding: 10px;
+        cursor: move;
+        z-index: 10;
+    }
 </style>
-<table style="width:40%">
+<table class="background-color:white draggable position-absolute" id="store-table" style="width:40%">
     <tr>
         <th>Item Shop</th>
-        <th></th>
+        <th class="align-items:right;"><button type="button" class="btn button-secondary secondary align-items:right;">X</button></th>
     </tr>
     <tr>
         <td style="width:80%; height: 50px;">
@@ -97,3 +110,14 @@
         <td>One million dollars</td>
     </tr>
 </table>
+<script>
+    const toastTrigger = document.getElementById('liveToastBtn');
+    const toastLiveExample = document.getElementById('liveToast');
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    toastLiveExample.autohide = false;
+    // toastTrigger.addEventListener('click', () => {
+    // toastBootstrap.show();
+    // console.log("got to click");
+    // });
+    dragElement(document.getElementById("store-table"));
+  </script>
