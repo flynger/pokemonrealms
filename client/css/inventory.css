@@ -16,7 +16,7 @@
   font-family: Power Clear;
   font-size: 1em;
   width: 30%;
-  height: 60%;
+  height: 50%;
   border: 1px solid #343a40;
   border-radius: 0.4em;
   padding-right: 0;
@@ -61,6 +61,14 @@
   width: 2.5em;
   /* height: 36px; */
   padding-right: 0.5em;
+}
+
+.accordion-button {
+  outline: none;
+}
+
+.accordion-header {
+  outline: none;
 }
 
 .accordion-button::after {

@@ -230,10 +230,16 @@ export default class SingleBattle {
                                 args.TRAINER = winner;
                             }
                         }
+                        battleDataProperties = {
+                            battleOver: true
+                        };
                         this.endBattle();
                         break;
                     case "tie":
                         message = this.text.tieBattle.replace("[TRAINER]", this.player1.isPlayer ? this.player1.name : this.player2.name).replace("[TRAINER]", this.player2.name);
+                        battleDataProperties = {
+                            battleOver: true
+                        };
                         this.endBattle();
                         break;
                     case "-ability":

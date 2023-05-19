@@ -39,11 +39,11 @@ function addItem(itemName, itemQuantity) {
   let itemNumber = $('#item-list .accordion-item').length + 1;
   let newItem = $('<div class="accordion-item item">' +
     '<h2 class="accordion-header" id="heading' + itemNumber + '">' +
-    '<button class="accordion-button collapsed bg-dark text-white item-label" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + itemNumber + '" aria-expanded="false" aria-controls="collapse' + itemNumber + '" data-bs-parent="#item-list">' +
+    '<button class="accordion-button collapsed bg-dark text-white item-label" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + itemNumber + '" aria-expanded="false" aria-controls="collapse' + itemNumber + '">' +
     '<img class="item-image" src="res/items/' + String(itemName).replace(" ", "").toLowerCase() + '.png">' + itemName + ' x' + itemNumber +
     '</button>' +
     '</h2>' +
-    '<div id="collapse' + itemNumber + '" class="accordion-collapse collapse" aria-labelledby="heading' + itemNumber + '">' +
+    '<div id="collapse' + itemNumber + '" class="accordion-collapse collapse" aria-labelledby="heading' + itemNumber + '" data-bs-parent="#item-list">' +
     '<div class="accordion-body bg-dark text-white">' + 'enter description here' + '</div>' +
     '</div>' +
     '</div>');

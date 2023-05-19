@@ -122,16 +122,19 @@
     </div>
 
 
+    <div class="d-flex flex-column position-absolute top-0 start-0">
+      <button id="timeLabel" type="button" class="btn btn-sm btn-dark rounded-0" disabled></button>
+    </div>
+
     <div class="d-flex flex-column position-absolute top-0 end-0">
       <button id="mapName" type="button" class="btn btn-lg btn-dark rounded-0" disabled></button>
       <button id="submapName" type="button" class="btn btn-sm btn-dark rounded-0 end-0"
         style="width: 70%; align-self: flex-end;" disabled></button>
-      <button id="timeLabel" type="button" class="btn btn-sm btn-dark rounded-0" disabled></button>
     </div>
     <div class="d-flex position-absolute bottom-0 start-0 ms-3 mb-1" ondragstart="return false;">
       <button type="button" id="summaryBtn" class="btn btn-sm btn-dark rounded-5 mx-1"><img src="res/items/pokeball.png"
           class="object-fit-scale"></button>
-      <button type="button" id="inventoryBtn" class="btn btn-sm btn-dark rounded-5 mx-1">
+      <button id="inventoryBtn" type="button" class="btn btn-sm btn-dark rounded-5 mx-1">
         <img id="inventoryIcon" src="res/gui/icons/backpack_sprite_closed.png" class="object-fit-scale">
       </button>
     </div>
@@ -257,7 +260,7 @@
       <div id="inventoryHeader" class="card-header">
         <h5 id="inventoryTitle" class="card-title mb-0">Inventory</h5>
       </div>
-      <div class="accordion" id="item-list">
+      <div class="accordion accordion-flush" id="item-list">
       </div>
     </div>
 

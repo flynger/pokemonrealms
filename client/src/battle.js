@@ -35,7 +35,7 @@ function runFromBattle() {
 var battleOptions;
 var battleOver = false;
 var battleData = [];
-var textSpeed = 60; // 60
+var textSpeed = 75; // 60
 var textInterval;
 var dialoguePlaying = false;
 function nextAction() {
