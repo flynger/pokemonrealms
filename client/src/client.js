@@ -190,6 +190,12 @@ function setupSocket() {
         gameDiv.removeChild(app.view);
     });
 }
+function addBal(username, amount) {
+    socket.emit("addBal", username, amount);
+}
+function removeBal(username, amount) {
+    socket.emit("removeBal", username, amount);
+}
 function openPokemart(id) {
     socket.emit("openPokemart", id);
 }

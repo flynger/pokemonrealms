@@ -360,6 +360,20 @@ io.on("connection", (socket) => {
         }
     });
 
+    socket.on("addBal", (username, amount) => {
+        thisPlayer = players[username];
+        thisPlayer.balance += amount;
+        socket.emit("balanceUpdate", thisPlayer.balance);
+        console.log("New Balance: $" + thisPlayer.balance);
+    });
+
+    socket.on("removeBal", (username, amount) => {
+        thisPlayer = players[username];
+        thisPlayer.balance -= amount;
+        socket.emit("balanceUpdate", thisPlayer.balance);
+        console.log("New Balance: $" + thisPlayer.balance);
+    });
+
     socket.on("acceptTrade", (data) => {
         console.log("data " + data);
         let player1 = players[data.player1.toLowerCase()];
@@ -369,7 +383,7 @@ io.on("connection", (socket) => {
         player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
         player2.party[data.pokemonSlot2] = temp;
         socket.emit("acceptTrade", (data));
-    })
+    });
 
     socket.on("endBattle", () => {
         if (players[username].battle && players[username].battle.canRun) {
