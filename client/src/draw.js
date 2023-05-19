@@ -38,7 +38,7 @@ function draw(deltaTime) {
     for (let name in players) {
         players[name].endFrame();
     }
-    if (battleActive) {
+    if (isBattleActive) {
         // TODO: change 100 to battleData. (health)
         $('#hpvalue-you').html((Math.round(($('#hpbar-you').width() / 96) * 100).toString() + "/" + 100));
     }
