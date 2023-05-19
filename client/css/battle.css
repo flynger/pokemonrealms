@@ -42,7 +42,7 @@
     background-position-y: -19px;
 }
 
-#xp {
+#xpbar {
     position: absolute;
     background-image: url('../res/battle/gui/overlay_exp.png');
     width: 192px;
@@ -120,9 +120,26 @@
     height: 40.476%;
 }
 
-#hp-you {
+#hpbar-you {
     left: 136px;
     top: 40px;
+}
+
+#hpvalue-container {
+    position: absolute;
+    left: 43.846%;
+    top: 61.905%;
+    width: 124px;
+    height: 16px;
+}
+
+#hpvalue-you {
+    display: flex;
+    height: inherit;
+    width: inherit;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
 }
 
 .pokemon.foe {
@@ -161,7 +178,7 @@
     height: 54.838%;
 }
 
-#hp-foe {
+#hpbar-foe {
     left: 118px;
     top: 40px;
 }

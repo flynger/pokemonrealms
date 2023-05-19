@@ -134,6 +134,7 @@ function setupSocket() {
 
     socket.on("startBattle", (playerPokemon, wildPokemon) => {
         $("#battle-UI").show();
+        isBattleActive = true;
         // showPokemonYou(playerPokemon);
         // showPokemonFoe(wildPokemon);
         players[username].busy = true;

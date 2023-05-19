@@ -38,6 +38,10 @@ function draw(deltaTime) {
     for (let name in players) {
         players[name].endFrame();
     }
+    if (isBattleActive) {
+        // TODO: change 100 to battleData. (health)
+        $('#hpvalue-you').html((Math.round(($('#hpbar-you').width() / 96) * 100).toString() + "/" + 100));
+    }
 }
 
 function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true, v_cutoff_bottom = 0, v_cutoff_top = 0) {
