@@ -53,6 +53,13 @@
   color: white;
 }
 
+.accordion-button::after {
+  filter:brightness(100);
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
 /* .item-image {
 
 } */
