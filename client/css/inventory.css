@@ -63,6 +63,7 @@
   width: 2.5em;
   padding-right: 0.5em;
   pointer-events: none;
+  image-rendering: auto;
 }
 
 .item-button {
