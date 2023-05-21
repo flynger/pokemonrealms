@@ -1,5 +1,5 @@
 import Inventory from "./inventory.js";
-import Pokemon from "./pokemon.js";
+import { Stats, Pokemon } from "./pokemon.js";
 
 export default class Player {
     static onlinePlayers = [];
@@ -29,8 +29,8 @@ export default class Player {
     pickStarter(starter) {
         if (this.starter == false) {
             this.starter = Player.starterOptions.includes(starter) ? starter : "EKANS";
-            this.party.push(new Pokemon(this.starter, 5, { name: "Snek", gender: "M", originalTrainer: "Professor Oak", owner: this.displayName }));
-            this.party.push(new Pokemon("PIDGEY", 7, { gender: "F", originalTrainer: "Professor Oak", owner: this.displayName }));
+            this.party.push(new Pokemon(this.starter, 5, { gender: "M", evs: new Stats(252, 252, 252, 252, 252, 252), originalTrainer: "Professor Oak", owner: this.displayName }));
+            // this.party.push(new Pokemon("MIMEJR", 11, { gender: "F", originalTrainer: "Professor Oak", owner: this.displayName }));
         }
     }
 

@@ -31,6 +31,10 @@ export default class Party {
         this.stream.write(`>p${this.id} switch ${switchInput}`);
     }
 
+    useItem() {
+        this.stream.write(`>p${this.id} pass`);
+    }
+
     exportTeam() {
         return this.team.map((mon) => translatePokemon(mon)).join(']');
     }

@@ -24,7 +24,7 @@ import sessions from "express-session";
 import Map from './src/map.js';
 import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'; // held items only
 import Party from './src/party.js';
-import Pokemon from './src/pokemon.js';
+import { Pokemon } from './src/pokemon.js';
 import Player from "./src/player.js";
 import SingleBattle from "./src/singleBattle.js";
 import { players, accounts, LoginHandler } from "./src/loginHandler.js";
@@ -410,6 +410,12 @@ io.on("connection", (socket) => {
     socket.on("switchInput", (switchNumber) => {
         if (player.battle != null) {
             player.battle.switchTo(displayName, switchNumber);
+        }
+    });
+
+    socket.on("itemInput", () => {
+        if (player.battle != null) {
+            player.battle.useItem(displayName);
         }
     });
 

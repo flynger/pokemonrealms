@@ -1,4 +1,4 @@
-import Pokemon from "./pokemon.js";
+import { Pokemon } from "./pokemon.js";
 
 export default class Map {
     static times = ["morning", "day", "night"];

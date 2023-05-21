@@ -63,6 +63,7 @@ export default class SingleBattle {
                                 // console.log(options);
                                 break;
                             case "error":
+                                console.log(output);
                                 console.log("Bad input for " + this["player" + playerId].name)
                         }
                     //console.log(outputArray)
@@ -158,6 +159,7 @@ export default class SingleBattle {
                             var oldMonHP = thisPartyData.side.pokemon.find((mon) => mon.ident == pokemonIdentity).condition.split("/");
                             var oldPercentage = Math.ceil(+oldMonHP[0] / +oldMonHP[1].split(" ")[0] * 100);
                             var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
+                            oldMonHP[0] = +lineArray[1].split("/")[0];
                             args.PERCENTAGE = oldPercentage - newPercentage + "%";
                             battleDataProperties = {
                                 side: side == thisPlayer ? "you" : "foe",

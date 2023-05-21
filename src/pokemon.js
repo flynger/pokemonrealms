@@ -10,7 +10,7 @@ import Pokedex from "./pokedex.js";
 //     accuracy: "accuracy",
 //     crit: "critical-hit ratio"
 // }
-export default class Pokemon {
+export class Pokemon {
     static shinyChance = 32;
     static hiddenAbilityChance = 64;
 
@@ -64,7 +64,7 @@ export default class Pokemon {
         else return Error("Pokemon already has 4 moves");
     }
 }
-class Stats {
+export class Stats {
     constructor(hp, atk, def, spa, spd, spe) {
         this.hp = hp;
         this.atk = atk;

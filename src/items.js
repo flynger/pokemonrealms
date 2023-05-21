@@ -51,7 +51,10 @@ const Items = {
         desc: "A spray-type medicine for treating wounds. It can be used to restore 20 HP to a Pokémon.",
         shortDesc: "Restores a Pokémon's HP by 20 points.",
         nhonDesc: "miracle drugs?",
-        isUsable: true
+        isUsable: true,
+        useOnPokemon: function (pokemon) {
+            pokemon.hp += 20;
+        }
     },
     aguavberry: {
         category: "Berries",

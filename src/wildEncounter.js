@@ -33,6 +33,11 @@ export default class WildEncounter extends SingleBattle {
         this.encounterParty.AI.chooseAction();
     }
 
+    useItem(partyName, itemInput) {
+        this.playerParty.useItem();
+        this.encounterParty.AI.chooseAction();
+    }
+
     run() {
         this.destroy();
     }

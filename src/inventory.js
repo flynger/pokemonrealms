@@ -33,4 +33,8 @@ export default class Inventory {
     hasItem(item, quantity = 1) {
         return this.items.hasOwnProperty(item) && this.items[item].quantity >= quantity;
     }
+
+    useItem(item, quantity = 1) {
+        this.items[item].quantity -= quantity;
+    }
 }

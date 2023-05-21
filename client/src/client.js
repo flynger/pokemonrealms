@@ -215,3 +215,6 @@ function tradeRequest(user, pokemon) {
 function acceptTrade(data) {
     socket.emit("acceptTrade", data);
 }
+function useItem() {
+    socket.emit("itemInput");
+}
