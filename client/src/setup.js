@@ -71,7 +71,7 @@ async function setupGame() {
     gameDiv = document.getElementById("game");
     battleUI = document.getElementById("battle-UI");
     setGameSize();
-    initializeSummaryUI();
+    initSummaryUI();
     initInventoryUI();
     app = new PIXI.Application(
         {

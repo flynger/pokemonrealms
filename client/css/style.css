@@ -55,3 +55,19 @@
 .navbar-brand {
     font-size: var(--bs-nav-link-font-size);
 }
+
+.end-5 {
+    right: 5%;
+}
+.end-7 {
+    right: 7%;
+}
+.end-10 {
+    right: 10%;
+}
+.outline-none {
+    outline: none;
+}
+.outline-none {
+    outline: none;
+}

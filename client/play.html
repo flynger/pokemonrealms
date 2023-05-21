@@ -45,7 +45,7 @@
   </div>
 </head>
 
-<body ondrop="return false;"> <!-- Note: add oncontextmenu="return false;" later -->
+<body class="outline-none user-select-none" ondrop="return false;"> <!-- Note: add oncontextmenu="return false;" later -->
   <div id="message" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -261,6 +261,27 @@
       </div>
     </div>
 
+    <div id="item-discard" class="position-absolute user-select-none bg-dark popup-container container p-3 rounded-1 PokemonFont">
+      <div class="card-header">
+        <h5 class="card-title text-white mb-0">Select item to discard:</h5>
+      </div>
+      <div class="d-flex align-items-center h-25 mt-4">
+        <div class="text-white"><img id="discard-item-image" class="item-image" src="res/items/pokeball.png"><span id="discard-item-name">Poké Ball</span> x<span id="discard-amount-text">1</span>&nbsp;&nbsp;</div>
+        <div class="input-group input-group-sm mb-3 quantity-dropdown position-absolute end-0 me-4">
+          <span class="input-group-text" id="item-discard-amount">Amount</span>
+          <input id="discard-input" type="number" value="1" min="1" max="999" class="form-control" aria-label="Item amount to discard"
+            aria-describedby="item-discard-amount"/>
+        </div>
+      </div>
+      <button class="item-button position-absolute bottom-0 mb-3 user-select-none" onclick="$('#item-discard').hide();">Cancel</button>
+      <button id="discard-button" class="item-button position-absolute end-0 bottom-0 me-3 mb-3 user-select-none">Discard</button>
+    </div>
+
+    <!-- <div id="item-discard" class="position-absolute bg-dark popup-container container p-3 rounded-1">
+      <div class="card-header">
+        <h5 class="card-title  PokemonFont text-white mb-0">Select item to discard:</h5>
+      </div>
+    </div> -->
 
     <div id="battle-UI" class="PokemonFont bg-image" ondragstart="return false;">
       <div class="grassbase0"></div>

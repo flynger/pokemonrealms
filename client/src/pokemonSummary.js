@@ -1,4 +1,4 @@
-function initializeSummaryUI() {
+function initSummaryUI() {
     $("#summaryBtn").on("click", () => {
         $("#pokemon-summary").toggle();
     });

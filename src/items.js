@@ -50,7 +50,8 @@ const Items = {
         id: "potion",
         desc: "A spray-type medicine for treating wounds. It can be used to restore 20 HP to a Pokémon.",
         shortDesc: "Restores a Pokémon's HP by 20 points.",
-        nhonDesc: "miracle drugs?"
+        nhonDesc: "miracle drugs?",
+        isUsable: true
     },
     aguavberry: {
         category: "Berries",
@@ -60,7 +61,8 @@ const Items = {
         desc: "If a Pokémon holds one of these Berries, it will be able to restore some HP should it find itself in a pinch. But it will become confused if it hates the Berry's taste.",
         shortDesc: "Restores HP if it's low, but may cause confusion.",
         nhonDesc: "pray its not poisonous",
-        isHoldable: true
+        isHoldable: true,
+        isUsable: true
     },
     firestone: {
         category: "Items",

@@ -191,20 +191,20 @@ function setupSocket() {
         gameDiv.removeChild(app.view);
     });
 }
-function addBal(username, amount) {
-    socket.emit("addBal", username, amount);
+function addBal(amount) {
+    socket.emit("addBal", amount);
 }
-function removeBal(username, amount) {
-    socket.emit("removeBal", username, amount);
+function removeBal(amount) {
+    socket.emit("removeBal", amount);
 }
 function openPokemart(id) {
     socket.emit("openPokemart", id);
 }
 function buyItem(id, quantity) {
-    socket.emit("buyItem", { id, quantity });
+    socket.emit("buyItem", id, quantity);
 }
 function sellItem(id, quantity) {
-    socket.emit("sellItem", { id, quantity });
+    socket.emit("sellItem", id, quantity);
 }
 function battleRequest(user) {
     socket.emit("battleRequest", user);

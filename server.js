@@ -289,10 +289,10 @@ io.on("connection", (socket) => {
     let displayName;
     let isGuest = true;
     if (username) {
-        if (players[username].connected) {
+        if (player.connected) {
             socket.disconnect(true);
         }
-        displayName = players[username].displayName;
+        displayName = player.displayName;
         isGuest = false;
         console.log(displayName + " logged in.");
     } else {
@@ -306,8 +306,8 @@ io.on("connection", (socket) => {
     if (!players[username]) {
         players[username] = new Player(username, displayName);
     }
-    let thisPlayer = players[username];
-    players[username].setSocket(socket);
+    let player = players[username];
+    player.setSocket(socket);
 
     // add events
     socket.on("ping", (callback) => {
@@ -316,18 +316,18 @@ io.on("connection", (socket) => {
 
     socket.on("playerMovement", (data) => {
         data.name = username;
-        players[username].x = data.x;
-        players[username].y = data.y;
-        players[username].facing = data.facing;
+        player.x = data.x;
+        player.y = data.y;
+        player.facing = data.facing;
         socket.broadcast.emit("playerMovement", data);
     });
 
     socket.on("grassEnter", () => {
-        if (!thisPlayer.battle && map.grassCheck()) {
+        if (!player.battle && map.grassCheck()) {
             let encounter = map.createEncounter();
-            socket.emit("startBattle", thisPlayer.party[0].species, encounter.species);
-            thisPlayer.battle = new WildEncounter(thisPlayer, encounter);
-            thisPlayer.battle.startBattle();
+            socket.emit("startBattle", player.party[0].species, encounter.species);
+            player.battle = new WildEncounter(player, encounter);
+            player.battle.startBattle();
         }
     });
 
@@ -343,16 +343,16 @@ io.on("connection", (socket) => {
             socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
             return;
         }
-        if (otherPlayer.connected && otherPlayer.battle == null && thisPlayer.battle == null) {
+        if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
             // if other player hasnt sent request, send
-            if (!thisPlayer.requests.hasOwnProperty(user)) {
+            if (!player.requests.hasOwnProperty(user)) {
                 otherPlayer.socket.emit("battleRequest", displayName);
                 otherPlayer.requests[username] = true;
             } else {
                 const party2 = new Party(displayName, []);
                 const party1 = new Party(otherPlayer.displayName, []);
-                thisPlayer.battle = otherPlayer.battle = new SingleBattle(party1, party2);
-                thisPlayer.battle.startRandomBattle();
+                player.battle = otherPlayer.battle = new SingleBattle(party1, party2);
+                player.battle.startRandomBattle();
                 console.log("Starting match with 2 players...");
             }
         }
@@ -365,25 +365,23 @@ io.on("connection", (socket) => {
             socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
             return;
         }
-        if (otherPlayer.connected && otherPlayer.battle == null && thisPlayer.battle == null) {
+        if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
             // if other player hasnt sent request, send
             console.log(`${username} requests a trade with ${user}`);
-            otherPlayer.socket.emit("tradeRequest", username, thisPlayer.party[pokemonSlot]);
+            otherPlayer.socket.emit("tradeRequest", username, player.party[pokemonSlot]);
         }
     });
 
-    socket.on("addBal", (username, amount) => {
-        thisPlayer = players[username];
-        thisPlayer.balance += amount;
-        socket.emit("balanceUpdate", thisPlayer.balance);
-        console.log("New Balance: $" + thisPlayer.balance);
+    socket.on("addBal", (amount) => {
+        player.balance += amount;
+        socket.emit("balanceUpdate", player.balance);
+        console.log("New Balance: $" + player.balance);
     });
 
-    socket.on("removeBal", (username, amount) => {
-        thisPlayer = players[username];
-        thisPlayer.balance -= amount;
-        socket.emit("balanceUpdate", thisPlayer.balance);
-        console.log("New Balance: $" + thisPlayer.balance);
+    socket.on("removeBal", (amount) => {
+        player.balance -= amount;
+        socket.emit("balanceUpdate", player.balance);
+        console.log("New Balance: $" + player.balance);
     });
 
     socket.on("acceptTrade", (data) => {
@@ -398,20 +396,20 @@ io.on("connection", (socket) => {
     });
 
     socket.on("endBattle", () => {
-        if (players[username].battle && players[username].battle.canRun) {
-            players[username].battle.run();
+        if (player.battle && player.battle.canRun) {
+            player.battle.run();
         }
     });
 
     socket.on("moveInput", (moveNumber) => {
-        if (thisPlayer.battle != null) {
-            thisPlayer.battle.useMove(displayName, moveNumber);
+        if (player.battle != null) {
+            player.battle.useMove(displayName, moveNumber);
         }
     });
 
     socket.on("switchInput", (switchNumber) => {
-        if (thisPlayer.battle != null) {
-            thisPlayer.battle.switchTo(displayName, switchNumber);
+        if (player.battle != null) {
+            player.battle.switchTo(displayName, switchNumber);
         }
     });
 
@@ -420,26 +418,33 @@ io.on("connection", (socket) => {
         socket.emit("pokemartData", testmart.catalog);
     });
 
-    socket.on("buyItem", ({ id, quantity }) => {
-        if (testmart.buyItem(thisPlayer, id, quantity)) {
-            socket.emit("balanceUpdate", thisPlayer.balance);
-            socket.emit("inventoryUpdate", thisPlayer.inventory.items);
+    socket.on("buyItem", (id, quantity) => {
+        if (testmart.buyItem(player, id, quantity)) {
+            socket.emit("balanceUpdate", player.balance);
+            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
-    socket.on("sellItem", ({ id, quantity }) => {
-        if (testmart.sellItem(thisPlayer, id, quantity)) {
-            socket.emit("balanceUpdate", thisPlayer.balance);
-            socket.emit("inventoryUpdate", thisPlayer.inventory.items);
+    socket.on("sellItem", (id, quantity) => {
+        if (testmart.sellItem(player, id, quantity)) {
+            socket.emit("balanceUpdate", player.balance);
+            socket.emit("inventoryUpdate", player.inventory.items);
+        }
+    });
+
+    socket.on("discardItem", (id, quantity) => {
+        if (player.inventory.hasItem(id, quantity)) {
+            player.inventory.removeItem(id, quantity);
+            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(displayName + " disconnected.");
-        players[username].deleteSocket();
-        if (players[username].battle) {
-            players[username].battle.endBattle(true);
+        player.deleteSocket();
+        if (player.battle) {
+            player.battle.endBattle(true);
         }
         if (isGuest) {
             delete players[username];
@@ -447,9 +452,9 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("playerDisconnect", username);
     });
     // send username
-    socket.emit("playerData", username, Object.values(players).filter((player) => player.connected).map((player) => player.export()));
-    socket.emit("balanceUpdate", thisPlayer.balance);
-    socket.emit("inventoryUpdate", thisPlayer.inventory.items);
+    socket.emit("playerData", username, Object.values(players).filter((plyr) => plyr.connected).map((plyr) => plyr.export()));
+    socket.emit("balanceUpdate", player.balance);
+    socket.emit("inventoryUpdate", player.inventory.items);
     socket.emit("timeChange", {
         time: Map.time,
         exactTime: ticker
