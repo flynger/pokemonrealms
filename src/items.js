@@ -8,6 +8,7 @@ const Items = {
         shortDesc: "A device for catching wild Pokémon.",
         nhonDesc: "For all the broke trainers out there",
         isHoldable: true,
+        isUsableInBattle: true,
         isPokeball: true
     },
     greatball: {
@@ -19,6 +20,7 @@ const Items = {
         shortDesc: "A device for catching wild Pokémon with 1.5x the rate of a Poké Ball.",
         nhonDesc: "大きいです。",
         isHoldable: true,
+        isUsableInBattle: true,
         isPokeball: true
     },
     ultraball: {
@@ -30,6 +32,7 @@ const Items = {
         shortDesc: "A device for catching wild Pokémon with 2x the rate of a Poké Ball.",
         nhonDesc: "stylish looking color scheme",
         isHoldable: true,
+        isUsableInBattle: true,
         isPokeball: true
     },
     masterball: {
@@ -41,6 +44,7 @@ const Items = {
         shortDesc: "A device for catching any wild Pokémon without fail.",
         nhonDesc: "Venonatみたいなもん",
         isHoldable: true,
+        isUsableInBattle: true,
         isPokeball: true
     },
     potion: {
@@ -52,8 +56,9 @@ const Items = {
         shortDesc: "Restores a Pokémon's HP by 20 points.",
         nhonDesc: "miracle drugs?",
         isUsable: true,
+        isUsableInBattle: true,
         useOnPokemon: function (pokemon) {
-            pokemon.hp += 20;
+            pokemon.stats.hp += 20;
         }
     },
     aguavberry: {
@@ -65,7 +70,8 @@ const Items = {
         shortDesc: "Restores HP if it's low, but may cause confusion.",
         nhonDesc: "pray its not poisonous",
         isHoldable: true,
-        isUsable: true
+        isUsable: true,
+        isUsableInBattle: true
     },
     firestone: {
         category: "Items",

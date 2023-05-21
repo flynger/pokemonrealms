@@ -49,11 +49,16 @@ function nextAction() {
     var nextData = battleData.shift();
     if (nextData.switchIn) {
         let pokemonData = nextData.switchIn.split(', ');
+        if (!pokemonData[1].startsWith("L")) {
+            pokemonData.splice(1, 0, "L100");
+        }
         let side = nextData.side;
         let nickname = nextData.nickname;
         let species = pokemonData[0].toLowerCase();
         let level = pokemonData[1].slice(1);
+        let gender = pokemonData[2];
         let shiny = pokemonData[3] == "shiny";
+        console.log(species, level, gender, shiny)
         showPokemon(side, species, nickname, level, shiny);
     }
     var letters = processFormatting(nextData.message, nextData.message.split(""));
@@ -125,7 +130,9 @@ function clearPokemon(side) {
     $("#pokemon-" + side).attr("src", "");
     $('#pokemon-name-' + side).html("");
     $('#lvl-' + side).html("");
+    $("#hpbar-" + side).css("transition-duration", "0s");
     $("#hpbar-" + side).width(96);
+    $("#hpbar-" + side).css("transition-duration", "0.666s");
 }
 
 function cancelFight() {

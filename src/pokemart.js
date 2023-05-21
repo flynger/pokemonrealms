@@ -57,11 +57,11 @@ export default class Pokemart {
     }
 }
 
-var testmart = new Pokemart([
-    { id: "pokeball", price: 200 },
-    { id: "greatball", price: 650 },
-    { id: "aloraichiumz", price: 200 },
-    { id: "aguavberry", price: 5 },
-    { id: "thunderstone", price: 10000 }
-]);
-console.log(testmart);
+// var testmart = new Pokemart([
+//     { id: "pokeball", price: 200 },
+//     { id: "greatball", price: 650 },
+//     { id: "aloraichiumz", price: 200 },
+//     { id: "aguavberry", price: 5 },
+//     { id: "thunderstone", price: 10000 }
+// ]);
+//console.log(testmart);
