@@ -21,13 +21,13 @@ export default class Inventory {
     }
 
     removeItem(item, quantity) {
-        if (this.hasItem(item, quantity)) {
-            this.items[item].quantity -= quantity;
-            if (this.items[item].quantity == 0) {
-                delete this.items[item];
-            }
+        if (!this.hasItem(item, quantity)) {
+            throw Error("ItemError: No item to remove or not enough to remove");
         }
-        else throw Error("ItemError: No item to remove or not enough to remove");
+        this.items[item].quantity -= quantity;
+        if (this.items[item].quantity == 0) {
+            delete this.items[item];
+        }
     }
 
     hasItem(item, quantity = 1) {
@@ -35,6 +35,12 @@ export default class Inventory {
     }
 
     useItem(item, quantity = 1) {
+        if (!this.hasItem(item, quantity)) {
+            throw Error("ItemError: Not enough items to use");
+        } else if (!Items[item] || !Items[item].isUsable) {
+            throw Error("ItemError: Tried to use an unusable item");
+        }
         this.items[item].quantity -= quantity;
+        Items
     }
 }

@@ -50,7 +50,7 @@ class player {
             await Promise.all([this.playerSprites[spriteName].parse(), this.playerSprites[spriteName2].parse(), this.playerSprites[spriteName3].parse()]);
         }
     }
-    
+
     grassCounter = 0;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
@@ -70,6 +70,7 @@ class player {
         // input and camera logic
         if (this.hasController) {
             this.checkForInput();
+            this.checkForInteract();
             this.centerCameraOnSelf();
             this.updateSprite();
             this.sendLocation();
@@ -140,7 +141,7 @@ class player {
         if (this.headSprite.playing) {
             let totalVelocity = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
             if (totalVelocity <= 0.0001 && this.speed == 0) {
-                Matter.Body.setVelocity(this.rigidBody, { x: 0, y: 0});
+                Matter.Body.setVelocity(this.rigidBody, { x: 0, y: 0 });
                 if (this.headSprite.currentFrame % 2 == 1) {
                     this.headSprite.gotoAndStop((this.headSprite.currentFrame + 1) % 4);
                     this.bodySprite.gotoAndStop((this.bodySprite.currentFrame + 1) % 4);
@@ -197,7 +198,7 @@ class player {
             }
             this.rigidBody.frictionAir = 0;
 
-            let movementVector = { x: 0, y: 0};
+            let movementVector = { x: 0, y: 0 };
             // check for keydown
             if (Input.UP && !Input.DOWN) {
                 if (Input.LEFT == Input.RIGHT && this.facing != "up") this.setFacing("up");
@@ -224,6 +225,21 @@ class player {
         } else {
             this.speed = 0;
             this.rigidBody.frictionAir = player.friction;
+        }
+    }
+
+    checkForInteract() {
+        if (!this.busy && Input.SPACE) {
+            for (let name in npcs) {
+                let collisionData = Matter.Collision.collides(this.rigidBody, npcs[name].rigidBody);
+                if (collisionData) {
+                    let direction = collisionData.normal.y ? (collisionData.normal.y > 0 ? "up" : "down") : (collisionData.normal.x > 0 ? "left" : "right");
+                    let playerDirection = collisionData.normal.y ? (collisionData.normal.y > 0 ? "down" : "up") : (collisionData.normal.x > 0 ? "right" : "left");
+                    if (this.facing != playerDirection) this.setFacing(playerDirection);
+                    npcs[name].setFacing(direction);
+                    // console.log(collisionData);
+                }
+            }
         }
     }
 

@@ -30,6 +30,7 @@ import SingleBattle from "./src/singleBattle.js";
 import { players, accounts, LoginHandler } from "./src/loginHandler.js";
 import WildEncounter from "./src/wildEncounter.js";
 import Pokemart from "./src/pokemart.js";
+import Items from "./src/items.js";
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
 // const sessions = require("./node_modules/express-session");
@@ -123,7 +124,7 @@ app.get("/logout", (req, res) => {
 
 // update global player list every 5 seconds
 var ticker = 2350;
-Map.updateTime(ticker); 
+Map.updateTime(ticker);
 setInterval(() => {
     ticker += 5;
     if (ticker % 100 == 60) {
@@ -132,8 +133,8 @@ setInterval(() => {
             ticker = 0;
         }
     }
-    
-    Map.updateTime(ticker); 
+
+    Map.updateTime(ticker);
     io.emit("timeChange", {
         time: Map.time,
         exactTime: ticker
@@ -289,10 +290,11 @@ io.on("connection", (socket) => {
     let displayName;
     let isGuest = true;
     if (username) {
-        if (player.connected) {
+        if (players[username].connected) {
             socket.disconnect(true);
+            return;
         }
-        displayName = player.displayName;
+        displayName = players[username].displayName;
         isGuest = false;
         console.log(displayName + " logged in.");
     } else {
@@ -315,15 +317,17 @@ io.on("connection", (socket) => {
     });
 
     socket.on("playerMovement", (data) => {
-        data.name = username;
-        player.x = data.x;
-        player.y = data.y;
-        player.facing = data.facing;
-        socket.broadcast.emit("playerMovement", data);
+        if (player.battle == null) {
+            data.name = username;
+            player.x = data.x;
+            player.y = data.y;
+            player.facing = data.facing;
+            socket.broadcast.emit("playerMovement", data);
+        }
     });
 
     socket.on("grassEnter", () => {
-        if (!player.battle && map.grassCheck()) {
+        if (player.battle == null && map.grassCheck()) {
             let encounter = map.createEncounter();
             socket.emit("startBattle", player.party[0].species, encounter.species);
             player.battle = new WildEncounter(player, encounter);
@@ -367,7 +371,7 @@ io.on("connection", (socket) => {
         }
         if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
             // if other player hasnt sent request, send
-            console.log(`${username} requests a trade with ${user}`);
+            console.log(`${displayName} requests a trade with ${otherPlayer.displayName}`);
             otherPlayer.socket.emit("tradeRequest", username, player.party[pokemonSlot]);
         }
     });
@@ -434,6 +438,13 @@ io.on("connection", (socket) => {
     socket.on("sellItem", (id, quantity) => {
         if (testmart.sellItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
+            socket.emit("inventoryUpdate", player.inventory.items);
+        }
+    });
+
+    socket.on("useItem", (id, quantity) => {
+        if (player.battle == null && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
+            player.inventory.useItem(id, quantity);
             socket.emit("inventoryUpdate", player.inventory.items);
         }
     });

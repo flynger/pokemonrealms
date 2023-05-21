@@ -3,7 +3,8 @@ var Input = {
     LEFT: false,
     UP: false,
     DOWN: false,
-    SHIFT: false
+    SHIFT: false,
+    SPACE: false
 }
 //function createInputHandlers() {
 function keyDownHandler(event) {
@@ -21,6 +22,9 @@ function keyDownHandler(event) {
         if (event.keyCode === 16) {
             Input.SHIFT = true;
         }
+        if (event.keyCode === 32) {
+            Input.SPACE = true;
+        }
     }
 }
 function keyUpHandler(event) {
@@ -36,6 +40,9 @@ function keyUpHandler(event) {
     }
     if (event.keyCode === 16) {
         Input.SHIFT = false;
+    }
+    if (event.keyCode === 32) {
+        Input.SPACE = false;
     }
 }
 document.addEventListener("keydown", keyDownHandler, false);
