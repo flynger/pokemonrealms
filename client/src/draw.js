@@ -25,16 +25,19 @@ const smoothingFrames = 15; // The number of frames to use for smoothing
 var smoothedFrameDuration = 0; // The smoothed frame duration
 
 function draw(deltaTime) {
-    graphics.clear();
+    // graphics.clear();
     smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
     //console.log( { deltaTime, smoothedFrameDuration });
     for (let name in players) {
         players[name].step();
     }
+    for (let name in npcs) {
+        npcs[name].step();
+    }
     for (let grss in grasses) {
         grasses[grss].step();
     }
-    Matter.Engine.update(engine, 100 / 3 * smoothedFrameDuration);
+    Matter.Engine.update(engine, 100 / 3 * deltaTime);
     for (let name in players) {
         players[name].endFrame();
     }
@@ -46,9 +49,7 @@ function draw(deltaTime) {
 
 function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true, v_cutoff_bottom = 0, v_cutoff_top = 0) {
     let sheet_data = {
-        "frames": {
-
-        },
+        "frames": {},
         "meta": {
             "image": source,
             "format": "RGBA8888",

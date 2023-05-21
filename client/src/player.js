@@ -6,7 +6,7 @@ class player {
     static rigidBodyHeight = 20;
     static rigidBodyOffset = 14;
     static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
-    static #playerSprites = {};
+    static playerSprites = {};
     static players = {};
 
     static async initializePlayerSpritesheets() {
@@ -19,7 +19,7 @@ class player {
                 "right": [spriteName + "_2_0", spriteName + "_2_1", spriteName + "_2_2", spriteName + "_2_3"],
                 "up": [spriteName + "_3_0", spriteName + "_3_1", spriteName + "_3_2", spriteName + "_3_3"]
             };
-            this.#playerSprites[spriteName] = new PIXI.Spritesheet(
+            this.playerSprites[spriteName] = new PIXI.Spritesheet(
                 PIXI.BaseTexture.from(sheetData.meta.image),
                 sheetData
             );
@@ -31,7 +31,7 @@ class player {
                 "right": [spriteName2 + "_2_0", spriteName2 + "_2_1", spriteName2 + "_2_2", spriteName2 + "_2_3"],
                 "up": [spriteName2 + "_3_0", spriteName2 + "_3_1", spriteName2 + "_3_2", spriteName2 + "_3_3"]
             };
-            this.#playerSprites[spriteName2] = new PIXI.Spritesheet(
+            this.playerSprites[spriteName2] = new PIXI.Spritesheet(
                 PIXI.BaseTexture.from(sheetData2.meta.image),
                 sheetData2
             );
@@ -43,22 +43,14 @@ class player {
                 "right": [spriteName3 + "_2_0", spriteName3 + "_2_1", spriteName3 + "_2_2", spriteName3 + "_2_3"],
                 "up": [spriteName3 + "_3_0", spriteName3 + "_3_1", spriteName3 + "_3_2", spriteName3 + "_3_3"]
             };
-            this.#playerSprites[spriteName3] = new PIXI.Spritesheet(
+            this.playerSprites[spriteName3] = new PIXI.Spritesheet(
                 PIXI.BaseTexture.from(sheetData3.meta.image),
                 sheetData3
             );
-            await Promise.all([this.#playerSprites[spriteName].parse(), this.#playerSprites[spriteName2].parse(), this.#playerSprites[spriteName3].parse()]);
+            await Promise.all([this.playerSprites[spriteName].parse(), this.playerSprites[spriteName2].parse(), this.playerSprites[spriteName3].parse()]);
         }
     }
-
-    velocity = {
-        x: 0,
-        y: 0
-    }
-    #nameTagBackWidth;
-    #nameTagBackOffset;
-    #nameTagTextOffset;
-
+    
     grassCounter = 0;
 
     constructor(name, avatar, x, y, facing = "down", hasController = false) {
@@ -99,20 +91,20 @@ class player {
 
     nameTagStep() {
         // update name tag offsets
-        this.#nameTagBackWidth = this.nameTagText.width + 10;
-        this.#nameTagBackOffset = - this.#nameTagBackWidth / 2 + 16;
-        this.#nameTagTextOffset = - this.nameTagText.width / 2 + 16;
+        this.nameTagBackWidth = this.nameTagText.width + 10;
+        this.nameTagBackOffset = - this.nameTagBackWidth / 2 + 16;
+        this.nameTagTextOffset = - this.nameTagText.width / 2 + 16;
 
         // redraw name tag bounding box
         this.nameTagBack.clear();
         this.nameTagBack.beginFill(0x303030);
-        this.nameTagBack.drawRoundedRect(this.headSprite.x + this.#nameTagBackOffset, this.headSprite.y - 31, this.#nameTagBackWidth, 18, 4);
+        this.nameTagBack.drawRoundedRect(this.headSprite.x + this.nameTagBackOffset, this.headSprite.y - 31, this.nameTagBackWidth, 18, 4);
         this.nameTagBack.endFill(0x303030);
 
         // update name text position
         this.nameTagText.scale.x = 1 / ratio;
         this.nameTagText.scale.y = 1 / ratio;
-        this.nameTagText.x = this.headSprite.x + this.#nameTagTextOffset + 1;
+        this.nameTagText.x = this.headSprite.x + this.nameTagTextOffset + 1;
         this.nameTagText.y = this.headSprite.y - 27;
 
         this.nameTagBack.zIndex = this.nameTagText.zIndex = this.hasController ? 100000 : this.headSprite.y;
@@ -130,8 +122,8 @@ class player {
     }
 
     createSprites() {
-        this.sprites = player.#playerSprites[this.avatar + "_head"];
-        this.bodySprites = player.#playerSprites[this.avatar + "_body"];
+        this.sprites = player.playerSprites[this.avatar + "_head"];
+        this.bodySprites = player.playerSprites[this.avatar + "_body"];
         this.headSprite = new PIXI.AnimatedSprite(this.sprites.animations[this.facing]);
         this.bodySprite = new PIXI.AnimatedSprite(this.bodySprites.animations[this.facing]);
         this.headSprite.texture = this.headSprite.textures[0];
@@ -164,6 +156,12 @@ class player {
                 //}
             }
         }
+    }
+
+    setFacing(direction) {
+        this.facing = direction;
+        this.headSprite.textures = this.sprites.animations[this.facing];
+        this.bodySprite.textures = this.bodySprites.animations[this.facing];
     }
 
     moveTo(x, y) {
@@ -227,12 +225,6 @@ class player {
             this.speed = 0;
             this.rigidBody.frictionAir = player.friction;
         }
-    }
-
-    setFacing(direction) {
-        this.facing = direction;
-        this.headSprite.textures = this.sprites.animations[this.facing];
-        this.bodySprite.textures = this.bodySprites.animations[this.facing];
     }
 
     animate() {
