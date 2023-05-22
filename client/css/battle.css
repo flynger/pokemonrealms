@@ -238,7 +238,10 @@
     background-size: cover;
 }
 
-#overlay-switch {}
+#overlay-switch {
+    background-image: url('../res/battle/gui/overlay_switch.png');
+    background-size: cover;
+}
 
 .switch-button {
     background-color: #343a40;
@@ -266,6 +269,7 @@
 }
 
 .switch-info p {
+    width: min-content;
     scale: calc(var(--scale-coefficient) * var(--scale));
     transform-origin: left top;
 }

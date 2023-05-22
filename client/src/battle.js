@@ -2,8 +2,10 @@ var Moves; // moves json fetched on setup
 
 $(function () {
     // $('#battle-UI').show();
+    $("#overlay-switch").hide();
     $("#overlay-command").hide();
     $("#overlay-fight").hide();
+    $("#overlay-switch").hide();
     $("#overlay-message").show();
     // $('#battle-UI').hide();
     // $('#battle-UI').show(() => {
@@ -27,6 +29,31 @@ function switchTo(slot) {
 }
 
 function showSwitchButtons() {
+    var switchData = [
+        { id: 'pkmn1', imageSrc: 'res/pokemon/icons/25.png', name: 'Pikachu' },
+        { id: 'pkmn2', imageSrc: 'res/pokemon/icons/6.png', name: 'Charizard' },
+        { id: 'pkmn3', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
+        { id: 'pkmn4', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
+        { id: 'pkmn5', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
+        { id: 'pkmn6', imageSrc: 'res/pokemon/icons/151.png', name: 'Crabominable' }
+    ];
+
+    // Generate switch UI HTML
+    var switchHtml = '';
+    switchData.forEach(function (data) {
+        switchHtml += '<div id="' + data.id + '" class="switch-button text-white" onclick="switchTo(' + data.id.slice(4) + ')">';
+        switchHtml += '<img class="switch-image" src="' + data.imageSrc + '"></img>';
+        switchHtml += '<div class="switch-info">';
+        switchHtml += '<p class="mb-0">' + data.name + '</p>';
+        switchHtml += '<div class="hp hp-small"></div>';
+        switchHtml += '</div>';
+        switchHtml += '</div>';
+    });
+
+    switchHtml += '<div class="cancel" onclick="cancelSwitch()"></div>'
+
+    // Add switch UI HTML to the container element
+    $('#overlay-switch').html(switchHtml);
     $("#overlay-switch").show();
     $('#overlay-command').hide();
 }
@@ -142,7 +169,12 @@ function clearPokemon(side) {
 
 function cancelFight() {
     $("#overlay-fight").hide();
-    $('#overlay').show();
+    $('#overlay-command').show();
+}
+
+function cancelSwitch() {
+    $("#overlay-switch").hide();
+    $('#overlay-command').show();
 }
 
 function updateMoveChoices() {
@@ -160,3 +192,4 @@ function updateMoveChoices() {
         }
     }
 }
+
