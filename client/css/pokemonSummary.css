@@ -46,12 +46,12 @@
     /* margin-top: 1vmin;
     margin-left: 1vmin; */
     margin-bottom: 0.7vmin;
-    height: 26vmin;
+    height: 25vmin;
     border-radius: 0.5vmin;
 }
 
 #stats-sprite-container {
-    height: 23vmin;
+    height: 22vmin;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -86,6 +86,10 @@
     height: 1.1vmin;
 }
 
+#move1-div {
+    margin-top: 1vmin;
+}
+
 #stats-body-right {
     position: absolute;
     right: 0;
@@ -107,7 +111,7 @@
 }
 
 .stats-label {
-    background-color: #212529;
+    background-color: #212529; /* arnav: 212529*/ /* harry: 2c005b */
     height: 100%;
     width: 36%;
     border-radius: 0.5vmin;
