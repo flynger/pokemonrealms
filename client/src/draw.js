@@ -37,7 +37,7 @@ function draw(deltaTime) {
     for (let grss in grasses) {
         grasses[grss].step();
     }
-    Matter.Engine.update(engine, 100 / 3 * deltaTime);
+    Matter.Engine.update(engine, 100 / 3 * smoothedFrameDuration);
     for (let name in players) {
         players[name].endFrame();
     }

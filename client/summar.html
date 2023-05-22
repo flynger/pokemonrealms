@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pokémon Summary</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS styles */
+    .pokemon-summary {
+      width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    .pokemon-summary img {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .pokemon-summary .rename-icon {
+      cursor: pointer;
+    }
+    
+    .pokemon-summary .progress {
+      height: 10px;
+    }
+    
+    .pokemon-summary .stats-table th,
+    .pokemon-summary .stats-table td {
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="pokemon-summary">
+    <div class="row">
+      <div class="col">
+        <h5>Pokédex Number</h5>
+        <span class="pokedex-number">001</span>
+      </div>
+      <div class="col">
+        <h5>Types</h5>
+        <span class="types">Fire</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <img class="sprite" src="pokemon_sprite.png" alt="Pokémon Sprite">
+      </div>
+      <div class="col">
+        <h4 class="name">Charmander</h4>
+        <i class="rename-icon">Rename</i>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <h5>Level</h5>
+        <span class="level">50</span>
+      </div>
+      <div class="col">
+        <h5>HP</h5>
+        <div class="progress">
+          <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <h5>XP</h5>
+        <div class="progress">
+          <div class="progress-bar bg-info" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+        </div>
+      </div>
+      <div class="col">
+        <h5>Nature</h5>
+        <span class="nature">Adamant</span>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <h5>Ability</h5>
+        <span class="ability">Blaze</span>
+      </div>
+      <div class="col">
+        <h5>Happiness</h5>
+        <span class="happiness">255</span>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <h5>Original Trainer</h5>
+        <span class="original-trainer">Ash</span>
+      </div>
+      <div class="col">
+        <h5>Owner</h5>
+        <span class="owner">John</span>
+      </div>
+    </div>
+    <hr>
+    <table class="stats-table">
+      <tr>
+        <th></th>
+        <th>IVs</th>
+        <th>EVs</th>
+        <th>Stats</th>
+      </tr>
+      <tr>
+        <td>HP</td>
+        <td class="iv-hp">31</td>
+        <td class="ev-hp">252</td>
+        <td class="stat-hp">215</td>
+      </tr>
+      <tr>
+        <td>Atk</td>
+        <td class="iv-atk">31</td>
+        <td class="ev-atk">252</td>
+        <td class="stat-atk">180</td>
+      </tr>
+      <tr>
+        <td>Def</td>
+        <td class="iv-def">31</td>
+        <td class="ev-def">252</td>
+        <td class="stat-def">200</td>
+      </tr>
+      <tr>
+        <td>SpA</td>
+        <td class="iv-spa">31</td>
+        <td class="ev-spa">252</td>
+        <td class="stat-spa">160</td>
+      </tr>
+      <tr>
+        <td>SpD</td>
+        <td class="iv-spd">31</td>
+        <td class="ev-spd">252</td>
+        <td class="stat-spd">180</td>
+      </tr>
+      <tr>
+        <td>Spe</td>
+        <td class="iv-spe">31</td>
+        <td class="ev-spe">252</td>
+        <td class="stat-spe">220</td>
+      </tr>
+    </table>
+    <hr>
+    <button class="btn btn-danger btn-block release-btn">Release Pokémon</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script>
+    // jQuery code for renaming and releasing Pokémon
+    $(document).ready(function() {
+      $('.rename-icon').click(function() {
+        var newName = prompt('Enter a new name:');
+        if (newName) {
+          $('.name').text(newName);
+        }
+      });
+
+      $('.release-btn').click(function() {
+        if (confirm('Are you sure you want to release this Pokémon?')) {
+          // Perform release action
+          alert('Pokémon released!');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 const WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
-var ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
+var ratio;
+var vminRatio;
+calculateRatios();
 var map = {
     name: "Route 1",
     submapName: "Area 1",
@@ -30,6 +32,7 @@ function setGameSize() {
     gameDiv.style.height = HEIGHT * ratio + "px";
     var r = document.querySelector(':root');
     r.style.setProperty('--scale', ratio);
+    r.style.setProperty('--vmin-scale', vminRatio);
     //$('.battle-button').css({ "--scale": ratio})
 }
 
@@ -48,7 +51,7 @@ async function setup() {
 }
 
 window.onresize = () => {
-    ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
+    calculateRatios();
     setGameSize();
     gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
     for (let name in players) {
@@ -57,6 +60,11 @@ window.onresize = () => {
     for (let name in npcs) {
         npcs[name].renderName();
     }
+}
+
+function calculateRatios() {
+    ratio = Math.min(window.innerWidth / WIDTH, (window.innerHeight - 56) / HEIGHT);
+    vminRatio = Math.min(window.innerWidth, window.innerHeight) / 937;
 }
 
 async function setupSpritesheets() {

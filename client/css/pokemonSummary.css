@@ -1,20 +1,107 @@
 #pokemon-summary {
     position: absolute;
     font-family: Power Clear;
-    text-shadow: 1px 1px #000000;
-    width: 600px;
+    text-shadow: 0.1vmin 0.1vmin #000000;
+    width: 42vmin;
+    height: 50vmin;
+    border-radius: 0.5vmin;
     user-select: none;
     display: none;
 }
 
-#sprite {
+#pokemon-summary-header {
+    font-size: 2vmin;
+    padding-left: 1.3vmin;
+    padding-top: 0.5vmin;
+    padding-bottom: 0.5vmin;
+}
+
+#pokemon-summary-header:hover {
+    cursor: move;
+}
+
+#stats-body {
+    position: relative;
+    background-color: #425058;
+    /* #212529; */
+    font-size: 1.6vmin;
+    margin-left: 0.7vmin;
+    margin-right: 0.7vmin;
+    height: 45vmin;
+    border-bottom-right-radius: 0.5vmin;
+}
+
+#stats-body-left {
+    position: absolute;
+    margin-top: 1vmin;
+    margin-left: 0.7vmin;
+    height: 43vmin;
+    width: 19.25vmin;
+    text-align: center;
+}
+
+#stats-name-card {
+    position: relative;
+    background-color: lightgray;
+    /* margin-top: 1vmin;
+    margin-left: 1vmin; */
+    height: 26vmin;
+    border-radius: 0.5vmin;
+}
+
+#stats-sprite-container {
+    height: 23vmin;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#stats-sprite {
+    position: relative;
+    scale: calc(2 * var(--vmin-scale));
+    /* transform-origin: center; */
+}
+
+#stats-name-tag {
+    margin-top: -0.5vmin;
+    background-color: #888888;
+}
+
+#stats-caught-ball {
+    height: 2.5vmin;
+    margin-bottom: 0.2vmin;
+}
+
+#stats-hp-bar {
+    font-size: 1.1vmin;
+    margin-top: 0.5vmin;
+    height: 1.1vmin;
+}
+
+#stats-xp-bar {
+    font-size: 1.1vmin;
+    margin-top: 0.5vmin;
+    margin-bottom: 1vmin;
+    height: 1.1vmin;
+}
+
+#stats-body-right {
+    position: absolute;
+    right: 0;
+    margin-top: 1vmin;
+    margin-right: 0.7vmin;
+    height: 43vmin;
+    width: 19.25vmin;
+    border-radius: 0.5vmin;
+}
+
+/* #sprite {
     image-rendering: pixelated;
     width: 200%;
 }
 
 #stats li {
     font-size: 1.2em;
-    /* height: 18px; */
 }
 
 #move-list {
@@ -29,7 +116,6 @@
     padding: 0.4em;
     padding-left: 1.5em;
     font-size: 1.2em;
-    /* height: 18px; */
 }
 
 #move-list li::hover {
@@ -37,21 +123,19 @@
     padding: 0.4em;
     padding-left: 1.5em;
     font-size: 1.2em;
-    /* height: 18px; */
-}
+}*/
 
 /* #move-list li span {
     position: absolute;
     margin-left: -1.3em;
 } */
 
-.card-header {
+/* .card-header {
     cursor: move;
 }
 
 .nav-tabs {
     border-bottom: none;
-    /* var(--bs-card-border-width) solid var(--bs-card-border-color); */
 }
 
 .nav-tabs .nav-link {
@@ -112,7 +196,7 @@
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-}
+} */
 
 .blue {
     color: #0077ff;
