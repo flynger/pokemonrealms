@@ -34,6 +34,7 @@
     transform-origin: left bottom;
     scale: var(--scale);
     transition-duration: 0s;
+    bottom: 0%;
 }
 
 .hp.g {
@@ -259,9 +260,14 @@
 .switch-info {
     position: absolute;
     width: 65%;
-    height: 100%;
+    height: 80%;
     right: 0%;
     top: 10%;
+}
+
+.switch-info p {
+    scale: calc(var(--scale-coefficient) * var(--scale));
+    transform-origin: left top;
 }
 
 #pkmn1 {
