@@ -126,7 +126,7 @@
     height: 100%;
     width: 64%;
     text-align: right;
-    padding-right: 1vmin;
+    padding-right: 0.7vmin;
 }
 
 .stats-data-full {
@@ -136,17 +136,27 @@
 }
 
 .stats-type-data {
-    display: flex;
+    position: relative;
     height: 100%;
     width: 64%;
-    align-items: center;
-    justify-content: space-between;
+    /* align-items: center;
+    justify-content: space-between; */
 }
 
-.stats-type {
-    display: block;
+.stats-type1 {
+    position: absolute;
+    top: 0.2vmin;
+    left: 0.6vmin;
     scale: calc(0.7*var(--vmin-scale));
-    min-width: 0;
+    transform-origin: top left;
+    /* padding-left: 2.5vmin; */
+}
+.stats-type2 {
+    position: absolute;
+    top: 0.18vmin;
+    right: 0.6vmin;
+    scale: calc(0.7*var(--vmin-scale));
+    transform-origin: top right;
     /* padding-left: 2.5vmin; */
 }
 
