@@ -137,6 +137,7 @@
 
 .stats-type-data {
     position: relative;
+    image-rendering: auto;
     height: 100%;
     width: 64%;
     /* align-items: center;
