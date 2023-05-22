@@ -269,6 +269,7 @@
 }
 
 .switch-info p {
+    width: min-content;
     scale: calc(var(--scale-coefficient) * var(--scale));
     transform-origin: left top;
 }
