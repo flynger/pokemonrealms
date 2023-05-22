@@ -30,6 +30,13 @@
     transition-duration: 0.666s;
 }
 
+.hp-small {
+    transform-origin: left bottom;
+    scale: var(--scale);
+    transition-duration: 0s;
+    bottom: 0%;
+}
+
 .hp.g {
     background-position-y: -1px;
 }
@@ -234,9 +241,33 @@
 #overlay-switch {}
 
 .switch-button {
-    border-radius: 8px;
+    background-color: #343a40;
+    font-size: .8em;
+    border-radius: 8px; 
     width: 24%;
     height: 40%
+}
+
+.switch-button:hover{
+    background-color: rgb(107, 107, 107);
+}
+
+.switch-image {
+    width: 36%;
+    height: 100%;
+}
+
+.switch-info {
+    position: absolute;
+    width: 65%;
+    height: 80%;
+    right: 0%;
+    top: 10%;
+}
+
+.switch-info p {
+    scale: calc(var(--scale-coefficient) * var(--scale));
+    transform-origin: left top;
 }
 
 #pkmn1 {
@@ -274,6 +305,7 @@
     top: 55%;
     left: 54%;
 }
+
 
 #overlay-fight {
     position: absolute;
