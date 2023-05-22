@@ -3,7 +3,7 @@
     font-family: Power Clear;
     text-shadow: 0.1vmin 0.1vmin #000000;
     width: 42vmin;
-    height: 50vmin;
+    height: 49.5vmin;
     border-radius: 0.5vmin;
     user-select: none;
     display: none;
@@ -12,8 +12,8 @@
 #pokemon-summary-header {
     font-size: 2vmin;
     padding-left: 1.3vmin;
-    padding-top: 0.5vmin;
-    padding-bottom: 0.5vmin;
+    padding-top: 0.25vmin;
+    padding-bottom: 0.25vmin;
 }
 
 #pokemon-summary-header:hover {
@@ -35,7 +35,7 @@
     position: absolute;
     margin-top: 0.7vmin;
     margin-left: 0.7vmin;
-    height: 43vmin;
+    height: 100%;
     width: 20.75vmin;
     text-align: center;
 }
@@ -95,7 +95,7 @@
     right: 0;
     margin-top: 0.7vmin;
     margin-right: 0.7vmin;
-    height: 43vmin;
+    height: 100%;
     width: 17.75vmin;
     border-radius: 0.5vmin;
 }
@@ -111,24 +111,43 @@
 }
 
 .stats-label {
-    background-color: #212529; /* arnav: 212529*/ /* harry: 2c005b */
+    background-color: #212529;
+    /* arnav: 212529*/
+    /* harry: 2c005b */
     height: 100%;
     width: 36%;
     border-radius: 0.5vmin;
     text-align: center;
-    
+
 }
 
 .stats-data {
+    position: relative;
     height: 100%;
     width: 64%;
     text-align: right;
     padding-right: 1vmin;
 }
+
 .stats-data-full {
     height: 100%;
     width: 100%;
     text-align: center;
+}
+
+.stats-type-data {
+    display: flex;
+    height: 100%;
+    width: 64%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stats-type {
+    display: block;
+    scale: calc(0.7*var(--vmin-scale));
+    min-width: 0;
+    /* padding-left: 2.5vmin; */
 }
 
 #stats-happiness {
@@ -142,19 +161,24 @@
     display: flex;
     text-align: center;
 }
+
 #stats-stat-label {
     margin-left: 36%;
     width: 32%;
 }
+
 #stats-iv-label {
     width: 16%;
 }
+
 #stats-ev-label {
     width: 16%;
 }
+
 #stats-field-hp {
     margin-top: 0.2vmin;
 }
+
 /* #sprite {
     image-rendering: pixelated;
     width: 200%;
