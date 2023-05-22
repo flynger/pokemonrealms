@@ -52,14 +52,14 @@
     top: 74px;
 }
 
-.lvl{
+.lvl {
     position: absolute;
     background-image: url('../res/battle/gui/overlay_lv.png');
     width: 22px;
     height: 14px;
 }
 
-.lvl.you{
+.lvl.you {
     right: 65px;
     top: 16px;
 }
@@ -72,7 +72,7 @@
     top: 9px;
 }
 
-.lvl.foe{
+.lvl.foe {
     right: 84px;
     top: 16px;
 }
@@ -219,13 +219,60 @@
     animation-timing-function: linear;
 }
 
-#overlay {
+.overlay {
     position: absolute;
     width: 100%;
     height: 24.427%;
     bottom: 0%;
+}
+
+#overlay-command {
     background-image: url('../res/battle/gui/overlay_command.png');
     background-size: cover;
+}
+
+#overlay-switch {}
+
+.switch-button {
+    border-radius: 8px;
+    width: 24%;
+    height: 40%
+}
+
+#pkmn1 {
+    position: absolute;
+    top: 8%;
+    left: 2%;
+}
+
+#pkmn2 {
+    position: absolute;
+    top: 8%;
+    left: 28%;
+}
+
+#pkmn3 {
+    position: absolute;
+    top: 8%;
+    left: 54%;
+}
+
+#pkmn4 {
+    position: absolute;
+    top: 55%;
+    left: 2%;
+}
+
+#pkmn5 {
+    position: absolute;
+    top: 55%;
+    left: 28%;
+}
+
+#pkmn6 {
+    position: absolute;
+    top: 55%;
+    left: 54%;
 }
 
 #overlay-fight {
@@ -246,14 +293,13 @@
     background-size: cover;
 }
 
-#overlay-switch {
-    position: absolute;
-    width: 80%;
-    height 100%;
-    right: 10%;
-    top: 10%;
+.switch-row {
+    height: 100%;
 }
 
+/* #overlay-contianer {
+    height: 100%;
+} */
 
 #dialogue {
     position: absolute;
@@ -437,12 +483,31 @@
     bottom: 5%;
 }
 
+#overlay-switch .cancel {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    width: 122px;
+    height: 39px;
+    scale: calc(var(--scale));
+    transform-origin: right bottom;
+    background-image: url('../res/battle/gui/cursor_command.png');
+    background-position-x: -134px;
+    background-position-y: -418px;
+    right: 2.25%;
+    bottom: 5%;
+}
+
 .fight-command .cancel:hover {
     cursor: pointer;
     background-position-x: -4px;
     filter: brightness(1);
 }
 
+#overlay-switch .cancel:hover {
+    cursor: pointer;
+    background-position-x: -4px;
+    filter: brightness(1);
+}
 
 .command div {
     position: absolute;
@@ -478,6 +543,7 @@
     right: 3%;
     bottom: 6%;
 }
+
 
 #command-message {
     position: absolute;

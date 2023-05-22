@@ -2,7 +2,7 @@ var Moves; // moves json fetched on setup
 
 $(function () {
     // $('#battle-UI').show();
-    $("#overlay").hide();
+    $("#overlay-command").hide();
     $("#overlay-fight").hide();
     $("#overlay-message").show();
     // $('#battle-UI').hide();
@@ -13,7 +13,7 @@ $(function () {
 
 function showFightButtons() {
     $("#overlay-fight").show();
-    $('#overlay').hide();
+    $('#overlay-command').hide();
 }
 
 function useMove(num) {
@@ -28,11 +28,12 @@ function switchTo(slot) {
 
 function showSwitchButtons() {
     $("#overlay-switch").show();
+    $('#overlay-command').hide();
 }
 
 function runFromBattle() {
     socket.emit("endBattle");
-    $("#overlay").hide();
+    $("#overlay-command").hide();
     $("#overlay-fight").hide();
 }
 
@@ -44,7 +45,7 @@ var textInterval;
 var dialoguePlaying = false;
 function nextAction() {
     if (!dialoguePlaying) {
-        $("#overlay").hide();
+        $("#overlay-command").hide();
         $("#overlay-fight").hide();
         $("#overlay-message").show();
         dialoguePlaying = true;
@@ -93,7 +94,7 @@ function createTextInterval(nextData, letters) {
                         clearPokemon("you");
                         clearPokemon("foe");
                     } else {
-                        $("#overlay").show();
+                        $("#overlay-command").show();
                         // $("#overlay-fight").show();
                     }
                     $('#dialogue').html("");

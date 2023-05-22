@@ -321,19 +321,6 @@
           Waiting for server...
         </div>
       </div>
-      <div id="overlay-switch" class="switch-ui">
-        <div class="container bg-dark">
-          <div class="row">
-            <div class="col-2">
-              <div class="switch-button" data-pokemon-id="1">
-                <img class="switch-image" src="res/pokemon/sprites/front/normal/6.png" alt="Charizard">
-                <div class="switch-text">Charizard</div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div id="overlay-fight" class="fight-command">
         <div id="move1" class="ground" onclick="useMove(1)"><span class="movename">Stomping Tantrum</span><span
             class="movetype type ground"></span><span class="movepp">PP 40/40</span></div>
@@ -345,16 +332,34 @@
             class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
         <div class="cancel" onclick="cancelFight()"></div>
       </div>
-      <div id="overlay" class="bg-image command">
+      <div id="overlay-command" class="bg-image overlay command">
         <p id="command-message" class="battle-text"></p>
         <div class="fight bg-image" onclick="showFightButtons()"></div>
-        <div class="pkmn bg-image" onclick="alert()"></div>
+        <div class="pkmn bg-image" onclick="showSwitchButtons()"></div>
         <div class="bag bg-image" onclick="alert()"></div>
         <div class="run bg-image" onclick="runFromBattle()"></div>
         <!-- <div id="button-2" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
           <div id="button-3" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
           <div id="button-4" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div> -->
       </div>
+      <!-- <div id="overlay-switch" class="overlay">
+        <div id="pkmn1" class="switch-button bg-dark" onclick="showFightButtons()">
+          Pikachu
+        </div>
+        <div id="pkmn2" class="switch-button bg-dark" onclick="showFightButtons()">
+          Charizard
+        </div>
+        <div id="pkmn3" class="switch-button bg-dark" onclick="showFightButtons()">
+          Espathra
+        </div>
+        <div id="pkmn4" class="switch-button bg-dark" onclick="showFightButtons()">
+        </div>
+        <div id="pkmn5" class="switch-button bg-dark" onclick="showFightButtons()">
+        </div>
+        <div id="pkmn6" class="switch-button bg-dark" onclick="showFightButtons()">
+        </div>
+        <div class="cancel" onclick="cancelFight()"></div>
+      </div> -->
     </div>
   </div>
   </div>
