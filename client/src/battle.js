@@ -2,6 +2,7 @@ var Moves; // moves json fetched on setup
 
 $(function () {
     // $('#battle-UI').show();
+    $("#overlay-switch").hide();
     $("#overlay-command").hide();
     $("#overlay-fight").hide();
     $("#overlay-message").show();
@@ -142,7 +143,12 @@ function clearPokemon(side) {
 
 function cancelFight() {
     $("#overlay-fight").hide();
-    $('#overlay').show();
+    $('#overlay-command').show();
+}
+
+function cancelSwitch() {
+    $("#overlay-switch").hide();
+    $('#overlay-command').show();
 }
 
 function updateMoveChoices() {
