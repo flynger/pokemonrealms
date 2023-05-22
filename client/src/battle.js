@@ -26,6 +26,10 @@ function switchTo(slot) {
     socket.emit("switchInput", slot);
 }
 
+function showSwitchButtons() {
+    $("#overlay-switch").show();
+}
+
 function runFromBattle() {
     socket.emit("endBattle");
     $("#overlay").hide();

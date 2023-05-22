@@ -246,6 +246,15 @@
     background-size: cover;
 }
 
+#overlay-switch {
+    position: absolute;
+    width: 80%;
+    height 100%;
+    right: 10%;
+    top: 10%;
+}
+
+
 #dialogue {
     position: absolute;
     width: 89.767%;
@@ -433,6 +442,8 @@
     background-position-x: -4px;
     filter: brightness(1);
 }
+
+.
 
 .command div {
     position: absolute;
