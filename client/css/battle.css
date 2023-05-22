@@ -248,7 +248,9 @@
     font-size: .8em;
     border-radius: 8px; 
     width: 24%;
-    height: 40%
+    height: 40%;
+    border: 0.15rem solid white;
+    color:white;
 }
 
 .switch-button:hover{
