@@ -149,13 +149,14 @@ function cancelSwitch() {
 }
 
 function showSwitchButtons() {
-    var switchHtml = '';
+    $('#overlay-switch').html("");
     let party = battleOptions.side.pokemon;
     // TODO: implement forceSwitch
     let forceSwitch = true;
 
     // Generate switch UI HTML
     for (let i in party) {
+        let switchHtml = '';
         let pkmnNickname = party[i].ident.split(": ")[1];
         let pkmnDetails = party[i].details.split(", ");
         let pkdexId = Pokedex.getPokedexEntry(pkmnDetails[0]).id;
@@ -163,20 +164,22 @@ function showSwitchButtons() {
         let hpValues = party[i].condition.split(" ")[0].split("/");
 
         switchHtml +=
-            `<div id="pkmn${+i + 1}" class="switch-button text-white"
-            ${+i + 1 !== 1 ? `onclick="switchTo(${+i + 1})"` : ""}><img class="switch-image" src="res/pokemon/icons/${pkdexId}.png"></img>
+            `<div id="pkmn${+i + 1}" class="switch-button text-white ${+hpValues[0] === 0 ? "pkmn-fainted" : "pkmn-alive"}"
+                ${+hpValues[0] !== 0 && +i + 1 !== 1? `onclick="switchTo(${+i + 1})"` : ""}><img class="switch-image" src="res/pokemon/icons/${pkdexId}.png"></img>
             <div class="switch-info">
-            <p class="mb-0">${pkmnNickname} Lv. ${lv}</p>
-            <div id="pkmn${+i + 1}-hpbar" class="hp hp-small"></div>
-            </div>
+                <p class="mb-0">${pkmnNickname} Lv. ${lv}</p>
+                <div id="switch-hpbar-outline">
+                    <div id="pkmn${+i + 1}-hpbar" class="hp small"></div>
+                    </div>
+                </div>
             </div>`;
-        $(`#pkmn${+i + 1}-hpbar`).width = +hpValues[0] / +hpValues[1] * 96;
-    }
 
-    if(forceSwitch){switchHtml += '<div class="cancel" onclick="cancelSwitch()"></div>'};
+        $('#overlay-switch').append(switchHtml);
+        $(`#pkmn${+i + 1}-hpbar`).width(+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] * 96 : 0);
+    }
+    if (forceSwitch) { $('#overlay-switch').append('<div class="cancel" onclick="cancelSwitch()"></div>') };
 
     // Add switch UI HTML to the container element
-    $('#overlay-switch').html(switchHtml);
     $("#overlay-switch").show();
     $('#overlay-command').hide();
 }
