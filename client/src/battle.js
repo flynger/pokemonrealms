@@ -162,10 +162,11 @@ function showSwitchButtons() {
         let pkdexId = Pokedex.getPokedexEntry(pkmnDetails[0]).id;
         let lv = !pkmnDetails[1].startsWith("L") ? "100" : pkmnDetails[1].slice(1);
         let hpValues = party[i].condition.split(" ")[0].split("/");
+        let isFainted = +hpValues[0] === 0
 
         switchHtml +=
-            `<div id="pkmn${+i + 1}" class="switch-button text-white ${+hpValues[0] === 0 ? "pkmn-fainted" : "pkmn-alive"}"
-                ${+hpValues[0] !== 0 && +i + 1 !== 1? `onclick="switchTo(${+i + 1})"` : ""}><img class="switch-image" src="res/pokemon/icons/${pkdexId}.png"></img>
+            `<div id="pkmn${+i + 1}" class="switch-button text-white ${!isFainted ? "pkmn-alive" : "pkmn-fainted"}"
+                ${!isFainted && +i + 1 !== 1 ? `onclick="switchTo(${+i + 1})"` : ""}><img class="switch-image" src="res/pokemon/icons/${pkdexId}.png"></img>
             <div class="switch-info">
                 <p class="mb-0">${pkmnNickname} Lv. ${lv}</p>
                 <div id="switch-hpbar-outline">
@@ -175,7 +176,7 @@ function showSwitchButtons() {
             </div>`;
 
         $('#overlay-switch').append(switchHtml);
-        $(`#pkmn${+i + 1}-hpbar`).width(+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] * 96 : 0);
+        $(`#pkmn${+i + 1}-hpbar`).width(!isFainted ? +hpValues[0] / +hpValues[1] * 96 : 0);
     }
     if (forceSwitch) { $('#overlay-switch').append('<div class="cancel" onclick="cancelSwitch()"></div>') };
 
