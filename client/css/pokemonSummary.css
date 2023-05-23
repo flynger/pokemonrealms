@@ -118,14 +118,22 @@
     text-align: center;
 }
 
-.stats-label-s {
+.stats-label-m {
+    background-color: #212529;
+    height: 100%;
+    width: 30%;
+    border-radius: 0.5vmin;
+    text-align: center;
+}
+
+/* .stats-label-s {
     background-color: #212529;
     height: 100%;
     width: 21%;
     border-radius: 0.5vmin;
     text-align: center;
     font-size: 1.4vmin;
-}
+} */
 
 .stats-data {
     position: relative;
@@ -203,24 +211,60 @@
     height: 2vmin;
     line-height: 2vmin;
     display: flex;
-    text-align: center;
+    text-align: right;
 }
 
 #stats-stat-label {
     margin-left: 36%;
-    width: 32%;
+    width: 30%;
 }
 
 #stats-iv-label {
-    width: 16%;
+    width: 15%;
 }
 
 #stats-ev-label {
-    width: 16%;
+    width: 15%;
 }
 
-#stats-field-hp {
-    margin-top: 0.2vmin;
+.stats-data-flex {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 70%;
+    text-align: right;
+}
+
+.stats-data-flex-child-l {
+    height: 100%;
+    width: 46.875%;
+}
+
+.stats-data-flex-child-s {
+    height: 100%;
+    width: 23.4375%;
+}
+
+#stats-hp-stat {
+    width: 50%;
+}
+#stats-hp-iv {
+    width: 22%;
+}
+#stats-hp-ev {
+    width: 22%;
+}
+
+.stats-iv {
+    color: #ede98d;
+    /* ffc107, ede98d */
+}
+
+.stats-ev {
+    /* text-shadow: 0.15vmin 0.15vmin #2f4472; */
+    color: #80f075;
+    /*#78abe6, 0077ff, 5fd455, 14f053, planet:a9f0a2*/
+    font-size: 1.4vmin;
 }
 
 /* #sprite {
@@ -326,6 +370,10 @@
     -ms-user-select: none;
 } */
 
+.medblue {
+    color: #78abe6;
+}
+
 .blue {
     color: #0077ff;
 }
@@ -335,7 +383,7 @@
 }
 
 .red {
-    color: #ff0000;
+    color: #ff3737;
 }
 
 .shiny {
