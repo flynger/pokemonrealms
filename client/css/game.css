@@ -2,6 +2,11 @@ body {
     overflow: hidden;
 }
 
+.tooltip {
+    font-family: Power Clear;
+    font-size: 1.5vmin;
+}
+
 .draggable {
     padding: 10px;
     cursor: move;
