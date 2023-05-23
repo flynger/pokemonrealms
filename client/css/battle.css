@@ -253,14 +253,14 @@
     color: white;
 }
 
-.switch-button:hover {
-    cursor: pointer;
-    background-color: rgb(107, 107, 107);
-}
-
 .switch-image {
     width: 36%;
     height: 100%;
+}
+
+.switch-button:hover {
+    cursor: pointer;
+    background-color: rgb(107, 107, 107);
 }
 
 .switch-info {
@@ -281,6 +281,11 @@
     position: absolute;
     top: 8%;
     left: 2%;
+    background-color: rgb(87, 114, 147);
+}
+
+#pkmn1:hover {
+    background-color: rgb(87, 114, 147);
 }
 
 #pkmn2 {

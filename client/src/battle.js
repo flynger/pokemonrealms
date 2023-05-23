@@ -148,22 +148,24 @@ function cancelSwitch() {
 
 function showSwitchButtons() {
     var switchData = [];
-
     let party = battleOptions.side.pokemon;
     for (let i in party) {
         let pokemonNickname = party[i].ident.split(": ")[1];
-        let pkdexId = Pokedex.getPokedexEntry(party[i].details.split(", ")[0]).id;
-        switchData.push({ id: `pkmn${+i + 1}`, imageSrc: `res/pokemon/icons/${pkdexId}.png`, name: pokemonNickname, hp: party[i].condition })
+        let pkmnDetails = party[i].details.split(", ");
+        let pkdexId = Pokedex.getPokedexEntry(pkmnDetails[0]).id;
+        let lv = !pkmnDetails[1].startsWith("L") ? "100": pkmnDetails[1].slice(1);
+        switchData.push({ id: `pkmn${+i + 1}`, imageSrc: `res/pokemon/icons/${pkdexId}.png`, name: pokemonNickname, lv: lv, hp: party[i].condition })
     }
-
+    
     // Generate switch UI HTML
     var switchHtml = '';
     switchData.forEach(function (data) {
         let id = data.id.slice(4);
-        switchHtml += `<div id="${data.id}" class="switch-button text-white" onclick="switchTo(${id})">`;
-        switchHtml += `<img class="switch-image" src="${data.imageSrc}"></img>`;
+        switchHtml += `<div id="${data.id}" class="switch-button text-white"`;
+        if (+id !== 1) { switchHtml += `onclick="switchTo(${id})"` };
+        switchHtml += `><img class="switch-image" src="${data.imageSrc}"></img>`;
         switchHtml += '<div class="switch-info">';
-        switchHtml += `<p class="mb-0">${data.name} ${data.hp}</p>`;
+        switchHtml += `<p class="mb-0">${data.name} Lv. ${data.lv}</p>`;
         switchHtml += `<div id="pkmn${id}-hpbar" class="hp hp-small"></div>`;
         switchHtml += '</div>';
         switchHtml += '</div>';
