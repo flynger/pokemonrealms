@@ -7,8 +7,8 @@
     border-radius: 0.5vmin;
     user-select: none;
     display: none;
-    scale: 1.2;
     transform-origin: top left;
+    z-index: 99;
 }
 
 #pokemon-summary-header {
@@ -156,7 +156,7 @@
 }
 
 #move1-div {
-    margin-top: 1vmin;
+    margin-top: 0.7vmin;
 }
 
 .stats-move-name {
@@ -248,7 +248,7 @@
 }
 
 #stats-hp-stat {
-    font-size: 1.4vmin;
+    font-size: 1.5vmin;
 }
 /* #stats-hp-iv {
     width: 22%;
@@ -266,7 +266,7 @@
     /* text-shadow: 0.15vmin 0.15vmin #2f4472; */
     color: #80f075;
     /*#78abe6, 0077ff, 5fd455, 14f053, planet:a9f0a2*/
-    font-size: 1.4vmin;
+    font-size: 1.5vmin;
 }
 
 /* #sprite {

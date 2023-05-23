@@ -8,6 +8,7 @@ var socket;
 var latency = -1;
 var username;
 var time;
+var party;
 
 function setupSocket() {
     socket = io.connect(link);
@@ -173,6 +174,10 @@ function setupSocket() {
         console.log({ newInventory });
         inventory = newInventory;
         updateInventory();
+    });
+
+    socket.on("partyUpdate", (newParty) => {
+        party = newParty;
     });
 
     socket.on("pong", (ms) => {

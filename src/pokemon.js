@@ -1,7 +1,7 @@
 import Pokedex from "./pokedex.js";
 import Showdown from "pokemon-showdown";
 const { Dex } = Showdown;
-// console.log(Dex.moves.get("Return"));
+
 export class Pokemon {
     static shinyChance = 32;
     static hiddenAbilityChance = 64;

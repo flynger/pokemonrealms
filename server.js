@@ -472,6 +472,7 @@ io.on("connection", (socket) => {
     socket.emit("playerData", username, Object.values(players).filter((plyr) => plyr.connected).map((plyr) => plyr.export()));
     socket.emit("balanceUpdate", player.balance);
     socket.emit("inventoryUpdate", player.inventory.items);
+    socket.emit("partyUpdate", player.party);
     socket.emit("timeChange", {
         time: Map.time,
         exactTime: ticker
