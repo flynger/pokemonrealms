@@ -6,6 +6,8 @@ $(function () {
     $("#overlay-command").hide();
     $("#overlay-fight").hide();
     $("#overlay-switch").hide();
+    $("#info-you").hide();
+    $("#info-foe").hide();
     $("#overlay-message").show();
     // $('#battle-UI').hide();
     // $('#battle-UI').show(() => {
@@ -26,42 +28,7 @@ function useMove(num) {
 
 function switchTo(slot) {
     socket.emit("switchInput", slot);
-}
-
-function showSwitchButtons() {
-    var switchData = [
-        { id: 'pkmn1', imageSrc: 'res/pokemon/icons/25.png', name: 'Pikachu' },
-        { id: 'pkmn2', imageSrc: 'res/pokemon/icons/6.png', name: 'Charizard' },
-        { id: 'pkmn3', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
-        { id: 'pkmn4', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
-        { id: 'pkmn5', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
-        { id: 'pkmn6', imageSrc: 'res/pokemon/icons/151.png', name: 'Crabominable' }
-    ];
-
-    // Generate switch UI HTML
-    var switchHtml = '';
-    switchData.forEach(function (data) {
-        switchHtml += '<div id="' + data.id + '" class="switch-button text-white" onclick="switchTo(' + data.id.slice(4) + ')">';
-        switchHtml += '<img class="switch-image" src="' + data.imageSrc + '"></img>';
-        switchHtml += '<div class="switch-info">';
-        switchHtml += '<p class="mb-0">' + data.name + '</p>';
-        switchHtml += '<div class="hp hp-small"></div>';
-        switchHtml += '</div>';
-        switchHtml += '</div>';
-    });
-
-    switchHtml += '<div class="cancel" onclick="cancelSwitch()"></div>'
-
-    // Add switch UI HTML to the container element
-    $('#overlay-switch').html(switchHtml);
-    $("#overlay-switch").show();
-    $('#overlay-command').hide();
-}
-
-function runFromBattle() {
-    socket.emit("endBattle");
-    $("#overlay-command").hide();
-    $("#overlay-fight").hide();
+    $("#overlay-switch").hide()
 }
 
 var battleOptions;
@@ -151,9 +118,10 @@ function showPokemon(side, species, name, level, shiny) {
     if (side == "you") {
         $('#command-message').html("What will<br>" + name + " do?");
     }
+    $("#info-" + side).show();
     $('#pokemon-name-' + side).html((shiny ? "<span class='shiny' data-toggle='tooltip' title='Shiny!'>" : "") + name + (shiny ? "</span>" : ""));
     $('[data-toggle="tooltip"]').tooltip();
-    $('#lvl-' + side).html(level);
+    $('#lvl-text-' + side).html(level);
     var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
     $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
 }
@@ -161,7 +129,7 @@ function showPokemon(side, species, name, level, shiny) {
 function clearPokemon(side) {
     $("#pokemon-" + side).attr("src", "");
     $('#pokemon-name-' + side).html("");
-    $('#lvl-' + side).html("");
+    $('#lvl-text-' + side).html("");
     $("#hpbar-" + side).css("transition-duration", "0s");
     $("#hpbar-" + side).width(96);
     $("#hpbar-" + side).css("transition-duration", "0.666s");
@@ -175,6 +143,42 @@ function cancelFight() {
 function cancelSwitch() {
     $("#overlay-switch").hide();
     $('#overlay-command').show();
+}
+
+function showSwitchButtons() {
+    var switchData = [];
+
+    let party = battleOptions.side.pokemon;
+    for (let i in party) {
+        let pokemonNickname = party[i].ident.split(": ")[1];
+        let pkdexId = Pokedex.getPokedexEntry(party[i].details.split(", ")[0]).id;
+        switchData.push({ id: `pkmn${+i + 1}`, imageSrc: `res/pokemon/icons/${pkdexId}.png`, name: pokemonNickname })
+    }
+
+    // Generate switch UI HTML
+    var switchHtml = '';
+    switchData.forEach(function (data) {
+        switchHtml += '<div id="' + data.id + '" class="switch-button text-white" onclick="switchTo(' + data.id.slice(4) + ')">';
+        switchHtml += '<img class="switch-image" src="' + data.imageSrc + '"></img>';
+        switchHtml += '<div class="switch-info">';
+        switchHtml += '<p class="mb-0">' + data.name + '</p>';
+        switchHtml += '<div class="hp hp-small"></div>';
+        switchHtml += '</div>';
+        switchHtml += '</div>';
+    });
+
+    switchHtml += '<div class="cancel" onclick="cancelSwitch()"></div>'
+
+    // Add switch UI HTML to the container element
+    $('#overlay-switch').html(switchHtml);
+    $("#overlay-switch").show();
+    $('#overlay-command').hide();
+}
+
+function runFromBattle() {
+    socket.emit("endBattle");
+    $("#overlay-command").hide();
+    $("#overlay-fight").hide();
 }
 
 function updateMoveChoices() {

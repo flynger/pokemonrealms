@@ -71,7 +71,7 @@
     top: 16px;
 }
 
-#lvl-you {
+#lvl-text-you {
     font-size: 1.1em;
     font-weight: bold;
     position: absolute;
@@ -84,7 +84,7 @@
     top: 16px;
 }
 
-#lvl-foe {
+#lvl-text-foe {
     font-size: 1.1em;
     font-weight: bold;
     position: absolute;
@@ -246,14 +246,15 @@
 .switch-button {
     background-color: #343a40;
     font-size: .8em;
-    border-radius: 8px; 
+    border-radius: 8px;
     width: 24%;
     height: 40%;
     border: 0.15rem solid white;
-    color:white;
+    color: white;
 }
 
-.switch-button:hover{
+.switch-button:hover {
+    cursor: pointer;
     background-color: rgb(107, 107, 107);
 }
 
@@ -271,7 +272,7 @@
 }
 
 .switch-info p {
-    width: min-content;
+    width: fit-content;
     scale: calc(var(--scale-coefficient) * var(--scale));
     transform-origin: left top;
 }

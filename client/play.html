@@ -240,12 +240,13 @@
           </div>
           <div class="stats-field">
             <div class="stats-label" data-toggle="tooltip"
-            title="Affects the growth of a Pokémon, increasing one of a Pokémon's stats by 10% while decreasing another by 10%. However, some have no effect.">Nature</div>
+              title="Affects the growth of a Pokémon, increasing one of a Pokémon's stats by 10% while decreasing another by 10%. However, some have no effect.">
+              Nature</div>
             <div class="stats-data" data-toggle="tooltip" title="+10% Attack, -10% Sp. Atk">Adamant</div>
           </div>
           <div class="stats-field">
             <div id="stats-happiness" class="stats-label" data-toggle="tooltip"
-            title="Affects the evolution of certain Pokémon and the power of certain moves.">Happiness</div>
+              title="Affects the evolution of certain Pokémon and the power of certain moves.">Happiness</div>
             <div class="stats-data">86</div>
           </div>
           <div class="stats-field">
@@ -260,11 +261,14 @@
           </div>
           <div id="stats-stat-labels">
             <div id="stats-stat-label" data-toggle="tooltip"
-            title="The actual stat value a Pokémon uses in battle. Depends on a Pokémon's base stats, level, IVs, EVs, and nature.">Stat</div>
+              title="The actual stat value a Pokémon uses in battle. Depends on a Pokémon's base stats, level, IVs, EVs, and nature.">
+              Stat</div>
             <div id="stats-iv-label" data-toggle="tooltip"
-            title="Individual Values are fixed, randomly generated values from 0 to 31. They contribute to the final stat value of a Pokémon.">IV</div>
+              title="Individual Values are fixed, randomly generated values from 0 to 31. They contribute to the final stat value of a Pokémon.">
+              IV</div>
             <div id="stats-ev-label" data-toggle="tooltip"
-            title="Effort Values are usually obtained from defeating Pokémon in battle. They contribute to the final stat value of a Pokémon.">EV</div>
+              title="Effort Values are usually obtained from defeating Pokémon in battle. They contribute to the final stat value of a Pokémon.">
+              EV</div>
           </div>
           <div id="stats-field-hp" class="stats-field">
             <div class="stats-label stats-label-m">HP</div>
@@ -275,9 +279,11 @@
             </div>
           </div>
           <div class="stats-field">
-            <div class="stats-label red" data-toggle="tooltip" title="Increased by 10% due to Adamant nature.">Attack</div>
+            <div class="stats-label red" data-toggle="tooltip" title="Increased by 10% due to Adamant nature.">Attack
+            </div>
             <div class="stats-data-flex">
-              <div class="stats-data-flex-child-l red" data-toggle="tooltip" title="Increased by 10% due to Adamant nature.">188</div>
+              <div class="stats-data-flex-child-l red" data-toggle="tooltip"
+                title="Increased by 10% due to Adamant nature.">188</div>
               <div class="stats-data-flex-child-s stats-iv" data-toggle="tooltip" title="No good">3</div>
               <div class="stats-data-flex-child-s stats-ev">1</div>
             </div>
@@ -291,9 +297,11 @@
             </div>
           </div>
           <div class="stats-field">
-            <div class="stats-label medblue" data-toggle="tooltip" title="Decreased by 10% due to Adamant nature.">Sp. Atk</div>
+            <div class="stats-label medblue" data-toggle="tooltip" title="Decreased by 10% due to Adamant nature.">Sp.
+              Atk</div>
             <div class="stats-data-flex">
-              <div class="stats-data-flex-child-l medblue" data-toggle="tooltip" title="Decreased by 10% due to Adamant nature.">282</div>
+              <div class="stats-data-flex-child-l medblue" data-toggle="tooltip"
+                title="Decreased by 10% due to Adamant nature.">282</div>
               <div class="stats-data-flex-child-s stats-iv" data-toggle="tooltip" title="No good">7</div>
               <div class="stats-data-flex-child-s stats-ev">0</div>
             </div>
@@ -471,20 +479,24 @@
         <img id="pokemon-foe" src="">
         <div class="hitmarker"></div>
       </div>
-      <div class="databox you bg-image">
+      <div id="info-you" class="databox you bg-image">
         <p id="pokemon-name-you" class="battle-text"></p>
-        <div class="lvl you"></div>
-        <p id="lvl-you" class="battle-text"></p>
+        <div>
+          <div class="lvl you"></div>
+          <p id="lvl-text-you" class="battle-text"></p>
+        </div>
         <div id="hpbar-you" class="hp g"></div>
         <div id="hpvalue-container">
           <p id="hpvalue-you" class="battle-text"></p>
         </div>
         <div id="xpbar"></div>
       </div>
-      <div class="databox foe bg-image">
+      <div id="info-foe" class="databox foe bg-image">
         <p id="pokemon-name-foe" class="battle-text"></p>
-        <div class="lvl foe"></div>
-        <p id="lvl-foe" class="battle-text"></p>
+        <div>
+          <div class="lvl foe"></div>
+          <p id="lvl-text-foe" class="battle-text"></p>
+        </div>
         <div id="hpbar-foe" class="hp g"></div>
       </div>
       <div id="overlay-message" class="battle-text">
