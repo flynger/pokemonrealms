@@ -163,23 +163,55 @@
           </div> -->
           <div class="stats-field">
             <div class="stats-label">EXP</div>
-            <div class="stats-data">???</div>
+            <div class="stats-data">15,456 / 90,000</div>
           </div>
           <div class="stats-field">
             <div class="stats-label">Held Item</div>
-            <div class="stats-data">None</div>
+            <div class="stats-data">Leftovers</div>
           </div>
           <div id="move1-div" class="stats-field">
-            <div class="stats-data-full">Dream Eater</div>
+            <!-- <div class="stats-label-s">Move 1</div> -->
+            <div class="stats-data-full d-flex">
+              <div id="stats-move1" class="stats-move-name">
+                Dream Eater
+              </div>
+              <div class="stats-move-type-div">
+                <div class="stats-move-type type psychic"></div>
+              </div>
+            </div>
           </div>
-          <div class="stats-field">
-            <div class="stats-data-full">Dark Pulse</div>
+          <div id="move2-div" class="stats-field">
+            <!-- <div class="stats-label-s">2</div> -->
+            <div class="stats-data-full d-flex">
+              <div id="stats-move2" class="stats-move-name">
+                Dark Void
+              </div>
+              <div class="stats-move-type-div">
+                <div class="stats-move-type type dark"></div>
+              </div>
+            </div>
           </div>
-          <div class="stats-field">
-            <div class="stats-data-full">Dark Void</div>
+          <div id="move3-div" class="stats-field">
+            <!-- <div class="stats-label-s">3</div> -->
+            <div class="stats-data-full d-flex">
+              <div id="stats-move3" class="stats-move-name">
+                Stomping Tantrum
+              </div>
+              <div class="stats-move-type-div">
+                <div class="stats-move-type type fighting"></div>
+              </div>
+            </div>
           </div>
-          <div class="stats-field">
-            <div class="stats-data-full">-</div>
+          <div id="move4-div" class="stats-field">
+            <!-- <div class="stats-label-s">4</div> -->
+            <div class="stats-data-full d-flex">
+              <div id="stats-move4" class="stats-move-name">
+                Tackle
+              </div>
+              <div class="stats-move-type-div">
+                <div class="stats-move-type type normal"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div id="stats-body-right">
@@ -200,17 +232,19 @@
           </div>
           <div class="stats-field">
             <div id="stats-ability" class="stats-label" data-toggle="tooltip"
-              title="Special attributes given to each Pokémon that can aid them in battle.">
+              title="Abilities are special attributes given to each Pokémon that can aid them in battle.">
               Ability</div>
             <div class="stats-data" data-toggle="tooltip" title="Damages opposing Pokémon that are asleep.">Bad Dreams
             </div>
           </div>
           <div class="stats-field">
-            <div class="stats-label">Nature</div>
+            <div class="stats-label" data-toggle="tooltip"
+            title="Affects the growth of a Pokémon, increasing one of a Pokémon's stats by 10% while decreasing another by 10%. However, some have no effect.">Nature</div>
             <div class="stats-data">Serious</div>
           </div>
           <div class="stats-field">
-            <div id="stats-happiness" class="stats-label">Happiness</div>
+            <div id="stats-happiness" class="stats-label" data-toggle="tooltip"
+            title="Affects the evolution of certain Pokémon and the power of certain moves.">Happiness</div>
             <div class="stats-data">86</div>
           </div>
           <div class="stats-field">
@@ -224,9 +258,12 @@
             <div class="stats-data">Eichardo</div>
           </div>
           <div id="stats-stat-labels">
-            <div id="stats-stat-label">Stat</div>
-            <div id="stats-iv-label">IV</div>
-            <div id="stats-ev-label">EV</div>
+            <div id="stats-stat-label" data-toggle="tooltip"
+            title="The actual stat value a Pokémon uses in battle. Depends on a Pokémon's base stats, level, IVs, EVs, and nature.">Stat</div>
+            <div id="stats-iv-label" data-toggle="tooltip"
+            title="Individual Values are fixed, randomly generated values from 0 to 31. They contribute to the final stat value of a Pokémon.">IV</div>
+            <div id="stats-ev-label" data-toggle="tooltip"
+            title="Effort Values are usually obtained from defeating Pokémon in battle. They contribute to the final stat value of a Pokémon.">EV</div>
           </div>
           <div id="stats-field-hp" class="stats-field">
             <div class="stats-label">HP</div>

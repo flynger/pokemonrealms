@@ -1,12 +1,14 @@
 #pokemon-summary {
     position: absolute;
     font-family: Power Clear;
-    text-shadow: 0.1vmin 0.1vmin #454545;
+    text-shadow: 0.15vmin 0.15vmin #454545;
     width: 42vmin;
     height: 49.5vmin;
     border-radius: 0.5vmin;
     user-select: none;
     display: none;
+    scale: 1.2;
+    transform-origin: top left;
 }
 
 #pokemon-summary-header {
@@ -86,10 +88,6 @@
     height: 1.1vmin;
 }
 
-#move1-div {
-    margin-top: 1vmin;
-}
-
 #stats-body-right {
     position: absolute;
     right: 0;
@@ -118,7 +116,15 @@
     width: 36%;
     border-radius: 0.5vmin;
     text-align: center;
+}
 
+.stats-label-s {
+    background-color: #212529;
+    height: 100%;
+    width: 21%;
+    border-radius: 0.5vmin;
+    text-align: center;
+    font-size: 1.4vmin;
 }
 
 .stats-data {
@@ -133,6 +139,33 @@
     height: 100%;
     width: 100%;
     text-align: center;
+}
+
+.stats-data-l {
+    height: 100%;
+    width: 79%;
+    text-align: right;
+}
+
+#move1-div {
+    margin-top: 1vmin;
+}
+
+.stats-move-name {
+    padding-left: 0.7vmin;
+    height: 100%;
+    width: 74%;
+    text-align: left;
+}
+.stats-move-type-div {
+    height: 100%;
+    width: 26%;
+}
+.stats-move-type {
+    margin-top: 0.2vmin;
+    scale: calc(0.7*var(--vmin-scale));
+    transform-origin: top left;
+    image-rendering: auto;
 }
 
 .stats-type-data {

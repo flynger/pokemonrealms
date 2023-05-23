@@ -1,7 +1,7 @@
 import Pokedex from "./pokedex.js";
 import Showdown from "pokemon-showdown";
 const { Dex } = Showdown;
-// console.log(Dex.natures.get("Timid"));
+// console.log(Dex.moves.get("Return"));
 export class Pokemon {
     static shinyChance = 32;
     static hiddenAbilityChance = 64;
@@ -9,7 +9,7 @@ export class Pokemon {
         return Dex.natures.all().random().id;
     }
 
-    constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature, abilitySlot, ivs, evs, moves = [], originalTrainer, owner }) {
+    constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature, abilitySlot, happiness = 70, ivs, evs, moves = [], originalTrainer, owner }) {
         this.species = species;
         this.name = name;
 
@@ -26,6 +26,7 @@ export class Pokemon {
         this.level = level;
         this.heldItem = heldItem;
         this.nature = nature || Pokemon.getRandomNature();
+        this.happiness = happiness;
 
         // ability code
         if (abilitySlot && Pokedex[species].abilities.hasOwnProperty(abilitySlot)) {
@@ -53,7 +54,7 @@ export class Pokemon {
         }
         possibleMoves.push(...moves);
         possibleMoves.shuffle();
-        console.log(possibleMoves);
+        // console.log(possibleMoves);
         this.moves = possibleMoves;
         this.originalTrainer = originalTrainer;
         this.owner = owner;

@@ -386,6 +386,7 @@ export default class SingleBattle {
                 console.log(battleData);
                 player.socket.emit("battleData", battleData);
             }
+            // console.log(this.stream.battle.sides[1].active[0].happiness = 0);
         }
     }
 
