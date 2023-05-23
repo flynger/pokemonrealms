@@ -57,22 +57,20 @@ function addItem(item) {
   // Create a new accordion item
   console.log(`adding ${quantity} of ${id}`);
   let itemNumber = $('#item-list .accordion-item').length + 1;
-  let newItem = $('<div class="accordion-item item">' +
-    '<h2 class="accordion-header" id="heading' + itemNumber + '">' +
-    '<button class="accordion-button collapsed bg-dark text-white item-label" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' + itemNumber + '" aria-expanded="false" aria-controls="collapse' + itemNumber + '">' +
-    '<img class="item-image" src="res/items/' + id + '.png">' + name + ' x' + quantity +
-    '</button>' +
-    '</h2>' +
-    '<div id="collapse' + itemNumber + '" class="accordion-collapse collapse" aria-labelledby="heading' + itemNumber + '" data-bs-parent="#item-list">' +
-    '<div class="accordion-body bg-dark text-white">' +
-    desc +
-    '<br>' +
-    (isUsable ? '<button class="item-button">Use</button>' : "") +
-    (isHoldable ? '<button class="item-button">Give</button>' : "") +
-    `<button class="item-button" onclick="openDiscardUI(inventory.${id})">Discard</button>` +
-    '</div>' +
-    '</div>' +
-    '</div>');
+  let newItem = $(`<div class="accordion-item item"> 
+    <h2 class="accordion-header" id="heading${itemNumber}">
+    <button class="accordion-button collapsed bg-dark text-white item-label" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${itemNumber}" aria-expanded="false" aria-controls="collapse${itemNumber}">
+    <img class="item-image" src="res/items/${id}.png">${name} x ${quantity}
+    </button>
+    </h2>
+    <div id="collapse${itemNumber}" class="accordion-collapse collapse" aria-labelledby="heading${itemNumber}" data-bs-parent="#item-list">
+    <div class="accordion-body bg-dark text-white">${desc}<br>
+    ${isUsable ? '<button class="item-button">Use</button>' : ""}
+    ${isHoldable ? '<button class="item-button">Give</button>' : ""}
+    <button class="item-button" onclick="openDiscardUI(inventory.${id})">Discard</button>
+    </div>
+    </div>
+    </div>`);
 
   // Append the new item to the accordion
   $('#item-list').append(newItem);
