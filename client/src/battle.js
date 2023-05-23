@@ -65,7 +65,7 @@ function nextAction() {
         $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
         setTimeout(() => {
             if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
-            else nextAction();
+            else nextActionLogic(nextData);
         }, 666);
     }
     else textInterval = createTextInterval(nextData, letters);
@@ -77,27 +77,29 @@ function createTextInterval(nextData, letters) {
         $('#dialogue').html($('#dialogue').html() + letters[index++]);
         if (index >= letters.length) {
             clearInterval(textInterval);
-            setTimeout(() => {
-                if (battleData.length > 0) {
-                    nextAction();
-                } else {
-                    if (nextData.battleOver) {
-                        $('#battle-UI').hide();
-                        players[username].busy = false;
-                        isBattleActive = false;
-                        app.view.style.filter = "none";
-                        clearPokemon("you");
-                        clearPokemon("foe");
-                    } else {
-                        $("#overlay-command").show();
-                        // $("#overlay-fight").show();
-                    }
-                    $('#dialogue').html("");
-                    dialoguePlaying = false;
-                }
-            }, 800);
+            setTimeout(nextActionLogic, 800, nextData);
         }
     }, 1000 / textSpeed);
+}
+
+function nextActionLogic(nextData) {
+    if (battleData.length > 0) {
+        nextAction();
+    } else {
+        if (nextData.battleOver) {
+            $('#battle-UI').hide();
+            players[username].busy = false;
+            isBattleActive = false;
+            app.view.style.filter = "none";
+            clearPokemon("you");
+            clearPokemon("foe");
+        } else {
+            $("#overlay-command").show();
+            // $("#overlay-fight").show();
+        }
+        $('#dialogue').html("");
+        dialoguePlaying = false;
+    }
 }
 
 function processFormatting(message, letters) {
