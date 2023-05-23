@@ -171,7 +171,7 @@
     width: 26%;
 }
 .stats-move-type {
-    margin-top: 0.2vmin;
+    margin-top: 0.25vmin;
     scale: calc(0.7*var(--vmin-scale));
     transform-origin: top left;
     image-rendering: auto;
