@@ -86,7 +86,7 @@ function nextAction() {
         }
         let side = nextData.side;
         let nickname = nextData.nickname;
-        let species = pokemonData[0].toLowerCase();
+        let species = Pokedex.getPokedexEntry(pokemonData[0]).species.toLowerCase();
         let level = pokemonData[1].slice(1);
         let gender = pokemonData[2];
         let shiny = pokemonData[3] == "shiny";
