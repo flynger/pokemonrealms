@@ -194,12 +194,19 @@ async function setupGame() {
 }
 
 function loadPlayersAndGame(playersArray) {
+    const stage = app.stage;
+    stage.interactive = true;
+
+    stage.on("click", canvasClicked);
+
     for (let plyr of playersArray) {
         if (plyr.name == username) {
             new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true).sendLocation();
         }
         else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
     }
+
+    
     app.ticker.add(draw);
     gameDiv.prepend(app.view);
     $('#game').show();
