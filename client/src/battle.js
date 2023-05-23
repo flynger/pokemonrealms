@@ -149,33 +149,31 @@ function cancelSwitch() {
 }
 
 function showSwitchButtons() {
-    var switchData = [];
+    var switchHtml = '';
     let party = battleOptions.side.pokemon;
+    // TODO: implement forceSwitch
+    let forceSwitch = true;
+
+    // Generate switch UI HTML
     for (let i in party) {
-        let pokemonNickname = party[i].ident.split(": ")[1];
+        let pkmnNickname = party[i].ident.split(": ")[1];
         let pkmnDetails = party[i].details.split(", ");
         let pkdexId = Pokedex.getPokedexEntry(pkmnDetails[0]).id;
         let lv = !pkmnDetails[1].startsWith("L") ? "100" : pkmnDetails[1].slice(1);
-        switchData.push({ id: `pkmn${+i + 1}`, imageSrc: `res/pokemon/icons/${pkdexId}.png`, name: pokemonNickname, lv: lv, hp: party[i].condition })
-    }
+        let hpValues = party[i].condition.split(" ")[0].split("/");
 
-    // Generate switch UI HTML
-    var switchHtml = '';
-    switchData.forEach(function (data) {
-        let id = data.id.slice(4);
         switchHtml +=
-            `<div id="${data.id}" class="switch-button text-white"
-            ${+id !== 1 ? `onclick="switchTo(${id})"` : ""}><img class="switch-image" src="${data.imageSrc}"></img>
+            `<div id="pkmn${+i + 1}" class="switch-button text-white"
+            ${+i + 1 !== 1 ? `onclick="switchTo(${+i + 1})"` : ""}><img class="switch-image" src="res/pokemon/icons/${pkdexId}.png"></img>
             <div class="switch-info">
-            <p class="mb-0">${data.name} Lv. ${data.lv}</p>
-            <div id="pkmn${id}-hpbar" class="hp hp-small"></div>
+            <p class="mb-0">${pkmnNickname} Lv. ${lv}</p>
+            <div id="pkmn${+i + 1}-hpbar" class="hp hp-small"></div>
             </div>
             </div>`;
-        let hpValues = data.hp.split(" ")[0].split("/");
-        $(`#pkmn${id}-hpbar`).width = +hpValues[0] / +hpValues[1] * 96;
-    });
+        $(`#pkmn${+i + 1}-hpbar`).width = +hpValues[0] / +hpValues[1] * 96;
+    }
 
-    switchHtml += '<div class="cancel" onclick="cancelSwitch()"></div>'
+    if(forceSwitch){switchHtml += '<div class="cancel" onclick="cancelSwitch()"></div>'};
 
     // Add switch UI HTML to the container element
     $('#overlay-switch').html(switchHtml);
