@@ -152,7 +152,7 @@ function setupSocket() {
     });
 
     socket.on("battleOptions", (newBattleOptions) => {
-        console.log({ moves: newBattleOptions.active[0].moves });
+        // console.log({ moves: newBattleOptions.active[0].moves });
         battleOptions = newBattleOptions;
         updateMoveChoices();
     });

@@ -1,55 +1,55 @@
 function initSummaryUI() {
-    $("#summaryBtn").on("click", () => {
-        $("#pokemon-summary").toggle();
-    });
-    $("#pokemon-summary").draggable({
-        handle: "#pokemon-summary-header",
-        containment: "parent"
-    });
-    $('[data-toggle="tooltip"]').attr("data-bs-delay", '{"show":"500", "hide":"200"}');
-    $('[data-toggle="tooltip"]').tooltip();
-    // dragElement(document.getElementById("pokemon-summary"));
-    // Initialize the move list as sortable
-    // $("#move-list").sortable({
-    //     axis: "y",
-    //     containment: $("#pokemon-summary"),
-    //     cursor: "grabbing",
-    //     stop: function (event, ui) {
-    //         ui.item.removeAttr("style");
-    //     },
-    //     update: function (event, ui) {
-    //         // Update the move order in the backend
-    //         //updateMoveOrder();
-    //     }
-    // });
+  $("#summaryBtn").on("click", () => {
+    $("#pokemon-summary").toggle();
+  });
+  $("#pokemon-summary").draggable({
+    handle: "#pokemon-summary-header",
+    containment: "parent"
+  });
+  $('[data-toggle="tooltip"]').attr("data-bs-delay", '{"show":"500", "hide":"200"}');
+  $('[data-toggle="tooltip"]').tooltip();
+  // dragElement(document.getElementById("pokemon-summary"));
+  // Initialize the move list as sortable
+  // $("#move-list").sortable({
+  //     axis: "y",
+  //     containment: $("#pokemon-summary"),
+  //     cursor: "grabbing",
+  //     stop: function (event, ui) {
+  //         ui.item.removeAttr("style");
+  //     },
+  //     update: function (event, ui) {
+  //         // Update the move order in the backend
+  //         //updateMoveOrder();
+  //     }
+  // });
 }
 
 // Function to update the move order in the backend
 function updateMoveOrder() {
-    var moveOrder = [];
-    $(".move-item").each(function () {
-        moveOrder.push($(this).data("move-id"));
-    });
+  var moveOrder = [];
+  $(".move-item").each(function () {
+    moveOrder.push($(this).data("move-id"));
+  });
 
-    // Send the move order to the backend using AJAX
-    $.ajax({
-        type: "POST",
-        url: "update_move_order.php",
-        data: {
-            move_order: moveOrder
-        },
-        success: function (response) {
-            // Handle the response from the backend
-        }
-    });
+  // Send the move order to the backend using AJAX
+  $.ajax({
+    type: "POST",
+    url: "update_move_order.php",
+    data: {
+      move_order: moveOrder
+    },
+    success: function (response) {
+      // Handle the response from the backend
+    }
+  });
 }
 
 function createSummaryUI(pokemon) {
-    let entry = Pokedex.getPokedexEntry(pokemon.species);
-    let moveEntries = pokemon.moves.map((move) => Moves[move]);
-    let abilityEntry = Abilities[entry.abilities[pokemon.abilitySlot]];
-    let natureEntry = Natures[pokemon.nature];
-    $('#game').append(`<div id="pokemon-summary" class="pokemon-summary bg-dark text-white d-block">
+  let entry = Pokedex.getPokedexEntry(pokemon.species);
+  let moveEntries = pokemon.moves.map((move) => Moves[move]);
+  let abilityEntry = Abilities[entry.abilities[pokemon.abilitySlot]];
+  let natureEntry = Natures[pokemon.nature];
+  $('#game').append(`<div id="pokemon-summary" class="pokemon-summary bg-dark text-white d-block">
       <div id="pokemon-summary-header">
         Pokémon Summary
       </div>
@@ -73,40 +73,40 @@ function createSummaryUI(pokemon) {
           <div id="move1-div" class="stats-field">
             <div class="stats-data-full d-flex">
               <div class="stats-move-name">
-                Dream Eater
+                ${moveEntries[0] ? moveEntries[0].name : "-"}
               </div>
               <div class="stats-move-type-div">
-                <div class="stats-move-type type psychic"></div>
+              ${moveEntries[0] ? `<div class="stats-move-type type ${moveEntries[0].type.toLowerCase()}"></div>` : ""}
               </div>
             </div>
           </div>
           <div id="move2-div" class="stats-field">
             <div class="stats-data-full d-flex">
               <div class="stats-move-name">
-                Dark Void
+              ${moveEntries[1] ? moveEntries[1].name : "-"}
               </div>
               <div class="stats-move-type-div">
-                <div class="stats-move-type type dark"></div>
+              ${moveEntries[1] ? `<div class="stats-move-type type ${moveEntries[1].type.toLowerCase()}"></div>` : ""}
               </div>
             </div>
           </div>
           <div id="move3-div" class="stats-field">
             <div class="stats-data-full d-flex">
               <div class="stats-move-name">
-                Stomping Tantrum
+              ${moveEntries[2] ? moveEntries[2].name : "-"}
               </div>
               <div class="stats-move-type-div">
-                <div class="stats-move-type type fighting"></div>
+              ${moveEntries[2] ? `<div class="stats-move-type type ${moveEntries[2].type.toLowerCase()}"></div>` : ""}
               </div>
             </div>
           </div>
           <div id="move4-div" class="stats-field">
             <div class="stats-data-full d-flex">
               <div class="stats-move-name">
-                Tackle
+              ${moveEntries[3] ? moveEntries[3].name : "-"}
               </div>
               <div class="stats-move-type-div">
-                <div class="stats-move-type type normal"></div>
+              ${moveEntries[3] ? `<div class="stats-move-type type ${moveEntries[3].type.toLowerCase()}"></div>` : ""}
               </div>
             </div>
           </div>
@@ -219,20 +219,20 @@ function createSummaryUI(pokemon) {
         </div>
       </div>
     </div>`);
-    $('[data-toggle="tooltip"]').attr("data-bs-delay", '{"show":"500", "hide":"200"}');
-    $('[data-toggle="tooltip"]').tooltip();
-    $(".pokemon-summary").draggable({
-        handle: "#pokemon-summary-header",
-        containment: "parent"
-    });
+  $('[data-toggle="tooltip"]').attr("data-bs-delay", '{"show":"500", "hide":"200"}');
+  $('[data-toggle="tooltip"]').tooltip();
+  $(".pokemon-summary").draggable({
+    handle: "#pokemon-summary-header",
+    containment: "parent"
+  });
 }
 
 function getIVDescription(value) {
-    if (value <= 14) return "No good";
-    else if (value < 20) return "Meh";
-    else if (value <= 24) return "Decent";
-    else if (value <= 27) return "Pretty good";
-    else if (value <= 29) return "Really good";
-    else if (value == 30) return "Fantastic";
-    else return "Best";
+  if (value <= 14) return "No good";
+  else if (value < 20) return "Meh";
+  else if (value <= 24) return "Decent";
+  else if (value <= 27) return "Pretty good";
+  else if (value <= 29) return "Really good";
+  else if (value == 30) return "Fantastic";
+  else return "Best";
 }

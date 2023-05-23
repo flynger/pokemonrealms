@@ -29,8 +29,8 @@ export default class Player {
     pickStarter(starter) {
         if (this.starter == false) {
             this.starter = Player.starterOptions.includes(starter) ? starter : "MRMIME";
-            this.party.push(new Pokemon(this.starter, 5, { moves: ["RETURN"], originalTrainer: this.displayName, owner: this.displayName }));
-            this.party.push(new Pokemon("MIMEJR", 11, { gender: "F", originalTrainer: "Professor Oak", owner: this.displayName, caughtBall: "ultraball" }));
+            this.party.push(new Pokemon(this.starter, 1, { moves: ["RETURN"], originalTrainer: this.displayName, owner: this.displayName }));
+            this.party.push(new Pokemon("MIMEJR", 1, { gender: "F", originalTrainer: "Professor Oak", owner: this.displayName, caughtBall: "ultraball" }));
         }
     }
 
