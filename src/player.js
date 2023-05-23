@@ -32,7 +32,8 @@ export default class Player {
             this.party.push(new Pokemon(this.starter, 5, { originalTrainer: this.displayName, owner: this.displayName }));
             this.party.push(new Pokemon("MIMEJR", 1, { gender: "F", originalTrainer: "Professor Oak", owner: this.displayName, caughtBall: "ultraball" }));
             this.party.push(new Pokemon("DARKRAI", 10, { originalTrainer: "Unknown", owner: this.displayName, caughtBall: "masterball" }));
-            this.party.push(new Pokemon("MAGNEMITE", 25, { originalTrainer: "Unknown", owner: this.displayName }));
+            this.party.push(new Pokemon("MAGNEMITE", 99, { originalTrainer: "Unknown", owner: this.displayName }));
+            this.party.push(new Pokemon("MAGNEMITE", 100, { originalTrainer: "Unknown", owner: this.displayName }));
         }
     }
 

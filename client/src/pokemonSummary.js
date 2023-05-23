@@ -64,7 +64,7 @@ function createSummaryUI(pokemon) {
           </div>
           <div class="stats-field">
             <div class="stats-label">EXP</div>
-            <div class="stats-data">??? / ???</div>
+            <div class="stats-data"><span data-toggle="tooltip" title="EXP gained">${pokemon.xp}</span>${pokemon.level < 100 ? ` / <span data-toggle="tooltip" title="EXP required to level up">${GrowthRates[entry.growthRate][pokemon.level + 1]}</span>` : ""}</div>
           </div>
           <div class="stats-field">
             <div class="stats-label">Held Item</div>
