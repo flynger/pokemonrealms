@@ -42,8 +42,8 @@ function draw(deltaTime) {
         players[name].endFrame();
     }
     if (isBattleActive) {
-        // TODO: change 100 to battleData. (health)
-        $('#hpvalue-you').html((Math.round(($('#hpbar-you').width() / 96) * 100).toString() + "/" + 100));
+        let hpValues = battleOptions.side.pokemon[0].condition.split(" ")[0].split("/")
+        $('#hpvalue-you').html((Math.round(($('#hpbar-you').width() / 96) * hpValues[1]).toString() + "/" + hpValues[1]));
     }
 }
 

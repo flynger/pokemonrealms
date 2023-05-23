@@ -152,19 +152,22 @@ function showSwitchButtons() {
     for (let i in party) {
         let pokemonNickname = party[i].ident.split(": ")[1];
         let pkdexId = Pokedex.getPokedexEntry(party[i].details.split(", ")[0]).id;
-        switchData.push({ id: `pkmn${+i + 1}`, imageSrc: `res/pokemon/icons/${pkdexId}.png`, name: pokemonNickname })
+        switchData.push({ id: `pkmn${+i + 1}`, imageSrc: `res/pokemon/icons/${pkdexId}.png`, name: pokemonNickname, hp: party[i].condition })
     }
 
     // Generate switch UI HTML
     var switchHtml = '';
     switchData.forEach(function (data) {
-        switchHtml += '<div id="' + data.id + '" class="switch-button text-white" onclick="switchTo(' + data.id.slice(4) + ')">';
-        switchHtml += '<img class="switch-image" src="' + data.imageSrc + '"></img>';
+        let id = data.id.slice(4);
+        switchHtml += `<div id="${data.id}" class="switch-button text-white" onclick="switchTo(${id})">`;
+        switchHtml += `<img class="switch-image" src="${data.imageSrc}"></img>`;
         switchHtml += '<div class="switch-info">';
-        switchHtml += '<p class="mb-0">' + data.name + '</p>';
-        switchHtml += '<div class="hp hp-small"></div>';
+        switchHtml += `<p class="mb-0">${data.name} ${data.hp}</p>`;
+        switchHtml += `<div id="pkmn${id}-hpbar" class="hp hp-small"></div>`;
         switchHtml += '</div>';
         switchHtml += '</div>';
+        let hpValues = data.hp.split(" ")[0].split("/");
+        $(`#pkmn${id}-hpbar`).width = +hpValues[0] / +hpValues[1] * 96;
     });
 
     switchHtml += '<div class="cancel" onclick="cancelSwitch()"></div>'

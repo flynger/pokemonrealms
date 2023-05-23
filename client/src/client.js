@@ -34,7 +34,7 @@ function setupSocket() {
         if (+hour < 6 || timeString == "0600") {
             timeFromMidnight = 100 * (+hour + +minute / 60);
             nightEffects = true;
-            
+
         } else if (+hour >= 18) {
             timeFromMidnight = 2400 - 100 * (+hour + +minute / 60);
             nightEffects = true;
@@ -44,7 +44,7 @@ function setupSocket() {
             // console.log( { timeString, timeFromMidnight, rg });
             colorMatrix.tint("#" + rg.repeat(2) + "FF");
         }
-        
+
         if (hour == "00") hour = "12"; // set hour 0 to 12
         if (+hour > 12) hour = +hour - 12 + ""; // keep hour within 1 to 12
         if (hour[0] == "0") hour = hour[1]; // remove leading 0 if single digit hour
@@ -133,6 +133,8 @@ function setupSocket() {
     });
 
     socket.on("startBattle", (playerPokemon, wildPokemon) => {
+        $("#info-you").hide();
+        $("#info-foe").hide();
         $("#battle-UI").show();
         isBattleActive = true;
         // showPokemonYou(playerPokemon);
@@ -166,7 +168,7 @@ function setupSocket() {
     socket.on("balanceUpdate", (newBalance) => {
         console.log({ newBalance });
     });
-    
+
     socket.on("inventoryUpdate", (newInventory) => {
         console.log({ newInventory });
         inventory = newInventory;
