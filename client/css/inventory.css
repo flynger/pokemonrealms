@@ -4,6 +4,9 @@
   background-repeat: no-repeat;
   background-position: 50%;
 }*/
+.card-header:hover {
+  cursor: move;
+}
 #inventoryBtn:focus {
   outline: none;
   box-shadow: none;
@@ -35,10 +38,6 @@
 
 #inventoryTitle {
   font-size: 2em;
-}
-
-#inventoryHeader:hover {
-  cursor: move;
 }
 
 #inventoryItems {

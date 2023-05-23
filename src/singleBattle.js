@@ -17,6 +17,7 @@ export default class SingleBattle {
         opposingPokemon: DefaultText.default.opposingPokemon,
         switchIn: DefaultText.default.switchIn,
         turn: DefaultText.default.turn,
+        damagePercentage: " ", //DefaultText.default.damagePercentage,
         startBattle: DefaultText.default.startBattle,
         winBattle: DefaultText.default.winBattle,
         loseBattle: "You lost to **[TRAINER]**!",
@@ -102,10 +103,19 @@ export default class SingleBattle {
                                     message = DefaultText.default.switchOut;
                                     args.TRAINER = thisParty.name;
                                 }
+                                battleDataProperties = {
+                                    side: side == thisPlayer ? "you" : "foe",
+                                    switchOut: true
+                                };
                                 args.NICKNAME = thisParty.data.side.pokemon.find((mon) => mon.active).ident.split(": ")[1];
                             } else {
                                 // add logic to send private data to player
                                 message = " ";
+                            }
+
+                            if (isOwnPokemon) {
+                                if (!thisParty.data) thisParty.data = {};
+                                thisParty.data.switchInCondition = lineArray[2];
                             }
                             break;
                         default:
@@ -118,23 +128,27 @@ export default class SingleBattle {
                         case "switch":
                             var pokemonArgs = lineArray[0].split(": ");
                             var side = pokemonArgs[0][1];
+                            var thisParty = this["player" + side];
                             args.NICKNAME = pokemonArgs[1];
                             args.SPECIES = lineArray[1].split(", ")[0];
                             if (isOwnPokemon) {
                                 message = DefaultText.default.switchInOwn;
                             } else if (!isOwnPokemon) {
                                 message = this.text.switchIn;
-                                args.TRAINER = this["player" + side].name;
+                                args.TRAINER = thisParty.name;
                             }
                             battleDataProperties = {
                                 side: side == thisPlayer ? "you" : "foe",
                                 nickname: pokemonArgs[1],
                                 switchIn: lineArray[1]
                             };
+                            if (isOwnPokemon) {
+                                battleDataProperties.switchInCondition = thisParty.data.switchInCondition;
+                            }
                             // add logic to send public data to player
                             break;
                         case "-damage":
-                            message = DefaultText.default.damagePercentage;
+                            message = this.text.damagePercentage;
                             var pokemonArgs = lineArray[0].split(": ");
                             var pokemonIdentity = pokemonArgs[0].slice(0, -1) + ": " + pokemonArgs[1];
                             var side = pokemonArgs[0][1];
@@ -307,11 +321,10 @@ export default class SingleBattle {
                         var effectDetails = lineArray[1].split(": ");
                         var effectSourceType = effectDetails[0];
                         var effectSource = effectDetails[1];
-                        if (effectSourceType == "move") {
+                        if (effectSourceType == "move" || MovesText[Dex.moves.get(effectSource).id]) {
                             message = MovesText[Dex.moves.get(effectSource).id].start;
-                        }
-                        else {
-                            message = DefaultText[effectSourceType].start;
+                        } else {
+                            message = DefaultText[effectSourceType] ? DefaultText[effectSourceType].start : " ";
                         }
                         args.NICKNAME = lineArray[0].split(": ")[1];
                         break;
@@ -371,7 +384,7 @@ export default class SingleBattle {
             }
 
             // add battle message packet
-            if (message != " ") {
+            if (message != " " || Object.keys(battleDataProperties).length > 0) {
                 battleData.push({
                     message,
                     ...battleDataProperties

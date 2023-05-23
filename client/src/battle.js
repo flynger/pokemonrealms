@@ -64,7 +64,8 @@ function nextAction() {
     if ("damageHPTo" in nextData) {
         $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
         setTimeout(() => {
-            textInterval = createTextInterval(nextData, letters)
+            if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
+            else nextAction();
         }, 666);
     }
     else textInterval = createTextInterval(nextData, letters);

@@ -9,7 +9,7 @@ export class Pokemon {
         return Dex.natures.all().random().id;
     }
 
-    constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature, abilitySlot, happiness = 70, ivs, evs, moves = [], originalTrainer, owner }) {
+    constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature, abilitySlot, happiness = 70, ivs, evs, moves = [], originalTrainer, owner, caughtBall }) {
         this.species = species;
         this.name = name;
 
@@ -56,8 +56,10 @@ export class Pokemon {
         possibleMoves.shuffle();
         // console.log(possibleMoves);
         this.moves = possibleMoves;
-        this.originalTrainer = originalTrainer;
-        this.owner = owner;
+        if (originalTrainer) this.originalTrainer = originalTrainer;
+        if (owner) this.owner = owner;
+        if (owner && !caughtBall) caughtBall = "pokeball"; // default ball
+        if (caughtBall) this.caughtBall = caughtBall;
         console.log(this);
     }
 

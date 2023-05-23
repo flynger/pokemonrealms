@@ -41,7 +41,7 @@ function draw(deltaTime) {
     for (let name in players) {
         players[name].endFrame();
     }
-    if (isBattleActive && battleOptions.side) {
+    if (isBattleActive && battleOptions) {
         let hpValues = battleOptions.side.pokemon[0].condition.split(" ")[0].split("/");
         $('#hpvalue-you').html((Math.round(($('#hpbar-you').width() / 96) * hpValues[1]).toString() + "/" + hpValues[1]));
     }

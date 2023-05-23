@@ -211,20 +211,20 @@
     height: 2vmin;
     line-height: 2vmin;
     display: flex;
-    text-align: right;
+    text-align: center;
 }
 
 #stats-stat-label {
     margin-left: 36%;
-    width: 30%;
+    width: 32%;
 }
 
 #stats-iv-label {
-    width: 15%;
+    width: 16%;
 }
 
 #stats-ev-label {
-    width: 15%;
+    width: 16%;
 }
 
 .stats-data-flex {
@@ -232,28 +232,30 @@
     position: relative;
     height: 100%;
     width: 70%;
-    text-align: right;
+    text-align: center;
 }
 
 .stats-data-flex-child-l {
     height: 100%;
-    width: 46.875%;
+    width: 50%;
+    /* width: 46.875%; */
 }
 
 .stats-data-flex-child-s {
     height: 100%;
-    width: 23.4375%;
+    width: 25%;
+    /*width: 23.4375%;*/
 }
 
 #stats-hp-stat {
-    width: 50%;
+    font-size: 1.4vmin;
 }
-#stats-hp-iv {
+/* #stats-hp-iv {
     width: 22%;
 }
 #stats-hp-ev {
     width: 22%;
-}
+} */
 
 .stats-iv {
     color: #ede98d;

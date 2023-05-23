@@ -2,6 +2,7 @@ function initSummaryUI() {
     $("#summaryBtn").on("click", () => {
         $("#pokemon-summary").toggle();
     });
+    $('[data-toggle="tooltip"]').attr("data-bs-delay", '{"show":"500", "hide":"200"}');
     $('[data-toggle="tooltip"]').tooltip();
     // dragElement(document.getElementById("pokemon-summary"));
     $("#pokemon-summary").draggable({
@@ -9,18 +10,18 @@ function initSummaryUI() {
         containment: "parent"
     });
     // Initialize the move list as sortable
-    $("#move-list").sortable({
-        axis: "y",
-        containment: $("#pokemon-summary"),
-        cursor: "grabbing",
-        stop: function (event, ui) {
-            ui.item.removeAttr("style");
-        },
-        update: function (event, ui) {
-            // Update the move order in the backend
-            //updateMoveOrder();
-        }
-    });
+    // $("#move-list").sortable({
+    //     axis: "y",
+    //     containment: $("#pokemon-summary"),
+    //     cursor: "grabbing",
+    //     stop: function (event, ui) {
+    //         ui.item.removeAttr("style");
+    //     },
+    //     update: function (event, ui) {
+    //         // Update the move order in the backend
+    //         //updateMoveOrder();
+    //     }
+    // });
 }
 
 // Function to update the move order in the backend
@@ -41,4 +42,8 @@ function updateMoveOrder() {
             // Handle the response from the backend
         }
     });
+}
+
+function openSummary() {
+
 }
