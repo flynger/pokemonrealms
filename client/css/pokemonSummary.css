@@ -3,7 +3,7 @@
     font-family: Power Clear;
     text-shadow: 0.15vmin 0.15vmin #454545;
     width: 42vmin;
-    height: 49.5vmin;
+    height: 49.4vmin;
     border-radius: 0.5vmin;
     user-select: none;
     display: none;
@@ -72,6 +72,7 @@
 
 #stats-caught-ball {
     height: 2.5vmin;
+    width: 2.6vmin;
     margin-bottom: 0.2vmin;
 }
 

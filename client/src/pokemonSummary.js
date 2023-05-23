@@ -59,7 +59,7 @@ function createSummaryUI(pokemon) {
             <div id="stats-sprite-container">
               <img id="stats-sprite" src="https://play.pokemonshowdown.com/sprites/gen5ani${pokemon.shiny ? "-shiny" : ""}/${pokemon.species.toLowerCase()}.gif" />
             </div>
-            <div id="stats-name-tag"><img id="stats-caught-ball" src="res/items/${pokemon.caughtBall}.png" />&nbsp;${pokemon.name ? pokemon.name : entry.name}<span
+            <div id="stats-name-tag"><img id="stats-caught-ball" src="res/items/${pokemon.caughtBall}.png" />&nbsp;<span${pokemon.shiny ? ` class="shiny"` : ""}>${pokemon.name ? pokemon.name : entry.name}</span><span
                 class="${pokemon.gender == "N" ? "" : pokemon.gender == "M" ? "blue" : "red"}"> ${pokemon.gender == "N" ? "" : pokemon.gender == "M" ? " ♂" : " ♀"}</span> Lv. ${pokemon.level}</div>
           </div>
           <div class="stats-field">
@@ -73,40 +73,40 @@ function createSummaryUI(pokemon) {
           <div id="move1-div" class="stats-field">
             <div class="stats-data-full d-flex">
               <div class="stats-move-name">
-                ${moveEntries[0] ? moveEntries[0].name : "-"}
+                ${moveEntries[0] ? `<span data-toggle="tooltip" title="${getMoveDescription(moveEntries[0])}">${moveEntries[0].name}</span>` : "-"}
               </div>
               <div class="stats-move-type-div">
-              ${moveEntries[0] ? `<div class="stats-move-type type ${moveEntries[0].type.toLowerCase()}"></div>` : ""}
+                ${moveEntries[0] ? `<div class="stats-move-type type ${moveEntries[0].type.toLowerCase()}"></div>` : ""}
               </div>
             </div>
           </div>
           <div id="move2-div" class="stats-field">
             <div class="stats-data-full d-flex">
               <div class="stats-move-name">
-              ${moveEntries[1] ? moveEntries[1].name : "-"}
+                ${moveEntries[1] ? `<span data-toggle="tooltip" title="${getMoveDescription(moveEntries[1])}">${moveEntries[1].name}</span>` : "-"}
               </div>
               <div class="stats-move-type-div">
-              ${moveEntries[1] ? `<div class="stats-move-type type ${moveEntries[1].type.toLowerCase()}"></div>` : ""}
+                ${moveEntries[1] ? `<div class="stats-move-type type ${moveEntries[1].type.toLowerCase()}"></div>` : ""}
               </div>
             </div>
           </div>
           <div id="move3-div" class="stats-field">
             <div class="stats-data-full d-flex">
               <div class="stats-move-name">
-              ${moveEntries[2] ? moveEntries[2].name : "-"}
+                ${moveEntries[2] ? `<span data-toggle="tooltip" title="${getMoveDescription(moveEntries[2])}">${moveEntries[2].name}</span>` : "-"}
               </div>
               <div class="stats-move-type-div">
-              ${moveEntries[2] ? `<div class="stats-move-type type ${moveEntries[2].type.toLowerCase()}"></div>` : ""}
+                ${moveEntries[2] ? `<div class="stats-move-type type ${moveEntries[2].type.toLowerCase()}"></div>` : ""}
               </div>
             </div>
           </div>
           <div id="move4-div" class="stats-field">
             <div class="stats-data-full d-flex">
               <div class="stats-move-name">
-              ${moveEntries[3] ? moveEntries[3].name : "-"}
+                ${moveEntries[3] ? `<span data-toggle="tooltip" title="${getMoveDescription(moveEntries[3])}">${moveEntries[3].name}</span>` : "-"}
               </div>
               <div class="stats-move-type-div">
-              ${moveEntries[3] ? `<div class="stats-move-type type ${moveEntries[3].type.toLowerCase()}"></div>` : ""}
+                ${moveEntries[3] ? `<div class="stats-move-type type ${moveEntries[3].type.toLowerCase()}"></div>` : ""}
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@ function createSummaryUI(pokemon) {
           <div class="stats-field">
             <div class="stats-label">Type</div>
             <div class="stats-type-data">
-            ${entry.types.length == 2 ? `<span class="stats-type1 type ${entry.types[0].toLowerCase()}"></span>` : ""}
+              ${entry.types.length == 2 ? `<span class="stats-type1 type ${entry.types[0].toLowerCase()}"></span>` : ""}
               <span class="stats-type2 type ${entry.types.length == 1 ? entry.types[0].toLowerCase() : entry.types[1].toLowerCase()}"></span>
             </div>
           </div>
@@ -219,8 +219,7 @@ function createSummaryUI(pokemon) {
         </div>
       </div>
     </div>`);
-  $('[data-toggle="tooltip"]').attr("data-bs-delay", '{"show":"500", "hide":"200"}');
-  $('[data-toggle="tooltip"]').tooltip();
+  refreshTooltips();
   $(".pokemon-summary").draggable({
     handle: "#pokemon-summary-header",
     containment: "parent"
@@ -235,4 +234,18 @@ function getIVDescription(value) {
   else if (value <= 29) return "Really good";
   else if (value == 30) return "Fantastic";
   else return "Best";
+}
+
+function getMoveDescription(moveEntry) {
+  let description = "";
+  description += `Power: ${moveEntry.basePower ? moveEntry.basePower : "—"}`
+  description += `<br>Accuracy: ${moveEntry.accuracy === true ? "—" : moveEntry.accuracy}`
+  description += `<br>Category: ${moveEntry.category}`
+  description += `<br>Description: ${moveEntry.desc}`;
+  return description;
+}
+
+function refreshTooltips() {
+  $('[data-toggle="tooltip"]').attr("data-bs-delay", '{"show":"500", "hide":"200"}');
+  $('[data-toggle="tooltip"]').tooltip({ html: true });
 }
