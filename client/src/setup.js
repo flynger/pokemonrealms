@@ -48,7 +48,6 @@ async function setup() {
     await setupGame();
     $('#message-body').text("Establishing connection to server...");
     setupSocket();
-
 }
 
 window.onresize = () => {
@@ -94,6 +93,11 @@ async function setupGame() {
             backgroundColor: 0x000000
         }
     );
+    // console.log(app.renderer);
+    // const renderer = app.renderer;
+
+    // const interactionManager = renderer.plugins.interaction;
+    // interactionManager.on("click", onClick);
     gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
 
     // physics debugging code
@@ -128,7 +132,7 @@ async function setupGame() {
             if (/*(i + j + 1) % randomNumber(4, 10) == 0 || */(i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
                 new grass(i * 32, j * 32);
             } else if (randomNumber(1, 900) == 1) {
-                new npc("Professor Oak" + randomNumber(1,9999), "oak", i * 32, j * 32 - 2)
+                new npc("Professor Oak" + randomNumber(1, 9999), "oak", i * 32, j * 32 - 2)
             }
         }
     }
@@ -136,6 +140,10 @@ async function setupGame() {
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
     app.stage.addChild(textContainer);
+    // let interactionManager = new PIXI.interaction.InteractionManager(app.renderer);
+
+    // // renderer.plugins.interaction.on("mousedown", checkForClick);
+    // // renderer.plugins.interaction.on("mousedown", checkForClick);
 }
 
 function loadPlayersAndGame(playersArray) {
@@ -147,8 +155,34 @@ function loadPlayersAndGame(playersArray) {
         else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
     }
 
-    
+
     app.ticker.add(draw);
     gameDiv.prepend(app.view);
     $('#game').show();
+}
+
+function onClick(event) {
+    console.log("CLICKED");
+    if (event.type === "mousedown") {
+        // Get the mouse position relative to the renderer
+        const mousePosition = event.data.getLocalPosition(renderer.view);
+
+        // Loop through all the players
+        for (const playerName in players) {
+            const currentPlayer = players[playerName];
+            const playerSprite = currentPlayer.headSprite;
+
+            // Check if the mouse position is within the bounds of the player sprite
+            if (
+                mousePosition.x >= playerSprite.x &&
+                mousePosition.x <= playerSprite.x + playerSprite.width &&
+                mousePosition.y >= playerSprite.y &&
+                mousePosition.y <= playerSprite.y + playerSprite.height
+            ) {
+                // Perform the desired action when the player is clicked
+                console.log(`Clicked on player: ${currentPlayer.name}`);
+                // Add your code here to handle the click event
+            }
+        }
+    }
 }

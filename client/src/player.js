@@ -133,6 +133,15 @@ class player {
         this.bodySprite.y = 24;
         this.headSprite.addChild(this.bodySprite);
         gameContainer.addChild(this.headSprite);
+    
+        // Add click event listener
+        this.headSprite.interactive = true;
+        this.headSprite.on("click", this.onPlayerClick.bind(this));
+    }
+    
+    onPlayerClick() {
+        // Handle sprite click event
+        console.log("playerClicked!");
     }
 
     updateSprite() {
