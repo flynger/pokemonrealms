@@ -33,7 +33,7 @@ export default class Player {
             this.starter = Player.starterOptions.includes(starter) ? starter : Player.starterOptions.random();
             this.party.push(new Pokemon(this.starter, 5, { nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), originalTrainer: this.displayName, owner: this.displayName, hiddenAbilityChance: 0 }));
             for (let i = 0; i < 5; i++) {
-                let rng = randomNumber(1, 649) != 134 ? randomNumber(29, 32) : 134;
+                let rng = randomNumber(1, 649);
                 for (let mon in Pokedex) {
                     if (rng == Pokedex[mon].id) {
                         console.log(mon)
