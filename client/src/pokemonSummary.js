@@ -59,7 +59,7 @@ function createSummaryUI(pokemon) {
             <div id="stats-sprite-container">
               <img id="stats-sprite" src="https://play.pokemonshowdown.com/sprites/gen5ani${pokemon.shiny ? "-shiny" : ""}/${pokemon.species.toLowerCase()}.gif" />
             </div>
-            <div id="stats-name-tag"><img id="stats-caught-ball" src="res/items/${pokemon.caughtBall}.png" />&nbsp;<span${pokemon.shiny ? ` class="shiny"` : ""}>${pokemon.name ? pokemon.name : entry.name}</span><span
+            <div id="stats-name-tag"><img class="stats-inline-image" src="res/items/${pokemon.caughtBall}.png" />&nbsp;<span${pokemon.shiny ? ` class="shiny"` : ""}>${pokemon.name ? pokemon.name : entry.name}</span><span
                 class="${pokemon.gender == "N" ? "" : pokemon.gender == "M" ? "blue" : "red"}"> ${pokemon.gender == "N" ? "" : pokemon.gender == "M" ? " ♂" : " ♀"}</span> Lv. ${pokemon.level}</div>
           </div>
           <div class="stats-field">
@@ -68,7 +68,7 @@ function createSummaryUI(pokemon) {
           </div>
           <div class="stats-field">
             <div class="stats-label">Held Item</div>
-            <div class="stats-data">${pokemon.heldItem || "None"}</div>
+            <div class="stats-data">${pokemon.heldItem ? `<img class="stats-inline-image" src="res/items/${pokemon.heldItem}.png" /> ` : ""}${pokemon.heldItem ? Items[pokemon.heldItem].name : "None"}</div>
           </div>
           <div id="move1-div" class="stats-field">
             <div class="stats-data-full d-flex">

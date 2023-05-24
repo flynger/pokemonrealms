@@ -123,7 +123,7 @@ app.get("/logout", (req, res) => {
 });
 
 // update global player list every 5 seconds
-var ticker = 2350;
+var ticker = 1155;
 Map.updateTime(ticker);
 setInterval(() => {
     ticker += 5;
@@ -431,28 +431,24 @@ io.on("connection", (socket) => {
     socket.on("buyItem", (id, quantity) => {
         if (testmart.buyItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
-            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
     socket.on("sellItem", (id, quantity) => {
         if (testmart.sellItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
-            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
     socket.on("useItem", (id, quantity) => {
         if (player.battle == null && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
             player.inventory.useItem(id, quantity);
-            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
     socket.on("discardItem", (id, quantity) => {
         if (player.inventory.hasItem(id, quantity)) {
             player.inventory.removeItem(id, quantity);
-            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
@@ -468,10 +464,11 @@ io.on("connection", (socket) => {
         }
         socket.broadcast.emit("playerDisconnect", username);
     });
-    // send username
+    // send data
+    socket.emit("itemData", Items);
     socket.emit("playerData", username, Object.values(players).filter((plyr) => plyr.connected).map((plyr) => plyr.export()));
     socket.emit("balanceUpdate", player.balance);
-    socket.emit("inventoryUpdate", player.inventory.items);
+    player.inventory.sendItemUpdate();
     socket.emit("partyUpdate", player.party);
     socket.emit("timeChange", {
         time: Map.time,

@@ -1,10 +1,11 @@
 import Items from "./items.js";
 export default class Inventory {
-    constructor(items = {}) {
+    constructor(player, items = {}) {
+        this.player = player;
         this.items = items;
     }
 
-    addItem(item, quantity) {
+    addItem(item, quantity = 1) {
         if (!this.hasItem(item)) {
             this.items[item] = {
                 category: Items[item].category || "None",
@@ -14,10 +15,11 @@ export default class Inventory {
                 desc: Items[item].desc || "No description provided.",
                 isHoldable: Items[item].isHoldable || false,
                 isUsable: Items[item].isUsable || false,
-                quantity: 0,
+                quantity: 0
             };
         }
         this.items[item].quantity += quantity;
+        this.sendItemUpdate();
     }
 
     removeItem(item, quantity) {
@@ -28,6 +30,7 @@ export default class Inventory {
         if (this.items[item].quantity == 0) {
             delete this.items[item];
         }
+        this.sendItemUpdate();
     }
 
     hasItem(item, quantity = 1) {
@@ -41,6 +44,11 @@ export default class Inventory {
             throw Error("ItemError: Tried to use an unusable item");
         }
         this.items[item].quantity -= quantity;
-        Items
+        this.sendItemUpdate();
+        //Items
+    }
+
+    sendItemUpdate() {
+        if (this.player.connected) this.player.socket.emit("inventoryUpdate", this.items);
     }
 }

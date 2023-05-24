@@ -70,9 +70,9 @@
     background-color: #888888;
 }
 
-#stats-caught-ball {
+.stats-inline-image {
+    /* image-rendering: auto; */
     height: 2.5vmin;
-    width: 2.6vmin;
     margin-bottom: 0.2vmin;
 }
 

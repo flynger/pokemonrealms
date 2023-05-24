@@ -1,0 +1,3981 @@
+{
+    "BULBASAUR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "IVYSAUR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VENUSAUR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VENUSAURMEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHARMANDER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHARMELEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHARIZARD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHARIZARDMEGAX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHARIZARDMEGAY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SQUIRTLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WARTORTLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BLASTOISE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BLASTOISEMEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CATERPIE": {
+        "heldItem": [
+            {
+                "id": "leftovers",
+                "chance": 0.5
+            }
+        ],
+        "drops": [
+            {
+                "id": "pokeball",
+                "quantity": 1,
+                "chance": 1
+            }
+        ]
+    },
+    "METAPOD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BUTTERFREE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WEEDLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KAKUNA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BEEDRILL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BEEDRILL-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIDGEY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIDGEOTTO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIDGEOT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIDGEOT-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RATTATA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RATTATA-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RATICATE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RATICATE-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RATICATE-ALOLATOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SPEAROW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FEAROW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EKANS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARBOK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-COSPLAY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-ROCKSTAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-BELLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-POPSTAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-PHD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-LIBRE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-ORIGINAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-HOENN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-SINNOH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-UNOVA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-KALOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKACHU-PARTNER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RAICHU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RAICHU-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SANDSHREW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SANDSHREW-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SANDSLASH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SANDSLASH-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NIDORANF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NIDORINA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NIDOQUEEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NIDORANM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NIDORINO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NIDOKING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CLEFAIRY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CLEFABLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VULPIX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VULPIX-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NINETALES": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NINETALES-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "JIGGLYPUFF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WIGGLYTUFF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZUBAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOLBAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ODDISH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GLOOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VILEPLUME": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PARAS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PARASECT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VENONAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VENOMOTH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DIGLETT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DIGLETT-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUGTRIO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUGTRIO-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEOWTH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEOWTH-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PERSIAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PERSIAN-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PSYDUCK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOLDUCK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MANKEY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PRIMEAPE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GROWLITHE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCANINE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "POLIWAG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "POLIWHIRL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "POLIWRATH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ABRA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KADABRA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ALAKAZAM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ALAKAZAM-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MACHOP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MACHOKE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MACHAMP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BELLSPROUT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WEEPINBELL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VICTREEBEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TENTACOOL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TENTACRUEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GEODUDE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GEODUDE-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRAVELER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRAVELER-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOLEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOLEM-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PONYTA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RAPIDASH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLOWPOKE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLOWBRO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLOWBRO-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGNEMITE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGNETON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FARFETCHD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DODUO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DODRIO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SEEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEWGONG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRIMER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRIMER-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MUK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MUK-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHELLDER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CLOYSTER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GASTLY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HAUNTER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GENGAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GENGAR-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ONIX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DROWZEE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HYPNO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KRABBY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KINGLER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VOLTORB": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ELECTRODE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EXEGGCUTE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EXEGGUTOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EXEGGUTOR-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CUBONE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAROWAK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAROWAK-ALOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAROWAK-ALOLATOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HITMONLEE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HITMONCHAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LICKITUNG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KOFFING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WEEZING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RHYHORN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RHYDON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHANSEY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TANGELA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KANGASKHAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KANGASKHAN-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HORSEA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SEADRA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOLDEEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SEAKING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STARYU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STARMIE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MRMIME": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCYTHER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "JYNX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ELECTABUZZ": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGMAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PINSIR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PINSIR-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TAUROS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGIKARP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GYARADOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GYARADOS-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LAPRAS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DITTO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EEVEE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VAPOREON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "JOLTEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLAREON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PORYGON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "OMANYTE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "OMASTAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KABUTO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KABUTOPS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AERODACTYL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AERODACTYL-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SNORLAX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARTICUNO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZAPDOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MOLTRES": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRATINI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRAGONAIR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRAGONITE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEWTWO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEWTWO-MEGAX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEWTWO-MEGAY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHIKORITA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BAYLEEF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEGANIUM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CYNDAQUIL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "QUILAVA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYPHLOSION": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOTODILE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CROCONAW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FERALIGATR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SENTRET": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FURRET": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HOOTHOOT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NOCTOWL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LEDYBA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LEDIAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SPINARAK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARIADOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CROBAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHINCHOU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LANTURN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PICHU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PICHU-SPIKYEARED": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CLEFFA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "IGGLYBUFF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOGEPI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOGETIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NATU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "XATU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAREEP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLAAFFY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AMPHAROS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AMPHAROS-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BELLOSSOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MARILL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AZUMARILL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SUDOWOODO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "POLITOED": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HOPPIP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SKIPLOOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "JUMPLUFF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AIPOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SUNKERN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SUNFLORA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "YANMA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WOOPER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "QUAGSIRE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ESPEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "UMBREON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MURKROW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLOWKING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MISDREAVUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "UNOWN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WOBBUFFET": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GIRAFARIG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PINECO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FORRETRESS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUNSPARCE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GLIGAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STEELIX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STEELIX-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SNUBBULL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRANBULL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "QWILFISH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCIZOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCIZOR-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHUCKLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HERACROSS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HERACROSS-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SNEASEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TEDDIURSA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "URSARING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLUGMA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGCARGO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWINUB": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PILOSWINE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CORSOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "REMORAID": {
+        "heldItem": [],
+        "drops": []
+    },
+    "OCTILLERY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DELIBIRD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MANTINE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SKARMORY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HOUNDOUR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HOUNDOOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HOUNDOOM-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KINGDRA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PHANPY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DONPHAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PORYGON2": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STANTLER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SMEARGLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYROGUE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HITMONTOP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SMOOCHUM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ELEKID": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGBY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MILTANK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BLISSEY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RAIKOU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ENTEI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SUICUNE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LARVITAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PUPITAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYRANITAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYRANITAR-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUGIA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HOOH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CELEBI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TREECKO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GROVYLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCEPTILE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCEPTILE-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TORCHIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "COMBUSKEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BLAZIKEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BLAZIKEN-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MUDKIP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MARSHTOMP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWAMPERT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWAMPERT-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "POOCHYENA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MIGHTYENA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZIGZAGOON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LINOONE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WURMPLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILCOON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BEAUTIFLY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CASCOON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUSTOX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LOTAD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LOMBRE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUDICOLO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SEEDOT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NUZLEAF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHIFTRY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TAILLOW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWELLOW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WINGULL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PELIPPER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RALTS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KIRLIA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GARDEVOIR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GARDEVOIR-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SURSKIT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MASQUERAIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHROOMISH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BRELOOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLAKOTH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VIGOROTH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLAKING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NINCADA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NINJASK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHEDINJA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WHISMUR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LOUDRED": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EXPLOUD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAKUHITA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HARIYAMA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AZURILL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NOSEPASS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SKITTY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DELCATTY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SABLEYE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SABLEYE-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAWILE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAWILE-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LAIRON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AGGRON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AGGRON-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEDITITE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEDICHAM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEDICHAM-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ELECTRIKE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MANECTRIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MANECTRIC-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PLUSLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MINUN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VOLBEAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ILLUMISE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROSELIA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GULPIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWALOT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CARVANHA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHARPEDO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHARPEDO-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WAILMER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WAILORD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NUMEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CAMERUPT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CAMERUPT-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TORKOAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SPOINK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRUMPIG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SPINDA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TRAPINCH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VIBRAVA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLYGON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CACNEA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CACTURNE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWABLU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ALTARIA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ALTARIA-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZANGOOSE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SEVIPER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUNATONE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SOLROCK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BARBOACH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WHISCASH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CORPHISH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CRAWDAUNT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BALTOY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CLAYDOL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LILEEP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CRADILY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ANORITH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARMALDO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FEEBAS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MILOTIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CASTFORM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CASTFORM-SUNNY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CASTFORM-RAINY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CASTFORM-SNOWY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KECLEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHUPPET": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BANETTE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BANETTE-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUSKULL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUSCLOPS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TROPIUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHIMECHO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ABSOL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ABSOL-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WYNAUT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SNORUNT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GLALIE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GLALIE-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SPHEAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SEALEO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WALREIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CLAMPERL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HUNTAIL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOREBYSS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RELICANTH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUVDISC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BAGON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHELGON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SALAMENCE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SALAMENCE-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BELDUM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "METANG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "METAGROSS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "METAGROSS-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "REGIROCK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "REGICE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "REGISTEEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LATIAS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LATIAS-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LATIOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LATIOS-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KYOGRE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KYOGRE-PRIMAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GROUDON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GROUDON-PRIMAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RAYQUAZA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RAYQUAZA-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "JIRACHI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEOXYS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEOXYS-ATTACK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEOXYS-DEFENSE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEOXYS-SPEED": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TURTWIG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GROTLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TORTERRA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHIMCHAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MONFERNO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "INFERNAPE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIPLUP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PRINPLUP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EMPOLEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STARLY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STARAVIA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STARAPTOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BIDOOF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BIBAREL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KRICKETOT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KRICKETUNE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHINX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUXIO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUXRAY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BUDEW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROSERADE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CRANIDOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RAMPARDOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHIELDON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BASTIODON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BURMY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WORMADAM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WORMADAM-SANDY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WORMADAM-TRASH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MOTHIM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "COMBEE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VESPIQUEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PACHIRISU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BUIZEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLOATZEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHERUBI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHERRIM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHERRIM-SUNSHINE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHELLOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GASTRODON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AMBIPOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRIFLOON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRIFBLIM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BUNEARY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LOPUNNY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LOPUNNY-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MISMAGIUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HONCHKROW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GLAMEOW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PURUGLY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHINGLING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STUNKY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SKUNTANK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BRONZOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BRONZONG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BONSLY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MIMEJR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HAPPINY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHATOT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SPIRITOMB": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GIBLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GABITE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GARCHOMP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GARCHOMP-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MUNCHLAX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RIOLU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUCARIO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUCARIO-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HIPPOPOTAS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HIPPOWDON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SKORUPI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRAPION": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CROAGUNK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOXICROAK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CARNIVINE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FINNEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUMINEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MANTYKE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SNOVER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ABOMASNOW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ABOMASNOW-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WEAVILE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGNEZONE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LICKILICKY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RHYPERIOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TANGROWTH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ELECTIVIRE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGMORTAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOGEKISS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "YANMEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LEAFEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GLACEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GLISCOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAMOSWINE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PORYGONZ": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GALLADE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GALLADE-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PROBOPASS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUSKNOIR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FROSLASS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROTOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROTOMHEAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROTOMWASH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROTOMFROST": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROTOMFAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROTOMMOW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "UXIE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MESPRIT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AZELF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DIALGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PALKIA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HEATRAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "REGIGIGAS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GIRATINA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GIRATINA-ORIGIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CRESSELIA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PHIONE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MANAPHY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DARKRAI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHAYMIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHAYMIN-SKY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-BUG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-DARK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-DRAGON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-ELECTRIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-FAIRY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-FIGHTING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-FIRE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-FLYING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-GHOST": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-GRASS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-GROUND": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-ICE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-POISON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-PSYCHIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-ROCK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-STEEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCEUS-WATER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VICTINI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SNIVY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SERVINE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SERPERIOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TEPIG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIGNITE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EMBOAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "OSHAWOTT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEWOTT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SAMUROTT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PATRAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WATCHOG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LILLIPUP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HERDIER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STOUTLAND": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PURRLOIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LIEPARD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PANSAGE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SIMISAGE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PANSEAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SIMISEAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PANPOUR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SIMIPOUR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MUNNA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MUSHARNA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIDOVE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TRANQUILL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "UNFEZANT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BLITZLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZEBSTRIKA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROGGENROLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BOLDORE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GIGALITH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WOOBAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWOOBAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRILBUR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EXCADRILL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AUDINO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AUDINO-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TIMBURR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GURDURR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CONKELDURR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYMPOLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PALPITOAD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SEISMITOAD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "THROH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SAWK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SEWADDLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWADLOON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LEAVANNY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VENIPEDE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WHIRLIPEDE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCOLIPEDE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "COTTONEE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WHIMSICOTT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PETILIL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LILLIGANT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BASCULIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BASCULIN-BLUESTRIPED": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SANDILE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KROKOROK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KROOKODILE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DARUMAKA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DARMANITAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DARMANITAN-ZEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MARACTUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DWEBBLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CRUSTLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCRAGGY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCRAFTY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SIGILYPH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "YAMASK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "COFAGRIGUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TIRTOUGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CARRACOSTA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCHEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARCHEOPS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TRUBBISH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GARBODOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZORUA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZOROARK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MINCCINO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CINCCINO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOTHITA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOTHORITA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOTHITELLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SOLOSIS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUOSION": {
+        "heldItem": [],
+        "drops": []
+    },
+    "REUNICLUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DUCKLETT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWANNA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VANILLITE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VANILLISH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VANILLUXE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEERLING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SAWSBUCK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EMOLGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KARRABLAST": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ESCAVALIER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FOONGUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AMOONGUSS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FRILLISH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "JELLICENT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ALOMOMOLA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "JOLTIK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GALVANTULA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FERROSEED": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FERROTHORN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KLINK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KLANG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KLINKLANG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYNAMO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EELEKTRIK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "EELEKTROSS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ELGYEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BEHEEYEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LITWICK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LAMPENT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHANDELURE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AXEW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FRAXURE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HAXORUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CUBCHOO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BEARTIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CRYOGONAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHELMET": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ACCELGOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STUNFISK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MIENFOO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MIENSHAO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRUDDIGON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOLETT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOLURK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PAWNIARD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BISHARP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BOUFFALANT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RUFFLET": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BRAVIARY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VULLABY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MANDIBUZZ": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HEATMOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DURANT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEINO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZWEILOUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HYDREIGON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LARVESTA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VOLCARONA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "COBALION": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TERRAKION": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VIRIZION": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TORNADUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TORNADUS-THERIAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "THUNDURUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "THUNDURUS-THERIAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RESHIRAM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZEKROM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LANDORUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LANDORUS-THERIAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KYUREM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KYUREM-BLACK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KYUREM-WHITE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KELDEO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KELDEO-RESOLUTE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MELOETTA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MELOETTA-PIROUETTE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GENESECT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GENESECT-DOUSE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GENESECT-SHOCK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GENESECT-BURN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GENESECT-CHILL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHESPIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "QUILLADIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHESNAUGHT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FENNEKIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BRAIXEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DELPHOX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FROAKIE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FROGADIER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRENINJA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRENINJA-ASH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BUNNELBY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DIGGERSBY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLETCHLING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLETCHINDER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TALONFLAME": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SCATTERBUG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SPEWPA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VIVILLON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VIVILLON-FANCY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VIVILLON-POKEBALL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LITLEO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PYROAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLABEBE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLOETTE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLOETTE-ETERNAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FLORGES": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SKIDDO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOGOAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PANCHAM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PANGORO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FURFROU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ESPURR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEOWSTIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MEOWSTIC-F": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HONEDGE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DOUBLADE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AEGISLASH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AEGISLASH-BLADE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SPRITZEE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AROMATISSE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SWIRLIX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLURPUFF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "INKAY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MALAMAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BINACLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BARBARACLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SKRELP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRAGALGE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CLAUNCHER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CLAWITZER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HELIOPTILE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HELIOLISK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYRUNT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYRANTRUM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AMAURA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AURORUS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SYLVEON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HAWLUCHA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEDENNE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CARBINK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOOMY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SLIGGOO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOODRA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KLEFKI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PHANTUMP": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TREVENANT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PUMPKABOO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PUMPKABOO-SMALL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PUMPKABOO-LARGE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PUMPKABOO-SUPER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOURGEIST": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOURGEIST-SMALL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOURGEIST-LARGE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOURGEIST-SUPER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BERGMITE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "AVALUGG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NOIBAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NOIVERN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "XERNEAS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "YVELTAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZYGARDE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZYGARDE-10%": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZYGARDE-COMPLETE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DIANCIE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DIANCIE-MEGA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HOOPA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HOOPA-UNBOUND": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VOLCANION": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROWLET": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DARTRIX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DECIDUEYE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LITTEN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TORRACAT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "INCINEROAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "POPPLIO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BRIONNE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PRIMARINA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PIKIPEK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TRUMBEAK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOUCANNON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "YUNGOOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GUMSHOOS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GUMSHOOS-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GRUBBIN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CHARJABUG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VIKAVOLT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "VIKAVOLT-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CRABRAWLER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CRABOMINABLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ORICORIO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ORICORIO-POMPOM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ORICORIO-PAU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ORICORIO-SENSU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CUTIEFLY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RIBOMBEE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "RIBOMBEE-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ROCKRUFF": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LYCANROC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LYCANROC-MIDNIGHT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LYCANROC-DUSK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WISHIWASHI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WISHIWASHI-SCHOOL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAREANIE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOXAPEX": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MUDBRAY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MUDSDALE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DEWPIDER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARAQUANID": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ARAQUANID-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "FOMANTIS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LURANTIS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LURANTIS-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MORELULL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SHIINOTIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SALANDIT": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SALAZZLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SALAZZLE-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STUFFUL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BEWEAR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BOUNSWEET": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STEENEE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TSAREENA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "COMFEY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ORANGURU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PASSIMIAN": {
+        "heldItem": [],
+        "drops": []
+    },
+    "WIMPOD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GOLISOPOD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SANDYGAST": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PALOSSAND": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PYUKUMUKU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TYPENULL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-BUG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-DARK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-DRAGON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-ELECTRIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-FAIRY": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-FIGHTING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-FIRE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-FLYING": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-GHOST": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-GRASS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-GROUND": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-ICE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-POISON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-PSYCHIC": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-ROCK": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-STEEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SILVALLY-WATER": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MINIOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MINIOR-METEOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KOMALA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TURTONATOR": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOGEDEMARU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TOGEDEMARU-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MIMIKYU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MIMIKYU-BUSTED": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MIMIKYU-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MIMIKYU-BUSTEDTOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BRUXISH": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DRAMPA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "DHELMISE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "JANGMOO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "HAKAMOO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KOMMOO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KOMMO-O-TOTEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TAPUKOKO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TAPULELE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TAPUBULU": {
+        "heldItem": [],
+        "drops": []
+    },
+    "TAPUFINI": {
+        "heldItem": [],
+        "drops": []
+    },
+    "COSMOG": {
+        "heldItem": [],
+        "drops": []
+    },
+    "COSMOEM": {
+        "heldItem": [],
+        "drops": []
+    },
+    "SOLGALEO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "LUNALA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NIHILEGO": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BUZZWOLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "PHEROMOSA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "XURKITREE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "CELESTEELA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "KARTANA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "GUZZLORD": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NECROZMA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NECROZMA-DUSKMANE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NECROZMA-DAWNWINGS": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NECROZMA-ULTRA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGEARNA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MAGEARNA-ORIGINAL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MARSHADOW": {
+        "heldItem": [],
+        "drops": []
+    },
+    "POIPOLE": {
+        "heldItem": [],
+        "drops": []
+    },
+    "NAGANADEL": {
+        "heldItem": [],
+        "drops": []
+    },
+    "STAKATAKA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "BLACEPHALON": {
+        "heldItem": [],
+        "drops": []
+    },
+    "ZERAORA": {
+        "heldItem": [],
+        "drops": []
+    },
+    "MISSINGNO": {
+        "heldItem": [],
+        "drops": []
+    }
+}

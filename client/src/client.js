@@ -166,6 +166,10 @@ function setupSocket() {
         console.log({ catalog });
     });
 
+    socket.on("itemData", items => {
+        Items = items;
+    });
+
     socket.on("balanceUpdate", (newBalance) => {
         console.log({ newBalance });
     });

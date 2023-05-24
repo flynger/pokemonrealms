@@ -1,3 +1,5 @@
+import jsonfile from "jsonfile";
+export const ItemData = jsonfile.readFileSync("./data/pokedex/itemData.json");
 const Pokedex = {
     "BULBASAUR": {
         "id": 1,
@@ -112916,3 +112918,12 @@ const Pokedex = {
     }
 }
 export default Pokedex;
+// var entries = Object.values(Pokedex);
+// var drops = {};
+// for (let entry of entries) {
+//     drops[entry.species] = {
+//         heldItem: [],
+//         drops: []
+//     };
+// }
+// jsonfile.writeFileSync("./data/pokedex/itemData.json", drops);

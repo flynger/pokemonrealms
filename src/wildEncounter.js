@@ -1,7 +1,15 @@
 import SingleBattle from "./singleBattle.js";
 import Party from "./party.js";
+import { ItemData } from "./pokedex.js";
 
 export default class WildEncounter extends SingleBattle {
+    static globalDropPool = [
+        {
+            "id": "pokeball",
+            "quantity": 10,
+            "chance": 0.5
+        }
+    ];
     text = {
         fullName: "[NICKNAME]",
         opposingPokemon: "the wild [NICKNAME]",
@@ -14,6 +22,7 @@ export default class WildEncounter extends SingleBattle {
         tieBattle: "[TRAINER] is out of usable Pokémon! [TRAINER] whited out.",
         endBattle: "[TRAINER] escaped the battle!"
     }
+    isWildBattle = true;
     
     constructor(player, encounter) {
         super(new Party(1, "Wild Pokémon", [encounter], false), new Party(2, player.displayName, player.party), true);
@@ -41,5 +50,21 @@ export default class WildEncounter extends SingleBattle {
 
     run() {
         this.destroy();
+    }
+
+    onBattleWin() {
+        let drops = [...ItemData[this.encounter.species].drops, ...WildEncounter.globalDropPool];
+        for (let drop of drops) {
+            let rng = Math.random();
+            if (rng < drop.chance) {
+                this.player.inventory.addItem(drop.id, drop.quantity);
+                console.log(`Item drop: ${drop.id} x${drop.quantity}`);
+            }
+        }
+    }
+
+    onBattleLose() {
+        console.log("player lost")
+        // teleport player to pokemon center
     }
 }

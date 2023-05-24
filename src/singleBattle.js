@@ -233,15 +233,22 @@ export default class SingleBattle {
                         args.NUMBER = lineArray[0];
                         break;
                     case "win":
+                        var thisParty = this["player" + thisPlayer];
                         var winner = lineArray[0];
-                        if (winner == this["player" + thisPlayer].name) {
+                        if (winner == thisParty.name) {
                             message = this.text.winBattle;
                             args.TRAINER = winner;
+                            if (thisParty.isPlayer && this.isWildBattle) {
+                                this.onBattleWin();
+                            }
                         } else {
                             message = this.text.loseBattle;
-                            if (!this.player1.isPlayer) {
+                            if (this.isWildBattle) {
                                 message = message.replaceAll("[TRAINER]", "[TRAINER" + thisPlayer + "]");
-                                args["TRAINER" + thisPlayer] = this["player" + thisPlayer].name;
+                                args["TRAINER" + thisPlayer] = thisParty.name;
+                                if (thisParty.isPlayer) {
+                                    this.onBattleLose();
+                                }
                             } else {
                                 args.TRAINER = winner;
                             }
@@ -252,6 +259,10 @@ export default class SingleBattle {
                         this.endBattle();
                         break;
                     case "tie":
+                        var thisParty = this["player" + thisPlayer];
+                        if (thisParty.isPlayer && this.isWildBattle) {
+                            this.onBattleLose();
+                        }
                         message = this.text.tieBattle.replace("[TRAINER]", this.player1.isPlayer ? this.player1.name : this.player2.name).replace("[TRAINER]", this.player2.name);
                         battleDataProperties = {
                             battleOver: true
