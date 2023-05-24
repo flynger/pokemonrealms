@@ -6,8 +6,58 @@ export default class WildEncounter extends SingleBattle {
     static globalDropPool = [
         {
             "id": "pokeball",
-            "quantity": 10,
-            "chance": 0.5
+            "quantity": 1,
+            "chance": 0.30
+        },
+        {
+            "id": "pokeball",
+            "quantity": 1,
+            "chance": 0.30
+        },
+        {
+            "id": "pokeball",
+            "quantity": 1,
+            "chance": 0.30
+        },
+        {
+            "id": "potion",
+            "quantity": 1,
+            "chance": 0.25
+        },
+        {
+            "id": "aguavberry",
+            "quantity": 3,
+            "chance": 0.15
+        },
+        {
+            "id": "greatball",
+            "quantity": 1,
+            "chance": 0.1
+        },
+        {
+            "id": "ultraball",
+            "quantity": 1,
+            "chance": 0.05
+        },
+        {
+            "id": "firestone",
+            "quantity": 1,
+            "chance": 0.025
+        },
+        {
+            "id": "waterstone",
+            "quantity": 1,
+            "chance": 0.025
+        },
+        {
+            "id": "thunderstone",
+            "quantity": 1,
+            "chance": 0.025
+        },
+        {
+            "id": "masterball",
+            "quantity": 1,
+            "chance": 0.005
         }
     ];
     text = {
@@ -21,7 +71,7 @@ export default class WildEncounter extends SingleBattle {
         loseBattle: "[TRAINER] is out of usable Pokémon! [TRAINER] whited out.",
         tieBattle: "[TRAINER] is out of usable Pokémon! [TRAINER] whited out.",
         endBattle: "[TRAINER] escaped the battle!"
-    }
+    };
     isWildBattle = true;
     
     constructor(player, encounter) {

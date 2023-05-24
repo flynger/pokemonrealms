@@ -5628,6 +5628,7 @@ const Pokedex = {
                 "WATERPULSE"
             ]
         },
+        "growthRate": "Parabolic",
         "heightm": 0.4,
         "weightkg": 7,
         "color": "Blue",
@@ -6021,6 +6022,7 @@ const Pokedex = {
                 "WATERPULSE"
             ]
         },
+        "growthRate": "Parabolic",
         "heightm": 0.5,
         "weightkg": 9,
         "color": "Purple",
@@ -93956,7 +93958,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 1
         },
-        "pokedex": "These friendly Pokemon send signals to one another with beautiful chirps and tail-feather movements.",
+        "pokedex": "These friendly Pokémon send signals to one another with beautiful chirps and tail-feather movements.",
         "experienceYield": 56
     },
     "FLETCHINDER": {
@@ -95320,7 +95322,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 0
         },
-        "pokedex": "Thought to be one of the first Pokemon to live in harmony with humans, it has a placid disposition.",
+        "pokedex": "Thought to be one of the first Pokémon to live in harmony with humans, it has a placid disposition.",
         "experienceYield": 70
     },
     "GOGOAT": {
@@ -95827,7 +95829,7 @@ const Pokedex = {
             "spd": 1,
             "spe": 0
         },
-        "pokedex": "Historically, in the Kalos region, these Pokemon were the designated guardians of the king.",
+        "pokedex": "Historically, in the Kalos region, these Pokémon were the designated guardians of the king.",
         "experienceYield": 165
     },
     "ESPURR": {
@@ -96305,7 +96307,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 0
         },
-        "pokedex": "Apparently this Pokemon is born when a departed spirit inhabits a sword. It attaches itself to people and drinks their life force.",
+        "pokedex": "Apparently this Pokémon is born when a departed spirit inhabits a sword. It attaches itself to people and drinks their life force.",
         "experienceYield": 65
     },
     "DOUBLADE": {
@@ -98389,7 +98391,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 0
         },
-        "pokedex": "Nothing could stop this Pokemon 100 years ago, so it behaved like a king.",
+        "pokedex": "Nothing could stop this Pokémon 100 years ago, so it behaved like a king.",
         "experienceYield": 182
     },
     "AMAURA": {
@@ -98527,7 +98529,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 0
         },
-        "pokedex": "This ancient Pokemon was restored from part of its body that had been frozen in ice for over 100 million years.",
+        "pokedex": "This ancient Pokémon was restored from part of its body that had been frozen in ice for over 100 million years.",
         "experienceYield": 72
     },
     "AURORUS": {
@@ -99441,7 +99443,7 @@ const Pokedex = {
             "spd": 3,
             "spe": 0
         },
-        "pokedex": "This very friendly Dragon-type Pokemon will hug its beloved Trainer, leaving that Trainer covered in sticky slime.",
+        "pokedex": "This very friendly Dragon-type Pokémon will hug its beloved Trainer, leaving that Trainer covered in sticky slime.",
         "experienceYield": 270
     },
     "KLEFKI": {

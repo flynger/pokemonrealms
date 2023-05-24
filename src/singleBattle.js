@@ -164,7 +164,7 @@ export default class SingleBattle {
                                     if (MovesText[Dex.moves.get(effectSource).id] && MovesText[Dex.moves.get(effectSource).id].damage) {
                                         message = MovesText[Dex.moves.get(effectSource).id].damage;
                                     }
-                                    else message = DefaultText[effectSource].damage;
+                                    else message = DefaultText[effectSource.toLowerCase()].damage;
                                 } else {
                                     //message = MovesText[Dex.moves.get(effectSource).id].damage;
                                 }

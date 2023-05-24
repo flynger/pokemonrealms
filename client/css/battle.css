@@ -113,7 +113,7 @@
 
 .pokemon.you img {
     position: absolute;
-    scale: calc(4 * var(--scale));
+    scale: calc(3.3 * var(--scale));
     transform-origin: left bottom;
     bottom: 0%;
     left: 50%;
@@ -278,7 +278,7 @@
 
 .switch-info p {
     width: fit-content;
-    scale: calc(var(--scale-coefficient) * var(--scale));
+    scale: calc(1.2 * var(--scale));
     transform-origin: left top;
 }
 

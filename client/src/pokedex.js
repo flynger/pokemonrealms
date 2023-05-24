@@ -5627,6 +5627,7 @@ class Pokedex {
                     "WATERPULSE"
                 ]
             },
+            "growthRate": "Parabolic",
             "heightm": 0.4,
             "weightkg": 7,
             "color": "Blue",
@@ -6020,6 +6021,7 @@ class Pokedex {
                     "WATERPULSE"
                 ]
             },
+            "growthRate": "Parabolic",
             "heightm": 0.5,
             "weightkg": 9,
             "color": "Purple",

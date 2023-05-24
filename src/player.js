@@ -1,9 +1,11 @@
 import Inventory from "./inventory.js";
+import Pokedex from "./pokedex.js";
 import { Stats, Pokemon } from "./pokemon.js";
 
 export default class Player {
     static onlinePlayers = [];
     static starterOptions = ["BULBASAUR", "CHARMANDER", "SQUIRTLE"];
+    static starterNatures = ["bashful", "docile", "hardy", "quirky", "serious"];
 
     constructor(name, displayName, x = 256, y = 254, facing = "right") {
         this.name = name;
@@ -29,7 +31,17 @@ export default class Player {
     pickStarter(starter) {
         if (this.starter == false) {
             this.starter = Player.starterOptions.includes(starter) ? starter : Player.starterOptions.random();
-            this.party.push(new Pokemon(this.starter, 5, { originalTrainer: this.displayName, owner: this.displayName }));
+            this.party.push(new Pokemon(this.starter, 5, { nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), originalTrainer: this.displayName, owner: this.displayName, hiddenAbilityChance: 0 }));
+            for (let i = 0; i < 5; i++) {
+                let rng = randomNumber(1, 649) != 134 ? randomNumber(29, 32) : 134;
+                for (let mon in Pokedex) {
+                    if (rng == Pokedex[mon].id) {
+                        console.log(mon)
+                        this.party.push(new Pokemon(mon, randomNumber(1, 100), { originalTrainer: this.displayName, owner: this.displayName }));
+                        break;
+                    }
+                }
+            }
             // this.party.push(new Pokemon("MIMEJR", 1, { gender: "F", originalTrainer: "Professor Oak", owner: this.displayName, caughtBall: "ultraball" }));
             // this.party.push(new Pokemon("DARKRAI", 10, { heldItem: "pokeball", originalTrainer: "Unknown", owner: this.displayName, caughtBall: "masterball" }));
             // this.party.push(new Pokemon("MAGNEMITE", 99, { originalTrainer: "Unknown", owner: this.displayName }));
@@ -58,4 +70,8 @@ export default class Player {
             facing: this.facing
         }
     }
+}
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
