@@ -23,6 +23,86 @@ body {
     z-index: 9;
 }
 
+#timeLabel {
+    border: none;
+    color: white;
+}
+
+#party-div {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* background-color: rgba(20, 20, 20, 0.8); */
+    width: 10%;
+    height: 66%;
+    top: 17%;
+    left: 0;
+}
+
+.party-mon-div {
+    display: flex;
+    background-color: rgba(20, 20, 20, 0.8);
+    width: 100%;
+    height: 13%;
+    border-top-right-radius: 5%;
+    border-end-end-radius: 20%;
+}
+
+.party-mon-sprite-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(20, 20, 20, 0.5);
+    margin: 7%;
+    width: 25.4%;
+    aspect-ratio: 1/1;
+    border-radius: 4%;
+}
+
+.party-mon-sprite {
+    aspect-ratio: 4/3;
+    width: 100%;
+    /* transform: scaleX(-1); */
+}
+
+.party-mon-hp-div {
+    width: 100%;
+    height: 24.23%;
+}
+
+.party-mon-hp {
+    margin-top: 2.9%;
+    scale: calc(var(--scale) / 3.18);
+    transform: scaleY(1.8);
+    transform-origin: top left;
+}
+
+/* .party-mon-level-div {
+    text-align: center;
+    font-size:  calc(var(--scale) * 8px);
+    color: white;
+    width: 100%;
+    height: 28%;
+    margin-top: 20%;
+} */
+
+.party-mon-content-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6%;
+    color: white;
+    width: 60%;
+}
+
+.party-mon-name {
+    font-size:  calc(var(--scale) * 12px);
+}
+
+.party-mon-level {
+    font-size:  calc(var(--scale) * 9px);
+}
+
 .type {
     background-image: url("../res/gui/icons/types.png");
     background-repeat: no-repeat;
