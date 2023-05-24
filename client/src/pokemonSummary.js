@@ -1,5 +1,5 @@
 function initSummaryUI() {
-  $("#summaryBtn").on("click", () => {
+  $("#summaryBtn").on("click", (e) => {
     $("#pokemon-summary").toggle();
   });
   $("#pokemon-summary").draggable({

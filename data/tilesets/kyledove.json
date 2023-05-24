@@ -10,11 +10,55 @@
  "tileheight":32,
  "tiles":[
         {
+         "id":25,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":26,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":27,
+         "properties":[
+                {
+                 "name":"isGrass",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":28,
+         "properties":[
+                {
+                 "name":"isGrass",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":29,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
          "id":30,
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
                     {
@@ -44,14 +88,19 @@
              "visible":true,
              "x":0,
              "y":0
-            }
+            },
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
         }, 
         {
          "id":35,
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
                     {
@@ -70,14 +119,307 @@
              "visible":true,
              "x":0,
              "y":0
-            }
+            },
+         "properties":[
+                {
+                 "name":"isGrass",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":36,
+         "properties":[
+                {
+                 "name":"isGrass",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":38,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":288,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":289,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":290,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":296,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":297,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":298,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":304,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":305,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":306,
+         "properties":[
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":626,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":627,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":628,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":634,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":635,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":636,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":651,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":652,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":653,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":654,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":655,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":659,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":660,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":661,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":662,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":663,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":667,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":668,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":669,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":670,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":671,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
         }, 
         {
          "id":1581,
          "objectgroup":
             {
              "draworder":"index",
-             "id":9,
              "name":"",
              "objects":[
                     {
@@ -114,7 +456,6 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
                     {
