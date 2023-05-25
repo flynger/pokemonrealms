@@ -350,12 +350,12 @@ io.on("connection", (socket) => {
         }
         if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
             // if other player hasnt sent request, send
-            if (!player.requests.hasOwnProperty(user)) {
+            if (!player.requests.battle.hasOwnProperty(user)) {
                 otherPlayer.socket.emit("battleRequest", displayName);
-                otherPlayer.requests[username] = true;
+                otherPlayer.requests.battle[username] = true;
             } else {
-                const party2 = new Party(displayName, []);
-                const party1 = new Party(otherPlayer.displayName, []);
+                const party2 = new Party(displayName, player.party);
+                const party1 = new Party(otherPlayer.displayName, otherPlayer.party);
                 player.battle = otherPlayer.battle = new SingleBattle(party1, party2);
                 player.battle.startRandomBattle();
                 console.log("Starting match with 2 players...");
@@ -363,18 +363,38 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("tradeRequest", (user, pokemonSlot) => {
+    socket.on("tradeRequest", (user) => {
         user = user.toLowerCase(); // convert name to username
         let otherPlayer = players[user];
         if (!otherPlayer) {
             socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
             return;
         }
-        if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
-            // if other player hasnt sent request, send
-            console.log(`${displayName} requests a trade with ${otherPlayer.displayName}`);
-            otherPlayer.socket.emit("tradeRequest", username, player.party[pokemonSlot]);
+        if (!otherPlayer.connected) {
+            socket.emit("invalidRequest", `${user} is offline.`);
+            return;
         }
+        if (otherPlayer.battle == null && player.battle == null && otherPlayer.trade == null && player.trade == null) {
+            // if other player hasnt sent request, send
+            if (!player.requests.trade.hasOwnProperty(user)) {
+                otherPlayer.socket.emit("tradeRequest", displayName);
+                otherPlayer.requests.trade[username] = true;
+            } else {
+                console.log("Trade started!")
+            }
+            
+        }
+    });
+
+    socket.on("acceptTrade", (data) => {
+        console.log("data " + data);
+        let player1 = players[data.player1.toLowerCase()];
+        let player2 = players[data.player2.toLowerCase()];
+        console.log(`Trading ${player1.party[data.pokemon1]} for ${player2.party[data.pokemon2]}`);
+        let temp = player1.party[data.pokemonSlot1];
+        player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
+        player2.party[data.pokemonSlot2] = temp;
+        socket.emit("acceptTrade", (data));
     });
 
     socket.on("addBal", (amount) => {
@@ -389,19 +409,8 @@ io.on("connection", (socket) => {
         console.log("New Balance: $" + player.balance);
     });
 
-    socket.on("acceptTrade", (data) => {
-        console.log("data " + data);
-        let player1 = players[data.player1.toLowerCase()];
-        let player2 = players[data.player2.toLowerCase()];
-        console.log(`Trading ${player1.party[data.pokemon1]} for ${player2.party[data.pokemon2]}`);
-        let temp = player1.party[data.pokemonSlot1];
-        player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
-        player2.party[data.pokemonSlot2] = temp;
-        socket.emit("acceptTrade", (data));
-    });
-
     socket.on("endBattle", () => {
-        if (player.battle && player.battle.canRun) {
+        if (player.battle != null && player.battle.canRun) {
             player.battle.run();
         }
     });
@@ -430,25 +439,25 @@ io.on("connection", (socket) => {
     });
 
     socket.on("buyItem", (id, quantity) => {
-        if (testmart.buyItem(player, id, quantity)) {
+        if (player.battle == null && player.trade == null && testmart.buyItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
         }
     });
 
     socket.on("sellItem", (id, quantity) => {
-        if (testmart.sellItem(player, id, quantity)) {
+        if (player.battle == null && player.trade == null && testmart.sellItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
         }
     });
 
     socket.on("useItem", (id, quantity) => {
-        if (player.battle == null && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
+        if (player.battle == null && player.trade == null && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
             player.inventory.useItem(id, quantity);
         }
     });
 
     socket.on("discardItem", (id, quantity) => {
-        if (player.inventory.hasItem(id, quantity)) {
+        if (player.battle == null && player.trade == null && player.inventory.hasItem(id, quantity)) {
             player.inventory.removeItem(id, quantity);
         }
     });

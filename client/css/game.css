@@ -96,12 +96,55 @@ body {
     width: 60%;
 }
 
+.switch-slot-button-up {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+}
+
+.switch-slot-button-down {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+}
+
 .party-mon-name {
-    font-size:  calc(var(--scale) * 12px);
+    font-size: calc(var(--scale) * 12px);
 }
 
 .party-mon-level {
-    font-size:  calc(var(--scale) * 9px);
+    font-size: calc(var(--scale) * 9px);
+}
+
+#player-context-menu {
+    display: none   ;
+    background-color: rgba(20, 20, 20, 0.85);
+    position: absolute;
+    height: 16%;
+    width: 7%;
+    top: 50%;
+    right: 50%;
+    border-radius: 5%;
+    /* padding-top: 1%; */
+    padding-bottom: 1%;
+}
+
+#player-context-menu-name {
+    text-align: center;
+    font-size: calc(var(--scale) * 12px);
+}
+
+.player-context-menu-option {
+    background-color: rgba(7, 7, 7, 0.4);
+    height: 28%;
+    width: 100%;
+    padding-left: 7%;
+    line-height: calc(var(--scale) * 22px);
+    font-size: calc(var(--scale) * 12px);
+}
+.player-context-menu-option:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 .type {

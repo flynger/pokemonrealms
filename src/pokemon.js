@@ -3,6 +3,7 @@ import Showdown from "pokemon-showdown";
 const { Dex } = Showdown;
 
 export default class Pokemon {
+    static entries = {};
     static id = 1;
     static shinyChance = 32;
     static hiddenAbilityChance = 64;
@@ -16,6 +17,9 @@ export default class Pokemon {
     };
     static getRandomNature() {
         return Dex.natures.all().random().id;
+    }
+    static getById(id) {
+        return Pokemon.entries[id];
     }
 
     constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature, abilitySlot, happiness = 70, ivs, evs, moves = [], originalTrainer, owner, caughtBall, hiddenAbilityChance = false }) {
@@ -71,6 +75,7 @@ export default class Pokemon {
         if (owner) {
             this.owner = owner;
             this.id = Pokemon.id;
+            Pokemon.entries[this.id] = this;
             Pokemon.id++;
         }
         if (owner && !caughtBall) caughtBall = "pokeball"; // default ball
