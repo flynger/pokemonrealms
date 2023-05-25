@@ -16,7 +16,10 @@ export default class Player {
         this.facing = facing;
         this.connected = false;
         this.socket = null;
-        this.requests = {};
+        this.requests = {
+            battle: {},
+            trade: {}
+        };
         this.battle = null;
         this.trade = null;
         this.trade = null;

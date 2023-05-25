@@ -210,3 +210,7 @@ body {
 .type.fairy {
     background-position-y: -504px;
 }
+
+.shiny {
+    color: #ffc107;
+}
