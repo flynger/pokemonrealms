@@ -89,22 +89,17 @@ function setupSocket() {
         }
     });
 
-    socket.on("tradeRequest", (user, pokemon) => {
+    socket.on("tradeRequest", (user) => {
         $('#message').modal({ backdrop: 'static' });
         $('#message').modal('show');
         $('#message-title').text("Trade Request");
-        const pokemonName = pokemon ? pokemon.name || pokemon.species : '';
-        $('#message-body').text(`${user} has sent you a trade request for ${pokemonName}. Accept?`);
+        //const pokemonName = pokemon ? pokemon.name || pokemon.species : '';
+        $('#message-body').text(`${user} has sent you a trade request. Accept?`);
         $('#blueModalBtn').text("Accept!");
         $('#grayModalBtn').text("Decline");
         $('#blueModalBtn').on('click', () => {
             console.log(`username: ${username} user: ${user}`);
-            acceptTrade({
-                player1: user,
-                player2: username,
-                pokemonSlot1: 1,
-                pokemonSlot2: 1
-            });
+            socket.emit("tradeRequest", user);
             $('#message').modal('hide');
         });
         $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
@@ -242,8 +237,8 @@ function sellItem(id, quantity) {
 function sendBattleRequest(user) {
     socket.emit("battleRequest", user);
 }
-function sendTradeRequest(user, pokemon) {
-    socket.emit("tradeRequest", user, pokemon);
+function sendTradeRequest(user) {
+    socket.emit("tradeRequest", user);
 }
 function acceptTrade(data) {
     socket.emit("acceptTrade", data);

@@ -87,6 +87,8 @@ class Trade {
                 this.player1.addPokemon(offer.mon);
             }
         }
+        this.player1.socket.emit("tradeComplete");
+        this.player2.socket.emit("tradeComplete");
         this.player1.inventory.sendItemUpdate();
         this.player2.inventory.sendItemUpdate();
         this.player1.socket.emit("partyUpdate", this.player1.party);
