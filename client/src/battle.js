@@ -37,6 +37,8 @@ var battleData = [];
 var textSpeed = 100; // 60
 var textInterval;
 var dialoguePlaying = false;
+// TODO: implement forceSwitch
+var forceSwitch = false;
 function nextAction() {
     if (!dialoguePlaying) {
         $("#overlay-command").hide();
@@ -63,6 +65,8 @@ function nextAction() {
     var letters = processFormatting(nextData.message, nextData.message.split(""));
     if ("damageHPTo" in nextData) {
         $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
+        $("#hpbar-" + nextData.side).attr("class", "hp");
+        $("#hpbar-" + nextData.side).addClass(nextData.damageHPTo > 50 ? "g" : nextData.damageHPTo > 20 ? "y" : "r")
         setTimeout(() => {
             if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
             else nextActionLogic(nextData);
@@ -149,36 +153,39 @@ function cancelSwitch() {
 }
 
 function showSwitchButtons() {
-    $('#overlay-switch').html("");
+    $('#switch-cancel').hide();
     let party = battleOptions.side.pokemon;
-    // TODO: implement forceSwitch
-    let forceSwitch = true;
 
     // Generate switch UI HTML
-    for (let i in party) {
-        let switchHtml = '';
+    for (let i = 0; i < 6; i++) {
+        let pkmn = `#pkmn${+i + 1}`;
+        if (!party[i]) { $(pkmn).hide(); continue }
         let pkmnNickname = party[i].ident.split(": ")[1];
         let pkmnDetails = party[i].details.split(", ");
         let pkdexId = Pokedex.getPokedexEntry(pkmnDetails[0]).id;
         let lv = !pkmnDetails[1].startsWith("L") ? "100" : pkmnDetails[1].slice(1);
         let hpValues = party[i].condition.split(" ")[0].split("/");
-        let isFainted = +hpValues[0] === 0
+        let isFainted = +hpValues[0] === 0;
+        let hpPercent = !isFainted ? +hpValues[0] / +hpValues[1] : 0;
+        let hpOutline = hpPercent > 0.5 ? "g" : hpPercent > 0.2 ? "y" : "r";
 
-        switchHtml +=
-            `<div id="pkmn${+i + 1}" class="switch-button text-white ${!isFainted ? "pkmn-alive" : "pkmn-fainted"}"
-                ${!isFainted && +i + 1 !== 1 ? `onclick="switchTo(${+i + 1})"` : ""}><img class="switch-image" src="res/pokemon/icons/${pkdexId}.png"></img>
-            <div class="switch-info">
-                <p class="mb-0">${pkmnNickname} Lv. ${lv}</p>
-                <div id="switch-hpbar-outline">
-                    <div id="pkmn${+i + 1}-hpbar" class="hp small"></div>
-                    </div>
-                </div>
-            </div>`;
-
-        $('#overlay-switch').append(switchHtml);
-        $(`#pkmn${+i + 1}-hpbar`).width(!isFainted ? +hpValues[0] / +hpValues[1] * 96 : 0);
+        $(pkmn).attr("class", "switch-button text-white");
+        $(pkmn).addClass(!isFainted ? "pkmn-alive" : "pkmn-fainted");
+        $(`${pkmn}-img`).attr("src", `res/pokemon/icons/${pkdexId}.png`);
+        $(`${pkmn}-info`).html(`${pkmnNickname} Lv. ${lv}`);
+        $(`${pkmn}-hpbar`).width(hpPercent * 96);
+        $(`${pkmn}-switch-hpbar-outline`).attr("class", "switch-hpbar-outline");
+        $(`${pkmn}-switch-hpbar-outline`).addClass(hpOutline);
+        $(`${pkmn}-hpbar`).attr("class", "hp small");
+        $(`${pkmn}-hpbar`).addClass(hpOutline);
+        if (!isFainted && i !== 0) {
+            $(pkmn).attr("onclick", `switchTo(${+i + 1})`)
+        } else {
+            $(pkmn).attr("onclick", "")
+        };
+        $(pkmn).show()
     }
-    if (forceSwitch) { $('#overlay-switch').append('<div class="cancel" onclick="cancelSwitch()"></div>') };
+    if (!forceSwitch) { $('#switch-cancel').show() };
 
     // Add switch UI HTML to the container element
     $("#overlay-switch").show();

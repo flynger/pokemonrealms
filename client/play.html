@@ -556,7 +556,7 @@
           <div class="lvl you"></div>
           <p id="lvl-text-you" class="battle-text"></p>
         </div>
-        <div id="hpbar-you" class="hp g"></div>
+        <div id="hpbar-you" class="hp"></div>
         <div id="hpvalue-container">
           <p id="hpvalue-you" class="battle-text"></p>
         </div>
@@ -568,7 +568,7 @@
           <div class="lvl foe"></div>
           <p id="lvl-text-foe" class="battle-text"></p>
         </div>
-        <div id="hpbar-foe" class="hp g"></div>
+        <div id="hpbar-foe" class="hp"></div>
       </div>
       <div id="overlay-message" class="battle-text">
         <div id="dialogue" class="px-2">
@@ -576,6 +576,61 @@
         </div>
       </div>
       <div id="overlay-switch" class="overlay">
+        <div id="pkmn1" class="switch-button text-white"><img id="pkmn1-img" class="switch-image"
+            src=""></img>
+          <div class="switch-info">
+            <p id="pkmn1-info" class="mb-0"></p>
+            <div id="pkmn1-switch-hpbar-outline"  class="switch-hpbar-outline">
+              <div id="pkmn1-hpbar" class="hp small"></div>
+            </div>
+          </div>
+        </div>
+        <div id="pkmn2" class="switch-button text-white"><img id="pkmn2-img" class="switch-image"
+            src=""></img>
+          <div class="switch-info">
+            <p id="pkmn2-info" class="mb-0"></p>
+            <div id="pkmn2-switch-hpbar-outline" class="switch-hpbar-outline">
+              <div id="pkmn2-hpbar" class="hp small"></div>
+            </div>
+          </div>
+        </div>
+        <div id="pkmn3" class="switch-button text-white"><img id="pkmn3-img" class="switch-image"
+            src=""></img>
+          <div class="switch-info">
+            <p id="pkmn3-info" class="mb-0"></p>
+            <div id="pkmn3-switch-hpbar-outline"  class="switch-hpbar-outline">
+              <div id="pkmn3-hpbar" class="hp small"></div>
+            </div>
+          </div>
+        </div>
+        <div id="pkmn4" class="switch-button text-white"><img id="pkmn4-img" class="switch-image"
+            src=""></img>
+          <div class="switch-info">
+            <p id="pkmn4-info" class="mb-0"></p>
+            <div id="pkmn4-switch-hpbar-outline" class="switch-hpbar-outline">
+              <div id="pkmn4-hpbar" class="hp small"></div>
+            </div>
+          </div>
+        </div>
+        <div id="pkmn5" class="switch-button text-white"><img id="pkmn5-img" class="switch-image"
+            src=""></img>
+          <div class="switch-info">
+            <p id="pkmn5-info" class="mb-0"></p>
+            <div id="pkmn5-switch-hpbar-outline" class="switch-hpbar-outline">
+              <div id="pkmn5-hpbar" class="hp small"></div>
+            </div>
+          </div>
+        </div>
+        <div id="pkmn6" class="switch-button text-white"><img id="pkmn6-img" class="switch-image"
+            src=""></img>
+          <div class="switch-info">
+            <p id="pkmn6-info" class="mb-0"></p>
+            <div id="pkmn6-switch-hpbar-outline" class="switch-hpbar-outline">
+              <div id="pkmn6-hpbar" class="hp small"></div>
+            </div>
+          </div>
+        </div>
+        <div id="switch-cancel" class="cancel" onclick="cancelSwitch()"></div>
       </div>
       <div id="overlay-fight" class="fight-command">
         <div id="move1" class="ground" onclick="useMove(1)"><span class="movename">Stomping Tantrum</span><span

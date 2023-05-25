@@ -37,14 +37,25 @@
     transition-duration: 0s;
 }
 
-#switch-hpbar-outline {
+.switch-hpbar-outline {
     position: absolute;
     width: 98px;
-    height: 8px;
+    height: 7px;
     transform-origin: left bottom;
     scale: var(--scale);
     bottom: 0%;
+}
+
+.switch-hpbar-outline.g {
     border: 0.05rem solid #18C020;
+}
+
+.switch-hpbar-outline.y{
+    border: 0.05rem solid #F8B000;
+}
+
+.switch-hpbar-outline.r{
+    border: 0.05rem solid #F85828;
 }
 
 .hp.g {
