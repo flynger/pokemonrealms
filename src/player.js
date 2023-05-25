@@ -19,6 +19,7 @@ export default class Player {
         this.requests = {};
         this.battle = null;
         this.trade = null;
+        this.trade = null;
         this.starter = false;
         this.party = [];
         this.box = [];
@@ -52,6 +53,10 @@ export default class Player {
             // this.party.push(new Pokemon("MAGNEMITE", 99, { originalTrainer: "Unknown", owner: this.displayName }));
             // this.party.push(new Pokemon("MAGNEMITE", 100, { originalTrainer: "Unknown", owner: this.displayName }));
         }
+    }
+
+    addPokemon(mon) {
+        this.party.push(mon);
     }
 
     getMap() {

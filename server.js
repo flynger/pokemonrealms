@@ -354,8 +354,8 @@ io.on("connection", (socket) => {
                 otherPlayer.socket.emit("battleRequest", displayName);
                 otherPlayer.requests[username] = true;
             } else {
-                const party2 = new Party(displayName, []);
-                const party1 = new Party(otherPlayer.displayName, []);
+                const party2 = new Party(displayName, player.party);
+                const party1 = new Party(otherPlayer.displayName, otherPlayer.party);
                 player.battle = otherPlayer.battle = new SingleBattle(party1, party2);
                 player.battle.startRandomBattle();
                 console.log("Starting match with 2 players...");
@@ -370,10 +370,14 @@ io.on("connection", (socket) => {
             socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
             return;
         }
-        if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
+        if (!otherPlayer.connected) {
+            socket.emit("invalidRequest", `${user} is offline.`);
+            return;
+        }
+        if (otherPlayer.battle == null && player.battle == null && otherPlayer.trade == null && player.trade == null) {
             // if other player hasnt sent request, send
             console.log(`${displayName} requests a trade with ${otherPlayer.displayName}`);
-            otherPlayer.socket.emit("tradeRequest", username, player.party[pokemonSlot]);
+            otherPlayer.socket.emit("tradeRequest", username);
         }
     });
 

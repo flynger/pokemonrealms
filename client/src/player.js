@@ -138,13 +138,27 @@ class player {
             // Add click event listener
             this.headSprite.interactive = true;
             this.headSprite.cursor = 'pointer';
-            this.headSprite.on("pointerdown", this.onPlayerClick);
+            this.headSprite.on("pointerdown", e => this.onClick(e));
         }
     }
 
-    onPlayerClick(e) {
+    onClick(e) {
         // Handle sprite click event
-        console.log(e);
+        $('#player-context-menu').hide();
+        playerClicked = true;
+        $('#player-context-menu-name').html(this.name);
+        $('#player-context-menu-battle').on("click", () => {
+            sendBattleRequest(this.name);
+            $('#player-context-menu').hide();
+        });
+        $('#player-context-menu-trade').on("click", () => {
+            sendTradeRequest(this.name);
+            $('#player-context-menu').hide();
+        });
+        $('#player-context-menu').show();
+        $('#player-context-menu').css("top", e.clientY - 56);
+        $('#player-context-menu').css("left", e.clientX);
+        $('#player-context-menu').css("left", e.clientX);
     }
 
     updateSprite() {
