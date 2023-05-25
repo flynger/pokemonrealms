@@ -169,6 +169,8 @@ function showSwitchButtons() {
         let hpPercent = !isFainted ? +hpValues[0] / +hpValues[1] : 0;
         let hpOutline = hpPercent > 0.5 ? "g" : hpPercent > 0.2 ? "y" : "r";
 
+        //TODO: change name color for shiny
+
         $(pkmn).attr("class", "switch-button text-white");
         $(pkmn).addClass(!isFainted ? "pkmn-alive" : "pkmn-fainted");
         $(`${pkmn}-img`).attr("src", `res/pokemon/icons/${pkdexId}.png`);
