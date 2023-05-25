@@ -1,7 +1,4 @@
-import { players } from './loginHandler.js';
-import { pokemon } from './pokemon.js'
-
-class Trade {
+export default class Trade {
     constructor(player1, player2) {
         this.player1 = player1;
         this.player2 = player2;
@@ -15,6 +12,10 @@ class Trade {
         this.player2.trade = this;
         this.player1.socket.emit("startTrade", player2.displayName);
         this.player2.socket.emit("startTrade", player1.displayName);
+    }
+    
+    getPlayerId(player) {
+        return this.player1.name == player.name ? 1 : this.player2.name == player.name ? 2 : -1;
     }
 
     ready(num, value) {
@@ -47,7 +48,8 @@ class Trade {
                 quantity
             });
         }
-
+        console.log(offers);
+        this.updateOffers();
     }
 
     offerMon(num, partySlot) {
@@ -61,11 +63,13 @@ class Trade {
                 mon: offeredMon
             });
         }
+        console.log(offers);
+        this.updateOffers();
     }
 
     updateOffers() {
         this.player1.socket.emit("tradeOffers", p1Offers, p2Offers);
-        this.player2.socket.emit("tradeOffers", p1Offers, p2Offers);
+        this.player2.socket.emit("tradeOffers", p2Offers, p1Offers);
     }
 
     completeTrade() {

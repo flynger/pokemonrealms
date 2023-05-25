@@ -107,6 +107,14 @@ function setupSocket() {
         $('#grayModalBtn').show();
     });
 
+    socket.on("startTrade", (user) => {
+        console.log(`Starting trade with ${user}...`);
+    });
+
+    socket.on("tradeOffers", (myOffers, theirOffers) => {
+        console.log({ myOffers, theirOffers });
+    });
+
     socket.on("acceptTrade", (data) => {
         //do trade animation
         console.log(`Succesfully traded`)

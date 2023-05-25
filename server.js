@@ -31,6 +31,7 @@ import { players, accounts, LoginHandler } from "./src/loginHandler.js";
 import WildEncounter from "./src/wildEncounter.js";
 import Pokemart from "./src/pokemart.js";
 import Items from "./src/items.js";
+import Trade from "./src/trade.js";
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
 // const sessions = require("./node_modules/express-session");
@@ -381,9 +382,20 @@ io.on("connection", (socket) => {
                 otherPlayer.requests.trade[username] = true;
             } else {
                 console.log("Trade started!")
+                new Trade(player, otherPlayer);
             }
             
         }
+    });
+
+    socket.on("offerItem", (id, quantity) => {
+        if (this.trade)
+            this.trade.offerItem(this.trade.getPlayerId(username), id, quantity);
+    });
+
+    socket.on("offerMon", (slot) => {
+        if (this.trade)
+            this.trade.offerMon(this.trade.getPlayerId(username), slot);
     });
 
     socket.on("acceptTrade", (data) => {
@@ -468,6 +480,9 @@ io.on("connection", (socket) => {
         player.deleteSocket();
         if (player.battle) {
             player.battle.endBattle(true);
+        }
+        if (player.trade) {
+            player.trade.cancel();
         }
         if (isGuest) {
             delete players[username];
