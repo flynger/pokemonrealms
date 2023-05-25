@@ -169,17 +169,13 @@ function showSwitchButtons() {
         let hpPercent = !isFainted ? +hpValues[0] / +hpValues[1] : 0;
         let hpOutline = hpPercent > 0.5 ? "g" : hpPercent > 0.2 ? "y" : "r";
 
-        //TODO: change name color for shiny
-
         $(pkmn).attr("class", "switch-button text-white");
         $(pkmn).addClass(!isFainted ? "pkmn-alive" : "pkmn-fainted");
         $(`${pkmn}-img`).attr("src", `res/pokemon/icons/${pkdexId}.png`);
-        $(`${pkmn}-info`).html(`${pkmnNickname} Lv. ${lv}`);
+        $(`${pkmn}-info`).html(`<span class="${pkmnDetails[pkmnDetails.length - 1] === "shiny" ? "shiny" : ""}">${pkmnNickname}</span> Lv. ${lv}`);
         $(`${pkmn}-hpbar`).width(hpPercent * 96);
-        $(`${pkmn}-switch-hpbar-outline`).attr("class", "switch-hpbar-outline");
-        $(`${pkmn}-switch-hpbar-outline`).addClass(hpOutline);
-        $(`${pkmn}-hpbar`).attr("class", "hp small");
-        $(`${pkmn}-hpbar`).addClass(hpOutline);
+        $(`${pkmn}-switch-hpbar-outline`).attr("class", `switch-hpbar-outline ${hpOutline}`);
+        $(`${pkmn}-hpbar`).attr("class", `hp small ${hpOutline}`);
         if (!isFainted && i !== 0) {
             $(pkmn).attr("onclick", `switchTo(${+i + 1})`)
         } else {
