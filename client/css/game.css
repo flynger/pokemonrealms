@@ -96,6 +96,18 @@ body {
     width: 60%;
 }
 
+.switch-slot-button-up {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+}
+
+.switch-slot-button-down {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+}
+
 .party-mon-name {
     font-size:  calc(var(--scale) * 12px);
 }
