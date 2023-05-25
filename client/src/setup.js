@@ -15,6 +15,8 @@ var kyledoveSheet;
 var gameDiv, battleUI;
 var colorMatrix;
 
+var playerClicked = true;
+
 $(window).on('load', function () {
     $('#message').modal({ backdrop: 'static', keyboard: false });
     $('#message').modal('show');
@@ -123,6 +125,13 @@ async function setupGame() {
 
     // renderer.plugins.interaction.on("mousedown", checkForClick);
     // renderer.plugins.interaction.on("mousedown", checkForClick);
+    app.stage.interactive = true;
+    app.stage.on("pointerdown", () => {
+        if (!playerClicked) $('#player-context-menu').hide();
+    });
+    app.stage.on("pointerup", () => {
+        playerClicked = false;
+    });
 }
 
 async function loadMap(mapName, submapName, collideables, grasses) {
