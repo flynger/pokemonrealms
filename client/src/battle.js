@@ -48,6 +48,14 @@ function nextAction() {
     }
     clearInterval(textInterval);
     var nextData = battleData.shift();
+    console.log("Battle Data: " + JSON.stringify(battleData));
+    console.log("next data: " + JSON.stringify(nextData));
+    console.log("next data message: " + nextData.message);
+    console.log("if includes go" + nextData.message.includes("Go!"));
+    if (nextData.message.includes("Go!")) {
+        $("#info-you").hide(); 
+        console.log("INFO YOU HIDDEN");
+    }
     if (nextData.switchIn) {
         let pokemonData = nextData.switchIn.split(', ');
         if (!pokemonData[1].startsWith("L")) {
@@ -74,6 +82,7 @@ function nextAction() {
     }
     else textInterval = createTextInterval(nextData, letters);
 }
+
 function createTextInterval(nextData, letters) {
     $('#dialogue').html("");
     var index = 0;
@@ -117,7 +126,7 @@ function processFormatting(message, letters) {
         letters.splice(b2 + 1, 1);
         letters.splice(b1 + 1, 1);
     }
-    console.log(letters);
+    // console.log(letters);
     return letters;
 }
 
