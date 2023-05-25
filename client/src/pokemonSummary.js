@@ -44,12 +44,24 @@ function updateMoveOrder() {
   });
 }
 
+function openPartySummary(num) {
+  if (!party[num - 1]) return;
+
+  let pokemon = party[num - 1];
+  let id = pokemon.id;
+  if ($(`#pokemon-summary-${id}`).length) {
+    $(`#pokemon-summary-${id}`).remove();
+  } else {
+    createSummaryUI(pokemon);
+  }
+}
+
 function createSummaryUI(pokemon) {
   let entry = Pokedex.getPokedexEntry(pokemon.species);
   let moveEntries = pokemon.moves.map((move) => Moves[move]);
   let abilityEntry = Abilities[entry.abilities[pokemon.abilitySlot]];
   let natureEntry = Natures[pokemon.nature];
-  $('#game').append(`<div id="pokemon-summary" class="pokemon-summary bg-dark text-white d-block">
+  $('#game').append(`<div id="pokemon-summary-${pokemon.id}" class="pokemon-summary bg-dark text-white d-block">
       <div id="pokemon-summary-header">
         Pokémon Summary
       </div>

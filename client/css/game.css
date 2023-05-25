@@ -41,6 +41,7 @@ body {
 }
 
 .party-mon-div {
+    position: relative;
     display: flex;
     background-color: rgba(20, 20, 20, 0.8);
     width: 100%;

@@ -182,6 +182,19 @@ function setupSocket() {
 
     socket.on("partyUpdate", (newParty) => {
         party = newParty;
+        for (let i = 0; i < 6; i++) {
+            let num = i + 1;
+            if (!party[i]) {
+                
+            } else {
+                let pokemon = party[i];
+                let entry = Pokedex.getPokedexEntry(pokemon.species);
+                $("#party-icon-" + num).attr("src", `res/pokemon/icons/${entry.id}.png`)
+                // $("#party-hp-" + num)
+                $("#party-name-" + num).html(pokemon.name ? pokemon.name : entry.name);
+                $("#party-level-" + num).html(`Lv. ${pokemon.level}`)
+            }
+        }
     });
 
     socket.on("pong", (ms) => {

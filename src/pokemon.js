@@ -3,6 +3,7 @@ import Showdown from "pokemon-showdown";
 const { Dex } = Showdown;
 
 export class Pokemon {
+    static id = 1;
     static shinyChance = 32;
     static hiddenAbilityChance = 1;
     static growthRates = {
@@ -67,7 +68,11 @@ export class Pokemon {
         // console.log(possibleMoves);
         this.moves = possibleMoves;
         if (originalTrainer) this.originalTrainer = originalTrainer;
-        if (owner) this.owner = owner;
+        if (owner) {
+            this.owner = owner;
+            this.id = Pokemon.id;
+            Pokemon.id++;
+        }
         if (owner && !caughtBall) caughtBall = "pokeball"; // default ball
         if (caughtBall) this.caughtBall = caughtBall;
         console.log(this);

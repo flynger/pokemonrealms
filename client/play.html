@@ -33,9 +33,9 @@
   <script src="src/grass.js"></script>
   <script src="src/log.js"></script>
   <script src="src/collider.js"></script>
+  <script src="src/battle.js"></script>
   <script src="src/draw.js"></script>
   <script src="src/setup.js"></script>
-  <script src="src/battle.js"></script>
   <script src="src/nav.js"></script>
 
   <link href="libs/jquery-ui.css" rel="stylesheet" />
@@ -142,38 +142,80 @@
       </button>
     </div>
     <div>
-    <div id="party-div" class="PokemonFont">
-      <div class="party-mon-div">
-        <div class="party-mon-sprite-div">
-          <img id="party-icon-1" class="party-mon-sprite" src="res/pokemon/icons/1.png" />
-          <div class="party-mon-hp-div">
-            <div id="party-hp-1" class="party-mon-hp hp small g"></div>
+      <div id="party-div" class="PokemonFont">
+        <div class="party-mon-div" onclick="openPartySummary(1)">
+          <div class="party-mon-sprite-div">
+            <img id="party-icon-1" class="party-mon-sprite" src="res/pokemon/icons/1.png" />
+            <div class="party-mon-hp-div">
+              <div id="party-hp-1" class="party-mon-hp hp small g"></div>
+            </div>
+          </div>
+          <div class="party-mon-content-div"><span id="party-name-1"
+              class="party-mon-name">Loading...</span><span id="party-level-1" class="party-mon-level"></span>
           </div>
         </div>
-        <div class="party-mon-content-div"><span class="party-mon-name">Bulbasaur</span><span class="party-mon-level">Lv. 100</span></div>
+        <div class="party-mon-div" onclick="openPartySummary(2)">
+          <div class="party-mon-sprite-div">
+            <img id="party-icon-2" class="party-mon-sprite" src="res/pokemon/icons/1.png" />
+            <div class="party-mon-hp-div">
+              <div id="party-hp-2" class="party-mon-hp hp small g"></div>
+            </div>
+          </div>
+          <div class="party-mon-content-div"><span id="party-name-2"
+              class="party-mon-name">Loading...</span><span id="party-level-2" class="party-mon-level"></span>
+          </div>
+        </div>
+        <div class="party-mon-div" onclick="openPartySummary(3)">
+          <div class="party-mon-sprite-div">
+            <img id="party-icon-3" class="party-mon-sprite" src="res/pokemon/icons/1.png" />
+            <div class="party-mon-hp-div">
+              <div id="party-hp-3" class="party-mon-hp hp small g"></div>
+            </div>
+          </div>
+          <div class="party-mon-content-div"><span id="party-name-3"
+              class="party-mon-name">Loading...</span><span id="party-level-3" class="party-mon-level"></span>
+          </div>
+        </div>
+        <div class="party-mon-div" onclick="openPartySummary(4)">
+          <div class="party-mon-sprite-div">
+            <img id="party-icon-4" class="party-mon-sprite" src="res/pokemon/icons/1.png" />
+            <div class="party-mon-hp-div">
+              <div id="party-hp-4" class="party-mon-hp hp small g"></div>
+            </div>
+          </div>
+          <div class="party-mon-content-div"><span id="party-name-4"
+              class="party-mon-name">Loading...</span><span id="party-level-4" class="party-mon-level"></span>
+          </div>
+        </div>
+        <div class="party-mon-div" onclick="openPartySummary(5)">
+          <div class="party-mon-sprite-div">
+            <img id="party-icon-5" class="party-mon-sprite" src="res/pokemon/icons/1.png" />
+            <div class="party-mon-hp-div">
+              <div id="party-hp-5" class="party-mon-hp hp small g"></div>
+            </div>
+          </div>
+          <div class="party-mon-content-div"><span id="party-name-5"
+              class="party-mon-name">Loading...</span><span id="party-level-5" class="party-mon-level"></span>
+          </div>
+        </div>
+        <div class="party-mon-div" onclick="openPartySummary(6)">
+          <div class="party-mon-sprite-div">
+            <img id="party-icon-6" class="party-mon-sprite" src="res/pokemon/icons/1.png" />
+            <div class="party-mon-hp-div">
+              <div id="party-hp-6" class="party-mon-hp hp small g"></div>
+            </div>
+          </div>
+          <div class="party-mon-content-div"><span id="party-name-6"
+              class="party-mon-name">Loading...</span><span id="party-level-6" class="party-mon-level"></span>
+          </div>
+        </div>
       </div>
-      <div class="party-mon-div">
-
-      </div>
-      <div class="party-mon-div">
-
-      </div>
-      <div class="party-mon-div">
-
-      </div>
-      <div class="party-mon-div">
-
-      </div>
-      <div class="party-mon-div">
-
-      </div>
-    </div>
 
     </div>
     <button id="liveToastBtn" type="button" class="btn btn-dark position-absolute bottom-0 end-0"
       onclick="toastBootstrap.show()">Settings</button>
 
-    <div id="pokemon-summary" class="bg-dark text-white">
+    <div id="pokemon-summary" class="pokemon-summary bg-dark text-white">
       <div id="pokemon-summary-header">
         Pokémon Summary
       </div>
