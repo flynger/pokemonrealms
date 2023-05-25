@@ -191,6 +191,7 @@ function setupSocket() {
                 let entry = Pokedex.getPokedexEntry(pokemon.species);
                 $("#party-icon-" + num).attr("src", `res/pokemon/icons/${entry.id}.png`)
                 // $("#party-hp-" + num)
+                $("#party-name-" + num).attr("class", `party-mon-name${pokemon.shiny ? " shiny" : ""}`);
                 $("#party-name-" + num).html(pokemon.name ? pokemon.name : entry.name);
                 $("#party-level-" + num).html(`Lv. ${pokemon.level}`)
             }
