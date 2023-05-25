@@ -19,7 +19,7 @@
     },
     "animations": {},
     "meta": {
-        "image": "../tilesets/kyledove.png",
+        "image": "../res/tilesets/kyledove.png",
         "format": "RGBA8888",
         "size": {
             "w": 256,

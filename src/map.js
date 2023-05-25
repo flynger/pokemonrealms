@@ -1,6 +1,25 @@
-import { Pokemon } from "./pokemon.js";
+import jsonfile from "jsonfile";
+import Pokemon from "./pokemon.js";
 
 export default class Map {
+    static maps = {
+        "Route 1": ["Area 1"]
+    };
+    static {
+        for (let mapName in this.maps) {
+            let submapList = this.maps[mapName];
+            this.maps[mapName] = {};
+            for (let submapName of submapList) {
+                let mapData = jsonfile.readFileSync(`./data/maps/${mapName}/${submapName}.json`);
+                this.maps[mapName][submapName] = new Map(mapData);
+                
+                console.log(this.maps)
+            }
+        }
+    }
+    static getMap(mapName, submapName) {
+        return this.maps[mapName][submapName];
+    }
     static times = ["morning", "day", "night"];
     static time = "day";
 
@@ -14,14 +33,16 @@ export default class Map {
         }
     }
 
-    constructor(encounters, encounterRate =  1 / 8) {
-        this.encounters = encounters;
-        this.encounterRate = encounterRate;
+    constructor(data) {
+        this.data = data;
+        this.collideables = data.collideables;
+        this.grass = data.grass;
+        this.water = data.water;
+        this.encounters = data.encounters;
     }
 
     grassCheck() {
-        var num = randomNumber(1, this.encounters.grass.frequency);
-        return num == 1;
+        return randomNumber(1, this.encounters.grass.frequency) == 1;
     }
 
     getTotalWeight(encounters) {

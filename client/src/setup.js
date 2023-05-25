@@ -3,10 +3,10 @@ var ratio;
 var vminRatio;
 calculateRatios();
 var map = {
-    name: "Route 1",
-    submapName: "Area 1",
-    width: 60,
-    height: 45
+    name: "",
+    submapName: "",
+    width: 39,
+    height: 32
 };
 var gen4hgssSheet;
 var gen5exteriorSheet;
@@ -69,13 +69,14 @@ function calculateRatios() {
 
 async function setupSpritesheets() {
     PIXI.Assets.add('particle', '../res/particle.png');
-    PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
-    PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
-    PIXI.Assets.add('kyledove', '../res/data/kyledove.json');
-    gen4hgssSheet = await PIXI.Assets.load(['gen4hgss']);
-    gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
-    kyledoveSheet = await PIXI.Assets.load('kyledove');
+    // PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
+    // PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
+    // PIXI.Assets.add('kyledove', new tileset('../res/data/kyledove.json'));
+    // gen4hgssSheet = await PIXI.Assets.load(['gen4hgss']);
+    // gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
+    // kyledoveSheet = await PIXI.Assets.load('kyledove');
     await player.initializePlayerSpritesheets();
+    await initializeTileSpritesheets();
 }
 
 async function setupGame() {
@@ -118,43 +119,59 @@ async function setupGame() {
     gameContainer.filters = [colorMatrix];
     // colorMatrix.brightness(1.4, true);
     // colorMatrix.tint(0xFFBB66, true);
+    // let interactionManager = new PIXI.interaction.InteractionManager(app.renderer);
 
-    // map initialization
+    // renderer.plugins.interaction.on("mousedown", checkForClick);
+    // renderer.plugins.interaction.on("mousedown", checkForClick);
+}
+
+async function loadMap(mapName, submapName, collideables, grasses) {
+    // load map
+    map.name = mapName;
+    map.submapName = submapName;
     $("#mapName").html(map.name);
     $("#submapName").html(map.submapName);
-    map.tilemap = new PIXI.tilemap.CompositeTilemap();
-    map.tilemap.zIndex = -1000;
-    for (let i = 0; i < map.width; i++) {
-        for (let j = 0; j < map.height; j++) {
-            let possibleTiles = ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass1", "grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
-            map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
-
-            if (/*(i + j + 1) % randomNumber(4, 10) == 0 || */(i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
-                new grass(i * 32, j * 32);
-            } else if (randomNumber(1, 900) == 1) {
-                new npc("Professor Oak" + randomNumber(1, 9999), "oak", i * 32, j * 32 - 2)
+    await fetch(`../res/maps/${mapName}/${submapName}.json`).then((response) => response.json()).then((json) =>  {
+        for (let layerIndex in json.layers) {
+            let layer = json.layers[layerIndex];
+            for (let data of layer) {
+                new tile(data.x, data.y, data.img.tileset, data.img.x, data.img.y, layerIndex, data.offset);
             }
         }
+    });
+    for (let collideable of collideables) {
+        new collider(32 * collideable.x, 32 * collideable.y, 32, 32);
     }
-    gameContainer.addChild(map.tilemap);
+    for (let grss of grasses) {
+        new grass(32 * grss.x, 32 * grss.y);
+    }
+    // map.tilemap = new PIXI.tilemap.CompositeTilemap();
+    // map.tilemap.zIndex = -1000;
+    // for (let i = 0; i < map.width; i++) {
+    //     for (let j = 0; j < map.height; j++) {
+    //         let possibleTiles = ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass1", "grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
+    //         map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
+
+    //         if (/*(i + j + 1) % randomNumber(4, 10) == 0 || */(i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
+    //             new grass(i * 32, j * 32);
+    //         } else if (randomNumber(1, 900) == 1) {
+    //             new npc("Professor Oak" + randomNumber(1, 9999), "oak", i * 32, j * 32 - 2)
+    //         }
+    //     }
+    // }
+    // gameContainer.addChild(map.tilemap);
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
     app.stage.addChild(textContainer);
-    // let interactionManager = new PIXI.interaction.InteractionManager(app.renderer);
-
-    // // renderer.plugins.interaction.on("mousedown", checkForClick);
-    // // renderer.plugins.interaction.on("mousedown", checkForClick);
 }
 
 function loadPlayersAndGame(playersArray) {
-
     for (let plyr of playersArray) {
         if (plyr.name == username) {
             new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true).sendLocation();
         }
         else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
     }
-
 
     app.ticker.add(draw);
     gameDiv.prepend(app.view);

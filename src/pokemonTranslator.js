@@ -7,8 +7,10 @@ export function translatePokemon(pokemon) {
     const nature = pokemon.nature;
     const evs = pokemon.evs.toArray().join(",");
     const ivs = pokemon.ivs.toArray().join(",");
-    const level = pokemon.level || "";
+    const level = pokemon.level;
     const shiny = pokemon.shiny ? "S" : "";
     const gender = pokemon.gender;
-    return `${name}|${species}|${heldItem}|${abilitySlot}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}|`;
+    const happiness = pokemon.happiness;
+    const pokeball = pokemon.caughtBall;
+    return `${name}|${species}|${heldItem}|${abilitySlot}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}|${happiness},${pokeball}`;
 }

@@ -10,11 +10,11 @@ class grass {
     passers = {};
 
     constructor(x, y) {
-        this.sprite = new PIXI.Sprite(gen5exteriorSheet.textures['wildgrass']);
-        this.sprite.zIndex = y - 20;
-        this.sprite.x = x;
-        this.sprite.y = y;
-        gameContainer.addChild(this.sprite);
+        // this.sprite = new PIXI.Sprite(gen5exteriorSheet.textures['wildgrass']);
+        // this.sprite.zIndex = y - 20;
+        // this.sprite.x = x;
+        // this.sprite.y = y;
+        // gameContainer.addChild(this.sprite);
         grasses[[x, y]] = this;
         this.rigidBody = Matter.Bodies.rectangle(x + 16, y + 16, 32, 32);
         Matter.Body.setStatic(this.rigidBody, true);
@@ -95,13 +95,13 @@ class grass {
         }
     }
 
-    getHitbox() {
-        return {
-            x: this.sprite.x,
-            y: this.sprite.y,
-            width: 32,
-            height: 32
-        };
-    }
+    // getHitbox() {
+    //     return {
+    //         x: this.sprite.x,
+    //         y: this.sprite.y,
+    //         width: 32,
+    //         height: 32
+    //     };
+    // }
 }
 const grasses = grass.grasses;

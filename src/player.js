@@ -1,6 +1,7 @@
 import Inventory from "./inventory.js";
 import Pokedex from "./pokedex.js";
-import { Stats, Pokemon } from "./pokemon.js";
+import Pokemon, { Stats } from "./pokemon.js";
+import Map from "./map.js";
 
 export default class Player {
     static onlinePlayers = [];
@@ -21,11 +22,15 @@ export default class Player {
         this.starter = false;
         this.party = [];
         this.box = [];
+        this.pickStarter();
         this.balance = 500;
         this.inventory = new Inventory(this);
         this.inventory.addItem("pokeball", 5);
         this.inventory.addItem("potion", 3);
-        this.pickStarter();
+        this.location = {
+            map: "Route 1",
+            submap: "Area 1"
+        }
     }
 
     pickStarter(starter) {
@@ -47,6 +52,10 @@ export default class Player {
             // this.party.push(new Pokemon("MAGNEMITE", 99, { originalTrainer: "Unknown", owner: this.displayName }));
             // this.party.push(new Pokemon("MAGNEMITE", 100, { originalTrainer: "Unknown", owner: this.displayName }));
         }
+    }
+
+    getMap() {
+        return Map.getMap(this.location.map, this.location.submap);
     }
 
     setSocket(socket) {

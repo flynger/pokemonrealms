@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/routes/route1.json",
+    "activeFile": "kyledove.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -18,11 +18,19 @@
             }
         },
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/routes/route1.json": {
-            "scale": 0.5,
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 640,
-                "y": 359
+                "x": 378,
+                "y": 354.5
+            }
+        },
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 482.66666666666663,
+                "y": 421.99999999999994
             }
         },
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx": {
@@ -57,15 +65,15 @@
     "map.width": 64,
     "openFiles": [
         "kyledove.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/routes/route1.json",
-        "gen4hgss_1.json"
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json"
     ],
     "project": "balex.tiled-project",
-    "property.type": "bool",
+    "property.type": "int",
     "recentFiles": [
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json",
         "kyledove.json",
-        "gen4hgss_1.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/routes/route1.json",
+        "gen4hgss_1.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
         "Outside.json",
         "Outside.tsx",

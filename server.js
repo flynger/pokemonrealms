@@ -24,7 +24,7 @@ import sessions from "express-session";
 import Map from './src/map.js';
 import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'; // held items only
 import Party from './src/party.js';
-import { Pokemon } from './src/pokemon.js';
+import Pokemon from './src/pokemon.js';
 import Player from "./src/player.js";
 import SingleBattle from "./src/singleBattle.js";
 import { players, accounts, LoginHandler } from "./src/loginHandler.js";
@@ -149,138 +149,138 @@ var testmart = new Pokemart([
     { id: "aguavberry", price: 5 },
     { id: "thunderstone", price: 10000 }
 ]);
-var encounters = {
-    grass: {
-        morning: [
-            {
-                species: "PIDGEY",
-                weight: 35,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "LEDYBA",
-                weight: 35,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "SENTRET",
-                weight: 15,
-                minLevel: 3,
-                maxLevel: 3
-            },
-            {
-                species: "BUTTERFREE",
-                weight: 5,
-                minLevel: 7,
-                maxLevel: 7
-            },
-            {
-                species: "BEEDRILL",
-                weight: 5,
-                minLevel: 7,
-                maxLevel: 7
-            },
-            {
-                species: "PIDGEOTTO",
-                weight: 1,
-                minLevel: 7,
-                maxLevel: 7
-            },
-            {
-                species: "PIKACHU",
-                weight: 1,
-                minLevel: 4,
-                maxLevel: 7
-            },
-            {
-                species: "FURRET",
-                weight: 1,
-                minLevel: 6,
-                maxLevel: 6
-            }
-        ],
-        day: [
-            {
-                species: "PIDGEY",
-                weight: 10,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "RATTATA",
-                weight: 10,
-                minLevel: 2,
-                maxLevel: 2
-            },
-            {
-                species: "CATERPIE",
-                weight: 7,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "WEEDLE",
-                weight: 7,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "SENTRET",
-                weight: 5,
-                minLevel: 3,
-                maxLevel: 3
-            },
-            {
-                species: "PIDGEOTTO",
-                weight: 1,
-                minLevel: 7,
-                maxLevel: 7
-            },
-            {
-                species: "PIKACHU",
-                weight: 1,
-                minLevel: 4,
-                maxLevel: 7
-            },
-            {
-                species: "FURRET",
-                weight: 1,
-                minLevel: 6,
-                maxLevel: 6
-            }
-        ],
-        night: [
-            {
-                species: "RATTATA",
-                weight: 5,
-                minLevel: 2,
-                maxLevel: 6
-            },
-            {
-                species: "HOOTHOOT",
-                weight: 5,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "TIRTOUGA",
-                weight: 1,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "SQUIRTLE",
-                weight: 1,
-                minLevel: 2,
-                maxLevel: 4
-            }
-        ],
-        frequency: 8
-    }
-}
-var map = new Map(encounters);
+// var encounters = {
+//     grass: {
+//         morning: [
+//             {
+//                 species: "PIDGEY",
+//                 weight: 35,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "LEDYBA",
+//                 weight: 35,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "SENTRET",
+//                 weight: 15,
+//                 minLevel: 3,
+//                 maxLevel: 3
+//             },
+//             {
+//                 species: "BUTTERFREE",
+//                 weight: 5,
+//                 minLevel: 7,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "BEEDRILL",
+//                 weight: 5,
+//                 minLevel: 7,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "PIDGEOTTO",
+//                 weight: 1,
+//                 minLevel: 7,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "PIKACHU",
+//                 weight: 1,
+//                 minLevel: 4,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "FURRET",
+//                 weight: 1,
+//                 minLevel: 6,
+//                 maxLevel: 6
+//             }
+//         ],
+//         day: [
+//             {
+//                 species: "PIDGEY",
+//                 weight: 10,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "RATTATA",
+//                 weight: 10,
+//                 minLevel: 2,
+//                 maxLevel: 2
+//             },
+//             {
+//                 species: "CATERPIE",
+//                 weight: 7,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "WEEDLE",
+//                 weight: 7,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "SENTRET",
+//                 weight: 5,
+//                 minLevel: 3,
+//                 maxLevel: 3
+//             },
+//             {
+//                 species: "PIDGEOTTO",
+//                 weight: 1,
+//                 minLevel: 7,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "PIKACHU",
+//                 weight: 1,
+//                 minLevel: 4,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "FURRET",
+//                 weight: 1,
+//                 minLevel: 6,
+//                 maxLevel: 6
+//             }
+//         ],
+//         night: [
+//             {
+//                 species: "RATTATA",
+//                 weight: 5,
+//                 minLevel: 2,
+//                 maxLevel: 6
+//             },
+//             {
+//                 species: "HOOTHOOT",
+//                 weight: 5,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "TIRTOUGA",
+//                 weight: 1,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "SQUIRTLE",
+//                 weight: 1,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             }
+//         ],
+//         frequency: 8
+//     }
+// }
+// var map = new Map(encounters);
 io.on("connection", (socket) => {
     console.log(color.green, socket.id);
 
@@ -327,6 +327,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("grassEnter", () => {
+        let map = player.getMap();
         if (player.battle == null && map.grassCheck()) {
             let encounter = map.createEncounter();
             socket.emit("startBattle", player.party[0].species, encounter.species);
@@ -466,6 +467,7 @@ io.on("connection", (socket) => {
     });
     // send data
     socket.emit("itemData", Items);
+    socket.emit("mapData", player.location, player.getMap().collideables, player.getMap().grass, player.getMap().water);
     socket.emit("playerData", username, Object.values(players).filter((plyr) => plyr.connected).map((plyr) => plyr.export()));
     socket.emit("balanceUpdate", player.balance);
     player.inventory.sendItemUpdate();

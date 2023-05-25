@@ -2,7 +2,7 @@ import Pokedex from "./pokedex.js";
 import Showdown from "pokemon-showdown";
 const { Dex } = Showdown;
 
-export class Pokemon {
+export default class Pokemon {
     static id = 1;
     static shinyChance = 32;
     static hiddenAbilityChance = 64;

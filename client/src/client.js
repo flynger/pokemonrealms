@@ -201,6 +201,11 @@ function setupSocket() {
         }
     });
 
+    socket.on("mapData", async (locationData, collideables, grasses, water) => {
+        collideables.push(...water)
+        await loadMap(locationData.map, locationData.submap, collideables, grasses);
+    });
+
     socket.on("pong", (ms) => {
         latency = ms;
     });

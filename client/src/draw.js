@@ -1,6 +1,6 @@
-// PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 PIXI.settings.ROUND_PIXELS = true;
-//PIXI.settings.RESOLUTION = 1;
+// PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
 
 // physics engine
