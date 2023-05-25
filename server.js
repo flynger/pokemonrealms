@@ -384,29 +384,33 @@ io.on("connection", (socket) => {
                 console.log("Trade started!")
                 new Trade(player, otherPlayer);
             }
-            
+
         }
     });
 
     socket.on("offerItem", (id, quantity) => {
-        if (this.trade)
-            this.trade.offerItem(this.trade.getPlayerId(username), id, quantity);
+        if (player.trade)
+            player.trade.offerItem(username, id, quantity);
     });
 
     socket.on("offerMon", (slot) => {
-        if (this.trade)
-            this.trade.offerMon(this.trade.getPlayerId(username), slot);
+        if (player.trade)
+            player.trade.offerMon(username, slot);
     });
 
-    socket.on("acceptTrade", (data) => {
-        console.log("data " + data);
-        let player1 = players[data.player1.toLowerCase()];
-        let player2 = players[data.player2.toLowerCase()];
-        console.log(`Trading ${player1.party[data.pokemon1]} for ${player2.party[data.pokemon2]}`);
-        let temp = player1.party[data.pokemonSlot1];
-        player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
-        player2.party[data.pokemonSlot2] = temp;
-        socket.emit("acceptTrade", (data));
+    socket.on("tradeReady", (value) => {
+        if (player.trade) player.trade.ready(username, value)
+    });
+
+    socket.on("tradeConfirm", (data) => {
+        if (player.trade) {
+            player.trade.confirm(username);
+        }
+    });
+
+    socket.on("cancelTrade", () => {
+        if (player.trade)
+            player.trade.cancel();
     });
 
     socket.on("addBal", (amount) => {

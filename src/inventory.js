@@ -48,6 +48,10 @@ export default class Inventory {
         //Items
     }
 
+    isValidQuantity(quantity) {
+        return !(typeof quantity != "number" || !Number.isInteger(quantity) || quantity <= 0);
+    }
+
     sendItemUpdate() {
         if (this.player.connected) this.player.socket.emit("inventoryUpdate", this.items);
     }

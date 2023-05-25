@@ -97,11 +97,13 @@ function setupSocket() {
         $('#message-body').text(`${user} has sent you a trade request. Accept?`);
         $('#blueModalBtn').text("Accept!");
         $('#grayModalBtn').text("Decline");
+        $('#blueModalBtn').off('click');
         $('#blueModalBtn').on('click', () => {
             console.log(`username: ${username} user: ${user}`);
             socket.emit("tradeRequest", user);
             $('#message').modal('hide');
         });
+        $('#grayModalBtn').off('click');
         $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
@@ -127,10 +129,12 @@ function setupSocket() {
         $('#message-body').text(user + " has sent you a battle request. Accept?");
         $('#blueModalBtn').text("Let's battle!");
         $('#grayModalBtn').text("Ignore");
+        $('#blueModalBtn').off('click');
         $('#blueModalBtn').on('click', () => {
             sendBattleRequest(user);
             $('#message').modal('hide');
         });
+        $('#grayModalBtn').off('click');
         $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
