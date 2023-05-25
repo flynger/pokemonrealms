@@ -185,10 +185,13 @@ function setupSocket() {
         for (let i = 0; i < 6; i++) {
             let num = i + 1;
             if (!party[i]) {
-                
+                $("#party-icon-" + num).parent().hide();
+                $("#party-name-" + num).parent().hide();
             } else {
                 let pokemon = party[i];
                 let entry = Pokedex.getPokedexEntry(pokemon.species);
+                $("#party-icon-" + num).parent().show();
+                $("#party-name-" + num).parent().show();
                 $("#party-icon-" + num).attr("src", `res/pokemon/icons/${entry.id}.png`)
                 // $("#party-hp-" + num)
                 $("#party-name-" + num).attr("class", `party-mon-name${pokemon.shiny ? " shiny" : ""}`);
