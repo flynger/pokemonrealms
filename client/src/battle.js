@@ -48,11 +48,11 @@ function nextAction() {
     }
     clearInterval(textInterval);
     var nextData = battleData.shift();
-    console.log("Battle Data: " + JSON.stringify(battleData));
-    console.log("next data: " + JSON.stringify(nextData));
-    console.log("next data message: " + nextData.message);
-    console.log("if includes go" + nextData.message.includes("Go!"));
-    if (nextData.message.includes("Go!")) {
+    // console.log("Battle Data: " + JSON.stringify(battleData));
+    // console.log("next data: " + JSON.stringify(nextData));
+    // console.log("next data message: " + nextData.message);
+    console.log("if includes go" + nextData.message.includes("come back!"));
+    if (nextData.message.includes("come back!")) {
         $("#info-you").hide(); 
         console.log("INFO YOU HIDDEN");
     }
