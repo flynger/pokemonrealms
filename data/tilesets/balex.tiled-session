@@ -33,6 +33,14 @@
                 "y": 428.66666666666663
             }
         },
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/test.json": {
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 396.99999999999994,
+                "y": 205.99999999999997
+            }
+        },
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx": {
             "scale": 0.75,
             "selectedLayer": 1,
@@ -70,6 +78,7 @@
     "project": "balex.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/test.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json",
         "kyledove.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/routes/route1.json",

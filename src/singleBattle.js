@@ -140,11 +140,9 @@ export default class SingleBattle {
                             battleDataProperties = {
                                 side: side == thisPlayer ? "you" : "foe",
                                 nickname: pokemonArgs[1],
-                                switchIn: lineArray[1]
+                                switchIn: lineArray[1],
+                                switchInCondition: isOwnPokemon ? thisParty.data.switchInCondition : lineArray[2]
                             };
-                            if (isOwnPokemon) {
-                                battleDataProperties.switchInCondition = thisParty.data.switchInCondition;
-                            }
                             // add logic to send public data to player
                             break;
                         case "-damage":
