@@ -29,8 +29,8 @@
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 482.66666666666663,
-                "y": 421.99999999999994
+                "x": 461.3333333333333,
+                "y": 428.66666666666663
             }
         },
         "D:/Sandbox/github/PokemonRealms/data/balex.tmx": {
@@ -60,9 +60,9 @@
     },
     "last.imagePath": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/client/res/tilesets",
     "map.fixedSize": true,
-    "map.height": 32,
+    "map.height": 16,
     "map.lastUsedFormat": "json",
-    "map.width": 64,
+    "map.width": 16,
     "openFiles": [
         "kyledove.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json"
