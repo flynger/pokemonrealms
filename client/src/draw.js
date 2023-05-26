@@ -42,8 +42,23 @@ function draw(deltaTime) {
         players[name].endFrame();
     }
     if (isBattleActive && battleOptions) {
-        let hpValues = battleOptions.side.pokemon[0].condition.split(" ")[0].split("/");
-        $('#hpvalue-you').html((Math.round(($('#hpbar-you').width() / 96) * hpValues[1]).toString() + "/" + hpValues[1]));
+        let hpMax = battleOptions.side.pokemon[0].condition.split(" ")[0].split("/")[1];
+        let hpBar = {you: Math.round($('#hpbar-you').width() / 96 * 100), foe: Math.round($('#hpbar-foe').width() / 96 * 100)}
+        let currentHpValue = hpBar.you !== 0 ? Math.round(hpBar.you * hpMax / 100): 0;
+        $('#hpvalue-you').html(currentHpValue + "/" + hpMax);
+
+        // sets color of health
+        for(let side in hpBar) {
+            if (hpBar[side] <= 20) {
+                $(`#hpbar-${side}`).attr("class","hp r");
+            }
+            else if(hpBar[side] <= 50) {
+                $(`#hpbar-${side}`).attr("class","hp y");
+            }
+            else {
+                $(`#hpbar-${side}`).attr("class","hp g");
+            }
+        }   
     }
 }
 

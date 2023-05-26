@@ -25,7 +25,6 @@
 
 .hp {
     position: absolute;
-    background-image: url('../res/battle/gui/overlay_hp.png');
     width: 96px;
     height: 6px;
     transition-duration: 0.666s;
@@ -59,15 +58,15 @@
 }
 
 .hp.g {
-    background-position-y: -1px;
+    background-image: url('../res/battle/gui/overlay_hp_g.png');
 }
 
 .hp.y {
-    background-position-y: -10px;
+    background-image: url('../res/battle/gui/overlay_hp_y.png');
 }
 
 .hp.r {
-    background-position-y: -19px;
+    background-image: url('../res/battle/gui/overlay_hp_r.png');
 }
 
 #xpbar {
@@ -299,6 +298,11 @@
 }
 
 .pkmn-fainted {
+    background-color: rgb(147, 87, 87);
+}
+
+.pkmn-fainted:hover {
+    cursor: pointer;
     background-color: rgb(147, 87, 87);
 }
 

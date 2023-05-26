@@ -48,33 +48,34 @@ function nextAction() {
     }
     clearInterval(textInterval);
     var nextData = battleData.shift();
-    // console.log("Battle Data: " + JSON.stringify(battleData));
-    // console.log("next data: " + JSON.stringify(nextData));
-    // console.log("next data message: " + nextData.message);
-    console.log("if includes go" + nextData.message.includes("come back!"));
-    if (nextData.message.includes("come back!")) {
-        $("#info-you").hide(); 
-        console.log("INFO YOU HIDDEN");
+
+    if (nextData.switchOut) {
+        let side = nextData.side;
+        $(`#info-${side}`).hide();
+        $(`#pokemon-${side}`).hide();
+        $(`#pokemon-${side}`).attr("src", "");
     }
     if (nextData.switchIn) {
         let pokemonData = nextData.switchIn.split(', ');
-        if (!pokemonData[1].startsWith("L")) {
-            pokemonData.splice(1, 0, "L100");
-        }
         let side = nextData.side;
         let nickname = nextData.nickname;
         let species = Pokedex.getPokedexEntry(pokemonData[0]).species.toLowerCase();
-        let level = pokemonData[1].slice(1);
+        let level = !pokemonData[1].startsWith("L") ? "100" : pokemonData[1].slice(1);
         let gender = pokemonData[2];
-        let shiny = pokemonData[3] == "shiny";
+        let shiny = pokemonData[pokemonData.length - 1] == "shiny";
         console.log(species, level, gender, shiny)
+
+        let hpValues = nextData.switchInCondition.split('/');
+        // Should work for foe. Not yet tested
+        $("#hpbar-" + nextData.side).width((+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] : 0) * 96);
+
         showPokemon(side, species, nickname, level, shiny);
+        $(`#pokemon-${nextData.side}`).show();
+        $(`#info-${nextData.side}`).show();
     }
     var letters = processFormatting(nextData.message, nextData.message.split(""));
     if ("damageHPTo" in nextData) {
         $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
-        $("#hpbar-" + nextData.side).attr("class", "hp");
-        $("#hpbar-" + nextData.side).addClass(nextData.damageHPTo > 50 ? "g" : nextData.damageHPTo > 20 ? "y" : "r")
         setTimeout(() => {
             if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
             else nextActionLogic(nextData);
@@ -131,15 +132,14 @@ function processFormatting(message, letters) {
 }
 
 function showPokemon(side, species, name, level, shiny) {
+    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
+    $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
     if (side == "you") {
         $('#command-message').html("What will<br>" + name + " do?");
     }
-    $("#info-" + side).show();
     $('#pokemon-name-' + side).html((shiny ? "<span class='shiny' data-toggle='tooltip' title='Shiny!'>" : "") + name + (shiny ? "</span>" : ""));
     $('[data-toggle="tooltip"]').tooltip();
     $('#lvl-text-' + side).html(level);
-    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
-    $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
 }
 
 function clearPokemon(side) {
