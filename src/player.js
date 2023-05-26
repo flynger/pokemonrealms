@@ -8,7 +8,7 @@ export default class Player {
     static starterOptions = ["BULBASAUR", "CHARMANDER", "SQUIRTLE"];
     static starterNatures = ["bashful", "docile", "hardy", "quirky", "serious"];
 
-    constructor(name, displayName, x = 256, y = 254, facing = "right") {
+    constructor(name, displayName, x = 192, y = 318, facing = "down") {
         this.name = name;
         this.displayName = displayName;
         this.x = x;
@@ -32,8 +32,8 @@ export default class Player {
         this.inventory.addItem("pokeball", 5);
         this.inventory.addItem("potion", 3);
         this.location = {
-            map: "Route 1",
-            submap: "Area 1"
+            map: "Ballet Town",
+            submap: "Town"
         }
     }
 

@@ -1,7 +1,7 @@
 import jsonfile from "jsonfile";
-var mainMap = "Route 1";
-var submap = "Area 1";
-var rawMap = jsonfile.readFileSync('./data/rawMaps/routes/' + mainMap + ' ' + submap + '.json');
+var mainMap = "Ballet Town";
+var submap = "Town";
+var rawMap = jsonfile.readFileSync('./data/rawMaps/cities/' + mainMap + ' ' + submap + '.json');
 var map = {
     width: rawMap.width,
     height: rawMap.height,
@@ -13,7 +13,7 @@ var map = {
     water: []
 };
 var clientMap = {
-    music: "Route 1",
+    music: "Pallet Town",
     width: rawMap.width * 32,
     height: rawMap.height * 32,
     layers: []
