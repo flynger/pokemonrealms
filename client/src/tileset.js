@@ -1,4 +1,4 @@
-let tilesetList = ["kyledove"];
+let tilesetList = ["kyledove", "gen4hgss_1", "gen4hgss_2"];
 var tilesets = {};
 async function initializeTileSpritesheets() {
     for (let tilesetName of tilesetList) {

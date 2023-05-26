@@ -3,7 +3,8 @@ import Pokemon from "./pokemon.js";
 
 export default class Map {
     static maps = {
-        "Route 1": ["Area 1"]
+        "Route 1": ["Area 1"],
+        "Ballet Town": ["Town"]
     };
     static {
         for (let mapName in this.maps) {

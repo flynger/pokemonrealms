@@ -1,0 +1,14 @@
+{ "columns":8,
+ "image":"..\/..\/client\/res\/tilesets\/chaoticcherrycake.png",
+ "imageheight":19429,
+ "imagewidth":256,
+ "margin":0,
+ "name":"chaoticcherrycake",
+ "spacing":0,
+ "tilecount":4856,
+ "tiledversion":"1.10.1",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}

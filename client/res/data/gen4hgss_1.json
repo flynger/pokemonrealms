@@ -1,0 +1,13 @@
+{
+    "frames": {},
+    "animations": {},
+    "meta": {
+        "image": "../res/tilesets/gen4hgss_1.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 256,
+            "h": 11904
+        },
+        "scale": 1
+    }
+}
