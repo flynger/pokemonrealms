@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "kyledove.json",
+    "activeFile": "gen4hgss_2.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -25,12 +25,20 @@
                 "y": 354.5
             }
         },
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json": {
+            "scale": 4,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 488,
+                "y": 351.875
+            }
+        },
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json": {
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 461.3333333333333,
-                "y": 428.66666666666663
+                "x": 624,
+                "y": 511.33333333333337
             }
         },
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/test.json": {
@@ -59,11 +67,15 @@
         },
         "gen4hgss_1.json": {
             "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInEditor": 1.5
+        },
+        "gen4hgss_2.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
         },
         "kyledove.json": {
-            "scaleInDock": 0.75,
-            "scaleInEditor": 2
+            "scaleInDock": 1,
+            "scaleInEditor": 0.75
         }
     },
     "last.imagePath": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/client/res/tilesets",
@@ -73,16 +85,21 @@
     "map.width": 16,
     "openFiles": [
         "kyledove.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json"
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json",
+        "gen4hgss_1.json",
+        "gen4hgss_2.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json"
     ],
     "project": "balex.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/test.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json",
         "kyledove.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/routes/route1.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json",
         "gen4hgss_1.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json",
+        "gen4hgss_2.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/test.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/routes/route1.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
         "Outside.json",
         "Outside.tsx",

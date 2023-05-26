@@ -16379,7 +16379,7 @@ const Pokedex = {
         "learnset": {
             "levelup": {
                 "1": "MUDSPORT",
-                "5": "VICEGRIP",
+                "5": "VISEGRIP",
                 "9": "LEER",
                 "11": "HARDEN",
                 "15": "BUBBLEBEAM",
@@ -16520,7 +16520,7 @@ const Pokedex = {
         "learnset": {
             "levelup": {
                 "1": "WIDEGUARD",
-                "5": "VICEGRIP",
+                "5": "VISEGRIP",
                 "9": "LEER",
                 "11": "HARDEN",
                 "15": "BUBBLEBEAM",
@@ -20860,7 +20860,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "BIND",
                 "8": "SEISMICTOSS",
                 "11": "HARDEN",
@@ -45827,7 +45827,7 @@ const Pokedex = {
                 "5": "FAKETEARS",
                 "9": "BITE",
                 "13": "SWEETSCENT",
-                "17": "VICEGRIP",
+                "17": "VISEGRIP",
                 "21": "FEINTATTACK",
                 "25": "BATONPASS",
                 "29": "CRUNCH",
@@ -51481,7 +51481,7 @@ const Pokedex = {
             "levelup": {
                 "1": "BUBBLE",
                 "5": "HARDEN",
-                "7": "VICEGRIP",
+                "7": "VISEGRIP",
                 "10": "LEER",
                 "14": "BUBBLEBEAM",
                 "17": "PROTECT",
@@ -51627,7 +51627,7 @@ const Pokedex = {
             "levelup": {
                 "1": "SWIFT",
                 "5": "HARDEN",
-                "7": "VICEGRIP",
+                "7": "VISEGRIP",
                 "10": "LEER",
                 "14": "BUBBLEBEAM",
                 "17": "PROTECT",
@@ -85828,7 +85828,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "6": "CHARGE",
                 "11": "THUNDERSHOCK",
                 "16": "GEARGRIND",
@@ -85933,7 +85933,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "6": "CHARGE",
                 "11": "THUNDERSHOCK",
                 "16": "GEARGRIND",
@@ -86039,7 +86039,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "6": "CHARGE",
                 "11": "THUNDERSHOCK",
                 "16": "GEARGRIND",
@@ -89697,7 +89697,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "6": "AGILITY",
                 "11": "METALCLAW",
                 "16": "BUGBITE",
@@ -97735,7 +97735,7 @@ const Pokedex = {
             "levelup": {
                 "1": "WATERGUN",
                 "7": "WATERSPORT",
-                "9": "VICEGRIP",
+                "9": "VISEGRIP",
                 "12": "BUBBLE",
                 "16": "FLAIL",
                 "20": "BUBBLEBEAM",
@@ -97844,7 +97844,7 @@ const Pokedex = {
             "levelup": {
                 "1": "WATERGUN",
                 "7": "WATERSPORT",
-                "9": "VICEGRIP",
+                "9": "VISEGRIP",
                 "12": "BUBBLE",
                 "16": "FLAIL",
                 "20": "BUBBLEBEAM",
@@ -103208,7 +103208,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "STRINGSHOT",
                 "7": "MUDSLAP",
                 "10": "BITE",
@@ -103305,7 +103305,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "STRINGSHOT",
                 "7": "MUDSLAP",
                 "10": "BITE",
@@ -103399,7 +103399,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "STRINGSHOT",
                 "7": "MUDSLAP",
                 "10": "BITE",
@@ -103503,7 +103503,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "STRINGSHOT",
                 "7": "MUDSLAP",
                 "10": "BITE",

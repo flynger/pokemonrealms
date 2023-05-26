@@ -5,7 +5,7 @@ async function initializeTileSpritesheets() {
         await fetch(`../res/data/${tilesetName}.json`).then((response) => response.json()).then(async (json) => {
             for (let i = 0; i < json.meta.size.w / 32; i++) {
                 for (let j = 0; j < json.meta.size.h / 32; j++) {
-                    json.frames[[i, j]] = {
+                    json.frames[tilesetName + [i, j]] = {
                         frame: {
                             x: i * 32,
                             y: j * 32,

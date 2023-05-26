@@ -2,7 +2,7 @@ class tile {
     static tiles = [];
     constructor(x, y, sheet, tileX, tileY, layer, offset = 0) {
         // console.log(tilesets[sheet].textures[[tileX, tileY]])
-        this.sprite = new PIXI.Sprite(tilesets[sheet].textures[[tileX, tileY]]);
+        this.sprite = new PIXI.Sprite(tilesets[sheet].textures[sheet + [tileX, tileY]]);
         this.sprite.zIndex = layer == 0 ? -100 : y - 16;
         this.sprite.zIndex += offset;
         this.sprite.x = x;

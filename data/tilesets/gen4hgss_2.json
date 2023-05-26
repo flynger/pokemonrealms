@@ -6,9 +6,148 @@
  "name":"gen4hgss_2",
  "spacing":0,
  "tilecount":1760,
- "tiledversion":"1.10.1",
+ "tiledversion":"1.10.0",
  "tileheight":32,
  "tiles":[
+        {
+         "id":1105,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1106,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1107,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1108,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1109,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1112,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1113,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1114,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1115,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1116,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1117,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1118,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1120,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":24,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
         {
          "id":1121,
          "properties":[
@@ -16,6 +155,11 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
@@ -52,6 +196,73 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1126,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1128,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":24,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
@@ -61,6 +272,11 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
@@ -97,6 +313,73 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1134,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1136,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":24,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
@@ -106,6 +389,11 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
@@ -142,6 +430,73 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1142,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":2,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1144,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":24,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
                 }]
         }, 
         {
@@ -151,19 +506,15 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
                 }]
         }, 
         {
          "id":1146,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1147,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -187,6 +538,177 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1150,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1152,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":-16
+                }]
+        }, 
+        {
+         "id":1158,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":-16
+                }]
+        }, 
+        {
+         "id":1305,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1306,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1307,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1308,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1309,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1312,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1313,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1314,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1315,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1316,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1317,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1318,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1320,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
                 }]
         }, 
         {
@@ -196,6 +718,11 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
                 }]
         }, 
         {
@@ -232,6 +759,29 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1326,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1328,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
                 }]
         }, 
         {
@@ -241,6 +791,11 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
                 }]
         }, 
         {
@@ -277,6 +832,29 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1334,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1336,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
@@ -286,6 +864,11 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
@@ -322,6 +905,29 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1342,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1344,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
                 }]
         }, 
         {
@@ -331,19 +937,15 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
                 }]
         }, 
         {
          "id":1346,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1347,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -367,6 +969,38 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1350,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1352,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":-16
+                }]
+        }, 
+        {
+         "id":1358,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":-16
                 }]
         }],
  "tilewidth":32,

@@ -132,6 +132,8 @@ async function setupGame() {
     app.stage.on("pointerup", () => {
         playerClicked = false;
     });
+    PIXI.sound.add('Route 1', '../res/audio/maps/Route 1.mp3');
+    PIXI.sound.add('Pallet Town', '../res/audio/maps/Pallet Town.mp3');
 }
 
 async function loadMap(mapName, submapName, collideables, grasses) {
@@ -147,6 +149,7 @@ async function loadMap(mapName, submapName, collideables, grasses) {
                 new tile(data.x, data.y, data.img.tileset, data.img.x, data.img.y, layerIndex, data.offset);
             }
         }
+        // PIXI.sound.play(json.music);
     });
     for (let collideable of collideables) {
         new collider(32 * collideable.x, 32 * collideable.y, 32, 32);

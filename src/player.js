@@ -32,16 +32,16 @@ export default class Player {
         this.inventory.addItem("pokeball", 5);
         this.inventory.addItem("potion", 3);
         this.location = {
-            map: "Ballet Town",
-            submap: "Town"
+            map: "Route 1",
+            submap: "Area 1"
         }
     }
 
     pickStarter(starter) {
         if (this.starter == false) {
             this.starter = Player.starterOptions.includes(starter) ? starter : Player.starterOptions.random();
-            this.addPokemon(new Pokemon(this.starter, 5, { nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), originalTrainer: this.displayName, owner: this.displayName, hiddenAbilityChance: 0 }));
-            for (let i = 0; i < 2; i++) {
+            this.addPokemon(new Pokemon(this.starter, 5, { moves: ["SUPERSONIC"], nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), originalTrainer: this.displayName, owner: this.displayName, hiddenAbilityChance: 0 }));
+            for (let i = 0; i < 5; i++) {
                 let rng = randomNumber(1, 649);
                 for (let mon in Pokedex) {
                     if (rng == Pokedex[mon].id) {

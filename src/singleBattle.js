@@ -343,7 +343,7 @@ export default class SingleBattle {
                         var effectDetails = lineArray[1].split(": ");
                         var effectSourceType = effectDetails[0];
                         var effectSource = effectDetails[1] || effectSourceType;
-                        if (MovesText[Dex.moves.get(effectSource).id]) {
+                        if (!DefaultText[effectSourceType] && MovesText[Dex.moves.get(effectSource).id]) {
                             message = MovesText[Dex.moves.get(effectSource).id].start;
                         } else {
                             message = DefaultText[effectSourceType] ? DefaultText[effectSourceType].start : "Debug: " + effectSource + " start on [NICKNAME]";

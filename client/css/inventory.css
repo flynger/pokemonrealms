@@ -77,6 +77,10 @@
   box-shadow: none;
 }
 
+.accordion-body {
+  margin-top: -1%;
+}
+
 /* .accordion-header {
   outline: none;
 } */
