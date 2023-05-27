@@ -1,4 +1,3 @@
-// plz go touch grass
 class grass {
     static grasses = {};
     static collisionDepth = 8;
@@ -104,4 +103,4 @@ class grass {
     //     };
     // }
 }
-const grasses = grass.grasses;
+var grasses = grass.grasses;

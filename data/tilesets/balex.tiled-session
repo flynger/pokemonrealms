@@ -25,20 +25,35 @@
                 "y": 354.5
             }
         },
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json": {
-            "scale": 4,
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Lab.json": {
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 488,
-                "y": 351.875
+                "x": 256.5,
+                "y": 156.5
             }
         },
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json": {
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json": {
             "scale": 0.75,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 624,
-                "y": 511.33333333333337
+                "x": 510,
+                "y": 351.33333333333337
+            }
+        },
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/wilsonscarloxy_indoor.json": {
+            "scaleInEditor": 1.5
+        },
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/wilsonscarloxy_outdoor.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 637,
+                "y": 505
             }
         },
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/test.json": {
@@ -76,11 +91,15 @@
         "kyledove.json": {
             "scaleInDock": 1,
             "scaleInEditor": 0.75
+        },
+        "wilsonscarloxy_outdoor.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "last.imagePath": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/client/res/tilesets",
     "map.fixedSize": true,
-    "map.height": 16,
+    "map.height": 12,
     "map.lastUsedFormat": "json",
     "map.width": 16,
     "openFiles": [
@@ -91,19 +110,21 @@
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json"
     ],
     "project": "balex.tiled-project",
-    "property.type": "int",
+    "property.type": "bool",
     "recentFiles": [
-        "kyledove.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json",
+        "wilsonscarloxy_outdoor.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/wilsonscarloxy_indoor.json",
+        "gen4hgss_2.json",
         "gen4hgss_1.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json",
-        "gen4hgss_2.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/wilsonscarloxy_outdoor.json",
+        "kyledove.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/test.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/routes/route1.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/maps/cities/town1.json",
-        "Outside.json",
-        "Outside.tsx",
-        "D:/Sandbox/github/PokemonRealms/data/balex.tmx"
+        "Outside.json"
     ],
+    "resizeMap.removeObjects": true,
     "tileset.lastUsedFormat": "json"
 }

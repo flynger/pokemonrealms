@@ -2,9 +2,9 @@ class player {
     static walkSpeed = 1.2;
     static runSpeed = 2;
     static friction = 0.15;
-    static rigidBodyWidth = 16;
+    static rigidBodyWidth = 20;
     static rigidBodyHeight = 20;
-    static rigidBodyOffset = 14;
+    static rigidBodyOffset = 16;
     static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
     static playerSprites = {};
     static players = {};
@@ -310,6 +310,13 @@ class player {
             }
         }
         app.stage.pivot.y *= ratio;
+    }
+
+    destroy() {
+        this.headSprite.destroy();
+        this.nameTagText.destroy();
+        this.nameTagBack.destroy();
+        delete players[this.name];
     }
 
     // emit methods

@@ -8,7 +8,7 @@ export default class Player {
     static starterOptions = ["BULBASAUR", "CHARMANDER", "SQUIRTLE"];
     static starterNatures = ["bashful", "docile", "hardy", "quirky", "serious"];
 
-    constructor(name, displayName, x = 192, y = 318, facing = "down") {
+    constructor(name, displayName, x = 224, y = 288, facing = "down") { // 224, 286 town - 240, 350 lab
         this.name = name;
         this.displayName = displayName;
         this.x = x;
@@ -32,9 +32,9 @@ export default class Player {
         this.inventory.addItem("pokeball", 5);
         this.inventory.addItem("potion", 3);
         this.location = {
-            map: "Route 1",
-            submap: "Area 1"
-        }
+            map: "Ballet Town",
+            submap: "Town"
+        };
     }
 
     pickStarter(starter) {
@@ -45,7 +45,7 @@ export default class Player {
                 let rng = randomNumber(1, 649);
                 for (let mon in Pokedex) {
                     if (rng == Pokedex[mon].id) {
-                        console.log(mon)
+                       //  console.log(mon)
                         this.addPokemon(new Pokemon(mon, randomNumber(1, 100), { originalTrainer: this.displayName, owner: this.displayName }));
                         break;
                     }
@@ -65,6 +65,12 @@ export default class Player {
 
     getMap() {
         return Map.getMap(this.location.map, this.location.submap);
+    }
+
+    setLocation(x, y, facing) {
+        this.x = x;
+        this.y = y;
+        this.facing = facing;
     }
 
     setSocket(socket) {

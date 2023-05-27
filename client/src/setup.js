@@ -4,9 +4,7 @@ var vminRatio;
 calculateRatios();
 var map = {
     name: "",
-    submapName: "",
-    width: 39,
-    height: 32
+    submapName: ""
 };
 var gen4hgssSheet;
 var gen5exteriorSheet;
@@ -134,6 +132,9 @@ async function setupGame() {
     });
     PIXI.sound.add('Route 1', '../res/audio/maps/Route 1.mp3');
     PIXI.sound.add('Pallet Town', '../res/audio/maps/Pallet Town.mp3');
+    app.ticker.add(draw);
+    gameDiv.prepend(app.view);
+    $('#game').show();
 }
 
 async function loadMap(mapName, submapName, collideables, grasses) {
@@ -143,6 +144,8 @@ async function loadMap(mapName, submapName, collideables, grasses) {
     $("#mapName").html(map.name);
     $("#submapName").html(map.submapName);
     await fetch(`../res/maps/${mapName}/${submapName}.json`).then((response) => response.json()).then((json) =>  {
+        map.width = json.width / 32;
+        map.height = json.height / 32;
         for (let layerIndex in json.layers) {
             let layer = json.layers[layerIndex];
             for (let data of layer) {
@@ -152,42 +155,33 @@ async function loadMap(mapName, submapName, collideables, grasses) {
         // PIXI.sound.play(json.music);
     });
     for (let collideable of collideables) {
-        new collider(32 * collideable.x, 32 * collideable.y, 32, 32);
+        new collider(collideable.x, collideable.y, 32, 32);
     }
     for (let grss of grasses) {
-        new grass(32 * grss.x, 32 * grss.y);
+        new grass(grss.x, grss.y);
     }
-    // map.tilemap = new PIXI.tilemap.CompositeTilemap();
-    // map.tilemap.zIndex = -1000;
-    // for (let i = 0; i < map.width; i++) {
-    //     for (let j = 0; j < map.height; j++) {
-    //         let possibleTiles = ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass1", "grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
-    //         map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
-
-    //         if (/*(i + j + 1) % randomNumber(4, 10) == 0 || */(i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
-    //             new grass(i * 32, j * 32);
-    //         } else if (randomNumber(1, 900) == 1) {
-    //             new npc("Professor Oak" + randomNumber(1, 9999), "oak", i * 32, j * 32 - 2)
-    //         }
-    //     }
-    // }
-    // gameContainer.addChild(map.tilemap);
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
     app.stage.addChild(textContainer);
 }
 
-function loadPlayersAndGame(playersArray) {
+function destroyMap() {
+    Matter.Composite.clear(engine.world);
+    for (let tle of tiles) {
+        tle.destroy();
+    }
+    tiles = [];
+    colliders = {};
+    grasses = {};
+}
+
+function loadPlayers(playersArray) {
     for (let plyr of playersArray) {
         if (plyr.name == username) {
-            new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true).sendLocation();
+            new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true);
         }
         else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
     }
-
-    app.ticker.add(draw);
-    gameDiv.prepend(app.view);
-    $('#game').show();
 }
 
 function onClick(event) {

@@ -523,6 +523,15 @@
                 }]
         }, 
         {
+         "id":1147,
+         "properties":[
+                {
+                 "name":"isWarpTile",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
          "id":1148,
          "properties":[
                 {
@@ -949,6 +958,15 @@
          "properties":[
                 {
                  "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1347,
+         "properties":[
+                {
+                 "name":"isWarpTile",
                  "type":"bool",
                  "value":true
                 }]

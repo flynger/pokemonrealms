@@ -1,6 +1,6 @@
 import jsonfile from "jsonfile";
 var mainMap = "Ballet Town";
-var submap = "Town";
+var submap = "Lab";
 var rawMap = jsonfile.readFileSync('./data/rawMaps/cities/' + mainMap + ' ' + submap + '.json');
 var map = {
     width: rawMap.width,
@@ -33,15 +33,15 @@ for (let tileset of rawMap.tilesets) {
     }
 }
 for (let layer of rawMap.layers) {
-    if(!clientMap.layers[layer.id - 1]) clientMap.layers[layer.id - 1] = [];
+    if (!clientMap.layers[layer.id - 1]) clientMap.layers[layer.id - 1] = [];
     for (let i in layer.data) {
         var thisLayer = clientMap.layers[layer.id - 1];
         var tile = layer.data[i];
         if (tile === 0)
             continue;
         var tileData = {
-            x: i % layer.width,
-            y: Math.floor(i / layer.width)
+            x: 32 * (i % layer.width),
+            y: 32 * Math.floor(i / layer.width)
         }
         //console.log("Tile " + tile + " at x " + tileData.x + ", y " + tileData.y);
         if (tiles[tile]) {
@@ -52,16 +52,23 @@ for (let layer of rawMap.layers) {
                 map.grass.push(tileData);
             } if (tiles[tile].isWater) {
                 map.water.push(tileData);
-            } if (tiles[tile].ledge) {
-                tileData.direction = tiles[tile].ledge;
-                map.ledges.push(tileData);
-            } if (tiles[tile].isWarp) {
-                tileData.destination = {map:"",submap:submap,x:0,y:0};
+            } if (tiles[tile].isWarpTile) {
+                tileData.destination = { 
+                    map: "",
+                    submap: "",
+                    x: 0,
+                    y: 0,
+                    facing: ""
+                };
                 map.warpTiles.push(tileData);
-            } if (tiles[tile].item) {
-                tileData.item = "random";
-                map.entities.push(tileData);
             }
+            // if (tiles[tile].ledge) {
+            //     tileData.direction = tiles[tile].ledge;
+            //     map.ledges.push(tileData);
+            // } if (tiles[tile].item) {
+            //     tileData.item = "random";
+            //     map.entities.push(tileData);
+            // }
         }
         var clientData = {
             x: i % layer.width * 32,
@@ -74,7 +81,7 @@ for (let layer of rawMap.layers) {
         clientData.img.x = (tile - tilesets[clientData.img.tileset].firstgid) % tilesets[clientData.img.tileset].columns;
         clientData.img.y = Math.floor((tile - tilesets[clientData.img.tileset].firstgid) / tilesets[clientData.img.tileset].columns)
         if (tiles[tile] && 'layer' in tiles[tile]) {
-            if(!clientMap.layers[tiles[tile].layer]) clientMap.layers[tiles[tile].layer] = [];
+            if (!clientMap.layers[tiles[tile].layer]) clientMap.layers[tiles[tile].layer] = [];
             thisLayer = clientMap.layers[tiles[tile].layer];
         }
         thisLayer.push(clientData);
@@ -90,7 +97,7 @@ function getTileset(tile) {
         if (tile >= tilesets[tileset].firstgid) {
             previousTileset = tilesets[tileset].name;
             continue;
-        } 
+        }
         break;
     }
     return previousTileset;

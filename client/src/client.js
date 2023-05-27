@@ -55,14 +55,22 @@ function setupSocket() {
     });
 
     //connect command
+    socket.on("mapData", async (locationData, collideables, grasses, water) => {
+        if (map.name) destroyMap();
+        collideables.push(...water)
+        await loadMap(locationData.map, locationData.submap, collideables, grasses);
+    });
+
     socket.on("playerData", (name, playersArray) => {
         // add fix for reconnect properly instead of jank reload
-        if (Object.values(players).length > 0) {
-            window.location.reload();
+        if (Object.keys(players).length > 0) {
+            for (let name in players) {
+                players[name].destroy();
+            }
         }
         console.log({ playersArray });
         username = name;
-        loadPlayersAndGame(playersArray);
+        loadPlayers(playersArray);
         $('#message').modal('hide');
     });
 
@@ -206,11 +214,6 @@ function setupSocket() {
                 $("#party-level-" + num).html(`Lv. ${pokemon.level}`)
             }
         }
-    });
-
-    socket.on("mapData", async (locationData, collideables, grasses, water) => {
-        collideables.push(...water)
-        await loadMap(locationData.map, locationData.submap, collideables, grasses);
     });
 
     socket.on("pong", (ms) => {

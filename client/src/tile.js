@@ -1,6 +1,6 @@
 class tile {
     static tiles = [];
-    constructor(x, y, sheet, tileX, tileY, layer, offset = 0) {
+    constructor(x, y, sheet, tileX, tileY, layer, offset = -2) {
         // console.log(tilesets[sheet].textures[[tileX, tileY]])
         this.sprite = new PIXI.Sprite(tilesets[sheet].textures[sheet + [tileX, tileY]]);
         this.sprite.zIndex = layer == 0 ? -100 : y - 16;
@@ -12,8 +12,8 @@ class tile {
         // this.rigidBody = Matter.Bodies.rectangle(x + 16, y + 16, 32, 32);
         // Matter.Body.setStatic(this.rigidBody, true);
     }
-    step() {
-
+    destroy() {
+        gameContainer.removeChild(this.sprite);
     }
 }
-const tiles = tile.tiles;
+var tiles = tile.tiles;

@@ -1,10 +1,21 @@
 import jsonfile from "jsonfile";
 import Pokemon from "./pokemon.js";
 
+class WarpTile {
+    constructor(x, y, destination) {
+        this.x = x;
+        this.y = y;
+        this.destination = destination;
+    }
+    isPlayerInside(player) {
+        return player.x + 8 >= this.x && player.x + 24 <= this.x + 32 && player.y + 6 >= this.y && player.y + 26 <= this.y + 32;
+    }
+}
+
 export default class Map {
     static maps = {
         "Route 1": ["Area 1"],
-        "Ballet Town": ["Town"]
+        "Ballet Town": ["Town", "Lab"]
     };
     static {
         for (let mapName in this.maps) {
@@ -12,8 +23,8 @@ export default class Map {
             this.maps[mapName] = {};
             for (let submapName of submapList) {
                 let mapData = jsonfile.readFileSync(`./data/maps/${mapName}/${submapName}.json`);
-                this.maps[mapName][submapName] = new Map(mapData);
-                
+                this.maps[mapName][submapName] = new Map(mapName, submapName, mapData);
+
                 console.log(this.maps)
             }
         }
@@ -34,16 +45,68 @@ export default class Map {
         }
     }
 
-    constructor(data) {
+    constructor(mapName, submapName, data) {
+        this.mapName = mapName;
+        this.submapName = submapName;
+        this.room = mapName + " " + submapName;
         this.data = data;
         this.collideables = data.collideables;
         this.grass = data.grass;
         this.water = data.water;
         this.encounters = data.encounters;
+        this.warpTiles = [];
+        this.players = [];
+        for (let warpTile of data.warpTiles) {
+            this.warpTiles.push(new WarpTile(warpTile.x, warpTile.y, warpTile.destination));
+        }
+    }
+
+    removePlayer(player) {
+        this.players.splice(this.players.indexOf(player), 1);
+        player.socket.leave(this.room);
+        player.socket.to(this.room).emit("playerDisconnect", player.displayName);
+    }
+
+    addPlayer(player, location) {
+        this.players.push(player);
+        player.socket.join(this.room);
+        if (location) {
+            player.location = {
+                map: this.mapName,
+                submap: this.submapName
+            }
+            player.setLocation(location.x, location.y, location.facing);
+        }
+        player.socket.emit("mapData", { map: this.mapName, submap: this.submapName }, this.collideables, this.grass, this.water);
+        player.socket.emit("playerData", player.displayName, this.players.map((plyr) => plyr.export()));
+    }
+
+    updatePlayerLocation(player, data) {
+        data.name = player.displayName;
+        player.setLocation(data.x, data.y, data.facing);
+        let warpDestination = this.warpCheck(player);
+        if (warpDestination) {
+            this.removePlayer(player);
+            if (!warpDestination.map) warpDestination.map = player.location.map;
+            Map.getMap(warpDestination.map, warpDestination.submap).addPlayer(player, warpDestination);
+        } else {
+            data.name = player.displayName;
+            player.socket.to(this.room).emit("playerMovement", data);
+        }
     }
 
     grassCheck() {
         return randomNumber(1, this.encounters.grass.frequency) == 1;
+    }
+
+    warpCheck(player) {
+        for (let warpTile of this.warpTiles) {
+            if (warpTile.isPlayerInside(player)) {
+                console.log("warp trigger!")
+                return warpTile.destination;
+            }
+        }
+        return false;
     }
 
     getTotalWeight(encounters) {

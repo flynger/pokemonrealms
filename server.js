@@ -311,6 +311,13 @@ io.on("connection", (socket) => {
     }
     let player = players[username];
     player.setSocket(socket);
+    player.getMap().addPlayer(player, {
+        map: player.location.map,
+        submap: player.location.submap,
+        x: player.x,
+        y: player.y,
+        facing: player.facing
+    });
 
     // add events
     socket.on("ping", (callback) => {
@@ -319,11 +326,7 @@ io.on("connection", (socket) => {
 
     socket.on("playerMovement", (data) => {
         if (player.battle == null) {
-            data.name = username;
-            player.x = data.x;
-            player.y = data.y;
-            player.facing = data.facing;
-            socket.broadcast.emit("playerMovement", data);
+            player.getMap().updatePlayerLocation(player, data);
         }
     });
 
@@ -481,6 +484,7 @@ io.on("connection", (socket) => {
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(displayName + " disconnected.");
+        player.getMap().removePlayer(player);
         player.deleteSocket();
         if (player.battle) {
             player.battle.endBattle(true);
@@ -495,8 +499,6 @@ io.on("connection", (socket) => {
     });
     // send data
     socket.emit("itemData", Items);
-    socket.emit("mapData", player.location, player.getMap().collideables, player.getMap().grass, player.getMap().water);
-    socket.emit("playerData", username, Object.values(players).filter((plyr) => plyr.connected).map((plyr) => plyr.export()));
     socket.emit("balanceUpdate", player.balance);
     player.inventory.sendItemUpdate();
     socket.emit("partyUpdate", player.party);

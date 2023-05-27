@@ -80,7 +80,7 @@ export default class Pokemon {
         }
         if (owner && !caughtBall) caughtBall = "pokeball"; // default ball
         if (caughtBall) this.caughtBall = caughtBall;
-        console.log(this);
+        // console.log(this);
     }
 
     levelUp() {
