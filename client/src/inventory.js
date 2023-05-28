@@ -1,4 +1,5 @@
 var inventory;
+var inventoryArray;
 var itemCategories = ["Poké Balls", "Medicine", "Berries", "Items"];
 function initInventoryUI() {
   // add click event listener to the inventory btton to toggle the UI
@@ -40,15 +41,14 @@ function initInventoryUI() {
 }
 
 function updateInventory() {
-  // dummy data
-  var inventoryItems = Object.values(inventory).sort((a, b) => {
+  inventoryArray = Object.values(inventory).sort((a, b) => {
     let itemA = Items[a.id], itemB = Items[b.id];
     if (itemA.category != itemB.category) return itemCategories.indexOf(itemA.category) - itemCategories.indexOf(itemB.category);
     return itemA.num - itemB.num;
   });
   console.log("updating inventory...");
   $('#item-list').html("");
-  $.each(inventoryItems, function (index, item) {
+  $.each(inventoryArray, function (index, item) {
     addItem(item);
   });
 }
