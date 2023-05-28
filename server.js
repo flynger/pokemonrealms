@@ -312,8 +312,6 @@ io.on("connection", (socket) => {
     let player = players[username];
     player.setSocket(socket);
     player.getMap().addPlayer(player, {
-        map: player.location.map,
-        submap: player.location.submap,
         x: player.x,
         y: player.y,
         facing: player.facing
@@ -358,6 +356,7 @@ io.on("connection", (socket) => {
                 otherPlayer.socket.emit("battleRequest", displayName);
                 otherPlayer.requests.battle[username] = true;
             } else {
+                delete player.requests.battle[user];
                 const party2 = new Party(displayName, player.party);
                 const party1 = new Party(otherPlayer.displayName, otherPlayer.party);
                 player.battle = otherPlayer.battle = new SingleBattle(party1, party2);
@@ -384,6 +383,7 @@ io.on("connection", (socket) => {
                 otherPlayer.socket.emit("tradeRequest", displayName);
                 otherPlayer.requests.trade[username] = true;
             } else {
+                delete player.requests.trade[user];
                 console.log("Trade started!")
                 new Trade(player, otherPlayer);
             }

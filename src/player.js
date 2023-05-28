@@ -22,10 +22,9 @@ export default class Player {
         };
         this.battle = null;
         this.trade = null;
-        this.trade = null;
-        this.starter = false;
         this.party = [];
         this.box = [];
+        this.starter = false;
         this.pickStarter();
         this.balance = 500;
         this.inventory = new Inventory(this);

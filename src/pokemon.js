@@ -37,7 +37,6 @@ export default class Pokemon {
 
         this.shiny = typeof shiny == "boolean" ? shiny : randomNumber(1, Pokemon.shinyChance) == 1;
         this.level = level;
-        console.log(Pokedex[species].growthRate);
         this.xp = Pokemon.growthRates[Pokedex[species].growthRate][level];
         this.heldItem = heldItem;
         this.nature = nature || Pokemon.getRandomNature();

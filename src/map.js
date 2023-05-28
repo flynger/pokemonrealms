@@ -26,10 +26,9 @@ export default class Map {
             for (let submapName of submapList) {
                 let mapData = jsonfile.readFileSync(`./data/maps/${mapName}/${submapName}.json`);
                 this.maps[mapName][submapName] = new Map(mapName, submapName, mapData);
-
-                console.log(this.maps)
             }
         }
+        console.log(this.maps);
     }
     static getMap(mapName, submapName) {
         return this.maps[mapName][submapName];
@@ -69,18 +68,19 @@ export default class Map {
         player.socket.to(this.room).emit("playerDisconnect", player.displayName);
     }
 
-    addPlayer(player, location) {
+    addPlayer(player, data) {
         this.players.push(player);
         player.socket.join(this.room);
-        if (location) {
-            player.location = {
-                map: this.mapName,
-                submap: this.submapName
-            }
-            player.setLocation(location.x, location.y, location.facing);
+        player.location = {
+            map: this.mapName,
+            submap: this.submapName
         }
+        player.setLocation(data.x, data.y, data.facing);
         player.socket.emit("mapData", { map: this.mapName, submap: this.submapName }, this.collideables, this.grass, this.water);
         player.socket.emit("playerData", player.displayName, this.players.map((plyr) => plyr.export()));
+        data.name = player.displayName;
+        data.currentFrame = 0;
+        player.socket.to(this.room).emit("playerMovement", data);
     }
 
     updatePlayerLocation(player, data) {
@@ -104,7 +104,6 @@ export default class Map {
     warpCheck(player) {
         for (let warpTile of this.warpTiles) {
             if (warpTile.isPlayerInside(player)) {
-                console.log("warp trigger!")
                 return warpTile.destination;
             }
         }
