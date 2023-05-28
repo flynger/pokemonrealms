@@ -8,13 +8,7 @@ export default class Inventory {
     addItem(item, quantity = 1) {
         if (!this.hasItem(item)) {
             this.items[item] = {
-                category: Items[item].category || "None",
-                num: Items[item].num || 0,
                 id: item,
-                name: Items[item].name || item,
-                desc: Items[item].desc || "No description provided.",
-                isHoldable: Items[item].isHoldable || false,
-                isUsable: Items[item].isUsable || false,
                 quantity: 0
             };
         }
