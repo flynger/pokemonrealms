@@ -32,8 +32,8 @@ export default class Player {
         this.inventory.addItem("pokeball", 5);
         this.inventory.addItem("potion", 3);
         this.location = {
-            map: "Route 1",
-            submap: "Area 1"
+            map: "Ballet Town",
+            submap: "Town"
         };
     }
 

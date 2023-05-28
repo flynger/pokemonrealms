@@ -2,13 +2,15 @@ import jsonfile from "jsonfile";
 import Pokemon from "./pokemon.js";
 
 class WarpTile {
-    constructor(x, y, destination) {
+    constructor(x, y, destination, width = 32, height = 32) {
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
         this.destination = destination;
     }
     isPlayerInside(player) {
-        return player.x + 8 >= this.x && player.x + 24 <= this.x + 32 && player.y + 6 >= this.y && player.y + 26 <= this.y + 32;
+        return player.x + 8 >= this.x && player.x + 24 <= this.x + this.width && player.y + 6 >= this.y && player.y + 26 <= this.y + this.height;
     }
 }
 
@@ -57,7 +59,7 @@ export default class Map {
         this.warpTiles = [];
         this.players = [];
         for (let warpTile of data.warpTiles) {
-            this.warpTiles.push(new WarpTile(warpTile.x, warpTile.y, warpTile.destination));
+            this.warpTiles.push(new WarpTile(warpTile.x, warpTile.y, warpTile.destination, warpTile.width, warpTile.height));
         }
     }
 
