@@ -1,119 +1,119 @@
 "encounters": {
-        "grass": {
-            "morning": [
-                {
-                    "species": "PIDGEY",
-                    "weight": 35,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "LEDYBA",
-                    "weight": 35,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "SENTRET",
-                    "weight": 15,
-                    "minLevel": 3,
-                    "maxLevel": 3
-                },
-                {
-                    "species": "BUTTERFREE",
-                    "weight": 5,
-                    "minLevel": 7,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "BEEDRILL",
-                    "weight": 5,
-                    "minLevel": 7,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "PIDGEOTTO",
-                    "weight": 1,
-                    "minLevel": 7,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "PIKACHU",
-                    "weight": 1,
-                    "minLevel": 4,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "FURRET",
-                    "weight": 1,
-                    "minLevel": 6,
-                    "maxLevel": 6
-                }
-            ],
-            "day": [
-                {
-                    "species": "PIDGEY",
-                    "weight": 10,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "RATTATA",
-                    "weight": 10,
-                    "minLevel": 2,
-                    "maxLevel": 2
-                },
-                {
-                    "species": "CATERPIE",
-                    "weight": 7,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "WEEDLE",
-                    "weight": 7,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "SENTRET",
-                    "weight": 5,
-                    "minLevel": 3,
-                    "maxLevel": 3
-                },
-                {
-                    "species": "PIDGEOTTO",
-                    "weight": 1,
-                    "minLevel": 7,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "PIKACHU",
-                    "weight": 1,
-                    "minLevel": 4,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "FURRET",
-                    "weight": 1,
-                    "minLevel": 6,
-                    "maxLevel": 6
-                }
-            ],
-            "night": [
-                {
-                    "species": "RATTATA",
-                    "weight": 5,
-                    "minLevel": 2,
-                    "maxLevel": 6
-                },
-                {
-                    "species": "HOOTHOOT",
-                    "weight": 5,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                }
-            ],
-            "frequency": 8
-        }
+    "grass": {
+        "morning": [
+            {
+                "species": "PIDGEY",
+                "weight": 35,
+                "minLevel": 2,
+                "maxLevel": 4
+            },
+            {
+                "species": "LEDYBA",
+                "weight": 35,
+                "minLevel": 2,
+                "maxLevel": 4
+            },
+            {
+                "species": "SENTRET",
+                "weight": 15,
+                "minLevel": 3,
+                "maxLevel": 3
+            },
+            {
+                "species": "BUTTERFREE",
+                "weight": 5,
+                "minLevel": 7,
+                "maxLevel": 7
+            },
+            {
+                "species": "BEEDRILL",
+                "weight": 5,
+                "minLevel": 7,
+                "maxLevel": 7
+            },
+            {
+                "species": "PIDGEOTTO",
+                "weight": 1,
+                "minLevel": 7,
+                "maxLevel": 7
+            },
+            {
+                "species": "PIKACHU",
+                "weight": 1,
+                "minLevel": 4,
+                "maxLevel": 7
+            },
+            {
+                "species": "FURRET",
+                "weight": 1,
+                "minLevel": 6,
+                "maxLevel": 6
+            }
+        ],
+        "day": [
+            {
+                "species": "PIDGEY",
+                "weight": 10,
+                "minLevel": 2,
+                "maxLevel": 4
+            },
+            {
+                "species": "RATTATA",
+                "weight": 10,
+                "minLevel": 2,
+                "maxLevel": 2
+            },
+            {
+                "species": "CATERPIE",
+                "weight": 7,
+                "minLevel": 2,
+                "maxLevel": 4
+            },
+            {
+                "species": "WEEDLE",
+                "weight": 7,
+                "minLevel": 2,
+                "maxLevel": 4
+            },
+            {
+                "species": "SENTRET",
+                "weight": 5,
+                "minLevel": 3,
+                "maxLevel": 3
+            },
+            {
+                "species": "PIDGEOTTO",
+                "weight": 1,
+                "minLevel": 7,
+                "maxLevel": 7
+            },
+            {
+                "species": "PIKACHU",
+                "weight": 1,
+                "minLevel": 4,
+                "maxLevel": 7
+            },
+            {
+                "species": "FURRET",
+                "weight": 1,
+                "minLevel": 6,
+                "maxLevel": 6
+            }
+        ],
+        "night": [
+            {
+                "species": "RATTATA",
+                "weight": 5,
+                "minLevel": 2,
+                "maxLevel": 6
+            },
+            {
+                "species": "HOOTHOOT",
+                "weight": 5,
+                "minLevel": 2,
+                "maxLevel": 4
+            }
+        ],
+        "frequency": 8
     }
+}
