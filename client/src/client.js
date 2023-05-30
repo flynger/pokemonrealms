@@ -194,6 +194,7 @@ function setupSocket() {
         console.log({ newInventory });
         inventory = newInventory;
         updateInventory();
+        filterInvAndGenerate();
     });
 
     socket.on("partyUpdate", (newParty) => {
