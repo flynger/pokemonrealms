@@ -63,9 +63,7 @@ export default class Player {
     }
 
     swapPartySlots(slot1, slot2) {
-        slot1--;
-        slot2--;
-        if (typeof slot1 == "number" && typeof slot2 == "number" && slot1 != slot2 && this.party[slot1] && this.party[slot2]) {
+        if (typeof slot1 == "number" && typeof slot2 == "number" && slot1 != slot2 && this.party[--slot1] && this.party[--slot2]) {
             [this.party[slot1], this.party[slot2]] = [this.party[slot2], this.party[slot1]];
             this.sendPartyUpdate();
         }

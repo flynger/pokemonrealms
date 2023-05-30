@@ -25,7 +25,7 @@ function initPartyUI() {
         e.stopPropagation();
 
         if (dragSrcEl !== this) {
-            swapPartySlots(dragSrcEl.attributes[1].value[17], this.attributes[1].value[17]); // the character at the 17th index of the onclick string
+            swapPartySlots(+dragSrcEl.attributes[1].value[17], +this.attributes[1].value[17]); // the character at the 17th index of the onclick string
         }
         return false;
     });
