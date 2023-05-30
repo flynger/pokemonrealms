@@ -482,7 +482,8 @@ io.on("connection", (socket) => {
     });
 
     socket.on("swapPartySlots", (slot1, slot2) => {
-        player.swapPartySlots(slot1, slot2);
+        if (!player.battle && !player.trade)
+            player.swapPartySlots(slot1, slot2);
     });
 
     // add disconnect event
