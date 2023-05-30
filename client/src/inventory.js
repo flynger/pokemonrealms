@@ -45,21 +45,19 @@ function initInventoryUI() {
 }
 
 function updateInventory() {
-  inventoryArray = Object.values(inventory).sort((a, b) => {
-    let itemA = Items[a.id], itemB = Items[b.id];
+  inventoryArray = Object.values(inventory).map((item) => Object.assign(item, Items[item.id])).sort((itemA, itemB) => {
     if (itemA.category != itemB.category) return itemCategories.indexOf(itemA.category) - itemCategories.indexOf(itemB.category);
     return itemA.num - itemB.num;
   });
   console.log("updating inventory...");
   $('#item-list').html("");
   $.each(inventoryArray, function (index, item) {
-    addItem(item);
+    //addItem(item);
   });
 }
 
 function addItem(item) {
-  let { id, quantity} = item;
-  let { name, desc, isHoldable, isUsable } = Items[id];
+  let { id, quantity, name, desc, isHoldable, isUsable } = item;
   // Create a new accordion item
   console.log(`adding ${quantity} of ${id}`);
   let itemNumber = $('#item-list .accordion-item').length + 1;
@@ -83,8 +81,7 @@ function addItem(item) {
 }
 
 function openDiscardUI(item) {
-  let { id, quantity } = item;
-  let name = Items[id].name
+  let { id, quantity, name } = item;
   $("#discard-item-name").html(name);
   $("#discard-item-image").attr("src", "res/items/" + id + ".png");
   $("#discard-input").attr("max", quantity);

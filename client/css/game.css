@@ -223,7 +223,7 @@ body {
     grid-template-rows: repeat(4, 21.25%);
     padding: 5%;
     gap: 5%;
-    background-color: rgba(7, 7, 7, 0.4);
+    background-color: rgba(7, 7, 7, 0.2);
     margin-top: 3%;
     width: 100%;
     aspect-ratio: 1/1;
@@ -248,7 +248,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(7, 7, 7, 0.4);
+    background-color: rgba(99, 99, 99, 0.2);
     aspect-ratio: 1/1;
 }
 

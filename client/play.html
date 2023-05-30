@@ -139,8 +139,8 @@
       <button id="timeLabel" type="button" class="btn btn-sm rounded-0" disabled></button>
     </div>
     <div class="d-flex position-absolute bottom-0 start-0 ms-3 mb-1" ondragstart="return false;">
-      <button type="button" id="summaryBtn" class="btn btn-sm btn-dark rounded-5 mx-1"><img src="res/items/pokeball.png"
-          class="object-fit-scale"></button>
+      <!-- <button type="button" id="summaryBtn" class="btn btn-sm btn-dark rounded-5 mx-1"><img src="res/items/pokeball.png"
+          class="object-fit-scale"></button> -->
       <button id="inventoryBtn" type="button" class="btn btn-sm btn-dark rounded-5 mx-1">
         <img id="inventoryIcon" src="res/gui/icons/backpack_sprite_closed.png" class="object-fit-scale">
       </button>
@@ -256,7 +256,7 @@
       </div> -->
     </div>
 
-    <div id="pokemon-summary" class="pokemon-summary bg-dark text-white">
+    <!-- <div id="pokemon-summary" class="pokemon-summary bg-dark text-white">
       <div id="pokemon-summary-header">
         Pokémon Summary
       </div>
@@ -427,7 +427,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- <div id="stats-hp-bar" class="progress">
             <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75"
@@ -546,14 +546,23 @@
     <!-- </div>
     </div> -->
 
-    <div id="inventory-UI" class="bg-dark container p-3">
+    <!-- <div id="inventory-UI" class="bg-dark container p-3">
       <div id="inventoryHeader" class="card-header">
         <h5 id="inventoryTitle" class="card-title mb-0">Inventory</h5>
       </div>
       <div id="item-list" class="accordion accordion-flush">
       </div>
-    </div>
+    </div> -->
 
+    <div id="inventory-UI" class="PokemonFont text-white">
+      <div id="inventoryHeader" class="card-header">
+        <h5 id="inventoryTitle" class="card-title mb-0">Inventory</h5>
+        <div class="inventory-tab"><span class="inventory-tab-text">Poké Balls</span></div>
+        <div class="inventory-tab"><span class="inventory-tab-text">Medicine</span></div>
+        <div class="inventory-tab"><span class="inventory-tab-text">Berries</span></div>
+        <div class="inventory-tab"><span class="inventory-tab-text">Items</span></div>
+      </div>
+    </div>
     <div id="item-discard"
       class="position-absolute user-select-none bg-dark popup-container container p-3 rounded-1 PokemonFont">
       <div class="card-header">
@@ -624,7 +633,8 @@
             <div class="trade-item">
             </div>
           </div>
-          <button class="bg-dark text-bg-dark" tabindex="-1">Ready</button><button class="bg-dark text-bg-dark" tabindex="-1">Cancel Trade</button>
+          <button class="bg-dark text-bg-dark" tabindex="-1">Ready</button><button class="bg-dark text-bg-dark"
+            tabindex="-1">Cancel Trade</button>
         </div>
       </div>
       <div class="trade-side-outer-div end-0">
