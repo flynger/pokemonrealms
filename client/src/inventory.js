@@ -22,6 +22,10 @@ function initInventoryUI() {
     minHeight: 200,
     containment: "parent"
   });
+  $("#trade-UI").draggable({
+    handle: "#trade-header",
+    containment: "parent"
+  });
 
 
   // // dummy data

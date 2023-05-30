@@ -26,6 +26,7 @@
   <script src="src/pokedex.js"></script>
   <script src="src/pokemonSummary.js"></script>
   <script src="src/inventory.js"></script>
+  <script src="src/party.js"></script>
 
   <script src="src/client.js"></script>
   <script src="src/input.js"></script>
@@ -145,7 +146,7 @@
       </button>
     </div>
     <div id="party-div" class="PokemonFont">
-      <div class="party-mon-div" onclick="openPartySummary(1)">
+      <div class="party-mon-div" onclick="openPartySummary(1)" draggable="true">
         <div class="party-mon-sprite-div">
           <img id="party-icon-1" class="party-mon-sprite" />
           <div class="party-mon-hp-div">
@@ -155,12 +156,12 @@
         <div class="party-mon-content-div"><span id="party-name-1" class="party-mon-name">Loading...</span><span
             id="party-level-1" class="party-mon-level"></span>
         </div>
-        <div class="switch-slot-buttons-div text-white">
+        <!-- <div class="switch-slot-buttons-div text-white">
           <div class="switch-slot-button-up" onclick=switchPkmnSlot()>▲</div>
           <div class="switch-slot-button-down" onclick=switchPkmnSlot()>▼</div>
-        </div>
+        </div> -->
       </div>
-      <div class="party-mon-div" onclick="openPartySummary(2)">
+      <div class="party-mon-div" onclick="openPartySummary(2)" draggable="true">
         <div class="party-mon-sprite-div">
           <img id="party-icon-2" class="party-mon-sprite" />
           <div class="party-mon-hp-div">
@@ -170,12 +171,12 @@
         <div class="party-mon-content-div"><span id="party-name-2" class="party-mon-name">Loading...</span><span
             id="party-level-2" class="party-mon-level"></span>
         </div>
-        <div class="switch-buttons text-white">
+        <!-- <div class="switch-buttons text-white">
           <div class="switch-slot-button-up" onclick=switchPkmnSlot()>▲</div>
           <div class="switch-slot-button-down" onclick=switchPkmnSlot()>▼</div>
-        </div>
+        </div> -->
       </div>
-      <div class="party-mon-div" onclick="openPartySummary(3)">
+      <div class="party-mon-div" onclick="openPartySummary(3)" draggable="true">
         <div class="party-mon-sprite-div">
           <img id="party-icon-3" class="party-mon-sprite" />
           <div class="party-mon-hp-div">
@@ -185,12 +186,12 @@
         <div class="party-mon-content-div"><span id="party-name-3" class="party-mon-name">Loading...</span><span
             id="party-level-3" class="party-mon-level"></span>
         </div>
-        <div class="switch-buttons text-white">
+        <!-- <div class="switch-buttons text-white">
           <div class="switch-slot-button-up" onclick=switchPkmnSlot()>▲</div>
           <div class="switch-slot-button-down" onclick=switchPkmnSlot()>▼</div>
-        </div>
+        </div> -->
       </div>
-      <div class="party-mon-div" onclick="openPartySummary(4)">
+      <div class="party-mon-div" onclick="openPartySummary(4)" draggable="true">
         <div class="party-mon-sprite-div">
           <img id="party-icon-4" class="party-mon-sprite" />
           <div class="party-mon-hp-div">
@@ -200,12 +201,12 @@
         <div class="party-mon-content-div"><span id="party-name-4" class="party-mon-name">Loading...</span><span
             id="party-level-4" class="party-mon-level"></span>
         </div>
-        <div class="switch-buttons text-white">
+        <!-- <div class="switch-buttons text-white">
           <div class="switch-slot-button-up" onclick=switchPkmnSlot()>▲</div>
           <div class="switch-slot-button-down" onclick=switchPkmnSlot()>▼</div>
-        </div>
+        </div> -->
       </div>
-      <div class="party-mon-div" onclick="openPartySummary(5)">
+      <div class="party-mon-div" onclick="openPartySummary(5)" draggable="true">
         <div class="party-mon-sprite-div">
           <img id="party-icon-5" class="party-mon-sprite" />
           <div class="party-mon-hp-div">
@@ -215,12 +216,12 @@
         <div class="party-mon-content-div"><span id="party-name-5" class="party-mon-name">Loading...</span><span
             id="party-level-5" class="party-mon-level"></span>
         </div>
-        <div class="switch-buttons text-white">
+        <!-- <div class="switch-buttons text-white">
           <div class="switch-slot-button-up" onclick=switchPkmnSlot()>▲</div>
           <div class="switch-slot-button-down" onclick=switchPkmnSlot()>▼</div>
-        </div>
+        </div> -->
       </div>
-      <div class="party-mon-div" onclick="openPartySummary(6)">
+      <div class="party-mon-div" onclick="openPartySummary(6)" draggable="true">
         <div class="party-mon-sprite-div">
           <img id="party-icon-6" class="party-mon-sprite" />
           <div class="party-mon-hp-div">
@@ -230,10 +231,10 @@
         <div class="party-mon-content-div"><span id="party-name-6" class="party-mon-name">Loading...</span><span
             id="party-level-6" class="party-mon-level"></span>
         </div>
-        <div class="switch-buttons text-white">
+        <!-- <div class="switch-buttons text-white">
           <div class="switch-slot-button-up" onclick=switchPkmnSlot()>▲</div>
           <div class="switch-slot-button-down" onclick=switchPkmnSlot()>▼</div>
-        </div>
+        </div> -->
       </div>
     </div>
     <button id="liveToastBtn" type="button" class="btn btn-dark position-absolute bottom-0 end-0"
@@ -578,9 +579,60 @@
         <h5 class="card-title  PokemonFont text-white mb-0">Select item to use:</h5>
       </div>
     </div> -->
-    <!-- <div id="trade-UI">
-
-    </div> -->
+    <div id="trade-UI" class="PokemonFont text-white">
+      <div id="trade-header"><img id="trade-icon" src="res/gui/icons/trade_icon.png" /> Trading with JC_Barry...</div>
+      <div class="trade-side-outer-div">
+        <div id="trade-you" class="trade-side">
+          <div id="trade-you-name" class="trade-name">flynger</div>
+          <div id="trade-you-contents" class="trade-contents">
+            <div class="trade-item">
+              <img class="trade-item-icon" src="res/items/masterball.png" draggable="true" />
+            </div>
+            <div class="trade-item">
+              <img class="trade-pokemon-icon" src="res/pokemon/icons/1.png" />
+            </div>
+            <div class="trade-item">
+              <img class="trade-pokemon-icon" src="res/pokemon/icons/6.png" />
+            </div>
+            <div class="trade-item">
+              <img class="trade-pokemon-icon" src="res/pokemon/icons/151.png" />
+            </div>
+            <div class="trade-item">
+              <img class="trade-item-icon" src="res/items/pokeball.png" />
+              <span class="trade-item-count">99</span>
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+            <div class="trade-item">
+            </div>
+          </div>
+          <button class="bg-dark text-bg-dark" tabindex="-1">Ready</button><button class="bg-dark text-bg-dark" tabindex="-1">Cancel Trade</button>
+        </div>
+      </div>
+      <div class="trade-side-outer-div end-0">
+        <div id="trade-they" class="trade-side">
+          <div id="trade-they-name" class="trade-name">JC_Barry</div>
+        </div>
+      </div>
+    </div>
 
     <div id="battle-UI" class="PokemonFont bg-image" ondragstart="return false;">
       <div class="grassbase0"></div>

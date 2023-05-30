@@ -59,6 +59,7 @@ function setupSocket() {
         if (map.name) destroyMap();
         collideables.push(...water)
         await loadMap(locationData.map, locationData.submap, collideables, grasses);
+        gameDiv.prepend(app.view);
     });
 
     socket.on("playerData", (name, playersArray) => {
@@ -197,23 +198,7 @@ function setupSocket() {
 
     socket.on("partyUpdate", (newParty) => {
         party = newParty;
-        for (let i = 0; i < 6; i++) {
-            let num = i + 1;
-            if (!party[i]) {
-                $("#party-icon-" + num).parent().hide();
-                $("#party-name-" + num).parent().hide();
-            } else {
-                let pokemon = party[i];
-                let entry = Pokedex.getPokedexEntry(pokemon.species);
-                $("#party-icon-" + num).parent().show();
-                $("#party-name-" + num).parent().show();
-                $("#party-icon-" + num).attr("src", `res/pokemon/icons/${entry.id}.png`)
-                // $("#party-hp-" + num)
-                $("#party-name-" + num).attr("class", `party-mon-name${pokemon.shiny ? " shiny" : ""}`);
-                $("#party-name-" + num).html(pokemon.name ? pokemon.name : entry.name);
-                $("#party-level-" + num).html(`Lv. ${pokemon.level}`)
-            }
-        }
+        updatePartyMembers();
     });
 
     socket.on("pong", (ms) => {
@@ -260,4 +245,7 @@ function acceptTrade(data) {
 }
 function useItem() {
     socket.emit("itemInput");
+}
+function swapPartySlots(slot1, slot2) {
+    socket.emit("swapPartySlots", slot1, slot2);
 }

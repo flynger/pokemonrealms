@@ -48,7 +48,19 @@ body {
     height: 13%;
     border-top-right-radius: 5%;
     border-end-end-radius: 20%;
+    transition: 0.2s;
 }
+
+.party-mon-div:hover {
+    scale: 1.1;
+    transform-origin: center left;
+    transition: 0.15s;
+    cursor: grab;
+}
+
+/* .party-drag-over {
+    border: 5px solid #666;
+} */
 
 .party-mon-sprite-div {
     display: flex;
@@ -64,8 +76,13 @@ body {
 .party-mon-sprite {
     aspect-ratio: 4/3;
     width: 100%;
+    -webkit-user-drag: none;
     /* transform: scaleX(-1); */
 }
+
+/* .party-mon-sprite:-moz-drag-over {
+    cursor: move;
+} */
 
 .party-mon-hp-div {
     width: 100%;
@@ -117,7 +134,7 @@ body {
 }
 
 #player-context-menu {
-    display: none   ;
+    display: none;
     background-color: rgba(20, 20, 20, 0.85);
     position: absolute;
     height: 16%;
@@ -142,9 +159,118 @@ body {
     line-height: calc(var(--scale) * 22px);
     font-size: calc(var(--scale) * 12px);
 }
+
 .player-context-menu-option:hover {
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
+}
+
+#trade-UI {
+    background-color: rgba(20, 20, 20, 0.8);
+    position: absolute;
+    width: 40%;
+    height: 60%;
+    border-radius: 2%;
+}
+
+#trade-icon {
+    margin-top: -1%;
+    margin-left: -2%;
+    height: 85%;
+    -webkit-user-drag: none;
+}
+
+#trade-header {
+    background-color: rgba(7, 7, 7, 0.4);
+    width: 100%;
+    height: 11%;
+    font-size: calc(var(--scale) * 18px);
+    padding-top: 1%;
+    padding-left: 3%;
+    /* padding-top: 0.25vmin;
+    padding-bottom: 0.25vmin; */
+}
+
+#trade-header:hover {
+    cursor: move;
+}
+
+.trade-side-outer-div {
+    position: absolute;
+    padding: 2%;
+    width: 50%;
+    height: 89%;
+}
+
+.trade-side {
+    background-color: rgba(23, 23, 23, 0.55);
+    width: 100%;
+    height: 100%;
+    padding-top: 3%;
+    border-radius: 2%;
+    text-align: center;
+}
+
+.trade-name {
+    background-color: rgba(7, 7, 7, 0.4);
+    width: 100%;
+    font-size: calc(var(--scale) * 13px);
+}
+
+.trade-contents {
+    display: grid;
+    grid-template-columns: repeat(4, 21.25%);
+    grid-template-rows: repeat(4, 21.25%);
+    padding: 5%;
+    gap: 5%;
+    background-color: rgba(7, 7, 7, 0.4);
+    margin-top: 3%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow-y: auto;
+}
+
+.trade-contents::-webkit-scrollbar {
+    width: 0.7em;
+}
+
+.trade-contents::-webkit-scrollbar-track {
+    background: none;
+}
+
+.trade-contents::-webkit-scrollbar-thumb {
+    background-color: rgba(7, 7, 7, 0.3);
+    border-radius: 6%;
+}
+
+.trade-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(7, 7, 7, 0.4);
+    aspect-ratio: 1/1;
+}
+
+.trade-item-icon {
+    /* padding-top: 5%; */
+    width: 60%;
+    image-rendering: auto;
+    -webkit-user-drag: none;
+}
+
+.trade-item-count {
+    position: absolute;
+    right: 3%;
+    bottom: -5%;
+    font-size: calc(var(--scale) * 12px);
+    text-shadow: calc(var(--scale) * 1px) calc(var(--scale) * 1px) #454545;
+}
+
+.trade-pokemon-icon {
+    width: 100%;
+    image-rendering: auto;
+    -webkit-user-drag: none;
 }
 
 .type {
@@ -153,60 +279,79 @@ body {
     width: 64px;
     height: 28px;
 }
+
 .type.normal {
     background-position-y: 0px;
 }
+
 .type.fighting {
     background-position-y: -28px;
 }
+
 .type.flying {
     background-position-y: -56px;
 }
+
 .type.poison {
     background-position-y: -84px;
 }
+
 .type.ground {
     background-position-y: -112px;
 }
+
 .type.rock {
     background-position-y: -140px;
 }
+
 .type.bug {
     background-position-y: -168px;
 }
+
 .type.ghost {
     background-position-y: -196px;
 }
+
 .type.steel {
     background-position-y: -224px;
 }
+
 .type.unknown {
     background-position-y: -252px;
 }
+
 .type.fire {
     background-position-y: -280px;
 }
+
 .type.water {
     background-position-y: -308px;
 }
+
 .type.grass {
     background-position-y: -336px;
 }
+
 .type.electric {
     background-position-y: -364px;
 }
+
 .type.psychic {
     background-position-y: -392px;
 }
+
 .type.ice {
     background-position-y: -420px;
 }
+
 .type.dragon {
     background-position-y: -448px;
 }
+
 .type.dark {
     background-position-y: -476px;
 }
+
 .type.fairy {
     background-position-y: -504px;
 }

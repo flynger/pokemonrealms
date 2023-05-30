@@ -85,6 +85,7 @@ async function setupGame() {
     setGameSize();
     initSummaryUI();
     initInventoryUI();
+    initPartyUI();
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,
@@ -133,7 +134,6 @@ async function setupGame() {
     PIXI.sound.add('Route 1', '../res/audio/maps/Route 1.mp3');
     PIXI.sound.add('Pallet Town', '../res/audio/maps/Pallet Town.mp3');
     app.ticker.add(draw);
-    gameDiv.prepend(app.view);
     $('#game').show();
 }
 

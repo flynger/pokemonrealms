@@ -31,8 +31,8 @@ export default class Player {
         this.inventory.addItem("pokeball", 5);
         this.inventory.addItem("potion", 3);
         this.location = {
-            map: "Ballet Town",
-            submap: "Town"
+            map: "Route 1",
+            submap: "Area 1"
         };
     }
 
@@ -60,6 +60,21 @@ export default class Player {
     addPokemon(mon) {
         mon.owner = this.displayName;
         this.party.push(mon);
+    }
+
+    swapPartySlots(slot1, slot2) {
+        slot1--;
+        slot2--;
+        if (typeof slot1 == "number" && typeof slot2 == "number" && slot1 != slot2 && this.party[slot1] && this.party[slot2]) {
+            [this.party[slot1], this.party[slot2]] = [this.party[slot2], this.party[slot1]];
+            this.sendPartyUpdate();
+        }
+    }
+
+    sendPartyUpdate() {
+        if (this.connected) {
+            this.socket.emit("partyUpdate", this.party);
+        }
     }
 
     getMap() {

@@ -481,6 +481,10 @@ io.on("connection", (socket) => {
         }
     });
 
+    socket.on("swapPartySlots", (slot1, slot2) => {
+        player.swapPartySlots(slot1, slot2);
+    });
+
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(displayName + " disconnected.");
@@ -501,7 +505,7 @@ io.on("connection", (socket) => {
     socket.emit("itemData", Items);
     socket.emit("balanceUpdate", player.balance);
     player.inventory.sendItemUpdate();
-    socket.emit("partyUpdate", player.party);
+    player.sendPartyUpdate();
     socket.emit("timeChange", {
         time: Map.time,
         exactTime: ticker
