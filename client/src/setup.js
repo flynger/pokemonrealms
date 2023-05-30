@@ -177,7 +177,7 @@ function destroyMap() {
 
 function loadPlayers(playersArray) {
     for (let plyr of playersArray) {
-        if (plyr.name == username) {
+        if (plyr.displayName == username) {
             new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true);
         }
         else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);

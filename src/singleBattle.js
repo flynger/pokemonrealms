@@ -51,7 +51,7 @@ export default class SingleBattle {
                                 let party = this["player" + playerId];
                                 let options = JSON.parse(lineArray[0]);
                                 if (party.isPlayer) {
-                                    let player = players[party.name];
+                                    let player = players[party.name.toLowerCase()];
                                     if (player && player.connected) {
                                         player.socket.emit("battleOptions", options);
                                     }
@@ -403,7 +403,7 @@ export default class SingleBattle {
         }
         if (battleData.length > 0 && this["player" + thisPlayer].isPlayer) {
             // TODO: make a room for battle emits later
-            let player = players[this["player" + thisPlayer].name];
+            let player = players[this["player" + thisPlayer].name.toLowerCase()];
             if (player && player.connected) {
                 console.log(battleData);
                 player.socket.emit("battleData", battleData);

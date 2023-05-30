@@ -300,7 +300,8 @@ io.on("connection", (socket) => {
         console.log(displayName + " logged in.");
     } else {
         while (!username || (username && username in players)) {
-            displayName = username = "player" + (Math.floor(Math.random() * 9998) + 1);
+            displayName = "Player " + (Math.floor(Math.random() * 9998) + 1);
+            username = displayName.toLowerCase();
         }
         console.log("Guest logged in as " + displayName + ".");
     }
@@ -485,6 +486,17 @@ io.on("connection", (socket) => {
         if (!player.battle && !player.trade)
             player.swapPartySlots(slot1, slot2);
     });
+
+    socket.on("giveItemToSlot", (id, slot) => {
+        if (!player.battle && !player.trade)
+            player.giveItemToSlot(id, slot);
+    });
+
+    socket.on("removeItemFromSlot", (slot) => {
+        if (!player.battle && !player.trade)
+            player.removeItemFromSlot(slot);
+    });
+
 
     // add disconnect event
     socket.on("disconnect", () => {

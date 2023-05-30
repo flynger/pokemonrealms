@@ -1,3 +1,4 @@
+import Items from "./items.js";
 import Inventory from "./inventory.js";
 import Pokedex from "./pokedex.js";
 import Pokemon, { Stats } from "./pokemon.js";
@@ -30,6 +31,8 @@ export default class Player {
         this.inventory = new Inventory(this);
         this.inventory.addItem("pokeball", 5);
         this.inventory.addItem("potion", 3);
+        this.inventory.addItem("firestone", 1);
+        this.inventory.addItem("aguavberry", 17);
         this.location = {
             map: "Route 1",
             submap: "Area 1"
@@ -65,6 +68,25 @@ export default class Player {
     swapPartySlots(slot1, slot2) {
         if (typeof slot1 == "number" && typeof slot2 == "number" && slot1 != slot2 && this.party[--slot1] && this.party[--slot2]) {
             [this.party[slot1], this.party[slot2]] = [this.party[slot2], this.party[slot1]];
+            this.sendPartyUpdate();
+        }
+    }
+
+    giveItemToSlot(id, slot) {
+        if (typeof slot == "number" && this.party[--slot] && this.inventory.hasItem(id, 1) && Items[id].isHoldable) {
+            if (this.party[slot].heldItem) {
+                this.inventory.addItem(this.party[slot].heldItem, 1);
+            }
+            this.party[slot].heldItem = id;
+            this.inventory.removeItem(id, 1);
+            this.sendPartyUpdate();
+        }
+    }
+
+    removeItemFromSlot(slot) {
+        if (typeof slot == "number" && this.party[--slot] && this.party[slot].heldItem) {
+            this.inventory.addItem(this.party[slot].heldItem, 1);
+            this.party[slot].heldItem = "";
             this.sendPartyUpdate();
         }
     }

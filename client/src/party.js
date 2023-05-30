@@ -47,6 +47,17 @@ function updatePartyMembers() {
             $("#party-name-" + num).attr("class", `party-mon-name${pokemon.shiny ? " shiny" : ""}`);
             $("#party-name-" + num).html(pokemon.name ? pokemon.name : entry.name);
             $("#party-level-" + num).html(`Lv. ${pokemon.level}`)
+
+            let summaryQuery = $(`#pokemon-summary-${pokemon.id}`);
+            if (summaryQuery.length) {
+                let top = summaryQuery.css("top");
+                let left = summaryQuery.css("left");
+                openPartySummary(num);
+                openPartySummary(num);
+                summaryQuery = $(`#pokemon-summary-${pokemon.id}`);
+                summaryQuery.css("top", top);
+                summaryQuery.css("left", left);
+            }
         }
     }
 }

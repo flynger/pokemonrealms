@@ -76,10 +76,11 @@ function updateInventory() {
 function generateGrid(items) {
   $('#inventory-grid').html("");
   for (let item of items) {
+    let { id, quantity, name, desc, isHoldable, isUsable } = item;
     $('#inventory-grid').append(
-      `<div class="inventory-item">
-        <img class="inventory-item-icon" src="res/items/${item.id}.png" />
-        <div class="inventory-item-count">${item.quantity != 1 ? item.quantity : ""}</div>
+      `<div class="inventory-item" onclick="openDiscardUI(inventory.${id})">
+        <img class="inventory-item-icon" src="res/items/${id}.png" />
+        <div class="inventory-item-count">${quantity != 1 ? quantity : ""}</div>
       </div>`
     );
   }
@@ -116,10 +117,12 @@ function openDiscardUI(item) {
   $("#discard-input").attr("max", quantity);
   $("#discard-input").val(1);
   $("#discard-amount-text").html(1);
-  $("#discard-button").on("click", e => {
-    $('#item-discard').hide();
-    socket.emit("discardItem", id, $("#discard-input").val());
-  });
+  $("#discard-button")
+    .off()
+    .on("click", () => {
+      $('#item-discard').hide();
+      socket.emit("discardItem", id, $("#discard-input").val());
+    });
   $('#item-discard').show();
 }
 

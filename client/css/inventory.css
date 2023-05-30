@@ -18,6 +18,7 @@
 }
 
 #inventory-UI {
+  display: none;
   position: absolute;
   background-color: rgba(20, 20, 20, 0.8);
   width: 30%;
@@ -79,7 +80,7 @@
 }
 
 .inventory-tab:hover:not(.selected) {
-  background-color: rgba(77, 77, 77, 1);
+  background-color: rgba(77, 77, 77, 0.58);
 }
 
 .inventory-tab-text {
@@ -110,8 +111,12 @@
   aspect-ratio: 1/1;
 }
 
+.inventory-item:hover {
+  cursor: pointer;
+}
+
 .inventory-item-icon {
-  width: 85%;
+  width: 80%;
   image-rendering: auto;
   -webkit-user-drag: none;
 }
@@ -143,17 +148,17 @@
 }
 
 .item-image {
-  /* width: 2.5em;
+  width: 2.5em;
   padding-right: 0.5em;
   pointer-events: none;
-  image-rendering: auto; */
+  image-rendering: auto;
 }
 
 .item-button {
-  /* background-color: #343a40;
+  background-color: #343a40;
   color: white;
   margin-top: 1%;
-  margin-right: 1%; */
+  margin-right: 1%;
 }
 
 .accordion-button:focus {
