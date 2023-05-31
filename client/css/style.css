@@ -59,12 +59,20 @@
 .end-5 {
     right: 5%;
 }
+
 .end-7 {
     right: 7%;
 }
+
 .end-10 {
     right: 10%;
 }
+
 .outline-none {
     outline: none;
+}
+
+.btn-close:focus {
+    outline: none;
+    box-shadow: none;
 }

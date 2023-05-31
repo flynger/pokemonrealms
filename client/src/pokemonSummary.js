@@ -64,6 +64,7 @@ function createSummaryUI(pokemon) {
   $('#game').append(`<div id="pokemon-summary-${pokemon.id}" class="pokemon-summary bg-dark text-white d-block">
       <div id="pokemon-summary-header">
         Pokémon Summary
+        <button type="button" class="btn-close btn-close-white" aria-label="Close" style="position:absolute; right: 0" onclick="$('#pokemon-summary-${pokemon.id}').remove()"></button>
       </div>
       <div id="stats-body">
         <div id="stats-body-left">
