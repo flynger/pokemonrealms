@@ -33,6 +33,8 @@ export default class SingleBattle {
 
         this.party1.battle = this.party2.battle = this;
         this.stream = this.party1.stream = this.party2.stream = new BattleStream();
+
+        this.preTurnData = [];
         (async () => {
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
@@ -42,6 +44,7 @@ export default class SingleBattle {
                         if (this.party2.isPlayer) this.createBattlePerspective(outputArray, "2");
                         this.party1.data = this.party1.nextData;
                         this.party2.data = this.party2.nextData;
+                        this.preTurnData = [];
                         break;
                     case "sideupdate":
                         let playerId = outputArray[0][1];
@@ -52,9 +55,10 @@ export default class SingleBattle {
                                 let party = this["party" + playerId];
                                 let options = JSON.parse(lineArray[0]);
                                 if (party.isPlayer) {
-                                    let player = players[party.name.toLowerCase()];
-                                    if (player && player.connected) {
-                                        player.socket.emit("battleOptions", options);
+                                    if (party.trainer.connected) {
+                                        party.trainer.socket.emit("battleOptions", options);
+                                    } else {
+                                        // TODO: handle this   
                                     }
                                 } else if (party.hasAI) {
                                     party.AI.setOptions(options);
@@ -76,7 +80,7 @@ export default class SingleBattle {
     }
 
     createBattlePerspective(showdownOutputArray, thisPlayer = "1") {
-        let battleData = [];
+        let battleData = [...this.preTurnData];
         // console.log("\n" + this["party" + thisPlayer].name + "'s perspective: \n");
         let splitCounter = 0; // split counter
         for (const line of showdownOutputArray) {
@@ -406,7 +410,7 @@ export default class SingleBattle {
             // TODO: make a room for battle emits later
             let player = players[this["party" + thisPlayer].name.toLowerCase()];
             if (player && player.connected) {
-                // console.log(battleData);
+                console.log(battleData);
                 player.socket.emit("battleData", battleData);
             }
             // console.log(this.stream.battle.sides[1].active[0].happiness = 0);
@@ -455,7 +459,7 @@ export default class SingleBattle {
     //     }
     // }
 
-    endBattle(forced = false) {
+    endBattle(forced = false, message) {
         let ids = [1, 2];
         for (let id of ids) {
             if (this["party" + id].isPlayer) {
@@ -463,8 +467,9 @@ export default class SingleBattle {
                 if (player) {
                     player.battle = null;
                     if (forced && player.connected) {
+                        let endMessage = message || this.text.endBattle;
                         player.socket.emit("endBattle", {
-                            message: this.text.endBattle.replace("[TRAINER]", player.displayName),
+                            message: endMessage.replace("[TRAINER]", player.displayName),
                             battleOver: true
                         });
                     }

@@ -11,6 +11,7 @@ import BattleAI from "./battleAI.js";
 import Inventory from "./inventory.js";
 import Items from "./items.js";
 import { players } from "./loginHandler.js";
+import Pokedex from "./pokedex.js";
 
 export default class Party {
     // TODO: Add party ID to party class to prevent scuffness
@@ -45,30 +46,32 @@ export default class Party {
         if (!this.trainer.inventory.hasItem(id, 1)) {
             return false;
         }
+
         let item = Items[id];
-        
-        if (this.battle.isWildBattle && item.isUsableInBattle) {
-            if (item.isPokeball) {
+        if (item.isUsableInBattle) {
+            if (item.isPokeball && this.battle.isWildBattle) {
                 const randomNum = Math.random();
                 console.log("random: " + randomNum);
 
-                let catchRate = 0.5;
+                let encounter = this.battle.encounter;
+                let encounterName = Pokedex[encounter.species].name;
+                let catchRate = 0.5 * item.catchRate();
                 if (randomNum < catchRate) {
-                    console.log("Pokemon is caught!");
-                    this.battle.encounter.originalTrainer = this.name;
-                    this.trainer.addPokemon(this.battle.encounter);
-                    this.battle.endBattle();
+                    encounter.setOwner(this.name);
+                    encounter.setBall(id);
+                    this.trainer.addPokemon(encounter);
+                    this.battle.endBattle(true, `[TRAINER] caught the wild ${encounterName}!`);
                     return false;
                 } else {
-                    console.log("Pokemon escaped!");
+                    this.battle.preTurnData.push({
+                        message: `The wild ${encounterName} broke free!`
+                    });
                 }
-            } else {
-
             }
+            this.trainer.inventory.removeItem(id, 1);
+            this.stream.write(`>p${this.id} pass`);
+            return true;
         }
-        this.trainer.inventory.removeItem(id, 1);
-        this.stream.write(`>p${this.id} pass`);
-        return true;
     }
 
     exportTeam() {

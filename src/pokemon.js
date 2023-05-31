@@ -72,13 +72,10 @@ export default class Pokemon {
         this.moves = possibleMoves;
         if (originalTrainer) this.originalTrainer = originalTrainer;
         if (owner) {
-            this.owner = owner;
-            this.id = Pokemon.id;
-            Pokemon.entries[this.id] = this;
-            Pokemon.id++;
+            this.setOwner(owner);
+            if (!caughtBall) this.setBall("pokeball");
         }
-        if (owner && !caughtBall) caughtBall = "pokeball"; // default ball
-        if (caughtBall) this.caughtBall = caughtBall;
+        if (caughtBall) this.setBall(caughtBall);
         // console.log(this);
     }
 
@@ -119,6 +116,20 @@ export default class Pokemon {
             let natureMultiplier = natureData.plus == stat ? 1.1 : natureData.minus == stat ? 0.9 : 1;
             return Math.floor((Math.floor((2 * baseStat + iv + Math.floor(ev / 4)) * level / 100) + 5) * natureMultiplier);
         }
+    }
+
+    setOwner(owner) {
+        if (!this.owner) {
+            this.id = Pokemon.id;
+            Pokemon.entries[this.id] = this;
+            Pokemon.id++;
+            this.originalTrainer = owner;
+        }
+        this.owner = owner;
+    }
+
+    setBall(ball) {
+        this.caughtBall = ball;
     }
 }
 export class Stats {
