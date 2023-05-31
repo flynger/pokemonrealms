@@ -28,19 +28,20 @@ export default class SingleBattle {
     constructor(party1, party2, canRun = false) {
         console.log("Making a battle...");
         this.canRun = canRun;
-        this.player1 = party1;
-        this.player2 = party2;
+        this.party1 = party1;
+        this.party2 = party2;
 
-        this.stream = this.player1.stream = this.player2.stream = new BattleStream();
+        this.party1.battle = this.party2.battle = this;
+        this.stream = this.party1.stream = this.party2.stream = new BattleStream();
         (async () => {
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
                 switch (outputArray.shift()) {
                     case "update":
-                        if (this.player1.isPlayer) this.createBattlePerspective(outputArray, "1");
-                        if (this.player2.isPlayer) this.createBattlePerspective(outputArray, "2");
-                        this.player1.data = this.player1.nextData;
-                        this.player2.data = this.player2.nextData;
+                        if (this.party1.isPlayer) this.createBattlePerspective(outputArray, "1");
+                        if (this.party2.isPlayer) this.createBattlePerspective(outputArray, "2");
+                        this.party1.data = this.party1.nextData;
+                        this.party2.data = this.party2.nextData;
                         break;
                     case "sideupdate":
                         let playerId = outputArray[0][1];
@@ -48,7 +49,7 @@ export default class SingleBattle {
                         let denoter = lineArray.shift();
                         switch (denoter) {
                             case "request":
-                                let party = this["player" + playerId];
+                                let party = this["party" + playerId];
                                 let options = JSON.parse(lineArray[0]);
                                 if (party.isPlayer) {
                                     let player = players[party.name.toLowerCase()];
@@ -65,7 +66,7 @@ export default class SingleBattle {
                                 break;
                             case "error":
                                 console.log(output);
-                                console.log("Bad input for " + this["player" + playerId].name)
+                                console.log("Bad input for " + this["party" + playerId].name)
                         }
                     //console.log(outputArray)
                 }
@@ -76,7 +77,7 @@ export default class SingleBattle {
 
     createBattlePerspective(showdownOutputArray, thisPlayer = "1") {
         let battleData = [];
-        // console.log("\n" + this["player" + thisPlayer].name + "'s perspective: \n");
+        // console.log("\n" + this["party" + thisPlayer].name + "'s perspective: \n");
         let splitCounter = 0; // split counter
         for (const line of showdownOutputArray) {
             console.log(line);
@@ -95,7 +96,7 @@ export default class SingleBattle {
                         case "switch":
                             var pokemonArgs = lineArray[0].split(": ");
                             var side = pokemonArgs[0][1];
-                            var thisParty = this["player" + side];
+                            var thisParty = this["party" + side];
                             if (thisParty.data && !thisParty.data.teamPreview && !thisParty.nextData.forcedSwitch) {
                                 if (isOwnPokemon) {
                                     message = DefaultText.default.switchOutOwn;
@@ -128,7 +129,7 @@ export default class SingleBattle {
                         case "switch":
                             var pokemonArgs = lineArray[0].split(": ");
                             var side = pokemonArgs[0][1];
-                            var thisParty = this["player" + side];
+                            var thisParty = this["party" + side];
                             args.NICKNAME = pokemonArgs[1];
                             args.SPECIES = lineArray[1].split(", ")[0];
                             if (isOwnPokemon) {
@@ -167,7 +168,7 @@ export default class SingleBattle {
                                     //message = MovesText[Dex.moves.get(effectSource).id].damage;
                                 }
                             }
-                            var thisPartyData = this["player" + side].data;
+                            var thisPartyData = this["party" + side].data;
                             var oldMonHP = thisPartyData.side.pokemon.find((mon) => mon.ident == pokemonIdentity).condition.split("/");
                             var oldPercentage = Math.ceil(+oldMonHP[0] / +oldMonHP[1].split(" ")[0] * 100);
                             var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
@@ -223,7 +224,7 @@ export default class SingleBattle {
                         splitCounter = 2;
                         continue;
                     case "start":
-                        message = this.text.startBattle.replace("[TRAINER]", this.player1.name).replace("[TRAINER]", this.player2.name);
+                        message = this.text.startBattle.replace("[TRAINER]", this.party1.name).replace("[TRAINER]", this.party2.name);
                         useArgs = false;
                         break;
                     case "turn":
@@ -231,7 +232,7 @@ export default class SingleBattle {
                         args.NUMBER = lineArray[0];
                         break;
                     case "win":
-                        var thisParty = this["player" + thisPlayer];
+                        var thisParty = this["party" + thisPlayer];
                         var winner = lineArray[0];
                         if (winner == thisParty.name) {
                             message = this.text.winBattle;
@@ -257,11 +258,11 @@ export default class SingleBattle {
                         this.endBattle();
                         break;
                     case "tie":
-                        var thisParty = this["player" + thisPlayer];
+                        var thisParty = this["party" + thisPlayer];
                         if (thisParty.isPlayer && this.isWildBattle) {
                             this.onBattleLose();
                         }
-                        message = this.text.tieBattle.replace("[TRAINER]", this.player1.isPlayer ? this.player1.name : this.player2.name).replace("[TRAINER]", this.player2.name);
+                        message = this.text.tieBattle.replace("[TRAINER]", this.party1.isPlayer ? this.party1.name : this.party2.name).replace("[TRAINER]", this.party2.name);
                         battleDataProperties = {
                             battleOver: true
                         };
@@ -401,9 +402,9 @@ export default class SingleBattle {
             }
             //console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + message); // formatting to compare old output to our new, processed output
         }
-        if (battleData.length > 0 && this["player" + thisPlayer].isPlayer) {
+        if (battleData.length > 0 && this["party" + thisPlayer].isPlayer) {
             // TODO: make a room for battle emits later
-            let player = players[this["player" + thisPlayer].name.toLowerCase()];
+            let player = players[this["party" + thisPlayer].name.toLowerCase()];
             if (player && player.connected) {
                 console.log(battleData);
                 player.socket.emit("battleData", battleData);
@@ -413,17 +414,17 @@ export default class SingleBattle {
     }
 
     getPlayerId(player) {
-        return this.player1.name == player ? 1 : this.player2.name == player ? 2 : -1;
+        return this.party1.name == player ? 1 : this.party2.name == player ? 2 : -1;
     }
 
     startBattle() {
         let player1 = {
-            name: this.player1.name,
-            team: this.player1.exportTeam()
+            name: this.party1.name,
+            team: this.party1.exportTeam()
         };
         let player2 = {
-            name: this.player2.name,
-            team: this.player2.exportTeam()
+            name: this.party2.name,
+            team: this.party2.exportTeam()
         };
         this.stream.write(`>start {"formatid":"gen7custom"}`);
         this.stream.write(`>player p1 ${JSON.stringify(player1)}`);
@@ -434,12 +435,12 @@ export default class SingleBattle {
 
     startRandomBattle() {
         this.stream.write(`>start {"formatid":"gen7randombattle"}`);
-        this.stream.write(`>player p1 ${JSON.stringify({ name: this.player1.name })}`);
-        this.stream.write(`>player p2 ${JSON.stringify({ name: this.player2.name })}`);
+        this.stream.write(`>player p1 ${JSON.stringify({ name: this.party1.name })}`);
+        this.stream.write(`>player p2 ${JSON.stringify({ name: this.party2.name })}`);
     }
 
     // useMove(playerId, moveInput) {
-    //     if (this["player" + playerId]) {
+    //     if (this["party" + playerId]) {
     //         this.stream.write(`>p${playerId} move ${moveInput}`);
     //     } else {
     //         throw Error("Turn input wasn't recognized as being from a valid Party.");
@@ -447,7 +448,7 @@ export default class SingleBattle {
     // }
 
     // switchTo(playerId, switchInput) {
-    //     if (this["player" + playerId]) {
+    //     if (this["party" + playerId]) {
     //         this.stream.write(`>p${playerId} switch ${switchInput}`);
     //     } else {
     //         throw Error("Turn input wasn't recognized as being from a valid Party.");
@@ -457,8 +458,8 @@ export default class SingleBattle {
     endBattle(forced = false) {
         let ids = [1, 2];
         for (let id of ids) {
-            if (this["player" + id].isPlayer) {
-                let player = players[this["player" + id].name.toLowerCase()];
+            if (this["party" + id].isPlayer) {
+                let player = players[this["party" + id].name.toLowerCase()];
                 if (player) {
                     player.battle = null;
                     if (forced && player.connected) {

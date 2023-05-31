@@ -8,6 +8,7 @@ function initInventoryUI() {
   for (let category of itemCategories) {
     $("#inventoryHeader").append(`<div class="inventory-tab"><span class="inventory-tab-text">${category}</span></div>`);
   }
+  $("#inventoryHeader").append('<button id="inventory-close" type="button" class="btn-close btn-close-white" aria-label="Close" style="position:absolute; right: 0"></button>');
   $(".inventory-tab").on("click", function () {
     if (!$(this).hasClass("selected")) {
       $(".inventory-tab").removeClass("selected");
@@ -18,6 +19,9 @@ function initInventoryUI() {
   });
   $("#inventoryBtn").on("click", function () {
     $("#inventory-UI").toggle();
+  });
+  $("#inventory-close").on("click", function () {
+    $("#inventory-UI").hide();
   });
   $("#inventory-UI").draggable({
     handle: ".card-header",

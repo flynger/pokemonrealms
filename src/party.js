@@ -8,20 +8,30 @@
 //     team: string;
 // }
 import BattleAI from "./battleAI.js";
+import Inventory from "./inventory.js";
+import Items from "./items.js";
+import { players } from "./loginHandler.js";
 
 export default class Party {
     // TODO: Add party ID to party class to prevent scuffness
-    constructor(id, name, team, isPlayer = true, onPokemonCaught) {
+    constructor(id, name, team, isPlayer = true, items) {
         this.id = id;
         this.name = name;
         this.team = team;
         this.isPlayer = isPlayer;
         this.hasAI = !isPlayer;
+        this.items = {};
+        this.battle = null;
         this.stream = null;
-        this.onPokemonCaught = onPokemonCaught;
         if (!isPlayer) {
             this.AI = new BattleAI(this);
+            this.trainer = {
+                inventory: new Inventory(false, items)
+            }
+        } else {
+            this.trainer = players[name.toLowerCase()];
         }
+        this.items = Object.values(this.trainer.inventory.items).filter((item) => Items[item.id].isUsableInBattle);
     }
 
     useMove(moveInput) {
@@ -32,9 +42,14 @@ export default class Party {
         this.stream.write(`>p${this.id} switch ${switchInput}`);
     }
 
-    useItem(item) {
-        if (item.hasOwnProperty("isUsableInBattle")) {
-            if (item.hasOwnProperty("isPokeball")) {
+    useItem(id) {
+        if (!this.trainer.inventory.hasItem(id, 1)) {
+            return false;
+        }
+        let item = Items[id];
+        
+        if (this.battle.isWildBattle && item.isUsableInBattle) {
+            if (item.isPokeball) {
                 const randomNum = Math.random();
                 console.log("random: " + randomNum);
 
@@ -46,9 +61,13 @@ export default class Party {
                 } else {
                     console.log("Pokemon escaped!");
                 }
+            } else {
+
             }
         }
+        this.trainer.inventory.removeItem(id, 1);
         this.stream.write(`>p${this.id} pass`);
+        return true;
     }
 
     exportTeam() {

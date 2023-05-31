@@ -1,3 +1,4 @@
+import Map from "./map.js";
 const Items = {
     pokeball: {
         category: "Poké Balls",
@@ -9,7 +10,10 @@ const Items = {
         nhonDesc: "For all the broke trainers out there",
         isHoldable: true,
         isUsableInBattle: true,
-        isPokeball: true
+        isPokeball: true,
+        catchRate: () => {
+            return 1;
+        }
     },
     greatball: {
         category: "Poké Balls",
@@ -21,7 +25,10 @@ const Items = {
         nhonDesc: "大きいです。",
         isHoldable: true,
         isUsableInBattle: true,
-        isPokeball: true
+        isPokeball: true,
+        catchRate: () => {
+            return 1.5;
+        }
     },
     ultraball: {
         category: "Poké Balls",
@@ -33,7 +40,10 @@ const Items = {
         nhonDesc: "stylish looking color scheme",
         isHoldable: true,
         isUsableInBattle: true,
-        isPokeball: true
+        isPokeball: true,
+        catchRate: () => {
+            return 2;
+        }
     },
     masterball: {
         category: "Poké Balls",
