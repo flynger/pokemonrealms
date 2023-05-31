@@ -51,7 +51,7 @@ body {
     transition: 0.2s;
 }
 
-.party-mon-div:hover {
+.party-mon-div:hover:not(.disabled) {
     scale: 1.1;
     transform-origin: center left;
     transition: 0.15s;
