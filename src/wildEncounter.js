@@ -73,9 +73,14 @@ export default class WildEncounter extends SingleBattle {
         endBattle: "[TRAINER] escaped the battle!"
     };
     isWildBattle = true;
-    
+
     constructor(player, encounter) {
-        super(new Party(1, "Wild Pokémon", [encounter], false), new Party(2, player.displayName, player.party), true);
+        super(
+            new Party(1, "Wild Pokémon", [encounter], false, this.run.bind(this)),
+            new Party(2, player.displayName, player.party),
+            true
+        );
+
         this.player = player;
         this.encounter = encounter;
         this.playerParty = this.player2;
@@ -93,12 +98,13 @@ export default class WildEncounter extends SingleBattle {
         this.encounterParty.AI.chooseAction();
     }
 
-    useItem(partyName, itemInput) {
-        this.playerParty.useItem();
+    useItem(partyName, item) {
+        this.playerParty.useItem(item);
         this.encounterParty.AI.chooseAction();
     }
 
     run() {
+        console.log("RUNNING AWAY");
         this.destroy();
     }
 
@@ -114,7 +120,7 @@ export default class WildEncounter extends SingleBattle {
     }
 
     onBattleLose() {
-        console.log("player lost")
+        console.log("player lost");
         // teleport player to pokemon center
     }
 }

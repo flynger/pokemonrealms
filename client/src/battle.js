@@ -28,8 +28,18 @@ function useMove(num) {
 
 function switchTo(slot) {
     socket.emit("switchInput", slot);
-    $("#overlay-switch").hide()
+    $("#overlay-switch").hide();
 }
+
+function useItem(item) {
+    socket.emit("itemInput", item);
+    $("overlay-switch").hide();
+}
+
+// function useItem(item) {
+//     socket.emit("useItem", item);
+//     $("overlay-switch").hide();
+// }
 
 var battleOptions;
 var isBattleActive = false;

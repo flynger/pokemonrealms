@@ -447,9 +447,9 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("itemInput", () => {
+    socket.on("itemInput", (item) => {
         if (player.battle != null) {
-            player.battle.useItem(displayName);
+            player.battle.useItem(displayName, item);
         }
     });
 
