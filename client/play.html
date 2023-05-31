@@ -788,9 +788,25 @@
     </div>
   </div>
   </div>
+  <button id="liveToastBtn2" type="button" class="btn btn-dark position-absolute bottom-0 end-0"
+  onclick="toast2Bootstrap.show()">Popups</button>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+  </div>
 </body>
 
 <script>
+  
   const toastTrigger = document.getElementById('liveToastBtn');
   const toastLiveExample = document.getElementById('liveToast');
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
@@ -800,6 +816,15 @@
   // console.log("got to click");
   // });
   dragElement(document.getElementById("settings-holder"));
+  const toastTrigger2 = document.getElementById('liveToastBtn2')
+  const toastLiveExample2 = document.getElementById('liveToast2')
+
+  if (toastTrigger2) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample2)
+    toastTrigger2.addEventListener('click', () => {
+      toastBootstrap.show()
+    })
+  }
 </script>
 
 </html>
