@@ -184,6 +184,7 @@ function showSwitchButtons() {
         let pkdexId = Pokedex.getPokedexEntry(pkmnDetails[0]).id;
         let lv = !pkmnDetails[1].startsWith("L") ? "100" : pkmnDetails[1].slice(1);
         let hpValues = party[i].condition.split(" ")[0].split("/");
+        console.log(hpValues)
         let isFainted = +hpValues[0] === 0;
         let hpPercent = !isFainted ? +hpValues[0] / +hpValues[1] : 0;
         let hpOutline = hpPercent > 0.5 ? "g" : hpPercent > 0.2 ? "y" : "r";
