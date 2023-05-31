@@ -11,13 +11,14 @@ import BattleAI from "./battleAI.js";
 
 export default class Party {
     // TODO: Add party ID to party class to prevent scuffness
-    constructor(id, name, team, isPlayer = true) {
+    constructor(id, name, team, isPlayer = true, onPokemonCaught) {
         this.id = id;
         this.name = name;
         this.team = team;
         this.isPlayer = isPlayer;
         this.hasAI = !isPlayer;
         this.stream = null;
+        this.onPokemonCaught = onPokemonCaught;
         if (!isPlayer) {
             this.AI = new BattleAI(this);
         }
@@ -31,7 +32,22 @@ export default class Party {
         this.stream.write(`>p${this.id} switch ${switchInput}`);
     }
 
-    useItem() {
+    useItem(item) {
+        if (item.hasOwnProperty("isUsableInBattle")) {
+            if (item.hasOwnProperty("isPokeball")) {
+                const randomNum = Math.random();
+                console.log("random: " + randomNum);
+
+                let catchRate = 0.5;
+                if (randomNum < catchRate) {
+                    console.log("Pokemon is caught!");
+                    this.onPokemonCaught();
+                    console.log("onPokemonCaught runs");
+                } else {
+                    console.log("Pokemon escaped!");
+                }
+            }
+        }
         this.stream.write(`>p${this.id} pass`);
     }
 

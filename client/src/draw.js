@@ -1,6 +1,6 @@
 PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 PIXI.settings.ROUND_PIXELS = true;
-//PIXI.settings.RESOLUTION = 1;
+// PIXI.settings.RESOLUTION = 1;
 PIXI.Container.defaultSortableChildren = true;
 
 // physics engine
@@ -41,9 +41,24 @@ function draw(deltaTime) {
     for (let name in players) {
         players[name].endFrame();
     }
-    if (isBattleActive) {
-        // TODO: change 100 to battleData. (health)
-        $('#hpvalue-you').html((Math.round(($('#hpbar-you').width() / 96) * 100).toString() + "/" + 100));
+    if (isBattleActive && battleOptions) {
+        let hpMax = battleOptions.side.pokemon[0].condition.split(" ")[0].split("/")[1];
+        let hpBar = {you: Math.round($('#hpbar-you').width() / 96 * 100), foe: Math.round($('#hpbar-foe').width() / 96 * 100)}
+        let currentHpValue = hpBar.you !== 0 ? Math.round(hpBar.you * hpMax / 100): 0;
+        $('#hpvalue-you').html(currentHpValue + "/" + hpMax);
+
+        // sets color of health
+        for(let side in hpBar) {
+            if (hpBar[side] <= 20) {
+                $(`#hpbar-${side}`).attr("class","hp r");
+            }
+            else if(hpBar[side] <= 50) {
+                $(`#hpbar-${side}`).attr("class","hp y");
+            }
+            else {
+                $(`#hpbar-${side}`).attr("class","hp g");
+            }
+        }   
     }
 }
 

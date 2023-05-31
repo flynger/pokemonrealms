@@ -2,9 +2,9 @@ class player {
     static walkSpeed = 1.2;
     static runSpeed = 2;
     static friction = 0.15;
-    static rigidBodyWidth = 16;
+    static rigidBodyWidth = 20;
     static rigidBodyHeight = 20;
-    static rigidBodyOffset = 14;
+    static rigidBodyOffset = 16;
     static avatars = ["red", "green", "blue", "brendan", "may", "oak"];
     static playerSprites = {};
     static players = {};
@@ -133,6 +133,32 @@ class player {
         this.bodySprite.y = 24;
         this.headSprite.addChild(this.bodySprite);
         gameContainer.addChild(this.headSprite);
+
+        if (!this.hasController) {
+            // Add click event listener
+            this.headSprite.interactive = true;
+            this.headSprite.cursor = 'pointer';
+            this.headSprite.on("pointerdown", e => this.onClick(e));
+        }
+    }
+
+    onClick(e) {
+        // Handle sprite click event
+        $('#player-context-menu').hide();
+        playerClicked = true;
+        $('#player-context-menu-name').html(this.name);
+        $('#player-context-menu-battle').on("click", () => {
+            sendBattleRequest(this.name);
+            $('#player-context-menu').hide();
+        });
+        $('#player-context-menu-trade').on("click", () => {
+            sendTradeRequest(this.name);
+            $('#player-context-menu').hide();
+        });
+        $('#player-context-menu').show();
+        $('#player-context-menu').css("top", e.clientY - 56);
+        $('#player-context-menu').css("left", e.clientX);
+        $('#player-context-menu').css("left", e.clientX);
     }
 
     updateSprite() {
@@ -284,6 +310,13 @@ class player {
             }
         }
         app.stage.pivot.y *= ratio;
+    }
+
+    destroy() {
+        this.headSprite.destroy();
+        this.nameTagText.destroy();
+        this.nameTagBack.destroy();
+        delete players[this.name];
     }
 
     // emit methods

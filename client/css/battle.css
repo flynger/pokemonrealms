@@ -8,6 +8,7 @@
     display: none;
     user-select: none;
     --scale-coefficient: 1.37104752604;
+    z-index: 100;
 }
 
 .battle-text {
@@ -24,29 +25,48 @@
 
 .hp {
     position: absolute;
-    background-image: url('../res/battle/gui/overlay_hp.png');
     width: 96px;
     height: 6px;
     transition-duration: 0.666s;
 }
 
-.hp-small {
+.hp.small {
+    width: 96px;
+    height: 6px;
+    transition-duration: 0s;
+}
+
+.switch-hpbar-outline {
+    position: absolute;
+    width: 98px;
+    height: 7px;
     transform-origin: left bottom;
     scale: var(--scale);
-    transition-duration: 0s;
     bottom: 0%;
 }
 
+.switch-hpbar-outline.g {
+    border: 0.05rem solid #18C020;
+}
+
+.switch-hpbar-outline.y{
+    border: 0.05rem solid #F8B000;
+}
+
+.switch-hpbar-outline.r{
+    border: 0.05rem solid #F85828;
+}
+
 .hp.g {
-    background-position-y: -1px;
+    background-image: url('../res/battle/gui/overlay_hp_g.png');
 }
 
 .hp.y {
-    background-position-y: -10px;
+    background-image: url('../res/battle/gui/overlay_hp_y.png');
 }
 
 .hp.r {
-    background-position-y: -19px;
+    background-image: url('../res/battle/gui/overlay_hp_r.png');
 }
 
 #xpbar {
@@ -71,7 +91,7 @@
     top: 16px;
 }
 
-#lvl-you {
+#lvl-text-you {
     font-size: 1.1em;
     font-weight: bold;
     position: absolute;
@@ -84,7 +104,7 @@
     top: 16px;
 }
 
-#lvl-foe {
+#lvl-text-foe {
     font-size: 1.1em;
     font-weight: bold;
     position: absolute;
@@ -103,7 +123,7 @@
 
 .pokemon.you img {
     position: absolute;
-    scale: calc(4 * var(--scale));
+    scale: calc(3.3 * var(--scale));
     transform-origin: left bottom;
     bottom: 0%;
     left: 50%;
@@ -246,13 +266,11 @@
 .switch-button {
     background-color: #343a40;
     font-size: .8em;
-    border-radius: 8px; 
+    border-radius: 8px;
     width: 24%;
-    height: 40%
-}
-
-.switch-button:hover{
-    background-color: rgb(107, 107, 107);
+    height: 40%;
+    border: 0.15rem solid white;
+    color: white;
 }
 
 .switch-image {
@@ -269,15 +287,34 @@
 }
 
 .switch-info p {
-    width: min-content;
-    scale: calc(var(--scale-coefficient) * var(--scale));
+    width: fit-content;
+    scale: calc(1.2 * var(--scale));
     transform-origin: left top;
+}
+
+.pkmn-alive:hover {
+    cursor: pointer;
+    background-color: rgb(107, 107, 107);
+}
+
+.pkmn-fainted {
+    background-color: rgb(147, 87, 87);
+}
+
+.pkmn-fainted:hover {
+    cursor: pointer;
+    background-color: rgb(147, 87, 87);
 }
 
 #pkmn1 {
     position: absolute;
     top: 8%;
     left: 2%;
+    background-color: rgb(87, 114, 147);
+}
+
+#pkmn1:hover {
+    background-color: rgb(87, 114, 147);
 }
 
 #pkmn2 {
@@ -310,7 +347,6 @@
     left: 54%;
 }
 
-
 #overlay-fight {
     position: absolute;
     width: 100%;
@@ -332,10 +368,6 @@
 .switch-row {
     height: 100%;
 }
-
-/* #overlay-contianer {
-    height: 100%;
-} */
 
 #dialogue {
     position: absolute;

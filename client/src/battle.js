@@ -6,6 +6,8 @@ $(function () {
     $("#overlay-command").hide();
     $("#overlay-fight").hide();
     $("#overlay-switch").hide();
+    $("#info-you").hide();
+    $("#info-foe").hide();
     $("#overlay-message").show();
     // $('#battle-UI').hide();
     // $('#battle-UI').show(() => {
@@ -26,43 +28,18 @@ function useMove(num) {
 
 function switchTo(slot) {
     socket.emit("switchInput", slot);
+    $("#overlay-switch").hide();
 }
 
-function showSwitchButtons() {
-    var switchData = [
-        { id: 'pkmn1', imageSrc: 'res/pokemon/icons/25.png', name: 'Pikachu' },
-        { id: 'pkmn2', imageSrc: 'res/pokemon/icons/6.png', name: 'Charizard' },
-        { id: 'pkmn3', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
-        { id: 'pkmn4', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
-        { id: 'pkmn5', imageSrc: 'res/pokemon/icons/151.png', name: 'Mew' },
-        { id: 'pkmn6', imageSrc: 'res/pokemon/icons/151.png', name: 'Crabominable' }
-    ];
-
-    // Generate switch UI HTML
-    var switchHtml = '';
-    switchData.forEach(function (data) {
-        switchHtml += '<div id="' + data.id + '" class="switch-button text-white" onclick="switchTo(' + data.id.slice(4) + ')">';
-        switchHtml += '<img class="switch-image" src="' + data.imageSrc + '"></img>';
-        switchHtml += '<div class="switch-info">';
-        switchHtml += '<p class="mb-0">' + data.name + '</p>';
-        switchHtml += '<div class="hp hp-small"></div>';
-        switchHtml += '</div>';
-        switchHtml += '</div>';
-    });
-
-    switchHtml += '<div class="cancel" onclick="cancelSwitch()"></div>'
-
-    // Add switch UI HTML to the container element
-    $('#overlay-switch').html(switchHtml);
-    $("#overlay-switch").show();
-    $('#overlay-command').hide();
+function useItem(item) {
+    socket.emit("itemInput", item);
+    $("overlay-switch").hide();
 }
 
-function runFromBattle() {
-    socket.emit("endBattle");
-    $("#overlay-command").hide();
-    $("#overlay-fight").hide();
-}
+// function useItem(item) {
+//     socket.emit("useItem", item);
+//     $("overlay-switch").hide();
+// }
 
 var battleOptions;
 var isBattleActive = false;
@@ -70,6 +47,8 @@ var battleData = [];
 var textSpeed = 100; // 60
 var textInterval;
 var dialoguePlaying = false;
+// TODO: implement forceSwitch
+var forceSwitch = false;
 function nextAction() {
     if (!dialoguePlaying) {
         $("#overlay-command").hide();
@@ -79,29 +58,42 @@ function nextAction() {
     }
     clearInterval(textInterval);
     var nextData = battleData.shift();
+
+    if (nextData.switchOut) {
+        let side = nextData.side;
+        $(`#info-${side}`).hide();
+        $(`#pokemon-${side}`).hide();
+        $(`#pokemon-${side}`).attr("src", "");
+    }
     if (nextData.switchIn) {
         let pokemonData = nextData.switchIn.split(', ');
-        if (!pokemonData[1].startsWith("L")) {
-            pokemonData.splice(1, 0, "L100");
-        }
         let side = nextData.side;
         let nickname = nextData.nickname;
-        let species = pokemonData[0].toLowerCase();
-        let level = pokemonData[1].slice(1);
+        let species = Pokedex.getPokedexEntry(pokemonData[0]).species.toLowerCase();
+        let level = !pokemonData[1].startsWith("L") ? "100" : pokemonData[1].slice(1);
         let gender = pokemonData[2];
-        let shiny = pokemonData[3] == "shiny";
+        let shiny = pokemonData[pokemonData.length - 1] == "shiny";
         console.log(species, level, gender, shiny)
+
+        let hpValues = nextData.switchInCondition.split('/');
+        // Should work for foe. Not yet tested
+        $("#hpbar-" + nextData.side).width((+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] : 0) * 96);
+
         showPokemon(side, species, nickname, level, shiny);
+        $(`#pokemon-${nextData.side}`).show();
+        $(`#info-${nextData.side}`).show();
     }
     var letters = processFormatting(nextData.message, nextData.message.split(""));
     if ("damageHPTo" in nextData) {
         $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
         setTimeout(() => {
-            textInterval = createTextInterval(nextData, letters)
+            if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
+            else nextActionLogic(nextData);
         }, 666);
     }
     else textInterval = createTextInterval(nextData, letters);
 }
+
 function createTextInterval(nextData, letters) {
     $('#dialogue').html("");
     var index = 0;
@@ -109,27 +101,29 @@ function createTextInterval(nextData, letters) {
         $('#dialogue').html($('#dialogue').html() + letters[index++]);
         if (index >= letters.length) {
             clearInterval(textInterval);
-            setTimeout(() => {
-                if (battleData.length > 0) {
-                    nextAction();
-                } else {
-                    if (nextData.battleOver) {
-                        $('#battle-UI').hide();
-                        players[username].busy = false;
-                        isBattleActive = false;
-                        app.view.style.filter = "none";
-                        clearPokemon("you");
-                        clearPokemon("foe");
-                    } else {
-                        $("#overlay-command").show();
-                        // $("#overlay-fight").show();
-                    }
-                    $('#dialogue').html("");
-                    dialoguePlaying = false;
-                }
-            }, 800);
+            setTimeout(nextActionLogic, 800, nextData);
         }
     }, 1000 / textSpeed);
+}
+
+function nextActionLogic(nextData) {
+    if (battleData.length > 0) {
+        nextAction();
+    } else {
+        if (nextData.battleOver) {
+            $('#battle-UI').hide();
+            players[username].busy = false;
+            isBattleActive = false;
+            app.view.style.filter = "none";
+            clearPokemon("you");
+            clearPokemon("foe");
+        } else {
+            $("#overlay-command").show();
+            // $("#overlay-fight").show();
+        }
+        $('#dialogue').html("");
+        dialoguePlaying = false;
+    }
 }
 
 function processFormatting(message, letters) {
@@ -143,25 +137,25 @@ function processFormatting(message, letters) {
         letters.splice(b2 + 1, 1);
         letters.splice(b1 + 1, 1);
     }
-    console.log(letters);
+    // console.log(letters);
     return letters;
 }
 
 function showPokemon(side, species, name, level, shiny) {
+    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
+    $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
     if (side == "you") {
         $('#command-message').html("What will<br>" + name + " do?");
     }
     $('#pokemon-name-' + side).html((shiny ? "<span class='shiny' data-toggle='tooltip' title='Shiny!'>" : "") + name + (shiny ? "</span>" : ""));
     $('[data-toggle="tooltip"]').tooltip();
-    $('#lvl-' + side).html(level);
-    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
-    $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
+    $('#lvl-text-' + side).html(level);
 }
 
 function clearPokemon(side) {
     $("#pokemon-" + side).attr("src", "");
     $('#pokemon-name-' + side).html("");
-    $('#lvl-' + side).html("");
+    $('#lvl-text-' + side).html("");
     $("#hpbar-" + side).css("transition-duration", "0s");
     $("#hpbar-" + side).width(96);
     $("#hpbar-" + side).css("transition-duration", "0.666s");
@@ -175,6 +169,50 @@ function cancelFight() {
 function cancelSwitch() {
     $("#overlay-switch").hide();
     $('#overlay-command').show();
+}
+
+function showSwitchButtons() {
+    $('#switch-cancel').hide();
+    let party = battleOptions.side.pokemon;
+
+    // Generate switch UI HTML
+    for (let i = 0; i < 6; i++) {
+        let pkmn = `#pkmn${+i + 1}`;
+        if (!party[i]) { $(pkmn).hide(); continue }
+        let pkmnNickname = party[i].ident.split(": ")[1];
+        let pkmnDetails = party[i].details.split(", ");
+        let pkdexId = Pokedex.getPokedexEntry(pkmnDetails[0]).id;
+        let lv = !pkmnDetails[1].startsWith("L") ? "100" : pkmnDetails[1].slice(1);
+        let hpValues = party[i].condition.split(" ")[0].split("/");
+        let isFainted = +hpValues[0] === 0;
+        let hpPercent = !isFainted ? +hpValues[0] / +hpValues[1] : 0;
+        let hpOutline = hpPercent > 0.5 ? "g" : hpPercent > 0.2 ? "y" : "r";
+
+        $(pkmn).attr("class", "switch-button text-white");
+        $(pkmn).addClass(!isFainted ? "pkmn-alive" : "pkmn-fainted");
+        $(`${pkmn}-img`).attr("src", `res/pokemon/icons/${pkdexId}.png`);
+        $(`${pkmn}-info`).html(`<span class="${pkmnDetails[pkmnDetails.length - 1] === "shiny" ? "shiny" : ""}">${pkmnNickname}</span> Lv. ${lv}`);
+        $(`${pkmn}-hpbar`).width(hpPercent * 96);
+        $(`${pkmn}-switch-hpbar-outline`).attr("class", `switch-hpbar-outline ${hpOutline}`);
+        $(`${pkmn}-hpbar`).attr("class", `hp small ${hpOutline}`);
+        if (!isFainted && i !== 0) {
+            $(pkmn).attr("onclick", `switchTo(${+i + 1})`)
+        } else {
+            $(pkmn).attr("onclick", "")
+        };
+        $(pkmn).show()
+    }
+    if (!forceSwitch) { $('#switch-cancel').show() };
+
+    // Add switch UI HTML to the container element
+    $("#overlay-switch").show();
+    $('#overlay-command').hide();
+}
+
+function runFromBattle() {
+    socket.emit("endBattle");
+    $("#overlay-command").hide();
+    $("#overlay-fight").hide();
 }
 
 function updateMoveChoices() {

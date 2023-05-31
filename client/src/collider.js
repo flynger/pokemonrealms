@@ -40,4 +40,4 @@ class collider {
         }
     }
 }
-const colliders = collider.colliders;
+var colliders = collider.colliders;

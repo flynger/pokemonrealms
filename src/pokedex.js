@@ -1,3 +1,5 @@
+import jsonfile from "jsonfile";
+export const ItemData = jsonfile.readFileSync("./data/pokedex/itemData.json");
 const Pokedex = {
     "BULBASAUR": {
         "id": 1,
@@ -5626,6 +5628,7 @@ const Pokedex = {
                 "WATERPULSE"
             ]
         },
+        "growthRate": "Parabolic",
         "heightm": 0.4,
         "weightkg": 7,
         "color": "Blue",
@@ -6019,6 +6022,7 @@ const Pokedex = {
                 "WATERPULSE"
             ]
         },
+        "growthRate": "Parabolic",
         "heightm": 0.5,
         "weightkg": 9,
         "color": "Purple",
@@ -16375,7 +16379,7 @@ const Pokedex = {
         "learnset": {
             "levelup": {
                 "1": "MUDSPORT",
-                "5": "VICEGRIP",
+                "5": "VISEGRIP",
                 "9": "LEER",
                 "11": "HARDEN",
                 "15": "BUBBLEBEAM",
@@ -16516,7 +16520,7 @@ const Pokedex = {
         "learnset": {
             "levelup": {
                 "1": "WIDEGUARD",
-                "5": "VICEGRIP",
+                "5": "VISEGRIP",
                 "9": "LEER",
                 "11": "HARDEN",
                 "15": "BUBBLEBEAM",
@@ -20856,7 +20860,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "BIND",
                 "8": "SEISMICTOSS",
                 "11": "HARDEN",
@@ -45823,7 +45827,7 @@ const Pokedex = {
                 "5": "FAKETEARS",
                 "9": "BITE",
                 "13": "SWEETSCENT",
-                "17": "VICEGRIP",
+                "17": "VISEGRIP",
                 "21": "FEINTATTACK",
                 "25": "BATONPASS",
                 "29": "CRUNCH",
@@ -51477,7 +51481,7 @@ const Pokedex = {
             "levelup": {
                 "1": "BUBBLE",
                 "5": "HARDEN",
-                "7": "VICEGRIP",
+                "7": "VISEGRIP",
                 "10": "LEER",
                 "14": "BUBBLEBEAM",
                 "17": "PROTECT",
@@ -51623,7 +51627,7 @@ const Pokedex = {
             "levelup": {
                 "1": "SWIFT",
                 "5": "HARDEN",
-                "7": "VICEGRIP",
+                "7": "VISEGRIP",
                 "10": "LEER",
                 "14": "BUBBLEBEAM",
                 "17": "PROTECT",
@@ -85824,7 +85828,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "6": "CHARGE",
                 "11": "THUNDERSHOCK",
                 "16": "GEARGRIND",
@@ -85929,7 +85933,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "6": "CHARGE",
                 "11": "THUNDERSHOCK",
                 "16": "GEARGRIND",
@@ -86035,7 +86039,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "6": "CHARGE",
                 "11": "THUNDERSHOCK",
                 "16": "GEARGRIND",
@@ -89693,7 +89697,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "6": "AGILITY",
                 "11": "METALCLAW",
                 "16": "BUGBITE",
@@ -93954,7 +93958,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 1
         },
-        "pokedex": "These friendly Pokemon send signals to one another with beautiful chirps and tail-feather movements.",
+        "pokedex": "These friendly Pokémon send signals to one another with beautiful chirps and tail-feather movements.",
         "experienceYield": 56
     },
     "FLETCHINDER": {
@@ -95318,7 +95322,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 0
         },
-        "pokedex": "Thought to be one of the first Pokemon to live in harmony with humans, it has a placid disposition.",
+        "pokedex": "Thought to be one of the first Pokémon to live in harmony with humans, it has a placid disposition.",
         "experienceYield": 70
     },
     "GOGOAT": {
@@ -95825,7 +95829,7 @@ const Pokedex = {
             "spd": 1,
             "spe": 0
         },
-        "pokedex": "Historically, in the Kalos region, these Pokemon were the designated guardians of the king.",
+        "pokedex": "Historically, in the Kalos region, these Pokémon were the designated guardians of the king.",
         "experienceYield": 165
     },
     "ESPURR": {
@@ -96303,7 +96307,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 0
         },
-        "pokedex": "Apparently this Pokemon is born when a departed spirit inhabits a sword. It attaches itself to people and drinks their life force.",
+        "pokedex": "Apparently this Pokémon is born when a departed spirit inhabits a sword. It attaches itself to people and drinks their life force.",
         "experienceYield": 65
     },
     "DOUBLADE": {
@@ -97731,7 +97735,7 @@ const Pokedex = {
             "levelup": {
                 "1": "WATERGUN",
                 "7": "WATERSPORT",
-                "9": "VICEGRIP",
+                "9": "VISEGRIP",
                 "12": "BUBBLE",
                 "16": "FLAIL",
                 "20": "BUBBLEBEAM",
@@ -97840,7 +97844,7 @@ const Pokedex = {
             "levelup": {
                 "1": "WATERGUN",
                 "7": "WATERSPORT",
-                "9": "VICEGRIP",
+                "9": "VISEGRIP",
                 "12": "BUBBLE",
                 "16": "FLAIL",
                 "20": "BUBBLEBEAM",
@@ -98387,7 +98391,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 0
         },
-        "pokedex": "Nothing could stop this Pokemon 100 years ago, so it behaved like a king.",
+        "pokedex": "Nothing could stop this Pokémon 100 years ago, so it behaved like a king.",
         "experienceYield": 182
     },
     "AMAURA": {
@@ -98525,7 +98529,7 @@ const Pokedex = {
             "spd": 0,
             "spe": 0
         },
-        "pokedex": "This ancient Pokemon was restored from part of its body that had been frozen in ice for over 100 million years.",
+        "pokedex": "This ancient Pokémon was restored from part of its body that had been frozen in ice for over 100 million years.",
         "experienceYield": 72
     },
     "AURORUS": {
@@ -99439,7 +99443,7 @@ const Pokedex = {
             "spd": 3,
             "spe": 0
         },
-        "pokedex": "This very friendly Dragon-type Pokemon will hug its beloved Trainer, leaving that Trainer covered in sticky slime.",
+        "pokedex": "This very friendly Dragon-type Pokémon will hug its beloved Trainer, leaving that Trainer covered in sticky slime.",
         "experienceYield": 270
     },
     "KLEFKI": {
@@ -103204,7 +103208,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "STRINGSHOT",
                 "7": "MUDSLAP",
                 "10": "BITE",
@@ -103301,7 +103305,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "STRINGSHOT",
                 "7": "MUDSLAP",
                 "10": "BITE",
@@ -103395,7 +103399,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "STRINGSHOT",
                 "7": "MUDSLAP",
                 "10": "BITE",
@@ -103499,7 +103503,7 @@ const Pokedex = {
         },
         "learnset": {
             "levelup": {
-                "1": "VICEGRIP",
+                "1": "VISEGRIP",
                 "4": "STRINGSHOT",
                 "7": "MUDSLAP",
                 "10": "BITE",
@@ -112916,3 +112920,12 @@ const Pokedex = {
     }
 }
 export default Pokedex;
+// var entries = Object.values(Pokedex);
+// var drops = {};
+// for (let entry of entries) {
+//     drops[entry.species] = {
+//         heldItem: [],
+//         drops: []
+//     };
+// }
+// jsonfile.writeFileSync("./data/pokedex/itemData.json", drops);

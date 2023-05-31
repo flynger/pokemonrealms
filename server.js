@@ -24,13 +24,14 @@ import sessions from "express-session";
 import Map from './src/map.js';
 import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js'; // held items only
 import Party from './src/party.js';
-import { Pokemon } from './src/pokemon.js';
+import Pokemon from './src/pokemon.js';
 import Player from "./src/player.js";
 import SingleBattle from "./src/singleBattle.js";
 import { players, accounts, LoginHandler } from "./src/loginHandler.js";
 import WildEncounter from "./src/wildEncounter.js";
 import Pokemart from "./src/pokemart.js";
 import Items from "./src/items.js";
+import Trade from "./src/trade.js";
 // const cookieParser = require("./node_modules/cookie-parser");
 // const jsonfile = require("./node_modules/jsonfile");
 // const sessions = require("./node_modules/express-session");
@@ -123,7 +124,7 @@ app.get("/logout", (req, res) => {
 });
 
 // update global player list every 5 seconds
-var ticker = 2350;
+var ticker = 1155;
 Map.updateTime(ticker);
 setInterval(() => {
     ticker += 5;
@@ -149,138 +150,138 @@ var testmart = new Pokemart([
     { id: "aguavberry", price: 5 },
     { id: "thunderstone", price: 10000 }
 ]);
-var encounters = {
-    grass: {
-        morning: [
-            {
-                species: "PIDGEY",
-                weight: 35,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "LEDYBA",
-                weight: 35,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "SENTRET",
-                weight: 15,
-                minLevel: 3,
-                maxLevel: 3
-            },
-            {
-                species: "BUTTERFREE",
-                weight: 5,
-                minLevel: 7,
-                maxLevel: 7
-            },
-            {
-                species: "BEEDRILL",
-                weight: 5,
-                minLevel: 7,
-                maxLevel: 7
-            },
-            {
-                species: "PIDGEOTTO",
-                weight: 1,
-                minLevel: 7,
-                maxLevel: 7
-            },
-            {
-                species: "PIKACHU",
-                weight: 1,
-                minLevel: 4,
-                maxLevel: 7
-            },
-            {
-                species: "FURRET",
-                weight: 1,
-                minLevel: 6,
-                maxLevel: 6
-            }
-        ],
-        day: [
-            {
-                species: "PIDGEY",
-                weight: 10,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "RATTATA",
-                weight: 10,
-                minLevel: 2,
-                maxLevel: 2
-            },
-            {
-                species: "CATERPIE",
-                weight: 7,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "WEEDLE",
-                weight: 7,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "SENTRET",
-                weight: 5,
-                minLevel: 3,
-                maxLevel: 3
-            },
-            {
-                species: "PIDGEOTTO",
-                weight: 1,
-                minLevel: 7,
-                maxLevel: 7
-            },
-            {
-                species: "PIKACHU",
-                weight: 1,
-                minLevel: 4,
-                maxLevel: 7
-            },
-            {
-                species: "FURRET",
-                weight: 1,
-                minLevel: 6,
-                maxLevel: 6
-            }
-        ],
-        night: [
-            {
-                species: "RATTATA",
-                weight: 5,
-                minLevel: 2,
-                maxLevel: 6
-            },
-            {
-                species: "HOOTHOOT",
-                weight: 5,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "TIRTOUGA",
-                weight: 1,
-                minLevel: 2,
-                maxLevel: 4
-            },
-            {
-                species: "SQUIRTLE",
-                weight: 1,
-                minLevel: 2,
-                maxLevel: 4
-            }
-        ],
-        frequency: 8
-    }
-}
-var map = new Map(encounters);
+// var encounters = {
+//     grass: {
+//         morning: [
+//             {
+//                 species: "PIDGEY",
+//                 weight: 35,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "LEDYBA",
+//                 weight: 35,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "SENTRET",
+//                 weight: 15,
+//                 minLevel: 3,
+//                 maxLevel: 3
+//             },
+//             {
+//                 species: "BUTTERFREE",
+//                 weight: 5,
+//                 minLevel: 7,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "BEEDRILL",
+//                 weight: 5,
+//                 minLevel: 7,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "PIDGEOTTO",
+//                 weight: 1,
+//                 minLevel: 7,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "PIKACHU",
+//                 weight: 1,
+//                 minLevel: 4,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "FURRET",
+//                 weight: 1,
+//                 minLevel: 6,
+//                 maxLevel: 6
+//             }
+//         ],
+//         day: [
+//             {
+//                 species: "PIDGEY",
+//                 weight: 10,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "RATTATA",
+//                 weight: 10,
+//                 minLevel: 2,
+//                 maxLevel: 2
+//             },
+//             {
+//                 species: "CATERPIE",
+//                 weight: 7,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "WEEDLE",
+//                 weight: 7,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "SENTRET",
+//                 weight: 5,
+//                 minLevel: 3,
+//                 maxLevel: 3
+//             },
+//             {
+//                 species: "PIDGEOTTO",
+//                 weight: 1,
+//                 minLevel: 7,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "PIKACHU",
+//                 weight: 1,
+//                 minLevel: 4,
+//                 maxLevel: 7
+//             },
+//             {
+//                 species: "FURRET",
+//                 weight: 1,
+//                 minLevel: 6,
+//                 maxLevel: 6
+//             }
+//         ],
+//         night: [
+//             {
+//                 species: "RATTATA",
+//                 weight: 5,
+//                 minLevel: 2,
+//                 maxLevel: 6
+//             },
+//             {
+//                 species: "HOOTHOOT",
+//                 weight: 5,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "TIRTOUGA",
+//                 weight: 1,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             },
+//             {
+//                 species: "SQUIRTLE",
+//                 weight: 1,
+//                 minLevel: 2,
+//                 maxLevel: 4
+//             }
+//         ],
+//         frequency: 8
+//     }
+// }
+// var map = new Map(encounters);
 io.on("connection", (socket) => {
     console.log(color.green, socket.id);
 
@@ -299,7 +300,8 @@ io.on("connection", (socket) => {
         console.log(displayName + " logged in.");
     } else {
         while (!username || (username && username in players)) {
-            displayName = username = "player" + (Math.floor(Math.random() * 9998) + 1);
+            displayName = "Player " + (Math.floor(Math.random() * 9998) + 1);
+            username = displayName.toLowerCase();
         }
         console.log("Guest logged in as " + displayName + ".");
     }
@@ -310,6 +312,11 @@ io.on("connection", (socket) => {
     }
     let player = players[username];
     player.setSocket(socket);
+    player.getMap().addPlayer(player, {
+        x: player.x,
+        y: player.y,
+        facing: player.facing
+    });
 
     // add events
     socket.on("ping", (callback) => {
@@ -318,15 +325,12 @@ io.on("connection", (socket) => {
 
     socket.on("playerMovement", (data) => {
         if (player.battle == null) {
-            data.name = username;
-            player.x = data.x;
-            player.y = data.y;
-            player.facing = data.facing;
-            socket.broadcast.emit("playerMovement", data);
+            player.getMap().updatePlayerLocation(player, data);
         }
     });
 
     socket.on("grassEnter", () => {
+        let map = player.getMap();
         if (player.battle == null && map.grassCheck()) {
             let encounter = map.createEncounter();
             socket.emit("startBattle", player.party[0].species, encounter.species);
@@ -349,12 +353,13 @@ io.on("connection", (socket) => {
         }
         if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
             // if other player hasnt sent request, send
-            if (!player.requests.hasOwnProperty(user)) {
+            if (!player.requests.battle.hasOwnProperty(user)) {
                 otherPlayer.socket.emit("battleRequest", displayName);
-                otherPlayer.requests[username] = true;
+                otherPlayer.requests.battle[username] = true;
             } else {
-                const party2 = new Party(displayName, []);
-                const party1 = new Party(otherPlayer.displayName, []);
+                delete player.requests.battle[user];
+                const party2 = new Party(displayName, player.party);
+                const party1 = new Party(otherPlayer.displayName, otherPlayer.party);
                 player.battle = otherPlayer.battle = new SingleBattle(party1, party2);
                 player.battle.startRandomBattle();
                 console.log("Starting match with 2 players...");
@@ -362,18 +367,54 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("tradeRequest", (user, pokemonSlot) => {
+    socket.on("tradeRequest", (user) => {
         user = user.toLowerCase(); // convert name to username
         let otherPlayer = players[user];
         if (!otherPlayer) {
             socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
             return;
         }
-        if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
-            // if other player hasnt sent request, send
-            console.log(`${displayName} requests a trade with ${otherPlayer.displayName}`);
-            otherPlayer.socket.emit("tradeRequest", username, player.party[pokemonSlot]);
+        if (!otherPlayer.connected) {
+            socket.emit("invalidRequest", `${user} is offline.`);
+            return;
         }
+        if (otherPlayer.battle == null && player.battle == null && otherPlayer.trade == null && player.trade == null) {
+            // if other player hasnt sent request, send
+            if (!player.requests.trade.hasOwnProperty(user)) {
+                otherPlayer.socket.emit("tradeRequest", displayName);
+                otherPlayer.requests.trade[username] = true;
+            } else {
+                delete player.requests.trade[user];
+                console.log("Trade started!")
+                new Trade(player, otherPlayer);
+            }
+
+        }
+    });
+
+    socket.on("offerItem", (id, quantity) => {
+        if (player.trade)
+            player.trade.offerItem(username, id, quantity);
+    });
+
+    socket.on("offerMon", (slot) => {
+        if (player.trade)
+            player.trade.offerMon(username, slot);
+    });
+
+    socket.on("tradeReady", (value) => {
+        if (player.trade) player.trade.ready(username, value)
+    });
+
+    socket.on("tradeConfirm", (data) => {
+        if (player.trade) {
+            player.trade.confirm(username);
+        }
+    });
+
+    socket.on("cancelTrade", () => {
+        if (player.trade)
+            player.trade.cancel();
     });
 
     socket.on("addBal", (amount) => {
@@ -388,19 +429,8 @@ io.on("connection", (socket) => {
         console.log("New Balance: $" + player.balance);
     });
 
-    socket.on("acceptTrade", (data) => {
-        console.log("data " + data);
-        let player1 = players[data.player1.toLowerCase()];
-        let player2 = players[data.player2.toLowerCase()];
-        console.log(`Trading ${player1.party[data.pokemon1]} for ${player2.party[data.pokemon2]}`);
-        let temp = player1.party[data.pokemonSlot1];
-        player1.party[data.pokemonSlot1] = player2.party[data.pokemonSlot2];
-        player2.party[data.pokemonSlot2] = temp;
-        socket.emit("acceptTrade", (data));
-    });
-
     socket.on("endBattle", () => {
-        if (player.battle && player.battle.canRun) {
+        if (player.battle != null && player.battle.canRun) {
             player.battle.run();
         }
     });
@@ -417,9 +447,9 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("itemInput", () => {
+    socket.on("itemInput", (item) => {
         if (player.battle != null) {
-            player.battle.useItem(displayName);
+            player.battle.useItem(displayName, item);
         }
     });
 
@@ -429,49 +459,66 @@ io.on("connection", (socket) => {
     });
 
     socket.on("buyItem", (id, quantity) => {
-        if (testmart.buyItem(player, id, quantity)) {
+        if (player.battle == null && player.trade == null && testmart.buyItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
-            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
     socket.on("sellItem", (id, quantity) => {
-        if (testmart.sellItem(player, id, quantity)) {
+        if (player.battle == null && player.trade == null && testmart.sellItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
-            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
     socket.on("useItem", (id, quantity) => {
-        if (player.battle == null && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
+        if (player.battle == null && player.trade == null && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
             player.inventory.useItem(id, quantity);
-            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
 
     socket.on("discardItem", (id, quantity) => {
-        if (player.inventory.hasItem(id, quantity)) {
+        if (player.battle == null && player.trade == null && player.inventory.hasItem(id, quantity)) {
             player.inventory.removeItem(id, quantity);
-            socket.emit("inventoryUpdate", player.inventory.items);
         }
     });
+
+    socket.on("swapPartySlots", (slot1, slot2) => {
+        if (!player.battle && !player.trade)
+            player.swapPartySlots(slot1, slot2);
+    });
+
+    socket.on("giveItemToSlot", (id, slot) => {
+        if (!player.battle && !player.trade)
+            player.giveItemToSlot(id, slot);
+    });
+
+    socket.on("removeItemFromSlot", (slot) => {
+        if (!player.battle && !player.trade)
+            player.removeItemFromSlot(slot);
+    });
+
 
     // add disconnect event
     socket.on("disconnect", () => {
         console.log(displayName + " disconnected.");
+        player.getMap().removePlayer(player);
         player.deleteSocket();
         if (player.battle) {
             player.battle.endBattle(true);
+        }
+        if (player.trade) {
+            player.trade.cancel();
         }
         if (isGuest) {
             delete players[username];
         }
         socket.broadcast.emit("playerDisconnect", username);
     });
-    // send username
-    socket.emit("playerData", username, Object.values(players).filter((plyr) => plyr.connected).map((plyr) => plyr.export()));
+    // send data
+    socket.emit("itemData", Items);
     socket.emit("balanceUpdate", player.balance);
-    socket.emit("inventoryUpdate", player.inventory.items);
+    player.inventory.sendItemUpdate();
+    player.sendPartyUpdate();
     socket.emit("timeChange", {
         time: Map.time,
         exactTime: ticker

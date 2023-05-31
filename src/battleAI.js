@@ -11,6 +11,7 @@ export default class BattleAI {
         this.options = options;
     }
     chooseAction() {
+        if (this.options.wait) return;
         let validMoves = this.options.active[0].moves.filter(move => !move.disabled);
         this.party.useMove(validMoves.random().id);
     }

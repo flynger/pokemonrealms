@@ -3,10 +3,8 @@ var ratio;
 var vminRatio;
 calculateRatios();
 var map = {
-    name: "Route 1",
-    submapName: "Area 1",
-    width: 60,
-    height: 45
+    name: "",
+    submapName: ""
 };
 var gen4hgssSheet;
 var gen5exteriorSheet;
@@ -14,6 +12,8 @@ var kyledoveSheet;
 
 var gameDiv, battleUI;
 var colorMatrix;
+
+var playerClicked = true;
 
 $(window).on('load', function () {
     $('#message').modal({ backdrop: 'static', keyboard: false });
@@ -69,13 +69,14 @@ function calculateRatios() {
 
 async function setupSpritesheets() {
     PIXI.Assets.add('particle', '../res/particle.png');
-    PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
-    PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
-    PIXI.Assets.add('kyledove', '../res/data/kyledove.json');
-    gen4hgssSheet = await PIXI.Assets.load(['gen4hgss']);
-    gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
-    kyledoveSheet = await PIXI.Assets.load('kyledove');
+    // PIXI.Assets.add('gen4hgss', '../res/data/gen4hgss.json');
+    // PIXI.Assets.add('gen5exterior', '../res/data/gen5exterior.json');
+    // PIXI.Assets.add('kyledove', new tileset('../res/data/kyledove.json'));
+    // gen4hgssSheet = await PIXI.Assets.load(['gen4hgss']);
+    // gen5exteriorSheet = await PIXI.Assets.load('gen5exterior');
+    // kyledoveSheet = await PIXI.Assets.load('kyledove');
     await player.initializePlayerSpritesheets();
+    await initializeTileSpritesheets();
 }
 
 async function setupGame() {
@@ -84,6 +85,7 @@ async function setupGame() {
     setGameSize();
     initSummaryUI();
     initInventoryUI();
+    initPartyUI();
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,
@@ -93,6 +95,11 @@ async function setupGame() {
             backgroundColor: 0x000000
         }
     );
+    // console.log(app.renderer);
+    // const renderer = app.renderer;
+
+    // const interactionManager = renderer.plugins.interaction;
+    // interactionManager.on("click", onClick);
     gameContainer.scale.x = gameContainer.scale.y = textContainer.scale.x = textContainer.scale.y = ratio;
 
     // physics debugging code
@@ -113,94 +120,92 @@ async function setupGame() {
     gameContainer.filters = [colorMatrix];
     // colorMatrix.brightness(1.4, true);
     // colorMatrix.tint(0xFFBB66, true);
+    // let interactionManager = new PIXI.interaction.InteractionManager(app.renderer);
 
-    // map initialization
+    // renderer.plugins.interaction.on("mousedown", checkForClick);
+    // renderer.plugins.interaction.on("mousedown", checkForClick);
+    app.stage.interactive = true;
+    app.stage.on("pointerdown", () => {
+        if (!playerClicked) $('#player-context-menu').hide();
+    });
+    app.stage.on("pointerup", () => {
+        playerClicked = false;
+    });
+    PIXI.sound.add('Route 1', '../res/audio/maps/Route 1.mp3');
+    PIXI.sound.add('Pallet Town', '../res/audio/maps/Pallet Town.mp3');
+    app.ticker.add(draw);
+    $('#game').show();
+}
+
+async function loadMap(mapName, submapName, collideables, grasses) {
+    // load map
+    map.name = mapName;
+    map.submapName = submapName;
     $("#mapName").html(map.name);
     $("#submapName").html(map.submapName);
-    map.tilemap = new PIXI.tilemap.CompositeTilemap();
-    map.tilemap.zIndex = -1000;
-    for (let i = 0; i < map.width; i++) {
-        for (let j = 0; j < map.height; j++) {
-            let possibleTiles = ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass1", "grass1", "grass1", "grass1", "flowerwhite", "flowerred"];
-            map.tilemap.tile(possibleTiles[randomNumber(0, possibleTiles.length - 1)], i * 32, j * 32);
-
-            if (/*(i + j + 1) % randomNumber(4, 10) == 0 || */(i >= 2 && i < 16 || i >= 20 && i < 24) && (j >= 2 && j < 12 || j >= 15 && j < 20)) {
-                new grass(i * 32, j * 32);
-            } else if (randomNumber(1, 900) == 1) {
-                new npc("Professor Oak" + randomNumber(1,9999), "oak", i * 32, j * 32 - 2)
+    await fetch(`../res/maps/${mapName}/${submapName}.json`).then((response) => response.json()).then((json) =>  {
+        map.width = json.width / 32;
+        map.height = json.height / 32;
+        for (let layerIndex in json.layers) {
+            let layer = json.layers[layerIndex];
+            for (let data of layer) {
+                new tile(data.x, data.y, data.img.tileset, data.img.x, data.img.y, layerIndex, data.offset);
             }
         }
+        // PIXI.sound.play(json.music);
+    });
+    for (let collideable of collideables) {
+        new collider(collideable.x, collideable.y, 32, 32);
     }
-    gameContainer.addChild(map.tilemap);
+    for (let grss of grasses) {
+        new grass(grss.x, grss.y);
+    }
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
     app.stage.addChild(textContainer);
-    // const emitter = new PIXI.particles.Emitter(PIXI.Assets.particle, {
-    //     "alpha": {
-    //         "start": 0.8,
-    //         "end": 0.1
-    //     },
-    //     "scale": {
-    //         "start": 0.5,
-    //         "end": 0.1,
-    //         "minimumScaleMultiplier": 1
-    //     },
-    //     "color": {
-    //         "start": "#ffffff",
-    //         "end": "#ffffff"
-    //     },
-    //     "speed": {
-    //         "start": 200,
-    //         "end": 200,
-    //         "minimumSpeedMultiplier": 1
-    //     },
-    //     "acceleration": {
-    //         "x": 0,
-    //         "y": 0
-    //     },
-    //     "maxSpeed": 0,
-    //     "startRotation": {
-    //         "min": 0,
-    //         "max": 360
-    //     },
-    //     "noRotation": false,
-    //     "rotationSpeed": {
-    //         "min": 0,
-    //         "max": 0
-    //     },
-    //     "lifetime": {
-    //         "min": 0.1,
-    //         "max": 0.75
-    //     },
-    //     "blendMode": "normal",
-    //     "frequency": 0.005,
-    //     "emitterLifetime": -1,
-    //     "maxParticles": 1000,
-    //     "pos": {
-    //         "x": 0,
-    //         "y": 0
-    //     },
-    //     "addAtBack": false,
-    //     "spawnType": "circle",
-    //     "spawnCircle": {
-    //         "x": 0,
-    //         "y": 0,
-    //         "r": 10
-    //     }
-    // });
-
-    // // Start emitting particles
-    // emitter.emit = true;
 }
 
-function loadPlayersAndGame(playersArray) {
+function destroyMap() {
+    Matter.Composite.clear(engine.world);
+    for (let tle of tiles) {
+        tle.destroy();
+    }
+    tiles = [];
+    colliders = {};
+    grasses = {};
+}
+
+function loadPlayers(playersArray) {
     for (let plyr of playersArray) {
-        if (plyr.name == username) {
-            new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true).sendLocation();
+        if (plyr.displayName == username) {
+            new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true);
         }
         else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
     }
-    app.ticker.add(draw);
-    gameDiv.prepend(app.view);
-    $('#game').show();
+}
+
+function onClick(event) {
+    console.log("CLICKED");
+    if (event.type === "mousedown") {
+        // Get the mouse position relative to the renderer
+        const mousePosition = event.data.getLocalPosition(renderer.view);
+
+        // Loop through all the players
+        for (const playerName in players) {
+            const currentPlayer = players[playerName];
+            const playerSprite = currentPlayer.headSprite;
+
+            // Check if the mouse position is within the bounds of the player sprite
+            if (
+                mousePosition.x >= playerSprite.x &&
+                mousePosition.x <= playerSprite.x + playerSprite.width &&
+                mousePosition.y >= playerSprite.y &&
+                mousePosition.y <= playerSprite.y + playerSprite.height
+            ) {
+                // Perform the desired action when the player is clicked
+                console.log(`Clicked on player: ${currentPlayer.name}`);
+                // Add your code here to handle the click event
+            }
+        }
+    }
 }

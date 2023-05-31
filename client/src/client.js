@@ -8,6 +8,7 @@ var socket;
 var latency = -1;
 var username;
 var time;
+var party;
 
 function setupSocket() {
     socket = io.connect(link);
@@ -34,7 +35,7 @@ function setupSocket() {
         if (+hour < 6 || timeString == "0600") {
             timeFromMidnight = 100 * (+hour + +minute / 60);
             nightEffects = true;
-            
+
         } else if (+hour >= 18) {
             timeFromMidnight = 2400 - 100 * (+hour + +minute / 60);
             nightEffects = true;
@@ -44,7 +45,7 @@ function setupSocket() {
             // console.log( { timeString, timeFromMidnight, rg });
             colorMatrix.tint("#" + rg.repeat(2) + "FF");
         }
-        
+
         if (hour == "00") hour = "12"; // set hour 0 to 12
         if (+hour > 12) hour = +hour - 12 + ""; // keep hour within 1 to 12
         if (hour[0] == "0") hour = hour[1]; // remove leading 0 if single digit hour
@@ -54,14 +55,23 @@ function setupSocket() {
     });
 
     //connect command
+    socket.on("mapData", async (locationData, collideables, grasses, water) => {
+        if (map.name) destroyMap();
+        collideables.push(...water)
+        await loadMap(locationData.map, locationData.submap, collideables, grasses);
+        gameDiv.prepend(app.view);
+    });
+
     socket.on("playerData", (name, playersArray) => {
         // add fix for reconnect properly instead of jank reload
-        if (Object.values(players).length > 0) {
-            window.location.reload();
+        if (Object.keys(players).length > 0) {
+            for (let name in players) {
+                players[name].destroy();
+            }
         }
         console.log({ playersArray });
         username = name;
-        loadPlayersAndGame(playersArray);
+        loadPlayers(playersArray);
         $('#message').modal('hide');
     });
 
@@ -88,27 +98,32 @@ function setupSocket() {
         }
     });
 
-    socket.on("tradeRequest", (user, pokemon) => {
+    socket.on("tradeRequest", (user) => {
         $('#message').modal({ backdrop: 'static' });
         $('#message').modal('show');
         $('#message-title').text("Trade Request");
-        const pokemonName = pokemon ? pokemon.name || pokemon.species : '';
-        $('#message-body').text(`${user} has sent you a trade request for ${pokemonName}. Accept?`);
+        //const pokemonName = pokemon ? pokemon.name || pokemon.species : '';
+        $('#message-body').text(`${user} has sent you a trade request. Accept?`);
         $('#blueModalBtn').text("Accept!");
         $('#grayModalBtn').text("Decline");
+        $('#blueModalBtn').off('click');
         $('#blueModalBtn').on('click', () => {
             console.log(`username: ${username} user: ${user}`);
-            acceptTrade({
-                player1: user,
-                player2: username,
-                pokemonSlot1: 1,
-                pokemonSlot2: 1
-            });
+            socket.emit("tradeRequest", user);
             $('#message').modal('hide');
         });
+        $('#grayModalBtn').off('click');
         $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
+    });
+
+    socket.on("startTrade", (user) => {
+        console.log(`Starting trade with ${user}...`);
+    });
+
+    socket.on("tradeOffers", (myOffers, theirOffers) => {
+        console.log({ myOffers, theirOffers });
     });
 
     socket.on("acceptTrade", (data) => {
@@ -123,16 +138,20 @@ function setupSocket() {
         $('#message-body').text(user + " has sent you a battle request. Accept?");
         $('#blueModalBtn').text("Let's battle!");
         $('#grayModalBtn').text("Ignore");
+        $('#blueModalBtn').off('click');
         $('#blueModalBtn').on('click', () => {
-            battleRequest(user);
+            sendBattleRequest(user);
             $('#message').modal('hide');
         });
+        $('#grayModalBtn').off('click');
         $('#grayModalBtn').on('click', () => $('#message').modal('hide'));
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
     });
 
     socket.on("startBattle", (playerPokemon, wildPokemon) => {
+        $("#info-you").hide();
+        $("#info-foe").hide();
         $("#battle-UI").show();
         isBattleActive = true;
         // showPokemonYou(playerPokemon);
@@ -149,7 +168,7 @@ function setupSocket() {
     });
 
     socket.on("battleOptions", (newBattleOptions) => {
-        console.log({ moves: newBattleOptions.active[0].moves });
+        // console.log({ moves: newBattleOptions.active[0].moves });
         battleOptions = newBattleOptions;
         updateMoveChoices();
     });
@@ -163,14 +182,24 @@ function setupSocket() {
         console.log({ catalog });
     });
 
+    socket.on("itemData", items => {
+        Items = items;
+    });
+
     socket.on("balanceUpdate", (newBalance) => {
         console.log({ newBalance });
     });
-    
+
     socket.on("inventoryUpdate", (newInventory) => {
         console.log({ newInventory });
         inventory = newInventory;
         updateInventory();
+        filterInvAndGenerate();
+    });
+
+    socket.on("partyUpdate", (newParty) => {
+        party = newParty;
+        updatePartyMembers();
     });
 
     socket.on("pong", (ms) => {
@@ -206,15 +235,18 @@ function buyItem(id, quantity) {
 function sellItem(id, quantity) {
     socket.emit("sellItem", id, quantity);
 }
-function battleRequest(user) {
+function sendBattleRequest(user) {
     socket.emit("battleRequest", user);
 }
-function tradeRequest(user, pokemon) {
-    socket.emit("tradeRequest", user, pokemon);
+function sendTradeRequest(user) {
+    socket.emit("tradeRequest", user);
 }
 function acceptTrade(data) {
     socket.emit("acceptTrade", data);
 }
 function useItem() {
     socket.emit("itemInput");
+}
+function swapPartySlots(slot1, slot2) {
+    socket.emit("swapPartySlots", slot1, slot2);
 }
