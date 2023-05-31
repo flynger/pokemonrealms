@@ -80,7 +80,7 @@ export default class SingleBattle {
         // console.log("\n" + this["party" + thisPlayer].name + "'s perspective: \n");
         let splitCounter = 0; // split counter
         for (const line of showdownOutputArray) {
-            console.log(line);
+            // console.log(line);
             let lineArray = line.slice(1).split("|");
             let args = {}; //args to replace their respective fields in default.ts
             let battleDataProperties = {};
@@ -406,7 +406,7 @@ export default class SingleBattle {
             // TODO: make a room for battle emits later
             let player = players[this["party" + thisPlayer].name.toLowerCase()];
             if (player && player.connected) {
-                console.log(battleData);
+                // console.log(battleData);
                 player.socket.emit("battleData", battleData);
             }
             // console.log(this.stream.battle.sides[1].active[0].happiness = 0);
