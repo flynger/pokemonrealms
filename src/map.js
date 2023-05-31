@@ -28,7 +28,7 @@ export default class Map {
                 this.maps[mapName][submapName] = new Map(mapName, submapName, mapData);
             }
         }
-        console.log(this.maps);
+        // console.log(this.maps);
     }
     static getMap(mapName, submapName) {
         return this.maps[mapName][submapName];
@@ -127,7 +127,7 @@ export default class Map {
             counter += encounter.weight;
             if (counter >= rng) {
                 let randomEncounter = new Pokemon(encounter.species, randomNumber(encounter.minLevel, encounter.maxLevel), {});
-                console.log(randomEncounter);
+                // console.log(randomEncounter);
                 return randomEncounter;
             }
         }

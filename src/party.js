@@ -31,7 +31,6 @@ export default class Party {
         } else {
             this.trainer = players[name.toLowerCase()];
         }
-        this.items = Object.values(this.trainer.inventory.items).filter((item) => Items[item.id].isUsableInBattle);
     }
 
     useMove(moveInput) {
@@ -56,8 +55,10 @@ export default class Party {
                 let catchRate = 0.5;
                 if (randomNum < catchRate) {
                     console.log("Pokemon is caught!");
-                    this.onPokemonCaught();
-                    console.log("onPokemonCaught runs");
+                    this.battle.encounter.originalTrainer = this.name;
+                    this.trainer.addPokemon(this.battle.encounter);
+                    this.battle.endBattle();
+                    return false;
                 } else {
                     console.log("Pokemon escaped!");
                 }
