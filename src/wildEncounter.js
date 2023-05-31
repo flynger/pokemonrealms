@@ -76,15 +76,15 @@ export default class WildEncounter extends SingleBattle {
 
     constructor(player, encounter) {
         super(
-            new Party(1, "Wild Pokémon", [encounter], false, this.run.bind(this)),
+            new Party(1, "Wild Pokémon", [encounter], false),
             new Party(2, player.displayName, player.party),
             true
         );
 
         this.player = player;
         this.encounter = encounter;
-        this.playerParty = this.player2;
-        this.encounterParty = this.player1;
+        this.playerParty = this.party2;
+        this.encounterParty = this.party1;
         this.encounterParty.AI.setBattle(this);
     }
 
@@ -99,8 +99,8 @@ export default class WildEncounter extends SingleBattle {
     }
 
     useItem(partyName, item) {
-        this.playerParty.useItem(item);
-        this.encounterParty.AI.chooseAction();
+        if (this.playerParty.useItem(item))
+            this.encounterParty.AI.chooseAction();
     }
 
     run() {
