@@ -46,7 +46,7 @@ function draw(deltaTime) {
         //TODO
         // if () {}
         let hpMax = battleOptions.side.pokemon[0].condition.split(" ")[0].split("/")[1]; 
-        console.log(hpMax)
+        // console.log(hpMax)
         let hpBar = {you: Math.round(hpBarYouWidth / 96 * 100), foe: Math.round($('#hpbar-foe').width() / 96 * 100)}
         let currentHpValue = hpBarYouWidth !== 0 ? Math.round(hpBar.you * hpMax / 100): 0;
         $('#hpvalue-you').html(currentHpValue + "/" + hpMax);

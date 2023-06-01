@@ -67,9 +67,44 @@ const Items = {
         nhonDesc: "miracle drugs?",
         isUsable: true,
         isUsableInBattle: true,
-        useOnPokemon: function (pokemon) {
-            pokemon.stats.hp += 20;
-        }
+        healAmount: 20,
+        useOnPokemon: healPokemon
+    },
+    superpotion: {
+        category: "Medicine",
+        num: 2,
+        name: "Super Potion",
+        id: "superpotion",
+        desc: "A spray-type medicine for treating wounds. It can be used to restore 60 HP to a Pokémon.",
+        shortDesc: "Restores a Pokémon's HP by 60 points.",
+        isUsable: true,
+        isUsableInBattle: true,
+        healAmount: 60,
+        useOnPokemon: healPokemon
+    },
+    hyperpotion: {
+        category: "Medicine",
+        num: 3,
+        name: "Hyper Potion",
+        id: "hyperpotion",
+        desc: "A spray-type medicine for treating wounds. It can be used to restore 120 HP to a Pokémon.",
+        shortDesc: "Restores a Pokémon's HP by 120 points.",
+        isUsable: true,
+        isUsableInBattle: true,
+        healAmount: 120,
+        useOnPokemon: healPokemon
+    },
+    maxpotion: {
+        category: "Medicine",
+        num: 4,
+        name: "Max Potion",
+        id: "maxpotion",
+        desc: "A spray-type medicine for treating wounds. It can be used to fully restore the max HP of a Pokémon.",
+        shortDesc: "Fully restores a Pokémon's HP.",
+        isUsable: true,
+        isUsableInBattle: true,
+        healAmount: 10000,
+        useOnPokemon: healPokemon
     },
     aguavberry: {
         category: "Berries",
@@ -121,3 +156,19 @@ const Items = {
     }
 }
 export default Items;
+
+function healPokemon(pokemon) {
+    if (pokemon.currenthp) {
+        if (pokemon.currenthp < pokemon.stats.hp) {
+            pokemon.hp += Math.min(this.healAmount, pokemon.maxhp - pokemon.hp);
+            return `${pokemon.getName()} had its HP restored.`;
+        }
+        return false;
+    }
+    if (pokemon.hp < pokemon.maxhp) {
+        pokemon.hp += Math.min(this.healAmount, pokemon.maxhp - pokemon.hp);
+        let newPercentage = 100 * pokemon.hp / pokemon.maxhp;
+        // TODO: Stop rounding health for user's side
+        return [{ message: " ", side: "you", damageHPTo: newPercentage }, { message: `${pokemon.name} had its HP restored.` }];
+    } else return false;
+}

@@ -3632,52 +3632,34 @@
             ],
             "day": [
                 {
-                    "species": "PIDGEY",
+                    "species": "PIDGEOT",
                     "weight": 10,
-                    "minLevel": 2,
-                    "maxLevel": 4
+                    "minLevel": 100,
+                    "maxLevel": 100
                 },
                 {
-                    "species": "RATTATA",
+                    "species": "RATICATE",
                     "weight": 10,
-                    "minLevel": 2,
-                    "maxLevel": 2
+                    "minLevel": 100,
+                    "maxLevel": 100
                 },
                 {
-                    "species": "CATERPIE",
-                    "weight": 7,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "WEEDLE",
-                    "weight": 7,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "SENTRET",
-                    "weight": 5,
-                    "minLevel": 3,
-                    "maxLevel": 3
-                },
-                {
-                    "species": "PIDGEOTTO",
+                    "species": "MEW",
                     "weight": 1,
-                    "minLevel": 7,
-                    "maxLevel": 7
+                    "minLevel": 70,
+                    "maxLevel": 100
                 },
                 {
                     "species": "PIKACHU",
-                    "weight": 1,
-                    "minLevel": 4,
-                    "maxLevel": 7
+                    "weight": 8,
+                    "minLevel": 70,
+                    "maxLevel": 100
                 },
                 {
-                    "species": "FURRET",
+                    "species": "MEWTWO",
                     "weight": 1,
-                    "minLevel": 6,
-                    "maxLevel": 6
+                    "minLevel": 70,
+                    "maxLevel": 100
                 }
             ],
             "night": [

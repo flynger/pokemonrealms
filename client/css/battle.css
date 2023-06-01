@@ -38,7 +38,7 @@
 
 .switch-hpbar-outline {
     position: absolute;
-    width: 98px;
+    width: 97px;
     height: 7px;
     transform-origin: left bottom;
     scale: var(--scale);

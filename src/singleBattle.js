@@ -200,6 +200,10 @@ export default class SingleBattle {
                                     message = DefaultText.drain.heal;
                                 }
                             }
+                            battleDataProperties = {
+                                side: side == thisPlayer ? "you" : "foe",
+                                damageHPTo: newPercentage
+                            };
                             break;
                         default:
                             message = " ";
@@ -459,19 +463,17 @@ export default class SingleBattle {
     //     }
     // }
 
-    endBattle(forced = false, message) {
+    endBattle(forced = false, endData = []) {
         let ids = [1, 2];
         for (let id of ids) {
             if (this["party" + id].isPlayer) {
-                let player = players[this["party" + id].name.toLowerCase()];
+                let player = this["party" + id].trainer;
                 if (player) {
                     player.battle = null;
                     if (forced && player.connected) {
-                        let endMessage = message || this.text.endBattle;
-                        player.socket.emit("endBattle", {
-                            message: endMessage.replace("[TRAINER]", player.displayName),
-                            battleOver: true
-                        });
+                        let endMessages = endData.length ? endData : [{ message: this.text.endBattle.replace("[TRAINER]", player.displayName) }];
+                        endMessages[endMessages.length - 1].battleOver = true;
+                        player.socket.emit("endBattle", endMessages);
                     }
                 }
             }
@@ -479,7 +481,6 @@ export default class SingleBattle {
     }
 
     destroy() {
-        this.endBattle(true);
         this.stream.destroy();
     }
 }

@@ -79,6 +79,10 @@ export default class Pokemon {
         // console.log(this);
     }
 
+    getName() {
+        return this.name || Pokedex[this.species].name;
+    }
+
     levelUp() {
         if (this.level < 100) {
             this.level++;

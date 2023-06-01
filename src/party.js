@@ -14,6 +14,8 @@ import { players } from "./loginHandler.js";
 import Pokedex from "./pokedex.js";
 
 export default class Party {
+    static catchMessagePrefix = ["Congratulations", "Congrats", "Nice", "Gotcha", "Great", "Excellent"];
+    static shakeMessages = ["It shakes.", "It shakes again..", "It shakes again..."];
     // TODO: Add party ID to party class to prevent scuffness
     constructor(id, name, team, isPlayer = true, items) {
         this.id = id;
@@ -48,26 +50,58 @@ export default class Party {
         }
 
         let item = Items[id];
+        let preTurnData = [{ message: `${this.name} used ${item.name}!` }];
         if (item.isUsableInBattle) {
-            if (item.isPokeball && this.battle.isWildBattle) {
-                const randomNum = Math.random();
-                console.log("random: " + randomNum);
-
-                let encounter = this.battle.encounter;
-                let encounterName = Pokedex[encounter.species].name;
-                let catchRate = 0.5 * item.catchRate();
-                if (randomNum < catchRate) {
-                    encounter.setOwner(this.name);
-                    encounter.setBall(id);
-                    this.trainer.addPokemon(encounter);
-                    this.battle.endBattle(true, `[TRAINER] caught the wild ${encounterName}!`);
+            if (item.isPokeball) {
+                if (this.battle.isWildBattle) {
+                    let encounter = this.battle.encounter;
+                    let encounterEntry = Pokedex[encounter.species];
+                    let encounterName = encounterEntry.name;
+                    let catchRate = encounterEntry.catchRate || 255;
+                    let ballMultiplier = item.catchRate();
+                    let statusMultiplier = 1;
+                    let hpCurrent = encounter.currenthp;
+                    let a = Math.floor((3 * encounter.stats.hp - 2 * hpCurrent) * 4096 * catchRate * ballMultiplier / (3 * encounter.stats.hp)) * statusMultiplier;
+                    console.log(a);
+                    let b = Math.floor(65536 / ((1044480 / a) ** 0.25));
+                    let shakeChance = (b / 65535);
+                    console.log( { a, b, shakeChance });
+                    let shakes = 0;
+                    while (shakes < 4) {
+                        if (Math.random() < shakeChance) {
+                            shakes++;
+                            if (shakes == 4) {
+                                encounter.setOwner(this.name);
+                                encounter.setBall(id);
+                                this.trainer.addPokemon(encounter);
+                                preTurnData.push({ message: `${Party.catchMessagePrefix.random()}! You caught the wild ${encounterName}!` });
+                                this.battle.endBattle(true, preTurnData);
+                                return false;
+                            } else preTurnData.push({
+                                message: Party.shakeMessages[shakes - 1]
+                            });
+                        } else {
+                            preTurnData.push({
+                                message: `The wild ${encounterName} broke free!`
+                            });
+                            break;
+                        }
+                    }
+                } else {
+                    return false;
+                }
+            } else if (item.useOnPokemon) {
+                let result = item.useOnPokemon(this.stream.battle.sides[this.id - 1].pokemon[0]);
+                if (!result) {
                     return false;
                 } else {
-                    this.battle.preTurnData.push({
-                        message: `The wild ${encounterName} broke free!`
-                    });
+                    preTurnData.push(...result);
                 }
+            } else {
+                // TODO: other items
             }
+            // add use message to front
+            this.battle.preTurnData = preTurnData;
             this.trainer.inventory.removeItem(id, 1);
             this.stream.write(`>p${this.id} pass`);
             return true;
@@ -88,8 +122,10 @@ function translatePokemon(pokemon) {
     const nature = pokemon.nature;
     const evs = pokemon.evs.toArray().join(",");
     const ivs = pokemon.ivs.toArray().join(",");
-    const level = pokemon.level || "";
+    const level = pokemon.level;
     const shiny = pokemon.shiny ? "S" : "";
     const gender = pokemon.gender;
-    return `${name}|${species}|${heldItem}|${abilitySlot}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}|`;
+    const happiness = pokemon.happiness;
+    const pokeball = pokemon.caughtBall;
+    return `${name}|${species}|${heldItem}|${abilitySlot}|${moves}|${nature}|${evs}|${gender}|${ivs}|${shiny}|${level}|${happiness},${pokeball}`;
 }

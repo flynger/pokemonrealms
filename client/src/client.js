@@ -173,8 +173,8 @@ function setupSocket() {
         updateMoveChoices();
     });
 
-    socket.on("endBattle", (data) => {
-        battleData.push(data);
+    socket.on("endBattle", (endData) => {
+        battleData.push(...endData);
         if (!dialoguePlaying) nextAction();
     });
 

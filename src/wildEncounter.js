@@ -104,7 +104,7 @@ export default class WildEncounter extends SingleBattle {
     }
 
     run() {
-        console.log("RUNNING AWAY");
+        this.endBattle(true);
         this.destroy();
     }
 

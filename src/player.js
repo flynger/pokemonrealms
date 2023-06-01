@@ -32,7 +32,10 @@ export default class Player {
         this.inventory.addItem("pokeball", 15);
         this.inventory.addItem("greatball", 10);
         this.inventory.addItem("ultraball", 5);
-        this.inventory.addItem("potion", 3);
+        this.inventory.addItem("potion", 5);
+        this.inventory.addItem("superpotion", 3);
+        this.inventory.addItem("hyperpotion", 3);
+        this.inventory.addItem("maxpotion", 3);
         this.inventory.addItem("firestone", 1);
         this.inventory.addItem("aguavberry", 17);
         this.location = {
@@ -43,8 +46,8 @@ export default class Player {
 
     pickStarter(starter) {
         if (this.starter == false) {
-            this.starter = Player.starterOptions.includes(starter) ? starter : Player.starterOptions.random();
-            this.addPokemon(new Pokemon(this.starter, 5, { nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0 }));
+            this.starter = Player.starterOptions.includes(starter) ? starter : "CHANSEY"; //Player.starterOptions.random();
+            this.addPokemon(new Pokemon(this.starter, 70, { name: "Eggo", nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0 }));
             for (let i = 0; i < 0; i++) {
                 let rng = randomNumber(1, 649);
                 for (let mon in Pokedex) {
