@@ -1,4 +1,7 @@
-import Pokemon from "./pokemon";
+import Pokemon from "./pokemon.js";
+Array.prototype.random = function () {
+    return this[randomNumber(0, this.length - 1)];
+}
 
 var loot = {
     common: [
@@ -17,6 +20,10 @@ var loot = {
         {
             species: "MAGIKARP",
             level: 1,
+        },
+        {
+            item: "pokeball",
+            quantity: [1, 3]
         }
     ],
     uncommon: [
@@ -60,121 +67,130 @@ var loot = {
         {
             species: "CHARIZARD",
             level: 1,
-            shiny: randomNumber(1, 16) == 1
+            shinyChance: 16
         },
         {
             species: "VAPOREON",
             level: 1,
-            shiny: randomNumber(1, 16) == 1
+            shinyChance: 16
         },
         {
             species: "GYARADOS",
             level: 1,
-            shiny: randomNumber(1, 16) == 1
+            shinyChance: 16
         },
         {
             species: "DRAGONITE",
             level: 1,
-            shiny: randomNumber(1, 16) == 1
+            shinyChance: 16
         }
     ],
     legendary: [
         {
             species: "MOLTRES",
             level: 1,
-            shiny: randomNumber(1, 8) == 1
+            shinyChance: 8
         },
         {
             species: "LUGIA",
             level: 1,
-            shiny: randomNumber(1, 8) == 1
+            shinyChance: 8
         },
         {
             species: "RAYQUAZA",
             level: 1,
-            shiny: randomNumber(1, 8) == 1
+            shinyChance: 8
         },
         {
             species: "ARCEUS",
             level: 1,
-            shiny: randomNumber(1, 8) == 1
+            shinyChance: 8
         }
     ],
     mythic: [
         {
             species: "MEW",
             level: 1,
-            shiny: randomNumber(1, 4) == 1
+            shinyChance: 4
         },
         {
             species: "MEWTWO",
             level: 1,
-            shiny: randomNumber(1, 4) == 1
+            shinyChance: 4
         }
     ]
 }
 var lootbox = {
     common: {
         chances: {
-            common: 0.7,
-            uncommon: 0.2039,
-            rare: 0.08,
-            epic: 0.015,
-            legendary: 0.001,
-            mythic: 0.0001
+            uncommon: 0.125,
+            rare: 0.025,
+            epic: 0.001,
+            legendary: 0.000075,
+            mythic: 0.000005
         }
     },
     uncommon: {
         chances: {
-            common: 0.3,
-            uncommon: 0.5,
-            rare: 0.1805,
-            epic: 0.015,
-            legendary: 0.004,
-            mythic: 0.0005
+            uncommon: 0.375,
+            rare: 0.1,
+            epic: 0.005,
+            legendary: 0.000075,
+            mythic: 0.000005
         }
     },
     rare: {
         chances: {
-            common: 0.2,
-            uncommon: 0.35,
-            rare: 0.38,
-            epic: 0.065,
-            legendary: 0.004,
-            mythic: 0.001
+            uncommon: 0.5,
+            rare: 0.25,
+            epic: 0.025,
+            legendary: 0.0001,
+            mythic: 0.0000075
         }
     },
     epic: {
         chances: {
-            common: 0.1,
-            uncommon: 0.2,
+            uncommon: 0.25,
             rare: 0.4,
-            epic: 0.2,
-            legendary: 0.075,
-            mythic: 0.025
+            epic: 0.125,
+            legendary: 0.0005,
+            mythic: 0.00005
         }
     },
     legendary: {
         chances: {
-            common: 0.1,
-            uncommon: 0.1,
-            rare: 0.15,
-            epic: 0.45,
-            legendary: 0.14,
-            mythic: 0.06
+            rare: 0.25,
+            epic: 0.5,
+            legendary: 0.2,
+            mythic: 0.05
         }
     },
     mythic: {
         chances: {
-            common: 0.0,
-            uncommon: 0.0,
-            rare: 0.05,
-            epic: 0.5,
-            legendary: 0.3,
-            mythic: 0.15
+            epic: 0.35,
+            legendary: 0.4,
+            mythic: 0.25
         }
     }
 }
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function roll(rarity) {
+    let chances = lootbox[rarity].chances;
+    let i = Math.random();
+    let sum = 0;
+    for (let tier in chances) {
+        sum += chances[tier];
+        if (i <= sum) {
+            return loot[tier].random();
+        }
+    }
+    return loot.common.random();
+}
+function openLootbox(rarity){
+    let loot = roll(rarity);
+    let pokemon = new Pokemon(loot.species, loot.level);
+}
+openLootbox("mythic");
