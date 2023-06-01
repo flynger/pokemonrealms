@@ -292,8 +292,7 @@
     transform-origin: left top;
 }
 
-/* TODO: fix #pkmn-1 */
-.pkmn-alive:hover:not(#pkmn-1, .pkmn-fainted) {
+.pkmn-alive:hover:not([name="pkmn-1"], .pkmn-fainted) {
     cursor: pointer;
     background-color: rgb(107, 107, 107);
 }
@@ -302,21 +301,17 @@
     background-color: rgb(147, 87, 87);
 }
 
-/* .pkmn-fainted:hover {
-    cursor: pointer;
-    background-color: rgb(147, 87, 87);
-} */
 
 #pkmn1 {
     position: absolute;
     top: 8%;
     left: 2%;
+    cursor: default;
+}
+
+#pkmn1:not(.pkmn-fainted) {
     background-color: rgb(87, 114, 147);
 }
-/* 
-#pkmn1:hover {
-    background-color: rgb(87, 114, 147);
-} */
 
 #pkmn2 {
     position: absolute;

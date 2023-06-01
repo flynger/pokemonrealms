@@ -29,6 +29,7 @@ function useMove(num) {
 function switchTo(slot) {
     socket.emit("switchInput", slot);
     $("#overlay-switch").hide();
+    isActiveFainted = false;
 }
 
 function useItem(item) {
@@ -47,7 +48,7 @@ var battleData = [];
 var textSpeed = 100; // 60
 var textInterval;
 var dialoguePlaying = false;
-// TODO: implement forceSwitch
+var isActiveFainted = false;
 var forceSwitch = false;
 function nextAction() {
     if (!dialoguePlaying) {
@@ -90,6 +91,9 @@ function nextAction() {
             if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
             else nextActionLogic(nextData);
         }, 666);
+        if (nextData.damageHPTo === 0) {
+            isActiveFainted = true;
+        }
     }
     else textInterval = createTextInterval(nextData, letters);
 }
@@ -118,7 +122,14 @@ function nextActionLogic(nextData) {
             clearPokemon("you");
             clearPokemon("foe");
         } else {
-            $("#overlay-command").show();
+            if (isActiveFainted) {
+                $("#overlay-command").hide();
+                $("#overlay-switch").show();
+                forceSwitch = true;
+            }
+            else {
+                $("#overlay-command").show();
+            }
             // $("#overlay-fight").show();
         }
         $('#dialogue').html("");
@@ -184,7 +195,6 @@ function showSwitchButtons() {
         let pkdexId = Pokedex.getPokedexEntry(pkmnDetails[0]).id;
         let lv = !pkmnDetails[1].startsWith("L") ? "100" : pkmnDetails[1].slice(1);
         let hpValues = party[i].condition.split(" ")[0].split("/");
-        console.log(hpValues)
         let isFainted = +hpValues[0] === 0;
         let hpPercent = !isFainted ? +hpValues[0] / +hpValues[1] : 0;
         let hpOutline = hpPercent > 0.5 ? "g" : hpPercent > 0.2 ? "y" : "r";
@@ -203,7 +213,12 @@ function showSwitchButtons() {
         };
         $(pkmn).show()
     }
-    if (!forceSwitch) { $('#switch-cancel').show() };
+    if (!forceSwitch) {
+        $('#switch-cancel').show();
+    }
+    else {
+        $('#switch-cancel').hide();
+    }
 
     // Add switch UI HTML to the container element
     $("#overlay-switch").show();
