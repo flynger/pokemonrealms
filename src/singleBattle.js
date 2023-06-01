@@ -16,7 +16,7 @@ export default class SingleBattle {
         fullName: "[NICKNAME] (**[SPECIES]**)",
         opposingPokemon: DefaultText.default.opposingPokemon,
         switchIn: DefaultText.default.switchIn,
-        turn: DefaultText.default.turn,
+        turn: " ", //DefaultText.default.turn,
         damagePercentage: " ", //DefaultText.default.damagePercentage,
         startBattle: DefaultText.default.startBattle,
         winBattle: DefaultText.default.winBattle,
@@ -112,7 +112,7 @@ export default class SingleBattle {
                                     side: side == thisPlayer ? "you" : "foe",
                                     switchOut: true
                                 };
-                                args.NICKNAME = thisParty.data.side.pokemon.find((mon) => mon.active).ident.split(": ")[1];
+                                args.NICKNAME = pokemonArgs[1];
                             } else {
                                 // add logic to send private data to player
                                 message = " ";
@@ -437,6 +437,8 @@ export default class SingleBattle {
         this.stream.write(`>start {"formatid":"gen7custom"}`);
         this.stream.write(`>player p1 ${JSON.stringify(player1)}`);
         this.stream.write(`>player p2 ${JSON.stringify(player2)}`);
+        if (this.party1.isPlayer) this.party1.trainer.socket.emit("startBattle");
+        if (this.party2.isPlayer) this.party2.trainer.socket.emit("startBattle");
         // this.stream.write(`>p1 team 123456`);
         // this.stream.write(`>p2 team 123456`);
     }
@@ -445,6 +447,16 @@ export default class SingleBattle {
         this.stream.write(`>start {"formatid":"gen7randombattle"}`);
         this.stream.write(`>player p1 ${JSON.stringify({ name: this.party1.name })}`);
         this.stream.write(`>player p2 ${JSON.stringify({ name: this.party2.name })}`);
+    }
+
+    useMove(partyName, moveInput) {
+        let id = this.getPlayerId(partyName);
+        this["party" + id].useMove(moveInput);
+    }
+
+    switchTo(partyName, switchInput) {
+        let id = this.getPlayerId(partyName);
+        this["party" + id].switchTo(switchInput);
     }
 
     // useMove(playerId, moveInput) {

@@ -149,7 +149,7 @@ function setupSocket() {
         $('#grayModalBtn').show();
     });
 
-    socket.on("startBattle", (playerPokemon, wildPokemon) => {
+    socket.on("startBattle", () => {
         $("#info-you").hide();
         $("#info-foe").hide();
         $("#battle-UI").show();
@@ -158,7 +158,6 @@ function setupSocket() {
         // showPokemonFoe(wildPokemon);
         players[username].busy = true;
         app.view.style.filter = "blur(0.2em)";
-        console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)
     });
 
     socket.on("battleData", (newBattleData) => {
