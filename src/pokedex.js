@@ -1,5 +1,5 @@
 import jsonfile from "jsonfile";
-export const ItemData = jsonfile.readFileSync("../data/pokedex/itemData.json");
+export const ItemData = jsonfile.readFileSync("data/pokedex/itemData.json");
 const Pokedex = {
     "BULBASAUR": {
         "id": 1,
