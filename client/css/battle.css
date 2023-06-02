@@ -733,6 +733,12 @@
     filter: brightness(1);
 }
 
+#overlay-bag .cancel:hover {
+    cursor: pointer;
+    background-position-x: -4px;
+    filter: brightness(1);
+}
+
 .command div {
     position: absolute;
     aspect-ratio: auto 126 / 38;
