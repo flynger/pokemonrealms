@@ -141,7 +141,8 @@
     right: 3%;
     bottom: -5%;
     font-size: calc(var(--scale) * 11px);
-    text-shadow: calc(var(--scale) * 1px) calc(var(--scale) * 1px) #454545;
+    font-weight: bold;
+    /* text-shadow: calc(var(--scale) * 1px) calc(var(--scale) * 1px) #454545; */
 }
 
 #bagItems {
