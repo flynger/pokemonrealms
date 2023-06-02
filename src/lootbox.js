@@ -159,8 +159,8 @@ var lootbox = {
     },
     legendary: {
         chances: {
-            rare: 0.25,
-            epic: 0.5,
+            rare: 0.20,
+            epic: 0.55,
             legendary: 0.2,
             mythic: 0.05
         }
