@@ -117,8 +117,7 @@ function nextActionLogic(nextData) {
             clearPokemon("foe");
         } else {
             if (battleOptions.forceSwitch) {
-                $("#overlay-command").hide();
-                $("#overlay-switch").show();
+                showSwitchButtons();
             }
             else {
                 $("#overlay-command").show();
@@ -176,7 +175,6 @@ function cancelSwitch() {
 }
 
 function showSwitchButtons() {
-    $('#switch-cancel').hide();
     let party = battleOptions.side.pokemon;
 
     // Generate switch UI HTML
@@ -226,7 +224,7 @@ function runFromBattle() {
 
 function updateMoveChoices() {
     for (let moveNum = 1; moveNum <= 4; moveNum++) {
-        if (battleOptions.active[0].moves.length >= moveNum) {
+        if (battleOptions.active && battleOptions.active[0].moves.length >= moveNum) {
             let moveData = battleOptions.active[0].moves[moveNum - 1];
             let moveType = Moves[moveData.id.toUpperCase()].type.toLowerCase();
             $("#move" + moveNum).show();
