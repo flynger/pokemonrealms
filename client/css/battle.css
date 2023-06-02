@@ -74,7 +74,7 @@
     /* Remove align-items and justify-content properties as they are not needed */
     /* margin-left: -1%; */
     /* background-color: rgba(77, 77, 77, 0.7); */
-    border: calc(var(--scale) * 1px) solid rgba(44, 44, 44, 1);
+    border: calc(var(--scale) * 1px) solid rgba(44, 44, 44);
     /* width: 16%; */
     padding-left: 2%;
     padding-right: 2%;
@@ -83,17 +83,21 @@
 }
 
 .bag.selected {
-    background-color: rgba(77, 77, 77, 0.45);
+    background-color: rgba(44, 44, 44);
     ;
-    border: calc(var(--scale) * 1px) solid rgba(77, 77, 77, 0.4);
+    /* border: calc(var(--scale) * 1px) solid rgba(77, 77, 77, 0.4); */
+}
+.bag-tag:not(.slected) {
+    background-color: rgb(92, 92, 92);
 }
 
 .bag-tab:hover {
     cursor: pointer;
+    background-color: rgb(55, 55, 55);
 }
 
 .bag-tab:hover:not(.selected) {
-    background-color: rgba(77, 77, 77, 0.58);
+    background-color: rgb(110, 110, 110);
 }
 
 .bag-tab-text {
