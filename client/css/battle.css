@@ -37,7 +37,7 @@
     width: 100%;
     height: 24%;
     bottom: 0%;
-    background-color:rgb(90, 90, 90);
+    background-color:#818181;
     /* position: absolute;
     font-family: Power Clear;
     font-size: 1em;
@@ -54,7 +54,7 @@
 }
 
 #bagHeader {
-    background-color: rgba(77, 77, 77, 1);
+    background-color: #4c4c4c;
     height: 100%;
     width: 20%;
     display: grid;
@@ -111,11 +111,11 @@
 
 #bag-grid {
     display: grid;
-    grid-template-columns: repeat(7, 11%);
+    grid-template-columns: repeat(8, 10%);
     grid-template-rows: repeat(5, 42%);
     padding: 1%;
     gap: 3%;
-    width: 55%;
+    width: 60%;
     height: 100%;
     overflow-y: auto;
 }
@@ -129,7 +129,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(66, 66, 66);
+    background-color: #5f5f5f;
     aspect-ratio: 1/1;
 }
 
@@ -149,7 +149,8 @@
     right: 3%;
     bottom: -5%;
     font-size: calc(var(--scale) * 11px);
-    font-weight: bold;
+    /* font-weight: bold; */
+    color: white;
     /* text-shadow: calc(var(--scale) * 1px) calc(var(--scale) * 1px) #454545; */
 }
 
@@ -726,7 +727,7 @@
     background-image: url('../res/battle/gui/cursor_command.png');
     background-position-x: -134px;
     background-position-y: -418px;
-    right: 6%;
+    right: 3%;
     bottom: 5%;
 }
 
