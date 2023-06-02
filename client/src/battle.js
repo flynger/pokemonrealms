@@ -76,7 +76,6 @@ function nextAction() {
         console.log(species, level, gender, shiny)
 
         let hpValues = nextData.switchInCondition.split('/');
-        // Should work for foe. Not yet tested
         $("#hpbar-" + nextData.side).width((+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] : 0) * 96);
 
         showPokemon(side, species, nickname, level, shiny);
