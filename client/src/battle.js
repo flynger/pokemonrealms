@@ -172,7 +172,6 @@ function initBag() {
     for (let category of itemCategories) {
         $("#bagHeader").append(`<div class="bag-tab"><span class="bag-tab-text">${category}</span></div>`);
     }
-    $("#bagHeader").append('<button id="bag-close" type="button" class="btn-close btn-close-white" aria-label="Close" style="position:absolute; right: 0"></button>');
     $(".bag-tab").on("click", function () {
         if (!$(this).hasClass("selected")) {
             $(".bag-tab").removeClass("selected");
