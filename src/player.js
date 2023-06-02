@@ -50,7 +50,7 @@ export default class Player {
         if (this.starter == false) {
             this.starter = Player.starterOptions.includes(starter) ? starter : "CHANSEY"; //Player.starterOptions.random();
            // this.addPokemon(new Pokemon(this.starter, 1, { name: "Eggo", nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0 }));
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 3; i++) {
                 let rng = randomNumber(1, 649);
                 for (let mon in Pokedex) {
                     if (rng == Pokedex[mon].id) {

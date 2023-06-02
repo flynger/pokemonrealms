@@ -25,7 +25,7 @@ function initPartyUI() {
         e.stopPropagation();
 
         if (dragSrcEl !== this) {
-            swapPartySlots(+dragSrcEl.attributes[1].value[17], +this.attributes[1].value[17]); // the character at the 17th index of the onclick string
+            swapPartySlots(+dragSrcEl.attributes[2].value[17], +this.attributes[2].value[17]); // the character at the 17th index of the onclick string
         }
         return false;
     });
@@ -38,10 +38,10 @@ function updatePartyMembers() {
             $("#party-icon-" + num).parent().hide();
             $("#party-name-" + num).parent().hide();
             $("#party-mon-div-" + num).addClass("disabled"); 
-            $("#party-mon-div-" + num).attr("draggable", "false"); 
+            $("#party-mon-div-" + num).attr("draggable", false); 
         } else {
             $("#party-mon-div-" + num).removeClass("disabled");
-            $("#party-mon-div-" + num).attr("draggable", "true");
+            $("#party-mon-div-" + num).attr("draggable", true);
             let pokemon = party[i];
             let entry = Pokedex.getPokedexEntry(pokemon.species);
             $("#party-icon-" + num).parent().show();
@@ -64,5 +64,4 @@ function updatePartyMembers() {
             }
         }
     }
-    initPartyUI();
 }
