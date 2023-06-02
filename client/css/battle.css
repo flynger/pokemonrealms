@@ -111,11 +111,11 @@
 
 #bag-grid {
     display: grid;
-    grid-template-columns: repeat(7, 11%);
+    grid-template-columns: repeat(8, 10%);
     grid-template-rows: repeat(5, 42%);
     padding: 1%;
     gap: 3%;
-    width: 55%;
+    width: 60%;
     height: 100%;
     overflow-y: auto;
 }
@@ -727,7 +727,7 @@
     background-image: url('../res/battle/gui/cursor_command.png');
     background-position-x: -134px;
     background-position-y: -418px;
-    right: 6%;
+    right: 3%;
     bottom: 5%;
 }
 
