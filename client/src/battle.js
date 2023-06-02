@@ -2,6 +2,7 @@ var Moves; // moves json fetched on setup
 
 $(function () {
     // $('#battle-UI').show();
+    initBag();
     $("#overlay-bag").hide();
     $("#overlay-switch").hide();
     $("#overlay-command").hide();
@@ -165,9 +166,7 @@ function clearPokemon(side) {
     $("#hpbar-" + side).css("transition-duration", "0.666s");
 }
 
-function showBag() {
-    $("#overlay-bag").show();
-    $('#overlay-command').hide();
+function initBag() {
     var selectedCategory = "All";
     var itemCategories = ["Poké Balls", "Medicine", "Berries", "Items"];
     for (let category of itemCategories) {
@@ -182,6 +181,11 @@ function showBag() {
             filterInvAndGenerate();
         }
     });
+}
+
+function showBag() {
+    $("#overlay-bag").show();
+    $('#overlay-command').hide();
 }
 
 function cancelBag() {
