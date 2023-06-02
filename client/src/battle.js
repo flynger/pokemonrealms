@@ -165,12 +165,26 @@ function clearPokemon(side) {
     $("#hpbar-" + side).css("transition-duration", "0.666s");
 }
 
-function showBag (){
+function showBag() {
     $("#overlay-bag").show();
     $('#overlay-command').hide();
+    var selectedCategory = "All";
+    var itemCategories = ["Poké Balls", "Medicine", "Berries", "Items"];
+    for (let category of itemCategories) {
+        $("#bagHeader").append(`<div class="bag-tab"><span class="bag-tab-text">${category}</span></div>`);
+    }
+    $("#bagHeader").append('<button id="bag-close" type="button" class="btn-close btn-close-white" aria-label="Close" style="position:absolute; right: 0"></button>');
+    $(".bag-tab").on("click", function () {
+        if (!$(this).hasClass("selected")) {
+            $(".bag-tab").removeClass("selected");
+            $(this).addClass("selected")
+            selectedCategory = $(this).text();
+            filterInvAndGenerate();
+        }
+    });
 }
 
-function cancelBag (){
+function cancelBag() {
     $("#overlay-bag").hide();
     $('#overlay-command').show();
 }
