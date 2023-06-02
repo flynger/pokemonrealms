@@ -242,7 +242,7 @@ function updateMoveChoices() {
             $("#move" + moveNum).show();
             $("#move" + moveNum).removeClass();
             $("#move" + moveNum).addClass(moveType);
-            $("#move" + moveNum).html(`<span class="movename">${moveData.move}</span><span class="movetype type ${moveType}"></span><span class="movepp">PP ${moveData.pp}/${moveData.maxpp}</span>`);
+            $("#move" + moveNum).html(`<span class="movename">${moveData.move}</span><span class="movetype type ${moveType}"></span><span class="movepp">${moveData.pp ? `PP ${moveData.pp}/${moveData.maxpp}` : ""}</span>`);
             // console.log($(".move1").addClass("water"));
         } else {
             $("#move" + moveNum).hide();
