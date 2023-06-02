@@ -47,6 +47,7 @@ var battleData = [];
 var textSpeed = 100; // 60
 var textInterval;
 var dialoguePlaying = false;
+var waitMessage;
 function nextAction() {
     if (!dialoguePlaying) {
         $("#overlay-command").hide();
@@ -124,7 +125,7 @@ function nextActionLogic(nextData) {
             }
             // $("#overlay-fight").show();
         }
-        $('#dialogue').html("");
+        $('#dialogue').html(waitMessage);
         dialoguePlaying = false;
     }
 }

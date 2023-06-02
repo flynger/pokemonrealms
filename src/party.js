@@ -26,6 +26,8 @@ export default class Party {
         this.items = {};
         this.battle = null;
         this.stream = null;
+        this.data = null;
+        this.nextData = null;
         if (!isPlayer) {
             this.AI = new BattleAI(this);
             this.trainer = {
@@ -45,7 +47,9 @@ export default class Party {
     }
 
     useItem(id) {
-        if (!this.trainer.inventory.hasItem(id, 1)) {
+        // TODO: makes sure code prevents input if battle is over, item already used, etc.
+        //console.log(this.stream);
+        if (!this.trainer.inventory.hasItem(id, 1) || this.data.forceSwitch || this.data.usedItemThisTurn || this.stream.midTurn || this.stream.ended) {
             return false;
         }
 
@@ -57,15 +61,14 @@ export default class Party {
                     let encounter = this.battle.encounter;
                     let encounterEntry = Pokedex[encounter.species];
                     let encounterName = encounterEntry.name;
-                    let catchRate = encounterEntry.catchRate || 255;
+                    let catchRate = encounterEntry.catchRate || 64;
                     let ballMultiplier = item.catchRate();
                     let statusMultiplier = 1;
                     let hpCurrent = encounter.currenthp;
                     let a = Math.floor((3 * encounter.stats.hp - 2 * hpCurrent) * 4096 * catchRate * ballMultiplier / (3 * encounter.stats.hp)) * statusMultiplier;
-                    console.log(a);
                     let b = Math.floor(65536 / ((1044480 / a) ** 0.25));
                     let shakeChance = (b / 65535);
-                    console.log( { a, b, shakeChance });
+                    // console.log( { a, b, shakeChance });
                     let shakes = 0;
                     while (shakes < 4) {
                         if (Math.random() < shakeChance) {
@@ -73,6 +76,7 @@ export default class Party {
                             if (shakes == 4) {
                                 encounter.setOwner(this.name);
                                 encounter.setBall(id);
+                                this.trainer.inventory.removeItem(id, 1); // remove ball from inventory so can break early
                                 this.trainer.addPokemon(encounter);
                                 preTurnData.push({ message: `${Party.catchMessagePrefix.random()}! You caught the wild ${encounterName}!` });
                                 this.battle.endBattle(true, preTurnData);
@@ -103,6 +107,7 @@ export default class Party {
             // add use message to front
             this.battle.preTurnData = preTurnData;
             this.trainer.inventory.removeItem(id, 1);
+            this.data.usedItemThisTurn = true;
             this.stream.write(`>p${this.id} pass`);
             return true;
         }

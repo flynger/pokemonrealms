@@ -105,7 +105,6 @@ export default class WildEncounter extends SingleBattle {
 
     run() {
         this.endBattle(true);
-        this.destroy();
     }
 
     onBattleWin() {

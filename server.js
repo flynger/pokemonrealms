@@ -470,41 +470,41 @@ io.on("connection", (socket) => {
     });
 
     socket.on("buyItem", (id, quantity) => {
-        if (player.battle == null && player.trade == null && testmart.buyItem(player, id, quantity)) {
+        if (!player.isBusy() && testmart.buyItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
         }
     });
 
     socket.on("sellItem", (id, quantity) => {
-        if (player.battle == null && player.trade == null && testmart.sellItem(player, id, quantity)) {
+        if (!player.isBusy() && testmart.sellItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
         }
     });
 
     socket.on("useItem", (id, quantity) => {
-        if (player.battle == null && player.trade == null && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
+        if (!player.isBusy() && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
             player.inventory.useItem(id, quantity);
         }
     });
 
     socket.on("discardItem", (id, quantity) => {
-        if (player.battle == null && player.trade == null && player.inventory.hasItem(id, quantity)) {
+        if (!player.isBusy() && player.inventory.hasItem(id, quantity)) {
             player.inventory.removeItem(id, quantity);
         }
     });
 
     socket.on("swapPartySlots", (slot1, slot2) => {
-        if (!player.battle && !player.trade)
+        if (!player.isBusy())
             player.swapPartySlots(slot1, slot2);
     });
 
     socket.on("giveItemToSlot", (id, slot) => {
-        if (!player.battle && !player.trade)
+        if (!player.isBusy())
             player.giveItemToSlot(id, slot);
     });
 
     socket.on("removeItemFromSlot", (slot) => {
-        if (!player.battle && !player.trade)
+        if (!player.isBusy())
             player.removeItemFromSlot(slot);
     });
 
@@ -515,7 +515,7 @@ io.on("connection", (socket) => {
         player.getMap().removePlayer(player);
         player.deleteSocket();
         if (player.battle) {
-            player.battle.endBattle(true);
+            player.battle.endBattle(true, [{ message: displayName + " disconnected. The battle was canceled." }]);
         }
         if (player.trade) {
             player.trade.cancel();

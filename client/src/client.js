@@ -149,13 +149,12 @@ function setupSocket() {
         $('#grayModalBtn').show();
     });
 
-    socket.on("startBattle", () => {
+    socket.on("startBattle", (showWaitMessage) => {
         $("#info-you").hide();
         $("#info-foe").hide();
         $("#battle-UI").show();
+        waitMessage = showWaitMessage ? "Waiting for other player..." : "";
         isBattleActive = true;
-        // showPokemonYou(playerPokemon);
-        // showPokemonFoe(wildPokemon);
         players[username].busy = true;
         app.view.style.filter = "blur(0.2em)";
     });
@@ -167,7 +166,7 @@ function setupSocket() {
     });
 
     socket.on("battleOptions", (newBattleOptions) => {
-        // console.log({ moves: newBattleOptions.active[0].moves });
+        console.log({ newBattleOptions });
         battleOptions = newBattleOptions;
         updateMoveChoices();
     });
@@ -217,6 +216,9 @@ function setupSocket() {
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
         gameDiv.removeChild(app.view);
+        // if (isBattleActive) {
+        //     $("#battle-UI").hide();
+        // }
     });
 }
 function addBal(amount) {

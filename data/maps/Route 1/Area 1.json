@@ -3632,16 +3632,16 @@
             ],
             "day": [
                 {
-                    "species": "PIDGEOT",
-                    "weight": 10,
-                    "minLevel": 100,
-                    "maxLevel": 100
+                    "species": "PIDGEY",
+                    "weight": 25,
+                    "minLevel": 2,
+                    "maxLevel": 4
                 },
                 {
-                    "species": "RATICATE",
-                    "weight": 10,
-                    "minLevel": 100,
-                    "maxLevel": 100
+                    "species": "RATTATA",
+                    "weight": 25,
+                    "minLevel": 2,
+                    "maxLevel": 4
                 },
                 {
                     "species": "MEW",
@@ -3651,7 +3651,7 @@
                 },
                 {
                     "species": "PIKACHU",
-                    "weight": 8,
+                    "weight": 10,
                     "minLevel": 70,
                     "maxLevel": 100
                 },

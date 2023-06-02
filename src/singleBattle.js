@@ -101,7 +101,7 @@ export default class SingleBattle {
                             var pokemonArgs = lineArray[0].split(": ");
                             var side = pokemonArgs[0][1];
                             var thisParty = this["party" + side];
-                            if (thisParty.data && !thisParty.data.teamPreview && !thisParty.nextData.forcedSwitch) {
+                            if (thisParty.data && thisParty.data.side && !thisParty.data.teamPreview && !thisParty.nextData.forceSwitch) {
                                 if (isOwnPokemon) {
                                     message = DefaultText.default.switchOutOwn;
                                 } else {
@@ -112,7 +112,7 @@ export default class SingleBattle {
                                     side: side == thisPlayer ? "you" : "foe",
                                     switchOut: true
                                 };
-                                args.NICKNAME = pokemonArgs[1];
+                                args.NICKNAME = thisParty.data.side.pokemon.find((mon) => mon.active).ident.split(": ")[1];
                             } else {
                                 // add logic to send private data to player
                                 message = " ";
@@ -414,7 +414,7 @@ export default class SingleBattle {
             // TODO: make a room for battle emits later
             let player = players[this["party" + thisPlayer].name.toLowerCase()];
             if (player && player.connected) {
-                console.log(battleData);
+                // console.log(battleData);
                 player.socket.emit("battleData", battleData);
             }
             // console.log(this.stream.battle.sides[1].active[0].happiness = 0);
@@ -437,8 +437,8 @@ export default class SingleBattle {
         this.stream.write(`>start {"formatid":"gen7custom"}`);
         this.stream.write(`>player p1 ${JSON.stringify(player1)}`);
         this.stream.write(`>player p2 ${JSON.stringify(player2)}`);
-        if (this.party1.isPlayer) this.party1.trainer.socket.emit("startBattle");
-        if (this.party2.isPlayer) this.party2.trainer.socket.emit("startBattle");
+        if (this.party1.isPlayer) this.party1.trainer.socket.emit("startBattle", this.party2.isPlayer);
+        if (this.party2.isPlayer) this.party2.trainer.socket.emit("startBattle", this.party1.isPlayer);
         // this.stream.write(`>p1 team 123456`);
         // this.stream.write(`>p2 team 123456`);
     }
@@ -476,6 +476,7 @@ export default class SingleBattle {
     // }
 
     endBattle(forced = false, endData = []) {
+        if (forced) this.stream.destroy();
         let ids = [1, 2];
         for (let id of ids) {
             if (this["party" + id].isPlayer) {
