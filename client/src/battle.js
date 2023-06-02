@@ -2,6 +2,7 @@ var Moves; // moves json fetched on setup
 
 $(function () {
     // $('#battle-UI').show();
+    $("#overlay-bag").hide();
     $("#overlay-switch").hide();
     $("#overlay-command").hide();
     $("#overlay-fight").hide();
@@ -163,6 +164,16 @@ function clearPokemon(side) {
     $("#hpbar-" + side).css("transition-duration", "0s");
     $("#hpbar-" + side).width(96);
     $("#hpbar-" + side).css("transition-duration", "0.666s");
+}
+
+function showBag (){
+    $("#overlay-bag").show();
+    $('#overlay-command').hide();
+}
+
+function cancelBag (){
+    $("#overlay-bag").hide();
+    $('#overlay-command').show();
 }
 
 function cancelFight() {

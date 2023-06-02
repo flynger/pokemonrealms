@@ -593,7 +593,7 @@
         <div class="inventory-item"></div>
         <div class="inventory-item"></div>
         <div class="inventory-item"></div>
-        
+
       </div>
     </div>
     <div id="item-discard"
@@ -710,9 +710,46 @@
       </div>
       <div id="overlay-message" class="battle-text">
         <div id="dialogue" class="px-2">
-          
+
         </div>
       </div>
+
+      <div id="overlay-bag" class="overlay">
+        <div id="bag-grid">
+          <div class="bag-item">
+            <img class="bag-item-icon" src="res/items/masterball.png" />
+            <div class="bag-item-count">99</div>
+          </div>
+          <div class="bag-item">
+            <img class="bag-item-icon" src="res/items/potion.png" />
+          </div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+          <div class="bag-item"></div>
+  
+        </div>
+      </div>
+      </div>
+
       <div id="overlay-switch" class="overlay">
         <div id="pkmn1" class="switch-button text-white"><img id="pkmn1-img" class="switch-image" src=""></img>
           <div class="switch-info">
@@ -779,7 +816,7 @@
         <p id="command-message" class="battle-text"></p>
         <div class="fight bg-image" onclick="showFightButtons()"></div>
         <div class="pkmn bg-image" onclick="showSwitchButtons()"></div>
-        <div class="bag bg-image" onclick="alert()"></div>
+        <div class="bag bg-image" onclick="showBag()"></div>
         <div class="run bg-image" onclick="runFromBattle()"></div>
         <!-- <div id="button-2" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
           <div id="button-3" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
@@ -798,14 +835,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body" id="notification-body">
-        
+
       </div>
     </div>
   </div>
 </body>
 
 <script>
-  
+
   const toastTrigger = document.getElementById('liveToastBtn');
   const toastLiveExample = document.getElementById('liveToast');
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
@@ -820,23 +857,23 @@
 
   if (toastTrigger2) {
     //const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2)
-  //   const toastContainer2 =
-  //   `<div class="toast-container position-fixed bottom-0 end-0 p-3">
-  //   <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-  //     <div class="toast-header">
-  //       <img src="..." class="rounded me-2" alt="...">
-  //       <strong class="me-auto">Bootstrap</strong>
-  //       <small>11 mins ago</small>
-  //       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  //     </div>
-  //     <div class="toast-body">
-  //       Hello, world! This is a toast message.
-  //     </div>
-  //   </div>
-  // </div>`;
-  // document.body.insertAdjacentHTML('afterbegin', toastLiveExample2);
-  test = document.getElementById('liveToast2');
-  const toast = bootstrap.Toast.getOrCreateInstance(test);
+    //   const toastContainer2 =
+    //   `<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    //   <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    //     <div class="toast-header">
+    //       <img src="..." class="rounded me-2" alt="...">
+    //       <strong class="me-auto">Bootstrap</strong>
+    //       <small>11 mins ago</small>
+    //       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    //     </div>
+    //     <div class="toast-body">
+    //       Hello, world! This is a toast message.
+    //     </div>
+    //   </div>
+    // </div>`;
+    // document.body.insertAdjacentHTML('afterbegin', toastLiveExample2);
+    test = document.getElementById('liveToast2');
+    const toast = bootstrap.Toast.getOrCreateInstance(test);
 
     toastTrigger2.addEventListener('click', () => {
       document.getElementById('notification-body').innerHTML = `hola como estas`;
