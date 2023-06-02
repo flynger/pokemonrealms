@@ -714,6 +714,14 @@
         </div>
       </div>
       <div id="overlay-bag" class="overlay">
+        <div id="bagHeader" class="card-header">
+          <!-- <h5 id="bagTitle" class="card-title mb-0">Bag</h5> -->
+          <div class="bag-tab selected"><span class="bag-tab-text">All</span></div>
+          <div class="bag-tab"><span class="bag-tab-text">Poké Balls</span></div>
+          <div class="bag-tab"><span class="bag-tab-text">Medicine</span></div>
+          <div class="bag-tab"><span class="bag-tab-text">Berries</span></div>
+          <div class="bag-tab"><span class="bag-tab-text">Items</span></div>
+        </div>
         <div id="bag-grid">
           <div class="bag-item">
             <img class="bag-item-icon" src="res/items/masterball.png" />
@@ -746,7 +754,9 @@
           <div class="bag-item"></div>
   
         </div>
+      <div id="bag-cancel" class="cancel" onclick="cancelBag()"></div>
       </div>
+
   
       <div id="overlay-switch" class="overlay">
         <div id="pkmn1" class="switch-button text-white"><img id="pkmn1-img" class="switch-image" src=""></img>

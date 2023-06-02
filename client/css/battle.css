@@ -30,76 +30,151 @@
     transition-duration: 0.666s;
 }
 
+#overlay-bag {
+    display: flex;
+    /* background-color: rgba(20, 20, 20, 0.8); */
+    position: absolute;
+    width: 100%;
+    height: 24%;
+    bottom: 0%;
+    /* position: absolute;
+    font-family: Power Clear;
+    font-size: 1em;
+    width: 30%;
+    height: 50%;
+    border: 1px solid #343a40;
+    border-radius: 0.4em;
+    padding-right: 0;
+    padding-top: calc(var(--bs-gutter-x) * .3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    display: none;
+    z-index: 9; */
+}
+
+#bagHeader {
+    background-color: rgba(77, 77, 77, 1);
+    height: 100%;
+    width: 20%;
+    display: grid;
+    grid-template-columns: auto;
+    /* gap: 2%; */
+    /* overflow-y: auto; */
+}
+
+#bagTitle {
+    padding-left: 4%;
+    padding-right: 4%;
+    font-size: calc(var(--scale) * 14px);
+    /* font-size: 2em; */
+}
+
+.bag-tab {
+    display: block;
+    /* Remove align-items and justify-content properties as they are not needed */
+    /* margin-left: -1%; */
+    /* background-color: rgba(77, 77, 77, 0.7); */
+    border: calc(var(--scale) * 1px) solid rgba(44, 44, 44, 1);
+    /* width: 16%; */
+    padding-left: 2%;
+    padding-right: 2%;
+    height: 100%;
+    /* transform: skew(-20deg); */
+}
+
+.bag.selected {
+    background-color: rgba(77, 77, 77, 0.45);
+    ;
+    border: calc(var(--scale) * 1px) solid rgba(77, 77, 77, 0.4);
+}
+
+.bag-tab:hover {
+    cursor: pointer;
+}
+
+.bag-tab:hover:not(.selected) {
+    background-color: rgba(77, 77, 77, 0.58);
+}
+
+.bag-tab-text {
+    margin-top: 5%;
+    font-size: calc(var(--scale) * 15px);
+    color: white;
+    /* text-shadow: calc(var(--scale) * 1px) calc(var(--scale) * 1px) #343434; */
+    transform: skew(20deg);
+}
+
 #bag-grid {
     display: grid;
-    grid-template-columns: repeat(9, 10.2%);
-    grid-template-rows: repeat(5, 16%);
-    padding: 3%;
-    gap: 1%;
+    grid-template-columns: repeat(7, 11%);
+    grid-template-rows: repeat(5, 39%);
+    padding: 1%;
+    gap: 3%;
     background-color: rgba(7, 7, 7, 0.2);
-    width: 100%;
-    height: 90%;
+    width: 55%;
+    height: 100%;
     overflow-y: auto;
-  }
-  
-  .bag-item {
+}
+
+.bag-item {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(99, 99, 99, 0.3);
     aspect-ratio: 1/1;
-  }
-  
-  .bag-item:hover {
+}
+
+.bag-item:hover {
     cursor: pointer;
-  }
-  
-  .bag-item-icon {
-    width: 80%;
+}
+
+.bag-item-icon {
     image-rendering: auto;
     -webkit-user-drag: none;
-  }
-  
-  .bag-item-count {
+    height: 90%;
+    top: 5%;
+}
+
+.bag-item-count {
     position: absolute;
     right: 3%;
     bottom: -5%;
     font-size: calc(var(--scale) * 11px);
     text-shadow: calc(var(--scale) * 1px) calc(var(--scale) * 1px) #454545;
-  }
-  
-  #bagItems {
+}
+
+#bagItems {
     /* height: calc(100% - 50px);
     overflow-y: scroll;
     padding: 10px;
     color: white; */
-  }
-  
-  #bag-list {
+}
+
+#bag-list {
     /* max-height: calc(100% - 70px);
     overflow-y: auto;
     color: white;
     user-select: none; */
-  }
-  
-  .bag-label {
+}
+
+.bag-label {
     /* padding: 0.5em 0.65em; */
-  }
-  
-  .bag-item-image {
+}
+
+.bag-item-image {
     width: 2.5em;
     padding-right: 0.5em;
     pointer-events: none;
     image-rendering: auto;
-  }
-  
-  .bag-item-button {
+}
+
+.bag-item-button {
     background-color: #343a40;
     color: white;
     margin-top: 1%;
     margin-right: 1%;
-  }
+}
 
 .hp.small {
     width: 96px;
@@ -120,11 +195,11 @@
     border: 0.05rem solid #18C020;
 }
 
-.switch-hpbar-outline.y{
+.switch-hpbar-outline.y {
     border: 0.05rem solid #F8B000;
 }
 
-.switch-hpbar-outline.r{
+.switch-hpbar-outline.r {
     border: 0.05rem solid #F85828;
 }
 
@@ -629,6 +704,20 @@
     background-position-x: -134px;
     background-position-y: -418px;
     right: 2.25%;
+    bottom: 5%;
+}
+
+#overlay-bag .cancel {
+    position: absolute;
+    aspect-ratio: auto 126 / 38;
+    width: 122px;
+    height: 39px;
+    scale: calc(var(--scale));
+    transform-origin: right bottom;
+    background-image: url('../res/battle/gui/cursor_command.png');
+    background-position-x: -134px;
+    background-position-y: -418px;
+    right: 6%;
     bottom: 5%;
 }
 
