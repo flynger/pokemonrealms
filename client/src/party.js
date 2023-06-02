@@ -1,17 +1,13 @@
 var dragSrcEl;
 function initPartyUI() {
-    // $('.party-mon-div').off();
-    // let target = $('.party-mon-div').not('.disabled');
-    // console.log(target)
-
-    target.on('dragstart', function (e) {
+    $('.party-mon-div').on('dragstart', function (e) {
         this.style.opacity = '0.4';
 
         dragSrcEl = this;
         e.originalEvent.dataTransfer.effectAllowed = 'move';
         e.originalEvent.dataTransfer.dropEffect = 'move';
     });
-    target.on('dragover', function (e) {
+    $('.party-mon-div').on('dragover', function (e) {
         e.preventDefault();
         return false;
     });
@@ -21,11 +17,11 @@ function initPartyUI() {
     // $('.party-mon-div').on('dragleave', function (e) {
     //     this.classList.remove("party-drag-over");
     // });
-    target.on('dragend', function (e) {
+    $('.party-mon-div').on('dragend', function (e) {
         this.style.opacity = '1';
         return false;
     });
-    target.on('drop', function (e) {
+    $('.party-mon-div').on('drop', function (e) {
         e.stopPropagation();
 
         if (dragSrcEl !== this) {
