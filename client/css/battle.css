@@ -37,6 +37,7 @@
     width: 100%;
     height: 24%;
     bottom: 0%;
+    background-color:rgb(90, 90, 90);
     /* position: absolute;
     font-family: Power Clear;
     font-size: 1em;
@@ -111,21 +112,24 @@
 #bag-grid {
     display: grid;
     grid-template-columns: repeat(7, 11%);
-    grid-template-rows: repeat(5, 39%);
+    grid-template-rows: repeat(5, 42%);
     padding: 1%;
     gap: 3%;
-    background-color: rgba(7, 7, 7, 0.2);
     width: 55%;
     height: 100%;
     overflow-y: auto;
 }
+
+#bag-grid::-webkit-scrollbar {
+    display: none;
+  }
 
 .bag-item {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(99, 99, 99, 0.3);
+    background-color: rgb(66, 66, 66);
     aspect-ratio: 1/1;
 }
 
