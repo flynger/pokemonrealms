@@ -29,7 +29,6 @@ function useMove(num) {
 function switchTo(slot) {
     socket.emit("switchInput", slot);
     $("#overlay-switch").hide();
-    isActiveFainted = false;
 }
 
 function useItem(item) {
@@ -48,8 +47,6 @@ var battleData = [];
 var textSpeed = 100; // 60
 var textInterval;
 var dialoguePlaying = false;
-var isActiveFainted = false;
-var forceSwitch = false;
 function nextAction() {
     if (!dialoguePlaying) {
         $("#overlay-command").hide();
@@ -91,9 +88,6 @@ function nextAction() {
             if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
             else nextActionLogic(nextData);
         }, 666);
-        if (nextData.damageHPTo === 0) {
-            isActiveFainted = true;
-        }
     }
     else textInterval = createTextInterval(nextData, letters);
 }
@@ -122,10 +116,9 @@ function nextActionLogic(nextData) {
             clearPokemon("you");
             clearPokemon("foe");
         } else {
-            if (isActiveFainted) {
+            if (battleOptions.forceSwitch) {
                 $("#overlay-command").hide();
                 $("#overlay-switch").show();
-                forceSwitch = true;
             }
             else {
                 $("#overlay-command").show();
@@ -213,7 +206,7 @@ function showSwitchButtons() {
         };
         $(pkmn).show()
     }
-    if (!forceSwitch) {
+    if (!battleOptions.forceSwitch) {
         $('#switch-cancel').show();
     }
     else {
