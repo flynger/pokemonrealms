@@ -110,23 +110,23 @@ export default class Map {
         return false;
     }
 
-    getTotalWeight(encounters) {
-        let weight = 0;
-        for (let encounter of encounters) {
-            weight += encounter.weight;
-        }
-        return weight;
-    }
+    // getTotalWeight(encounters) {
+    //     let weight = 0;
+    //     for (let encounter of encounters) {
+    //         weight += encounter.weight;
+    //     }
+    //     return weight;
+    // }
 
     createEncounter() {
         let encounterPool = this.encounters.grass[Map.time];
-        let encounterWeight = this.getTotalWeight(encounterPool);
-        let rng = Math.floor(Math.random() * encounterWeight) + 1;
+        // let encounterWeight = this.getTotalWeight(encounterPool);
+        let rng = Math.random(); // Math.floor(Math.random() * encounterWeight) + 1;
         let counter = 0;
         for (let encounter of encounterPool) {
-            counter += encounter.weight;
+            counter += encounter.chance;
             if (counter >= rng) {
-                let randomEncounter = new Pokemon(encounter.species, randomNumber(encounter.minLevel, encounter.maxLevel), {});
+                let randomEncounter = new Pokemon(encounter.species, randomNumber(encounter.minLevel || this.encounters.grass.minLevel, encounter.maxLevel || this.encounters.grass.maxLevel), {});
                 // console.log(randomEncounter);
                 return randomEncounter;
             }

@@ -3582,101 +3582,129 @@
         "grass": {
             "morning": [
                 {
-                    "species": "PIDGEY",
-                    "weight": 35,
-                    "minLevel": 2,
-                    "maxLevel": 4
+                    "species": "WOOPER",
+                    "chance": 0.25
                 },
                 {
                     "species": "LEDYBA",
-                    "weight": 35,
-                    "minLevel": 2,
-                    "maxLevel": 4
+                    "chance": 0.25
                 },
                 {
-                    "species": "SENTRET",
-                    "weight": 15,
-                    "minLevel": 3,
-                    "maxLevel": 3
+                    "species": "PIDGEY",
+                    "chance": 0.15
                 },
                 {
-                    "species": "BUTTERFREE",
-                    "weight": 5,
-                    "minLevel": 7,
-                    "maxLevel": 7
+                    "species": "SUNKERN",
+                    "chance": 0.15
                 },
                 {
-                    "species": "BEEDRILL",
-                    "weight": 5,
-                    "minLevel": 7,
-                    "maxLevel": 7
+                    "species": "BIDOOF",
+                    "chance": 0.10
                 },
                 {
-                    "species": "PIDGEOTTO",
-                    "weight": 1,
-                    "minLevel": 7,
-                    "maxLevel": 7
+                    "species": "TYMPOLE",
+                    "chance": 0.05,
+                    "maxLevel": 11
                 },
                 {
-                    "species": "PIKACHU",
-                    "weight": 1,
-                    "minLevel": 4,
-                    "maxLevel": 7
+                    "species": "BUDEW",
+                    "chance": 0.04,
+                    "maxLevel": 11
                 },
                 {
-                    "species": "FURRET",
-                    "weight": 1,
-                    "minLevel": 6,
-                    "maxLevel": 6
+                    "species": "TANGELA",
+                    "chance": 0.005
+                },
+                {
+                    "species": "YANMA",
+                    "chance": 0.005,
+                    "maxLevel": 17
                 }
             ],
             "day": [
                 {
+                    "species": "WOOPER",
+                    "chance": 0.25
+                },
+                {
+                    "species": "AZURILL",
+                    "chance": 0.20
+                },
+                {
                     "species": "PIDGEY",
-                    "weight": 25,
-                    "minLevel": 2,
-                    "maxLevel": 4
+                    "chance": 0.15
                 },
                 {
-                    "species": "RATTATA",
-                    "weight": 25,
-                    "minLevel": 2,
-                    "maxLevel": 4
+                    "species": "BIDOOF",
+                    "chance": 0.10
                 },
                 {
-                    "species": "MEW",
-                    "weight": 1,
-                    "minLevel": 70,
-                    "maxLevel": 100
+                    "species": "PSYDUCK",
+                    "chance": 0.10
                 },
                 {
-                    "species": "PIKACHU",
-                    "weight": 10,
-                    "minLevel": 70,
-                    "maxLevel": 100
+                    "species": "STARLY",
+                    "chance": 0.10
                 },
                 {
-                    "species": "MEWTWO",
-                    "weight": 1,
-                    "minLevel": 70,
-                    "maxLevel": 100
+                    "species": "TYMPOLE",
+                    "chance": 0.05,
+                    "maxLevel": 11
+                },
+                {
+                    "species": "BUDEW",
+                    "chance": 0.04,
+                    "maxLevel": 11
+                },
+                {
+                    "species": "TANGELA",
+                    "chance": 0.005
+                },
+                {
+                    "species": "YANMA",
+                    "chance": 0.005,
+                    "maxLevel": 17
                 }
             ],
             "night": [
                 {
-                    "species": "RATTATA",
-                    "weight": 5,
-                    "minLevel": 2,
-                    "maxLevel": 6
+                    "species": "WOOPER",
+                    "chance": 0.25
                 },
                 {
                     "species": "HOOTHOOT",
-                    "weight": 5,
-                    "minLevel": 2,
-                    "maxLevel": 4
+                    "chance": 0.25
+                },
+                {
+                    "species": "AZURILL",
+                    "chance": 0.20
+                },
+                {
+                    "species": "BIDOOF",
+                    "chance": 0.13
+                },
+                {
+                    "species": "PSYDUCK",
+                    "chance": 0.10
+                },
+                {
+                    "species": "TYMPOLE",
+                    "chance": 0.06,
+                    "maxLevel": 11
+                },
+                {
+                    "species": "TANGELA",
+                    "chance": 0.005
+                },
+                {
+                    "species": "YANMA",
+                    "chance": 0.005,
+                    "maxLevel": 17
                 }
             ],
-            "frequency": 8
+            "frequency": 8,
+            "minLevel": 9,
+            "maxLevel": 13
         }
     }
 }
