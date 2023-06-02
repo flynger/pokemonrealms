@@ -51,6 +51,11 @@ body {
     transition: 0.2s;
 }
 
+.party-mon-div.disabled {
+    width: 30%;
+    transition: 0s;
+}
+
 .party-mon-div:hover:not(.disabled) {
     scale: 1.1;
     transform-origin: center left;

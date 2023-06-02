@@ -1,13 +1,17 @@
 var dragSrcEl;
 function initPartyUI() {
-    $('.party-mon-div').on('dragstart', function (e) {
+    // $('.party-mon-div').off();
+    // let target = $('.party-mon-div').not('.disabled');
+    // console.log(target)
+
+    target.on('dragstart', function (e) {
         this.style.opacity = '0.4';
 
         dragSrcEl = this;
         e.originalEvent.dataTransfer.effectAllowed = 'move';
         e.originalEvent.dataTransfer.dropEffect = 'move';
     });
-    $('.party-mon-div').on('dragover', function (e) {
+    target.on('dragover', function (e) {
         e.preventDefault();
         return false;
     });
@@ -17,11 +21,11 @@ function initPartyUI() {
     // $('.party-mon-div').on('dragleave', function (e) {
     //     this.classList.remove("party-drag-over");
     // });
-    $('.party-mon-div').on('dragend', function (e) {
+    target.on('dragend', function (e) {
         this.style.opacity = '1';
         return false;
     });
-    $('.party-mon-div').on('drop', function (e) {
+    target.on('drop', function (e) {
         e.stopPropagation();
 
         if (dragSrcEl !== this) {
@@ -37,7 +41,11 @@ function updatePartyMembers() {
         if (!party[i]) {
             $("#party-icon-" + num).parent().hide();
             $("#party-name-" + num).parent().hide();
+            $("#party-mon-div-" + num).addClass("disabled"); 
+            $("#party-mon-div-" + num).attr("draggable", "false"); 
         } else {
+            $("#party-mon-div-" + num).removeClass("disabled");
+            $("#party-mon-div-" + num).attr("draggable", "true");
             let pokemon = party[i];
             let entry = Pokedex.getPokedexEntry(pokemon.species);
             $("#party-icon-" + num).parent().show();
@@ -60,4 +68,5 @@ function updatePartyMembers() {
             }
         }
     }
+    initPartyUI();
 }
