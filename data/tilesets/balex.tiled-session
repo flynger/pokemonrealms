@@ -76,16 +76,16 @@
             "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 466.66666666666663,
-                "y": 543.9999999999999
+                "x": 465.33333333333326,
+                "y": 542.6666666666667
             }
         },
         "D:/Sandbox/github/PokemonRealms/data/rawMaps/routes/Route 1 Area 2.json": {
-            "scale": 0.75,
-            "selectedLayer": 1,
+            "scale": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1050.6666666666667,
-                "y": 577.3333333333333
+                "x": 1476,
+                "y": 385
             }
         },
         "Outside.json": {
