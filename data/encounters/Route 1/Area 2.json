@@ -1,0 +1,83 @@
+{
+    "grass": {
+        "morning": [
+            {
+                "species": "LEDYBA",
+                "chance": 0.25
+            },
+            {
+                "species": "PIDGEY",
+                "chance": 0.25
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.20
+            },
+            {
+                "species": "SUNKERN",
+                "chance": 0.20
+            },
+            {
+                "species": "BUDEW",
+                "chance": 0.09,
+                "maxLevel": 11
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "day": [
+            {
+                "species": "PIDGEY",
+                "chance": 0.30
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.30
+            },
+            {
+                "species": "STARLY",
+                "chance": 0.30
+            },
+            {
+                "species": "BUDEW",
+                "chance": 0.09,
+                "maxLevel": 11
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "night": [
+            {
+                "species": "HOOTHOOT",
+                "chance": 0.90
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.09
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "frequency": 8,
+        "minLevel": 2,
+        "maxLevel": 8
+    }
+}

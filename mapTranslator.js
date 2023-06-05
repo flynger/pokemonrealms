@@ -1,6 +1,6 @@
 import jsonfile from "jsonfile";
 var mainMap = "Route 1";
-var submap = "Area 1";
+var submap = "Area 2";
 var rawMap = jsonfile.readFileSync('./data/rawMaps/routes/' + mainMap + ' ' + submap + '.json');
 var map = {
     width: rawMap.width,

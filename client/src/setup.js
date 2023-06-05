@@ -89,9 +89,9 @@ async function setupGame() {
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,
-            powerPreference: "high-performance",
+            // powerPreference: "high-performance",
             hello: true,
-            antialias: true,
+            // antialias: true,
             backgroundColor: 0x000000
         }
     );

@@ -9,6 +9,7 @@ var latency = -1;
 var username;
 var time;
 var party;
+let firstJoin = true;
 
 function setupSocket() {
     socket = io.connect(link);
@@ -63,6 +64,7 @@ function setupSocket() {
     });
 
     socket.on("playerData", (name, playersArray) => {
+        if (!firstJoin) window.location.reload();
         // add fix for reconnect properly instead of jank reload
         if (Object.keys(players).length > 0) {
             for (let name in players) {
@@ -216,6 +218,7 @@ function setupSocket() {
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
         gameDiv.removeChild(app.view);
+        firstJoin = false;
         // if (isBattleActive) {
         //     $("#battle-UI").hide();
         // }

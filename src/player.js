@@ -42,7 +42,7 @@ export default class Player {
             /* Route 1 : Area 1 Area 2
                Ballet Town : Town */
             map: "Route 1",
-            submap: "Area 1"
+            submap: "Area 2"
         };
     }
 
