@@ -2654,7 +2654,19 @@
         }
     ],
     "ledges": [],
-    "warpTiles": [],
+    "warpTiles": [
+        {
+            "x": -32,
+            "y": 640,
+            "height": 128,
+            "destination": {
+                "submap": "Area 2",
+                "x": 2016,
+                "y": 720,
+                "facing": "left"
+            }
+        }
+    ],
     "entities": [],
     "water": [
         {

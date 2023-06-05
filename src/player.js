@@ -40,9 +40,9 @@ export default class Player {
         this.inventory.addItem("aguavberry", 17);
         this.location = {
             /* Route 1 : Area 1 Area 2
-               Ballet Town : Town */
-            map: "Route 1",
-            submap: "Area 2"
+               Ballet Town : Town Lab */
+            map: "Ballet Town",
+            submap: "Town"
         };
     }
 

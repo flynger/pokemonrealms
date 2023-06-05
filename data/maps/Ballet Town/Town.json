@@ -1919,6 +1919,18 @@
                 "y": 334,
                 "facing": "up"
             }
+        },
+        {
+            "x": 32,
+            "y": 224,
+            "height": 352,
+            "destination": {
+                "map": "Route 1",
+                "submap": "Area 2",
+                "x": 1632,
+                "y": 0,
+                "facing": "down"
+            }
         }
     ],
     "entities": [],
