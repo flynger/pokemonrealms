@@ -240,20 +240,36 @@
     <button id="liveToastBtn" type="button" class="btn btn-dark position-absolute bottom-0 end-0"
       onclick="toastBootstrap.show()">Settings</button>
 
-    <div id="player-context-menu" class="PokemonFont text-white">
-      <div id="player-context-menu-name">player6559</div>
-      <div id="player-context-menu-battle" class="player-context-menu-option">
+    <div id="player-context-menu" class="info-context-menu PokemonFont text-white">
+      <div id="player-context-menu-name" class="info-context-menu-name">player6559</div>
+      <div id="player-context-menu-battle" class="info-context-menu-option">
         Battle
       </div>
-      <div id="player-context-menu-trade" class="player-context-menu-option">
+      <div id="player-context-menu-trade" class="info-context-menu-option">
         Trade
       </div>
-      <div id="player-context-menu-message" class="player-context-menu-option">
+      <div id="player-context-menu-message" class="info-context-menu-option">
         Message
       </div>
       <!-- <div class="player-context-menu-option">
         Hello
       </div> -->
+    </div>
+
+    <div id="item-context-menu" class="info-context-menu PokemonFont text-white">
+      <div id="item-context-menu-name" class="info-context-menu-name">Poké Ball x2</div>
+      <div id="item-context-menu-info" class="info-context-menu-option info-context-menu-option-s">
+        View Info
+      </div>
+      <div id="item-context-menu-use" class="info-context-menu-option info-context-menu-option-s">
+        Use
+      </div>
+      <div id="item-context-menu-give" class="info-context-menu-option info-context-menu-option-s">
+        Give
+      </div>
+      <div id="item-context-menu-discard" class="info-context-menu-option info-context-menu-option-s">
+        Discard
+      </div>
     </div>
 
     <!-- <div id="pokemon-summary" class="pokemon-summary bg-dark text-white">
@@ -596,9 +612,21 @@
 
       </div>
     </div>
+    <div id="item-info"
+      class="position-absolute user-select-none bg-dark popup-container container p-2 rounded-1 PokemonFont text-white" style="display: none">
+      <div class="card-header popup-header">
+        <h5 class="card-title mb-0"><img id="item-info-image" class="item-image" src="res/items/pokeball.png"><span
+          id="item-info-name">Poké Ball</span></h5>
+      </div>
+      <div id="item-info-description" class="d-flex align-items-center h-50 mt-2 ms-1" style="font-size: 15px;">
+        A device for catching wild Pokémon. It’s thrown like a ball at a Pokémon, comfortably encapsulating its target.
+      </div>
+      <button class="item-button position-absolute bottom-0 mb-1 me-1 end-0 user-select-none"
+        onclick="$('#item-info').hide();">Close</button>
+    </div>
     <div id="item-discard"
       class="position-absolute user-select-none bg-dark popup-container container p-3 rounded-1 PokemonFont">
-      <div class="card-header">
+      <div class="card-header popup-header">
         <h5 class="card-title text-white mb-0">Select amount to discard:</h5>
       </div>
       <div class="d-flex align-items-center h-25 mt-4">
@@ -614,6 +642,32 @@
         onclick="$('#item-discard').hide();">Cancel</button>
       <button id="discard-button"
         class="item-button position-absolute end-0 bottom-0 me-3 mb-3 user-select-none">Discard</button>
+    </div>
+
+    <div id="item-use-select-menu" class="user-select-none bg-dark popup-container PokemonFont">
+      <div id="item-use-select-header" class="popup-header">
+        Use Item on?
+      </div>
+      <div class="popup-body">
+        <select id="item-use-select" class="form-select popup-select">
+          
+        </select>
+      </div>      
+      <button class="popup-cancel" onclick="$('#item-use-select-menu').hide()">Cancel</button>
+      <button id="use-button" class="popup-confirm">Use</button>
+    </div>
+
+    <div id="item-give-select-menu" class="user-select-none bg-dark popup-container PokemonFont">
+      <div id="item-give-select-header" class="popup-header">
+        Give Item to?
+      </div>
+      <div class="popup-body">
+        <select id="item-give-select" class="form-select popup-select">
+          
+        </select>
+      </div>      
+      <button class="popup-cancel" onclick="$('#item-give-select-menu').hide()">Cancel</button>
+      <button id="give-button" class="popup-confirm">Give</button>
     </div>
 
     <!-- <div id="item-use" class="position-absolute bg-dark popup-container container p-3 rounded-1">

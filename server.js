@@ -481,9 +481,9 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("useItem", (id, quantity) => {
-        if (!player.isBusy() && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
-            player.inventory.useItem(id, quantity);
+    socket.on("useItem", (id, slot) => {
+        if (!player.isBusy() && player.inventory.hasItem(id, 1) && Items[id].isUsable) {
+            player.inventory.useItem(id, slot, 1);
         }
     });
 

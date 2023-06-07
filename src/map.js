@@ -1,5 +1,6 @@
 import jsonfile from "jsonfile";
 import Pokemon from "./pokemon.js";
+import { existsSync } from 'fs';
 
 class WarpTile {
     constructor(x, y, destination, width = 32, height = 32) {
@@ -10,14 +11,14 @@ class WarpTile {
         this.destination = destination;
     }
     isPlayerInside(player) {
-        return player.x + 8 >= this.x && player.x + 24 <= this.x + this.width && player.y + 6 >= this.y && player.y + 26 <= this.y + this.height;
+        return player.x + 8 >= this.x && player.x + 24 <= this.x + this.width && player.y + 16 + 6 >= this.y && player.y + 36 - 6 <= this.y + this.height;
     }
 }
 
 export default class Map {
     static maps = {
-        "Route 1": ["Area 1"],
-        "Ballet Town": ["Town", "Lab"]
+        "Route 1": ["Area 1", "Area 2"],
+        "Ballet Town": ["Town", "Player House 1F", "Player House 2F", "Lab", "Outskirts"]
     };
     static {
         for (let mapName in this.maps) {
@@ -25,7 +26,10 @@ export default class Map {
             this.maps[mapName] = {};
             for (let submapName of submapList) {
                 let mapData = jsonfile.readFileSync(`./data/maps/${mapName}/${submapName}.json`);
-                this.maps[mapName][submapName] = new Map(mapName, submapName, mapData);
+                let encounterData = {grass:{morning:[],day:[],night:[],frequency:[]}};
+                if (existsSync(`./data/encounters/${mapName}/${submapName}.json`))
+                    encounterData = jsonfile.readFileSync(`./data/encounters/${mapName}/${submapName}.json`);
+                this.maps[mapName][submapName] = new Map(mapName, submapName, mapData, encounterData);
             }
         }
         // console.log(this.maps);
@@ -46,7 +50,7 @@ export default class Map {
         }
     }
 
-    constructor(mapName, submapName, data) {
+    constructor(mapName, submapName, data, encounterData) {
         this.mapName = mapName;
         this.submapName = submapName;
         this.room = mapName + " " + submapName;
@@ -54,7 +58,7 @@ export default class Map {
         this.collideables = data.collideables;
         this.grass = data.grass;
         this.water = data.water;
-        this.encounters = data.encounters;
+        this.encounters = encounterData;
         this.warpTiles = [];
         this.players = [];
         for (let warpTile of data.warpTiles) {
