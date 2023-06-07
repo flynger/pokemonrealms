@@ -6,7 +6,7 @@
  "name":"gen4hgss_1",
  "spacing":0,
  "tilecount":2976,
- "tiledversion":"1.10.0",
+ "tiledversion":"1.10.1",
  "tileheight":32,
  "tiles":[
         {
@@ -167,6 +167,33 @@
          "properties":[
                 {
                  "name":"isWater",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":317,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":318,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":319,
+         "properties":[
+                {
+                 "name":"isCollideable",
                  "type":"bool",
                  "value":true
                 }]
@@ -457,6 +484,15 @@
                  "name":"offset",
                  "type":"int",
                  "value":32
+                }]
+        }, 
+        {
+         "id":1099,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
