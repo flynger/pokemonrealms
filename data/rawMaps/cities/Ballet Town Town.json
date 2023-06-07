@@ -237,7 +237,7 @@
  "nextobjectid":1,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.10.0",
+ "tiledversion":"1.10.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -257,8 +257,8 @@
          "source":"..\/..\/tilesets\/wilsonscarloxy_outdoor.json"
         }, 
         {
-         "firstgid":6889,
-         "source":"wilsonscarloxy_indoor.json"
+         "firstgid":6906,
+         "source":"..\/..\/tilesets\/wilsonscarloxy_indoor.json"
         }],
  "tilewidth":32,
  "type":"map",
