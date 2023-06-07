@@ -71,7 +71,8 @@
 }
 
 .inventory-tab.selected {
-  background-color: rgba(77, 77, 77, 0.45);;
+  background-color: rgba(77, 77, 77, 0.45);
+  ;
   border: calc(var(--scale) * 1px) solid rgba(77, 77, 77, 0.4);
 }
 
@@ -182,9 +183,63 @@
 }
 
 .popup-container {
+  display: none;
+  padding: 0.7% 1%;
+  position: absolute;
+  color: white;
   width: 20%;
   height: 20%;
   z-index: 10;
+  border-radius: calc(var(--scale) * 5px);
+}
+
+.popup-header {
+  font-size: calc(var(--scale) * 14px);
+}
+
+.popup-header:hover {
+  cursor: move;
+}
+
+.popup-body {
+  margin-top: 4%;
+}
+
+.popup-select {
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23222222' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  background-color: #343a40;
+  border: none;
+  font-size: calc(var(--scale) * 11px);
+  color: white;
+  padding: 2%;
+  padding-left: 4%;
+  box-shadow: none!important;
+}
+
+.popup-select-option {
+  font-size: calc(var(--scale) * 13px);
+}
+
+.popup-cancel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: calc(var(--scale) * 11px);
+  color: white;
+  background-color: #343a40;
+  margin-left: 5%;
+  margin-bottom: 5%;
+}
+
+.popup-confirm {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: calc(var(--scale) * 11px);
+  color: white;
+  background-color: #343a40;
+  margin-right: 5%;
+  margin-bottom: 5%;
 }
 
 .quantity-dropdown {

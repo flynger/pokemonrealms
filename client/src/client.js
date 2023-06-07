@@ -248,9 +248,6 @@ function sendTradeRequest(user) {
 function acceptTrade(data) {
     socket.emit("acceptTrade", data);
 }
-function useItem() {
-    socket.emit("itemInput");
-}
 function swapPartySlots(slot1, slot2) {
     socket.emit("swapPartySlots", slot1, slot2);
 }

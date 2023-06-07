@@ -138,7 +138,15 @@ body {
     font-size: calc(var(--scale) * 9px);
 }
 
-#player-context-menu {
+#item-context-menu {
+    z-index: 10;
+}
+
+#item-context-menu-name {
+    font-size: calc(var(--scale) * 11px);
+}
+
+.info-context-menu {
     display: none;
     background-color: rgba(20, 20, 20, 0.85);
     position: absolute;
@@ -151,12 +159,12 @@ body {
     padding-bottom: 1%;
 }
 
-#player-context-menu-name {
+.info-context-menu-name {
     text-align: center;
     font-size: calc(var(--scale) * 12px);
 }
 
-.player-context-menu-option {
+.info-context-menu-option {
     background-color: rgba(7, 7, 7, 0.4);
     height: 28%;
     width: 100%;
@@ -165,7 +173,13 @@ body {
     font-size: calc(var(--scale) * 12px);
 }
 
-.player-context-menu-option:hover {
+.info-context-menu-option-s {
+    height: 22%;
+    line-height: calc(var(--scale) * 17px);
+    font-size: calc(var(--scale) * 10px);
+}
+
+.info-context-menu-option:hover {
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }

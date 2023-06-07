@@ -147,17 +147,20 @@ class player {
         $('#player-context-menu').hide();
         playerClicked = true;
         $('#player-context-menu-name').html(this.name);
-        $('#player-context-menu-battle').on("click", () => {
+        $('#player-context-menu-battle')
+            .off()
+            .on("click", () => {
             sendBattleRequest(this.name);
             $('#player-context-menu').hide();
         });
-        $('#player-context-menu-trade').on("click", () => {
+        $('#player-context-menu-trade')
+            .off()
+            .on("click", () => {
             sendTradeRequest(this.name);
             $('#player-context-menu').hide();
         });
         $('#player-context-menu').show();
         $('#player-context-menu').css("top", e.clientY - 56);
-        $('#player-context-menu').css("left", e.clientX);
         $('#player-context-menu').css("left", e.clientX);
     }
 

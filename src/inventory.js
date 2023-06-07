@@ -31,11 +31,13 @@ export default class Inventory {
         return this.items.hasOwnProperty(item) && this.items[item].quantity >= quantity;
     }
 
-    useItem(item, quantity = 1) {
+    useItem(item, slot, quantity = 1) {
         if (!this.hasItem(item, quantity)) {
             throw Error("ItemError: Not enough items to use");
         } else if (!Items[item] || !Items[item].isUsable) {
             throw Error("ItemError: Tried to use an unusable item");
+        } else if (typeof slot != "number" || !this.player.party[slot - 1]) {
+            throw Error("ItemError: Tried to use on an invalid slot");
         }
         this.items[item].quantity -= quantity;
         this.sendItemUpdate();
