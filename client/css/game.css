@@ -138,6 +138,17 @@ body {
     font-size: calc(var(--scale) * 9px);
 }
 
+#dialog-UI {
+    position: absolute;
+    margin: auto;
+    width: 60%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
 #item-context-menu {
     z-index: 10;
 }
