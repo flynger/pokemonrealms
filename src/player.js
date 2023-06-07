@@ -55,7 +55,7 @@ export default class Player {
                 for (let mon in Pokedex) {
                     if (rng == Pokedex[mon].id) {
                        //  console.log(mon)
-                        this.addPokemon(new Pokemon(mon, randomNumber(1, 5), { originalTrainer: this.displayName, owner: this.displayName }));
+                        this.addPokemon(new Pokemon(mon, 50, { originalTrainer: this.displayName, owner: this.displayName }));
                         break;
                     }
                 }

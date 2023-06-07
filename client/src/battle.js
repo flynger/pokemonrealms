@@ -77,6 +77,7 @@ function nextAction() {
         console.log(species, level, gender, shiny)
 
         let hpValues = nextData.switchInCondition.split('/');
+        hpValues[1] = hpValues[1].split(" ")[0];
         $("#hpbar-" + nextData.side).width((+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] : 0) * 96);
 
         showPokemon(side, species, nickname, level, shiny);
