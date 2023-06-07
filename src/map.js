@@ -11,14 +11,14 @@ class WarpTile {
         this.destination = destination;
     }
     isPlayerInside(player) {
-        return player.x + 8 >= this.x && player.x + 24 <= this.x + this.width && player.y + 6 >= this.y && player.y + 26 <= this.y + this.height;
+        return player.x + 8 >= this.x && player.x + 24 <= this.x + this.width && player.y + 16 + 6 >= this.y && player.y + 36 - 6 <= this.y + this.height;
     }
 }
 
 export default class Map {
     static maps = {
         "Route 1": ["Area 1", "Area 2"],
-        "Ballet Town": ["Town", "Lab"]
+        "Ballet Town": ["Town", "Player House 1F", "Player House 2F", "Lab", "Outskirts"]
     };
     static {
         for (let mapName in this.maps) {

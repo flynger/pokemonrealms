@@ -657,6 +657,19 @@
       <button id="use-button" class="popup-confirm">Use</button>
     </div>
 
+    <div id="item-give-select-menu" class="user-select-none bg-dark popup-container PokemonFont">
+      <div id="item-give-select-header" class="popup-header">
+        Give Item to?
+      </div>
+      <div class="popup-body">
+        <select id="item-give-select" class="form-select popup-select">
+          
+        </select>
+      </div>      
+      <button class="popup-cancel" onclick="$('#item-give-select-menu').hide()">Cancel</button>
+      <button id="give-button" class="popup-confirm">Give</button>
+    </div>
+
     <!-- <div id="item-use" class="position-absolute bg-dark popup-container container p-3 rounded-1">
       <div class="card-header">
         <h5 class="card-title  PokemonFont text-white mb-0">Select item to use:</h5>

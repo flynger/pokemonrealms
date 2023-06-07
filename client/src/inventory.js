@@ -133,8 +133,8 @@ function openItemContextMenu(e, item) {
       $('#item-context-menu').hide();
       openItemInfo(item);
     });
-  item.isUsable ? $("#item-context-menu-use").show().off().on("click", () => { $('#item-context-menu').hide(); openUseUI(item); }) : $("#item-context-menu-use").hide();
-  item.isHoldable ? $("#item-context-menu-give").show() : $("#item-context-menu-give").hide();
+  item.isUsable ? $("#item-context-menu-use").show().off().on("click", () => { openUseUI(item); }) : $("#item-context-menu-use").hide();
+  item.isHoldable ? $("#item-context-menu-give").show().off().on("click", () => { openGiveUI(item); })  : $("#item-context-menu-give").hide();
   $("#item-context-menu-discard")
     .off()
     .on("click", () => {
@@ -165,6 +165,24 @@ function openUseUI(item) {
     .off()
     .on('click', () => {
       socket.emit("useItem", item.id, +$('#item-use-select').val());
+    });
+}
+
+function openGiveUI(item) {
+  $('#item-give-select-menu').show();
+  $('#item-give-select-header').text(`Give ${item.name} to?`);
+  $('#item-give-select').html(
+    `<option class="popup-select-option" value="" selected>Choose a Pokémon</option>`
+  );
+  for (let i in party) { // $('#item-use-select')
+    let member = party[i];
+    let monName = member.name ? member.name : Pokedex.getPokedexEntry(member.species).name;
+    $('#item-give-select').append(`<option class="popup-select-option" value="${+i + 1}">${monName}</option>`);
+  }
+  $('#give-button')
+    .off()
+    .on('click', () => {
+      socket.emit("giveItem", item.id, +$('#item-give-select').val());
     });
 }
 

@@ -39,7 +39,7 @@ export default class Inventory {
         } else if (typeof slot != "number" || !this.player.party[slot - 1]) {
             throw Error("ItemError: Tried to use on an invalid slot");
         }
-        this.items[item].quantity -= quantity;
+        this.removeItem(item, quantity);
         this.sendItemUpdate();
         //Items
     }

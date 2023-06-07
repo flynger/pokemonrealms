@@ -6,7 +6,7 @@
  "name":"gen4hgss_1",
  "spacing":0,
  "tilecount":2976,
- "tiledversion":"1.10.1",
+ "tiledversion":"1.10.0",
  "tileheight":32,
  "tiles":[
         {
@@ -475,6 +475,15 @@
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }]
+        }, 
+        {
+         "id":1091,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":32
                 }]
         }, 
         {

@@ -9,7 +9,7 @@ export default class Player {
     static starterOptions = ["BULBASAUR", "CHARMANDER", "SQUIRTLE"];
     static starterNatures = ["bashful", "docile", "hardy", "quirky", "serious"];
 
-    constructor(name, displayName, x = 224, y = 288, facing = "down") { // 224, 286 town - 240, 350 lab
+    constructor(name, displayName, x = 160, y = 240, facing = "down") { // 224, 288 town - 240, 350 lab
         this.name = name;
         this.displayName = displayName;
         this.x = x;
@@ -39,10 +39,10 @@ export default class Player {
         this.inventory.addItem("firestone", 1);
         this.inventory.addItem("aguavberry", 17);
         this.location = {
-            /* Route 1 : Area 1 Area 2
-               Ballet Town : Town Lab */
+            /* Route 1 : Area 1, Area 2
+               Ballet Town : Town, Lab, Player House 1F, Player House 2F, Outskirts */
             map: "Ballet Town",
-            submap: "Town"
+            submap: "Player House 2F"
         };
     }
 

@@ -19,8 +19,19 @@
             },
             {
                 "species": "BUDEW",
-                "chance": 0.09,
-                "maxLevel": 11
+                "chance": 0.075
+            },
+            {
+                "species": "SCYTHER",
+                "chance": 0.005
+            },
+            {
+                "species": "PINSIR",
+                "chance": 0.005
+            },
+            {
+                "species": "HERACROSS",
+                "chance": 0.005
             },
             {
                 "species": "TANGELA",
@@ -46,8 +57,19 @@
             },
             {
                 "species": "BUDEW",
-                "chance": 0.09,
-                "maxLevel": 11
+                "chance": 0.075
+            },
+            {
+                "species": "SCYTHER",
+                "chance": 0.005
+            },
+            {
+                "species": "PINSIR",
+                "chance": 0.005
+            },
+            {
+                "species": "HERACROSS",
+                "chance": 0.005
             },
             {
                 "species": "TANGELA",
@@ -61,11 +83,35 @@
         "night": [
             {
                 "species": "HOOTHOOT",
-                "chance": 0.90
+                "chance": 0.60
             },
             {
                 "species": "BIDOOF",
-                "chance": 0.09
+                "chance": 0.225
+            },
+            {
+                "species": "POLIWAG",
+                "chance": 0.05
+            },
+            {
+                "species": "VULPIX",
+                "chance": 0.05
+            },
+            {
+                "species": "BELLSPROUT",
+                "chance": 0.05
+            },            
+            {
+                "species": "SCYTHER",
+                "chance": 0.005
+            },
+            {
+                "species": "PINSIR",
+                "chance": 0.005
+            },
+            {
+                "species": "HERACROSS",
+                "chance": 0.005
             },
             {
                 "species": "TANGELA",
@@ -77,7 +123,7 @@
             }
         ],
         "frequency": 8,
-        "minLevel": 2,
-        "maxLevel": 8
+        "minLevel": 5,
+        "maxLevel": 9
     }
 }

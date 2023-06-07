@@ -23,13 +23,11 @@
             },
             {
                 "species": "TYMPOLE",
-                "chance": 0.05,
-                "maxLevel": 11
+                "chance": 0.05
             },
             {
                 "species": "BUDEW",
-                "chance": 0.04,
-                "maxLevel": 11
+                "chance": 0.04
             },
             {
                 "species": "TANGELA",
@@ -37,8 +35,7 @@
             },
             {
                 "species": "YANMA",
-                "chance": 0.005,
-                "maxLevel": 17
+                "chance": 0.005
             }
         ],
         "day": [
@@ -68,13 +65,11 @@
             },
             {
                 "species": "TYMPOLE",
-                "chance": 0.05,
-                "maxLevel": 11
+                "chance": 0.05
             },
             {
                 "species": "BUDEW",
-                "chance": 0.04,
-                "maxLevel": 11
+                "chance": 0.04
             },
             {
                 "species": "TANGELA",
@@ -82,8 +77,7 @@
             },
             {
                 "species": "YANMA",
-                "chance": 0.005,
-                "maxLevel": 17
+                "chance": 0.005
             }
         ],
         "night": [
@@ -109,8 +103,7 @@
             },
             {
                 "species": "TYMPOLE",
-                "chance": 0.06,
-                "maxLevel": 11
+                "chance": 0.06
             },
             {
                 "species": "TANGELA",
@@ -118,12 +111,11 @@
             },
             {
                 "species": "YANMA",
-                "chance": 0.005,
-                "maxLevel": 17
+                "chance": 0.005
             }
         ],
         "frequency": 8,
-        "minLevel": 9,
-        "maxLevel": 13
+        "minLevel": 4,
+        "maxLevel": 7
     }
 }
