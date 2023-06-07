@@ -147,7 +147,7 @@ function processFormatting(message, letters) {
 }
 
 function showPokemon(side, species, name, level, shiny) {
-    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
+    var imageUrl = `res/pokemon/showdown_sprites/${side == "you" ? "back" : "front"}/${shiny ? "shiny/" : ""}${species}.gif`; //`https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
     $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
     if (side == "you") {
         $('#command-message').html("What will<br>" + name + " do?");
