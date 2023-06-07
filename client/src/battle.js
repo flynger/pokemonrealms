@@ -121,8 +121,7 @@ function nextActionLogic(nextData) {
         } else {
             if (battleOptions.forceSwitch) {
                 showSwitchButtons();
-            }
-            else {
+            } else if (!battleOptions.wait) {
                 $("#overlay-command").show();
             }
             // $("#overlay-fight").show();
