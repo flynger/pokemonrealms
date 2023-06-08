@@ -1,4 +1,5 @@
 /*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
 
 This file implements logic for the login page
 */

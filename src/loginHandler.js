@@ -1,4 +1,5 @@
 /*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
 
 This file implements server-sided chat functionality including storing user data after it is submitted
 */

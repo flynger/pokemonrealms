@@ -1,4 +1,3 @@
-
 /*
 Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
 
