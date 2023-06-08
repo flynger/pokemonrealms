@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements encounter functionality 
+*/
 import SingleBattle from "./singleBattle.js";
 import Party from "./party.js";
 import Pokedex, { ItemData } from "./pokedex.js";

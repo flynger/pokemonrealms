@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file stores pokemon info 
+*/
 import jsonfile from "jsonfile";
 export const ItemData = jsonfile.readFileSync("./data/pokedex/itemData.json");
 const Pokedex = {

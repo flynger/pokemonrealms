@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements grass functionality 
+*/
 class grass {
     static grasses = {};
     static collisionDepth = 8;

@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file houses pokemon data 
+*/
 class Pokedex {
     static entries = {
         "BULBASAUR": {

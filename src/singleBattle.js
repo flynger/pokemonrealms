@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements single battle functionality 
+*/
 import { DefaultText } from 'pokemon-showdown/.data-dist/text/default.js';
 import { MovesText } from 'pokemon-showdown/.data-dist/text/moves.js';
 import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js';

@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements log functionality 
+*/
 class log {
     static logs = {};
     constructor(x, y) {

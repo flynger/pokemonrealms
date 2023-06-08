@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements map functionality 
+*/
 import jsonfile from "jsonfile";
 import Pokemon from "./pokemon.js";
 import Pokedex from "./pokedex.js";

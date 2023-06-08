@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file finishes game setup 
+*/
 const WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
 var ratio;
 var vminRatio;

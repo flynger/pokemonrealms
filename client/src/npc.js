@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements npc functionality 
+*/
 class npc {
     static npcs = {};
     constructor(name, avatar, x, y, facing = "down") {

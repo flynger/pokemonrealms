@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file stores Item data
+*/
 import Map from "./map.js";
 const Items = {
     pokeball: {

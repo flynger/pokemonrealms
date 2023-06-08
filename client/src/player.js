@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file defines the player class 
+*/
 class player {
     static walkSpeed = 1.2;
     static runSpeed = 1.8;
