@@ -526,7 +526,7 @@ export default class SingleBattle {
     canSwitch(player) {
         let party = this.getParty(player);
         console.log(party.data);
-        return party.data && !(party.data.active[0] && (party.data.active[0].trapped || party.data.active[0].maybeTrapped));
+        return party.data && !(party.data.active && party.data.active[0] && (party.data.active[0].trapped || party.data.active[0].maybeTrapped));
     }
 
     canEscape(player) {
