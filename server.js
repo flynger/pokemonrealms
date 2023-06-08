@@ -324,7 +324,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("playerMovement", (data) => {
-        if (!player.isBusy()) {
+        if (!player.isBusy() && Array.isArray(data.map) && data.map[0] == player.location.map && data.map[1] == player.location.submap) {
             player.getMap().updatePlayerLocation(player, data);
         }
     });

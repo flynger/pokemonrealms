@@ -328,7 +328,8 @@ class player {
             x: this.headSprite.x,
             y: this.headSprite.y,
             facing: this.facing,
-            currentFrame: this.headSprite.currentFrame
+            currentFrame: this.headSprite.currentFrame,
+            map: [map.name, map.submapName]
         });
     }
 }

@@ -64,7 +64,8 @@ export default class Party {
                     let catchRate = encounterEntry.catchRate || 64;
                     let ballMultiplier = item.catchRate();
                     let statusMultiplier = 1;
-                    let hpCurrent = encounter.currenthp;
+                    let hpCurrent = this.stream.battle.sides[0].active[0].hp;
+                    console.log(hpCurrent);
                     let a = Math.floor((3 * encounter.stats.hp - 2 * hpCurrent) * 4096 * catchRate * ballMultiplier / (3 * encounter.stats.hp)) * statusMultiplier;
                     let b = Math.floor(65536 / ((1044480 / a) ** 0.25));
                     let shakeChance = (b / 65535);
@@ -97,6 +98,7 @@ export default class Party {
             } else if (item.useOnPokemon) {
                 let result = item.useOnPokemon(this.stream.battle.sides[this.id - 1].pokemon[0]);
                 if (!result) {
+                    if (this.trainer.connected) this.trainer.socket.emit("battleData", [{ message: "The item would have no effect." }]);
                     return false;
                 } else {
                     preTurnData.push(...result);

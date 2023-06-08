@@ -1,5 +1,6 @@
 import jsonfile from "jsonfile";
 import Pokemon from "./pokemon.js";
+import Pokedex from "./pokedex.js";
 import { existsSync } from 'fs';
 
 class WarpTile {
@@ -130,7 +131,16 @@ export default class Map {
         for (let encounter of encounterPool) {
             counter += encounter.chance;
             if (counter >= rng) {
-                let randomEncounter = new Pokemon(encounter.species, randomNumber(encounter.minLevel || this.encounters.grass.minLevel, encounter.maxLevel || this.encounters.grass.maxLevel), {});
+                let species = "RATTATA";
+                let rng2 = randomNumber(1, 649);
+                for (let mon in Pokedex) {
+                    if (rng2 == Pokedex[mon].id) {
+                        species = mon;
+                        break;
+                    }
+                }
+                let level = randomNumber(40, 50); // randomNumber(encounter.minLevel || this.encounters.grass.minLevel, encounter.maxLevel || this.encounters.grass.maxLevel);
+                let randomEncounter = new Pokemon(species, level, {});
                 // console.log(randomEncounter);
                 return randomEncounter;
             }

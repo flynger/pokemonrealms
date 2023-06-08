@@ -55,7 +55,10 @@ const Items = {
         nhonDesc: "Venonatみたいなもん",
         isHoldable: true,
         isUsableInBattle: true,
-        isPokeball: true
+        isPokeball: true,
+        catchRate: () => {
+            return 10000;
+        }
     },
     potion: {
         category: "Medicine",

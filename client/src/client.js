@@ -155,8 +155,9 @@ function setupSocket() {
         $("#info-you").hide();
         $("#info-foe").hide();
         $("#battle-UI").show();
-        waitMessage = showWaitMessage ? "Waiting for other player..." : "";
         isBattleActive = true;
+        filterBagInvAndGenerate("All");
+        waitMessage = showWaitMessage ? "Waiting for other player..." : "";
         players[username].busy = true;
         app.view.style.filter = "blur(0.2em)";
     });
