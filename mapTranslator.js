@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file converts raw tiled map to .json game maps.
+*/
 import jsonfile from "jsonfile";
 var mainMap = "Ballet Town";
 var submap = "Town";
