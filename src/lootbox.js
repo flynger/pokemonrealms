@@ -192,5 +192,6 @@ function roll(rarity) {
 function openLootbox(rarity){
     let loot = roll(rarity);
     let pokemon = new Pokemon(loot.species, loot.level);
+    console.log(pokemon);
 }
 openLootbox("mythic");
