@@ -1,5 +1,6 @@
 var Moves; // moves json fetched on setup
 
+// Setup UI for battle
 $(function () {
     // $('#battle-UI').show();
     initBag();
@@ -44,6 +45,7 @@ function useItem(item) {
 //     $("overlay-switch").hide();
 // }
 
+// Recieves data from the server and interprets it
 var battleOptions;
 var isBattleActive = false;
 var battleData = [];
@@ -61,12 +63,15 @@ function nextAction() {
     clearInterval(textInterval);
     var nextData = battleData.shift();
 
+    // When a pokemon switches out
     if (nextData.switchOut) {
         let side = nextData.side;
         $(`#info-${side}`).hide();
         $(`#pokemon-${side}`).hide();
         $(`#pokemon-${side}`).attr("src", "");
     }
+
+    // When a pokemon switches in
     if (nextData.switchIn) {
         let pokemonData = nextData.switchIn.split(', ');
         let side = nextData.side;
@@ -86,6 +91,8 @@ function nextAction() {
         $(`#info-${nextData.side}`).show();
     }
     var letters = processFormatting(nextData.message, nextData.message.split(""));
+
+    // updates Hp Bar
     if ("damageHPTo" in nextData) {
         $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
         setTimeout(() => {
@@ -96,6 +103,7 @@ function nextAction() {
     else textInterval = createTextInterval(nextData, letters);
 }
 
+// Creates the text in battle
 function createTextInterval(nextData, letters) {
     $('#dialogue').html("");
     var index = 0;
@@ -273,6 +281,7 @@ function runFromBattle() {
     $("#overlay-fight").hide();
 }
 
+// Updates the current pokemon's move options
 function updateMoveChoices() {
     for (let moveNum = 1; moveNum <= 4; moveNum++) {
         if (battleOptions.active && battleOptions.active[0].moves.length >= moveNum) {

@@ -23,6 +23,7 @@ function setupSocket() {
         });
     }, 1000);
 
+    // Updates the time and effects of the day from data recieved from server
     socket.on("timeChange", (data) => {
         let timeString = "" + data.exactTime;
         while (timeString.length < 4) {
