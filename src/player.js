@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements server-sided player functionality 
+*/
 import Items from "./items.js";
 import Inventory from "./inventory.js";
 import Pokedex from "./pokedex.js";
@@ -9,7 +14,7 @@ export default class Player {
     static starterOptions = ["BULBASAUR", "CHARMANDER", "SQUIRTLE"];
     static starterNatures = ["bashful", "docile", "hardy", "quirky", "serious"];
 
-    constructor(name, displayName, x = 224, y = 288, facing = "down") { // 224, 286 town - 240, 350 lab
+    constructor(name, displayName, x = 160, y = 240, facing = "down") { // 224, 288 town - 240, 350 lab
         this.name = name;
         this.displayName = displayName;
         this.x = x;
@@ -24,36 +29,38 @@ export default class Player {
         this.battle = null;
         this.trade = null;
         this.party = [];
-        this.box = [];
+        this.box = new Array(5).fill("").map(e => []); // create 5 arrays inside one array
         this.starter = false;
         this.pickStarter();
         this.balance = 500;
         this.inventory = new Inventory(this);
-        this.inventory.addItem("pokeball", 15);
-        this.inventory.addItem("greatball", 10);
-        this.inventory.addItem("ultraball", 5);
-        this.inventory.addItem("potion", 5);
-        this.inventory.addItem("superpotion", 3);
-        this.inventory.addItem("hyperpotion", 3);
-        this.inventory.addItem("maxpotion", 3);
-        this.inventory.addItem("firestone", 1);
-        this.inventory.addItem("aguavberry", 17);
+        this.inventory.addItem("pokeball", 5);
+        // this.inventory.addItem("greatball", 10);
+        // this.inventory.addItem("ultraball", 5);
+        this.inventory.addItem("potion", 3);
+        // this.inventory.addItem("superpotion", 3);
+        // this.inventory.addItem("hyperpotion", 3);
+        // this.inventory.addItem("maxpotion", 3);
+        // this.inventory.addItem("firestone", 1);
+        // this.inventory.addItem("aguavberry", 17);
         this.location = {
-            map: "Route 1",
-            submap: "Area 1"
+            /* Route 1 : Area 1, Area 2
+               Ballet Town : Town, Lab, Player House 1F, Player House 2F, Outskirts */
+            map: "Ballet Town",
+            submap: "Player House 2F"
         };
     }
 
     pickStarter(starter) {
         if (this.starter == false) {
-            this.starter = Player.starterOptions.includes(starter) ? starter : "CHANSEY"; //Player.starterOptions.random();
-            this.addPokemon(new Pokemon(this.starter, 1, { name: "Eggo", nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0 }));
-            for (let i = 0; i < 6; i++) {
+            this.starter = Player.starterOptions.includes(starter) ? starter : ["MRMIME", "PIKACHU", "CHARIZARD", "BLASTOISE", "VENUSAUR"].random(); //Player.starterOptions.random();
+            this.addPokemon(new Pokemon(this.starter, 50, { name: ["Eggo", "Googly", "Barry", "StutlerK", "HappyMonster", "Demon"].random(), nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0 }));
+            for (let i = 0; i < 1; i++) {
                 let rng = randomNumber(1, 649);
                 for (let mon in Pokedex) {
                     if (rng == Pokedex[mon].id) {
                        //  console.log(mon)
-                        this.addPokemon(new Pokemon(mon, randomNumber(1, 1), { originalTrainer: this.displayName, owner: this.displayName }));
+                        this.addPokemon(new Pokemon(mon, 50, { originalTrainer: this.displayName, owner: this.displayName }));
                         break;
                     }
                 }
@@ -67,8 +74,10 @@ export default class Player {
 
     addPokemon(mon) {
         mon.owner = this.displayName;
-        this.party.push(mon);
-        this.sendPartyUpdate();
+        if (this.party.length < 6) {
+            this.party.push(mon);
+            this.sendPartyUpdate();
+        } else this.box[0].push(mon);
     }
 
     swapPartySlots(slot1, slot2) {
@@ -105,6 +114,10 @@ export default class Player {
 
     getMap() {
         return Map.getMap(this.location.map, this.location.submap);
+    }
+
+    isBusy() {
+        return this.battle != null || this.trade != null;
     }
 
     setLocation(x, y, facing) {

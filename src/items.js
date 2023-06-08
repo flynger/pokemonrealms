@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file stores Item data
+*/
 import Map from "./map.js";
 const Items = {
     pokeball: {
@@ -55,7 +60,10 @@ const Items = {
         nhonDesc: "Venonatみたいなもん",
         isHoldable: true,
         isUsableInBattle: true,
-        isPokeball: true
+        isPokeball: true,
+        catchRate: () => {
+            return 10000;
+        }
     },
     potion: {
         category: "Medicine",
@@ -66,6 +74,7 @@ const Items = {
         shortDesc: "Restores a Pokémon's HP by 20 points.",
         nhonDesc: "miracle drugs?",
         isUsable: true,
+        isUsableOnPokemon: true,
         isUsableInBattle: true,
         healAmount: 20,
         useOnPokemon: healPokemon
@@ -78,6 +87,7 @@ const Items = {
         desc: "A spray-type medicine for treating wounds. It can be used to restore 60 HP to a Pokémon.",
         shortDesc: "Restores a Pokémon's HP by 60 points.",
         isUsable: true,
+        isUsableOnPokemon: true,
         isUsableInBattle: true,
         healAmount: 60,
         useOnPokemon: healPokemon
@@ -90,6 +100,7 @@ const Items = {
         desc: "A spray-type medicine for treating wounds. It can be used to restore 120 HP to a Pokémon.",
         shortDesc: "Restores a Pokémon's HP by 120 points.",
         isUsable: true,
+        isUsableOnPokemon: true,
         isUsableInBattle: true,
         healAmount: 120,
         useOnPokemon: healPokemon
@@ -102,6 +113,7 @@ const Items = {
         desc: "A spray-type medicine for treating wounds. It can be used to fully restore the max HP of a Pokémon.",
         shortDesc: "Fully restores a Pokémon's HP.",
         isUsable: true,
+        isUsableOnPokemon: true,
         isUsableInBattle: true,
         healAmount: 10000,
         useOnPokemon: healPokemon
@@ -116,6 +128,7 @@ const Items = {
         nhonDesc: "pray its not poisonous",
         isHoldable: true,
         isUsable: true,
+        isUsableOnPokemon: true,
         isUsableInBattle: true
     },
     firestone: {
@@ -127,7 +140,8 @@ const Items = {
         shortDesc: "Makes certain species of Pokémon evolve.",
         nhonDesc: "Pokemon version of MC flint",
         isHoldable: true,
-        isUsable: true
+        isUsable: true,
+        isUsableOnPokemon: true
         // onUse: () => {
 
         // }
@@ -141,7 +155,8 @@ const Items = {
         shortDesc: "Makes certain species of Pokémon evolve.",
         nhonDesc: "Don't try drinking this",
         isHoldable: true,
-        isUsable: true
+        isUsable: true,
+        isUsableOnPokemon: true
     },
     thunderstone: {
         category: "Items",
@@ -152,7 +167,8 @@ const Items = {
         shortDesc: "Makes certain species of Pokémon evolve.",
         nhonDesc: "Makeshift battery",
         isHoldable: true,
-        isUsable: true
+        isUsable: true,
+        isUsableOnPokemon: true
     }
 }
 export default Items;

@@ -9,6 +9,7 @@ var latency = -1;
 var username;
 var time;
 var party;
+let firstJoin = true;
 
 function setupSocket() {
     socket = io.connect(link);
@@ -22,6 +23,7 @@ function setupSocket() {
         });
     }, 1000);
 
+    // Updates the time and effects of the day from data recieved from server
     socket.on("timeChange", (data) => {
         let timeString = "" + data.exactTime;
         while (timeString.length < 4) {
@@ -63,6 +65,7 @@ function setupSocket() {
     });
 
     socket.on("playerData", (name, playersArray) => {
+        if (!firstJoin) window.location.reload();
         // add fix for reconnect properly instead of jank reload
         if (Object.keys(players).length > 0) {
             for (let name in players) {
@@ -149,16 +152,15 @@ function setupSocket() {
         $('#grayModalBtn').show();
     });
 
-    socket.on("startBattle", (playerPokemon, wildPokemon) => {
+    socket.on("startBattle", (showWaitMessage) => {
         $("#info-you").hide();
         $("#info-foe").hide();
         $("#battle-UI").show();
         isBattleActive = true;
-        // showPokemonYou(playerPokemon);
-        // showPokemonFoe(wildPokemon);
+        filterBagInvAndGenerate("All");
+        waitMessage = showWaitMessage ? "Waiting for other player..." : "";
         players[username].busy = true;
         app.view.style.filter = "blur(0.2em)";
-        console.log(`Starting battle between ${playerPokemon} and ${wildPokemon}!!!!!!!!!!!!!!!!!!`)
     });
 
     socket.on("battleData", (newBattleData) => {
@@ -168,7 +170,7 @@ function setupSocket() {
     });
 
     socket.on("battleOptions", (newBattleOptions) => {
-        // console.log({ moves: newBattleOptions.active[0].moves });
+        console.log({ newBattleOptions });
         battleOptions = newBattleOptions;
         updateMoveChoices();
     });
@@ -218,6 +220,10 @@ function setupSocket() {
         $('#blueModalBtn').show();
         $('#grayModalBtn').show();
         gameDiv.removeChild(app.view);
+        firstJoin = false;
+        // if (isBattleActive) {
+        //     $("#battle-UI").hide();
+        // }
     });
 }
 function addBal(amount) {
@@ -243,9 +249,6 @@ function sendTradeRequest(user) {
 }
 function acceptTrade(data) {
     socket.emit("acceptTrade", data);
-}
-function useItem() {
-    socket.emit("itemInput");
 }
 function swapPartySlots(slot1, slot2) {
     socket.emit("swapPartySlots", slot1, slot2);

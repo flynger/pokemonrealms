@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements the tile class 
+*/
 class tile {
     static tiles = [];
     constructor(x, y, sheet, tileX, tileY, layer, offset = -2) {

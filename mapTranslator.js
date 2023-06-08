@@ -1,7 +1,12 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file converts raw tiled map to .json game maps.
+*/
 import jsonfile from "jsonfile";
-var mainMap = "Route 1";
-var submap = "Area 1";
-var rawMap = jsonfile.readFileSync('./data/rawMaps/routes/' + mainMap + ' ' + submap + '.json');
+var mainMap = "Ballet Town";
+var submap = "Town";
+var rawMap = jsonfile.readFileSync('./data/rawMaps/cities/' + mainMap + ' ' + submap + '.json');
 var map = {
     width: rawMap.width,
     height: rawMap.height,

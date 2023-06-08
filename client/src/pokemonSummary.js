@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements pokemon summary functionality 
+*/
 function initSummaryUI() {
   $("#summaryBtn").on("click", (e) => {
     $("#pokemon-summary").toggle();
@@ -70,7 +75,7 @@ function createSummaryUI(pokemon) {
         <div id="stats-body-left">
           <div id="stats-name-card">
             <div id="stats-sprite-container">
-              <img id="stats-sprite" src="https://play.pokemonshowdown.com/sprites/gen5ani${pokemon.shiny ? "-shiny" : ""}/${pokemon.species.toLowerCase()}.gif" />
+              <img id="stats-sprite" src="res/pokemon/showdown_sprites/front/${pokemon.shiny ? "shiny/" : ""}${pokemon.species.toLowerCase()}.gif" />
             </div>
             <div id="stats-name-tag"><img class="stats-inline-image" src="res/items/${pokemon.caughtBall}.png" />&nbsp;<span${pokemon.shiny ? ` class="shiny"` : ""}>${pokemon.name ? pokemon.name : entry.name}</span><span
                 class="${pokemon.gender == "N" ? "" : pokemon.gender == "M" ? "blue" : "red"}"> ${pokemon.gender == "N" ? "" : pokemon.gender == "M" ? " ♂" : " ♀"}</span> Lv. ${pokemon.level}</div>

@@ -1223,6 +1223,18 @@
             "y": 800
         },
         {
+            "x": 0,
+            "y": 832
+        },
+        {
+            "x": 32,
+            "y": 832
+        },
+        {
+            "x": 64,
+            "y": 832
+        },
+        {
             "x": 96,
             "y": 832
         },
@@ -1253,6 +1265,18 @@
         {
             "x": 320,
             "y": 832
+        },
+        {
+            "x": 0,
+            "y": 864
+        },
+        {
+            "x": 32,
+            "y": 864
+        },
+        {
+            "x": 64,
+            "y": 864
         },
         {
             "x": 96,
@@ -2654,7 +2678,31 @@
         }
     ],
     "ledges": [],
-    "warpTiles": [],
+    "warpTiles": [
+        {
+            "x": -32,
+            "y": 640,
+            "height": 128,
+            "destination": {
+                "submap": "Area 2",
+                "x": 2016,
+                "y": 720,
+                "facing": "left"
+            }
+        },
+        {
+            "x": 1248,
+            "y": 480,
+            "height": 64,
+            "destination": {
+                "map": "Ballet Town",
+                "submap": "Outskirts",
+                "x": 0,
+                "y": 360,
+                "facing": "right"
+            }
+        }
+    ],
     "entities": [],
     "water": [
         {
@@ -3075,78 +3123,6 @@
         },
         {
             "x": 960,
-            "y": 480
-        },
-        {
-            "x": 992,
-            "y": 480
-        },
-        {
-            "x": 1024,
-            "y": 480
-        },
-        {
-            "x": 1056,
-            "y": 480
-        },
-        {
-            "x": 1088,
-            "y": 480
-        },
-        {
-            "x": 1120,
-            "y": 480
-        },
-        {
-            "x": 1152,
-            "y": 480
-        },
-        {
-            "x": 1184,
-            "y": 480
-        },
-        {
-            "x": 1216,
-            "y": 480
-        },
-        {
-            "x": 960,
-            "y": 512
-        },
-        {
-            "x": 992,
-            "y": 512
-        },
-        {
-            "x": 1024,
-            "y": 512
-        },
-        {
-            "x": 1056,
-            "y": 512
-        },
-        {
-            "x": 1088,
-            "y": 512
-        },
-        {
-            "x": 1120,
-            "y": 512
-        },
-        {
-            "x": 1152,
-            "y": 512
-        },
-        {
-            "x": 1184,
-            "y": 512
-        },
-        {
-            "x": 1216,
-            "y": 512
-        },
-        {
-            "x": 960,
             "y": 544
         },
         {
@@ -3577,106 +3553,5 @@
             "x": 1216,
             "y": 896
         }
-    ],
-    "encounters": {
-        "grass": {
-            "morning": [
-                {
-                    "species": "PIDGEY",
-                    "weight": 35,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "LEDYBA",
-                    "weight": 35,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                },
-                {
-                    "species": "SENTRET",
-                    "weight": 15,
-                    "minLevel": 3,
-                    "maxLevel": 3
-                },
-                {
-                    "species": "BUTTERFREE",
-                    "weight": 5,
-                    "minLevel": 7,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "BEEDRILL",
-                    "weight": 5,
-                    "minLevel": 7,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "PIDGEOTTO",
-                    "weight": 1,
-                    "minLevel": 7,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "PIKACHU",
-                    "weight": 1,
-                    "minLevel": 4,
-                    "maxLevel": 7
-                },
-                {
-                    "species": "FURRET",
-                    "weight": 1,
-                    "minLevel": 6,
-                    "maxLevel": 6
-                }
-            ],
-            "day": [
-                {
-                    "species": "PIDGEOT",
-                    "weight": 10,
-                    "minLevel": 100,
-                    "maxLevel": 100
-                },
-                {
-                    "species": "RATICATE",
-                    "weight": 10,
-                    "minLevel": 100,
-                    "maxLevel": 100
-                },
-                {
-                    "species": "MEW",
-                    "weight": 1,
-                    "minLevel": 70,
-                    "maxLevel": 100
-                },
-                {
-                    "species": "PIKACHU",
-                    "weight": 8,
-                    "minLevel": 70,
-                    "maxLevel": 100
-                },
-                {
-                    "species": "MEWTWO",
-                    "weight": 1,
-                    "minLevel": 70,
-                    "maxLevel": 100
-                }
-            ],
-            "night": [
-                {
-                    "species": "RATTATA",
-                    "weight": 5,
-                    "minLevel": 2,
-                    "maxLevel": 6
-                },
-                {
-                    "species": "HOOTHOOT",
-                    "weight": 5,
-                    "minLevel": 2,
-                    "maxLevel": 4
-                }
-            ],
-            "frequency": 8
-        }
-    }
+    ]
 }

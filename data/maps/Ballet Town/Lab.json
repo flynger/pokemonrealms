@@ -408,11 +408,11 @@
     "warpTiles": [
         {
             "x": 256,
-            "y": 350,
+            "y": 368,
             "width": 64,
             "destination": {
                 "submap": "Town",
-                "x": 448,
+                "x": 416,
                 "y": 528,
                 "facing": "down"
             }

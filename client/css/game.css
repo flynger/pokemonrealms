@@ -51,6 +51,11 @@ body {
     transition: 0.2s;
 }
 
+.party-mon-div.disabled {
+    width: 30%;
+    transition: 0s;
+}
+
 .party-mon-div:hover:not(.disabled) {
     scale: 1.1;
     transform-origin: center left;
@@ -133,7 +138,38 @@ body {
     font-size: calc(var(--scale) * 9px);
 }
 
-#player-context-menu {
+#dialog-UI {
+    position: absolute;
+    margin: auto;
+    width: 60%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#dialog-content {
+    margin: 2%;
+    height: 96%;
+    width: 96%;
+    font-size: 1.8em;
+    overflow-y: auto;
+}
+
+#dialog-content::-webkit-scrollbar {
+    display: none;
+}
+
+#item-context-menu {
+    z-index: 10;
+}
+
+#item-context-menu-name {
+    font-size: calc(var(--scale) * 11px);
+}
+
+.info-context-menu {
     display: none;
     background-color: rgba(20, 20, 20, 0.85);
     position: absolute;
@@ -146,12 +182,12 @@ body {
     padding-bottom: 1%;
 }
 
-#player-context-menu-name {
+.info-context-menu-name {
     text-align: center;
     font-size: calc(var(--scale) * 12px);
 }
 
-.player-context-menu-option {
+.info-context-menu-option {
     background-color: rgba(7, 7, 7, 0.4);
     height: 28%;
     width: 100%;
@@ -160,7 +196,13 @@ body {
     font-size: calc(var(--scale) * 12px);
 }
 
-.player-context-menu-option:hover {
+.info-context-menu-option-s {
+    height: 22%;
+    line-height: calc(var(--scale) * 17px);
+    font-size: calc(var(--scale) * 10px);
+}
+
+.info-context-menu-option:hover {
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }

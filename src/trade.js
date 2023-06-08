@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements trade functionality 
+*/
 export default class Trade {
     constructor(player1, player2) {
         this.player1 = player1;

@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file handles player movement 
+*/
 var Input = {
     RIGHT: false,
     LEFT: false,

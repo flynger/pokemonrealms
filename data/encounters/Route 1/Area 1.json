@@ -1,0 +1,121 @@
+{
+    "grass": {
+        "morning": [
+            {
+                "species": "WOOPER",
+                "chance": 0.25
+            },
+            {
+                "species": "LEDYBA",
+                "chance": 0.25
+            },
+            {
+                "species": "PIDGEY",
+                "chance": 0.15
+            },
+            {
+                "species": "SUNKERN",
+                "chance": 0.15
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.10
+            },
+            {
+                "species": "TYMPOLE",
+                "chance": 0.05
+            },
+            {
+                "species": "BUDEW",
+                "chance": 0.04
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "day": [
+            {
+                "species": "WOOPER",
+                "chance": 0.25
+            },
+            {
+                "species": "AZURILL",
+                "chance": 0.20
+            },
+            {
+                "species": "PIDGEY",
+                "chance": 0.15
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.10
+            },
+            {
+                "species": "PSYDUCK",
+                "chance": 0.10
+            },
+            {
+                "species": "STARLY",
+                "chance": 0.10
+            },
+            {
+                "species": "TYMPOLE",
+                "chance": 0.05
+            },
+            {
+                "species": "BUDEW",
+                "chance": 0.04
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "night": [
+            {
+                "species": "WOOPER",
+                "chance": 0.25
+            },
+            {
+                "species": "HOOTHOOT",
+                "chance": 0.25
+            },
+            {
+                "species": "AZURILL",
+                "chance": 0.20
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.13
+            },
+            {
+                "species": "PSYDUCK",
+                "chance": 0.10
+            },
+            {
+                "species": "TYMPOLE",
+                "chance": 0.06
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "frequency": 12,
+        "minLevel": 4,
+        "maxLevel": 7
+    }
+}

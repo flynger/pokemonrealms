@@ -172,6 +172,33 @@
                 }]
         }, 
         {
+         "id":317,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":318,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":319,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
          "id":1040,
          "properties":[
                 {
@@ -451,12 +478,30 @@
                 }]
         }, 
         {
+         "id":1091,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":32
+                }]
+        }, 
+        {
          "id":1093,
          "properties":[
                 {
                  "name":"offset",
                  "type":"int",
                  "value":32
+                }]
+        }, 
+        {
+         "id":1099,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {

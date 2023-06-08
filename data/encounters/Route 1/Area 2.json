@@ -1,0 +1,129 @@
+{
+    "grass": {
+        "morning": [
+            {
+                "species": "LEDYBA",
+                "chance": 0.25
+            },
+            {
+                "species": "PIDGEY",
+                "chance": 0.25
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.20
+            },
+            {
+                "species": "SUNKERN",
+                "chance": 0.20
+            },
+            {
+                "species": "BUDEW",
+                "chance": 0.075
+            },
+            {
+                "species": "SCYTHER",
+                "chance": 0.005
+            },
+            {
+                "species": "PINSIR",
+                "chance": 0.005
+            },
+            {
+                "species": "HERACROSS",
+                "chance": 0.005
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "day": [
+            {
+                "species": "PIDGEY",
+                "chance": 0.30
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.30
+            },
+            {
+                "species": "STARLY",
+                "chance": 0.30
+            },
+            {
+                "species": "BUDEW",
+                "chance": 0.075
+            },
+            {
+                "species": "SCYTHER",
+                "chance": 0.005
+            },
+            {
+                "species": "PINSIR",
+                "chance": 0.005
+            },
+            {
+                "species": "HERACROSS",
+                "chance": 0.005
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "night": [
+            {
+                "species": "HOOTHOOT",
+                "chance": 0.60
+            },
+            {
+                "species": "BIDOOF",
+                "chance": 0.225
+            },
+            {
+                "species": "POLIWAG",
+                "chance": 0.05
+            },
+            {
+                "species": "VULPIX",
+                "chance": 0.05
+            },
+            {
+                "species": "BELLSPROUT",
+                "chance": 0.05
+            },            
+            {
+                "species": "SCYTHER",
+                "chance": 0.005
+            },
+            {
+                "species": "PINSIR",
+                "chance": 0.005
+            },
+            {
+                "species": "HERACROSS",
+                "chance": 0.005
+            },
+            {
+                "species": "TANGELA",
+                "chance": 0.005
+            },
+            {
+                "species": "YANMA",
+                "chance": 0.005
+            }
+        ],
+        "frequency": 8,
+        "minLevel": 5,
+        "maxLevel": 9
+    }
+}

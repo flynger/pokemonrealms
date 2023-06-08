@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements single battle functionality 
+*/
 import { DefaultText } from 'pokemon-showdown/.data-dist/text/default.js';
 import { MovesText } from 'pokemon-showdown/.data-dist/text/moves.js';
 import { ItemsText } from 'pokemon-showdown/.data-dist/text/items.js';
@@ -5,18 +10,13 @@ import { AbilitiesText } from 'pokemon-showdown/.data-dist/text/abilities.js';
 import { players } from './loginHandler.js';
 import Showdown from 'pokemon-showdown';
 const { BattleStream, getPlayerStreams, Dex } = Showdown;
-// import * as readline from 'node:readline';
-// const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
 
 export default class SingleBattle {
     text = {
         fullName: "[NICKNAME] (**[SPECIES]**)",
         opposingPokemon: DefaultText.default.opposingPokemon,
         switchIn: DefaultText.default.switchIn,
-        turn: DefaultText.default.turn,
+        turn: " ", //DefaultText.default.turn,
         damagePercentage: " ", //DefaultText.default.damagePercentage,
         startBattle: DefaultText.default.startBattle,
         winBattle: DefaultText.default.winBattle,
@@ -35,6 +35,7 @@ export default class SingleBattle {
         this.stream = this.party1.stream = this.party2.stream = new BattleStream();
 
         this.preTurnData = [];
+        this.postTurnData = [];
         (async () => {
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
@@ -45,6 +46,7 @@ export default class SingleBattle {
                         this.party1.data = this.party1.nextData;
                         this.party2.data = this.party2.nextData;
                         this.preTurnData = [];
+                        this.postTurnData = [];
                         break;
                     case "sideupdate":
                         let playerId = outputArray[0][1];
@@ -101,7 +103,7 @@ export default class SingleBattle {
                             var pokemonArgs = lineArray[0].split(": ");
                             var side = pokemonArgs[0][1];
                             var thisParty = this["party" + side];
-                            if (thisParty.data && !thisParty.data.teamPreview && !thisParty.nextData.forcedSwitch) {
+                            if (thisParty.data && thisParty.data.side && !thisParty.data.teamPreview && !thisParty.nextData.forceSwitch) {
                                 if (isOwnPokemon) {
                                     message = DefaultText.default.switchOutOwn;
                                 } else {
@@ -122,6 +124,65 @@ export default class SingleBattle {
                                 if (!thisParty.data) thisParty.data = {};
                                 thisParty.data.switchInCondition = lineArray[2];
                             }
+                            break;
+                        // case "-damage":
+                        //     // add logic to send private data to player
+                        //     if (!isOwnPokemon) continue;
+                        //     message = this.text.damagePercentage;
+                        //     var pokemonArgs = lineArray[0].split(": ");
+                        //     var pokemonIdentity = pokemonArgs[0].slice(0, -1) + ": " + pokemonArgs[1];
+                        //     var side = pokemonArgs[0][1];
+                        //     args.NICKNAME = pokemonArgs[1];
+
+                        //     if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
+                        //         let effectDetails = lineArray[2].slice(7).split(": ");
+                        //         let effectSourceType = effectDetails[0];
+                        //         let effectSource = effectDetails[1] || effectDetails[0];
+                        //         if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].damage) {
+                        //             message = ItemsText[Dex.items.get(effectSource).id].damage;
+                        //         } else if (effectSourceType == effectSource) {
+                        //             if (MovesText[Dex.moves.get(effectSource).id] && MovesText[Dex.moves.get(effectSource).id].damage) {
+                        //                 message = MovesText[Dex.moves.get(effectSource).id].damage;
+                        //             }
+                        //             else message = DefaultText[effectSource.toLowerCase()].damage;
+                        //         } else {
+                        //             //message = MovesText[Dex.moves.get(effectSource).id].damage;
+                        //         }
+                        //     }
+                        //     var thisPartyData = this["party" + side].data;
+                        //     var oldMonHP = thisPartyData.side.pokemon.find((mon) => mon.ident == pokemonIdentity).condition.split("/");
+                        //     var oldPercentage = Math.ceil(+oldMonHP[0] / +oldMonHP[1].split(" ")[0] * 100);
+                        //     var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
+                        //     oldMonHP[0] = +lineArray[1].split("/")[0];
+                        //     args.PERCENTAGE = oldPercentage - newPercentage + "%";
+                        //     battleDataProperties = {
+                        //         side: side == thisPlayer ? "you" : "foe",
+                        //         damageHPTo: newPercentage
+                        //     };
+                        //     break;
+                        // case "-heal":
+                            // add logic to send private data to player
+                            if (!isOwnPokemon) continue;
+                            var pokemonArgs = lineArray[0].split(": ");
+                            var side = pokemonArgs[0][1];
+                            args.NICKNAME = pokemonArgs[1];
+                            var newPercentage = +lineArray[1].split("/")[0];
+                            if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
+                                let effectDetails = lineArray[2].slice(7).split(": ");
+                                let effectSourceType = effectDetails[0];
+                                let effectSource = effectDetails[1];
+                                if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].heal) {
+                                    message = ItemsText[Dex.items.get(effectSource).id].heal;
+                                } else if (effectSourceType == "move" && MovesText[Dex.moves.get(effectSource).id].heal) {
+                                    message = MovesText[Dex.moves.get(effectSource).id].heal;
+                                } else if (effectSourceType == "drain") {
+                                    message = DefaultText.drain.heal;
+                                }
+                            }
+                            battleDataProperties = {
+                                side: side == thisPlayer ? "you" : "foe",
+                                damageHPTo: newPercentage
+                            };
                             break;
                         default:
                             message = " ";
@@ -148,9 +209,10 @@ export default class SingleBattle {
                                 switchIn: lineArray[1],
                                 switchInCondition: isOwnPokemon ? thisParty.data.switchInCondition : lineArray[2]
                             };
-                            // add logic to send public data to player
                             break;
                         case "-damage":
+                            // add logic to send private data to player
+                            // if (isOwnPokemon) continue;
                             message = this.text.damagePercentage;
                             var pokemonArgs = lineArray[0].split(": ");
                             var pokemonIdentity = pokemonArgs[0].slice(0, -1) + ": " + pokemonArgs[1];
@@ -184,6 +246,8 @@ export default class SingleBattle {
                             };
                             break;
                         case "-heal":
+                            // add logic to send private data to player
+                            // if (isOwnPokemon) continue;
                             var pokemonArgs = lineArray[0].split(": ");
                             var side = pokemonArgs[0][1];
                             args.NICKNAME = pokemonArgs[1];
@@ -405,8 +469,8 @@ export default class SingleBattle {
             if (message != " " || Object.keys(battleDataProperties).length > 0) {
                 battleData.push({
                     message,
-                    ...battleDataProperties
-                });
+                    ...battleDataProperties,
+                }, ...this.postTurnData);
             }
             //console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + message); // formatting to compare old output to our new, processed output
         }
@@ -414,11 +478,16 @@ export default class SingleBattle {
             // TODO: make a room for battle emits later
             let player = players[this["party" + thisPlayer].name.toLowerCase()];
             if (player && player.connected) {
-                console.log(battleData);
+                // console.log(battleData);
                 player.socket.emit("battleData", battleData);
             }
             // console.log(this.stream.battle.sides[1].active[0].happiness = 0);
         }
+    }
+
+    getParty(player) {
+        let id = this.getPlayerId(player);
+        return this["party" + id] || null;
     }
 
     getPlayerId(player) {
@@ -437,6 +506,8 @@ export default class SingleBattle {
         this.stream.write(`>start {"formatid":"gen7custom"}`);
         this.stream.write(`>player p1 ${JSON.stringify(player1)}`);
         this.stream.write(`>player p2 ${JSON.stringify(player2)}`);
+        if (this.party1.isPlayer) this.party1.trainer.socket.emit("startBattle", this.party2.isPlayer);
+        if (this.party2.isPlayer) this.party2.trainer.socket.emit("startBattle", this.party1.isPlayer);
         // this.stream.write(`>p1 team 123456`);
         // this.stream.write(`>p2 team 123456`);
     }
@@ -445,6 +516,27 @@ export default class SingleBattle {
         this.stream.write(`>start {"formatid":"gen7randombattle"}`);
         this.stream.write(`>player p1 ${JSON.stringify({ name: this.party1.name })}`);
         this.stream.write(`>player p2 ${JSON.stringify({ name: this.party2.name })}`);
+    }
+
+    useMove(partyName, moveInput) {
+        let id = this.getPlayerId(partyName);
+        this["party" + id].useMove(moveInput);
+    }
+
+    canSwitch(player) {
+        let party = this.getParty(player);
+        console.log(party.data);
+        return party.data && !(party.data.active && party.data.active[0] && (party.data.active[0].trapped || party.data.active[0].maybeTrapped));
+    }
+
+    canEscape(player) {
+        let party = this.getParty(player);
+        return this.canRun && party.data && !(party.data.active[0] && (party.data.active[0].trapped || party.data.active[0].maybeTrapped));
+    }
+
+    switchTo(partyName, switchInput) {
+        let id = this.getPlayerId(partyName);
+        this["party" + id].switchTo(switchInput);
     }
 
     // useMove(playerId, moveInput) {
@@ -464,6 +556,7 @@ export default class SingleBattle {
     // }
 
     endBattle(forced = false, endData = []) {
+        if (forced) this.stream.destroy();
         let ids = [1, 2];
         for (let id of ids) {
             if (this["party" + id].isPlayer) {

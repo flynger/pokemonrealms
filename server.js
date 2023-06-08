@@ -1,3 +1,10 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file starts the server, implements the other modules, and interacts with and serves the clients.
+*/
+
+// changing Array prototype methods
 Array.prototype.remove = function (elem) {
     this.splice(this.indexOf(elem), 1);
 }
@@ -32,11 +39,6 @@ import WildEncounter from "./src/wildEncounter.js";
 import Pokemart from "./src/pokemart.js";
 import Items from "./src/items.js";
 import Trade from "./src/trade.js";
-// const cookieParser = require("./node_modules/cookie-parser");
-// const jsonfile = require("./node_modules/jsonfile");
-// const sessions = require("./node_modules/express-session");
-// const { uniqueNamesGenerator, adjectives, /*colors,*/ animals } = require("./node_modules/unique-names-generator");
-// require('locus');
 
 // server setup
 const app = express();
@@ -77,23 +79,14 @@ app.get("/play", (req, res) => {
 });
 app.get("/login", (req, res) => {
     // send client login page if not logged in
-    // if (!req.session.username) {
     res.sendFile('login.html', { root: './client' });
-
-    // redirect client to game page if logged in
-    // else res.redirect("/game");
 });
 app.post("/login", (req, res) => {
     // handle login request and send response
     res.send(LoginHandler.loginAccount(req, res));
 });
 app.get("/register", (req, res) => {
-    // send client register page if not logged in
-    // if (!req.session.username) {
     res.sendFile('register.html', { root: './client' });
-    // }
-    // redirect client to game page if logged in
-    // else res.redirect("/game");
 });
 app.post("/register", (req, res) => {
     // handle register request and send response
@@ -106,11 +99,6 @@ app.get("/home", (req, res) => {
 app.get("/game", (req, res) => {
     // sends the home page when requested
     res.send('game.html', { root: './client' });
-    //if (!req.session.username) {
-    // res.sendFile('login.html', { root: './public' });
-    //}
-    // redirect client to game page if logged in
-    //else res.redirect("/game");
 });
 app.get("/logout", (req, res) => {
     // logout user if logged in
@@ -324,16 +312,15 @@ io.on("connection", (socket) => {
     });
 
     socket.on("playerMovement", (data) => {
-        if (player.battle == null) {
+        if (!player.isBusy() && Array.isArray(data.map) && data.map[0] == player.location.map && data.map[1] == player.location.submap) {
             player.getMap().updatePlayerLocation(player, data);
         }
     });
 
     socket.on("grassEnter", () => {
         let map = player.getMap();
-        if (player.battle == null && map.grassCheck()) {
+        if (!player.isBusy() && map.grassCheck()) {
             let encounter = map.createEncounter();
-            socket.emit("startBattle", player.party[0].species, encounter.species);
             player.battle = new WildEncounter(player, encounter);
             player.battle.startBattle();
         }
@@ -350,20 +337,63 @@ io.on("connection", (socket) => {
         if (!otherPlayer) {
             socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
             return;
+        } else if (!otherPlayer.connected) {
+            socket.emit("invalidRequest", `${user} is offline.`);
+            return;
+        } else if (otherPlayer.isBusy()) {
+            socket.emit("invalidRequest", `${user} is busy.`);
+            return;
+        } else if (player.isBusy()) {
+            socket.emit("invalidRequest", `You are busy.`);
+            return;
         }
-        if (otherPlayer.connected && otherPlayer.battle == null && player.battle == null) {
-            // if other player hasnt sent request, send
-            if (!player.requests.battle.hasOwnProperty(user)) {
-                otherPlayer.socket.emit("battleRequest", displayName);
-                otherPlayer.requests.battle[username] = true;
-            } else {
-                delete player.requests.battle[user];
-                const party2 = new Party(displayName, player.party);
-                const party1 = new Party(otherPlayer.displayName, otherPlayer.party);
-                player.battle = otherPlayer.battle = new SingleBattle(party1, party2);
-                player.battle.startRandomBattle();
-                console.log("Starting match with 2 players...");
+        // if other player hasnt sent request, send
+        if (!player.requests.battle.hasOwnProperty(user)) {
+            otherPlayer.socket.emit("battleRequest", displayName);
+            otherPlayer.requests.battle[username] = true;
+        } else {
+            delete player.requests.battle[user];
+            const party2 = new Party(2, displayName, player.party);
+            const party1 = new Party(1, otherPlayer.displayName, otherPlayer.party);
+            player.battle = otherPlayer.battle = new SingleBattle(party1, party2);
+            player.battle.startBattle();
+            console.log("Starting match with 2 players...");
+        }
+    });
+
+    socket.on("endBattle", () => {
+        if (player.battle != null) {
+            // Make sure player can escape
+            if (!player.battle.canEscape(displayName)) {
+                let message = "You can't run from this battle!";
+                if (player.battle.canRun) message = "Your active Pokémon is trapped and cannot escape!";
+                socket.emit("battleData", [{ message }]);
+                return;
             }
+            
+            player.battle.run();
+        }
+    });
+
+    socket.on("moveInput", (moveNumber) => {
+        if (player.battle != null) {
+            player.battle.useMove(displayName, moveNumber);
+        }
+    });
+
+    socket.on("switchInput", (switchNumber) => {
+        if (player.battle != null) {
+            // Make sure player can switch
+            if(player.battle.canSwitch(displayName))
+                player.battle.switchTo(displayName, switchNumber);
+            else socket.emit("battleData", [{ message: "Your active Pokémon is trapped and cannot switch!" }]);
+        }
+    });
+
+    socket.on("itemInput", (item) => {
+        if (player.battle != null) {
+            if (player.battle.useItem) player.battle.useItem(displayName, item);
+            else socket.emit("battleData", [{ message: "You can't use items in this battle!" }]);
         }
     });
 
@@ -373,22 +403,25 @@ io.on("connection", (socket) => {
         if (!otherPlayer) {
             socket.emit("invalidRequest", "Couldn't find player with username \"" + user + "\"");
             return;
-        }
-        if (!otherPlayer.connected) {
+        } else if (!otherPlayer.connected) {
             socket.emit("invalidRequest", `${user} is offline.`);
             return;
+        } else if (otherPlayer.isBusy()) {
+            socket.emit("invalidRequest", `${user} is busy.`);
+            return;
+        } else if (player.isBusy()) {
+            socket.emit("invalidRequest", `You are busy.`);
+            return;
         }
-        if (otherPlayer.battle == null && player.battle == null && otherPlayer.trade == null && player.trade == null) {
-            // if other player hasnt sent request, send
-            if (!player.requests.trade.hasOwnProperty(user)) {
-                otherPlayer.socket.emit("tradeRequest", displayName);
-                otherPlayer.requests.trade[username] = true;
-            } else {
-                delete player.requests.trade[user];
-                console.log("Trade started!")
-                new Trade(player, otherPlayer);
-            }
 
+        // if other player hasnt sent request, send
+        if (!player.requests.trade.hasOwnProperty(user)) {
+            otherPlayer.socket.emit("tradeRequest", displayName);
+            otherPlayer.requests.trade[username] = true;
+        } else {
+            delete player.requests.trade[user];
+            console.log("Trade started!")
+            new Trade(player, otherPlayer);
         }
     });
 
@@ -429,71 +462,47 @@ io.on("connection", (socket) => {
         console.log("New Balance: $" + player.balance);
     });
 
-    socket.on("endBattle", () => {
-        if (player.battle != null && player.battle.canRun) {
-            player.battle.run();
-        }
-    });
-
-    socket.on("moveInput", (moveNumber) => {
-        if (player.battle != null) {
-            player.battle.useMove(displayName, moveNumber);
-        }
-    });
-
-    socket.on("switchInput", (switchNumber) => {
-        if (player.battle != null) {
-            player.battle.switchTo(displayName, switchNumber);
-        }
-    });
-
-    socket.on("itemInput", (item) => {
-        if (player.battle != null) {
-            player.battle.useItem(displayName, item);
-        }
-    });
-
     socket.on("openPokemart", () => {
         console.log(testmart);
         socket.emit("pokemartData", testmart.catalog);
     });
 
     socket.on("buyItem", (id, quantity) => {
-        if (player.battle == null && player.trade == null && testmart.buyItem(player, id, quantity)) {
+        if (!player.isBusy() && testmart.buyItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
         }
     });
 
     socket.on("sellItem", (id, quantity) => {
-        if (player.battle == null && player.trade == null && testmart.sellItem(player, id, quantity)) {
+        if (!player.isBusy() && testmart.sellItem(player, id, quantity)) {
             socket.emit("balanceUpdate", player.balance);
         }
     });
 
-    socket.on("useItem", (id, quantity) => {
-        if (player.battle == null && player.trade == null && player.inventory.hasItem(id, quantity) && Items[id].isUsable) {
-            player.inventory.useItem(id, quantity);
+    socket.on("useItem", (id, slot) => {
+        if (!player.isBusy() && player.inventory.hasItem(id, 1) && Items[id].isUsable) {
+            player.inventory.useItem(id, slot, 1);
         }
     });
 
     socket.on("discardItem", (id, quantity) => {
-        if (player.battle == null && player.trade == null && player.inventory.hasItem(id, quantity)) {
+        if (!player.isBusy() && player.inventory.hasItem(id, quantity)) {
             player.inventory.removeItem(id, quantity);
         }
     });
 
     socket.on("swapPartySlots", (slot1, slot2) => {
-        if (!player.battle && !player.trade)
+        if (!player.isBusy())
             player.swapPartySlots(slot1, slot2);
     });
 
     socket.on("giveItemToSlot", (id, slot) => {
-        if (!player.battle && !player.trade)
+        if (!player.isBusy())
             player.giveItemToSlot(id, slot);
     });
 
     socket.on("removeItemFromSlot", (slot) => {
-        if (!player.battle && !player.trade)
+        if (!player.isBusy())
             player.removeItemFromSlot(slot);
     });
 
@@ -504,7 +513,7 @@ io.on("connection", (socket) => {
         player.getMap().removePlayer(player);
         player.deleteSocket();
         if (player.battle) {
-            player.battle.endBattle(true);
+            player.battle.endBattle(true, [{ message: displayName + " disconnected. The battle was canceled." }]);
         }
         if (player.trade) {
             player.trade.cancel();

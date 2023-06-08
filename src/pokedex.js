@@ -1,5 +1,10 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file stores pokemon info 
+*/
 import jsonfile from "jsonfile";
-export const ItemData = jsonfile.readFileSync("../data/pokedex/itemData.json");
+export const ItemData = jsonfile.readFileSync("./data/pokedex/itemData.json");
 const Pokedex = {
     "BULBASAUR": {
         "id": 1,
@@ -113,7 +118,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 6.9,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -257,7 +262,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 13,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -391,7 +396,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 100,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -569,7 +574,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 8.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -725,7 +730,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 19,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -885,7 +890,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 90.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -1096,7 +1101,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AQUAJET",
@@ -1251,7 +1256,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 22.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -1402,7 +1407,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 85.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -1497,7 +1502,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2.9,
         "color": "Green",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -1552,7 +1557,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 9.9,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -1678,7 +1683,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 32,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -1736,7 +1741,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 3.2,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -1792,7 +1797,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 10,
         "color": "Yellow",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -1921,7 +1926,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 29.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -2068,7 +2073,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.8,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AIRCUTTER",
@@ -2194,7 +2199,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 30,
         "color": "Brown",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -2307,7 +2312,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 39.5,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -2469,7 +2474,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 3.5,
         "color": "Purple",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BITE",
@@ -2721,7 +2726,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 18.5,
         "color": "Brown",
-        "rareness": 127,
+        "catchRate": 127,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -3041,7 +3046,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "ASTONISH",
@@ -3168,7 +3173,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 38,
         "color": "Brown",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -3294,7 +3299,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 6.9,
         "color": "Purple",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BEATUP",
@@ -3435,7 +3440,7 @@ const Pokedex = {
         "heightm": 3.5,
         "weightkg": 65,
         "color": "Purple",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD",
@@ -3574,7 +3579,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 6,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FIELD",
@@ -4936,7 +4941,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 30,
         "color": "Yellow",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FIELD",
@@ -5169,7 +5174,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 12,
         "color": "Yellow",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CHIPAWAY",
@@ -5422,7 +5427,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 29.5,
         "color": "Yellow",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -5745,7 +5750,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 20,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "UNDISCOVERED"
@@ -5907,7 +5912,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 60,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "UNDISCOVERED"
@@ -6141,7 +6146,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 19.5,
         "color": "Purple",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -6305,7 +6310,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 62,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -6494,7 +6499,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 7.5,
         "color": "Pink",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FAIRY"
@@ -6663,7 +6668,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 40,
         "color": "Pink",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FAIRY"
@@ -6792,7 +6797,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 9.9,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DISABLE",
@@ -7020,7 +7025,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 19.9,
         "color": "Yellow",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -7288,7 +7293,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 5.5,
         "color": "Pink",
-        "rareness": 170,
+        "catchRate": 170,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FAIRY"
@@ -7450,7 +7455,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 12,
         "color": "Pink",
-        "rareness": 50,
+        "catchRate": 50,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FAIRY"
@@ -7577,7 +7582,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 7.5,
         "color": "Purple",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BRAVEBIRD",
@@ -7721,7 +7726,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 55,
         "color": "Purple",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -7835,7 +7840,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 5.4,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AFTERYOU",
@@ -7965,7 +7970,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 8.6,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -8070,7 +8075,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 18.6,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -8195,7 +8200,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 5.4,
         "color": "Red",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -8334,7 +8339,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 29.5,
         "color": "Red",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG",
@@ -8445,7 +8450,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 30,
         "color": "Purple",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -8580,7 +8585,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 12.5,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG"
@@ -8696,7 +8701,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.8,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -8914,7 +8919,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 33.3,
         "color": "Brown",
-        "rareness": 50,
+        "catchRate": 50,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -9149,7 +9154,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4.2,
         "color": "Yellow",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -9411,7 +9416,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 32,
         "color": "Yellow",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -9665,7 +9670,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 19.6,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CONFUSERAY",
@@ -9830,7 +9835,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 76.6,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -9987,7 +9992,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 28,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BEATUP",
@@ -10155,7 +10160,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 32,
         "color": "Brown",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -10281,7 +10286,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 19,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BODYSLAM",
@@ -10411,7 +10416,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 155,
         "color": "Brown",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -10523,7 +10528,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 12.4,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BUBBLEBEAM",
@@ -10669,7 +10674,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 20,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1"
@@ -10799,7 +10804,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 54,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1"
@@ -10948,7 +10953,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 19.5,
         "color": "Brown",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BARRIER",
@@ -11122,7 +11127,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 56.5,
         "color": "Brown",
-        "rareness": 100,
+        "catchRate": 100,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -11283,7 +11288,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 48,
         "color": "Brown",
-        "rareness": 50,
+        "catchRate": 50,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -11464,7 +11469,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 19.5,
         "color": "Gray",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BULLETPUNCH",
@@ -11627,7 +11632,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 70.5,
         "color": "Gray",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -11773,7 +11778,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 130,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -11890,7 +11895,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 4,
         "color": "Green",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BULLETSEED",
@@ -12023,7 +12028,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 6.4,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -12128,7 +12133,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 15.5,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -12255,7 +12260,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 45.5,
         "color": "Blue",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACUPRESSURE",
@@ -12392,7 +12397,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 55,
         "color": "Blue",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 3"
@@ -12533,7 +12538,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 20,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AUTOTOMIZE",
@@ -12789,7 +12794,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 105,
         "color": "Brown",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "MINERAL"
@@ -13040,7 +13045,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 300,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "MINERAL"
@@ -13265,7 +13270,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 30,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CAPTIVATE",
@@ -13389,7 +13394,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 95,
         "color": "Yellow",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -13546,7 +13551,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 36,
         "color": "Pink",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BELLYDRUM",
@@ -13726,7 +13731,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 78.5,
         "color": "Pink",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -13883,7 +13888,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 6,
         "color": "Gray",
-        "rareness": 65,
+        "catchRate": 65,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -14007,7 +14012,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 60,
         "color": "Gray",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -14137,7 +14142,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 15,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "COVET",
@@ -14269,7 +14274,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 39.2,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASSURANCE",
@@ -14395,7 +14400,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 85.2,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FLYING"
@@ -14514,7 +14519,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 90,
         "color": "White",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DISABLE",
@@ -14652,7 +14657,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 120,
         "color": "White",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -14783,7 +14788,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 30,
         "color": "Purple",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACIDSPRAY",
@@ -15038,7 +15043,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 30,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -15265,7 +15270,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 4,
         "color": "Purple",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AQUARING",
@@ -15384,7 +15389,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 132.5,
         "color": "Purple",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 3"
@@ -15523,7 +15528,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 0.1,
         "color": "Purple",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASTONISH",
@@ -15679,7 +15684,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 0.1,
         "color": "Purple",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -15839,7 +15844,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 40.5,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -16014,7 +16019,7 @@ const Pokedex = {
         "heightm": 8.8,
         "weightkg": 210,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "BLOCK",
@@ -16176,7 +16181,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 32.4,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASSIST",
@@ -16340,7 +16345,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 75.6,
         "color": "Yellow",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -16468,7 +16473,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 6.5,
         "color": "Red",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -16608,7 +16613,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 60,
         "color": "Red",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 3"
@@ -16727,7 +16732,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 10.4,
         "color": "Red",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -16844,7 +16849,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 66.6,
         "color": "Red",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -16973,7 +16978,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 2.5,
         "color": "Pink",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -17110,7 +17115,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 120,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -17361,7 +17366,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 6.5,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -17523,7 +17528,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 45,
         "color": "Brown",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER"
@@ -17903,7 +17908,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 49.8,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -18035,7 +18040,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 50.2,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -18196,7 +18201,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 65.5,
         "color": "Pink",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -18327,7 +18332,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 1,
         "color": "Purple",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CURSE",
@@ -18455,7 +18460,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 9.5,
         "color": "Purple",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -18600,7 +18605,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 115,
         "color": "Gray",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "COUNTER",
@@ -18786,7 +18791,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 120,
         "color": "Gray",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -18970,7 +18975,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 34.6,
         "color": "Pink",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 10455,
         "eggMoves": [
             "AROMATHERAPY",
@@ -19111,7 +19116,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 35,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -19284,7 +19289,7 @@ const Pokedex = {
         "heightm": 2.2,
         "weightkg": 80,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CIRCLETHROW",
@@ -19444,7 +19449,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 8,
         "color": "Blue",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AURORABEAM",
@@ -19576,7 +19581,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 25,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -19691,7 +19696,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 15,
         "color": "Red",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AQUATAIL",
@@ -19815,7 +19820,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 39,
         "color": "Red",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 2"
@@ -19946,7 +19951,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 34.5,
         "color": "Brown",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 3"
@@ -20073,7 +20078,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 80,
         "color": "Purple",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 3"
@@ -20237,7 +20242,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 54.5,
         "color": "Pink",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "CONFUSERAY",
@@ -20379,7 +20384,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 56,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "BATONPASS",
@@ -20549,7 +20554,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 40.6,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -20690,7 +20695,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 30,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -20822,7 +20827,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 44.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -20952,7 +20957,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 55,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "BUGBITE",
@@ -21129,7 +21134,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 88.4,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -21184,7 +21189,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 10,
         "color": "Red",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 1530,
         "eggGroups": [
             "WATER 2",
@@ -21321,7 +21326,7 @@ const Pokedex = {
         "heightm": 6.5,
         "weightkg": 235,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 1530,
         "eggGroups": [
             "WATER 2",
@@ -21490,7 +21495,7 @@ const Pokedex = {
         "heightm": 2.5,
         "weightkg": 220,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -21553,7 +21558,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 4,
         "color": "Purple",
-        "rareness": 35,
+        "catchRate": 35,
         "stepsToHatch": 5355,
         "eggGroups": [
             "DITTO"
@@ -21681,7 +21686,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 6.5,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggMoves": [
             "CHARM",
@@ -21823,7 +21828,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 29,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggGroups": [
             "FIELD"
@@ -21948,7 +21953,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 24.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggGroups": [
             "FIELD"
@@ -22071,7 +22076,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 25,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggGroups": [
             "FIELD"
@@ -22205,7 +22210,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 36.5,
         "color": "Pink",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -22334,7 +22339,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 7.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "AURORABEAM",
@@ -22479,7 +22484,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 35,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggGroups": [
             "WATER 1",
@@ -22608,7 +22613,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 11.5,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "AURORABEAM",
@@ -22766,7 +22771,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 40.5,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggGroups": [
             "WATER 1",
@@ -22909,7 +22914,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 59,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggMoves": [
             "ASSURANCE",
@@ -23122,7 +23127,7 @@ const Pokedex = {
         "heightm": 2.1,
         "weightkg": 460,
         "color": "Black",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 10455,
         "eggMoves": [
             "AFTERYOU",
@@ -23260,7 +23265,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 55.4,
         "color": "Blue",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -23386,7 +23391,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 52.6,
         "color": "Yellow",
-        "rareness": 9,
+        "catchRate": 9,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -23508,7 +23513,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 60,
         "color": "Yellow",
-        "rareness": 9,
+        "catchRate": 9,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -23635,7 +23640,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 3.3,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggMoves": [
             "AQUAJET",
@@ -23776,7 +23781,7 @@ const Pokedex = {
         "heightm": 4,
         "weightkg": 16.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "WATER 1",
@@ -23942,7 +23947,7 @@ const Pokedex = {
         "heightm": 2.2,
         "weightkg": 210,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "WATER 1",
@@ -24134,7 +24139,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 122,
         "color": "Purple",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -24496,7 +24501,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4,
         "color": "Pink",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -24620,7 +24625,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 6.4,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -24764,7 +24769,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 15.8,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -24897,7 +24902,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 100.5,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -25016,7 +25021,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 7.9,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "COVET",
@@ -25157,7 +25162,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 19,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -25303,7 +25308,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 79.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -25448,7 +25453,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 9.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -25613,7 +25618,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 25,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -25771,7 +25776,7 @@ const Pokedex = {
         "heightm": 2.3,
         "weightkg": 88.8,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -25916,7 +25921,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 6,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "ASSIST",
@@ -26076,7 +26081,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 32.5,
         "color": "Brown",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -26207,7 +26212,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 21.2,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AGILITY",
@@ -26348,7 +26353,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 40.8,
         "color": "Brown",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -26480,7 +26485,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 10.8,
         "color": "Red",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "TACKLE",
@@ -26626,7 +26631,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 35.6,
         "color": "Red",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -26745,7 +26750,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 8.5,
         "color": "Green",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BATONPASS",
@@ -26878,7 +26883,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 33.5,
         "color": "Red",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -27006,7 +27011,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 75,
         "color": "Purple",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -27129,7 +27134,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 12,
         "color": "Blue",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -27262,7 +27267,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 22.5,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 2"
@@ -27378,7 +27383,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 2805,
         "eggMoves": [
             "BESTOW",
@@ -27623,7 +27628,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 3,
         "color": "Pink",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 2805,
         "eggMoves": [
             "AMNESIA",
@@ -27778,7 +27783,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1,
         "color": "Pink",
-        "rareness": 170,
+        "catchRate": 170,
         "stepsToHatch": 2805,
         "eggMoves": [
             "CAPTIVATE",
@@ -27942,7 +27947,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.5,
         "color": "White",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 2805,
         "eggMoves": [
             "EXTRASENSORY",
@@ -28131,7 +28136,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 3.2,
         "color": "White",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FLYING",
@@ -28275,7 +28280,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 2,
         "color": "Green",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DRILLPECK",
@@ -28434,7 +28439,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 15,
         "color": "Green",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FLYING"
@@ -28549,7 +28554,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 7.8,
         "color": "White",
-        "rareness": 235,
+        "catchRate": 235,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AFTERYOU",
@@ -28692,7 +28697,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 13.3,
         "color": "Pink",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -28828,7 +28833,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 61.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -28969,7 +28974,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5.8,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -29106,7 +29111,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 8.5,
         "color": "Blue",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 2805,
         "eggMoves": [
             "AMNESIA",
@@ -29258,7 +29263,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 28.5,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 2805,
         "eggGroups": [
             "WATER 1",
@@ -29401,7 +29406,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 38,
         "color": "Brown",
-        "rareness": 65,
+        "catchRate": 65,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CURSE",
@@ -29534,7 +29539,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 33.9,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1"
@@ -29657,7 +29662,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 0.5,
         "color": "Pink",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -29793,7 +29798,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 1,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FAIRY",
@@ -29914,7 +29919,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 3,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FAIRY",
@@ -30072,7 +30077,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 11.5,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -30203,7 +30208,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.8,
         "color": "Yellow",
-        "rareness": 235,
+        "catchRate": 235,
         "stepsToHatch": 5355,
         "eggMoves": [
             "TACKLE",
@@ -30331,7 +30336,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 8.5,
         "color": "Yellow",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -30453,7 +30458,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 38,
         "color": "Red",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DOUBLEEDGE",
@@ -30592,7 +30597,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 8.5,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACIDSPRAY",
@@ -30748,7 +30753,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 75,
         "color": "Blue",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -30883,7 +30888,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 26.5,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggGroups": [
             "FIELD"
@@ -31013,7 +31018,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 27,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggGroups": [
             "FIELD"
@@ -31151,7 +31156,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 2.1,
         "color": "Black",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASSURANCE",
@@ -31338,7 +31343,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 79.5,
         "color": "Pink",
-        "rareness": 70,
+        "catchRate": 70,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -31481,7 +31486,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 1,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "CURSE",
@@ -31543,7 +31548,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 5,
         "color": "Black",
-        "rareness": 50,
+        "catchRate": 50,
         "stepsToHatch": 10455,
         "eggGroups": [
             "UNDISCOVERED"
@@ -31591,7 +31596,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 28.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -31733,7 +31738,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 41.5,
         "color": "Yellow",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -31873,7 +31878,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 7.2,
         "color": "Gray",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "COUNTER",
@@ -32021,7 +32026,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 125.8,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG"
@@ -32175,7 +32180,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 14,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -32338,7 +32343,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 64.8,
         "color": "Purple",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -32500,7 +32505,7 @@ const Pokedex = {
         "heightm": 9.2,
         "weightkg": 400,
         "color": "Gray",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 6630,
         "eggGroups": [
             "MINERAL"
@@ -32682,7 +32687,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 7.8,
         "color": "Pink",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CLOSECOMBAT",
@@ -32857,7 +32862,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 48.7,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD",
@@ -32986,7 +32991,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 3.9,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACIDSPRAY",
@@ -33130,7 +33135,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 118,
         "color": "Red",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 6630,
         "eggGroups": [
             "BUG"
@@ -33288,7 +33293,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 20.5,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACID",
@@ -33429,7 +33434,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 54,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "TACKLE",
@@ -33628,7 +33633,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 28,
         "color": "Black",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASSIST",
@@ -33783,7 +33788,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 8.8,
         "color": "Brown",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BELLYDRUM",
@@ -33946,7 +33951,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 125.8,
         "color": "Brown",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -34065,7 +34070,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 35,
         "color": "Red",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACIDARMOR",
@@ -34208,7 +34213,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 55,
         "color": "Red",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -34328,7 +34333,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 6.5,
         "color": "Brown",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -34467,7 +34472,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 55.8,
         "color": "Brown",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -34611,7 +34616,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 5,
         "color": "Pink",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -34751,7 +34756,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 12,
         "color": "Gray",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACIDSPRAY",
@@ -34894,7 +34899,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 28.5,
         "color": "Red",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -35010,7 +35015,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 16,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AURORABEAM",
@@ -35153,7 +35158,7 @@ const Pokedex = {
         "heightm": 2.1,
         "weightkg": 220,
         "color": "Purple",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 6630,
         "eggMoves": [
             "AMNESIA",
@@ -35295,7 +35300,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 50.5,
         "color": "Gray",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 6630,
         "eggMoves": [
             "ASSURANCE",
@@ -35442,7 +35447,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 10.8,
         "color": "Black",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BEATUP",
@@ -35592,7 +35597,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 35,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -35740,7 +35745,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 152,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -35857,7 +35862,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 33.5,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -35993,7 +35998,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 120,
         "color": "Gray",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -36129,7 +36134,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 32.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -36268,7 +36273,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 71.2,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BITE",
@@ -36328,7 +36333,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 58,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -36445,7 +36450,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 21,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 6630,
         "eggMoves": [
             "BULLETPUNCH",
@@ -36583,7 +36588,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 48,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -36730,7 +36735,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 6,
         "color": "Pink",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "CAPTIVATE",
@@ -36874,7 +36879,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 23.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "BARRIER",
@@ -37013,7 +37018,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 21.4,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "BARRIER",
@@ -37178,7 +37183,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 75.5,
         "color": "Pink",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CURSE",
@@ -37373,7 +37378,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 46.8,
         "color": "Pink",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 10455,
         "eggGroups": [
             "FAIRY"
@@ -37498,7 +37503,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 178,
         "color": "Yellow",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -37620,7 +37625,7 @@ const Pokedex = {
         "heightm": 2.1,
         "weightkg": 198,
         "color": "Brown",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -37747,7 +37752,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 187,
         "color": "Blue",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -37875,7 +37880,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 72,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -38016,7 +38021,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 152,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MONSTER"
@@ -38189,7 +38194,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 202,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MONSTER"
@@ -38390,7 +38395,7 @@ const Pokedex = {
         "heightm": 5.2,
         "weightkg": 216,
         "color": "White",
-        "rareness": 9,
+        "catchRate": 9,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -38540,7 +38545,7 @@ const Pokedex = {
         "heightm": 3.8,
         "weightkg": 199,
         "color": "Red",
-        "rareness": 9,
+        "catchRate": 9,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -38688,7 +38693,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 5,
         "color": "Green",
-        "rareness": 6,
+        "catchRate": 6,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -38829,7 +38834,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 5,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BULLETSEED",
@@ -38992,7 +38997,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 21.6,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -39150,7 +39155,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 52.2,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -39316,7 +39321,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 2.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -39477,7 +39482,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 19.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -39632,7 +39637,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 52,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -39797,7 +39802,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 7.6,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -39961,7 +39966,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 28,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -40115,7 +40120,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 81.9,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -40280,7 +40285,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 13.6,
         "color": "Gray",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "ASTONISH",
@@ -40420,7 +40425,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 37,
         "color": "Gray",
-        "rareness": 127,
+        "catchRate": 127,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -40557,7 +40562,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 17.5,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "CHARM",
@@ -40706,7 +40711,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 32.5,
         "color": "White",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -40767,7 +40772,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 3.6,
         "color": "Red",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -40822,7 +40827,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 10,
         "color": "White",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -40941,7 +40946,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 28.4,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -40996,7 +41001,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 11.5,
         "color": "Purple",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -41116,7 +41121,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 31.6,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -41238,7 +41243,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 2.6,
         "color": "Green",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "COUNTER",
@@ -41391,7 +41396,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 32.5,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "WATER 1",
@@ -41525,7 +41530,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 55,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "WATER 1",
@@ -41640,7 +41645,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 4,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AMNESIA",
@@ -41797,7 +41802,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 28,
         "color": "Brown",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD",
@@ -41944,7 +41949,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 59.6,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD",
@@ -42059,7 +42064,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2.3,
         "color": "Blue",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BRAVEBIRD",
@@ -42184,7 +42189,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 19.8,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -42308,7 +42313,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 9.5,
         "color": "White",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -42448,7 +42453,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 28,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -42603,7 +42608,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 6.6,
         "color": "White",
-        "rareness": 235,
+        "catchRate": 235,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CONFUSERAY",
@@ -42772,7 +42777,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 20.2,
         "color": "White",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -42928,7 +42933,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 48.4,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -43072,7 +43077,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 1.7,
         "color": "Blue",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AQUAJET",
@@ -43208,7 +43213,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 3.6,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 4080,
         "eggGroups": [
             "WATER 1",
@@ -43323,7 +43328,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4.5,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BULLETSEED",
@@ -43477,7 +43482,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 39.2,
         "color": "Green",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FAIRY",
@@ -43613,7 +43618,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 24,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AFTERYOU",
@@ -43770,7 +43775,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 46.5,
         "color": "White",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -43916,7 +43921,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 130.5,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -44025,7 +44030,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 5.5,
         "color": "Gray",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BUGBITE",
@@ -44154,7 +44159,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 12,
         "color": "Yellow",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -44270,7 +44275,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 1.2,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "MINERAL"
@@ -44397,7 +44402,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 16.3,
         "color": "Pink",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CIRCLETHROW",
@@ -44551,7 +44556,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 40.5,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -44699,7 +44704,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 84,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -44841,7 +44846,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 86.4,
         "color": "Yellow",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BULLETPUNCH",
@@ -45001,7 +45006,7 @@ const Pokedex = {
         "heightm": 2.3,
         "weightkg": 253.8,
         "color": "Brown",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -45120,7 +45125,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 2,
         "color": "Blue",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 2805,
         "eggMoves": [
             "BODYSLAM",
@@ -45273,7 +45278,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 97,
         "color": "Gray",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BLOCK",
@@ -45425,7 +45430,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 11,
         "color": "Pink",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BATONPASS",
@@ -45571,7 +45576,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 32.6,
         "color": "Purple",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD",
@@ -45740,7 +45745,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 11,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "CAPTIVATE",
@@ -45933,7 +45938,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 11.5,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -46117,7 +46122,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 60,
         "color": "Gray",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 9180,
         "eggMoves": [
             "BODYSLAM",
@@ -46268,7 +46273,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 120,
         "color": "Gray",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 9180,
         "eggGroups": [
             "MONSTER"
@@ -46448,7 +46453,7 @@ const Pokedex = {
         "heightm": 2.1,
         "weightkg": 360,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggGroups": [
             "MONSTER"
@@ -46632,7 +46637,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 11.2,
         "color": "Blue",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BATONPASS",
@@ -46800,7 +46805,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 31.5,
         "color": "Red",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -46949,7 +46954,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 15.2,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CRUNCH",
@@ -47081,7 +47086,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 40.2,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -47239,7 +47244,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4.2,
         "color": "Yellow",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DISCHARGE",
@@ -47373,7 +47378,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4.2,
         "color": "Yellow",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DISCHARGE",
@@ -47524,7 +47529,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 17.7,
         "color": "Gray",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BATONPASS",
@@ -47677,7 +47682,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 17.7,
         "color": "Purple",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BATONPASS",
@@ -47813,7 +47818,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2,
         "color": "Green",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 5355,
         "eggMoves": [
             "COTTONSPORE",
@@ -47961,7 +47966,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 10.3,
         "color": "Green",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACIDARMOR",
@@ -48103,7 +48108,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 80,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -48225,7 +48230,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 20.8,
         "color": "Red",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -48363,7 +48368,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 88.8,
         "color": "Blue",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 2"
@@ -48519,7 +48524,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 130,
         "color": "Blue",
-        "rareness": 125,
+        "catchRate": 125,
         "stepsToHatch": 10455,
         "eggMoves": [
             "AQUARING",
@@ -48658,7 +48663,7 @@ const Pokedex = {
         "heightm": 14.5,
         "weightkg": 398,
         "color": "Blue",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 10455,
         "eggGroups": [
             "FIELD",
@@ -48781,7 +48786,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 24,
         "color": "Yellow",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -48925,7 +48930,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 220,
         "color": "Red",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -49086,7 +49091,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 80.4,
         "color": "Brown",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CLEARSMOG",
@@ -49234,7 +49239,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 30.6,
         "color": "Black",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -49401,7 +49406,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 71.5,
         "color": "Purple",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -49554,7 +49559,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 5,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "ASSIST",
@@ -49686,7 +49691,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 15,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BUGBITE",
@@ -49832,7 +49837,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 15.3,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG"
@@ -49977,7 +49982,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 82,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG"
@@ -50112,7 +50117,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 51.3,
         "color": "Green",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACID",
@@ -50270,7 +50275,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 77.4,
         "color": "Green",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS",
@@ -50399,7 +50404,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 1.2,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -50551,7 +50556,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 20.6,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FLYING",
@@ -50741,7 +50746,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 40.3,
         "color": "White",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggMoves": [
             "COUNTER",
@@ -50887,7 +50892,7 @@ const Pokedex = {
         "heightm": 2.7,
         "weightkg": 52.5,
         "color": "Black",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASSURANCE",
@@ -51047,7 +51052,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 168,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "MINERAL"
@@ -51197,7 +51202,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 154,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "MINERAL"
@@ -51311,7 +51316,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 1.9,
         "color": "Gray",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DRAGONDANCE",
@@ -51441,7 +51446,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 23.6,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 2"
@@ -51572,7 +51577,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 11.5,
         "color": "Red",
-        "rareness": 205,
+        "catchRate": 205,
         "stepsToHatch": 4080,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -51726,7 +51731,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 32.8,
         "color": "Red",
-        "rareness": 155,
+        "catchRate": 155,
         "stepsToHatch": 4080,
         "eggGroups": [
             "WATER 1",
@@ -51873,7 +51878,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 21.5,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -52019,7 +52024,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 108,
         "color": "Black",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -52144,7 +52149,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 23.8,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "BARRIER",
@@ -52285,7 +52290,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 60.4,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggGroups": [
             "WATER 3"
@@ -52413,7 +52418,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 12.5,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "CROSSPOISON",
@@ -52563,7 +52568,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 68.2,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggGroups": [
             "WATER 3"
@@ -52661,7 +52666,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 7.4,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BRINE",
@@ -52800,7 +52805,7 @@ const Pokedex = {
         "heightm": 6.2,
         "weightkg": 162,
         "color": "Pink",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -52915,7 +52920,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 0.8,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "AMNESIA",
@@ -53187,7 +53192,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 22,
         "color": "Green",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DISABLE",
@@ -53342,7 +53347,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 2.3,
         "color": "Black",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 6630,
         "eggMoves": [
             "ASTONISH",
@@ -53500,7 +53505,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 12.5,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "AMORPHOUS"
@@ -53664,7 +53669,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 15,
         "color": "Black",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 6630,
         "eggMoves": [
             "DARKPULSE",
@@ -53832,7 +53837,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 30.6,
         "color": "Black",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 6630,
         "eggGroups": [
             "AMORPHOUS"
@@ -53962,7 +53967,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 100,
         "color": "Green",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 6630,
         "eggMoves": [
             "BULLETSEED",
@@ -54116,7 +54121,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 1,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggMoves": [
             "CURSE",
@@ -54290,7 +54295,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 47,
         "color": "White",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 6630,
         "eggMoves": [
             "ASSURANCE",
@@ -54391,7 +54396,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 14,
         "color": "Blue",
-        "rareness": 125,
+        "catchRate": 125,
         "stepsToHatch": 5355,
         "eggGroups": [
             "UNDISCOVERED"
@@ -54503,7 +54508,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 16.8,
         "color": "Gray",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AVALANCHE",
@@ -54637,7 +54642,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 256.5,
         "color": "Gray",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FAIRY",
@@ -54792,7 +54797,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 39.5,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AQUARING",
@@ -54930,7 +54935,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 87.6,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -55054,7 +55059,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 150.6,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -55153,7 +55158,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 52.5,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AQUARING",
@@ -55280,7 +55285,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 27,
         "color": "Blue",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1"
@@ -55394,7 +55399,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 22.6,
         "color": "Pink",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1"
@@ -55525,7 +55530,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 23.4,
         "color": "Gray",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 10455,
         "eggMoves": [
             "AMNESIA",
@@ -55652,7 +55657,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 8.7,
         "color": "Pink",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AQUAJET",
@@ -55781,7 +55786,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 42.1,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggMoves": [
             "DEFENSECURL",
@@ -55914,7 +55919,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 110.5,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "DRAGON"
@@ -56052,7 +56057,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 102.6,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "DRAGON"
@@ -56142,7 +56147,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 95.2,
         "color": "Blue",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MINERAL"
@@ -56285,7 +56290,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 202.5,
         "color": "Blue",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MINERAL"
@@ -56427,7 +56432,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 550,
         "color": "Blue",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MINERAL"
@@ -56603,7 +56608,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 230,
         "color": "Brown",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -56744,7 +56749,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 175,
         "color": "Blue",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -56886,7 +56891,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 205,
         "color": "Gray",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -57049,7 +57054,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 40,
         "color": "Red",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -57242,7 +57247,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 60,
         "color": "Blue",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -57406,7 +57411,7 @@ const Pokedex = {
         "heightm": 4.5,
         "weightkg": 352,
         "color": "Blue",
-        "rareness": 6,
+        "catchRate": 6,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -57592,7 +57597,7 @@ const Pokedex = {
         "heightm": 3.5,
         "weightkg": 950,
         "color": "Red",
-        "rareness": 6,
+        "catchRate": 6,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -57785,7 +57790,7 @@ const Pokedex = {
         "heightm": 7,
         "weightkg": 206.5,
         "color": "Green",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -57972,7 +57977,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.1,
         "color": "Yellow",
-        "rareness": 12,
+        "catchRate": 12,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -58149,7 +58154,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 60.8,
         "color": "Red",
-        "rareness": 12,
+        "catchRate": 12,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -58359,7 +58364,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 10.2,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -58495,7 +58500,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 97,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -58625,7 +58630,7 @@ const Pokedex = {
         "heightm": 2.2,
         "weightkg": 310,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -58763,7 +58768,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 6.2,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASSIST",
@@ -58923,7 +58928,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 22,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD",
@@ -59071,7 +59076,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 55,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD",
@@ -59195,7 +59200,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5.2,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -59338,7 +59343,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 23,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -59480,7 +59485,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 84.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -59588,7 +59593,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "ASTONISH",
@@ -59710,7 +59715,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 15.5,
         "color": "Brown",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -59817,7 +59822,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 24.9,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -59940,7 +59945,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 20,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AQUATAIL",
@@ -60092,7 +60097,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 31.5,
         "color": "Brown",
-        "rareness": 127,
+        "catchRate": 127,
         "stepsToHatch": 4080,
         "eggGroups": [
             "WATER 1",
@@ -60155,7 +60160,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2.2,
         "color": "Red",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -60267,7 +60272,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 25.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -60377,7 +60382,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9.5,
         "color": "Blue",
-        "rareness": 235,
+        "catchRate": 235,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DOUBLEKICK",
@@ -60500,7 +60505,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 30.5,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -60610,7 +60615,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 42,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -60714,7 +60719,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 1.2,
         "color": "Green",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "COTTONSPORE",
@@ -60827,7 +60832,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 14.5,
         "color": "Green",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FAIRY",
@@ -60962,7 +60967,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 31.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "CRUNCH",
@@ -61119,7 +61124,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 102.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggGroups": [
             "MONSTER"
@@ -61244,7 +61249,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 57,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "BODYSLAM",
@@ -61385,7 +61390,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 149.5,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggGroups": [
             "MONSTER"
@@ -61450,7 +61455,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 3.4,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -61567,7 +61572,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 6.5,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -61905,7 +61910,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 23.3,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -61973,7 +61978,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 5.5,
         "color": "Yellow",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -62090,7 +62095,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 38.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -62205,7 +62210,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 3.9,
         "color": "White",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 2805,
         "eggMoves": [
             "BESTOW",
@@ -62338,7 +62343,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 29.5,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AQUARING",
@@ -62476,7 +62481,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 33.5,
         "color": "Brown",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -62576,7 +62581,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 3.3,
         "color": "Pink",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AROMATHERAPY",
@@ -62689,7 +62694,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9.3,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FAIRY",
@@ -62825,7 +62830,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 6.3,
         "color": "Purple",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -62959,7 +62964,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 29.9,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -63099,7 +63104,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 20.3,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -63232,7 +63237,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 1.2,
         "color": "Purple",
-        "rareness": 125,
+        "catchRate": 125,
         "stepsToHatch": 7905,
         "eggMoves": [
             "BODYSLAM",
@@ -63375,7 +63380,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 15,
         "color": "Purple",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 7905,
         "eggGroups": [
             "AMORPHOUS"
@@ -63504,7 +63509,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5.5,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CIRCLETHROW",
@@ -63657,7 +63662,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 33.3,
         "color": "Brown",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD",
@@ -63810,7 +63815,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 4.4,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "AMORPHOUS"
@@ -63931,7 +63936,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 27.3,
         "color": "Black",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FLYING"
@@ -64062,7 +64067,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 3.9,
         "color": "Gray",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASSURANCE",
@@ -64206,7 +64211,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 43.8,
         "color": "Gray",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -64331,7 +64336,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.6,
         "color": "Yellow",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 6630,
         "eggMoves": [
             "CURSE",
@@ -64466,7 +64471,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 19.2,
         "color": "Purple",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASTONISH",
@@ -64604,7 +64609,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 38,
         "color": "Purple",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -64733,7 +64738,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 60.5,
         "color": "Green",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -64865,7 +64870,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 187,
         "color": "Green",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -64980,7 +64985,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 15,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CURSE",
@@ -65132,7 +65137,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 13,
         "color": "Pink",
-        "rareness": 145,
+        "catchRate": 145,
         "stepsToHatch": 6630,
         "eggMoves": [
             "CHARM",
@@ -65266,7 +65271,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 24.4,
         "color": "Pink",
-        "rareness": 130,
+        "catchRate": 130,
         "stepsToHatch": 10455,
         "eggMoves": [
             "AROMATHERAPY",
@@ -65390,7 +65395,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 1.9,
         "color": "Black",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -65519,7 +65524,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 108,
         "color": "Purple",
-        "rareness": 100,
+        "catchRate": 100,
         "stepsToHatch": 7905,
         "eggMoves": [
             "CAPTIVATE",
@@ -65647,7 +65652,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 20.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggMoves": [
             "BODYSLAM",
@@ -65784,7 +65789,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 56,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MONSTER",
@@ -65914,7 +65919,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 95,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MONSTER",
@@ -66093,7 +66098,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 105,
         "color": "Black",
-        "rareness": 50,
+        "catchRate": 50,
         "stepsToHatch": 10455,
         "eggMoves": [
             "AFTERYOU",
@@ -66236,7 +66241,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 20.2,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 6630,
         "eggMoves": [
             "AGILITY",
@@ -66399,7 +66404,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 54,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "FIELD",
@@ -66539,7 +66544,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 49.5,
         "color": "Brown",
-        "rareness": 140,
+        "catchRate": 140,
         "stepsToHatch": 7905,
         "eggMoves": [
             "BODYSLAM",
@@ -66652,7 +66657,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 300,
         "color": "Brown",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 7905,
         "eggGroups": [
             "FIELD"
@@ -66776,7 +66781,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 12,
         "color": "Purple",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -66922,7 +66927,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 61.5,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG",
@@ -67067,7 +67072,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 23,
         "color": "Blue",
-        "rareness": 140,
+        "catchRate": 140,
         "stepsToHatch": 2805,
         "eggMoves": [
             "ACUPRESSURE",
@@ -67228,7 +67233,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 44.4,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -67334,7 +67339,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 27,
         "color": "Green",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 6630,
         "eggMoves": [
             "GIGADRAIN",
@@ -67465,7 +67470,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 7,
         "color": "Blue",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -67592,7 +67597,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 24,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 2"
@@ -67706,7 +67711,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 65,
         "color": "Blue",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 6630,
         "eggMoves": [
             "AMNESIA",
@@ -67832,7 +67837,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 50.5,
         "color": "White",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AVALANCHE",
@@ -67971,7 +67976,7 @@ const Pokedex = {
         "heightm": 2.2,
         "weightkg": 135.5,
         "color": "White",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -68145,7 +68150,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 34,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -68260,7 +68265,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 180,
         "color": "Gray",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -68404,7 +68409,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 140,
         "color": "Pink",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER"
@@ -68559,7 +68564,7 @@ const Pokedex = {
         "heightm": 2.4,
         "weightkg": 282.8,
         "color": "Gray",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MONSTER",
@@ -68691,7 +68696,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 128.6,
         "color": "Blue",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -68826,7 +68831,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 138.6,
         "color": "Yellow",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 6630,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -68952,7 +68957,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 68,
         "color": "Red",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 6630,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -69093,7 +69098,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 38,
         "color": "White",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FLYING",
@@ -69212,7 +69217,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 51.5,
         "color": "Green",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG"
@@ -69334,7 +69339,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 25.5,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggGroups": [
             "FIELD"
@@ -69451,7 +69456,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 25.9,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 9180,
         "eggGroups": [
             "FIELD"
@@ -69590,7 +69595,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 42.5,
         "color": "Purple",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG"
@@ -69707,7 +69712,7 @@ const Pokedex = {
         "heightm": 2.5,
         "weightkg": 291,
         "color": "Brown",
-        "rareness": 50,
+        "catchRate": 50,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -69832,7 +69837,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 34,
         "color": "Red",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -70002,7 +70007,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 52,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -70163,7 +70168,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 340,
         "color": "Gray",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -70301,7 +70306,7 @@ const Pokedex = {
         "heightm": 2.2,
         "weightkg": 106.6,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "AMORPHOUS"
@@ -70431,7 +70436,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 26.6,
         "color": "White",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FAIRY",
@@ -70545,7 +70550,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 0.3,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -70886,7 +70891,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 0.3,
         "color": "Yellow",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -71022,7 +71027,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 0.3,
         "color": "Pink",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -71165,7 +71170,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 0.3,
         "color": "Blue",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -71303,7 +71308,7 @@ const Pokedex = {
         "heightm": 5.4,
         "weightkg": 683,
         "color": "White",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -71446,7 +71451,7 @@ const Pokedex = {
         "heightm": 4.2,
         "weightkg": 336,
         "color": "Purple",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -71569,7 +71574,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 430,
         "color": "Brown",
-        "rareness": 12,
+        "catchRate": 12,
         "stepsToHatch": 2805,
         "eggGroups": [
             "UNDISCOVERED"
@@ -71689,7 +71694,7 @@ const Pokedex = {
         "heightm": 3.7,
         "weightkg": 420,
         "color": "White",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -71835,7 +71840,7 @@ const Pokedex = {
         "heightm": 4.5,
         "weightkg": 750,
         "color": "Black",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -71986,7 +71991,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 85.6,
         "color": "Yellow",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -72093,7 +72098,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 3.1,
         "color": "Blue",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 10455,
         "eggGroups": [
             "WATER 1",
@@ -72213,7 +72218,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.4,
         "color": "Blue",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 2805,
         "eggGroups": [
             "WATER 1",
@@ -72354,7 +72359,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 50.5,
         "color": "Black",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -72462,7 +72467,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 2.1,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -72684,7 +72689,7 @@ const Pokedex = {
         "heightm": 3.2,
         "weightkg": 320,
         "color": "White",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -73325,7 +73330,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4,
         "color": "Yellow",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -73441,7 +73446,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 8.1,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CAPTIVATE",
@@ -73570,7 +73575,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 16,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD",
@@ -73691,7 +73696,7 @@ const Pokedex = {
         "heightm": 3.3,
         "weightkg": 63,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD",
@@ -73807,7 +73812,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9.9,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BODYSLAM",
@@ -73948,7 +73953,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 55.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -74081,7 +74086,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 150,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -74196,7 +74201,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 5.9,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AIRSLASH",
@@ -74321,7 +74326,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 24.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -74441,7 +74446,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 94.6,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -74553,7 +74558,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 11.6,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "ASSURANCE",
@@ -74689,7 +74694,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 27,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -74795,7 +74800,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4.1,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "CHARM",
@@ -74916,7 +74921,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 14.7,
         "color": "Gray",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -75024,7 +75029,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 61,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -75143,7 +75148,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 10.1,
         "color": "Purple",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CHARM",
@@ -75272,7 +75277,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 37.5,
         "color": "Purple",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -75397,7 +75402,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 10.5,
         "color": "Green",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASTONISH",
@@ -75523,7 +75528,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 30.5,
         "color": "Green",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -75649,7 +75654,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 11,
         "color": "Red",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASTONISH",
@@ -75776,7 +75781,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 28,
         "color": "Red",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -75904,7 +75909,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 13.5,
         "color": "Blue",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AQUARING",
@@ -76033,7 +76038,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 29,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -76155,7 +76160,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 23.3,
         "color": "Pink",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 2805,
         "eggMoves": [
             "BARRIER",
@@ -76270,7 +76275,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 60.5,
         "color": "Pink",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 2805,
         "eggGroups": [
             "FIELD"
@@ -76373,7 +76378,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2.1,
         "color": "Gray",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BESTOW",
@@ -76485,7 +76490,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 15,
         "color": "Gray",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -76586,7 +76591,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 29,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING"
@@ -76685,7 +76690,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 29.8,
         "color": "Black",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "DOUBLEKICK",
@@ -76797,7 +76802,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 79.5,
         "color": "Black",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -76898,7 +76903,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 18,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AUTOTOMIZE",
@@ -77010,7 +77015,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 102,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "MINERAL"
@@ -77114,7 +77119,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 260,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "MINERAL"
@@ -77245,7 +77250,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 2.1,
         "color": "Blue",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 4080,
         "eggMoves": [
             "CHARM",
@@ -77387,7 +77392,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 10.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FLYING",
@@ -77494,7 +77499,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 8.5,
         "color": "Gray",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CRUSHCLAW",
@@ -77614,7 +77619,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 40.4,
         "color": "Gray",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -77758,7 +77763,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 31,
         "color": "Pink",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -77923,7 +77928,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 12.5,
         "color": "Gray",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 5355,
         "eggMoves": [
             "COMETPUNCH",
@@ -78057,7 +78062,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 40,
         "color": "Gray",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -78178,7 +78183,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 87,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -78277,7 +78282,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 4.5,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "EARTHPOWER",
@@ -78392,7 +78397,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 17,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1"
@@ -78513,7 +78518,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 62,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1"
@@ -78628,7 +78633,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 55.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -78743,7 +78748,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 51,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -78844,7 +78849,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2.5,
         "color": "Yellow",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AGILITY",
@@ -78949,7 +78954,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 7.3,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -79065,7 +79070,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 20.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -79163,7 +79168,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5.3,
         "color": "Red",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "PINMISSILE",
@@ -79270,7 +79275,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 58.5,
         "color": "Gray",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -79383,7 +79388,7 @@ const Pokedex = {
         "heightm": 2.5,
         "weightkg": 200.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG"
@@ -79489,7 +79494,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 0.6,
         "color": "Green",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BEATUP",
@@ -79600,7 +79605,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 6.6,
         "color": "Green",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FAIRY",
@@ -79706,7 +79711,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 6.6,
         "color": "Green",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "TACKLE",
@@ -79811,7 +79816,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 16.3,
         "color": "Green",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -79909,7 +79914,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 18,
         "color": "Green",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 10455,
         "eggMoves": [
             "AGILITY",
@@ -80069,7 +80074,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 15.2,
         "color": "Brown",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BEATUP",
@@ -80209,7 +80214,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 33.4,
         "color": "Brown",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -80346,7 +80351,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 96.3,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -80462,7 +80467,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 37.5,
         "color": "Red",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ENCORE",
@@ -80596,7 +80601,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 92.9,
         "color": "Red",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -80732,7 +80737,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 28,
         "color": "Green",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BOUNCE",
@@ -80854,7 +80859,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 14.5,
         "color": "Red",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BLOCK",
@@ -80974,7 +80979,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 200,
         "color": "Red",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG",
@@ -81108,7 +81113,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 11.8,
         "color": "Yellow",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AMNESIA",
@@ -81255,7 +81260,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 30,
         "color": "Red",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD",
@@ -81383,7 +81388,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 14,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ANCIENTPOWER",
@@ -81506,7 +81511,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 1.5,
         "color": "Black",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 6630,
         "eggMoves": [
             "DISABLE",
@@ -81630,7 +81635,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 76.5,
         "color": "Yellow",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 6630,
         "eggGroups": [
             "MINERAL",
@@ -81751,7 +81756,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 16.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "TACKLE",
@@ -81884,7 +81889,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 81,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggGroups": [
             "WATER 1",
@@ -82013,7 +82018,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "BITE",
@@ -82153,7 +82158,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 32,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggGroups": [
             "FLYING",
@@ -82257,7 +82262,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 31,
         "color": "Green",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CURSE",
@@ -82375,7 +82380,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 107.3,
         "color": "Green",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -82495,7 +82500,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 12.5,
         "color": "Gray",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 6630,
         "eggMoves": [
             "CAPTIVATE",
@@ -82630,7 +82635,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 81.1,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -82748,7 +82753,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5.8,
         "color": "Gray",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4080,
         "eggMoves": [
             "AQUATAIL",
@@ -82862,7 +82867,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 7.5,
         "color": "Gray",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 4080,
         "eggGroups": [
             "FIELD"
@@ -82998,7 +83003,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5.8,
         "color": "Purple",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CAPTIVATE",
@@ -83141,7 +83146,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 18,
         "color": "Purple",
-        "rareness": 100,
+        "catchRate": 100,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -83277,7 +83282,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 44,
         "color": "Purple",
-        "rareness": 50,
+        "catchRate": 50,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -83403,7 +83408,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1,
         "color": "Green",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACIDARMOR",
@@ -83538,7 +83543,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 8,
         "color": "Green",
-        "rareness": 100,
+        "catchRate": 100,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -83675,7 +83680,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 20.1,
         "color": "Green",
-        "rareness": 50,
+        "catchRate": 50,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -83780,7 +83785,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 5.5,
         "color": "Blue",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AIRCUTTER",
@@ -83893,7 +83898,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 24.2,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "WATER 1",
@@ -83996,7 +84001,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5.7,
         "color": "White",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AUTOTOMIZE",
@@ -84108,7 +84113,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 41,
         "color": "White",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -84207,7 +84212,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 57.5,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -84313,7 +84318,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 19.5,
         "color": "Pink",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AGILITY",
@@ -84431,7 +84436,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 92.5,
         "color": "Brown",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -84539,7 +84544,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5,
         "color": "White",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AIRSLASH",
@@ -84651,7 +84656,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 5.9,
         "color": "Blue",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BUGBITE",
@@ -84767,7 +84772,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 33,
         "color": "Gray",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -84869,7 +84874,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 1,
         "color": "White",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BODYSLAM",
@@ -84979,7 +84984,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 10.5,
         "color": "White",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS"
@@ -85095,7 +85100,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 33,
         "color": "White",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACIDARMOR",
@@ -85216,7 +85221,7 @@ const Pokedex = {
         "heightm": 2.2,
         "weightkg": 135,
         "color": "White",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -85320,7 +85325,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 31.6,
         "color": "Pink",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 10455,
         "eggMoves": [
             "ENDURE",
@@ -85438,7 +85443,7 @@ const Pokedex = {
         "heightm": 0.1,
         "weightkg": 0.6,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "CROSSPOISON",
@@ -85555,7 +85560,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 14.3,
         "color": "Yellow",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggGroups": [
             "BUG"
@@ -85662,7 +85667,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 18.8,
         "color": "Gray",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BULLETSEED",
@@ -85788,7 +85793,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 110,
         "color": "Gray",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "GRASS",
@@ -85894,7 +85899,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 21,
         "color": "Gray",
-        "rareness": 130,
+        "catchRate": 130,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -86000,7 +86005,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 51,
         "color": "Gray",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -86104,7 +86109,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 81,
         "color": "Gray",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "MINERAL"
@@ -86159,7 +86164,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.3,
         "color": "White",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -86262,7 +86267,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 22,
         "color": "Blue",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -86372,7 +86377,7 @@ const Pokedex = {
         "heightm": 2.1,
         "weightkg": 80.5,
         "color": "Blue",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -86501,7 +86506,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASTONISH",
@@ -86638,7 +86643,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 34.5,
         "color": "Brown",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -86756,7 +86761,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 3.1,
         "color": "White",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ACID",
@@ -86883,7 +86888,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 13,
         "color": "Black",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -86984,7 +86989,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 34.3,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "AMORPHOUS"
@@ -87099,7 +87104,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 18,
         "color": "Green",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 10455,
         "eggMoves": [
             "COUNTER",
@@ -87231,7 +87236,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 36,
         "color": "Green",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MONSTER",
@@ -87356,7 +87361,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 105.5,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "MONSTER",
@@ -87468,7 +87473,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 8.5,
         "color": "White",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASSURANCE",
@@ -87597,7 +87602,7 @@ const Pokedex = {
         "heightm": 2.6,
         "weightkg": 260,
         "color": "White",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FIELD"
@@ -87700,7 +87705,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 148,
         "color": "Blue",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 6630,
         "eggGroups": [
             "MINERAL"
@@ -87796,7 +87801,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 7.7,
         "color": "Red",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 4080,
         "eggMoves": [
             "BATONPASS",
@@ -87906,7 +87911,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 25.3,
         "color": "Red",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 4080,
         "eggGroups": [
             "BUG"
@@ -88018,7 +88023,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 11,
         "color": "Brown",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5355,
         "eggMoves": [
             "ASTONISH",
@@ -88152,7 +88157,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 20,
         "color": "Yellow",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 6630,
         "eggMoves": [
             "BATONPASS",
@@ -88283,7 +88288,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 35.5,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 6630,
         "eggGroups": [
             "FIELD",
@@ -88414,7 +88419,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 139,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7905,
         "eggMoves": [
             "CRUSHCLAW",
@@ -88553,7 +88558,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 92,
         "color": "Green",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 6630,
         "eggGroups": [
             "MINERAL"
@@ -88684,7 +88689,7 @@ const Pokedex = {
         "heightm": 2.8,
         "weightkg": 330,
         "color": "Green",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 6630,
         "eggGroups": [
             "MINERAL"
@@ -88811,7 +88816,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 10.2,
         "color": "Red",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5355,
         "eggMoves": [
             "HEADBUTT",
@@ -88948,7 +88953,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 70,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggGroups": [
             "HUMAN-LIKE"
@@ -89054,7 +89059,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 94.6,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5355,
         "eggMoves": [
             "AMNESIA",
@@ -89175,7 +89180,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 10.5,
         "color": "White",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FLYING"
@@ -89286,7 +89291,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 41,
         "color": "Red",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FLYING"
@@ -89405,7 +89410,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5355,
         "eggMoves": [
             "STEELWING",
@@ -89530,7 +89535,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 39.5,
         "color": "Brown",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5355,
         "eggGroups": [
             "FLYING"
@@ -89646,7 +89651,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 58,
         "color": "Red",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BODYSLAM",
@@ -89760,7 +89765,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 33,
         "color": "Gray",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5355,
         "eggMoves": [
             "BATONPASS",
@@ -89878,7 +89883,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 17.3,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggMoves": [
             "ASSURANCE",
@@ -90000,7 +90005,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 50,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "DRAGON"
@@ -90134,7 +90139,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 160,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggGroups": [
             "DRAGON"
@@ -90237,7 +90242,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 28.8,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10455,
         "eggMoves": [
             "ENDURE",
@@ -90353,7 +90358,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 46,
         "color": "White",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 10455,
         "eggGroups": [
             "BUG"
@@ -90464,7 +90469,7 @@ const Pokedex = {
         "heightm": 2.1,
         "weightkg": 250,
         "color": "Blue",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -90575,7 +90580,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 260,
         "color": "Gray",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -90686,7 +90691,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 200,
         "color": "Green",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -90803,7 +90808,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 63,
         "color": "Green",
-        "rareness": 9,
+        "catchRate": 9,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -90959,7 +90964,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 61,
         "color": "Blue",
-        "rareness": 9,
+        "catchRate": 9,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -91114,7 +91119,7 @@ const Pokedex = {
         "heightm": 3.2,
         "weightkg": 330,
         "color": "White",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -91240,7 +91245,7 @@ const Pokedex = {
         "heightm": 2.9,
         "weightkg": 345,
         "color": "Black",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -91358,7 +91363,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 68,
         "color": "Brown",
-        "rareness": 9,
+        "catchRate": 9,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -91511,7 +91516,7 @@ const Pokedex = {
         "heightm": 3,
         "weightkg": 325,
         "color": "Gray",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -91848,7 +91853,7 @@ const Pokedex = {
         "heightm": 1.4,
         "weightkg": 48.5,
         "color": "Yellow",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 20655,
         "eggGroups": [
             "UNDISCOVERED"
@@ -92029,7 +92034,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 6.5,
         "color": "White",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -92186,7 +92191,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 82.5,
         "color": "Purple",
-        "rareness": 15,
+        "catchRate": 15,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -92449,7 +92454,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 9,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggMoves": [
             "BELLYDRUM",
@@ -92596,7 +92601,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 29,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FIELD"
@@ -92739,7 +92744,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 90,
         "color": "Green",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FIELD"
@@ -92855,7 +92860,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 9.4,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggMoves": [
             "HEATWAVE",
@@ -92990,7 +92995,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 14.5,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FIELD"
@@ -93125,7 +93130,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 39,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FIELD"
@@ -93241,7 +93246,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 7,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggMoves": [
             "BESTOW",
@@ -93369,7 +93374,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 10.9,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "WATER 1"
@@ -93492,7 +93497,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 40,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "WATER 1"
@@ -93707,7 +93712,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 3840,
         "eggMoves": [
             "DEFENSECURL",
@@ -93841,7 +93846,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 42.4,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 3840,
         "eggGroups": [
             "FIELD"
@@ -93940,7 +93945,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.7,
         "color": "Red",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 3840,
         "eggMoves": [
             "QUICKGUARD",
@@ -94048,7 +94053,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 16,
         "color": "Red",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 3840,
         "eggGroups": [
             "FLYING"
@@ -94152,7 +94157,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 24.5,
         "color": "Red",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 3840,
         "eggGroups": [
             "FLYING"
@@ -94208,7 +94213,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2.5,
         "color": "Black",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 3840,
         "eggMoves": [
             "POISONPOWDER",
@@ -94270,7 +94275,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 8.4,
         "color": "Black",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 3840,
         "eggGroups": [
             "BUG"
@@ -94374,7 +94379,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 17,
         "color": "White",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 3840,
         "eggGroups": [
             "BUG"
@@ -94675,7 +94680,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 13.5,
         "color": "Brown",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggMoves": [
             "ENTRAINMENT",
@@ -94796,7 +94801,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 81.5,
         "color": "Brown",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FIELD"
@@ -94901,7 +94906,7 @@ const Pokedex = {
         "heightm": 0.1,
         "weightkg": 0.1,
         "color": "White",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5120,
         "eggMoves": [
             "CAMOUFLAGE",
@@ -95011,7 +95016,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.9,
         "color": "White",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FAIRY"
@@ -95196,7 +95201,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 10,
         "color": "White",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FAIRY"
@@ -95304,7 +95309,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 31,
         "color": "Brown",
-        "rareness": 160,
+        "catchRate": 160,
         "stepsToHatch": 5120,
         "eggMoves": [
             "DEFENSECURL",
@@ -95419,7 +95424,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 91,
         "color": "Brown",
-        "rareness": 160,
+        "catchRate": 160,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FIELD"
@@ -95551,7 +95556,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 8,
         "color": "White",
-        "rareness": 128,
+        "catchRate": 128,
         "stepsToHatch": 6400,
         "eggMoves": [
             "FOULPLAY",
@@ -95708,7 +95713,7 @@ const Pokedex = {
         "heightm": 2.1,
         "weightkg": 136,
         "color": "White",
-        "rareness": 128,
+        "catchRate": 128,
         "stepsToHatch": 6400,
         "eggGroups": [
             "FIELD",
@@ -95809,7 +95814,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 28,
         "color": "White",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5120,
         "eggMoves": [
             "CAPTIVATE",
@@ -95933,7 +95938,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 3.5,
         "color": "Gray",
-        "rareness": 228,
+        "catchRate": 228,
         "stepsToHatch": 5120,
         "eggMoves": [
             "ASSIST",
@@ -96066,7 +96071,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 8.5,
         "color": "Blue",
-        "rareness": 228,
+        "catchRate": 228,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FIELD"
@@ -96288,7 +96293,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 2,
         "color": "Brown",
-        "rareness": 222,
+        "catchRate": 222,
         "stepsToHatch": 5120,
         "eggMoves": [
             "DESTINYBOND",
@@ -96396,7 +96401,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 4.5,
         "color": "Brown",
-        "rareness": 222,
+        "catchRate": 222,
         "stepsToHatch": 5120,
         "eggGroups": [
             "MINERAL"
@@ -96486,7 +96491,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 53,
         "color": "Brown",
-        "rareness": 222,
+        "catchRate": 222,
         "stepsToHatch": 5120,
         "eggGroups": [
             "MINERAL"
@@ -96628,7 +96633,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.5,
         "color": "Pink",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggMoves": [
             "CAPTIVATE",
@@ -96746,7 +96751,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 15.5,
         "color": "Pink",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FAIRY"
@@ -96851,7 +96856,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 3.5,
         "color": "White",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggMoves": [
             "AFTERYOU",
@@ -96960,7 +96965,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 5,
         "color": "White",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FAIRY"
@@ -97077,7 +97082,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 3.5,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5120,
         "eggMoves": [
             "CAMOUFLAGE",
@@ -97204,7 +97209,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 47,
         "color": "Blue",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5120,
         "eggGroups": [
             "WATER 1",
@@ -97335,7 +97340,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 31,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5120,
         "eggMoves": [
             "HELPINGHAND",
@@ -97478,7 +97483,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 96,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5120,
         "eggGroups": [
             "WATER 3"
@@ -97582,7 +97587,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 7.3,
         "color": "Brown",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5120,
         "eggMoves": [
             "ACIDARMOR",
@@ -97696,7 +97701,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 81.5,
         "color": "Brown",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5120,
         "eggGroups": [
             "WATER 1",
@@ -97798,7 +97803,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 8.3,
         "color": "Blue",
-        "rareness": 155,
+        "catchRate": 155,
         "stepsToHatch": 3840,
         "eggMoves": [
             "AQUAJET",
@@ -97909,7 +97914,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 35.3,
         "color": "Blue",
-        "rareness": 155,
+        "catchRate": 155,
         "stepsToHatch": 3840,
         "eggGroups": [
             "WATER 1",
@@ -98020,7 +98025,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 6,
         "color": "Yellow",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5120,
         "eggMoves": [
             "AGILITY",
@@ -98130,7 +98135,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 21,
         "color": "Yellow",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5120,
         "eggGroups": [
             "MONSTER",
@@ -98249,7 +98254,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 26,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7680,
         "eggMoves": [
             "CURSE",
@@ -98377,7 +98382,7 @@ const Pokedex = {
         "heightm": 2.5,
         "weightkg": 270,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7680,
         "eggGroups": [
             "MONSTER",
@@ -98509,7 +98514,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 25.2,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7680,
         "eggMoves": [
             "BARRIER",
@@ -98646,7 +98651,7 @@ const Pokedex = {
         "heightm": 2.7,
         "weightkg": 225,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 7680,
         "eggGroups": [
             "MONSTER"
@@ -98753,7 +98758,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 23.5,
         "color": "Pink",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 8960,
         "eggGroups": [
             "FIELD"
@@ -98886,7 +98891,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 21.5,
         "color": "Green",
-        "rareness": 128,
+        "catchRate": 128,
         "stepsToHatch": 5120,
         "eggMoves": [
             "AGILITY",
@@ -99005,7 +99010,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 2.2,
         "color": "Yellow",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggMoves": [
             "COVET",
@@ -99124,7 +99129,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 5.7,
         "color": "Gray",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 6400,
         "eggGroups": [
             "FAIRY",
@@ -99217,7 +99222,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 2.8,
         "color": "Purple",
-        "rareness": 20,
+        "catchRate": 20,
         "stepsToHatch": 10240,
         "eggMoves": [
             "ACIDARMOR",
@@ -99318,7 +99323,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 17.5,
         "color": "Purple",
-        "rareness": 20,
+        "catchRate": 20,
         "stepsToHatch": 10240,
         "eggGroups": [
             "DRAGON"
@@ -99430,7 +99435,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 150.5,
         "color": "Purple",
-        "rareness": 20,
+        "catchRate": 20,
         "stepsToHatch": 10240,
         "eggGroups": [
             "DRAGON"
@@ -99535,7 +99540,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 3,
         "color": "Gray",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5120,
         "eggMoves": [
             "IRONDEFENSE",
@@ -99658,7 +99663,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 7,
         "color": "Brown",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 5120,
         "eggMoves": [
             "BESTOW",
@@ -99788,7 +99793,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 71,
         "color": "Brown",
-        "rareness": 150,
+        "catchRate": 150,
         "stepsToHatch": 5120,
         "eggGroups": [
             "GRASS",
@@ -99907,7 +99912,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 5,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5120,
         "eggMoves": [
             "BESTOW",
@@ -100128,7 +100133,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 12.5,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5120,
         "eggGroups": [
             "AMORPHOUS"
@@ -100328,7 +100333,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 99.5,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5120,
         "eggMoves": [
             "BARRIER",
@@ -100442,7 +100447,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 505,
         "color": "Blue",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 5120,
         "eggGroups": [
             "MONSTER"
@@ -100561,7 +100566,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 8,
         "color": "Purple",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggMoves": [
             "OUTRAGE",
@@ -100690,7 +100695,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 85,
         "color": "Purple",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FLYING"
@@ -100800,7 +100805,7 @@ const Pokedex = {
         "heightm": 3,
         "weightkg": 215,
         "color": "Blue",
-        "rareness": 70,
+        "catchRate": 70,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -100914,7 +100919,7 @@ const Pokedex = {
         "heightm": 5.8,
         "weightkg": 203,
         "color": "Red",
-        "rareness": 70,
+        "catchRate": 70,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -101028,7 +101033,7 @@ const Pokedex = {
         "heightm": 5,
         "weightkg": 305,
         "color": "Green",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -101208,7 +101213,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 8.8,
         "color": "Pink",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 6400,
         "eggGroups": [
             "UNDISCOVERED"
@@ -101377,7 +101382,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9,
         "color": "Purple",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -101523,7 +101528,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 195,
         "color": "Brown",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30855,
         "eggGroups": [
             "UNDISCOVERED"
@@ -101632,7 +101637,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.5,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggMoves": [
             "CURSE",
@@ -101749,7 +101754,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 16,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 3840,
         "eggGroups": [
             "FLYING"
@@ -101863,7 +101868,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 36.6,
         "color": "Brown",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggGroups": [
             "FLYING"
@@ -101970,7 +101975,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4.3,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggMoves": [
             "NASTYPLOT",
@@ -102086,7 +102091,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 25,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggGroups": [
             "FIELD"
@@ -102217,7 +102222,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 83,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggGroups": [
             "FIELD"
@@ -102323,7 +102328,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 7.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggMoves": [
             "CHARM",
@@ -102438,7 +102443,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 17.5,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggGroups": [
             "WATER 1",
@@ -102552,7 +102557,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 44,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggGroups": [
             "WATER 1",
@@ -102655,7 +102660,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.2,
         "color": "Black",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4096,
         "eggMoves": [
             "BRAVEBIRD",
@@ -102764,7 +102769,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 14.8,
         "color": "Black",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4096,
         "eggGroups": [
             "FLYING"
@@ -102864,7 +102869,7 @@ const Pokedex = {
         "heightm": 1.1,
         "weightkg": 26,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggGroups": [
             "FLYING"
@@ -102965,7 +102970,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 6,
         "color": "Brown",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4096,
         "eggMoves": [
             "REVENGE",
@@ -103075,7 +103080,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 14.2,
         "color": "Brown",
-        "rareness": 127,
+        "catchRate": 127,
         "stepsToHatch": 4096,
         "eggGroups": [
             "FIELD"
@@ -103262,7 +103267,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 4.4,
         "color": "Gray",
-        "rareness": 255,
+        "catchRate": 255,
         "stepsToHatch": 4096,
         "eggMoves": [
             "HARDEN",
@@ -103362,7 +103367,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 10.5,
         "color": "Green",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 4096,
         "eggGroups": [
             "BUG"
@@ -103461,7 +103466,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 45,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 4096,
         "eggGroups": [
             "BUG"
@@ -103661,7 +103666,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 7,
         "color": "Purple",
-        "rareness": 225,
+        "catchRate": 225,
         "stepsToHatch": 5120,
         "eggMoves": [
             "WIDEGUARD",
@@ -103777,7 +103782,7 @@ const Pokedex = {
         "heightm": 1.7,
         "weightkg": 180,
         "color": "White",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5120,
         "eggGroups": [
             "WATER 3"
@@ -103880,7 +103885,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 3.4,
         "color": "Red",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggMoves": [
             "PLUCK",
@@ -104101,7 +104106,7 @@ const Pokedex = {
         "heightm": 0.1,
         "weightkg": 0.2,
         "color": "Yellow",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5120,
         "eggMoves": [
             "BATONPASS",
@@ -104217,7 +104222,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.5,
         "color": "Yellow",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5120,
         "eggGroups": [
             "BUG",
@@ -104420,7 +104425,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 9.2,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 4096,
         "eggMoves": [
             "CRUSHCLAW",
@@ -104527,7 +104532,7 @@ const Pokedex = {
         "heightm": 0.8,
         "weightkg": 25,
         "color": "Brown",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 4096,
         "eggGroups": [
             "FIELD"
@@ -104808,7 +104813,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.3,
         "color": "Blue",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 4096,
         "eggMoves": [
             "MUDDYWATER",
@@ -104954,7 +104959,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 8,
         "color": "Blue",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5120,
         "eggMoves": [
             "STOCKPILE",
@@ -105067,7 +105072,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 14.5,
         "color": "Blue",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5120,
         "eggGroups": [
             "WATER 1"
@@ -105165,7 +105170,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 110,
         "color": "Brown",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5120,
         "eggMoves": [
             "BODYSLAM",
@@ -105267,7 +105272,7 @@ const Pokedex = {
         "heightm": 2.5,
         "weightkg": 920,
         "color": "Brown",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5120,
         "eggGroups": [
             "FIELD"
@@ -105369,7 +105374,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 4,
         "color": "Green",
-        "rareness": 200,
+        "catchRate": 200,
         "stepsToHatch": 4096,
         "eggMoves": [
             "POWERSPLIT",
@@ -105476,7 +105481,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 82,
         "color": "Green",
-        "rareness": 100,
+        "catchRate": 100,
         "stepsToHatch": 4096,
         "eggGroups": [
             "WATER 1",
@@ -105669,7 +105674,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.5,
         "color": "Pink",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5120,
         "eggMoves": [
             "WEATHERBALL",
@@ -105778,7 +105783,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 18.5,
         "color": "Pink",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5120,
         "eggGroups": [
             "GRASS"
@@ -105975,7 +105980,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 1.5,
         "color": "Purple",
-        "rareness": 190,
+        "catchRate": 190,
         "stepsToHatch": 5120,
         "eggMoves": [
             "AMNESIA",
@@ -106082,7 +106087,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 11.5,
         "color": "Purple",
-        "rareness": 75,
+        "catchRate": 75,
         "stepsToHatch": 5120,
         "eggGroups": [
             "GRASS"
@@ -106193,7 +106198,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 4.8,
         "color": "Black",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5120,
         "eggMoves": [
             "BELCH",
@@ -106307,7 +106312,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 22.2,
         "color": "Black",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "MONSTER",
@@ -106515,7 +106520,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 6.8,
         "color": "Pink",
-        "rareness": 140,
+        "catchRate": 140,
         "stepsToHatch": 4096,
         "eggMoves": [
             "ICEPUNCH",
@@ -106633,7 +106638,7 @@ const Pokedex = {
         "heightm": 2.1,
         "weightkg": 135,
         "color": "Pink",
-        "rareness": 70,
+        "catchRate": 70,
         "stepsToHatch": 4096,
         "eggGroups": [
             "FIELD"
@@ -106729,7 +106734,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 3.2,
         "color": "Purple",
-        "rareness": 235,
+        "catchRate": 235,
         "stepsToHatch": 5120,
         "eggMoves": [
             "GRASSWHISTLE",
@@ -106840,7 +106845,7 @@ const Pokedex = {
         "heightm": 0.7,
         "weightkg": 8.2,
         "color": "Purple",
-        "rareness": 120,
+        "catchRate": 120,
         "stepsToHatch": 5120,
         "eggGroups": [
             "GRASS"
@@ -106945,7 +106950,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 21.4,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "GRASS"
@@ -107064,7 +107069,7 @@ const Pokedex = {
         "heightm": 0.1,
         "weightkg": 0.3,
         "color": "Green",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 5120,
         "eggMoves": [
             "ENDURE",
@@ -107194,7 +107199,7 @@ const Pokedex = {
         "heightm": 1.5,
         "weightkg": 76,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggMoves": [
             "EXTRASENSORY",
@@ -107317,7 +107322,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 82.8,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggMoves": [
             "SEISMICTOSS",
@@ -107400,7 +107405,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 12,
         "color": "Gray",
-        "rareness": 90,
+        "catchRate": 90,
         "stepsToHatch": 5120,
         "eggMoves": [
             "SPIKES",
@@ -107526,7 +107531,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 108,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggGroups": [
             "BUG",
@@ -107632,7 +107637,7 @@ const Pokedex = {
         "heightm": 0.5,
         "weightkg": 70,
         "color": "Brown",
-        "rareness": 140,
+        "catchRate": 140,
         "stepsToHatch": 4096,
         "eggMoves": [
             "AMNESIA",
@@ -107745,7 +107750,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 250,
         "color": "Brown",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 4096,
         "eggGroups": [
             "AMORPHOUS"
@@ -107828,7 +107833,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 1.2,
         "color": "Black",
-        "rareness": 60,
+        "catchRate": 60,
         "stepsToHatch": 4096,
         "eggMoves": [
             "ENDURE",
@@ -107941,7 +107946,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 120.5,
         "color": "Gray",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30720,
         "eggGroups": [
             "UNDISCOVERED"
@@ -108064,7 +108069,7 @@ const Pokedex = {
         "heightm": 2.3,
         "weightkg": 100.5,
         "color": "Gray",
-        "rareness": 3,
+        "catchRate": 3,
         "stepsToHatch": 30720,
         "eggGroups": [
             "UNDISCOVERED"
@@ -108684,7 +108689,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 0.3,
         "color": "Red",
-        "rareness": 30,
+        "catchRate": 30,
         "stepsToHatch": 6144,
         "eggGroups": [
             "MINERAL"
@@ -108810,7 +108815,7 @@ const Pokedex = {
         "heightm": 0.4,
         "weightkg": 19.9,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggMoves": [
             "CHARM",
@@ -108933,7 +108938,7 @@ const Pokedex = {
         "heightm": 2,
         "weightkg": 212,
         "color": "Red",
-        "rareness": 70,
+        "catchRate": 70,
         "stepsToHatch": 5120,
         "eggMoves": [
             "WIDEGUARD",
@@ -109049,7 +109054,7 @@ const Pokedex = {
         "heightm": 0.3,
         "weightkg": 3.3,
         "color": "Gray",
-        "rareness": 180,
+        "catchRate": 180,
         "stepsToHatch": 3072,
         "eggMoves": [
             "REVERSAL",
@@ -109274,7 +109279,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.7,
         "color": "Yellow",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 5120,
         "eggMoves": [
             "GRUDGE",
@@ -109559,7 +109564,7 @@ const Pokedex = {
         "heightm": 0.9,
         "weightkg": 19,
         "color": "Pink",
-        "rareness": 80,
+        "catchRate": 80,
         "stepsToHatch": 4096,
         "eggMoves": [
             "WATERPULSE",
@@ -109695,7 +109700,7 @@ const Pokedex = {
         "heightm": 3,
         "weightkg": 185,
         "color": "White",
-        "rareness": 70,
+        "catchRate": 70,
         "stepsToHatch": 5120,
         "eggMoves": [
             "HURRICANE",
@@ -109815,7 +109820,7 @@ const Pokedex = {
         "heightm": 3.9,
         "weightkg": 210,
         "color": "Green",
-        "rareness": 25,
+        "catchRate": 25,
         "stepsToHatch": 6144,
         "eggGroups": [
             "MINERAL"
@@ -109928,7 +109933,7 @@ const Pokedex = {
         "heightm": 0.6,
         "weightkg": 29.7,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10240,
         "eggMoves": [
             "COUNTER",
@@ -110051,7 +110056,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 47,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10240,
         "eggGroups": [
             "DRAGON"
@@ -110182,7 +110187,7 @@ const Pokedex = {
         "heightm": 1.6,
         "weightkg": 78.2,
         "color": "Gray",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 10240,
         "eggGroups": [
             "DRAGON"
@@ -110416,7 +110421,7 @@ const Pokedex = {
         "heightm": 1.8,
         "weightkg": 20.5,
         "color": "Yellow",
-        "rareness": 5,
+        "catchRate": 5,
         "stepsToHatch": 4096,
         "eggGroups": [
             "UNDISCOVERED"
@@ -110521,7 +110526,7 @@ const Pokedex = {
         "heightm": 1.2,
         "weightkg": 18.6,
         "color": "Pink",
-        "rareness": 5,
+        "catchRate": 5,
         "stepsToHatch": 4096,
         "eggGroups": [
             "UNDISCOVERED"
@@ -110634,7 +110639,7 @@ const Pokedex = {
         "heightm": 1.9,
         "weightkg": 45.5,
         "color": "Red",
-        "rareness": 5,
+        "catchRate": 5,
         "stepsToHatch": 4096,
         "eggGroups": [
             "UNDISCOVERED"
@@ -110741,7 +110746,7 @@ const Pokedex = {
         "heightm": 1.3,
         "weightkg": 21.2,
         "color": "Purple",
-        "rareness": 5,
+        "catchRate": 5,
         "stepsToHatch": 4096,
         "eggGroups": [
             "UNDISCOVERED"
@@ -110793,7 +110798,7 @@ const Pokedex = {
         "heightm": 0.2,
         "weightkg": 0.1,
         "color": "Blue",
-        "rareness": 10,
+        "catchRate": 10,
         "stepsToHatch": 30822,
         "eggGroups": [
             "UNDISCOVERED"
@@ -110845,7 +110850,7 @@ const Pokedex = {
         "heightm": 0.1,
         "weightkg": 999.9,
         "color": "Blue",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 30822,
         "eggGroups": [
             "UNDISCOVERED"
@@ -110961,7 +110966,7 @@ const Pokedex = {
         "heightm": 3.4,
         "weightkg": 230,
         "color": "White",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 30822,
         "eggGroups": [
             "UNDISCOVERED"
@@ -111080,7 +111085,7 @@ const Pokedex = {
         "heightm": 4,
         "weightkg": 120,
         "color": "Purple",
-        "rareness": 45,
+        "catchRate": 45,
         "stepsToHatch": 30822,
         "eggGroups": [
             "UNDISCOVERED"
@@ -112206,7 +112211,7 @@ const Pokedex = {
         "heightm": 1,
         "weightkg": 80.5,
         "color": "Gray",
-        "rareness": 5,
+        "catchRate": 5,
         "stepsToHatch": 30822,
         "eggGroups": [
             "UNDISCOVERED"

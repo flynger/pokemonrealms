@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements the pokemon class 
+*/
 import Pokedex from "./pokedex.js";
 import Showdown from "pokemon-showdown";
 const { Dex } = Showdown;

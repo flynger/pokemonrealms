@@ -1,0 +1,41 @@
+{
+    "grass": {
+        "morning": [
+            {
+                "species": "PIDGEY",
+                "chance": 0.50
+            },
+            {
+                "species": "HOPPIP",
+                "chance": 0.50
+            }
+        ],
+        "day": [
+            {
+                "species": "PIDGEY",
+                "chance": 0.05
+            },
+            {
+                "species": "RATTATA",
+                "chance": 0.05
+            },
+            {
+                "species": "DIGLETT",
+                "chance": 0.90
+            }
+        ],
+        "night": [
+            {
+                "species": "HOOTHOOT",
+                "chance": 0.50
+            },
+            {
+                "species": "RATTATA",
+                "chance": 0.50
+            }
+        ],
+        "frequency": 12,
+        "minLevel": 2,
+        "maxLevel": 5
+    }
+}

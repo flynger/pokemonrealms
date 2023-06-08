@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements lootbox functionality 
+*/
 import Pokemon from "./pokemon.js";
 Array.prototype.random = function () {
     return this[randomNumber(0, this.length - 1)];
@@ -159,8 +164,8 @@ var lootbox = {
     },
     legendary: {
         chances: {
-            rare: 0.25,
-            epic: 0.5,
+            rare: 0.20,
+            epic: 0.55,
             legendary: 0.2,
             mythic: 0.05
         }

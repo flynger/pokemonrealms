@@ -1,5 +1,5 @@
 /*
-
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
 
 This file implements the logic for the register page
 */

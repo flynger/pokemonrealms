@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file finishes game setup 
+*/
 const WIDTH = 1184, HEIGHT = 540, TILE_SIZE = 32;
 var ratio;
 var vminRatio;
@@ -89,9 +94,9 @@ async function setupGame() {
     app = new PIXI.Application(
         {
             resizeTo: gameDiv,
-            powerPreference: "high-performance",
+            // powerPreference: "high-performance",
             hello: true,
-            antialias: true,
+            // antialias: true,
             backgroundColor: 0x000000
         }
     );

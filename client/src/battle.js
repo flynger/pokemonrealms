@@ -1,7 +1,15 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements client-sided battle functionality 
+*/
 var Moves; // moves json fetched on setup
 
+// Setup UI for battle
 $(function () {
     // $('#battle-UI').show();
+    initBag();
+    $("#overlay-bag").hide();
     $("#overlay-switch").hide();
     $("#overlay-command").hide();
     $("#overlay-fight").hide();
@@ -29,12 +37,12 @@ function useMove(num) {
 function switchTo(slot) {
     socket.emit("switchInput", slot);
     $("#overlay-switch").hide();
-    isActiveFainted = false;
 }
 
 function useItem(item) {
     socket.emit("itemInput", item);
     $("overlay-switch").hide();
+
 }
 
 // function useItem(item) {
@@ -42,14 +50,14 @@ function useItem(item) {
 //     $("overlay-switch").hide();
 // }
 
+// Recieves data from the server and interprets it
 var battleOptions;
 var isBattleActive = false;
 var battleData = [];
 var textSpeed = 100; // 60
 var textInterval;
 var dialoguePlaying = false;
-var isActiveFainted = false;
-var forceSwitch = false;
+var waitMessage;
 function nextAction() {
     if (!dialoguePlaying) {
         $("#overlay-command").hide();
@@ -60,12 +68,15 @@ function nextAction() {
     clearInterval(textInterval);
     var nextData = battleData.shift();
 
+    // When a pokemon switches out
     if (nextData.switchOut) {
         let side = nextData.side;
         $(`#info-${side}`).hide();
         $(`#pokemon-${side}`).hide();
         $(`#pokemon-${side}`).attr("src", "");
     }
+
+    // When a pokemon switches in
     if (nextData.switchIn) {
         let pokemonData = nextData.switchIn.split(', ');
         let side = nextData.side;
@@ -77,7 +88,7 @@ function nextAction() {
         console.log(species, level, gender, shiny)
 
         let hpValues = nextData.switchInCondition.split('/');
-        // Should work for foe. Not yet tested
+        hpValues[1] = hpValues[1].split(" ")[0];
         $("#hpbar-" + nextData.side).width((+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] : 0) * 96);
 
         showPokemon(side, species, nickname, level, shiny);
@@ -85,19 +96,19 @@ function nextAction() {
         $(`#info-${nextData.side}`).show();
     }
     var letters = processFormatting(nextData.message, nextData.message.split(""));
+
+    // updates Hp Bar
     if ("damageHPTo" in nextData) {
         $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
         setTimeout(() => {
             if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
             else nextActionLogic(nextData);
         }, 666);
-        if (nextData.damageHPTo === 0) {
-            isActiveFainted = true;
-        }
     }
     else textInterval = createTextInterval(nextData, letters);
 }
 
+// Creates the text in battle
 function createTextInterval(nextData, letters) {
     $('#dialogue').html("");
     var index = 0;
@@ -122,17 +133,14 @@ function nextActionLogic(nextData) {
             clearPokemon("you");
             clearPokemon("foe");
         } else {
-            if (isActiveFainted) {
-                $("#overlay-command").hide();
-                $("#overlay-switch").show();
-                forceSwitch = true;
-            }
-            else {
+            if (battleOptions.forceSwitch) {
+                showSwitchButtons();
+            } else if (!battleOptions.wait) {
                 $("#overlay-command").show();
             }
             // $("#overlay-fight").show();
         }
-        $('#dialogue').html("");
+        $('#dialogue').html(waitMessage);
         dialoguePlaying = false;
     }
 }
@@ -153,7 +161,7 @@ function processFormatting(message, letters) {
 }
 
 function showPokemon(side, species, name, level, shiny) {
-    var imageUrl = `https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
+    var imageUrl = `res/pokemon/showdown_sprites/${side == "you" ? "back" : "front"}/${shiny ? "shiny/" : ""}${species}.gif`; //`https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
     $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
     if (side == "you") {
         $('#command-message').html("What will<br>" + name + " do?");
@@ -172,6 +180,54 @@ function clearPokemon(side) {
     $("#hpbar-" + side).css("transition-duration", "0.666s");
 }
 
+function initBag() {
+    var itemCategories = ["Poké Balls", "Medicine", "Berries", "Items"];
+    $("#bagHeader").html(`<div class="bag-tab selected"><span class="bag-tab-text">All</span></div>`);
+    for (let category of itemCategories) {
+        $("#bagHeader").append(`<div class="bag-tab"><span class="bag-tab-text">${category}</span></div>`);
+    }
+    $(".bag-tab").on("click", function () {
+        if (!$(this).hasClass("selected")) {
+            $(".bag-tab").removeClass("selected");
+            $(this).addClass("selected");
+            filterBagInvAndGenerate($(this).text());
+        }
+    });
+}
+
+function filterBagInvAndGenerate(selectedCategory) {
+    let categoryFilter = selectedCategory == "All" ? () => true : (item) => item.category == selectedCategory;
+    let filteredInv = inventoryArray.filter(categoryFilter);
+    generateBagGrid(filteredInv);
+}
+
+function generateBagGrid(items) {
+    $('#bag-grid').html("");
+    for (let item of items) {
+      let { id, quantity } = item;
+      $('#bag-grid').append(
+        `<div id="bag-item-${id}" class="bag-item">
+            <img class="bag-item-icon" src="res/items/${id}.png" />
+            <div class="bag-item-count">${quantity != 1 ? quantity : ""}</div>
+        </div>`
+      );
+      $(`#bag-item-${id}`).on('click', (e) => {
+        e.stopPropagation();
+        openItemContextMenu(e, item);
+      })
+    }
+  }
+
+function showBag() {
+    $("#overlay-bag").show();
+    $('#overlay-command').hide();
+}
+
+function cancelBag() {
+    $("#overlay-bag").hide();
+    $('#overlay-command').show();
+}
+
 function cancelFight() {
     $("#overlay-fight").hide();
     $('#overlay-command').show();
@@ -183,7 +239,6 @@ function cancelSwitch() {
 }
 
 function showSwitchButtons() {
-    $('#switch-cancel').hide();
     let party = battleOptions.side.pokemon;
 
     // Generate switch UI HTML
@@ -213,7 +268,7 @@ function showSwitchButtons() {
         };
         $(pkmn).show()
     }
-    if (!forceSwitch) {
+    if (!battleOptions.forceSwitch) {
         $('#switch-cancel').show();
     }
     else {
@@ -231,15 +286,16 @@ function runFromBattle() {
     $("#overlay-fight").hide();
 }
 
+// Updates the current pokemon's move options
 function updateMoveChoices() {
     for (let moveNum = 1; moveNum <= 4; moveNum++) {
-        if (battleOptions.active[0].moves.length >= moveNum) {
+        if (battleOptions.active && battleOptions.active[0].moves.length >= moveNum) {
             let moveData = battleOptions.active[0].moves[moveNum - 1];
             let moveType = Moves[moveData.id.toUpperCase()].type.toLowerCase();
             $("#move" + moveNum).show();
             $("#move" + moveNum).removeClass();
             $("#move" + moveNum).addClass(moveType);
-            $("#move" + moveNum).html(`<span class="movename">${moveData.move}</span><span class="movetype type ${moveType}"></span><span class="movepp">PP ${moveData.pp}/${moveData.maxpp}</span>`);
+            $("#move" + moveNum).html(`<span class="movename">${moveData.move}</span><span class="movetype type ${moveType}"></span><span class="movepp">${moveData.pp ? `PP ${moveData.pp}/${moveData.maxpp}` : ""}</span>`);
             // console.log($(".move1").addClass("water"));
         } else {
             $("#move" + moveNum).hide();
