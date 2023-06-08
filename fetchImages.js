@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file fetches and download pokemon sprites with pokemon showdown's api
+*/
 import Pokedex from "./src/pokedex.js";
 import { promises as fs } from 'fs';
 
