@@ -375,8 +375,15 @@ io.on("connection", (socket) => {
 
     socket.on("endBattle", () => {
         if (player.battle != null) {
-            if (player.battle.canRun) player.battle.run();
-            else socket.emit("battleData", [{ message: "You can't run from this battle!" }]);
+            // Make sure player can escape
+            if (!player.battle.canEscape(displayName)) {
+                let message = "You can't run from this battle!";
+                if (player.battle.canRun) message = "Your active Pokémon is trapped and cannot escape!";
+                socket.emit("battleData", [{ message }]);
+                return;
+            }
+            
+            player.battle.run();
         }
     });
 
@@ -388,7 +395,10 @@ io.on("connection", (socket) => {
 
     socket.on("switchInput", (switchNumber) => {
         if (player.battle != null) {
-            player.battle.switchTo(displayName, switchNumber);
+            // Make sure player can switch
+            if(player.battle.canSwitch(displayName))
+                player.battle.switchTo(displayName, switchNumber);
+            else socket.emit("battleData", [{ message: "Your active Pokémon is trapped and cannot switch!" }]);
         }
     });
 

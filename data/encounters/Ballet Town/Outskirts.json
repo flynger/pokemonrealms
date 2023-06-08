@@ -13,11 +13,15 @@
         "day": [
             {
                 "species": "PIDGEY",
-                "chance": 0.50
+                "chance": 0.05
             },
             {
                 "species": "RATTATA",
-                "chance": 0.50
+                "chance": 0.05
+            },
+            {
+                "species": "DIGLETT",
+                "chance": 0.90
             }
         ],
         "night": [
