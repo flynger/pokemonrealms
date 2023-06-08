@@ -7,6 +7,11 @@
 //     //avatar: string;
 //     team: string;
 // }
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements server-sided party functionality 
+*/
 import BattleAI from "./battleAI.js";
 import Inventory from "./inventory.js";
 import Items from "./items.js";

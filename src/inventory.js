@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements server-sided inventory functionality 
+*/
 import Items from "./items.js";
 export default class Inventory {
     constructor(player, items = {}) {

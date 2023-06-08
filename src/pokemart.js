@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements pokemart functionality 
+*/
 import Items from "./items.js"
 export default class Pokemart {
     static sellValue = 0.5;

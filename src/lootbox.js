@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements lootbox functionality 
+*/
 import Pokemon from "./pokemon.js";
 Array.prototype.random = function () {
     return this[randomNumber(0, this.length - 1)];

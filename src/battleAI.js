@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements the battleAI class 
+*/
 export default class BattleAI {
     constructor(party) {
         this.party = party;

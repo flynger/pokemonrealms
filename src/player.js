@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements server-sided player functionality 
+*/
 import Items from "./items.js";
 import Inventory from "./inventory.js";
 import Pokedex from "./pokedex.js";
