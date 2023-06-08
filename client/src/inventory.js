@@ -97,7 +97,7 @@ function generateGrid(items) {
     );
     $(`#inventory-item-${id}`).on('click', (e) => {
       e.stopPropagation();
-      openItemContextMenu(e, inventory[id]);
+      openItemContextMenu(e, item);
     })
   }
 }
@@ -138,14 +138,20 @@ function openItemContextMenu(e, item) {
       $('#item-context-menu').hide();
       openItemInfo(item);
     });
-  item.isUsable ? $("#item-context-menu-use").show().off().on("click", () => { openUseUI(item); }) : $("#item-context-menu-use").hide();
-  item.isHoldable ? $("#item-context-menu-give").show().off().on("click", () => { openGiveUI(item); })  : $("#item-context-menu-give").hide();
-  $("#item-context-menu-discard")
-    .off()
-    .on("click", () => {
-      $('#item-context-menu').hide();
-      openDiscardUI(item);
-    });
+  !isBattleActive && item.isUsable ? $("#item-context-menu-use").show().off().on("click", () => { openUseUI(item); }) : $("#item-context-menu-use").hide();
+  isBattleActive && item.isUsableInBattle ? $("#item-context-menu-use").show().off().on("click", () => { useItem(item.id); $("#overlay-bag").hide(); }) : $("#item-context-menu-use").hide();
+  if (!isBattleActive) {
+    item.isHoldable ? $("#item-context-menu-give").show().off().on("click", () => { openGiveUI(item); }) : $("#item-context-menu-give").hide();
+    $("#item-context-menu-discard")
+      .off()
+      .on("click", () => {
+        $('#item-context-menu').hide();
+        openDiscardUI(item);
+      });
+  } else {
+    $("#item-context-menu-discard").hide();
+    $("#item-context-menu-give").hide();
+  }
 }
 
 function openItemInfo(item) {

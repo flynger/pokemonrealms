@@ -41,6 +41,7 @@ function switchTo(slot) {
 function useItem(item) {
     socket.emit("itemInput", item);
     $("overlay-switch").hide();
+
 }
 
 // function useItem(item) {
@@ -172,20 +173,42 @@ function clearPokemon(side) {
 }
 
 function initBag() {
-    var selectedCategory = "All";
     var itemCategories = ["Poké Balls", "Medicine", "Berries", "Items"];
+    $("#bagHeader").html(`<div class="bag-tab selected"><span class="bag-tab-text">All</span></div>`);
     for (let category of itemCategories) {
         $("#bagHeader").append(`<div class="bag-tab"><span class="bag-tab-text">${category}</span></div>`);
     }
     $(".bag-tab").on("click", function () {
         if (!$(this).hasClass("selected")) {
             $(".bag-tab").removeClass("selected");
-            $(this).addClass("selected")
-            selectedCategory = $(this).text();
-            filterInvAndGenerate();
+            $(this).addClass("selected");
+            filterBagInvAndGenerate($(this).text());
         }
     });
 }
+
+function filterBagInvAndGenerate(selectedCategory) {
+    let categoryFilter = selectedCategory == "All" ? () => true : (item) => item.category == selectedCategory;
+    let filteredInv = inventoryArray.filter(categoryFilter);
+    generateBagGrid(filteredInv);
+}
+
+function generateBagGrid(items) {
+    $('#bag-grid').html("");
+    for (let item of items) {
+      let { id, quantity } = item;
+      $('#bag-grid').append(
+        `<div id="bag-item-${id}" class="bag-item">
+            <img class="bag-item-icon" src="res/items/${id}.png" />
+            <div class="bag-item-count">${quantity != 1 ? quantity : ""}</div>
+        </div>`
+      );
+      $(`#bag-item-${id}`).on('click', (e) => {
+        e.stopPropagation();
+        openItemContextMenu(e, item);
+      })
+    }
+  }
 
 function showBag() {
     $("#overlay-bag").show();

@@ -182,6 +182,14 @@
   display: none;
 }
 
+#item-context-menu {
+  z-index: 101;
+}
+
+#item-info {
+  z-index: 101;
+}
+
 .popup-container {
   display: none;
   padding: 0.7% 1%;

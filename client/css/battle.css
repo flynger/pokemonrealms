@@ -83,19 +83,18 @@
     /* transform: skew(-20deg); */
 }
 
-.bag.selected {
-    background-color: rgba(44, 44, 44);
-    ;
+.bag-tab.selected {
+    background-color: rgba(55, 55, 55);
     /* border: calc(var(--scale) * 1px) solid rgba(77, 77, 77, 0.4); */
 }
 
-.bag-tag:not(.slected) {
+.bag-tab:not(.selected) {
     background-color: rgb(92, 92, 92);
 }
 
 .bag-tab:hover {
     cursor: pointer;
-    background-color: rgb(55, 55, 55);
+    background-color: rgb(62, 62, 62);
 }
 
 .bag-tab:hover:not(.selected) {

@@ -58,13 +58,7 @@
                 "chance": 0.5
             }
         ],
-        "drops": [
-            {
-                "id": "pokeball",
-                "quantity": 1,
-                "chance": 1
-            }
-        ]
+        "drops": []
     },
     "METAPOD": {
         "heldItem": [],

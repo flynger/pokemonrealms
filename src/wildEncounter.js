@@ -1,23 +1,44 @@
 import SingleBattle from "./singleBattle.js";
 import Party from "./party.js";
-import { ItemData } from "./pokedex.js";
+import Pokedex, { ItemData } from "./pokedex.js";
+import Items from "./items.js";
 
 export default class WildEncounter extends SingleBattle {
     static globalDropPool = [
         {
             "id": "pokeball",
             "quantity": 1,
-            "chance": 0.30
+            "chance": 0.15
         },
         {
             "id": "pokeball",
             "quantity": 1,
-            "chance": 0.30
+            "chance": 0.15
         },
         {
             "id": "pokeball",
+            "quantity": 3,
+            "chance": 0.10
+        },
+        {
+            "id": "greatball",
             "quantity": 1,
-            "chance": 0.30
+            "chance": 0.03
+        },
+        {
+            "id": "greatball",
+            "quantity": 1,
+            "chance": 0.03
+        },
+        {
+            "id": "ultraball",
+            "quantity": 1,
+            "chance": 0.02
+        },
+        {
+            "id": "ultraball",
+            "quantity": 1,
+            "chance": 0.02
         },
         {
             "id": "potion",
@@ -25,39 +46,29 @@ export default class WildEncounter extends SingleBattle {
             "chance": 0.25
         },
         {
-            "id": "aguavberry",
-            "quantity": 3,
+            "id": "potion",
+            "quantity": 1,
+            "chance": 0.25
+        },
+        {
+            "id": "superpotion",
+            "quantity": 1,
             "chance": 0.15
         },
         {
-            "id": "greatball",
+            "id": "hyperpotion",
             "quantity": 1,
-            "chance": 0.1
+            "chance": 0.10
         },
         {
-            "id": "ultraball",
+            "id": "maxpotion",
             "quantity": 1,
             "chance": 0.05
         },
         {
-            "id": "firestone",
-            "quantity": 1,
-            "chance": 0.025
-        },
-        {
-            "id": "waterstone",
-            "quantity": 1,
-            "chance": 0.025
-        },
-        {
-            "id": "thunderstone",
-            "quantity": 1,
-            "chance": 0.025
-        },
-        {
             "id": "masterball",
             "quantity": 1,
-            "chance": 0.005
+            "chance": 0.01
         }
     ];
     text = {
@@ -113,7 +124,8 @@ export default class WildEncounter extends SingleBattle {
             let rng = Math.random();
             if (rng < drop.chance) {
                 this.player.inventory.addItem(drop.id, drop.quantity);
-                console.log(`Item drop: ${drop.id} x${drop.quantity}`);
+                this.postTurnData.push({ message: `Wild ${Pokedex[this.encounter.species].name} dropped ${drop.quantity}x ${Items[drop.id].name}!`, battleOver: true });
+                // console.log(`Item drop: ${drop.id} x${drop.quantity}`);
             }
         }
     }

@@ -35,6 +35,7 @@ export default class SingleBattle {
         this.stream = this.party1.stream = this.party2.stream = new BattleStream();
 
         this.preTurnData = [];
+        this.postTurnData = [];
         (async () => {
             for await (const output of this.stream) {
                 let outputArray = output.split("\n");
@@ -45,6 +46,7 @@ export default class SingleBattle {
                         this.party1.data = this.party1.nextData;
                         this.party2.data = this.party2.nextData;
                         this.preTurnData = [];
+                        this.postTurnData = [];
                         break;
                     case "sideupdate":
                         let playerId = outputArray[0][1];
@@ -467,8 +469,8 @@ export default class SingleBattle {
             if (message != " " || Object.keys(battleDataProperties).length > 0) {
                 battleData.push({
                     message,
-                    ...battleDataProperties
-                });
+                    ...battleDataProperties,
+                }, ...this.postTurnData);
             }
             //console.log(line + " ".repeat(70 >= line.length ? 70 - line.length : 0) + " ===>      " + message); // formatting to compare old output to our new, processed output
         }
