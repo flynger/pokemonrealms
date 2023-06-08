@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements inventory functionality 
+*/
 var inventory;
 var inventoryArray;
 var selectedCategory = "All";

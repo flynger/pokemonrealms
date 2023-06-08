@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements pokemon summary functionality 
+*/
 function initSummaryUI() {
   $("#summaryBtn").on("click", (e) => {
     $("#pokemon-summary").toggle();

@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements tileset functionality 
+*/
 let tilesetList = ["kyledove", "gen4hgss_1", "gen4hgss_2", "wilsonscarloxy_outdoor", "wilsonscarloxy_indoor"];
 var tilesets = {};
 async function initializeTileSpritesheets() {

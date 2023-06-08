@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements main collider functionality 
+*/
 class collider {
     static colliders = {};
     constructor(x, y, width, height) {

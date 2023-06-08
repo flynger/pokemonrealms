@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements client-sided battle functionality 
+*/
 var Moves; // moves json fetched on setup
 
 $(function () {

@@ -1,3 +1,8 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file implements pokemon party functionality 
+*/
 var dragSrcEl;
 function initPartyUI() {
     $('.party-mon-div').on('dragstart', function (e) {
