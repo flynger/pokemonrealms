@@ -64,6 +64,7 @@ function setupSocket() {
         gameDiv.prepend(app.view);
     });
 
+    // loads the players on the map
     socket.on("playerData", (name, playersArray) => {
         if (!firstJoin) window.location.reload();
         // add fix for reconnect properly instead of jank reload
@@ -78,6 +79,7 @@ function setupSocket() {
         $('#message').modal('hide');
     });
 
+    // updates the player's direction, coordinates, and sprites
     socket.on("playerMovement", (data) => {
         let { name, x, y, facing, currentFrame } = data;
         if (!players[name]) new player(name, "red", x, y, facing);
@@ -89,6 +91,7 @@ function setupSocket() {
         players[name].headSprite.currentFrame = players[name].bodySprite.currentFrame = currentFrame;
     });
 
+    // Removes other players when they disconnect or move to another map
     socket.on("playerDisconnect", (name) => {
         // when a player disconnects
         if (name in players) {
@@ -101,6 +104,7 @@ function setupSocket() {
         }
     });
 
+    // Shows UI for trade request and emits a trade request to the user
     socket.on("tradeRequest", (user) => {
         $('#message').modal({ backdrop: 'static' });
         $('#message').modal('show');
@@ -121,6 +125,7 @@ function setupSocket() {
         $('#grayModalBtn').show();
     });
 
+    // debug commands
     socket.on("startTrade", (user) => {
         console.log(`Starting trade with ${user}...`);
     });
@@ -134,6 +139,7 @@ function setupSocket() {
         console.log(`Succesfully traded`)
     });
 
+    // Shows UI for battle request and emits a battle request to the user
     socket.on("battleRequest", (user) => {
         $('#message').modal({ backdrop: 'static' });
         $('#message').modal('show');
@@ -152,6 +158,7 @@ function setupSocket() {
         $('#grayModalBtn').show();
     });
 
+    // Shows battle UI on start of battle
     socket.on("startBattle", (showWaitMessage) => {
         $("#info-you").hide();
         $("#info-foe").hide();
@@ -163,18 +170,21 @@ function setupSocket() {
         app.view.style.filter = "blur(0.2em)";
     });
 
+    // Recieves battle data
     socket.on("battleData", (newBattleData) => {
         console.log({ newBattleData });
         battleData.push(...newBattleData);
         if (!dialoguePlaying) nextAction();
     });
 
+    // Shows battle options
     socket.on("battleOptions", (newBattleOptions) => {
         console.log({ newBattleOptions });
         battleOptions = newBattleOptions;
         updateMoveChoices();
     });
 
+    // End of battle
     socket.on("endBattle", (endData) => {
         battleData.push(...endData);
         if (!dialoguePlaying) nextAction();
@@ -192,6 +202,7 @@ function setupSocket() {
         console.log({ newBalance });
     });
 
+    // Calls functions to update player inventory
     socket.on("inventoryUpdate", (newInventory) => {
         console.log({ newInventory });
         inventory = newInventory;
@@ -199,6 +210,7 @@ function setupSocket() {
         filterInvAndGenerate();
     });
 
+    // Calls function to update party UI
     socket.on("partyUpdate", (newParty) => {
         party = newParty;
         updatePartyMembers();
@@ -208,6 +220,7 @@ function setupSocket() {
         latency = ms;
     });
 
+    // Message on disconnect from server
     socket.on("disconnect", (reason) => {
         $('#message').modal({ backdrop: 'static', keyboard: false });
         $('#message').modal('show');
@@ -226,6 +239,8 @@ function setupSocket() {
         // }
     });
 }
+
+// Sends shop data and actions to server
 function addBal(amount) {
     socket.emit("addBal", amount);
 }
@@ -241,6 +256,8 @@ function buyItem(id, quantity) {
 function sellItem(id, quantity) {
     socket.emit("sellItem", id, quantity);
 }
+
+// Sends battle and trade data and requests
 function sendBattleRequest(user) {
     socket.emit("battleRequest", user);
 }
@@ -250,6 +267,8 @@ function sendTradeRequest(user) {
 function acceptTrade(data) {
     socket.emit("acceptTrade", data);
 }
+
+// Sends updated party information
 function swapPartySlots(slot1, slot2) {
     socket.emit("swapPartySlots", slot1, slot2);
 }

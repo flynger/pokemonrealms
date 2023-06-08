@@ -4,6 +4,7 @@ Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
 This file implements the logic for the home page
 */
 
+// Animates hero image on home page
 $(function () {
     var x = 0;
     var y = 0;

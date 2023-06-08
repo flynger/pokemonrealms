@@ -12,6 +12,7 @@ var Input = {
     SPACE: false
 }
 //function createInputHandlers() {
+// Event handlers that sets input of player on keydown
 function keyDownHandler(event) {
     if (event.target == document.body) {
         if (event.keyCode === 39 || event.keyCode === 68) {
@@ -32,6 +33,8 @@ function keyDownHandler(event) {
         }
     }
 }
+
+// Event handlers that clears input of player on keyup
 function keyUpHandler(event) {
     if (event.keyCode === 39 || event.keyCode === 68) {
         Input.RIGHT = false;

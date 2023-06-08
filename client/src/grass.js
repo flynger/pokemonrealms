@@ -7,6 +7,7 @@ class grass {
     static grasses = {};
     static collisionDepth = 8;
 
+    // Collision when player touches grass
     static collisionOccurred(collision) {
         return collision != null && collision.depth >= this.collisionDepth;
     }
@@ -24,6 +25,7 @@ class grass {
         Matter.Body.setStatic(this.rigidBody, true);
     }
 
+    // Sends server information about player entering grass
     step() {
         for (let name in players) {
             let passer = players[name];

@@ -121,8 +121,10 @@ function createTextInterval(nextData, letters) {
     }, 1000 / textSpeed);
 }
 
+// Changes UI for forceswitches, battle end, and when dialogue ends
 function nextActionLogic(nextData) {
     if (battleData.length > 0) {
+        // Either nextAction called when text is not present
         nextAction();
     } else {
         if (nextData.battleOver) {
@@ -145,6 +147,7 @@ function nextActionLogic(nextData) {
     }
 }
 
+// Processes dialogue messages in battle
 function processFormatting(message, letters) {
     if (message.includes("**")) {
         let b1 = message.indexOf("**");
@@ -160,6 +163,7 @@ function processFormatting(message, letters) {
     return letters;
 }
 
+// Updates the pokemon info and sprites when pokemon switch in
 function showPokemon(side, species, name, level, shiny) {
     var imageUrl = `res/pokemon/showdown_sprites/${side == "you" ? "back" : "front"}/${shiny ? "shiny/" : ""}${species}.gif`; //`https://play.pokemonshowdown.com/sprites/gen5ani${side == "you" ? "-back" : ""}${shiny ? "-shiny" : ""}/${species}.gif`;
     $("#pokemon-" + side).attr("src", imageUrl); // Set the image source URL
@@ -171,6 +175,7 @@ function showPokemon(side, species, name, level, shiny) {
     $('#lvl-text-' + side).html(level);
 }
 
+// Updates the pokemon info and sprites when pokemon switch out
 function clearPokemon(side) {
     $("#pokemon-" + side).attr("src", "");
     $('#pokemon-name-' + side).html("");
@@ -180,6 +185,7 @@ function clearPokemon(side) {
     $("#hpbar-" + side).css("transition-duration", "0.666s");
 }
 
+// Creates UI and event listeners for each tab of the bag
 function initBag() {
     var itemCategories = ["Poké Balls", "Medicine", "Berries", "Items"];
     $("#bagHeader").html(`<div class="bag-tab selected"><span class="bag-tab-text">All</span></div>`);
@@ -195,12 +201,14 @@ function initBag() {
     });
 }
 
+// Filter for different categories in bag
 function filterBagInvAndGenerate(selectedCategory) {
     let categoryFilter = selectedCategory == "All" ? () => true : (item) => item.category == selectedCategory;
     let filteredInv = inventoryArray.filter(categoryFilter);
     generateBagGrid(filteredInv);
 }
 
+// Creates UI and event listeners for each bag item
 function generateBagGrid(items) {
     $('#bag-grid').html("");
     for (let item of items) {
@@ -218,6 +226,7 @@ function generateBagGrid(items) {
     }
   }
 
+// functions for showing and hiding different actions in battle
 function showBag() {
     $("#overlay-bag").show();
     $('#overlay-command').hide();
@@ -238,10 +247,11 @@ function cancelSwitch() {
     $('#overlay-command').show();
 }
 
+// Generates updated information and UI for switch action
 function showSwitchButtons() {
     let party = battleOptions.side.pokemon;
 
-    // Generate switch UI HTML
+    // Gets information of pokemon and generate switch UI HTML
     for (let i = 0; i < 6; i++) {
         let pkmn = `#pkmn${+i + 1}`;
         if (!party[i]) { $(pkmn).hide(); continue }

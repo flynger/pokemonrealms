@@ -29,6 +29,7 @@ const textContainer = new PIXI.Container();
 const smoothingFrames = 15; // The number of frames to use for smoothing
 var smoothedFrameDuration = 0; // The smoothed frame duration
 
+// Draw loop that updates the game and the hp numbers in battle
 function draw(deltaTime) {
     // graphics.clear();
     smoothedFrameDuration = (smoothedFrameDuration * (smoothingFrames - 1) + deltaTime) / smoothingFrames;
@@ -46,6 +47,8 @@ function draw(deltaTime) {
     for (let name in players) {
         players[name].endFrame();
     }
+    
+    // Updates number values of hp
     if (isBattleActive && battleOptions) {
         let hpBarYouWidth = $('#hpbar-you').width();
         //TODO
@@ -71,6 +74,7 @@ function draw(deltaTime) {
     }
 }
 
+// Creates map (Make sure this comment is correct)
 function makeHorizontalSheet(name, source, width, height, scale, horizontal_tiles, vertical_tiles, h_padding = 0, v_padding = 0, createAnimations = true, v_cutoff_bottom = 0, v_cutoff_top = 0) {
     let sheet_data = {
         "frames": {},

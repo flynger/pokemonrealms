@@ -10,6 +10,7 @@ $(document).ready(function () {
         $("#dialog-UI").hide();
     });
 
+    // Prints the text individually to simulate talking
     function printText() {
         const delay = 30; // Delay in milliseconds between each character
         const dialogContent = document.getElementById('dialog-content');

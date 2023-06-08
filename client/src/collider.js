@@ -5,6 +5,8 @@ This file implements main collider functionality
 */
 class collider {
     static colliders = {};
+
+    // constructor for collider class: creates rigidbodies adds them to matter.js
     constructor(x, y, width, height) {
         colliders[[x, y]] = this;
         this.x = x;
@@ -18,6 +20,7 @@ class collider {
         // Matter.Body.setMass(this.rigidBody, 100);
     }
 
+    // Sets player position away 1 coordinate value when player collision with object
     collide(passer) {
         let leftCollided = collide(passer.getLeftHitbox(), this);
         let rightCollided = collide(passer.getRightHitbox(), this);
