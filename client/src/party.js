@@ -4,6 +4,8 @@ Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
 This file implements pokemon party functionality 
 */
 var dragSrcEl;
+
+// Creates event listeners for dragging
 function initPartyUI() {
     $('.party-mon-div').on('dragstart', function (e) {
         this.style.opacity = '0.4';
@@ -36,6 +38,7 @@ function initPartyUI() {
     });
 }
 
+// Updates UI for party
 function updatePartyMembers() {
     for (let i = 0; i < 6; i++) {
         let num = i + 1;

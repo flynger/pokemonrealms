@@ -6,6 +6,7 @@ This file implements logic for the login page
 
 // handles login-page submissions
 $(function () {
+    // Event listener for submissions and redirects when logged in
     $('#login-form').on('submit', function (e) {
         e.preventDefault();
         let data = $("#login-form").serialize();

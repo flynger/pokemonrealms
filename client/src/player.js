@@ -4,6 +4,7 @@ Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
 This file defines the player class 
 */
 class player {
+    // Physics for player
     static walkSpeed = 1.2;
     static runSpeed = 1.8;
     static friction = 0.15;
@@ -147,6 +148,7 @@ class player {
         }
     }
 
+    // Context menu that pops up when another player is clicked
     onClick(e) {
         // Handle sprite click event
         $('#player-context-menu').hide();
@@ -221,7 +223,7 @@ class player {
         textContainer.addChild(this.nameTagBack);
         textContainer.addChild(this.nameTagText);
     }
-
+    
     checkForInput() {
         // set player speed
         if (!this.busy && (Input.RIGHT != Input.LEFT || Input.UP != Input.DOWN)) {

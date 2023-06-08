@@ -5,6 +5,7 @@ This file implements npc functionality
 */
 class npc {
     static npcs = {};
+    // constructor for npcs: creates rigidbody, sprite, and name
     constructor(name, avatar, x, y, facing = "down") {
         npcs[name] = this;
         this.name = name;
@@ -43,6 +44,7 @@ class npc {
         this.nameTagBack.zIndex = this.nameTagText.zIndex = this.headSprite.y;
     }
 
+    // Creates rigidbody for npc
     createRigidBody(x, y) {
         this.rigidBody = Matter.Bodies.rectangle(x + 16, y + player.rigidBodyOffset + player.rigidBodyHeight / 2, 32, player.rigidBodyHeight);
         this.rigidBody.frictionAir = 0;
@@ -55,6 +57,7 @@ class npc {
         Matter.Composite.add(engine.world, this.rigidBody);
     }
 
+    // Creates sprites for npc
     createSprites() {
         this.sprites = player.playerSprites[this.avatar + "_head"];
         this.bodySprites = player.playerSprites[this.avatar + "_body"];
@@ -68,6 +71,7 @@ class npc {
         gameContainer.addChild(this.headSprite);
     }
 
+    // Updates sprites for npc
     updateSprite() {
         this.headSprite.x = this.position.x - 16;
         this.headSprite.y = this.position.y - player.rigidBodyOffset - player.rigidBodyHeight / 2;
@@ -98,6 +102,7 @@ class npc {
         this.bodySprite.textures = this.bodySprites.animations[this.facing];
     }
 
+    // Creates nametag for npc
     renderName() {
         if (this.nameTagText) {
             this.nameTagText.destroy();

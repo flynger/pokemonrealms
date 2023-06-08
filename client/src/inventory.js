@@ -10,6 +10,7 @@ var itemCategories = ["Poké Balls", "Medicine", "Berries", "Items"];
 function initInventoryUI() {
   // add click event listener to the inventory btton to toggle the UI
   console.log("initializing inventoryUI");
+  // creates UI and event listeners for inventory
   for (let category of itemCategories) {
     $("#inventoryHeader").append(`<div class="inventory-tab"><span class="inventory-tab-text">${category}</span></div>`);
   }
@@ -67,12 +68,14 @@ function initInventoryUI() {
   // });
 }
 
+// Filter for different categories of items
 function filterInvAndGenerate() {
   let categoryFilter = selectedCategory == "All" ? () => true : (item) => item.category == selectedCategory;
   let filteredInv = inventoryArray.filter(categoryFilter);
   generateGrid(filteredInv);
 }
 
+// Updates inventory of player
 function updateInventory() {
   inventoryArray = Object.values(inventory).map((item) => Object.assign(item, Items[item.id])).sort((itemA, itemB) => {
     if (itemA.category != itemB.category) return itemCategories.indexOf(itemA.category) - itemCategories.indexOf(itemB.category);
@@ -84,7 +87,7 @@ function updateInventory() {
   //   //addItem(item);
   // });
 }
-
+// Creates grid and item UI for inventory
 function generateGrid(items) {
   $('#inventory-grid').html("");
   for (let item of items) {
@@ -126,6 +129,7 @@ function generateGrid(items) {
 //   $('#item-list').append(newItem);
 // }
 
+// Context menu with actions when an item is clicked
 function openItemContextMenu(e, item) {
   $('#item-context-menu')
     .css("top", e.clientY - 56)
@@ -154,6 +158,7 @@ function openItemContextMenu(e, item) {
   }
 }
 
+// Info of item: name, description, and image
 function openItemInfo(item) {
   $('#item-info').show();
   $('#item-info-image').attr('src', `res/items/${item.id}.png`);
@@ -161,6 +166,7 @@ function openItemInfo(item) {
   $('#item-info-description').text(item.desc);
 }
 
+// Creates use item UI
 function openUseUI(item) {
   $('#item-use-select-menu').show();
   $('#item-use-select-header').text(`Use ${item.name} on?`);
@@ -179,6 +185,7 @@ function openUseUI(item) {
     });
 }
 
+// Creates give item UI
 function openGiveUI(item) {
   $('#item-give-select-menu').show();
   $('#item-give-select-header').text(`Give ${item.name} to?`);
@@ -197,6 +204,7 @@ function openGiveUI(item) {
     });
 }
 
+// Creates discard item UI
 function openDiscardUI(item) {
   let { id, quantity, name } = item;
   $("#discard-item-name").html(name);
