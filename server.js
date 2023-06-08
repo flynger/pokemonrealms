@@ -1,3 +1,10 @@
+/*
+Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+
+This file starts the server, implements the other modules, and interacts with and serves the clients.
+*/
+
+// changing Array prototype methods
 Array.prototype.remove = function (elem) {
     this.splice(this.indexOf(elem), 1);
 }
@@ -32,11 +39,6 @@ import WildEncounter from "./src/wildEncounter.js";
 import Pokemart from "./src/pokemart.js";
 import Items from "./src/items.js";
 import Trade from "./src/trade.js";
-// const cookieParser = require("./node_modules/cookie-parser");
-// const jsonfile = require("./node_modules/jsonfile");
-// const sessions = require("./node_modules/express-session");
-// const { uniqueNamesGenerator, adjectives, /*colors,*/ animals } = require("./node_modules/unique-names-generator");
-// require('locus');
 
 // server setup
 const app = express();
@@ -77,23 +79,14 @@ app.get("/play", (req, res) => {
 });
 app.get("/login", (req, res) => {
     // send client login page if not logged in
-    // if (!req.session.username) {
     res.sendFile('login.html', { root: './client' });
-
-    // redirect client to game page if logged in
-    // else res.redirect("/game");
 });
 app.post("/login", (req, res) => {
     // handle login request and send response
     res.send(LoginHandler.loginAccount(req, res));
 });
 app.get("/register", (req, res) => {
-    // send client register page if not logged in
-    // if (!req.session.username) {
     res.sendFile('register.html', { root: './client' });
-    // }
-    // redirect client to game page if logged in
-    // else res.redirect("/game");
 });
 app.post("/register", (req, res) => {
     // handle register request and send response
@@ -106,11 +99,6 @@ app.get("/home", (req, res) => {
 app.get("/game", (req, res) => {
     // sends the home page when requested
     res.send('game.html', { root: './client' });
-    //if (!req.session.username) {
-    // res.sendFile('login.html', { root: './public' });
-    //}
-    // redirect client to game page if logged in
-    //else res.redirect("/game");
 });
 app.get("/logout", (req, res) => {
     // logout user if logged in

@@ -10,11 +10,6 @@ import { AbilitiesText } from 'pokemon-showdown/.data-dist/text/abilities.js';
 import { players } from './loginHandler.js';
 import Showdown from 'pokemon-showdown';
 const { BattleStream, getPlayerStreams, Dex } = Showdown;
-// import * as readline from 'node:readline';
-// const rl = readline.createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
 
 export default class SingleBattle {
     text = {
