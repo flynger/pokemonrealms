@@ -327,10 +327,10 @@
 
 .pokemon.foe {
     position: absolute;
-    top: 3%;
-    right: 3%;
+    top: -9%;
+    right: -4%;
     width: calc(256px * var(--scale));
-    height: calc(192px * var(--scale));
+    height: calc(256px * var(--scale));
     overflow: hidden;
   }
   
@@ -339,7 +339,7 @@
     scale: calc(2 * var(--scale));
     transform-origin: bottom center;
     bottom: 0%;
-    left: 50%;
+    left: 25%;
     user-select: none;
     transition: 1s;
   }
@@ -349,17 +349,17 @@
       transform: translateY(0%);
     }
     100% {
-      transform: translateY(100%);
+      transform: translateY(200%);
     }
   }
   
   .pokemon.foe.sink img {
-    animation: sink .8s forwards;
+    animation: sink 1.2s forwards;
   }
 
   /*just for debug*/
   .pokemon.foe:hover img {
-    animation: sink .8s forwards;
+    animation: sink 1.2s forwards;
   }
 
 .databox.foe {
