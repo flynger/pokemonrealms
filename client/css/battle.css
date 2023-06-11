@@ -327,22 +327,40 @@
 
 .pokemon.foe {
     position: absolute;
-    top: 15%;
-    /* 25% */
-    right: 0%;
+    top: 3%;
+    right: 3%;
     width: calc(256px * var(--scale));
-    height: calc(128px * var(--scale));
-}
-
-.pokemon.foe img {
+    height: calc(192px * var(--scale));
+    overflow: hidden;
+  }
+  
+  .pokemon.foe img {
     position: absolute;
     scale: calc(2 * var(--scale));
-    transform-origin: left bottom;
+    transform-origin: bottom center;
     bottom: 0%;
     left: 50%;
-    transform: translate(-50%, 0%);
     user-select: none;
-}
+    transition: 1s;
+  }
+  
+  @keyframes sink {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  
+  .pokemon.foe.sink img {
+    animation: sink .8s forwards;
+  }
+
+  /*just for debug*/
+  .pokemon.foe:hover img {
+    animation: sink .8s forwards;
+  }
 
 .databox.foe {
     position: absolute;

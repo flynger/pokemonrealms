@@ -38,6 +38,7 @@ export default class Player {
         // this.inventory.addItem("greatball", 10);
         // this.inventory.addItem("ultraball", 5);
         this.inventory.addItem("potion", 3);
+        this.inventory.addItem("masterball", 99);
         // this.inventory.addItem("superpotion", 3);
         // this.inventory.addItem("hyperpotion", 3);
         // this.inventory.addItem("maxpotion", 3);
