@@ -45,6 +45,7 @@ function useItem(item) {
 
 }
 
+
 // function useItem(item) {
 //     socket.emit("useItem", item);
 //     $("overlay-switch").hide();
@@ -58,6 +59,7 @@ var textSpeed = 100; // 60
 var textInterval;
 var dialoguePlaying = false;
 var waitMessage;
+var nextData;
 function nextAction() {
     if (!dialoguePlaying) {
         $("#overlay-command").hide();
@@ -66,7 +68,7 @@ function nextAction() {
         dialoguePlaying = true;
     }
     clearInterval(textInterval);
-    var nextData = battleData.shift();
+    nextData = battleData.shift();
 
     // When a pokemon switches out
     if (nextData.switchOut) {
@@ -112,6 +114,7 @@ function nextAction() {
     else textInterval = createTextInterval(nextData, letters);
 }
 
+
 // Creates the text in battle
 function createTextInterval(nextData, letters) {
     $('#dialogue').html("");
@@ -123,6 +126,12 @@ function createTextInterval(nextData, letters) {
             setTimeout(nextActionLogic, 800, nextData);
         }
     }, 1000 / textSpeed);
+}
+
+//skips the text printing animation
+function skipText() {
+    clearInterval(textInterval);
+    $('#dialogue'.html(nextData.message));
 }
 
 // Changes UI for forceswitches, battle end, and when dialogue ends
