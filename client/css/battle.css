@@ -332,9 +332,9 @@
     width: calc(256px * var(--scale));
     height: calc(256px * var(--scale));
     overflow: hidden;
-  }
-  
-  .pokemon.foe img {
+}
+
+.pokemon.foe img {
     position: absolute;
     scale: calc(2 * var(--scale));
     transform-origin: bottom center;
@@ -342,25 +342,53 @@
     left: 25%;
     user-select: none;
     transition: 1s;
-  }
-  
-  @keyframes sink {
-    0% {
-      transform: translateY(0%);
-    }
-    100% {
-      transform: translateY(200%);
-    }
-  }
-  
-  .pokemon.foe.sink img {
-    animation: sink 1.2s forwards;
-  }
+}
 
-  /*just for debug*/
-  .pokemon.foe:hover img {
+@keyframes sink {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(200%);
+    }
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.sink {
     animation: sink 1.2s forwards;
-  }
+}
+
+.flash {
+    animation-name: flash;
+    animation-duration: 0.2s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: 3;
+}
+
+/*just for debug*/
+.pokemon.foe:hover {
+    /* animation: sink 1.2s forwards; */
+
+
+    /* animation-name: flash;
+    animation-duration: 0.2s;
+    animation-timing-function: steps(1);
+    animation-iteration-count: 3; */
+}
 
 .databox.foe {
     position: absolute;

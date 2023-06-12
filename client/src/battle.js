@@ -100,6 +100,10 @@ function nextAction() {
     // updates Hp Bar
     if ("damageHPTo" in nextData) {
         $("#hpbar-" + nextData.side).width(nextData.damageHPTo / 100 * 96);
+        $("#pokemon-" + nextData.side).addClass('flash');
+        setTimeout(() => {
+            $("#pokemon-" + nextData.side).removeClass('flash');
+        }, 600);
         setTimeout(() => {
             if (nextData.message != " ") textInterval = createTextInterval(nextData, letters)
             else nextActionLogic(nextData);
