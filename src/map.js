@@ -86,8 +86,8 @@ export default class Map {
             submap: this.submapName
         }
         player.setLocation(data.x, data.y, data.facing);
-        player.socket.emit("mapData", { map: this.mapName, submap: this.submapName }, this.collideables, this.grass, this.water);
-        player.socket.emit("playerData", player.displayName, this.players.map((plyr) => plyr.export()));
+        player.socket.emit("mapData", player.displayName, this.players.map((plyr) => plyr.export()), { map: this.mapName, submap: this.submapName }, this.collideables, this.grass, this.water);
+        // player.socket.emit("playerData", player.displayName, this.players.map((plyr) => plyr.export()));
         data.name = player.displayName;
         data.currentFrame = 0;
         player.socket.to(this.room).emit("playerMovement", data);

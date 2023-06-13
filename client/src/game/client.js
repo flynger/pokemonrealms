@@ -57,7 +57,10 @@ function setupSocket() {
     });
 
     //connect command
-    socket.on("mapData", (locationData, collideables, grasses, water) => {
+    socket.on("mapData", (name, playersArray, locationData, collideables, grasses, water) => {
+        if (players[username]) {
+            players[username].busy = true;
+        }
         $("#warpOverlay").addClass('warp');
         setTimeout(() => {
             $("#warpOverlay").removeClass('warp');
@@ -67,13 +70,7 @@ function setupSocket() {
             if (map.name) destroyMap();
             collideables.push(...water)
             await loadMap(locationData.map, locationData.submap, collideables, grasses);
-        }, 1000);
-        gameDiv.prepend(app.view);
-    });
 
-    // loads the players on the map
-    socket.on("playerData", (name, playersArray) => {
-        setTimeout(() => {
             if (!firstJoin) window.location.reload();
             // add fix for reconnect properly instead of jank reload
             if (Object.keys(players).length > 0) {
@@ -86,7 +83,25 @@ function setupSocket() {
             loadPlayers(playersArray);
             $('#message').modal('hide');
         }, 1000);
+        gameDiv.prepend(app.view);
     });
+
+    // loads the players on the map
+    // socket.on("playerData", (name, playersArray) => {
+    //     setTimeout(() => {
+    //         if (!firstJoin) window.location.reload();
+    //         // add fix for reconnect properly instead of jank reload
+    //         if (Object.keys(players).length > 0) {
+    //             for (let name in players) {
+    //                 players[name].destroy();
+    //             }
+    //         }
+    //         console.log({ playersArray });
+    //         username = name;
+    //         loadPlayers(playersArray);
+    //         $('#message').modal('hide');
+    //     }, 1000);
+    // });
 
     // updates the player's direction, coordinates, and sprites
     socket.on("playerMovement", (data) => {

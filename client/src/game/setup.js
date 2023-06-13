@@ -171,7 +171,7 @@ async function loadMap(mapName, submapName, collideables, grasses) {
 
     setTimeout(() => {
         players[username].busy = false;
-    }, 1000)
+    }, 750)
 }
 
 function destroyMap() {
