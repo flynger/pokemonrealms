@@ -327,11 +327,11 @@
 
 .pokemon.foe {
     position: absolute;
-    top: -9%;
-    right: -2%;
-    width: calc(320px * var(--scale));
-    height: calc(256px * var(--scale));
-    overflow: hidden;
+    top: 15%;
+    right: 5%;
+    width: calc(256px * var(--scale));
+    height: calc(128px * var(--scale));
+    /* overflow: hidden; */
 }
 
 .pokemon.foe img {
