@@ -163,6 +163,7 @@ function setupSocket() {
         $("#info-you").hide();
         $("#info-foe").hide();
         $("#battle-UI").show();
+        $("#party-div").hide();
         isBattleActive = true;
         filterBagInvAndGenerate("All");
         waitMessage = showWaitMessage ? "Waiting for other player..." : "";

@@ -147,6 +147,7 @@ function nextActionLogic(nextData) {
             app.view.style.filter = "none";
             clearPokemon("you");
             clearPokemon("foe");
+            $("#party-div").show();
         } else {
             if (battleOptions.forceSwitch) {
                 showSwitchButtons();
