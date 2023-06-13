@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 2.json",
+    "activeFile": "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -50,11 +50,11 @@
             }
         },
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json": {
-            "scale": 1,
+            "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 818,
-                "y": 321.5
+                "x": 430.66666666666663,
+                "y": 407.33333333333337
             }
         },
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/wilsonscarloxy_indoor.json": {
@@ -161,20 +161,22 @@
     "map.width": 64,
     "openFiles": [
         "kyledove.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 2.json"
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 2.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Ballet Town Outskirts.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json"
     ],
     "project": "balex.tiled-project",
     "property.type": "int",
     "recentFiles": [
         "kyledove.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 2.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Ballet Town Outskirts.json",
+        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Route 1 Area 1.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Player House Second Floor.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Town.json",
         "gen4hgss_1.json",
         "gen4hgss_2.json",
         "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/cities/Ballet Town Player House First Floor.json",
-        "C:/Users/thefl/OneDrive/Desktop/PokemonRealms/data/rawMaps/routes/Ballet Town Outskirts.json",
         "wilsonscarloxy_indoor.json",
         "chaoticcherrycake.json",
         "wilsonscarloxy_outdoor.json"

@@ -377,7 +377,10 @@ io.on("connection", (socket) => {
 
     socket.on("moveInput", (moveNumber) => {
         if (player.battle != null) {
-            player.battle.useMove(displayName, moveNumber);
+            // Make sure player can switch
+            if(player.battle.canMove(displayName, moveNumber))
+                player.battle.useMove(displayName, moveNumber);
+            else socket.emit("battleData", [{ message: "That move is disabled!" }]);
         }
     });
 

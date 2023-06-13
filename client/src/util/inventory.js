@@ -142,19 +142,20 @@ function openItemContextMenu(e, item) {
       $('#item-context-menu').hide();
       openItemInfo(item);
     });
-  !isBattleActive && item.isUsable ? $("#item-context-menu-use").show().off().on("click", () => { openUseUI(item); }) : $("#item-context-menu-use").hide();
-  isBattleActive && item.isUsableInBattle ? $("#item-context-menu-use").show().off().on("click", () => { useItem(item.id); $("#overlay-bag").hide(); }) : $("#item-context-menu-use").hide();
   if (!isBattleActive) {
     item.isHoldable ? $("#item-context-menu-give").show().off().on("click", () => { openGiveUI(item); }) : $("#item-context-menu-give").hide();
+    item.isUsable ? $("#item-context-menu-use").show().off().on("click", () => { openUseUI(item); }) : $("#item-context-menu-use").hide();
     $("#item-context-menu-discard")
+      .show()
       .off()
       .on("click", () => {
         $('#item-context-menu').hide();
         openDiscardUI(item);
       });
   } else {
-    $("#item-context-menu-discard").hide();
     $("#item-context-menu-give").hide();
+    item.isUsableInBattle ? $("#item-context-menu-use").show().off().on("click", () => { useItem(item.id);$("#overlay-bag").hide(); }) : $("#item-context-menu-use").hide();
+    $("#item-context-menu-discard").hide();
   }
 }
 

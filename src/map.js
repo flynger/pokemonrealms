@@ -145,7 +145,7 @@ export default class Map {
                     }
                 }
                 let level = randomNumber(40, 50); // randomNumber(encounter.minLevel || this.encounters.grass.minLevel, encounter.maxLevel || this.encounters.grass.maxLevel);
-                let randomEncounter = new Pokemon(species, level, {});
+                let randomEncounter = new Pokemon(species, level, { moves: ["TAUNT"] });
                 // console.log(randomEncounter);
                 return randomEncounter;
             }
