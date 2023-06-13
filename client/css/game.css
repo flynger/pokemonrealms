@@ -13,6 +13,39 @@ body {
     z-index: 10;
 }
 
+#warpOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    z-index: 9999;
+    pointer-events: none;
+    /* Allow click events to pass through the overlay */
+    /* animation: warp 2s ease-in-out forwards; */
+}
+
+@keyframes warp {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.warp {
+    animation-name: warp;
+    animation-duration: 2s;
+}
+
 #game {
     position: absolute;
     aspect-ratio: auto 1184 / 540;

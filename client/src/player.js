@@ -65,7 +65,7 @@ class player {
         this.avatar = avatar;
         this.facing = facing;
         this.hasController = hasController;
-        this.busy = false;
+        this.busy = true;
         this.createSprites();
         this.createRigidBody(x, y);
         this.updateSprite();

@@ -56,10 +56,12 @@ var battleOptions;
 var isBattleActive = false;
 var battleData = [];
 var textSpeed = 100; // 60
+var nextActionTimeout;
 var textInterval;
 var dialoguePlaying = false;
 var waitMessage;
 var nextData;
+var isSkipped = false;
 function nextAction() {
     if (!dialoguePlaying) {
         $("#overlay-command").hide();
@@ -130,8 +132,15 @@ function createTextInterval(nextData, letters) {
 
 //skips the text printing animation
 function skipText() {
-    clearInterval(textInterval);
-    $('#dialogue'.html(nextData.message));
+    // console.log(isSkipped);
+    // if (isSkipped) {
+    //     isSkipped = false;
+    // } else {
+    //     isSkipped = true;
+    //     clearTimeout(nextActionTimeout);
+    //     clearInterval(textInterval);
+    //     $('#dialogue').html(nextData.message);
+    // }
 }
 
 // Changes UI for forceswitches, battle end, and when dialogue ends

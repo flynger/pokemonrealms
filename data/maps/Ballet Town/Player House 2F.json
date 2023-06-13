@@ -328,7 +328,7 @@
             "destination": {
                 "submap": "Player House 1F",
                 "x": 464,
-                "y": 128,
+                "y": 124,
                 "facing": "left"
             }
         }

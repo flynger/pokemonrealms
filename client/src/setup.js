@@ -148,7 +148,7 @@ async function loadMap(mapName, submapName, collideables, grasses) {
     map.submapName = submapName;
     $("#mapName").html(map.name);
     $("#submapName").html(map.submapName);
-    await fetch(`../res/maps/${mapName}/${submapName}.json`).then((response) => response.json()).then((json) =>  {
+    await fetch(`../res/maps/${mapName}/${submapName}.json`).then((response) => response.json()).then((json) => {
         map.width = json.width / 32;
         map.height = json.height / 32;
         for (let layerIndex in json.layers) {
@@ -168,6 +168,10 @@ async function loadMap(mapName, submapName, collideables, grasses) {
     gameContainer.addChild(graphics);
     app.stage.addChild(gameContainer);
     app.stage.addChild(textContainer);
+
+    setTimeout(() => {
+        players[username].busy = false;
+    }, 1000)
 }
 
 function destroyMap() {

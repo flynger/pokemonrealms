@@ -57,26 +57,35 @@ function setupSocket() {
     });
 
     //connect command
-    socket.on("mapData", async (locationData, collideables, grasses, water) => {
-        if (map.name) destroyMap();
-        collideables.push(...water)
-        await loadMap(locationData.map, locationData.submap, collideables, grasses);
+    socket.on("mapData", (locationData, collideables, grasses, water) => {
+        $("#warpOverlay").addClass('warp');
+        setTimeout(() => {
+            $("#warpOverlay").removeClass('warp');
+        }, 2000);
+
+        setTimeout(async () => {
+            if (map.name) destroyMap();
+            collideables.push(...water)
+            await loadMap(locationData.map, locationData.submap, collideables, grasses);
+        }, 1000);
         gameDiv.prepend(app.view);
     });
 
     // loads the players on the map
     socket.on("playerData", (name, playersArray) => {
-        if (!firstJoin) window.location.reload();
-        // add fix for reconnect properly instead of jank reload
-        if (Object.keys(players).length > 0) {
-            for (let name in players) {
-                players[name].destroy();
+        setTimeout(() => {
+            if (!firstJoin) window.location.reload();
+            // add fix for reconnect properly instead of jank reload
+            if (Object.keys(players).length > 0) {
+                for (let name in players) {
+                    players[name].destroy();
+                }
             }
-        }
-        console.log({ playersArray });
-        username = name;
-        loadPlayers(playersArray);
-        $('#message').modal('hide');
+            console.log({ playersArray });
+            username = name;
+            loadPlayers(playersArray);
+            $('#message').modal('hide');
+        }, 1000);
     });
 
     // updates the player's direction, coordinates, and sprites
