@@ -74,7 +74,7 @@ export default class SingleBattle {
                                 console.log(output);
                                 console.log("Bad input for " + this["party" + playerId].name)
                         }
-                    //console.log(outputArray)
+                    console.log(outputArray)
                 }
                 //console.log(this.stream.battle.sides[0]); // Player battle and side data !!!
             }
@@ -92,6 +92,7 @@ export default class SingleBattle {
             let battleDataProperties = {};
             let useArgs = true; // whether to replace args or not
 
+            if (lineArray.length > 1) args.NICKNAME = lineArray[1].split(": ")[1];
             let isOwnPokemon = lineArray.length > 1 && (lineArray[1].includes("p1") || lineArray[1].includes("p2")) ? lineArray[1].slice(0, 2) == "p" + thisPlayer : null; // whether the message is about your pokemon or the opponent's
             let denoter = lineArray.shift();
             let message = DefaultText.default[denoter[0] == "-" ? denoter.substring(1) : denoter] || " ";
@@ -523,9 +524,14 @@ export default class SingleBattle {
         this["party" + id].useMove(moveInput);
     }
 
+    canMove(player, moveInput) {
+        moveInput--;
+        let party = this.getParty(player);
+        return party.data && party.data.active && party.data.active[0] && party.data.active[0].moves[moveInput] && !party.data.active[0].moves[moveInput].disabled;
+    }
+
     canSwitch(player) {
         let party = this.getParty(player);
-        console.log(party.data);
         return party.data && !(party.data.active && party.data.active[0] && (party.data.active[0].trapped || party.data.active[0].maybeTrapped));
     }
 

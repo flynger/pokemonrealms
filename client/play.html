@@ -23,25 +23,28 @@
   <script src="libs/matter.min.js"></script>
   <script src="libs/drag.js"></script>
 
-  <script src="src/pokedex.js"></script>
-  <script src="src/pokemonSummary.js"></script>
-  <script src="src/dialog.js"></script>
-  <script src="src/inventory.js"></script>
-  <script src="src/party.js"></script>
+  <script src="src/data/pokedex.js"></script>
 
-  <script src="src/client.js"></script>
-  <script src="src/input.js"></script>
-  <script src="src/player.js"></script>
-  <script src="src/npc.js"></script>
-  <script src="src/grass.js"></script>
-  <script src="src/log.js"></script>
-  <script src="src/collider.js"></script>
-  <script src="src/battle.js"></script>
-  <script src="src/bag.js"></script>
-  <script src="src/tileset.js"></script>
-  <script src="src/tile.js"></script>
-  <script src="src/draw.js"></script>
-  <script src="src/setup.js"></script>
+  <script src="src/ui/pokemonSummary.js"></script>
+  <script src="src/ui/dialog.js"></script>
+  <script src="src/ui/party.js"></script>
+  <script src="src/ui/bag.js"></script>
+
+  <script src="src/util/inventory.js"></script>
+  <script src="src/util/battle.js"></script>
+
+  <script src="src/game/client.js"></script>
+  <script src="src/game/input.js"></script>
+  <script src="src/entities/player.js"></script>
+  <script src="src/entities/npc.js"></script>
+  <script src="src/entities/grass.js"></script>
+  <script src="src/entities/log.js"></script>
+  <script src="src/entities/collider.js"></script>
+  
+  <script src="src/game/tileset.js"></script>
+  <script src="src/game/tile.js"></script>
+  <script src="src/game/draw.js"></script>
+  <script src="src/game/setup.js"></script>
   <script src="src/nav.js"></script>
 
   <link href="libs/jquery-ui.css" rel="stylesheet" />
@@ -900,7 +903,7 @@
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div id="liveToast2" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="...">
+        <!-- <img src="..." class="rounded me-2" alt="..."> -->
         <strong class="me-auto">Notification</strong>
         <small id="notification-time">11 mins ago</small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
