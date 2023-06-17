@@ -131,7 +131,7 @@ function createTextInterval(nextData, letters) {
 //skips the text printing animation
 function skipText() {
     clearInterval(textInterval);
-    $('#dialogue'.html(nextData.message));
+    $('#dialogue').html(nextData.message);
 }
 
 // Changes UI for forceswitches, battle end, and when dialogue ends
