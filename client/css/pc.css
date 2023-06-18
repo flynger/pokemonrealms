@@ -63,6 +63,7 @@
 }
 
 .arrow-btn {
+  font-size: calc(var(--scale) * 14px);
   text-align: center;
   width: 5%;
   cursor: pointer;
@@ -88,7 +89,6 @@
   bottom: -5%;
   font-size: calc(var(--scale) * 11px);
   text-shadow: calc(var(--scale) * 1px) calc(var(--scale) * 1px) #454545;
-  z-index: 1;
 }
 
 .box-pokemon-shiny-icon {
@@ -99,15 +99,13 @@
   bottom: 58%;
   image-rendering: auto;
   -webkit-user-drag: none;
-  z-index: 1;
 }
 
 .box-pokemon-icon {
-  top: -58%;
+  top: -65%;
   position: absolute;
-    width: 150%;
-    height: 150%;
-    z-index: 1;
+    width: 160%;
+    height: 160%;
     image-rendering: auto;
     -webkit-user-drag: none;
 }
