@@ -64,7 +64,7 @@ function setupSocket() {
         $("#warpOverlay").addClass('warp');
         setTimeout(() => {
             $("#warpOverlay").removeClass('warp');
-        }, 2000);
+        }, 1500);
 
         setTimeout(async () => {
             if (map.name) destroyMap();
@@ -82,7 +82,7 @@ function setupSocket() {
             username = name;
             loadPlayers(playersArray);
             $('#message').modal('hide');
-        }, 1000);
+        }, 750);
         gameDiv.prepend(app.view);
     });
 
@@ -227,9 +227,14 @@ function setupSocket() {
         console.log({ newBalance });
     });
 
+    socket.on("pcUpdate", (newPokemon) => {
+        pokemonArr = newPokemon;
+        filterPcAndGenerate();
+    });
+
     // Calls functions to update player inventory
     socket.on("inventoryUpdate", (newInventory) => {
-        console.log({ newInventory });
+        // console.log({ newInventory });
         inventory = newInventory;
         updateInventory();
         filterInvAndGenerate();
