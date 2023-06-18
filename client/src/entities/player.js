@@ -79,7 +79,7 @@ class player {
             this.checkForInteract();
             this.centerCameraOnSelf();
             this.updateSprite();
-            this.sendLocation();
+            if (this.headSprite.playing) this.sendLocation();
         }
         this.nameTagStep(); // name tag frame update
         //this.grassUpdate(); // grass update

@@ -68,16 +68,16 @@ function setupSocket() {
 
         setTimeout(async () => {
             if (map.name) destroyMap();
-            collideables.push(...water)
-            await loadMap(locationData.map, locationData.submap, collideables, grasses);
-
-            if (!firstJoin) window.location.reload();
-            // add fix for reconnect properly instead of jank reload
             if (Object.keys(players).length > 0) {
                 for (let name in players) {
                     players[name].destroy();
                 }
             }
+            collideables.push(...water)
+            await loadMap(locationData.map, locationData.submap, collideables, grasses);
+
+            if (!firstJoin) window.location.reload();
+            // add fix for reconnect properly instead of jank reload
             console.log({ playersArray });
             username = name;
             loadPlayers(playersArray);
