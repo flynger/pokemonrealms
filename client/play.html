@@ -41,7 +41,7 @@
   <script src="src/entities/grass.js"></script>
   <script src="src/entities/log.js"></script>
   <script src="src/entities/collider.js"></script>
-  
+
   <script src="src/game/tileset.js"></script>
   <script src="src/game/tile.js"></script>
   <script src="src/game/draw.js"></script>
@@ -578,19 +578,26 @@
     </div> -->
 
     <div id="dialog-UI" class="PokemonFont d-none">
-      <button id="dialog-close" type="button" class="btn-close btn-close-white" aria-label="Close" style="position:absolute; right: 0; top:0;"></button>
+      <button id="dialog-close" type="button" class="btn-close btn-close-white" aria-label="Close"
+        style="position:absolute; right: 0; top:0;"></button>
       <div id="dialog-content"></div>
     </div>
 
     <div id="pc-UI" class="PokemonFont text-white">
       <div id="boxHeader" class="card-header">
+        <div id="leftArrowButton" class="arrow-btn" onclick="leftArrowClick()">&#60;</div>
         <h5 id="boxTitle" class="card-title mb-0">Box 1</h5>
+        <div id="rightArrowButton" class="arrow-btn" onclick="rightArrowClick()">&#62;</div>
+      </div>
       <div id="box-grid">
         <div class="box-pokemon">
           <img class="box-pokemon-icon" src="res/pokemon/new_icons/shiny/pikachu.png" />
+          <img class="box-pokemon-shiny-icon" src="res/pokemon/shiny.png">
+          <div class="box-pokemon-level">99</div>
         </div>
         <div class="box-pokemon">
           <img class="box-pokemon-icon" src="res/pokemon/new_icons/regular/aggron.png" />
+          <div class="box-pokemon-level">50</div>
         </div>
         <div class="box-pokemon"></div>
         <div class="box-pokemon"></div>
@@ -614,6 +621,7 @@
         <div class="box-pokemon"></div>
         <div class="box-pokemon"></div>
         <div class="box-pokemon"></div>
+      </div>
     </div>
 
     <div id="inventory-UI" class="PokemonFont text-white">
@@ -659,13 +667,15 @@
       </div>
     </div>
     <div id="item-info"
-      class="position-absolute user-select-none bg-dark popup-container container p-2 rounded-1 PokemonFont text-white" style="display: none">
+      class="position-absolute user-select-none bg-dark popup-container container p-2 rounded-1 PokemonFont text-white"
+      style="display: none">
       <div class="card-header popup-header">
         <h5 class="card-title mb-0"><img id="item-info-image" class="item-image" src="res/items/pokeball.png"><span
-          id="item-info-name">Poké Ball</span></h5>
+            id="item-info-name">Poké Ball</span></h5>
       </div>
       <div id="item-info-description" class="d-flex align-items-center h-50 mt-2 ms-1" style="font-size: 15px;">
-        A device for catching wild Pokémon. It’s thrown like a ball at a Pokémon, comfortably encapsulating its target.
+        A device for catching wild Pokémon. It’s thrown like a ball at a Pokémon, comfortably encapsulating its
+        target.
       </div>
       <button class="item-button position-absolute bottom-0 mb-1 me-1 end-0 user-select-none"
         onclick="$('#item-info').hide();">Close</button>
@@ -696,9 +706,9 @@
       </div>
       <div class="popup-body">
         <select id="item-use-select" class="form-select popup-select">
-          
+
         </select>
-      </div>      
+      </div>
       <button class="popup-cancel" onclick="$('#item-use-select-menu').hide()">Cancel</button>
       <button id="use-button" class="popup-confirm">Use</button>
     </div>
@@ -709,9 +719,9 @@
       </div>
       <div class="popup-body">
         <select id="item-give-select" class="form-select popup-select">
-          
+
         </select>
-      </div>      
+      </div>
       <button class="popup-cancel" onclick="$('#item-give-select-menu').hide()">Cancel</button>
       <button id="give-button" class="popup-confirm">Give</button>
     </div>
@@ -852,12 +862,12 @@
           <div class="bag-item"></div>
           <div class="bag-item"></div>
           <div class="bag-item"></div>
-  
+
         </div>
-      <div id="bag-cancel" class="cancel" onclick="cancelBag()"></div>
+        <div id="bag-cancel" class="cancel" onclick="cancelBag()"></div>
       </div>
 
-  
+
       <div id="overlay-switch" class="overlay">
         <div id="pkmn1" class="switch-button text-white"><img id="pkmn1-img" class="switch-image" src=""></img>
           <div class="switch-info">
