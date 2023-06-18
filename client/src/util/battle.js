@@ -60,6 +60,7 @@ var textInterval;
 var dialoguePlaying = false;
 var waitMessage;
 var nextData;
+var currentMaxHp;
 function nextAction() {
     if (!dialoguePlaying) {
         $("#overlay-command").hide();
@@ -92,6 +93,7 @@ function nextAction() {
         let hpValues = nextData.switchInCondition.split('/');
         hpValues[1] = hpValues[1].split(" ")[0];
         $("#hpbar-" + nextData.side).width((+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] : 0) * 96);
+        currentMaxHp = +hpValues[1];
 
         showPokemon(side, species, nickname, level, shiny);
         $(`#pokemon-${nextData.side}`).show();

@@ -74,7 +74,7 @@ export default class SingleBattle {
                                 console.log(output);
                                 console.log("Bad input for " + this["party" + playerId].name)
                         }
-                    console.log(outputArray)
+                    // console.log(outputArray)
                 }
                 //console.log(this.stream.battle.sides[0]); // Player battle and side data !!!
             }

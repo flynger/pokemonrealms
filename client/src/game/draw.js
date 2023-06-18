@@ -51,13 +51,10 @@ function draw(deltaTime) {
     // Updates number values of hp
     if (isBattleActive && battleOptions) {
         let hpBarYouWidth = $('#hpbar-you').width();
-        //TODO
-        // if () {}
-        let hpMax = battleOptions.side.pokemon[0].condition.split(" ")[0].split("/")[1]; 
-        // console.log(hpMax)
+        let maxHp = currentMaxHp;
         let hpBar = {you: Math.round(hpBarYouWidth / 96 * 100), foe: Math.round($('#hpbar-foe').width() / 96 * 100)}
-        let currentHpValue = hpBarYouWidth !== 0 ? Math.round(hpBar.you * hpMax / 100): 0;
-        $('#hpvalue-you').html(currentHpValue + "/" + hpMax);
+        let currentHpValue = hpBarYouWidth !== 0 ? Math.round(hpBar.you * maxHp / 100): 0;
+        $('#hpvalue-you').html(currentHpValue + "/" + maxHp);
 
         // sets color of health
         for(let side in hpBar) {
