@@ -11,24 +11,24 @@ class battle {
     static nextData = null;
     static currentMaxHp;
 
-// Setup UI for battle
-$(function () {
-    // $('#battle-UI').show();
-    initBag();
-    $("#overlay-bag").hide();
-    $("#overlay-switch").hide();
-    $("#overlay-command").hide();
-    $("#overlay-fight").hide();
-    $("#overlay-switch").hide();
-    $("#info-you").hide();
-    $("#info-foe").hide();
-    $("#overlay-message").show();
-    $('#battle-UI').hide();
-    // $('#battle-UI').show();
-    // $('#battle-UI').show(() => {
-    //     $('#battle-UI').hide();
-    // });
-});
+    // Setup UI for battle
+    $(function() {
+        // $('#battle-UI').show();
+        initBag();
+        $("#overlay-bag").hide();
+        $("#overlay-switch").hide();
+        $("#overlay-command").hide();
+        $("#overlay-fight").hide();
+        $("#overlay-switch").hide();
+        $("#info-you").hide();
+        $("#info-foe").hide();
+        $("#overlay-message").show();
+        $('#battle-UI').hide();
+        // $('#battle-UI').show();
+        // $('#battle-UI').show(() => {
+        //     $('#battle-UI').hide();
+        // });
+    });
 
     // Setup UI for battle
     static setup() {
@@ -194,15 +194,21 @@ $(function () {
     }
 
     static playThrowAnimation() {
-        setInterval(() => {
-            $("#ball-image").addClass('shake');
-            setTimeout(() => {
-                $("#ball-image").removeClass('shake');
-            }, 300);
-        }, 800);
-    }, 2200);
-    } 
-
+        $("#ball-image-container").addClass('throw-fall');
+        $("#ball-image").addClass('throw-x');
+        setTimeout(() => {
+            $("#ball-image-container").removeClass('throw-fall');
+            $("#ball-image").removeClass('throw-x');
+            $("#ball-image-container").css("bottom", "64%");
+            $("#ball-image-container").css("left", "79%");
+            setInterval(() => {
+                $("#ball-image").addClass('shake');
+                setTimeout(() => {
+                    $("#ball-image").removeClass('shake');
+                }, 300);
+            }, 800);
+        }, 2200);
+    }
 
     // Updates the pokemon info and sprites when pokemon switch out
     static clearPokemon(side) {
