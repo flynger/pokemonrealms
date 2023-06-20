@@ -11,25 +11,13 @@ class battle {
     static nextData = null;
     static currentMaxHp;
 
-    // Setup UI for battle
-    $(function() {
-        // $('#battle-UI').show();
-        initBag();
-        $("#overlay-bag").hide();
-        $("#overlay-switch").hide();
-        $("#overlay-command").hide();
-        $("#overlay-fight").hide();
-        $("#overlay-switch").hide();
-        $("#info-you").hide();
-        $("#info-foe").hide();
-        $("#overlay-message").show();
-        $('#battle-UI').hide();
-        // $('#battle-UI').show();
-        // $('#battle-UI').show(() => {
-        //     $('#battle-UI').hide();
-        // });
-    });
-
+     // Variables for text info
+     static textSpeed = 100; // 60
+     static textInterval;
+     static waitMessage;
+     static dialoguePlaying = false;
+     static letters = [];
+     
     // Setup UI for battle
     static setup() {
         initBag();
