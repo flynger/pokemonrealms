@@ -1,3 +1,9 @@
+/*
+Alex G, flynger, Richard W, Harry
+
+This file implements the pc
+*/
+
 var pokemonArr;
 
 //recursion bad

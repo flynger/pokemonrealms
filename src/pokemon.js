@@ -1,5 +1,5 @@
 /*
-Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+Alex G, flynger, Richard W, Harry
 
 This file implements the pokemon class 
 */

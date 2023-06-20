@@ -1,5 +1,5 @@
 /*
-Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+Alex G, flynger, Richard W, Harry
 
 This file starts the server, implements the other modules, and interacts with and serves the clients.
 */

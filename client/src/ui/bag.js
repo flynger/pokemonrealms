@@ -1,3 +1,9 @@
+/*
+Alex G, flynger, Richard W, Harry
+
+This file implements the bag UI in battles
+*/
+
 let selectedTab = "All";
 
 function initBag() {
@@ -53,4 +59,10 @@ function showBag() {
 function cancelBag() {
     $("#overlay-bag").hide();
     $('#overlay-command').show();
+}
+
+function useItem(item) {
+    socket.emit("itemInput", item);
+    $("overlay-switch").hide();
+
 }

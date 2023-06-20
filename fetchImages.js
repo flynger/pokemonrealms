@@ -1,5 +1,5 @@
 /*
-Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+Alex G, flynger, Richard W, Harry
 
 This file fetches and download pokemon sprites with pokemon showdown's api
 */

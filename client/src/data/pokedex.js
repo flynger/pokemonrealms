@@ -1,8 +1,9 @@
 /*
-Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+Alex G, flynger, Richard W, Harry
 
 This file houses pokemon data 
 */
+var Moves; // moves json fetched on setup
 class Pokedex {
     static entries = {
         "BULBASAUR": {

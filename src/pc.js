@@ -1,3 +1,9 @@
+/*
+Alex G, flynger, Richard W, Harry
+
+This file implements server-sided pc
+*/
+
 import Pokedex from "./pokedex.js"
 
 export default class Pc {
