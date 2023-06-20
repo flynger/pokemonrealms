@@ -325,6 +325,85 @@
     font-size: 1em;
 }
 
+#ball-image-container {
+    position: absolute;
+    width: 4%;
+    height: 4%;
+    left: 0%;
+    bottom: 47%;
+}
+
+#ball-image {
+    position: absolute;
+    width: 100%;
+    image-rendering: auto;
+
+}
+
+.throw-fall {
+    animation:
+        throw-y 1s cubic-bezier(0, 0.63, 0.44, 1.82) forwards,
+        fall 2s 1s cubic-bezier(0.51, 0.01, 1, 1) forwards;
+}
+
+.throw-x {
+    /* animation: throw 1s, fall .5s 1s, shake 1s 2.5s; */
+    animation: throw-x 1s linear forwards;
+    /* animation-iteration-count: infinite; */
+
+}
+
+.shake {
+    animation: shake 1s;
+}
+
+@keyframes throw-x {
+    to {
+        transform: translateX(1975%);
+    }
+}
+
+@keyframes throw-y {
+    to {
+        bottom: 74%;
+    }
+}
+
+@keyframes fall {
+    0% {
+        bottom: 74%;
+    }
+
+    40% {
+        bottom: 74%;
+    }
+
+    60% {
+        bottom: 64%;
+    }
+    100% {
+        bottom: 64%;
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: rotateZ(0)
+    }
+
+    25% {
+        transform: rotateZ(-25deg)
+    }
+
+    75% {
+        transform: rotateZ(25deg)
+    }
+}
+
+@keyframes catch {}
+
 .pokemon.foe {
     position: absolute;
     top: 15%;

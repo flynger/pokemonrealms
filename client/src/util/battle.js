@@ -17,7 +17,7 @@ $(function () {
     $("#info-you").hide();
     $("#info-foe").hide();
     $("#overlay-message").show();
-    // $('#battle-UI').hide();
+    $('#battle-UI').hide();
     // $('#battle-UI').show(() => {
     //     $('#battle-UI').hide();
     // });
@@ -280,3 +280,21 @@ function updateMoveChoices() {
     }
 }
 
+function playThrowAnimation() {
+    $("#ball-image-container").addClass('throw-fall');
+    $("#ball-image").addClass('throw-x');
+
+    setTimeout(() => {
+        $("#ball-image-container").removeClass('throw-fall');
+        $("#ball-image").removeClass('throw-x');
+        $("#ball-image-container").css("bottom", "64%");
+        $("#ball-image-container").css("left", "79%");
+
+        setInterval(() => {
+            $("#ball-image").addClass('shake');
+            setTimeout(() => {
+                $("#ball-image").removeClass('shake');
+            }, 1000);
+        }, 1500);
+    }, 2200);
+}
