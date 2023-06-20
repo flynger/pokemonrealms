@@ -704,7 +704,7 @@
     /* bottom: 12%; */
     position: absolute;
     left: 2%;
-    bottom: -5%;
+    bottom: -4%;
     scale: 0.35;
     image-rendering: auto;
 }
@@ -713,7 +713,7 @@
     position: absolute;
     font-size: 70%;
     left: 30%;
-    bottom: 5%;
+    bottom: 9%;
 }
 
 .fight-command #move1 {
