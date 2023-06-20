@@ -354,7 +354,7 @@
 }
 
 .shake {
-    animation: shake 1s;
+    animation: shake .3s;
 }
 
 @keyframes throw-x {
@@ -389,16 +389,17 @@
 @keyframes shake {
 
     0%,
+    50%,
     100% {
         transform: rotateZ(0)
     }
 
     25% {
-        transform: rotateZ(-25deg)
+        transform: rotateZ(-15deg)
     }
 
     75% {
-        transform: rotateZ(25deg)
+        transform: rotateZ(15deg)
     }
 }
 

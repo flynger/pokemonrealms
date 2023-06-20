@@ -18,6 +18,7 @@ $(function () {
     $("#info-foe").hide();
     $("#overlay-message").show();
     $('#battle-UI').hide();
+    // $('#battle-UI').show();
     // $('#battle-UI').show(() => {
     //     $('#battle-UI').hide();
     // });
@@ -293,7 +294,7 @@ function playThrowAnimation() {
             $("#ball-image").addClass('shake');
             setTimeout(() => {
                 $("#ball-image").removeClass('shake');
-            }, 1000);
-        }, 1500);
+            }, 300);
+        }, 800);
     }, 2200);
 }
