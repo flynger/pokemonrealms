@@ -406,19 +406,20 @@
 
 .pokemon.foe {
     position: absolute;
-    top: 15%;
-    right: 5%;
+    top: 0%;
+    right: 0%;
     width: calc(256px * var(--scale));
-    height: calc(128px * var(--scale));
-    /* overflow: hidden; */
+    height: calc(calc(128px + 81px) * var(--scale));
+    overflow: hidden;
 }
 
 .pokemon.foe img {
     position: absolute;
     scale: calc(2 * var(--scale));
-    transform-origin: bottom center;
+    transform-origin: left bottom;
     bottom: 0%;
     left: 50%;
+    transform: translate(-50%, 0%);
     user-select: none;
     transition: 1s;
 }

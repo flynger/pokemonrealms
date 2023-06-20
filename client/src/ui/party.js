@@ -3,6 +3,7 @@ Alex G, flynger, Richard W, Harry
 
 This file implements pokemon party functionality 
 */
+var party;
 var dragSrcEl;
 
 // Creates event listeners for dragging

@@ -52,7 +52,7 @@ async function setup() {
     $('#message-body').text("Setting up game...");
     await setupGame();
     $('#message-body').text("Establishing connection to server...");
-    setupSocket();
+    client.setup();
 }
 
 window.onresize = () => {
@@ -170,7 +170,7 @@ async function loadMap(mapName, submapName, collideables, grasses) {
     app.stage.addChild(textContainer);
 
     setTimeout(() => {
-        players[username].busy = false;
+        client.player.busy = false;
     }, 750)
 }
 
@@ -186,8 +186,8 @@ function destroyMap() {
 
 function loadPlayers(playersArray) {
     for (let plyr of playersArray) {
-        if (plyr.displayName == username) {
-            new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true);
+        if (plyr.displayName == client.username) {
+            client.player = new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing, true);
         }
         else new player(plyr.displayName, "red", plyr.x, plyr.y, plyr.facing);
     }

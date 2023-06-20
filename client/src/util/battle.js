@@ -29,20 +29,19 @@ function showFightButtons() {
 }
 
 function useMove(num) {
-    socket.emit("moveInput", num);
+    client.socket.emit("moveInput", num);
     $("#overlay-fight").hide();
     $("#overlay-message").show();
 }
 
 function switchTo(slot) {
-    socket.emit("switchInput", slot);
+    client.socket.emit("switchInput", slot);
     $("#overlay-switch").hide();
 }
 
 function useItem(item) {
-    socket.emit("itemInput", item);
+    client.socket.emit("itemInput", item);
     $("overlay-switch").hide();
-
 }
 
 
@@ -144,7 +143,7 @@ function nextActionLogic(nextData) {
     } else {
         if (nextData.battleOver) {
             $('#battle-UI').hide();
-            players[username].busy = false;
+            client.player.busy = false;
             isBattleActive = false;
             app.view.style.filter = "none";
             clearPokemon("you");
@@ -258,7 +257,7 @@ function showSwitchButtons() {
 }
 
 function runFromBattle() {
-    socket.emit("endBattle");
+    client.socket.emit("endBattle");
     $("#overlay-command").hide();
     $("#overlay-fight").hide();
 }

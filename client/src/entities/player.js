@@ -331,7 +331,7 @@ class player {
 
     // emit methods
     sendLocation() {
-        socket.emit("playerMovement", {
+        client.socket.emit("playerMovement", {
             x: this.headSprite.x,
             y: this.headSprite.y,
             facing: this.facing,
