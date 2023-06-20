@@ -62,7 +62,7 @@ function cancelBag() {
 }
 
 function useItem(item) {
-    socket.emit("itemInput", item);
+    client.socket.emit("itemInput", item);
     $("overlay-switch").hide();
 
 }

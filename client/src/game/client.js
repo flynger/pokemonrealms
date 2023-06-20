@@ -1,12 +1,19 @@
+/*
+Alex G, flynger, Richard W, Harry
+
+Implements Client class
+*/
 class client {
     static link = window.location.host;
     static latency = -1;
     static username;
     static firstJoin = true;
     static player = null;
+    static playerBattle = null;
 
     static setup() {
         this.socket = io.connect(this.link);
+
         //implements the /ping command
         setInterval(() => {
             const start = Date.now();
@@ -165,31 +172,32 @@ class client {
             $("#info-foe").hide();
             $("#battle-UI").show();
             $("#party-div").hide();
-            isBattleActive = true;
+            battle.isBattleActive = true;
             filterBagInvAndGenerate("All");
-            waitMessage = showWaitMessage ? "Waiting for other player..." : "";
+            battle.waitMessage = showWaitMessage ? "Waiting for other player..." : "";
             this.player.busy = true;
             app.view.style.filter = "blur(0.2em)";
+            battle.setup();
         });
 
         // Recieves battle data
         this.socket.on("battleData", (newBattleData) => {
             console.log({ newBattleData });
-            battleData.push(...newBattleData);
-            if (!dialoguePlaying) nextAction();
+            battle.battleData.push(...newBattleData);
+            if (!battle.dialoguePlaying) battle.nextAction();
         });
 
         // Shows battle options
         this.socket.on("battleOptions", (newBattleOptions) => {
             console.log({ newBattleOptions });
-            battleOptions = newBattleOptions;
-            updateMoveChoices();
+            battle.battleOptions = newBattleOptions;
+            battle.updateMoveChoices();
         });
 
         // End of battle
         this.socket.on("endBattle", (endData) => {
-            battleData.push(...endData);
-            if (!dialoguePlaying) nextAction();
+            battle.battleData.push(...endData);
+            if (!battle.dialoguePlaying) battle.nextAction();
         });
 
         this.socket.on("pokemartData", (catalog) => {

@@ -824,7 +824,7 @@
         <div id="hpbar-foe" class="hp"></div>
       </div>
       <div id="overlay-message" class="battle-text">
-        <div id="dialogue" class="px-2" onclick="skipText()">
+        <div id="dialogue" class="px-2" onclick="battle.skipText()">
 
         </div>
       </div>
@@ -922,25 +922,25 @@
             </div>
           </div>
         </div>
-        <div id="switch-cancel" class="cancel" onclick="cancelSwitch()"></div>
+        <div id="switch-cancel" class="cancel" onclick="battle.cancelSwitch()"></div>
       </div>
       <div id="overlay-fight" class="fight-command">
-        <div id="move1" class="ground" onclick="useMove(1)"><span class="movename">Stomping Tantrum</span><span
+        <div id="move1" class="ground" onclick="battle.useMove(1)"><span class="movename">Stomping Tantrum</span><span
             class="movetype type ground"></span><span class="movepp">PP 40/40</span></div>
-        <div id="move2" class="fighting" onclick="useMove(2)"><span class="movename">Dynamic Punch</span><span
+        <div id="move2" class="fighting" onclick="battle.useMove(2)"><span class="movename">Dynamic Punch</span><span
             class="movetype type fighting"></span><span class="movepp">PP 40/40</span></div>
-        <div id="move3" class="normal" onclick="useMove(3)"><span class="movename">Quick Attack</span><span
+        <div id="move3" class="normal" onclick="battle.useMove(3)"><span class="movename">Quick Attack</span><span
             class="movetype type normal"></span><span class="movepp">PP 40/40</span></div>
-        <div id="move4" class="electric" onclick="useMove(4)"><span class="movename">Zap Cannon</span><span
+        <div id="move4" class="electric" onclick="battle.useMove(4)"><span class="movename">Zap Cannon</span><span
             class="movetype type electric"></span><span class="movepp">PP 40/40</span></div>
-        <div class="cancel" onclick="cancelFight()"></div>
+        <div class="cancel" onclick="battle.cancelFight()"></div>
       </div>
       <div id="overlay-command" class="bg-image overlay command">
         <p id="command-message" class="battle-text"></p>
-        <div class="fight bg-image" onclick="showFightButtons()"></div>
-        <div class="pkmn bg-image" onclick="showSwitchButtons()"></div>
+        <div class="fight bg-image" onclick="battle.showFightButtons()"></div>
+        <div class="pkmn bg-image" onclick="battle.showSwitchButtons()"></div>
         <div class="bag bg-image" onclick="showBag()"></div>
-        <div class="run bg-image" onclick="runFromBattle()"></div>
+        <div class="run bg-image" onclick="battle.runFromBattle()"></div>
         <!-- <div id="button-2" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
             <div id="button-3" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
             <div id="button-4" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div> -->

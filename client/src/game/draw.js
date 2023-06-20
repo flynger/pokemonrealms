@@ -1,5 +1,5 @@
 /*
-Alex Ge, Arnav Singh, Richard Wei, Will Gannon, Harry Liu
+Alex G, flynger, Richard W, Harry
 
 This file handles game rendering 
 */
@@ -47,27 +47,9 @@ function draw(deltaTime) {
     for (let name in players) {
         players[name].endFrame();
     }
-    
     // Updates number values of hp
-    if (isBattleActive && battleOptions) {
-        let hpBarYouWidth = $('#hpbar-you').width();
-        let maxHp = currentMaxHp;
-        let hpBar = {you: Math.round(hpBarYouWidth / 96 * 100), foe: Math.round($('#hpbar-foe').width() / 96 * 100)}
-        let currentHpValue = hpBarYouWidth !== 0 ? Math.round(hpBar.you * maxHp / 100): 0;
-        $('#hpvalue-you').html(currentHpValue + "/" + maxHp);
-
-        // sets color of health
-        for(let side in hpBar) {
-            if (hpBar[side] <= 20) {
-                $(`#hpbar-${side}`).attr("class","hp r");
-            }
-            else if(hpBar[side] <= 50) {
-                $(`#hpbar-${side}`).attr("class","hp y");
-            }
-            else {
-                $(`#hpbar-${side}`).attr("class","hp g");
-            }
-        }   
+    if (battle.isBattleActive && battle.battleOptions) {
+        updateHpNumbers();
     }
 }
 
@@ -121,4 +103,26 @@ function collideAbove(ab, bb) {
     // graphics.drawRect(bb.x, bb.y, bb.width, bb.height);
     // graphics.endFill(0xFF0000);
     return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y + ab.height <= bb.y + bb.height;
+}
+
+function updateHpNumbers() {
+    let hpBarYouWidth = $('#hpbar-you').width();
+    let maxHp = battle.currentMaxHp;
+    let hpBar = { you: Math.round(hpBarYouWidth / 96 * 100), foe: Math.round($('#hpbar-foe').width() / 96 * 100) }
+    let currentHpValue = hpBarYouWidth !== 0 ? Math.round(hpBar.you * maxHp / 100) : 0;
+    $('#hpvalue-you').html(currentHpValue + "/" + maxHp);
+
+    // sets color of health
+    for (let side in hpBar) {
+        if (hpBar[side] <= 20) {
+            $(`#hpbar-${side}`).attr("class", "hp r");
+        }
+        else if (hpBar[side] <= 50) {
+            $(`#hpbar-${side}`).attr("class", "hp y");
+        }
+        else {
+            $(`#hpbar-${side}`).attr("class", "hp g");
+        }
+    }
+
 }
