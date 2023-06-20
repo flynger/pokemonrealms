@@ -142,7 +142,7 @@ function openItemContextMenu(e, item) {
       $('#item-context-menu').hide();
       openItemInfo(item);
     });
-  if (!isBattleActive) {
+  if (!battle.isBattleActive) {
     item.isHoldable ? $("#item-context-menu-give").show().off().on("click", () => { openGiveUI(item); }) : $("#item-context-menu-give").hide();
     item.isUsable ? $("#item-context-menu-use").show().off().on("click", () => { openUseUI(item); }) : $("#item-context-menu-use").hide();
     $("#item-context-menu-discard")
@@ -182,7 +182,7 @@ function openUseUI(item) {
   $('#use-button')
     .off()
     .on('click', () => {
-      socket.emit("useItem", item.id, +$('#item-use-select').val());
+      client.socket.emit("useItem", item.id, +$('#item-use-select').val());
     });
 }
 
@@ -201,7 +201,7 @@ function openGiveUI(item) {
   $('#give-button')
     .off()
     .on('click', () => {
-      socket.emit("giveItem", item.id, +$('#item-give-select').val());
+      client.socket.emit("giveItem", item.id, +$('#item-give-select').val());
     });
 }
 
@@ -217,7 +217,7 @@ function openDiscardUI(item) {
     .off()
     .on("click", () => {
       $('#item-discard').hide();
-      socket.emit("discardItem", id, $("#discard-input").val());
+      client.socket.emit("discardItem", id, $("#discard-input").val());
     });
   $('#item-discard').show();
 }
