@@ -3,7 +3,7 @@
     width: 59.289%;
     height: 100%;
     aspect-ratio: auto 1024 / 768;
-    background-image: url('../res/battle/grass_bg.png');
+    background-image: url('../res/battle/grass2_bg_full.png');
     background-size: cover;
     display: none;
     user-select: none;
@@ -251,7 +251,7 @@
     font-size: 1.1em;
     font-weight: bold;
     position: absolute;
-    left: 194px;
+    left: 196px;
     top: 9px;
 }
 
@@ -323,6 +323,7 @@
     justify-content: center;
     align-items: center;
     font-size: 1em;
+    line-height: 1em;
 }
 
 #ball-image-container {
@@ -666,7 +667,7 @@
     height: 64px;
     scale: calc(1 * var(--scale));
     transform-origin: left bottom;
-    background-image: url('../res/battle/grass_base0.png');
+    background-image: url('../res/battle/grass_eve_base0.png');
 }
 
 .grassbase1 {
@@ -677,7 +678,7 @@
     height: 128px;
     scale: calc(1 * var(--scale));
     transform-origin: right top;
-    background-image: url('../res/battle/grass_base1.png');
+    background-image: url('../res/battle/grass_eve_base1.png');
 }
 
 .fight-command div {

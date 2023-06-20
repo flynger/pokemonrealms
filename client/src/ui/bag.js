@@ -60,9 +60,3 @@ function cancelBag() {
     $("#overlay-bag").hide();
     $('#overlay-command').show();
 }
-
-function useItem(item) {
-    client.socket.emit("itemInput", item);
-    $("overlay-switch").hide();
-
-}

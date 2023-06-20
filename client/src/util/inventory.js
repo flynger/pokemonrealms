@@ -154,7 +154,7 @@ function openItemContextMenu(e, item) {
       });
   } else {
     $("#item-context-menu-give").hide();
-    item.isUsableInBattle ? $("#item-context-menu-use").show().off().on("click", () => { useItem(item.id);$("#overlay-bag").hide(); }) : $("#item-context-menu-use").hide();
+    item.isUsableInBattle ? $("#item-context-menu-use").show().off().on("click", () => { battle.useItem(item.id); $("#overlay-bag").hide(); }) : $("#item-context-menu-use").hide();
     $("#item-context-menu-discard").hide();
   }
 }
