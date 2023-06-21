@@ -9,7 +9,6 @@ class client {
     static username;
     static firstJoin = true;
     static player = null;
-    static playerBattle = null;
 
     static setup() {
         this.socket = io.connect(this.link);

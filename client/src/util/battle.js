@@ -98,7 +98,7 @@ class battle {
             $("#pokemon-" + this.nextData.side).removeClass('flash');
         }, 600);
         setTimeout(() => {
-            if (this.nextData.message !== " ") this.createTextInterval()
+            if (this.nextData.message !== " ") this.createTextInterval();
             else this.nextActionLogic();
         }, 666);
     }
@@ -292,6 +292,11 @@ class battle {
     static cancelSwitch() {
         $("#overlay-switch").hide();
         $('#overlay-command').show();
+    }
+
+    static useItem(id) {
+        client.socket.emit("itemInput", id);
+        $("overlay-switch").hide();
     }
 
     static runFromBattle() {
