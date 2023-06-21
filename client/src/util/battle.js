@@ -151,7 +151,7 @@ class battle {
         }
     }
 
-    // Processes dialogue messages in battle
+    // Processes dialogue messages in battle (removes **)
     static processFormatting() {
         let message = this.nextData.message;
         let letters = this.nextData.message.split("");
