@@ -225,6 +225,38 @@
     background-image: url('../res/battle/gui/overlay_hp_r.png');
 }
 
+.status-effect {
+    width: 44px;
+    height: 16px;
+}
+
+.status-effect.slp {
+    background-image: url('../res/battle/gui/icon_slp.png');
+}
+
+.status-effect.psn {
+    background-image: url('../res/battle/gui/icon_psn.png');
+}
+
+
+.status-effect.brn {
+    background-image: url('../res/battle/gui/icon_brn.png');
+}
+
+
+.status-effect.par {
+    background-image: url('../res/battle/gui/icon_par.png');
+}
+
+
+.status-effect.frz {
+    background-image: url('../res/battle/gui/icon_frz.png');
+}
+
+.status-effect.tox {
+    background-image: url('../res/battle/gui/icon_tox.png');
+}
+
 #xpbar {
     position: absolute;
     background-image: url('../res/battle/gui/overlay_exp.png');
@@ -326,6 +358,12 @@
     line-height: 1em;
 }
 
+#status-effect-you {
+    position: absolute;
+    left: 16%;
+    bottom: 19.5%
+}
+
 #ball-image-container {
     position: absolute;
     width: 4%;
@@ -382,6 +420,7 @@
     60% {
         bottom: 64%;
     }
+
     100% {
         bottom: 64%;
     }
@@ -492,6 +531,12 @@
 #hpbar-foe {
     left: 118px;
     top: 40px;
+}
+
+#status-effect-foe {
+    position: absolute;
+    left: 3%;
+    bottom: 9.5%;
 }
 
 @keyframes faint_foe {

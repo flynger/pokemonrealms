@@ -126,42 +126,42 @@ export default class SingleBattle {
                                 thisParty.data.switchInCondition = lineArray[2];
                             }
                             break;
-                        // case "-damage":
-                        //     // add logic to send private data to player
-                        //     if (!isOwnPokemon) continue;
-                        //     message = this.text.damagePercentage;
-                        //     var pokemonArgs = lineArray[0].split(": ");
-                        //     var pokemonIdentity = pokemonArgs[0].slice(0, -1) + ": " + pokemonArgs[1];
-                        //     var side = pokemonArgs[0][1];
-                        //     args.NICKNAME = pokemonArgs[1];
+                            // case "-damage":
+                            //     // add logic to send private data to player
+                            //     if (!isOwnPokemon) continue;
+                            //     message = this.text.damagePercentage;
+                            //     var pokemonArgs = lineArray[0].split(": ");
+                            //     var pokemonIdentity = pokemonArgs[0].slice(0, -1) + ": " + pokemonArgs[1];
+                            //     var side = pokemonArgs[0][1];
+                            //     args.NICKNAME = pokemonArgs[1];
 
-                        //     if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
-                        //         let effectDetails = lineArray[2].slice(7).split(": ");
-                        //         let effectSourceType = effectDetails[0];
-                        //         let effectSource = effectDetails[1] || effectDetails[0];
-                        //         if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].damage) {
-                        //             message = ItemsText[Dex.items.get(effectSource).id].damage;
-                        //         } else if (effectSourceType == effectSource) {
-                        //             if (MovesText[Dex.moves.get(effectSource).id] && MovesText[Dex.moves.get(effectSource).id].damage) {
-                        //                 message = MovesText[Dex.moves.get(effectSource).id].damage;
-                        //             }
-                        //             else message = DefaultText[effectSource.toLowerCase()].damage;
-                        //         } else {
-                        //             //message = MovesText[Dex.moves.get(effectSource).id].damage;
-                        //         }
-                        //     }
-                        //     var thisPartyData = this["party" + side].data;
-                        //     var oldMonHP = thisPartyData.side.pokemon.find((mon) => mon.ident == pokemonIdentity).condition.split("/");
-                        //     var oldPercentage = Math.ceil(+oldMonHP[0] / +oldMonHP[1].split(" ")[0] * 100);
-                        //     var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
-                        //     oldMonHP[0] = +lineArray[1].split("/")[0];
-                        //     args.PERCENTAGE = oldPercentage - newPercentage + "%";
-                        //     battleDataProperties = {
-                        //         side: side == thisPlayer ? "you" : "foe",
-                        //         damageHPTo: newPercentage
-                        //     };
-                        //     break;
-                        // case "-heal":
+                            //     if (lineArray[2] && lineArray[2].startsWith("[from] ")) {
+                            //         let effectDetails = lineArray[2].slice(7).split(": ");
+                            //         let effectSourceType = effectDetails[0];
+                            //         let effectSource = effectDetails[1] || effectDetails[0];
+                            //         if (effectSourceType == "item" && ItemsText[Dex.items.get(effectSource).id].damage) {
+                            //             message = ItemsText[Dex.items.get(effectSource).id].damage;
+                            //         } else if (effectSourceType == effectSource) {
+                            //             if (MovesText[Dex.moves.get(effectSource).id] && MovesText[Dex.moves.get(effectSource).id].damage) {
+                            //                 message = MovesText[Dex.moves.get(effectSource).id].damage;
+                            //             }
+                            //             else message = DefaultText[effectSource.toLowerCase()].damage;
+                            //         } else {
+                            //             //message = MovesText[Dex.moves.get(effectSource).id].damage;
+                            //         }
+                            //     }
+                            //     var thisPartyData = this["party" + side].data;
+                            //     var oldMonHP = thisPartyData.side.pokemon.find((mon) => mon.ident == pokemonIdentity).condition.split("/");
+                            //     var oldPercentage = Math.ceil(+oldMonHP[0] / +oldMonHP[1].split(" ")[0] * 100);
+                            //     var newPercentage = lineArray[1] == "0 fnt" ? 0 : +lineArray[1].split("/")[0];
+                            //     oldMonHP[0] = +lineArray[1].split("/")[0];
+                            //     args.PERCENTAGE = oldPercentage - newPercentage + "%";
+                            //     battleDataProperties = {
+                            //         side: side == thisPlayer ? "you" : "foe",
+                            //         damageHPTo: newPercentage
+                            //     };
+                            //     break;
+                            // case "-heal":
                             // add logic to send private data to player
                             if (!isOwnPokemon) continue;
                             var pokemonArgs = lineArray[0].split(": ");
@@ -208,7 +208,7 @@ export default class SingleBattle {
                                 side: side == thisPlayer ? "you" : "foe",
                                 nickname: pokemonArgs[1],
                                 switchIn: lineArray[1],
-                                switchInCondition: isOwnPokemon ? thisParty.data.switchInCondition : lineArray[2]
+                                switchInCondition: isOwnPokemon ? thisParty.data.switchInCondition : lineArray[2],
                             };
                             break;
                         case "-damage":
@@ -243,7 +243,7 @@ export default class SingleBattle {
                             args.PERCENTAGE = oldPercentage - newPercentage + "%";
                             battleDataProperties = {
                                 side: side == thisPlayer ? "you" : "foe",
-                                damageHPTo: newPercentage
+                                damageHPTo: newPercentage,
                             };
                             break;
                         case "-heal":
@@ -428,6 +428,10 @@ export default class SingleBattle {
                         var statusEffect = lineArray[1];
                         message = DefaultText[statusEffect].start;
                         args.NICKNAME = lineArray[0].split(": ")[1];
+                        battleDataProperties = {
+                            side: side == thisPlayer ? "you" : "foe",
+                            statusEffect: statusEffect
+                        }
                         break;
                     case "-supereffective":
                         message = DefaultText.default.superEffective;

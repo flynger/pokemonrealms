@@ -52,7 +52,11 @@ class battle {
         }
 
         this.processFormatting();
-
+        
+        // updates status effect of pokemon
+        if ("statusEffect" in this.nextData) {
+            $(`#status-effect-${this.nextData.side}`).addClass(this.nextData.statusEffect);
+        }
         // updates Hp Bar
         if ("damageHPTo" in this.nextData) {
             this.updateHpBar();
@@ -84,6 +88,14 @@ class battle {
         $("#hpbar-" + this.nextData.side).width((+hpValues[0] !== 0 ? +hpValues[0] / +hpValues[1] : 0) * 96);
         if (this.nextData.side === "you") {
             this.currentMaxHp = +hpValues[1];
+        }
+
+        let statusEffect = this.nextData.switchInCondition.split(' ')[1];
+        if (statusEffect) {
+            $(`#status-effect-${side}`).addClass(statusEffect);
+        }
+        else {
+            $(`#status-effect-${side}`).attr("class", "status-effect");
         }
 
         this.showPokemon(side, species, nickname, level, shiny);

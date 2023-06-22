@@ -51,6 +51,10 @@ export default class Player {
                Ballet Town : Town, Lab, Player House 1F, Player House 2F, Outskirts */
             map: "Ballet Town",
             submap: "Player House 2F"
+
+            //For testing battle quicker
+            // map: "Route 1",
+            // submap: "Area 1"
         };
     }
 
