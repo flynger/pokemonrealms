@@ -28,7 +28,6 @@
   <script src="src/ui/pokemonSummary.js"></script>
   <script src="src/ui/dialog.js"></script>
   <script src="src/ui/party.js"></script>
-  <script src="src/ui/bag.js"></script>
 
   <script src="src/util/pc.js"></script>
   <script src="src/util/inventory.js"></script>
@@ -573,7 +572,7 @@
           <div class="bag-item"></div>
 
         </div>
-        <div id="bag-cancel" class="cancel" onclick="cancelBag()"></div>
+        <div id="bag-cancel" class="cancel" onclick="battle.cancelBag()"></div>
       </div>
 
 
@@ -643,8 +642,8 @@
         <p id="command-message" class="battle-text"></p>
         <div class="fight bg-image" onclick="battle.showFightButtons()"></div>
         <div class="pkmn bg-image" onclick="battle.showSwitchButtons()"></div>
-        <div class="bag bg-image" onclick="showBag()"></div>
-        <div class="run bg-image" onclick="battle.runFromBattle()"></div>
+        <div class="bag bg-image" onclick="battle.showBag()"></div>
+        <div class="run bg-image" onclick="battle.runAway()"></div>
         <!-- <div id="button-2" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
             <div id="button-3" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div>
             <div id="button-4" class="battle-button"><img src="../res/gui/battle/cursor_shift.png"></div> -->

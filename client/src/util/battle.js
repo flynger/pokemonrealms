@@ -11,16 +11,19 @@ class battle {
     static nextData = null;
     static currentMaxHp;
 
-     // Variables for text info
-     static textSpeed = 100; // 60
-     static textInterval;
-     static waitMessage;
-     static dialoguePlaying = false;
-     static letters = [];
-     
+    // Variables for text info
+    static textSpeed = 100; // 60
+    static textInterval;
+    static waitMessage;
+    static dialoguePlaying = false;
+    static letters = [];
+
+    // bag
+    static selectedBagTab = "All";
+
     // Setup UI for battle
     static setup() {
-        initBag();
+        this.initBag();
         $("#overlay-bag").hide();
         $("#overlay-switch").hide();
         $("#overlay-command").hide();
@@ -31,37 +34,85 @@ class battle {
         $("#overlay-message").show();
     }
 
+    static initBag() {
+        var itemCategories = ["Poké Balls", "Medicine", "Berries", "Items"];
+        $("#bagHeader").html(`<div class="bag-tab selected"><span class="bag-tab-text">All</span></div>`);
+        for (let category of itemCategories) {
+            $("#bagHeader").append(`<div class="bag-tab"><span class="bag-tab-text">${category}</span></div>`);
+        }
+        $(".bag-tab").on("click", function () {
+            this.selectedBagTab = $(this).text();
+            if (!$(this).hasClass("selected")) {
+                $(".bag-tab").removeClass("selected");
+                $(this).addClass("selected");
+                this.filterBagAndGenerate();
+            }
+        });
+    }
+
     // Recieves data from the server and interprets it
     static nextAction() {
-        if (!this.dialoguePlaying) {
-            $("#overlay-command").hide();
-            $("#overlay-fight").hide();
-            $("#overlay-message").show();
-            this.dialoguePlaying = true;
-        }
-        clearInterval(this.textInterval);
-        this.nextData = this.battleData.shift();
+        if (this.battleData.length > 0) { // run the next action if they exist
+            if (!this.dialoguePlaying) {
+                $("#overlay-command").hide();
+                $("#overlay-fight").hide();
+                $("#overlay-message").show();
+                this.dialoguePlaying = true;
+            }
+            clearInterval(this.textInterval);
+            this.nextData = this.battleData.shift();
+            this.processFormatting();
 
-        // When a pokemon switches out
-        if (this.nextData.switchOut) {
-            this.switchOut();
-        }
-        // When a pokemon switches in
-        if (this.nextData.switchIn) {
-            this.switchIn();
-        }
+            if ("switchOut" in this.nextData) { // When a pokemon switches out
+                this.switchOut();
+            } else if ("switchIn" in this.nextData) { // When a pokemon switches in
+                this.switchIn();
+            } else if ("statusEffect" in this.nextData) { // updates status effect of pokemon
+                $(`#status-effect-${this.nextData.side}`).addClass(this.nextData.statusEffect);
+            }
 
-        this.processFormatting();
-        
-        // updates status effect of pokemon
-        if ("statusEffect" in this.nextData) {
-            $(`#status-effect-${this.nextData.side}`).addClass(this.nextData.statusEffect);
+            if ("damageHPTo" in this.nextData) { // updates Hp Bar
+                this.updateHpBar();
+            } else if (this.nextData.message && this.nextData.message != " ") this.createTextInterval();
+        } else {
+            // Handles UI for forceswitches, battle end, and when dialogue ends
+            if (this.nextData.battleOver) {
+                $('#battle-UI').hide();
+                players[client.username].busy = false;
+                this.isBattleActive = false;
+                app.view.style.filter = "none";
+                this.clearPokemon("you");
+                this.clearPokemon("foe");
+                $("#party-div").show();
+            } else {
+                if (this.battleOptions.forceSwitch) {
+                    this.updateSwitchButtons();
+                    this.showSwitchButtons();
+                } else if (!this.battleOptions.wait) {
+                    this.updateSwitchButtons();
+                    this.filterBagAndGenerate();
+                    $("#overlay-command").show();
+                }
+                // $("#overlay-fight").show();
+            }
+            $('#dialogue').html(this.waitMessage);
+            this.dialoguePlaying = false;
         }
-        // updates Hp Bar
-        if ("damageHPTo" in this.nextData) {
-            this.updateHpBar();
-        }
-        else this.createTextInterval();
+    }
+
+    // Creates the text in battle
+    static createTextInterval() {
+        $('#dialogue').html("");
+        var index = 0;
+        this.textInterval = setInterval(() => {
+            $('#dialogue').html($('#dialogue').html() + this.letters[index++]);
+            if (index >= this.letters.length) {
+                clearInterval(this.textInterval);
+                setTimeout(() => {
+                    this.nextAction();
+                }, 800);
+            }
+        }, 1000 / this.textSpeed);
     }
 
     // When a pokemon switches out
@@ -111,23 +162,8 @@ class battle {
         }, 600);
         setTimeout(() => {
             if (this.nextData.message !== " ") this.createTextInterval();
-            else this.nextActionLogic();
+            else this.nextAction();
         }, 666);
-    }
-
-    // Creates the text in battle
-    static createTextInterval() {
-        $('#dialogue').html("");
-        var index = 0;
-        this.textInterval = setInterval(() => {
-            $('#dialogue').html($('#dialogue').html() + this.letters[index++]);
-            if (index >= this.letters.length) {
-                clearInterval(this.textInterval);
-                setTimeout(() => {
-                    this.nextActionLogic()
-                }, 800);
-            }
-        }, 1000 / this.textSpeed);
     }
 
     //skips the text printing animation
@@ -135,33 +171,6 @@ class battle {
     //     clearInterval(this.textInterval);
     //     $('#dialogue'.html(this.nextData.message));
     // }
-
-    // Changes UI for forceswitches, battle end, and when dialogue ends
-    static nextActionLogic() {
-        if (this.battleData.length > 0) {
-            // Either nextAction called when text is not present
-            this.nextAction();
-        } else {
-            if (this.nextData.battleOver) {
-                $('#battle-UI').hide();
-                players[client.username].busy = false;
-                this.isBattleActive = false;
-                app.view.style.filter = "none";
-                this.clearPokemon("you");
-                this.clearPokemon("foe");
-                $("#party-div").show();
-            } else {
-                if (this.battleOptions.forceSwitch) {
-                    this.showSwitchButtons();
-                } else if (!this.battleOptions.wait) {
-                    $("#overlay-command").show();
-                }
-                // $("#overlay-fight").show();
-            }
-            $('#dialogue').html(this.waitMessage);
-            this.dialoguePlaying = false;
-        }
-    }
 
     // Processes dialogue messages in battle (removes **)
     static processFormatting() {
@@ -193,6 +202,16 @@ class battle {
         $(`#pokemon-${this.nextData.side}`).show();
     }
 
+    // Updates the pokemon info and sprites when pokemon switch out
+    static clearPokemon(side) {
+        $("#pokemon-" + side).attr("src", "");
+        $('#pokemon-name-' + side).html("");
+        $('#lvl-text-' + side).html("");
+        $("#hpbar-" + side).css("transition-duration", "0s");
+        $("#hpbar-" + side).width(96);
+        $("#hpbar-" + side).css("transition-duration", "0.666s");
+    }
+
     static playThrowAnimation() {
         $("#ball-image-container").addClass('throw-fall');
         $("#ball-image").addClass('throw-x');
@@ -208,16 +227,6 @@ class battle {
                 }, 300);
             }, 800);
         }, 2200);
-    }
-
-    // Updates the pokemon info and sprites when pokemon switch out
-    static clearPokemon(side) {
-        $("#pokemon-" + side).attr("src", "");
-        $('#pokemon-name-' + side).html("");
-        $('#lvl-text-' + side).html("");
-        $("#hpbar-" + side).css("transition-duration", "0s");
-        $("#hpbar-" + side).width(96);
-        $("#hpbar-" + side).css("transition-duration", "0.666s");
     }
 
     // Updates the current pokemon's move options
@@ -242,19 +251,19 @@ class battle {
         $('#overlay-command').hide();
     }
 
+    static cancelFight() {
+        $("#overlay-fight").hide();
+        $('#overlay-command').show();
+    }
+
     static useMove(num) {
         client.socket.emit("moveInput", num);
         $("#overlay-fight").hide();
         $("#overlay-message").show();
     }
 
-    static cancelFight() {
-        $("#overlay-fight").hide();
-        $('#overlay-command').show();
-    }
-
-    // Generates updated information and UI for switch action
-    static showSwitchButtons() {
+    // Updates information and UI for switch action
+    static updateSwitchButtons() {
         let party = this.battleOptions.side.pokemon;
 
         // Gets information of pokemon and generate switch UI HTML
@@ -278,22 +287,28 @@ class battle {
             $(`${pkmn}-switch-hpbar-outline`).attr("class", `switch-hpbar-outline ${hpOutline}`);
             $(`${pkmn}-hpbar`).attr("class", `hp small ${hpOutline}`);
             if (!isFainted && i !== 0) {
-                $(pkmn).attr("onclick", `battle.switchTo(${+i + 1})`)
+                $(pkmn).attr("onclick", `battle.switchTo(${+i + 1})`);
             } else {
-                $(pkmn).attr("onclick", "")
+                $(pkmn).attr("onclick", "");
             };
-            $(pkmn).show()
+            $(pkmn).show();
         }
+    }
+
+    static showSwitchButtons() {
         if (!this.battleOptions.forceSwitch) {
             $('#switch-cancel').show();
-        }
-        else {
+        } else {
             $('#switch-cancel').hide();
         }
-
         // Add switch UI HTML to the container element
         $("#overlay-switch").show();
         $('#overlay-command').hide();
+    }
+
+    static cancelSwitch() {
+        $("#overlay-switch").hide();
+        $('#overlay-command').show();
     }
 
     static switchTo(slot) {
@@ -301,8 +316,39 @@ class battle {
         $("#overlay-switch").hide();
     }
 
-    static cancelSwitch() {
-        $("#overlay-switch").hide();
+    // Filter for different categories in bag
+    static filterBagAndGenerate() {
+        let categoryFilter = this.selectedBagTab == "All" ? () => true : (item) => item.category == this.selectedBagTab;
+        let filteredInv = inventoryArray.filter(categoryFilter);
+        this.generateBagGrid(filteredInv);
+    }
+
+    // Creates UI and event listeners for each bag item
+    static generateBagGrid(items) {
+        $('#bag-grid').html("");
+        for (let item of items) {
+            let { id, quantity } = item;
+            $('#bag-grid').append(
+                `<div id="bag-item-${id}" class="bag-item">
+                <img class="bag-item-icon" src="res/items/${id}.png" />
+                <div class="bag-item-count">${quantity != 1 ? quantity : ""}</div>
+            </div>`
+            );
+            $(`#bag-item-${id}`).on('click', (e) => {
+                e.stopPropagation();
+                openItemContextMenu(e, item);
+            })
+        }
+    }
+
+    // functions for showing and hiding different actions in battle
+    static showBag() {
+        $("#overlay-bag").show();
+        $('#overlay-command').hide();
+    }
+
+    static cancelBag() {
+        $("#overlay-bag").hide();
         $('#overlay-command').show();
     }
 
@@ -311,7 +357,7 @@ class battle {
         $("overlay-switch").hide();
     }
 
-    static runFromBattle() {
+    static runAway() {
         client.socket.emit("endBattle");
         $("#overlay-command").hide();
         $("#overlay-fight").hide();

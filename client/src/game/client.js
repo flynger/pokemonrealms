@@ -172,7 +172,6 @@ class client {
             $("#battle-UI").show();
             $("#party-div").hide();
             battle.isBattleActive = true;
-            filterBagInvAndGenerate("All");
             battle.waitMessage = showWaitMessage ? "Waiting for other player..." : "";
             this.player.busy = true;
             app.view.style.filter = "blur(0.2em)";
