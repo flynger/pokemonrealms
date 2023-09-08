@@ -40,11 +40,11 @@ class battle {
         for (let category of itemCategories) {
             $("#bagHeader").append(`<div class="bag-tab"><span class="bag-tab-text">${category}</span></div>`);
         }
-        $(".bag-tab").on("click", function () {
-            this.selectedBagTab = $(this).text();
-            if (!$(this).hasClass("selected")) {
+        $(".bag-tab").on("click", e => {
+            this.selectedBagTab = $(e.target).text();
+            if (!$(e.target).hasClass("selected")) {
                 $(".bag-tab").removeClass("selected");
-                $(this).addClass("selected");
+                $(e.target).addClass("selected");
                 this.filterBagAndGenerate();
             }
         });

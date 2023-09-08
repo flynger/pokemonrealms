@@ -3,7 +3,7 @@
     width: 59.289%;
     height: 100%;
     aspect-ratio: auto 1024 / 768;
-    background-image: url('../res/battle/grass2_bg_full.png');
+    background-image: url('../res/battle/grass_bg.png');
     background-size: cover;
     display: none;
     user-select: none;

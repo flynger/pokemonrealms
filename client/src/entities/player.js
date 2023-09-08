@@ -18,17 +18,6 @@ class player {
     static async initializePlayerSpritesheets() {
         for (let avatar of this.avatars) {
             let spriteName = avatar + "_walk";
-            let sheetData = makeHorizontalSheet(spriteName, `res/characters/${spriteName}.png`, 134, 198, 1, 4, 4, 2, 2, false);
-            sheetData.animations = {
-                "down": [spriteName + "_0_0", spriteName + "_0_1", spriteName + "_0_2", spriteName + "_0_3"],
-                "left": [spriteName + "_1_0", spriteName + "_1_1", spriteName + "_1_2", spriteName + "_1_3"],
-                "right": [spriteName + "_2_0", spriteName + "_2_1", spriteName + "_2_2", spriteName + "_2_3"],
-                "up": [spriteName + "_3_0", spriteName + "_3_1", spriteName + "_3_2", spriteName + "_3_3"]
-            };
-            this.playerSprites[spriteName] = new PIXI.Spritesheet(
-                PIXI.BaseTexture.from(sheetData.meta.image),
-                sheetData
-            );
             let spriteName2 = avatar + "_head";
             let sheetData2 = makeHorizontalSheet(spriteName2, `res/characters/${spriteName}.png`, 134, 198, 1, 4, 4, 2, 2, false, 12);
             sheetData2.animations = {
@@ -53,7 +42,7 @@ class player {
                 PIXI.BaseTexture.from(sheetData3.meta.image),
                 sheetData3
             );
-            await Promise.all([this.playerSprites[spriteName].parse(), this.playerSprites[spriteName2].parse(), this.playerSprites[spriteName3].parse()]);
+            await Promise.all([this.playerSprites[spriteName2].parse(), this.playerSprites[spriteName3].parse()]);
         }
     }
 

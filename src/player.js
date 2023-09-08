@@ -8,7 +8,7 @@ import Inventory from "./inventory.js";
 import Pokedex from "./pokedex.js";
 import Pokemon, { Stats } from "./pokemon.js";
 import Map from "./map.js";
-import Pc from "./pc.js"
+import PC from "./pc.js"
 
 export default class Player {
     static onlinePlayers = [];
@@ -32,10 +32,10 @@ export default class Player {
         this.party = [];
         // this.box = new Array(5).fill("").map(e => []); // create 5 arrays inside one array
         this.starter = false;
-        this.pickStarter();
+        this.pickStarter(Player.starterOptions.random());
         this.balance = 500;
         this.inventory = new Inventory(this);
-        this.pc = new Pc(this);
+        this.pc = new PC(this);
         this.inventory.addItem("pokeball", 5);
         // this.inventory.addItem("greatball", 10);
         // this.inventory.addItem("ultraball", 5);
@@ -59,19 +59,19 @@ export default class Player {
     }
 
     pickStarter(starter) {
-        if (this.starter == false) {
-            this.starter = Player.starterOptions.includes(starter) ? starter : ["MRMIME", "PIKACHU", "CHARIZARD", "BLASTOISE", "VENUSAUR"].random(); //Player.starterOptions.random();
-            this.addPokemon(new Pokemon(this.starter, 50, { name: ["Eggo", "Googly", "Barry", "StutlerK", "HappyMonster", "Demon"].random(), nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0 }));
-            for (let i = 0; i < 5; i++) {
-                let rng = randomNumber(1, 649);
-                for (let mon in Pokedex) {
-                    if (rng == Pokedex[mon].id) {
-                       //  console.log(mon)
-                        this.addPokemon(new Pokemon(mon, 50, { originalTrainer: this.displayName, owner: this.displayName }));
-                        break;
-                    }
-                }
-            }
+        if (this.starter == false && Player.starterOptions.includes(starter)) {
+            this.starter = starter;
+            this.addPokemon(new Pokemon(this.starter, 5, { nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0, shiny: true }));
+            // for (let i = 0; i < 5; i++) {
+            //     let rng = randomNumber(1, 649);
+            //     for (let mon in Pokedex) {
+            //         if (rng == Pokedex[mon].id) {
+            //            //  console.log(mon)
+            //             this.addPokemon(new Pokemon(mon, 50, { originalTrainer: this.displayName, owner: this.displayName }));
+            //             break;
+            //         }
+            //     }
+            // }
             // this.party.push(new Pokemon("MIMEJR", 1, { "ASH", gender: "F", originalTrainer: "Professor Oak", owner: this.displayName, caughtBall: "ultraball" }));
             // this.party.push(new Pokemon("DARKRAI", 10, { heldItem: "pokeball", originalTrainer: "Unknown", owner: this.displayName, caughtBall: "masterball" }));
             // this.party.push(new Pokemon("MAGNEMITE", 99, { originalTrainer: "Unknown", owner: this.displayName }));

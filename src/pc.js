@@ -6,17 +6,18 @@ This file implements server-sided pc
 
 import Pokedex from "./pokedex.js"
 
-export default class Pc {
-    constructor (player, pokemonArr = []) {
+export default class PC {
+    constructor (player, boxes = false) {
         this.player = player;
-        this.pokemonArr = pokemonArr;
+        this.boxes = boxes ? boxes : Array.from(Array(16), () => new Array());
+        console.log(this.boxes);
     }
 
-    addToPc(mon) {
+    addToPC(mon) {
         //add code to make sure pokemon is pokemon
         console.log("Adding pokemon to PC...");
         this.pokemonArr.push(mon);
-        this.sendPcUpdate();
+        this.sendPCUpdate();
     }
 
     removeItem(index) {
@@ -24,10 +25,10 @@ export default class Pc {
             throw Error("ItemError: No pokemon at that slot to remove!");
         }
         delete this.items[item];
-        this.sendPcUpdate();
+        this.sendPCUpdate();
     }
 
-    sendPcUpdate() {
+    sendPCUpdate() {
         if (this.player && this.player.connected) this.player.socket.emit("pcUpdate", this.pokemonArr);
     }
 
