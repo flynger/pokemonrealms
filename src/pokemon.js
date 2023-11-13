@@ -27,9 +27,9 @@ export default class Pokemon {
         return Pokemon.entries[id];
     }
 
-    constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature = Pokemon.getRandomNature(), abilitySlot, happiness = 70, ivs = new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31)), evs = new Stats(0, 0, 0, 0, 0, 0), moves = [], originalTrainer, owner, caughtBall, hiddenAbilityChance = false }) {
-        this.species = species;
-        this.name = name;
+    constructor(species, level, { name, gender, shiny, heldItem, nature, abilitySlot, happiness, ivs, evs, moves = [], originalTrainer, owner, caughtBall, hiddenAbilityChance = false }) {
+        this.species = species ?? "MISSINGNO";
+        this.name = name ?? "";
 
         // gender initialization
         if (Pokedex[species].gender) {
@@ -41,11 +41,11 @@ export default class Pokemon {
         } else this.gender = gender;
 
         this.shiny = typeof shiny == "boolean" ? shiny : randomNumber(1, Pokemon.shinyChance) == 1;
-        this.level = level;
+        this.level = level ?? 1;
         this.xp = Pokemon.growthRates[Pokedex[species].growthRate][level];
-        this.heldItem = heldItem;
-        this.nature = nature;
-        this.happiness = happiness;
+        this.heldItem = heldItem ?? "";
+        this.nature = nature ?? Pokemon.getRandomNature();
+        this.happiness = happiness ?? 70;
 
         // ability code
         if (abilitySlot && Pokedex[species].abilities.hasOwnProperty(abilitySlot)) {
@@ -56,8 +56,8 @@ export default class Pokemon {
             } else this.abilitySlot = Pokedex[species].abilities["1"] ? randomNumber(0, 1) + "" : "0";
         }
 
-        this.ivs = ivs;
-        this.evs = evs;
+        this.ivs = ivs ?? new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31));
+        this.evs = evs ?? new Stats(0, 0, 0, 0, 0, 0);
         this.calculateStats();
         this.currenthp = this.stats.hp;
 
