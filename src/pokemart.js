@@ -69,4 +69,3 @@ export default class Pokemart {
 //     { id: "aguavberry", price: 5 },
 //     { id: "thunderstone", price: 10000 }
 // ]);
-//console.log(testmart);

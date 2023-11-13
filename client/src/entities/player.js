@@ -5,8 +5,8 @@ This file defines the player class
 */
 class player {
     // Physics for player
-    static walkSpeed = 1.2;
-    static runSpeed = 1.8;
+    static walkSpeed = 1;
+    static runSpeed = 1.5;
     static friction = 0.15;
     static rigidBodyWidth = 20;
     static rigidBodyHeight = 20;

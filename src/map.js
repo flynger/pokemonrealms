@@ -17,7 +17,8 @@ class WarpTile {
         this.destination = destination;
     }
     isPlayerInside(player) {
-        return player.x + 8 >= this.x && player.x + 24 <= this.x + this.width && player.y + 16 + 6 >= this.y && player.y + 36 - 6 <= this.y + this.height;
+        const { x, y } = player.getLocation();
+        return x + 8 >= this.x && x + 24 <= this.x + this.width && y + 16 + 6 >= this.y && y + 36 - 6 <= this.y + this.height;
     }
 }
 
@@ -32,7 +33,7 @@ export default class Map {
             this.maps[mapName] = {};
             for (let submapName of submapList) {
                 let mapData = jsonfile.readFileSync(`./data/maps/${mapName}/${submapName}.json`);
-                let encounterData = {grass:{morning:[],day:[],night:[],frequency:[]}};
+                let encounterData = { grass: { morning: [], day: [], night: [], frequency: [] } };
                 if (existsSync(`./data/encounters/${mapName}/${submapName}.json`))
                     encounterData = jsonfile.readFileSync(`./data/encounters/${mapName}/${submapName}.json`);
                 this.maps[mapName][submapName] = new Map(mapName, submapName, mapData, encounterData);
@@ -59,7 +60,7 @@ export default class Map {
     constructor(mapName, submapName, data, encounterData) {
         this.mapName = mapName;
         this.submapName = submapName;
-        this.room = mapName + " " + submapName;
+        this.room = mapName + ": " + submapName;
         this.data = data;
         this.collideables = data.collideables;
         this.grass = data.grass;
@@ -67,7 +68,7 @@ export default class Map {
         this.encounters = encounterData;
         this.warpTiles = [];
         this.players = [];
-        for (let warpTile of data.warpTiles) {
+        for (const warpTile of data.warpTiles) {
             this.warpTiles.push(new WarpTile(warpTile.x, warpTile.y, warpTile.destination, warpTile.width, warpTile.height));
         }
     }
@@ -78,32 +79,23 @@ export default class Map {
         player.socket.to(this.room).emit("playerDisconnect", player.displayName);
     }
 
-    addPlayer(player, data) {
+    addPlayer(player, { x, y, facing }) {
         this.players.push(player);
         player.socket.join(this.room);
-        player.location = {
-            map: this.mapName,
-            submap: this.submapName
-        }
-        player.setLocation(data.x, data.y, data.facing);
-        player.socket.emit("mapData", player.displayName, this.players.map((plyr) => plyr.export()), { map: this.mapName, submap: this.submapName }, this.collideables, this.grass, this.water);
-        // player.socket.emit("playerData", player.displayName, this.players.map((plyr) => plyr.export()));
-        data.name = player.displayName;
-        data.currentFrame = 0;
-        player.socket.to(this.room).emit("playerMovement", data);
+        player.setLocation({ x, y, facing, map: this.mapName, submap: this.submapName });
+        player.socket.emit("mapData", player.displayName, this.players.map(player => player.getMapData()), { map: this.mapName, submap: this.submapName }, this.collideables, this.grass, this.water);
+        player.socket.to(this.room).emit("playerMovement", { name: player.displayName, x, y, facing, currentFrame: 0 });
     }
 
-    updatePlayerLocation(player, data) {
-        data.name = player.displayName;
-        player.setLocation(data.x, data.y, data.facing);
+    updatePlayerLocation(player, { x, y, facing }) {
+        player.setLocation({ x, y, facing });
         let warpDestination = this.warpCheck(player);
         if (warpDestination) {
             this.removePlayer(player);
             if (!warpDestination.map) warpDestination.map = player.location.map;
             Map.getMap(warpDestination.map, warpDestination.submap).addPlayer(player, warpDestination);
         } else {
-            data.name = player.displayName;
-            player.socket.to(this.room).emit("playerMovement", data);
+            player.socket.to(this.room).emit("playerMovement", { name: player.displayName, x, y, facing });
         }
     }
 

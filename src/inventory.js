@@ -56,4 +56,8 @@ export default class Inventory {
     sendItemUpdate() {
         if (this.player && this.player.connected) this.player.socket.emit("inventoryUpdate", this.items);
     }
+
+    getSaveData() {
+        return this.items;
+    }
 }

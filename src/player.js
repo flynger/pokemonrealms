@@ -12,15 +12,38 @@ import PC from "./pc.js"
 
 export default class Player {
     static onlinePlayers = [];
+    static startingLocation = {
+        x: 160,
+        y: 240,
+        facing: "down",
+        map: "Ballet Town",
+        submap: "Player House 2F"
+    };
     static starterOptions = ["BULBASAUR", "CHARMANDER", "SQUIRTLE"];
     static starterNatures = ["bashful", "docile", "hardy", "quirky", "serious"];
 
-    constructor(name, displayName, x = 160, y = 240, facing = "down") { // 224, 288 town - 240, 350 lab
+    /*  Route 1 : Area 1, Area 2
+        Ballet Town : Town, Lab, Player House 1F, Player House 2F, Outskirts
+        
+        For testing battle quicker
+        map: "Route 1",
+        submap: "Area 1"  */
+
+    constructor({ name, displayName, location, balance, party, starter, pc, inventory }) { // 224, 288 town - 240, 350 lab
+        // permanent data
         this.name = name;
         this.displayName = displayName;
-        this.x = x;
-        this.y = y;
-        this.facing = facing;
+        this.location = location ?? { ...Player.startingLocation };
+        this.balance = balance ?? 500;
+        this.party = party ?? [];
+        this.starter = starter ?? this.pickStarter(Player.starterOptions.random());
+        this.pc = new PC(this, pc?.boxes, pc?.defaultBox);
+        this.inventory = new Inventory(this, inventory);
+        this.inventory.addItem("pokeball", 5);
+        this.inventory.addItem("potion", 3);
+        this.inventory.addItem("masterball", 99);
+
+        // temp data
         this.connected = false;
         this.socket = null;
         this.requests = {
@@ -29,54 +52,28 @@ export default class Player {
         };
         this.battle = null;
         this.trade = null;
-        this.party = [];
-        // this.box = new Array(5).fill("").map(e => []); // create 5 arrays inside one array
-        this.starter = false;
-        this.pickStarter(Player.starterOptions.random());
-        this.balance = 500;
-        this.inventory = new Inventory(this);
-        this.pc = new PC(this);
-        this.inventory.addItem("pokeball", 5);
-        // this.inventory.addItem("greatball", 10);
-        // this.inventory.addItem("ultraball", 5);
-        this.inventory.addItem("potion", 3);
-        this.inventory.addItem("masterball", 99);
-        // this.inventory.addItem("superpotion", 3);
-        // this.inventory.addItem("hyperpotion", 3);
-        // this.inventory.addItem("maxpotion", 3);
-        // this.inventory.addItem("firestone", 1);
-        // this.inventory.addItem("aguavberry", 17);
-        this.location = {
-            /* Route 1 : Area 1, Area 2
-               Ballet Town : Town, Lab, Player House 1F, Player House 2F, Outskirts */
-            map: "Ballet Town",
-            submap: "Player House 2F"
-
-            //For testing battle quicker
-            // map: "Route 1",
-            // submap: "Area 1"
-        };
     }
 
     pickStarter(starter) {
-        if (this.starter == false && Player.starterOptions.includes(starter)) {
+        if (!this.starter && Player.starterOptions.includes(starter)) {
             this.starter = starter;
-            this.addPokemon(new Pokemon(this.starter, 5, { nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0, shiny: true }));
-            // for (let i = 0; i < 5; i++) {
-            //     let rng = randomNumber(1, 649);
-            //     for (let mon in Pokedex) {
-            //         if (rng == Pokedex[mon].id) {
-            //            //  console.log(mon)
-            //             this.addPokemon(new Pokemon(mon, 50, { originalTrainer: this.displayName, owner: this.displayName }));
-            //             break;
-            //         }
-            //     }
-            // }
+            // this.addPokemon(new Pokemon(this.starter, 5, { nature: Player.starterNatures.random(), ivs: new Stats(15, 15, 15, 15, 15, 15), owner: this.displayName, hiddenAbilityChance: 0, shiny: true }));
+            for (let i = 0; i < 4; i++) {
+                let rng = randomNumber(1, 649);
+                for (let mon in Pokedex) {
+                    if (rng == Pokedex[mon].id) {
+                        //  console.log(mon)
+                        this.addPokemon(new Pokemon(mon, 50, { originalTrainer: this.displayName, owner: this.displayName }));
+                        break;
+                    }
+                }
+            }
             // this.party.push(new Pokemon("MIMEJR", 1, { "ASH", gender: "F", originalTrainer: "Professor Oak", owner: this.displayName, caughtBall: "ultraball" }));
             // this.party.push(new Pokemon("DARKRAI", 10, { heldItem: "pokeball", originalTrainer: "Unknown", owner: this.displayName, caughtBall: "masterball" }));
             // this.party.push(new Pokemon("MAGNEMITE", 99, { originalTrainer: "Unknown", owner: this.displayName }));
             // this.party.push(new Pokemon("MAGNEMITE", 100, { originalTrainer: "Unknown", owner: this.displayName }));
         }
+        return this.starter;
     }
 
     addPokemon(mon) {
@@ -84,7 +81,7 @@ export default class Player {
         if (this.party.length < 6) {
             this.party.push(mon);
             this.sendPartyUpdate();
-        } else this.pc.addToPc(mon);
+        } else this.pc.add(mon);
     }
 
     swapPartySlots(slot1, slot2) {
@@ -119,18 +116,34 @@ export default class Player {
         }
     }
 
-    getMap() {
-        return Map.getMap(this.location.map, this.location.submap);
-    }
-
     isBusy() {
         return this.battle != null || this.trade != null;
     }
 
-    setLocation(x, y, facing) {
-        this.x = x;
-        this.y = y;
-        this.facing = facing;
+    getMap() {
+        return Map.getMap(this.location.map, this.location.submap);
+    }
+
+    getMapData() {
+        return {
+            name: this.name,
+            displayName: this.displayName,
+            x: this.location.x,
+            y: this.location.y,
+            facing: this.location.facing
+        }
+    }
+    
+    getLocation() {
+        return this.location;
+    }
+
+    setLocation({ x, y, facing, map, submap }) {
+        this.location.x = x ?? this.location.x;
+        this.location.y = y ?? this.location.y;
+        this.location.facing = facing ?? this.location.facing;
+        this.location.map = map ?? this.location.map;
+        this.location.submap = submap ?? this.location.submap;
     }
 
     setSocket(socket) {
@@ -145,14 +158,17 @@ export default class Player {
         Player.onlinePlayers.remove(this.displayName);
     }
 
-    export() {
+    getSaveData() {
         return {
             name: this.name,
             displayName: this.displayName,
-            x: this.x,
-            y: this.y,
-            facing: this.facing
-        }
+            location: this.location,
+            balance: this.balance,
+            party: this.party,
+            starter: this.starter,
+            pc: this.pc.getSaveData(),
+            inventory: this.inventory.getSaveData()
+        };
     }
 }
 

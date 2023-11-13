@@ -27,7 +27,7 @@ export default class Pokemon {
         return Pokemon.entries[id];
     }
 
-    constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature, abilitySlot, happiness = 70, ivs, evs, moves = [], originalTrainer, owner, caughtBall, hiddenAbilityChance = false }) {
+    constructor(species = "MISSINGNO", level = -1, { name = "", gender, shiny, heldItem = "", nature = Pokemon.getRandomNature(), abilitySlot, happiness = 70, ivs = new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31)), evs = new Stats(0, 0, 0, 0, 0, 0), moves = [], originalTrainer, owner, caughtBall, hiddenAbilityChance = false }) {
         this.species = species;
         this.name = name;
 
@@ -44,7 +44,7 @@ export default class Pokemon {
         this.level = level;
         this.xp = Pokemon.growthRates[Pokedex[species].growthRate][level];
         this.heldItem = heldItem;
-        this.nature = nature || Pokemon.getRandomNature();
+        this.nature = nature;
         this.happiness = happiness;
 
         // ability code
@@ -56,32 +56,27 @@ export default class Pokemon {
             } else this.abilitySlot = Pokedex[species].abilities["1"] ? randomNumber(0, 1) + "" : "0";
         }
 
-        this.ivs = ivs || new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31));
-        this.evs = evs || new Stats(0, 0, 0, 0, 0, 0);
+        this.ivs = ivs;
+        this.evs = evs;
         this.calculateStats();
         this.currenthp = this.stats.hp;
 
         // generate moves
-        var possibleMoves = [];
+        var learnsetMoves = [];
         for (let move in Pokedex[species].learnset.levelup) {
             if (+move <= level)
-                possibleMoves.push(Pokedex[species].learnset.levelup[move]);
+            learnsetMoves.push(Pokedex[species].learnset.levelup[move]);
             else break;
         }
-        while (possibleMoves.length > 4 - moves.length) {
-            possibleMoves.splice(randomNumber(0, possibleMoves.length - 1), 1);
+        while (learnsetMoves.length > 4 - moves.length) {
+            learnsetMoves.splice(randomNumber(0, learnsetMoves.length - 1), 1);
         }
-        possibleMoves.push(...moves);
-        possibleMoves.shuffle();
-        // console.log(possibleMoves);
-        this.moves = possibleMoves;
+        this.moves = [...moves, ...learnsetMoves];
         if (originalTrainer) this.originalTrainer = originalTrainer;
         if (owner) {
             this.setOwner(owner);
-            if (!caughtBall) this.setBall("pokeball");
-        }
-        if (caughtBall) this.setBall(caughtBall);
-        // console.log(this);
+            this.caughtBall = caughtBall ? caughtBall : "pokeball";
+        } else if (caughtBall) this.caughtBall = caughtBall;
     }
 
     getName() {
@@ -129,9 +124,8 @@ export default class Pokemon {
 
     setOwner(owner) {
         if (!this.owner) {
-            this.id = Pokemon.id;
+            this.id = Pokemon.id++;
             Pokemon.entries[this.id] = this;
-            Pokemon.id++;
             this.originalTrainer = owner;
         }
         this.owner = owner;

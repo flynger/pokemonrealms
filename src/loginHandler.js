@@ -8,6 +8,9 @@ import Player from "./player.js"
 import jsonfile from "jsonfile";
 export const accounts = jsonfile.readFileSync("./data/accounts.json");
 export const players = jsonfile.readFileSync("./data/players.json"); // create players property in server
+for (const name in players) {
+    players[name] = new Player(players[name]);
+}
 console.log(`accounts: ${JSON.stringify(accounts)}`);
 
 export class LoginHandler {
@@ -28,7 +31,7 @@ export class LoginHandler {
         } else {
             // add data
             accounts[username] = password;
-            players[username] = new Player(username, displayName);
+            players[username] = new Player({ name: username, displayName });
             console.log(`signed up, Username: ${username} Password: ${password}`);
             console.log(players);
             return this.loginAccount(req, res);
@@ -46,6 +49,10 @@ export class LoginHandler {
     }
     // saves data after server closes
     static saveData() {
+        for (const name in players) {
+            // console.log(players[name]);
+            players[name] = players[name].getSaveData();
+        }
         jsonfile.writeFileSync("./data/players.json", players);
         jsonfile.writeFileSync("./data/accounts.json", accounts);
     }

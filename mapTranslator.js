@@ -25,21 +25,21 @@ var clientMap = {
 };
 var tilesets = {};
 var tiles = [];
-for (let tileset of rawMap.tilesets) {
+for (const tileset of rawMap.tilesets) {
     tileset.source = tileset.source.replace("..\/..\/tilesets\/", "").replace(".json", "");
     tilesets[tileset.source] = jsonfile.readFileSync('./data/tilesets/' + tileset.source + '.json');
     tilesets[tileset.source].firstgid = tileset.firstgid;
-    for (let tile of tilesets[tileset.source].tiles) {
-        for (let i in tile.properties) {
-            let property = tile.properties[i];
+    for (const tile of tilesets[tileset.source].tiles) {
+        for (const i in tile.properties) {
+            const property = tile.properties[i];
             if (!tiles[tile.id + tileset.firstgid]) tiles[tile.id + tileset.firstgid] = {};
             tiles[tile.id + tileset.firstgid][property.name] = property.value;
         }
     }
 }
-for (let layer of rawMap.layers) {
+for (const layer of rawMap.layers) {
     if (!clientMap.layers[layer.id - 1]) clientMap.layers[layer.id - 1] = [];
-    for (let i in layer.data) {
+    for (const i in layer.data) {
         var thisLayer = clientMap.layers[layer.id - 1];
         var tile = layer.data[i];
         if (tile === 0)

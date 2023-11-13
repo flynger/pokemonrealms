@@ -8,6 +8,11 @@ This file starts the server, implements the other modules, and interacts with an
 Array.prototype.remove = function (elem) {
     this.splice(this.indexOf(elem), 1);
 }
+Array.prototype.removeAll = function (elem) {
+    while (this.includes(elem)) {
+        this.remove(elem);
+    }
+}
 Array.prototype.shuffle = function () {
     for (let i = this.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -138,138 +143,7 @@ var testmart = new Pokemart([
     { id: "aguavberry", price: 5 },
     { id: "thunderstone", price: 10000 }
 ]);
-// var encounters = {
-//     grass: {
-//         morning: [
-//             {
-//                 species: "PIDGEY",
-//                 weight: 35,
-//                 minLevel: 2,
-//                 maxLevel: 4
-//             },
-//             {
-//                 species: "LEDYBA",
-//                 weight: 35,
-//                 minLevel: 2,
-//                 maxLevel: 4
-//             },
-//             {
-//                 species: "SENTRET",
-//                 weight: 15,
-//                 minLevel: 3,
-//                 maxLevel: 3
-//             },
-//             {
-//                 species: "BUTTERFREE",
-//                 weight: 5,
-//                 minLevel: 7,
-//                 maxLevel: 7
-//             },
-//             {
-//                 species: "BEEDRILL",
-//                 weight: 5,
-//                 minLevel: 7,
-//                 maxLevel: 7
-//             },
-//             {
-//                 species: "PIDGEOTTO",
-//                 weight: 1,
-//                 minLevel: 7,
-//                 maxLevel: 7
-//             },
-//             {
-//                 species: "PIKACHU",
-//                 weight: 1,
-//                 minLevel: 4,
-//                 maxLevel: 7
-//             },
-//             {
-//                 species: "FURRET",
-//                 weight: 1,
-//                 minLevel: 6,
-//                 maxLevel: 6
-//             }
-//         ],
-//         day: [
-//             {
-//                 species: "PIDGEY",
-//                 weight: 10,
-//                 minLevel: 2,
-//                 maxLevel: 4
-//             },
-//             {
-//                 species: "RATTATA",
-//                 weight: 10,
-//                 minLevel: 2,
-//                 maxLevel: 2
-//             },
-//             {
-//                 species: "CATERPIE",
-//                 weight: 7,
-//                 minLevel: 2,
-//                 maxLevel: 4
-//             },
-//             {
-//                 species: "WEEDLE",
-//                 weight: 7,
-//                 minLevel: 2,
-//                 maxLevel: 4
-//             },
-//             {
-//                 species: "SENTRET",
-//                 weight: 5,
-//                 minLevel: 3,
-//                 maxLevel: 3
-//             },
-//             {
-//                 species: "PIDGEOTTO",
-//                 weight: 1,
-//                 minLevel: 7,
-//                 maxLevel: 7
-//             },
-//             {
-//                 species: "PIKACHU",
-//                 weight: 1,
-//                 minLevel: 4,
-//                 maxLevel: 7
-//             },
-//             {
-//                 species: "FURRET",
-//                 weight: 1,
-//                 minLevel: 6,
-//                 maxLevel: 6
-//             }
-//         ],
-//         night: [
-//             {
-//                 species: "RATTATA",
-//                 weight: 5,
-//                 minLevel: 2,
-//                 maxLevel: 6
-//             },
-//             {
-//                 species: "HOOTHOOT",
-//                 weight: 5,
-//                 minLevel: 2,
-//                 maxLevel: 4
-//             },
-//             {
-//                 species: "TIRTOUGA",
-//                 weight: 1,
-//                 minLevel: 2,
-//                 maxLevel: 4
-//             },
-//             {
-//                 species: "SQUIRTLE",
-//                 weight: 1,
-//                 minLevel: 2,
-//                 maxLevel: 4
-//             }
-//         ],
-//         frequency: 8
-//     }
-// }
-// var map = new Map(encounters);
+
 io.on("connection", (socket) => {
     console.log(color.green, socket.id);
 
@@ -296,15 +170,11 @@ io.on("connection", (socket) => {
 
     // create player if doesn't exist
     if (!players[username]) {
-        players[username] = new Player(username, displayName);
+        players[username] = new Player({ name: username, displayName });
     }
     let player = players[username];
     player.setSocket(socket);
-    player.getMap().addPlayer(player, {
-        x: player.x,
-        y: player.y,
-        facing: player.facing
-    });
+    player.getMap().addPlayer(player, player.getLocation());
 
     // add events
     socket.on("ping", (callback) => {
@@ -370,7 +240,7 @@ io.on("connection", (socket) => {
                 socket.emit("battleData", [{ message }]);
                 return;
             }
-            
+
             player.battle.run();
         }
     });
@@ -378,7 +248,7 @@ io.on("connection", (socket) => {
     socket.on("moveInput", (moveNumber) => {
         if (player.battle != null) {
             // Make sure player can switch
-            if(player.battle.canMove(displayName, moveNumber))
+            if (player.battle.canMove(displayName, moveNumber))
                 player.battle.useMove(displayName, moveNumber);
             else socket.emit("battleData", [{ message: "That move is disabled!" }]);
         }
@@ -387,7 +257,7 @@ io.on("connection", (socket) => {
     socket.on("switchInput", (switchNumber) => {
         if (player.battle != null) {
             // Make sure player can switch
-            if(player.battle.canSwitch(displayName))
+            if (player.battle.canSwitch(displayName))
                 player.battle.switchTo(displayName, switchNumber);
             else socket.emit("battleData", [{ message: "Your active Pokémon is trapped and cannot switch!" }]);
         }
@@ -548,7 +418,7 @@ process.on("SIGINT", () => process.exit(0));
 process.on("exit", (code) => {
     // io.sockets.emit("disconnect", {});
     console.log(`Process exited with code: ${code}`);
-    // loginHandler.saveData();
+    LoginHandler.saveData();
     // console.log("Account data saved successfully");
 });
 

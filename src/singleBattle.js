@@ -68,25 +68,20 @@ export default class SingleBattle {
                                     throw Error("Party wasn't recognized as Player or AI.");
                                 }
                                 party.nextData = options;
-                                // console.log(options);
                                 break;
                             case "error":
                                 console.log(output);
                                 console.log("Bad input for " + this["party" + playerId].name)
                         }
-                    // console.log(outputArray)
                 }
-                //console.log(this.stream.battle.sides[0]); // Player battle and side data !!!
             }
         })();
     }
 
     createBattlePerspective(showdownOutputArray, thisPlayer = "1") {
         let battleData = [...this.preTurnData];
-        // console.log("\n" + this["party" + thisPlayer].name + "'s perspective: \n");
         let splitCounter = 0; // split counter
         for (const line of showdownOutputArray) {
-            // console.log(line);
             let lineArray = line.slice(1).split("|");
             let args = {}; //args to replace their respective fields in default.ts
             let battleDataProperties = {};
@@ -486,7 +481,6 @@ export default class SingleBattle {
                 // console.log(battleData);
                 player.socket.emit("battleData", battleData);
             }
-            // console.log(this.stream.battle.sides[1].active[0].happiness = 0);
         }
     }
 
