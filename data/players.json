@@ -1,1 +1,240 @@
-{"player 7482":{"name":"player 7482","displayName":"Player 7482","location":{"x":204.34572424008869,"y":240,"facing":"right","map":"Ballet Town","submap":"Player House 2F"},"balance":500,"party":[{"species":"ALTARIA","name":"","gender":"F","shiny":false,"level":50,"xp":125000,"heldItem":"","nature":"naughty","happiness":70,"abilitySlot":"0","ivs":{"hp":3,"atk":20,"def":21,"spa":15,"spd":14,"spe":25},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":136,"atk":93,"def":105,"spa":82,"spd":105,"spe":97},"currenthp":136,"moves":["SING","SAFEGUARD","MIST","PERISHSONG"],"originalTrainer":"Player 7482","id":5,"owner":"Player 7482","caughtBall":"pokeball"},{"species":"HEATMOR","name":"","gender":"M","shiny":false,"level":50,"xp":125000,"heldItem":"","nature":"relaxed","happiness":70,"abilitySlot":"1","ivs":{"hp":1,"atk":25,"def":23,"spa":21,"spd":0,"spe":9},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":145,"atk":114,"def":90,"spa":120,"spd":71,"spe":66},"currenthp":145,"moves":["TACKLE","FLAMEBURST","FIRELASH","FLAMETHROWER"],"originalTrainer":"Player 7482","id":6,"owner":"Player 7482","caughtBall":"pokeball"},{"species":"SWELLOW","name":"","gender":"M","shiny":false,"level":50,"xp":117360,"heldItem":"","nature":"lonely","happiness":70,"abilitySlot":"0","ivs":{"hp":5,"atk":19,"def":3,"spa":1,"spd":27,"spe":18},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":122,"atk":108,"def":59,"spa":80,"spd":68,"spe":139},"currenthp":122,"moves":["FOCUSENERGY","QUICKATTACK","WINGATTACK","ENDEAVOR"],"originalTrainer":"Player 7482","id":7,"owner":"Player 7482","caughtBall":"pokeball"},{"species":"DEOXYS","name":"","gender":"N","shiny":false,"level":50,"xp":156250,"heldItem":"","nature":"quirky","happiness":70,"abilitySlot":"0","ivs":{"hp":22,"atk":21,"def":20,"spa":26,"spd":25,"spe":25},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":121,"atk":165,"def":65,"spa":168,"spd":67,"spe":167},"currenthp":121,"moves":["WRAP","TELEPORT","PSYCHIC","PSYCHOSHIFT"],"originalTrainer":"Player 7482","id":8,"owner":"Player 7482","caughtBall":"pokeball"}],"starter":"BULBASAUR","pc":{"boxes":[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],"defaultBox":0},"inventory":{"pokeball":{"id":"pokeball","quantity":30},"potion":{"id":"potion","quantity":18},"masterball":{"id":"masterball","quantity":594}}},"flynger":{"name":"flynger","displayName":"flynger","location":{"x":97.15727542384313,"y":348.5550988185075,"facing":"left","map":"Ballet Town","submap":"Town"},"balance":500,"party":[{"species":"YANMEGA","name":"","gender":"M","shiny":false,"level":50,"xp":125000,"heldItem":"","nature":"lonely","happiness":70,"abilitySlot":"1","ivs":{"hp":14,"atk":1,"def":18,"spa":0,"spd":15,"spe":6},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":153,"atk":89,"def":90,"spa":121,"spd":68,"spe":103},"currenthp":153,"moves":["SONICBOOM","DETECT","PURSUIT","SCREECH"],"originalTrainer":"flynger","id":9,"owner":"flynger","caughtBall":"pokeball"},{"species":"VOLTORB","name":"","gender":"N","shiny":false,"level":50,"xp":125000,"heldItem":"","nature":"modest","happiness":70,"abilitySlot":"0","ivs":{"hp":17,"atk":7,"def":26,"spa":18,"spd":13,"spe":12},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":108,"atk":34,"def":68,"spa":75,"spd":66,"spe":111},"currenthp":108,"moves":["SPARK","CHARGEBEAM","SWIFT","EXPLOSION"],"originalTrainer":"flynger","id":10,"owner":"flynger","caughtBall":"pokeball"},{"species":"RHYHORN","name":"","gender":"M","shiny":false,"level":50,"xp":156250,"heldItem":"","nature":"naive","happiness":70,"abilitySlot":"1","ivs":{"hp":1,"atk":24,"def":15,"spa":15,"spd":29,"spe":29},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":140,"atk":102,"def":107,"spa":42,"spd":44,"spe":48},"currenthp":140,"moves":["FURYATTACK","SCARYFACE","SMACKDOWN","MEGAHORN"],"originalTrainer":"flynger","id":11,"owner":"flynger","caughtBall":"pokeball"},{"species":"ELEKID","name":"","gender":"F","shiny":false,"level":50,"xp":125000,"heldItem":"","nature":"hasty","happiness":70,"abilitySlot":"0","ivs":{"hp":11,"atk":21,"def":11,"spa":31,"spd":10,"spe":26},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":110,"atk":78,"def":42,"spa":85,"spd":65,"spe":124},"currenthp":110,"moves":["ELECTROBALL","THUNDERPUNCH","DISCHARGE","THUNDER"],"originalTrainer":"flynger","id":12,"owner":"flynger","caughtBall":"pokeball"}],"starter":"SQUIRTLE","pc":{"boxes":[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],"defaultBox":0},"inventory":{"pokeball":{"id":"pokeball","quantity":25},"potion":{"id":"potion","quantity":15},"masterball":{"id":"masterball","quantity":495}}},"player 1682":{"name":"player 1682","displayName":"Player 1682","location":{"x":0,"y":336,"facing":"right","map":"Ballet Town","submap":"Town"},"balance":500,"party":[{"species":"PINECO","name":"","gender":"M","shiny":false,"level":50,"xp":125000,"heldItem":"","nature":"careful","happiness":70,"abilitySlot":"0","ivs":{"hp":10,"atk":9,"def":16,"spa":17,"spd":22,"spe":31},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":115,"atk":74,"def":103,"spa":43,"spd":56,"spe":35},"currenthp":115,"moves":["RAPIDSPIN","EXPLOSION","IRONDEFENSE","GYROBALL"],"originalTrainer":"Player 1682","id":5,"owner":"Player 1682","caughtBall":"pokeball"},{"species":"GARDEVOIR","name":"","gender":"M","shiny":false,"level":50,"xp":156250,"heldItem":"","nature":"mild","happiness":70,"abilitySlot":"0","ivs":{"hp":15,"atk":7,"def":2,"spa":1,"spd":14,"spe":28},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":135,"atk":73,"def":63,"spa":143,"spd":127,"spe":99},"currenthp":135,"moves":["DRAININGKISS","FUTURESIGHT","CAPTIVATE","HYPNOSIS"],"originalTrainer":"Player 1682","id":6,"owner":"Player 1682","caughtBall":"pokeball"},{"species":"RALTS","name":"","gender":"F","shiny":false,"level":50,"xp":156250,"heldItem":"","nature":"bashful","happiness":70,"abilitySlot":"1","ivs":{"hp":21,"atk":16,"def":14,"spa":20,"spd":25,"spe":2},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":98,"atk":38,"def":37,"spa":60,"spd":52,"spe":46},"currenthp":98,"moves":["CONFUSION","HEALPULSE","CALMMIND","CHARM"],"originalTrainer":"Player 1682","id":7,"owner":"Player 1682","caughtBall":"pokeball"},{"species":"METAGROSS","name":"","gender":"N","shiny":false,"level":50,"xp":156250,"heldItem":"","nature":"impish","happiness":70,"abilitySlot":"0","ivs":{"hp":13,"atk":18,"def":22,"spa":5,"spd":4,"spe":25},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":146,"atk":149,"def":160,"spa":91,"spd":97,"spe":87},"currenthp":146,"moves":["PURSUIT","MIRACLEEYE","SCARYFACE","METEORMASH"],"originalTrainer":"Player 1682","id":8,"owner":"Player 1682","caughtBall":"pokeball"}],"starter":"SQUIRTLE","pc":{"boxes":[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],"defaultBox":0},"inventory":{"pokeball":{"id":"pokeball","quantity":15},"potion":{"id":"potion","quantity":9},"masterball":{"id":"masterball","quantity":297}}},"player 9520":{"name":"player 9520","displayName":"Player 9520","location":{"x":264.53405659507456,"y":475.58154036908303,"facing":"up","map":"Ballet Town","submap":"Town"},"balance":500,"party":[{"species":"KROOKODILE","name":"","gender":"M","shiny":false,"level":50,"xp":117360,"heldItem":"","nature":"timid","happiness":70,"abilitySlot":"1","ivs":{"hp":13,"atk":22,"def":20,"spa":14,"spd":26,"spe":0},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":161,"atk":119,"def":95,"spa":77,"spd":88,"spe":106},"currenthp":161,"moves":["SANDATTACK","SWAGGER","SCARYFACE","FOULPLAY"],"originalTrainer":"Player 9520","id":5,"owner":"Player 9520","caughtBall":"pokeball"},{"species":"SNIVY","name":"","gender":"M","shiny":false,"level":50,"xp":117360,"heldItem":"","nature":"serious","happiness":70,"abilitySlot":"0","ivs":{"hp":22,"atk":21,"def":18,"spa":21,"spd":7,"spe":29},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":116,"atk":60,"def":69,"spa":60,"spd":63,"spe":82},"currenthp":116,"moves":["LEER","LEECHSEED","MEGADRAIN","LEAFBLADE"],"originalTrainer":"Player 9520","id":6,"owner":"Player 9520","caughtBall":"pokeball"},{"species":"GIBLE","name":"","gender":"F","shiny":false,"level":50,"xp":156250,"heldItem":"","nature":"rash","happiness":70,"abilitySlot":"0","ivs":{"hp":27,"atk":11,"def":11,"spa":23,"spd":26,"spe":19},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":131,"atk":80,"def":55,"spa":61,"spd":56,"spe":56},"currenthp":131,"moves":["TACKLE","DRAGONRAGE","SANDSTORM","DIG"],"originalTrainer":"Player 9520","id":7,"owner":"Player 9520","caughtBall":"pokeball"},{"species":"SWOOBAT","name":"","gender":"M","shiny":false,"level":50,"xp":125000,"heldItem":"","nature":"jolly","happiness":70,"abilitySlot":"1","ivs":{"hp":15,"atk":30,"def":6,"spa":22,"spd":5,"spe":8},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"stats":{"hp":134,"atk":77,"def":63,"spa":83,"spd":62,"spe":135},"currenthp":134,"moves":["GUST","HEARTSTAMP","IMPRISON","FUTURESIGHT"],"originalTrainer":"Player 9520","id":8,"owner":"Player 9520","caughtBall":"pokeball"}],"starter":"CHARMANDER","pc":{"boxes":[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],"defaultBox":0},"inventory":{"pokeball":{"id":"pokeball","quantity":10},"potion":{"id":"potion","quantity":6},"masterball":{"id":"masterball","quantity":198}}}}
+{
+    "flynger": {
+        "name": "flynger",
+        "displayName": "flynger",
+        "location": {
+            "x": 160,
+            "y": 240,
+            "facing": "down",
+            "map": "Ballet Town",
+            "submap": "Player House 2F"
+        },
+        "balance": 500,
+        "party": [
+            {
+                "species": "MURKROW",
+                "name": "",
+                "gender": "M",
+                "shiny": false,
+                "level": 50,
+                "xp": 117360,
+                "heldItem": "",
+                "nature": "careful",
+                "happiness": 70,
+                "abilitySlot": "1",
+                "ivs": {
+                    "hp": 21,
+                    "atk": 25,
+                    "def": 12,
+                    "spa": 14,
+                    "spd": 31,
+                    "spe": 12
+                },
+                "evs": {
+                    "hp": 0,
+                    "atk": 0,
+                    "def": 0,
+                    "spa": 0,
+                    "spd": 0,
+                    "spe": 0
+                },
+                "stats": {
+                    "hp": 130,
+                    "atk": 102,
+                    "def": 53,
+                    "spa": 87,
+                    "spd": 68,
+                    "spe": 102
+                },
+                "currenthp": 130,
+                "moves": [
+                    "NIGHTSHADE",
+                    "ASSURANCE",
+                    "TAUNT",
+                    "MEANLOOK"
+                ],
+                "originalTrainer": "flynger",
+                "id": 5,
+                "owner": "flynger",
+                "caughtBall": "pokeball"
+            },
+            {
+                "species": "DEWOTT",
+                "name": "",
+                "gender": "M",
+                "shiny": false,
+                "level": 50,
+                "xp": 117360,
+                "heldItem": "",
+                "nature": "docile",
+                "happiness": 70,
+                "abilitySlot": "0",
+                "ivs": {
+                    "hp": 1,
+                    "atk": 30,
+                    "def": 6,
+                    "spa": 0,
+                    "spd": 15,
+                    "spe": 22
+                },
+                "evs": {
+                    "hp": 0,
+                    "atk": 0,
+                    "def": 0,
+                    "spa": 0,
+                    "spd": 0,
+                    "spe": 0
+                },
+                "stats": {
+                    "hp": 135,
+                    "atk": 95,
+                    "def": 68,
+                    "spa": 88,
+                    "spd": 72,
+                    "spe": 76
+                },
+                "currenthp": 135,
+                "moves": [
+                    "WATERGUN",
+                    "FOCUSENERGY",
+                    "AQUAJET",
+                    "RETALIATE"
+                ],
+                "originalTrainer": "flynger",
+                "id": 6,
+                "owner": "flynger",
+                "caughtBall": "pokeball"
+            },
+            {
+                "species": "RAMPARDOS",
+                "name": "",
+                "gender": "M",
+                "shiny": false,
+                "level": 50,
+                "xp": 125000,
+                "heldItem": "",
+                "nature": "lax",
+                "happiness": 70,
+                "abilitySlot": "0",
+                "ivs": {
+                    "hp": 31,
+                    "atk": 20,
+                    "def": 18,
+                    "spa": 27,
+                    "spd": 0,
+                    "spe": 9
+                },
+                "evs": {
+                    "hp": 0,
+                    "atk": 0,
+                    "def": 0,
+                    "spa": 0,
+                    "spd": 0,
+                    "spe": 0
+                },
+                "stats": {
+                    "hp": 172,
+                    "atk": 180,
+                    "def": 81,
+                    "spa": 83,
+                    "spd": 49,
+                    "spe": 67
+                },
+                "currenthp": 172,
+                "moves": [
+                    "LEER",
+                    "FOCUSENERGY",
+                    "SCARYFACE",
+                    "ANCIENTPOWER"
+                ],
+                "originalTrainer": "flynger",
+                "id": 7,
+                "owner": "flynger",
+                "caughtBall": "pokeball"
+            },
+            {
+                "species": "MANTINE",
+                "name": "",
+                "gender": "M",
+                "shiny": false,
+                "level": 50,
+                "xp": 156250,
+                "heldItem": "",
+                "nature": "bashful",
+                "happiness": 70,
+                "abilitySlot": "1",
+                "ivs": {
+                    "hp": 16,
+                    "atk": 1,
+                    "def": 30,
+                    "spa": 9,
+                    "spd": 27,
+                    "spe": 9
+                },
+                "evs": {
+                    "hp": 0,
+                    "atk": 0,
+                    "def": 0,
+                    "spa": 0,
+                    "spd": 0,
+                    "spe": 0
+                },
+                "stats": {
+                    "hp": 153,
+                    "atk": 45,
+                    "def": 90,
+                    "spa": 89,
+                    "spd": 158,
+                    "spe": 79
+                },
+                "currenthp": 153,
+                "moves": [
+                    "SUPERSONIC",
+                    "HEADBUTT",
+                    "WIDEGUARD",
+                    "BOUNCE"
+                ],
+                "originalTrainer": "flynger",
+                "id": 8,
+                "owner": "flynger",
+                "caughtBall": "pokeball"
+            }
+        ],
+        "starter": "SQUIRTLE",
+        "pc": {
+            "boxes": [
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                []
+            ],
+            "defaultBox": 0
+        },
+        "inventory": {
+            "pokeball": {
+                "id": "pokeball",
+                "quantity": 5
+            },
+            "potion": {
+                "id": "potion",
+                "quantity": 3
+            },
+            "masterball": {
+                "id": "masterball",
+                "quantity": 1
+            }
+        }
+    }
+}

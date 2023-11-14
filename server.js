@@ -136,6 +136,7 @@ setInterval(() => {
     // console.log("sending global players list");
     // io.emit("playersOnline", server.onlinePlayers);
 }, 5000);
+
 var testmart = new Pokemart([
     { id: "pokeball", price: 200 },
     { id: "greatball", price: 650 },
@@ -170,9 +171,9 @@ io.on("connection", (socket) => {
 
     // create player if doesn't exist
     if (!players[username]) {
-        players[username] = new Player({ name: username, displayName });
+        players[username] = new Player({ name: username, displayName }, isGuest);
     }
-    let player = players[username];
+    const player = players[username];
     player.setSocket(socket);
     player.getMap().addPlayer(player, player.getLocation());
 

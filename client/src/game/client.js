@@ -24,35 +24,31 @@ class client {
         }, 1000);
 
         // Updates the time and effects of the day from data recieved from server
-        this.socket.on("timeChange", (data) => {
-            let timeString = "" + data.exactTime;
-            while (timeString.length < 4) {
-                timeString = "0" + timeString;
-            }
-            let hour = timeString.slice(0, 2);
-            let minute = timeString.slice(2, 4);
+        this.socket.on("timeChange", data => {
+            let minute = data.exactTime % 100;
+            if (minute < 10) minute = "0" + minute;
+            let hour = Math.floor(data.exactTime / 100);
 
             let timeFromMidnight;
             let nightEffects = false;
-            if (+hour < 6 || timeString == "0600") {
-                timeFromMidnight = 100 * (+hour + +minute / 60);
+            if (hour < 6 || data.exactTime == 600) {
+                timeFromMidnight = 100 * (hour + +minute / 60);
                 nightEffects = true;
 
-            } else if (+hour >= 18) {
-                timeFromMidnight = 2400 - 100 * (+hour + +minute / 60);
+            } else if (hour >= 18) {
+                timeFromMidnight = 2400 - 100 * (hour + +minute / 60);
                 nightEffects = true;
             }
             if (nightEffects) {
-                let rg = (Math.floor(150 + 105 / 600 * timeFromMidnight)).toString(16);
+                const rg = (Math.floor(150 + 105 / 600 * timeFromMidnight)).toString(16);
                 // console.log( { timeString, timeFromMidnight, rg });
                 colorMatrix.tint("#" + rg.repeat(2) + "FF");
             }
 
-            if (hour == "00") hour = "12"; // set hour 0 to 12
-            if (+hour > 12) hour = +hour - 12 + ""; // keep hour within 1 to 12
-            if (hour[0] == "0") hour = hour[1]; // remove leading 0 if single digit hour
-            timeString = hour + ":" + minute + " " + (data.exactTime < 1200 ? "AM" : "PM")
-            let timeOfDay = data.time[0].toUpperCase() + data.time.slice(1);
+            hour %= 12; // keep hour within 1 to 12
+            if (hour == 0) hour = 12; // set hour 0 to 12
+            const timeString = hour + ":" + minute + " " + (data.exactTime < 1200 ? "AM" : "PM");
+            const timeOfDay = data.time[0].toUpperCase() + data.time.slice(1);
             $("#timeLabel").html(timeOfDay + " - " + timeString);
         });
 
@@ -123,7 +119,7 @@ class client {
             $('#grayModalBtn').text("Decline");
             $('#blueModalBtn').off('click');
             $('#blueModalBtn').on('click', () => {
-                this.socket.emit("tradeRequest", user);
+                sendTradeRequest(user);
                 $('#message').modal('hide');
             });
             $('#grayModalBtn').off('click');

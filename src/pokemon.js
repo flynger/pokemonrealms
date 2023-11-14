@@ -27,7 +27,7 @@ export default class Pokemon {
         return Pokemon.entries[id];
     }
 
-    constructor(species, level, { name, gender, shiny, heldItem, nature, abilitySlot, happiness, ivs, evs, moves = [], originalTrainer, owner, caughtBall, hiddenAbilityChance = false }) {
+    constructor(species, level, { name, gender, shiny, xp, heldItem, nature, happiness, abilitySlot, ivs, evs, currenthp, moves = [], originalTrainer, owner, caughtBall, hiddenAbilityChance = false }) {
         this.species = species ?? "MISSINGNO";
         this.name = name ?? "";
 
@@ -42,7 +42,7 @@ export default class Pokemon {
 
         this.shiny = typeof shiny == "boolean" ? shiny : randomNumber(1, Pokemon.shinyChance) == 1;
         this.level = level ?? 1;
-        this.xp = Pokemon.growthRates[Pokedex[species].growthRate][level];
+        this.xp = xp ?? Pokemon.growthRates[Pokedex[species].growthRate][level];
         this.heldItem = heldItem ?? "";
         this.nature = nature ?? Pokemon.getRandomNature();
         this.happiness = happiness ?? 70;
@@ -56,16 +56,19 @@ export default class Pokemon {
             } else this.abilitySlot = Pokedex[species].abilities["1"] ? randomNumber(0, 1) + "" : "0";
         }
 
-        this.ivs = ivs ?? new Stats(randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31), randomNumber(0, 31));
-        this.evs = evs ?? new Stats(0, 0, 0, 0, 0, 0);
+        this.ivs = new Stats(ivs ?? Stats.stats.reduce((statsObj, stat) => {
+            statsObj[stat] = randomNumber(0, 31);
+            return statsObj;
+        }, {}));
+        this.evs = new Stats(evs);
         this.calculateStats();
         this.currenthp = this.stats.hp;
 
         // generate moves
-        var learnsetMoves = [];
+        const learnsetMoves = [];
         for (let move in Pokedex[species].learnset.levelup) {
             if (+move <= level)
-            learnsetMoves.push(Pokedex[species].learnset.levelup[move]);
+                learnsetMoves.push(Pokedex[species].learnset.levelup[move]);
             else break;
         }
         while (learnsetMoves.length > 4 - moves.length) {
@@ -86,10 +89,10 @@ export default class Pokemon {
     levelUp() {
         if (this.level < 100) {
             this.level++;
-            let prevhp = this.stats.hp;
+            const prevhp = this.stats.hp;
             this.calculateStats();
             this.currenthp += this.stats.hp - prevhp;
-            let levelUpMove = Pokedex[this.species].learnset.levelup[this.level];
+            const levelUpMove = Pokedex[this.species].learnset.levelup[this.level];
             if (levelUpMove) {
                 this.learnMove(levelUpMove);
             }
@@ -98,26 +101,26 @@ export default class Pokemon {
 
     learnMove(move) {
         if (this.moves.length < 4) this.moves.push(move);
-        else return Error("Pokemon already has 4 moves");
+        else throw Error("Pokemon already has 4 moves!");
     }
 
     calculateStats() {
         this.stats = {};
-        for (let stat in this.ivs) {
+        for (const stat in this.ivs) {
             this.stats[stat] = this.calculateStat(stat);
         }
     }
 
     calculateStat(stat) {
-        let baseStat = Pokedex[this.species].baseStats[stat];
-        let iv = this.ivs[stat];
-        let ev = this.evs[stat];
-        let level = this.level;
+        const baseStat = Pokedex[this.species].baseStats[stat];
+        const iv = this.ivs[stat];
+        const ev = this.evs[stat];
+        const level = this.level;
         if (stat == "hp") {
             return Math.floor((2 * baseStat + iv + Math.floor(ev / 4)) * level / 100) + level + 10;
         } else {
-            let natureData = Dex.natures.get(this.nature);
-            let natureMultiplier = natureData.plus == stat ? 1.1 : natureData.minus == stat ? 0.9 : 1;
+            const natureData = Dex.natures.get(this.nature);
+            const natureMultiplier = natureData.plus == stat ? 1.1 : natureData.minus == stat ? 0.9 : 1;
             return Math.floor((Math.floor((2 * baseStat + iv + Math.floor(ev / 4)) * level / 100) + 5) * natureMultiplier);
         }
     }
@@ -136,13 +139,14 @@ export default class Pokemon {
     }
 }
 export class Stats {
-    constructor(hp, atk, def, spa, spd, spe) {
-        this.hp = hp;
-        this.atk = atk;
-        this.def = def;
-        this.spa = spa;
-        this.spd = spd;
-        this.spe = spe;
+    static stats = ["hp", "atk", "def", "spa", "spd", "spe"];
+    constructor({ hp = 0, atk = 0, def = 0, spa = 0, spd = 0, spe = 0 } = {}) {
+        this.hp = hp; // HP
+        this.atk = atk; // Attack
+        this.def = def; // Defense
+        this.spa = spa; // Sp. Attack
+        this.spd = spd; // Sp. Defense
+        this.spe = spe; // Speed
     }
 
     toObject() {

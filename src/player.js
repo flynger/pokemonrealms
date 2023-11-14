@@ -29,21 +29,24 @@ export default class Player {
         map: "Route 1",
         submap: "Area 1"  */
 
-    constructor({ name, displayName, location, balance, party, starter, pc, inventory }) { // 224, 288 town - 240, 350 lab
+    constructor({ name, displayName, location, balance, party, starter, pc, inventory }, isGuest = false) { // 224, 288 town - 240, 350 lab
         // permanent data
         this.name = name;
         this.displayName = displayName;
         this.location = location ?? { ...Player.startingLocation };
         this.balance = balance ?? 500;
-        this.party = party ?? [];
+        this.party = party ? party.map(mon => new Pokemon(mon.species, mon.level, mon)) : [];
         this.starter = starter ?? this.pickStarter(Player.starterOptions.random());
         this.pc = new PC(this, pc?.boxes, pc?.defaultBox);
         this.inventory = new Inventory(this, inventory);
-        this.inventory.addItem("pokeball", 5);
-        this.inventory.addItem("potion", 3);
-        this.inventory.addItem("masterball", 99);
+        if (!inventory) {
+            this.inventory.addItem("pokeball", 5);
+            this.inventory.addItem("potion", 3);
+            this.inventory.addItem("masterball", 1);
+        }
 
         // temp data
+        this.isGuest = isGuest;
         this.connected = false;
         this.socket = null;
         this.requests = {
@@ -133,7 +136,7 @@ export default class Player {
             facing: this.location.facing
         }
     }
-    
+
     getLocation() {
         return this.location;
     }

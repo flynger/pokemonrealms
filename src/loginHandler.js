@@ -50,8 +50,12 @@ export class LoginHandler {
     // saves data after server closes
     static saveData() {
         for (const name in players) {
-            // console.log(players[name]);
+            if (players[name].isGuest) {
+                delete players[name];
+                continue;
+            }
             players[name] = players[name].getSaveData();
+
         }
         jsonfile.writeFileSync("./data/players.json", players);
         jsonfile.writeFileSync("./data/accounts.json", accounts);
