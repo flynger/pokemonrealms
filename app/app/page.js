@@ -5,7 +5,7 @@ export default function Home() {
   
   return (
     <div id='game' key='game'>
-
+      
     </div>
   );
 }

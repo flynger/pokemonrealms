@@ -1,7 +1,4 @@
-"use client";
-
 import Phaser from 'phaser';
-import { useEffect } from 'react';
 
 var platforms;
 class Example extends Phaser.Scene {
@@ -33,8 +30,8 @@ class Example extends Phaser.Scene {
 
 const config = {
     type: Phaser.AUTO,
-    title: 'pokemon-realms',
-    parent: 'game',
+    title:'pokemon-realms',
+    parent:'game',
     width: 800,
     height: 600,
     scene: Example,
@@ -47,24 +44,5 @@ const config = {
     }
 };
 
-function Game() {
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            // Check if running on the client side
-            if (!game) {
-                game = new Phaser.Game(gameConfig);
-            }
-
-            return () => {
-                if (game) {
-                    game.destroy(true);
-                    game = null;
-                }
-            };
-        }
-    }, []);
-
-    return <div id="phaser-game" />;
-}
-
-export default Game;
+const game = new Phaser.Game(config);
+export default game;
