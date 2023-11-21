@@ -1,11 +1,12 @@
-import Image from 'next/image';
-import game from './game';
+import dynamic from 'next/dynamic';
+import React from 'react';
 
-export default function Home() {
-  
-  return (
-    <div id='game' key='game'>
-      
-    </div>
-  );
-}
+const GameComponentNoSSR = dynamic(() => import('./game'), {
+  ssr: false
+});
+
+const GamePage = () => {
+  return <GameComponentNoSSR />;
+};
+
+export default GamePage;
