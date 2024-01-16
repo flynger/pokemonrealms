@@ -1,0 +1,62 @@
+{
+    "frames": {
+        "flowerred1": {
+            "frame": {
+                "x": 96,
+                "y": 64,
+                "w": 32,
+                "h": 32
+            }
+        },
+        "wildgrass": {
+            "frame": {
+                "x": 224,
+                "y": 160,
+                "w": 32,
+                "h": 32
+            }
+        },
+        "flowerwhite1": {
+            "frame": {
+                "x": 96,
+                "y": 96,
+                "w": 32,
+                "h": 32
+            }
+        },
+        "idk1": {
+            "frame": {
+                "x": 128,
+                "y": 96,
+                "w": 32,
+                "h": 32
+            }
+        },
+        "sprout1": {
+            "frame": {
+                "x": 96,
+                "y": 128,
+                "w": 32,
+                "h": 32
+            }
+        },
+        "grass12": {
+            "frame": {
+                "x": 128,
+                "y": 128,
+                "w": 32,
+                "h": 32
+            }
+        }
+    },
+    "animations": {},
+    "meta": {
+        "image": "../tilesets/gen5exterior.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 256,
+            "h": 8192
+        },
+        "scale": 1
+    }
+}

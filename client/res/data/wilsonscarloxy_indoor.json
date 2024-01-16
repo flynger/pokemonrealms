@@ -1,0 +1,13 @@
+{
+    "frames": {},
+    "animations": {},
+    "meta": {
+        "image": "../res/tilesets/wilsonscarloxy_indoor.png",
+        "format": "RGBA8888",
+        "size": {
+            "w": 256,
+            "h": 1504
+        },
+        "scale": 1
+    }
+}
