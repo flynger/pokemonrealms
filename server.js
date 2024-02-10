@@ -3,7 +3,7 @@ import express from 'express';
 import color from './util/color.js';
 
 const app = express();
-const port = 3000;
+const port = 8000;
 const serverName = 'Pokemon Realms';
 
 const clientDirectory = './client/build';
