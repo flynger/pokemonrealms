@@ -14,24 +14,7 @@ export default class ExampleScene extends Phaser.Scene {
     }
 
     create() {
-        // You made this!
-        const text = this.add.text(250, 250, "Phaser")
-        text.setInteractive({ useHandCursor: true })
-        // this.add.image(400, 300, "logo")
-        /** @tutorial I made this! */
-        // Get all that lovely dataState into your scene,
-        let { clickCount } = this.registry.getAll()
-        text.on("pointerup", () => {
-            // This will trigger the "changedata" event handled by the component.
-            this.registry.merge({ clickCount: clickCount++ })
-        })
-
         player = this.physics.add.sprite(100, 450, 'red');
-        player.setDrag(DRAG_AMOUNT);
-        player.setCollideWorldBounds(true);
-
-        this.label = this.add.text(100, 410, 'Player', { font: '20px Futura', fill: '#000000' }).setOrigin(0.5)
-        // player.anims.play('down', true);
 
         this.anims.create({
             key: 'down',
@@ -61,8 +44,13 @@ export default class ExampleScene extends Phaser.Scene {
             repeat: -1
         });
 
+        // handle label
+        this.events.on('postupdate', () => {
+            this.label.setPosition(player.x, player.y - 30);
+        });
+
         // This will trigger the scene as now being ready.
-        this.game.events.emit("READY", true);
+        this.events.emit("READY", true);
     }
 
     update() {
@@ -82,7 +70,7 @@ export default class ExampleScene extends Phaser.Scene {
         } else {
             player.setAccelerationX(0);
         }
-        
+
         // handle vertical
         if (cursors.up.isDown) {
             player.setAccelerationY(-normAcceleration);
@@ -104,11 +92,6 @@ export default class ExampleScene extends Phaser.Scene {
             else player.stop();
         }
         player.anims.timeScale = 0.2 + 0.8 * velocityMagnitude / MAX_VELOCITY;
-
-        // handle label
-        this.events.on('postupdate', () => {
-            this.label.setPosition(player.x, player.y - 30);
-        });
     }
 }
 

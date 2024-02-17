@@ -1,3 +1,5 @@
+import TMs from "./tm.js";
+
 const Items = {
     pokeball: {
         category: "Poké Balls",
@@ -191,7 +193,7 @@ function heal(pokemon, amount) {
     } else return false;
 }
 
-function evolve(pokemon, method,) {
+function evolve(pokemon, method) {
     const { species, level } = pokemon;
 
     if (!Pokedex[species].evolves) {
