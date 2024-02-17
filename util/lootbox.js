@@ -1,4 +1,4 @@
-// import Pokemon from "./pokemon.js";
+import { TMsByRarity } from "./tm.js";
 Array.prototype.random = function () {
     return this[randomNumber(0, this.length - 1)];
 }
@@ -121,80 +121,6 @@ Array.prototype.random = function () {
 //     ]
 // }
 
-const tmLoot = {
-    common: [
-        // Fire
-        "Fire Spin",
-        "Flame Charge",
-        "Fire Fang",
-        "Burning Jealousy",
-        "Temper Flare", // sub 
-        "Fire Punch",
-        "Fire Pledge",
-        "Sunny Day",
-
-        "Flamethrower",
-        "Heat Wave",
-        "Fire Blast",
-        "Flare Blitz",
-        "Overheat",
-        "Blast Burn",
-        "Heat Crash",
-        "Will-O-Wisp",
-
-        // Others
-        "Mud-Slap",
-        "Scary Face",
-        "Fake Tears",
-        "Confuse Ray",
-        "Disarming Voice",
-        "Roar",
-        "Struggle Bug",
-        "Metal Claw",
-        "Night Shade",
-        "Sleep Talk",
-        "Charge",
-        "Haze",
-        "Sand Tomb",
-        "Gravity",
-        "Psych Up",
-        "Feather Dance",
-        "Agility",
-        "Acid Spray",
-        "Trailblaze",
-        "Pounce",
-        "Charge Beam",
-        "Poison Tail",
-        "Draining Kiss"
-    ],
-    uncommon: [
-        // Fire
-        "Fire Fang",
-        // Others
-        "Swift",
-        "Spite",
-        "Low Kick",
-        "Air Cutter",
-        "False Swipe",
-        "Metronome",
-        "Thunder Wave",
-        "Rest",
-        "Helping Hand",
-        "Thunder Fang",
-        "Ice Fang",
-        "Psybeam",
-        "Aerial Ace",
-        "Snarl",
-        "Icy Wind",
-        "Mud Shot",
-    ],
-    rare: [
-        "Take Down",
-        "Curse",
-        "Protect"
-    ]
-}
-
 // Common tms: Mud-Slap, Scary Face
 // Uncommon tms: Agility
 // Rare tms:
@@ -273,38 +199,33 @@ function roll(rarity) {
 }
 
 function openLootbox(rarity) {
-    let loot = roll(rarity);
-    let pokemon = new Pokemon(loot.species, loot.level);
-    console.log(pokemon);
+    const lootTier = roll(rarity);
+    const TM = TMsByRarity[lootTier].random();
+    return TM;
+    // console.log(`${TM.name} - ${TM.containsMove}`);
 }
-// openLootbox("mythic");
 
-const rolls = 100000;
+const lootboxTier = "epic";
+const rolls = 10;
 const results = {
-    common: 0,
-    uncommon: 0,
-    rare: 0,
-    epic: 0,
-    legendary: 0,
-    mythic: 0
+    common: [],
+    uncommon: [],
+    rare: [],
+    epic: [],
+    legendary: [],
+    mythic: []
 };
 
-for (const rarity in results) {
-    const thisResult = results[rarity] = {
-        common: 0,
-        uncommon: 0,
-        rare: 0,
-        epic: 0,
-        legendary: 0,
-        mythic: 0
-    };
-    for (let i = 0; i < rolls; i++) {
-        const result = roll(rarity);
-        thisResult[result]++;
-    }
-    for (const rarity in thisResult) {
-        if (thisResult[rarity] == 0) delete thisResult[rarity];
-    }
+for (let i = 0; i < rolls; i++) {
+    const TM = openLootbox(lootboxTier);
+    results[TM.rarity].push(`${TM.name} - ${TM.containsMove}`);
 }
 
-console.log(results);
+for (const rarity in results) {
+    const drops = results[rarity];
+    if (drops.length > 0) {
+        console.log(`Received ${drops.length} ${rarity.toUpperCase()} drop${drops.length > 1 ? "s" : ""}`);
+        console.log(drops.join("\n"));
+        console.log();
+    }
+}

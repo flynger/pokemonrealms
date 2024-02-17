@@ -1,0 +1,429 @@
+{
+    "normal": {
+        "common": [],
+        "uncommon": [],
+        "rare": [],
+        "epic": [],
+        "legendary": [],
+        "mythic": []
+    },
+    "fire": {
+        "common": [
+            "firespin"
+        ],
+        "uncommon": [
+            "firefang",
+            "flamecharge",
+            "sunnyday"
+        ],
+        "rare": [
+            "blastburn",
+            "burningjealousy",
+            "firepledge",
+            "heatcrash",
+            "temperflare"
+        ],
+        "epic": [
+            "fireblast",
+            "flamethrower",
+            "willowisp"
+        ],
+        "legendary": [
+            "heatwave",
+            "overheat"
+        ],
+        "mythic": [
+            "flareblitz"
+        ]
+    },
+    "water": {
+        "common": [
+            "whirlpool"
+        ],
+        "uncommon": [
+            "chillingwater",
+            "raindance",
+            "waterpulse"
+        ],
+        "rare": [
+            "hydrocannon",
+            "waterpledge"
+        ],
+        "epic": [
+            "flipturn",
+            "hydropump",
+            "liquidation",
+            "muddywater",
+            "surf"
+        ],
+        "legendary": [
+            "waterfall"
+        ],
+        "mythic": [
+            "scald"
+        ]
+    },
+    "electric": {
+        "common": [
+            "charge",
+            "electricterrain"
+        ],
+        "uncommon": [
+            "chargebeam",
+            "eerieimpulse",
+            "shockwave",
+            "thunderfang"
+        ],
+        "rare": [
+            "electroball",
+            "electroweb",
+            "thunderpunch",
+            "thunderwave"
+        ],
+        "epic": [
+            "supercellslam",
+            "thunder",
+            "thunderbolt",
+            "wildcharge"
+        ],
+        "legendary": [
+            "voltswitch"
+        ],
+        "mythic": []
+    },
+    "grass": {
+        "common": [
+            "grassyterrain"
+        ],
+        "uncommon": [
+            "bulletseed",
+            "magicalleaf",
+            "trailblaze"
+        ],
+        "rare": [
+            "grassknot",
+            "grasspledge",
+            "grassyglide",
+            "seedbomb"
+        ],
+        "epic": [
+            "energyball",
+            "frenzyplant",
+            "gigadrain",
+            "petalblizzard",
+            "solarbeam",
+            "solarblade"
+        ],
+        "legendary": [
+            "leafstorm"
+        ]
+    },
+    "ice": {
+        "common": [
+            "haze"
+        ],
+        "uncommon": [
+            "icefang",
+            "snowscape"
+        ],
+        "rare": [
+            "avalanche",
+            "icepunch",
+            "iciclespear",
+            "icywind"
+        ],
+        "epic": [
+            "icebeam",
+            "icespinner",
+            "tripleaxel"
+        ],
+        "legendary": [
+            "blizzard"
+        ]
+    },
+    "fighting": {
+        "common": [],
+        "uncommon": [
+            "bulkup",
+            "coaching",
+            "lowkick",
+            "lowsweep",
+            "upperhand"
+        ],
+        "rare": [
+            "brickbreak",
+            "focuspunch",
+            "revenge",
+            "reversal",
+            "vacuumwave"
+        ],
+        "epic": [
+            "focusblast"
+        ],
+        "legendary": [
+            "bodypress",
+            "drainpunch"
+        ],
+        "mythic": [
+            "closecombat"
+        ]
+    },
+    "poison": {
+        "common": [
+            "poisontail"
+        ],
+        "uncommon": [
+            "acidspray",
+            "venoshock"
+        ],
+        "rare": [
+            "toxic",
+            "toxicspikes"
+        ],
+        "epic": [
+            "gunkshot",
+            "poisonjab",
+            "sludgebomb",
+            "sludgewave"
+        ],
+        "legendary": [],
+        "mythic": []
+    },
+    "ground": {
+        "common": [
+            "mudslap",
+            "sandtomb"
+        ],
+        "uncommon": [
+            "bulldoze",
+            "mudshot"
+        ],
+        "rare": [
+            "dig",
+            "drillrun",
+            "spikes",
+            "stompingtantrum"
+        ],
+        "epic": [
+            "earthpower",
+            "highhorsepower"
+        ],
+        "legendary": [
+            "scorchingsands"
+        ],
+        "mythic": [
+            "earthquake"
+        ]
+    },
+    "flying": {
+        "common": [],
+        "uncommon": [
+            "aerialace",
+            "aircutter",
+            "featherdance"
+        ],
+        "rare": [
+            "dualwingbeat",
+            "tailwind"
+        ],
+        "epic": [
+            "airslash",
+            "fly",
+            "hurricane"
+        ],
+        "legendary": [
+            "acrobatics",
+            "bravebird"
+        ],
+        "mythic": []
+    },
+    "psychic": {
+        "common": [
+            "gravity",
+            "imprison",
+            "psychicterrain",
+            "skillswap"
+        ],
+        "uncommon": [
+            "agility",
+            "amnesia",
+            "lightscreen",
+            "psybeam",
+            "reflect"
+        ],
+        "rare": [
+            "psychicnoise",
+            "psyshock",
+            "rest",
+            "trick",
+            "trickroom",
+            "zenheadbutt"
+        ],
+        "epic": [
+            "calmmind",
+            "expandingforce",
+            "futuresight",
+            "psychic",
+            "psychicfangs",
+            "storedpower"
+        ],
+        "legendary": [],
+        "mythic": []
+    },
+    "bug": {
+        "common": [
+            "pounce",
+            "strugglebug"
+        ],
+        "uncommon": [
+            "bugbite"
+        ],
+        "rare": [
+            "skittersmack",
+            "xscissor"
+        ],
+        "epic": [
+            "bugbuzz",
+            "leechlife",
+            "lunge"
+        ],
+        "legendary": [
+            "pollenpuff",
+            "uturn"
+        ],
+        "mythic": []
+    },
+    "rock": {
+        "common": [],
+        "uncommon": [
+            "rockblast",
+            "rocktomb",
+            "sandstorm",
+            "smackdown"
+        ],
+        "rare": [
+            "powergem",
+            "stealthrock"
+        ],
+        "epic": [
+            "meteorbeam",
+            "stoneedge"
+        ],
+        "legendary": [
+            "rockslide"
+        ],
+        "mythic": []
+    },
+    "ghost": {
+        "common": [
+            "confuseray",
+            "spite"
+        ],
+        "uncommon": [
+            "curse",
+            "nightshade"
+        ],
+        "rare": [
+            "hex",
+            "shadowclaw"
+        ],
+        "epic": [
+            "phantomforce",
+            "shadowball"
+        ],
+        "legendary": [
+            "poltergeist"
+        ],
+        "mythic": []
+    },
+    "dragon": {
+        "common": [],
+        "uncommon": [
+            "dragoncheer",
+            "scaleshot"
+        ],
+        "rare": [
+            "breakingswipe",
+            "dragonclaw",
+            "dragonpulse",
+            "dragontail"
+        ],
+        "epic": [
+            "dragondance",
+            "outrage"
+        ],
+        "legendary": [
+            "dracometeor"
+        ],
+        "mythic": []
+    },
+    "dark": {
+        "common": [
+            "embargo",
+            "fling"
+        ],
+        "uncommon": [
+            "faketears"
+        ],
+        "rare": [
+            "lashout",
+            "snarl",
+            "taunt",
+            "thief"
+        ],
+        "epic": [
+            "crunch",
+            "nastyplot"
+        ],
+        "legendary": [
+            "darkpulse",
+            "foulplay"
+        ],
+        "mythic": [
+            "knockoff"
+        ]
+    },
+    "steel": {
+        "common": [
+            "metalclaw"
+        ],
+        "uncommon": [
+            "metalsound"
+        ],
+        "rare": [
+            "gyroball",
+            "hardpress",
+            "irondefense",
+            "smartstrike"
+        ],
+        "epic": [
+            "flashcannon",
+            "ironhead",
+            "steelbeam"
+        ],
+        "legendary": [
+            "heavyslam"
+        ],
+        "mythic": []
+    },
+    "fairy": {
+        "common": [
+            "disarmingvoice",
+            "mistyterrain"
+        ],
+        "uncommon": [
+            "charm",
+            "drainingkiss"
+        ],
+        "rare": [
+            "alluringvoice",
+            "mistyexplosion"
+        ],
+        "epic": [
+            "dazzlinggleam",
+            "playrough"
+        ],
+        "legendary": [],
+        "mythic": []
+    }
+}

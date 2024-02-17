@@ -1,5 +1,3 @@
-export default Items;
-
 const Items = {
     pokeball: {
         category: "Poké Balls",
@@ -174,26 +172,7 @@ const Items = {
         canBeHeld: true,
         isUsableOnPokemon: true
     },
-    tm001: {
-        category: "TMs",
-        num: 1,
-        name: "TM001",
-        id: "tm001",
-        canBeHeld: true,
-        isUsable: true,
-        isUsableOnPokemon: true,
-        containsMove: "dig"
-    },
-    tm002: {
-        category: "TMs",
-        num: 2,
-        name: "TM002",
-        id: "tm002",
-        canBeHeld: true,
-        isUsable: true,
-        isUsableOnPokemon: true,
-        containsMove: "skyuppercut"
-    }
+    ...TMs
 }
 
 function heal(pokemon, amount) {
@@ -233,3 +212,5 @@ function evolve(pokemon, method,) {
     }
     return false;
 }
+
+export default Items;
