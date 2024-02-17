@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 let player;
-const DRAG_AMOUNT = 1000;
+const DRAG_AMOUNT = 1600;
 const ACCELERATION_AMOUNT = DRAG_AMOUNT + 500;
 const MAX_VELOCITY = 225;
 export default class ExampleScene extends Phaser.Scene {
@@ -29,7 +29,9 @@ export default class ExampleScene extends Phaser.Scene {
         player = this.physics.add.sprite(100, 450, 'red');
         player.setDrag(DRAG_AMOUNT);
         player.setCollideWorldBounds(true);
-        player.anims.play('down', true);
+
+        this.label = this.add.text(100, 410, 'Player', { font: '20px Futura', fill: '#000000' }).setOrigin(0.5)
+        // player.anims.play('down', true);
 
         this.anims.create({
             key: 'down',
@@ -96,9 +98,20 @@ export default class ExampleScene extends Phaser.Scene {
         if (velocityMagnitude > MAX_VELOCITY) {
             player.body.velocity.setLength(MAX_VELOCITY);
             velocityMagnitude = MAX_VELOCITY;
-        } else if (velocityMagnitude == 0) {
-            console.log(player.anims.getFrameName());
+        } else if (velocityMagnitude === 0 && player.anims.isPlaying) {
+            if (player.anims.currentFrame.textureFrame % 2 === 1)
+                player.stopOnFrame(player.anims.currentFrame.nextFrame.textureFrame);
+            else player.stop();
         }
-        player.anims.timeScale = velocityMagnitude / MAX_VELOCITY;
+        player.anims.timeScale = 0.2 + 0.8 * velocityMagnitude / MAX_VELOCITY;
+
+        // handle label
+        this.events.on('postupdate', () => {
+            this.label.setPosition(player.x, player.y - 30);
+        });
     }
 }
+
+// function shiftFirstToEnd(arr) {
+//     arr.push(arr.shift());
+// }
