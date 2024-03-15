@@ -15,11 +15,11 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/play" element={<Game />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Register isLogin={true}/>} />
+          <Route path="/login" element={<Register isLogin={true} />} />
         </Routes>
       </Router>
-      <Game />
     </>
   );
 }
