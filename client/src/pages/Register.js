@@ -4,8 +4,11 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Register.css";
+import { useState } from "react";
 
-function Register() {
+function Register({ isLogin = false }) {
+  const [error, setError] = useState("INSERT ERROR");
+
   return (
     <Container>
       <Row className="justify-content-center">
@@ -16,20 +19,30 @@ function Register() {
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="username" placeholder="Enter username" />
+                <Form.Control type="username" placeholder="Enter username" required />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="Password" required />
                 <Form.Text className="text-muted">
-                  We recommend you use a different password than the one you use for other websites.
+                  {isLogin ? "" :
+                    <>
+                      We recommend you use a different password than the one you use for other websites.
+                      < br />
+                    </>
+                  }
+                </Form.Text>
+                <Form.Text className="text-danger">
+                  {error}
                 </Form.Text>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="I agree to the Pokémon Trainer code of conduct." />
-              </Form.Group>
+              {isLogin ? <></> :
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                  <Form.Check type="checkbox" label="I agree to the Pokémon Trainer code of conduct." required />
+                </Form.Group>
+              }
               <Button variant="primary" type="submit">
-                Register
+                {isLogin ? "Login" : "Register"}
               </Button>
             </Form>
           </div>

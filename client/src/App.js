@@ -9,18 +9,18 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <NavBar />
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Register />} />
+          <Route path="/login" element={<Register isLogin={true}/>} />
         </Routes>
       </Router>
       <Game />
-    </div>
+    </>
   );
 }
 
