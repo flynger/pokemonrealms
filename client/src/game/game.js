@@ -9,11 +9,17 @@ export default function Game() {
             width: 960,
             height: 640,
             physics: { default: "arcade" },
+            parent: "game",
             scene: [ExampleScene]
         }
-        new Phaser.Game(gameConfig);
+        const game = new Phaser.Game(gameConfig);
+
+        return () => {
+            // Cleanup Phaser game instance
+            game.destroy(true);
+        }
     }, []);
     return <div id="game">
-        <canvas></canvas>
+
     </div>;
 }
