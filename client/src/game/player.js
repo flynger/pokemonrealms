@@ -63,25 +63,35 @@ export default class Player extends Phaser.GameObjects.Sprite {
     update() {
         if (this.body !== null) {
             const cursors = this.scene.input.keyboard.createCursorKeys();
-            const horizDown = cursors.left.isDown || cursors.right.isDown;
+            const wasd = this.scene.input.keyboard.addKeys({ w: 'W', a: 'A', s: 'S', d: 'D' });
+            const isLeftDown = cursors.left.isDown || wasd.a.isDown;
+            const isRightDown = cursors.right.isDown || wasd.d.isDown;
+            const isUpDown = cursors.up.isDown || wasd.w.isDown;
+            const isDownDown = cursors.down.isDown || wasd.s.isDown;
+            const horizDown = isLeftDown !== isRightDown;
+            const vertDown = isUpDown !== isDownDown;
             const speed = cursors.shift.isDown ? Player.walkSpeed : Player.runSpeed;
 
             let dx = 0, dy = 0;
             // handle horizontal
-            if (cursors.left.isDown) {
-                dx -= speed;
-                this.anims.play('left', true);
-            } else if (cursors.right.isDown) {
-                dx += speed;
-                this.anims.play('right', true);
+            if (horizDown) {
+                if (isLeftDown) {
+                    dx -= speed;
+                    this.anims.play('left', true);
+                } else {
+                    dx += speed;
+                    this.anims.play('right', true);
+                }
             }
             // handle vertical
-            if (cursors.up.isDown) {
-                dy -= speed;
-                if (!horizDown) this.anims.play('up', true);
-            } else if (cursors.down.isDown) {
-                dy += speed;
-                if (!horizDown) this.anims.play('down', true);
+            if (vertDown) {
+                if (isUpDown) {
+                    dy -= speed;
+                    if (!horizDown) this.anims.play('up', true);
+                } else {
+                    dy += speed;
+                    if (!horizDown) this.anims.play('down', true);
+                }
             }
 
             let vMagnitude = Math.sqrt(dx * dx + dy * dy);

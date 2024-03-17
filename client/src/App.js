@@ -4,7 +4,7 @@ import "./App.css";
 import NavBar from "./components/Navbar";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
-import Game from "./game/game";
+import Game from "./game/Game";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {

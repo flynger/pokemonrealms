@@ -1,4 +1,4 @@
-// import './App.css';
+import './Game.css';
 import React, { useEffect, useState } from 'react';
 import Phaser from 'phaser';
 import ExampleScene from './scene';
@@ -6,8 +6,13 @@ import ExampleScene from './scene';
 export default function Game() {
     useEffect(() => {
         const gameConfig = {
-            width: 960,
-            height: 640,
+            // width: 960,
+            // height: 640,
+            scale: {
+                mode: Phaser.Scale.FIT,
+                parent: "Game",
+                autoCenter: Phaser.Scale.CENTER_BOTH,
+            },
             physics: { default: "arcade" },
             parent: "game",
             scene: [ExampleScene]
