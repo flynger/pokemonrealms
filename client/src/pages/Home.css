@@ -1,0 +1,31 @@
+body {
+    /* background-color: #addd63; */
+    /* color: white; */
+    padding: 0;
+    margin: 0;
+}
+
+section {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    overflow: hidden;
+}
+
+.hero {
+    height: 93vh;
+    border-bottom: 0.5rem solid #5d9744;
+}
+
+.col {
+    text-align: center;
+}
+
+.rounded-circle {
+    border: 0.1rem solid #c3cac0;
+    box-shadow: 0.3rem 0.3rem 3px #5d9744 ;
+}
+
+.card {
+    box-shadow: 0.5rem 0.5rem 3px #5d9744;
+}
