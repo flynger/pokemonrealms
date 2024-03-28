@@ -36,10 +36,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
         });
     }
 
-    constructor(scene, x = 100, y = 450, name = "Unnamed") {
+    constructor(scene, x = 100, y = 450, name = "Eichardo") {
         super(scene, x, y, 'red');
         this.name = name;
-        this.setOrigin(0.5);
 
         // Add the player to the scene
         scene.add.existing(this);
@@ -110,16 +109,16 @@ export default class Player extends Phaser.GameObjects.Sprite {
 }
 
 class PlayerTag extends Phaser.GameObjects.Text {
-    static style = { font: '18px Futura', fill: '#fff', align: 'center' };
+    static style = { font: '20px Power Clear', fill: '#fff' };
     static yOffset = 10;
 
     constructor(scene, player) {
-        super(scene, player.body.x, player.body.y - PlayerTag.yOffset, player.name, PlayerTag.style);
+        super(scene, player.getCenter().x, player.body.y - PlayerTag.yOffset, player.name, PlayerTag.style);
         this.setOrigin(0.5);
 
         // handle label
         scene.events.on('postupdate', () => {
-            this.setPosition(player.body.x, player.body.y - PlayerTag.yOffset);
+            this.setPosition(player.getCenter().x, player.body.y - PlayerTag.yOffset);
         });
 
         scene.add.existing(this);
