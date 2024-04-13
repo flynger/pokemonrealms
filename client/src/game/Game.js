@@ -11,6 +11,7 @@ export default function Game() {
         const gameConfig = {
             // width: 960,
             // height: 640,
+            // pixelArt: true,
             scale: {
                 mode: Phaser.Scale.FIT,
                 parent: "Game",

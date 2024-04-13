@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 
 export default class Player extends Phaser.GameObjects.Sprite {
-    static walkSpeed = 100;
-    static runSpeed = 150;
-    static DRAG_AMOUNT = 1600;
+    static walkSpeed = 120;
+    static runSpeed = 180;
+    static DRAG_AMOUNT = 1000;
 
     // create anims
     static createAnimations(scene) {
@@ -47,7 +47,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         scene.physics.add.existing(this);
 
         // Set drag for the player
-        // this.body.setDrag(Player.DRAG_AMOUNT);
+        this.body.setDrag(Player.DRAG_AMOUNT);
 
         this.body.setCollideWorldBounds(true);
         this.tag = new PlayerTag(scene, this);
@@ -95,15 +95,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
             let vMagnitude = Math.sqrt(dx * dx + dy * dy);
             if (vMagnitude === 0 && this.anims.isPlaying) {
-                if (this.anims.currentFrame.textureFrame % 2 === 1)
-                    this.anims.stopOnFrame(this.anims.currentFrame.nextFrame.textureFrame);
-                else this.anims.stop();
+                // if (this.anims.currentFrame.textureFrame % 2 === 1)
+                //     this.anims.stopOnFrame(this.anims.currentFrame.nextFrame.textureFrame);
+                // else
+                // this.anims.stop();
             } else if (vMagnitude > speed) {
                 vMagnitude = speed;
                 this.body.setMaxSpeed(speed);
             }
-            this.body.setVelocity(dx, dy);
-            this.anims.timeScale = 0.2 + 0.8 * vMagnitude / Player.runSpeed;
+            if (dx !== 0 || dy !== 0)
+                this.body.setVelocity(dx, dy);
+            this.anims.timeScale = vMagnitude / Player.runSpeed;
         }
     }
 }

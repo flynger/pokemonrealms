@@ -1,286 +1,16 @@
 { "columns":8,
- "image":"..\/..\/client\/res\/tilesets\/gen4hgss_1.png",
- "imageheight":11904,
+ "image":"..\/..\/client\/public\/tilesets\/gen4hgss_2.png",
+ "imageheight":7040,
  "imagewidth":256,
  "margin":0,
- "name":"gen4hgss_1",
+ "name":"gen4hgss_2",
  "spacing":0,
- "tilecount":2976,
- "tiledversion":"1.10.0",
+ "tilecount":1760,
+ "tiledversion":"1.10.2",
  "tileheight":32,
  "tiles":[
         {
-         "id":56,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":57,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":58,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":64,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":65,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":66,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":72,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":73,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":74,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":80,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":81,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":82,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":88,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":89,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":90,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":96,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":97,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":98,
-         "properties":[
-                {
-                 "name":"isWater",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":317,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":318,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":319,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1040,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1041,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1042,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1043,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1044,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1048,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1050,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1051,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1052,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1055,
+         "id":1105,
          "properties":[
                 {
                  "name":"offset",
@@ -289,232 +19,7 @@
                 }]
         }, 
         {
-         "id":1056,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1057,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1058,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1059,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1060,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1063,
-         "properties":[
-                {
-                 "name":"offset",
-                 "type":"int",
-                 "value":32
-                }]
-        }, 
-        {
-         "id":1064,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1065,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1066,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1067,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1068,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1071,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1072,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1074,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1075,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1076,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1080,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1081,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1082,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1083,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1084,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1091,
-         "properties":[
-                {
-                 "name":"offset",
-                 "type":"int",
-                 "value":32
-                }]
-        }, 
-        {
-         "id":1093,
-         "properties":[
-                {
-                 "name":"offset",
-                 "type":"int",
-                 "value":32
-                }]
-        }, 
-        {
-         "id":1099,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1101,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1794,
+         "id":1106,
          "properties":[
                 {
                  "name":"offset",
@@ -523,7 +28,7 @@
                 }]
         }, 
         {
-         "id":1795,
+         "id":1107,
          "properties":[
                 {
                  "name":"offset",
@@ -532,7 +37,7 @@
                 }]
         }, 
         {
-         "id":1796,
+         "id":1108,
          "properties":[
                 {
                  "name":"offset",
@@ -541,7 +46,7 @@
                 }]
         }, 
         {
-         "id":1800,
+         "id":1109,
          "properties":[
                 {
                  "name":"offset",
@@ -550,7 +55,7 @@
                 }]
         }, 
         {
-         "id":1801,
+         "id":1112,
          "properties":[
                 {
                  "name":"offset",
@@ -559,7 +64,7 @@
                 }]
         }, 
         {
-         "id":1802,
+         "id":1113,
          "properties":[
                 {
                  "name":"offset",
@@ -568,7 +73,7 @@
                 }]
         }, 
         {
-         "id":1803,
+         "id":1114,
          "properties":[
                 {
                  "name":"offset",
@@ -577,7 +82,7 @@
                 }]
         }, 
         {
-         "id":1804,
+         "id":1115,
          "properties":[
                 {
                  "name":"offset",
@@ -586,7 +91,7 @@
                 }]
         }, 
         {
-         "id":1805,
+         "id":1116,
          "properties":[
                 {
                  "name":"offset",
@@ -595,7 +100,7 @@
                 }]
         }, 
         {
-         "id":1806,
+         "id":1117,
          "properties":[
                 {
                  "name":"offset",
@@ -604,7 +109,7 @@
                 }]
         }, 
         {
-         "id":1808,
+         "id":1118,
          "properties":[
                 {
                  "name":"offset",
@@ -613,7 +118,38 @@
                 }]
         }, 
         {
-         "id":1809,
+         "id":1120,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":24,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1121,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -627,7 +163,7 @@
                 }]
         }, 
         {
-         "id":1810,
+         "id":1122,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -636,7 +172,7 @@
                 }]
         }, 
         {
-         "id":1811,
+         "id":1123,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -645,7 +181,7 @@
                 }]
         }, 
         {
-         "id":1812,
+         "id":1124,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -654,39 +190,7 @@
                 }]
         }, 
         {
-         "id":1813,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }, 
-                {
-                 "name":"offset",
-                 "type":"int",
-                 "value":64
-                }]
-        }, 
-        {
-         "id":1814,
-         "properties":[
-                {
-                 "name":"offset",
-                 "type":"int",
-                 "value":64
-                }]
-        }, 
-        {
-         "id":1816,
-         "properties":[
-                {
-                 "name":"offset",
-                 "type":"int",
-                 "value":64
-                }]
-        }, 
-        {
-         "id":1817,
+         "id":1125,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -700,34 +204,69 @@
                 }]
         }, 
         {
-         "id":1818,
+         "id":1126,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
-         "id":1819,
+         "id":1128,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":24,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
-         "id":1820,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1821,
+         "id":1129,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -741,25 +280,34 @@
                 }]
         }, 
         {
-         "id":1822,
+         "id":1130,
          "properties":[
                 {
-                 "name":"offset",
-                 "type":"int",
-                 "value":64
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
-         "id":1824,
+         "id":1131,
          "properties":[
                 {
-                 "name":"offset",
-                 "type":"int",
-                 "value":64
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
-         "id":1825,
+         "id":1132,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1133,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -773,34 +321,69 @@
                 }]
         }, 
         {
-         "id":1826,
+         "id":1134,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
-         "id":1827,
+         "id":1136,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":24,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
                 }]
         }, 
         {
-         "id":1828,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":1829,
+         "id":1137,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -814,7 +397,70 @@
                 }]
         }, 
         {
-         "id":1830,
+         "id":1138,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1139,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1140,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1141,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1142,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":2,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"offset",
@@ -823,7 +469,38 @@
                 }]
         }, 
         {
-         "id":1833,
+         "id":1144,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":24,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1145,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -837,7 +514,7 @@
                 }]
         }, 
         {
-         "id":1834,
+         "id":1146,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -846,7 +523,7 @@
                 }]
         }, 
         {
-         "id":1835,
+         "id":1147,
          "properties":[
                 {
                  "name":"isWarpTile",
@@ -855,7 +532,7 @@
                 }]
         }, 
         {
-         "id":1836,
+         "id":1148,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -864,7 +541,7 @@
                 }]
         }, 
         {
-         "id":1837,
+         "id":1149,
          "properties":[
                 {
                  "name":"isCollideable",
@@ -875,6 +552,473 @@
                  "name":"offset",
                  "type":"int",
                  "value":16
+                }]
+        }, 
+        {
+         "id":1150,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":8,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1152,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":-16
+                }]
+        }, 
+        {
+         "id":1158,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":-16
+                }]
+        }, 
+        {
+         "id":1305,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1306,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1307,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1308,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1309,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1312,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1313,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1314,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1315,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1316,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1317,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1318,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1320,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1321,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1322,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1323,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1324,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1325,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1326,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1328,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1329,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1330,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1331,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1332,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1333,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"48"
+                }]
+        }, 
+        {
+         "id":1334,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"string",
+                 "value":"64"
+                }]
+        }, 
+        {
+         "id":1336,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1337,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1338,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1339,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1340,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1341,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1342,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":64
+                }]
+        }, 
+        {
+         "id":1344,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1345,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1346,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1347,
+         "properties":[
+                {
+                 "name":"isWarpTile",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1348,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":1349,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1350,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":16
+                }]
+        }, 
+        {
+         "id":1352,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":-16
+                }]
+        }, 
+        {
+         "id":1358,
+         "properties":[
+                {
+                 "name":"offset",
+                 "type":"int",
+                 "value":-16
                 }]
         }],
  "tilewidth":32,

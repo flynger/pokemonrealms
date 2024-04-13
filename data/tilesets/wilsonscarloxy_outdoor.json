@@ -1,12 +1,12 @@
 { "columns":8,
- "image":"..\/..\/client\/res\/tilesets\/wilsonscarloxy_outdoor.png",
+ "image":"..\/..\/client\/public\/tilesets\/wilsonscarloxy_outdoor.png",
  "imageheight":1888,
  "imagewidth":256,
  "margin":0,
  "name":"wilsonscarloxy_outdoor",
  "spacing":0,
  "tilecount":472,
- "tiledversion":"1.10.0",
+ "tiledversion":"1.10.2",
  "tileheight":32,
  "tiles":[
         {
