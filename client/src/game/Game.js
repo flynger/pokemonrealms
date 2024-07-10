@@ -12,6 +12,7 @@ export default function Game() {
             // width: 960,
             // height: 640,
             // pixelArt: true,
+            // roundPixels: true,
             scale: {
                 mode: Phaser.Scale.FIT,
                 parent: "Game",

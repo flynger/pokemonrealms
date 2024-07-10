@@ -95,28 +95,29 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
             let vMagnitude = Math.sqrt(dx * dx + dy * dy);
             if (vMagnitude === 0 && this.anims.isPlaying) {
-                // if (this.anims.currentFrame.textureFrame % 2 === 1)
-                //     this.anims.stopOnFrame(this.anims.currentFrame.nextFrame.textureFrame);
-                // else
-                // this.anims.stop();
+                if (this.anims.currentFrame.textureFrame % 2 === 1)
+                    this.anims.stopOnFrame(this.anims.currentFrame.nextFrame.textureFrame);
+                else
+                    this.anims.stop();
             } else if (vMagnitude > speed) {
                 vMagnitude = speed;
                 this.body.setMaxSpeed(speed);
             }
             if (dx !== 0 || dy !== 0)
                 this.body.setVelocity(dx, dy);
-            this.anims.timeScale = vMagnitude / Player.runSpeed;
+            this.anims.timeScale = Math.max(0.05, vMagnitude / Player.runSpeed);
         }
     }
 }
 
 class PlayerTag extends Phaser.GameObjects.Text {
-    static style = { font: '20px Power Clear', fill: '#fff' };
+    static style = { font: '18px Power Clear', fill: '#ebebeb', backgroundColor: '#333', shadow: { offsetX: 30, offsetY: 30, color: "#666", fill: true } };
     static yOffset = 10;
 
     constructor(scene, player) {
         super(scene, player.getCenter().x, player.body.y - PlayerTag.yOffset, player.name, PlayerTag.style);
         this.setOrigin(0.5);
+        this.setShadow(2, 2, '#707070', 0, true, true);
 
         // handle label
         scene.events.on('postupdate', () => {
