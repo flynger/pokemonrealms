@@ -1,0 +1,139 @@
+{
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "rawMaps/cities/Ballet Town Lab.json": {
+            "scale": 1.38046875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 287.22127900396157,
+                "y": 206.45161290322582
+            }
+        },
+        "rawMaps/cities/Ballet Town Player House 1F.json": {
+            "scale": 1.38046875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 287.9456706281834,
+                "y": 310.76400679117154
+            }
+        },
+        "rawMaps/cities/Ballet Town Player House 2F.json": {
+            "scale": 1.5041666666666664,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 224.37673130193912,
+                "y": 286.5373961218837
+            }
+        },
+        "rawMaps/cities/Ballet Town Town - Copy.json": {
+            "scale": 0.82828125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 481.1167704206754,
+                "y": 352.5372571212979
+            }
+        },
+        "rawMaps/cities/Ballet Town Town.json": {
+            "scale": 0.82828125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 479.9094510469723,
+                "y": 351.32993774759484
+            }
+        },
+        "rawMaps/cities/Ballet Town Town.json#gen4hgss_1": {
+            "scaleInDock": 1
+        },
+        "rawMaps/cities/Ballet Town Town.json#gen4hgss_2": {
+            "scaleInDock": 1
+        },
+        "rawMaps/cities/Ballet Town Town.json#kyledove": {
+            "scaleInDock": 1
+        },
+        "rawMaps/cities/Ballet Town Town.json#wilsonscarloxy_indoor": {
+            "scaleInDock": 1
+        },
+        "rawMaps/cities/Ballet Town Town.json#wilsonscarloxy_outdoor": {
+            "scaleInDock": 1
+        },
+        "rawMaps/cities/wilsonscarloxy_indoor.json": {
+            "scaleInDock": 1
+        },
+        "rawMaps/routes/Ballet Town Outskirts.json": {
+            "scale": 0.51767578125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 769.7868326730805,
+                "y": 417.2495755517827
+            }
+        },
+        "rawMaps/routes/Ranch/Ranch.json": {
+            "scale": 0.31060546875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1282.9780544551343,
+                "y": 801.6600641388418
+            }
+        },
+        "rawMaps/routes/Route 1 Area 1 - Copy.json": {
+            "scale": 0.637139423076923,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 625.4518015468781,
+                "y": 513.2314657611772
+            }
+        },
+        "rawMaps/routes/Route 1 Area 1.json": {
+            "scale": 0.637139423076923,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 625.4518015468781,
+                "y": 513.2314657611772
+            }
+        },
+        "rawMaps/routes/Route 1 Area 2.json": {
+            "scale": 0.3882568359375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1026.3824435641072,
+                "y": 1025.0946362321577
+            }
+        },
+        "rawMaps/routes/Route 2 Area 1.json": {
+            "scale": 0.529625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.03776256785466,
+                "y": 800.5664385178192
+            }
+        },
+        "tilesets/gen4hgss_1.json": {
+            "scaleInDock": 1
+        },
+        "tilesets/gen4hgss_2.json": {
+            "scaleInDock": 1
+        },
+        "tilesets/kyledove.json": {
+            "scaleInDock": 1
+        },
+        "tilesets/wilsonscarloxy_indoor.json": {
+            "scaleInDock": 1
+        }
+    },
+    "last.worldFilePath": "C:/Github Projects/PokemonRealms/data/rawMaps/cities",
+    "loadedWorlds": [
+        "C:/Github Projects/PokemonRealms/data/rawMaps/cities/Overworld.world"
+    ],
+    "openFiles": [
+    ],
+    "project": "pokemon-realms.tiled-project",
+    "recentFiles": [
+        "rawMaps/cities/Ballet Town Lab.json",
+        "rawMaps/cities/Ballet Town Town.json",
+        "rawMaps/cities/Ballet Town Town - Copy.json",
+        "rawMaps/cities/Ballet Town Player House 1F.json"
+    ]
+}
