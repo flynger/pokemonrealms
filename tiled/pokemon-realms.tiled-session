@@ -5,10 +5,10 @@
     },
     "activeFile": "maps/Ranch/Ranch.json",
     "expandedProjectPaths": [
-        "maps/Ranch",
         "maps",
+        "tilesets",
         ".",
-        "tilesets"
+        "maps/Ranch"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
