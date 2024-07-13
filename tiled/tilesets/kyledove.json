@@ -1,0 +1,19 @@
+{ "columns":8,
+ "image":"..\/..\/client\/public\/tilesets\/kyledove.png",
+ "imageheight":6720,
+ "imagewidth":256,
+ "margin":0,
+ "name":"kyledove",
+ "spacing":0,
+ "tilecount":1680,
+ "tiledversion":"1.10.2",
+ "tileheight":32,
+ "tiles":[
+        {
+         "id":89,
+         "probability":0.5
+        }],
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}

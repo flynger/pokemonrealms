@@ -1,9 +1,34 @@
 {
-    "activeFile": "",
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "maps/Ranch/Ranch.json",
     "expandedProjectPaths": [
+        "maps/Ranch",
+        "maps",
+        ".",
+        "tilesets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "maps/Ranch/Ranch.json": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 526.5,
+                "y": 257
+            }
+        },
+        "maps/Ranch/Ranch.json#farm_exterior": {
+            "scaleInEditor": 1
+        },
         "rawMaps/cities/Ballet Town Lab.json": {
             "scale": 1.38046875,
             "selectedLayer": 0,
@@ -110,6 +135,17 @@
                 "y": 800.5664385178192
             }
         },
+        "tilesets/farm_exterior.json": {
+            "scaleInDock": 1
+        },
+        "tilesets/farm_exterior_tileset_by_aveontrainer.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/farm_interior.json": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "tilesets/gen4hgss_1.json": {
             "scaleInDock": 1
         },
@@ -117,23 +153,36 @@
             "scaleInDock": 1
         },
         "tilesets/kyledove.json": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "tilesets/wilsonscarloxy_indoor.json": {
             "scaleInDock": 1
         }
     },
+    "last.externalTilesetPath": "C:/Github Projects/PokemonRealms/tiled/tilesets",
+    "last.imagePath": "C:/Github Projects/PokemonRealms/client/public/tilesets",
     "last.worldFilePath": "C:/Github Projects/PokemonRealms/data/rawMaps/cities",
     "loadedWorlds": [
         "C:/Github Projects/PokemonRealms/data/rawMaps/cities/Overworld.world"
     ],
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "json",
     "openFiles": [
+        "maps/Ranch/Ranch.json",
+        "tilesets/kyledove.json"
     ],
     "project": "pokemon-realms.tiled-project",
     "recentFiles": [
+        "tilesets/kyledove.json",
+        "maps/Ranch/Ranch.json",
+        "tilesets/farm_exterior_tileset_by_aveontrainer.json",
+        "tilesets/farm_interior.json",
         "rawMaps/cities/Ballet Town Lab.json",
         "rawMaps/cities/Ballet Town Town.json",
         "rawMaps/cities/Ballet Town Town - Copy.json",
         "rawMaps/cities/Ballet Town Player House 1F.json"
-    ]
+    ],
+    "tileset.lastUsedFilter": "JSON tileset files (*.tsj *.json)",
+    "tileset.lastUsedFormat": "json"
 }
