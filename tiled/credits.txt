@@ -1,0 +1,9 @@
+tilesets:
+magiscarf (Tileset ver.3, Revamped Tiles)
+chaoticcherrycake
+kyledove
+Alienor Tileset v2
+aveontrainer (farm interior, exterior)
+
+maps:
+Phyromatical

@@ -1,10 +1,6 @@
 import Phaser from 'phaser';
 
-export default class Player extends Phaser.GameObjects.Sprite {
-    static walkSpeed = 120;
-    static runSpeed = 180;
-    static DRAG_AMOUNT = 1000;
-
+export default class Player extends Phaser.GameObjects.Container {
     // create anims
     static createAnimations(scene) {
         scene.anims.create({
@@ -36,94 +32,103 @@ export default class Player extends Phaser.GameObjects.Sprite {
         });
     }
 
-    constructor(scene, x = 100, y = 450, name = "Eichardo") {
-        super(scene, x, y, 'red');
-        this.name = name;
+    constructor(scene, x, y, texture, frame, name) {
+        super(scene, x, y);
 
-        // Add the player to the scene
-        scene.add.existing(this);
+        this.scene = scene;
+        this.sprite = this.scene.add.sprite(0, 0, texture, frame);
 
-        // Enable physics for the player
-        scene.physics.add.existing(this);
+        // Create background rectangle for the name tag
+        this.nameTagBackground = this.scene.add.graphics();
+        this.nameTagBackground.fillStyle(0x444444, 0.8); // Gray color with 50% opacity
+        this.nameTagBackground.fillRoundedRect(-30, -30, 60, 20, 6); // x, y, width, height, radius
+        this.nameTagBackground.setDepth(10);
 
-        // Set drag for the player
-        this.body.setDrag(Player.DRAG_AMOUNT);
+        // Create name tag text
+        this.nameTag = this.scene.add.text(0, -30, name, {
+            font: '16px Power Clear',
+            color: '#ffffff',
+            padding: { left: 2, right: 2, top: 1, bottom: 1 }
+        });
+        this.nameTag.setOrigin(0.5, 1);
+        this.nameTag.setDepth(10);
 
+        this.add(this.sprite);
+
+        this.scene.physics.world.enable(this);
         this.body.setCollideWorldBounds(true);
-        this.tag = new PlayerTag(scene, this);
 
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
 
-    }
+        this.cursors = this.scene.input.keyboard.createCursorKeys();
+        this.wasd = this.scene.input.keyboard.addKeys('W,S,A,D');
 
-    create() {
-        // this.tag.create();
-    }
-
-    update() {
-        if (this.body !== null) {
-            const cursors = this.scene.input.keyboard.createCursorKeys();
-            const wasd = this.scene.input.keyboard.addKeys({ w: 'W', a: 'A', s: 'S', d: 'D' });
-            const isLeftDown = cursors.left.isDown || wasd.a.isDown;
-            const isRightDown = cursors.right.isDown || wasd.d.isDown;
-            const isUpDown = cursors.up.isDown || wasd.w.isDown;
-            const isDownDown = cursors.down.isDown || wasd.s.isDown;
-            const horizDown = isLeftDown !== isRightDown;
-            const vertDown = isUpDown !== isDownDown;
-            const speed = cursors.shift.isDown ? Player.walkSpeed : Player.runSpeed;
-
-            let dx = 0, dy = 0;
-            // handle horizontal
-            if (horizDown) {
-                if (isLeftDown) {
-                    dx -= speed;
-                    this.anims.play('left', true);
-                } else {
-                    dx += speed;
-                    this.anims.play('right', true);
-                }
-            }
-            // handle vertical
-            if (vertDown) {
-                if (isUpDown) {
-                    dy -= speed;
-                    if (!horizDown) this.anims.play('up', true);
-                } else {
-                    dy += speed;
-                    if (!horizDown) this.anims.play('down', true);
-                }
-            }
-
-            let vMagnitude = Math.sqrt(dx * dx + dy * dy);
-            if (vMagnitude === 0 && this.anims.isPlaying) {
-                if (this.anims.currentFrame.textureFrame % 2 === 1)
-                    this.anims.stopOnFrame(this.anims.currentFrame.nextFrame.textureFrame);
-                else
-                    this.anims.stop();
-            } else if (vMagnitude > speed) {
-                vMagnitude = speed;
-                this.body.setMaxSpeed(speed);
-            }
-            if (dx !== 0 || dy !== 0)
-                this.body.setVelocity(dx, dy);
-            this.anims.timeScale = Math.max(0.05, vMagnitude / Player.runSpeed);
-        }
-    }
-}
-
-class PlayerTag extends Phaser.GameObjects.Text {
-    static style = { font: '18px Power Clear', fill: '#ebebeb', backgroundColor: '#333', shadow: { offsetX: 30, offsetY: 30, color: "#666", fill: true } };
-    static yOffset = 10;
-
-    constructor(scene, player) {
-        super(scene, player.getCenter().x, player.body.y - PlayerTag.yOffset, player.name, PlayerTag.style);
-        this.setOrigin(0.5);
-        this.setShadow(2, 2, '#707070', 0, true, true);
+        // Add name tag and background to the scene (not inside the container)
+        this.scene.add.existing(this.nameTagBackground);
+        this.scene.add.existing(this.nameTag);
 
         // handle label
         scene.events.on('postupdate', () => {
-            this.setPosition(player.getCenter().x, player.body.y - PlayerTag.yOffset);
+            // Update the position of the name tag and background to follow the player
+            this.nameTag.setPosition(this.x, this.y - 20);
+            this.nameTagBackground.setPosition(this.x, this.y - 8);
         });
+    }
 
-        scene.add.existing(this);
+    update() {
+        const speed = 140;
+        let velocityX = (this.cursors.left.isDown || this.wasd.A.isDown ? -speed : 0) +
+            (this.cursors.right.isDown || this.wasd.D.isDown ? speed : 0);
+        let velocityY = (this.cursors.up.isDown || this.wasd.W.isDown ? -speed : 0) +
+            (this.cursors.down.isDown || this.wasd.S.isDown ? speed : 0);
+
+        // Normalize diagonal movement
+        if (velocityX !== 0 && velocityY !== 0) {
+            velocityX *= Math.SQRT1_2;
+            velocityY *= Math.SQRT1_2;
+        }
+
+        this.body.setVelocity(velocityX, velocityY);
+
+        // Determine the animation to play based on movement
+        if (velocityX < 0) {
+            this.sprite.anims.play("left", true);
+        } else if (velocityX > 0) {
+            this.sprite.anims.play("right", true);
+        } else if (velocityY < 0) {
+            this.sprite.anims.play("up", true);
+        } else if (velocityY > 0) {
+            this.sprite.anims.play("down", true);
+        }
+
+        // If there is no movement, stops animation at an odd frame (when player's hands are normal)
+        if (this.sprite.anims.isPlaying && velocityX === 0 && velocityY === 0) {
+            const currentFrameIndex = this.sprite.anims.currentFrame.index;
+            if (currentFrameIndex % 2 == 1) {
+                this.sprite.anims.stop();
+            }
+        }
+
+        // Update depth based on y position
+        this.setDepth(this.y);
     }
 }
+
+// class PlayerTag extends Phaser.GameObjects.Text {
+//     static style = { font: '18px Power Clear', fill: '#ebebeb', backgroundColor: '#333', shadow: { offsetX: 30, offsetY: 30, color: "#666", fill: true } };
+//     static yOffset = 10;
+
+//     constructor(scene, player) {
+//         super(scene, player.getCenter().x, player.body.y - PlayerTag.yOffset, player.name, PlayerTag.style);
+//         this.setOrigin(0.5);
+//         this.setShadow(2, 2, '#707070', 0, true, true);
+
+//         // handle label
+//         scene.events.on('postupdate', () => {
+//             this.setPosition(player.getCenter().x, player.body.y - PlayerTag.yOffset);
+//         });
+
+//         scene.add.existing(this);
+//     }
+// }

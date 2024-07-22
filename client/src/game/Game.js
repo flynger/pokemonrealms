@@ -1,8 +1,8 @@
 import './Game.css';
 import React, { useEffect, useState } from 'react';
 import Phaser from 'phaser';
-import ExampleScene from './scene';
 import FontFaceObserver from 'fontfaceobserver';
+import MainScene from './MainScene';
 
 export default function Game() {
     useEffect(() => {
@@ -20,16 +20,15 @@ export default function Game() {
             },
             physics: { default: "arcade" },
             parent: "game",
-            scene: [ExampleScene]
+            scene: [MainScene]
         }
         const game = new Phaser.Game(gameConfig);
 
         return () => {
-            // Cleanup Phaser game instance
-            game.destroy(true);
+            game.destroy(true); // Cleanup Phaser game instance
         }
     }, []);
-    return <div id="game">
+    return <div id="game" >
 
     </div>;
 }
@@ -38,7 +37,7 @@ async function setup() {
     // setup promises
     const font = new FontFaceObserver('Power Clear', {});
     // $('#message-body').text("Loading fonts...");
-    await font.load(null, 30000);
+    await font.load(null);
     // await fetch('../res/data/moves.json').then((response) => response.json()).then((json) => Moves = json);
     // $('#message-body').text("Establishing connection to server...");
     // client.setup();

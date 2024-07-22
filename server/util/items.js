@@ -1,6 +1,7 @@
 import TMs from "./tm.js";
 
 const Items = {
+    // Poké Balls
     pokeball: {
         category: "Poké Balls",
         num: 1,
@@ -12,7 +13,7 @@ const Items = {
         canBeHeld: true,
         isUsableInBattle: true,
         isPokeball: true,
-        catchRate: () => {
+        catchRate() {
             return 1;
         }
     },
@@ -27,7 +28,7 @@ const Items = {
         canBeHeld: true,
         isUsableInBattle: true,
         isPokeball: true,
-        catchRate: () => {
+        catchRate() {
             return 1.5;
         }
     },
@@ -42,7 +43,7 @@ const Items = {
         canBeHeld: true,
         isUsableInBattle: true,
         isPokeball: true,
-        catchRate: () => {
+        catchRate() {
             return 2;
         }
     },
@@ -57,10 +58,12 @@ const Items = {
         canBeHeld: true,
         isUsableInBattle: true,
         isPokeball: true,
-        catchRate: () => {
+        catchRate() {
             return true;
         }
     },
+
+    // Medicine
     potion: {
         category: "Medicine",
         num: 1,
@@ -71,7 +74,9 @@ const Items = {
         nhonDesc: "miracle drugs?",
         isUsableOnPokemon: true,
         isUsableInBattle: true,
-        useOnPokemon: [heal, 20]
+        useOnPokemon(mon) {
+            return heal(mon, 20);
+        }
     },
     superpotion: {
         category: "Medicine",
@@ -82,7 +87,9 @@ const Items = {
         shortDesc: "Restores a Pokémon's HP by 60 points.",
         isUsableOnPokemon: true,
         isUsableInBattle: true,
-        useOnPokemon: [heal, 60]
+        useOnPokemon(mon) {
+            return heal(mon, 60);
+        }
     },
     hyperpotion: {
         category: "Medicine",
@@ -94,7 +101,9 @@ const Items = {
         isUsable: true,
         isUsableOnPokemon: true,
         isUsableInBattle: true,
-        useOnPokemon: [heal, 120]
+        useOnPokemon(mon) {
+            return heal(mon, 120);
+        }
     },
     maxpotion: {
         category: "Medicine",
@@ -106,7 +115,9 @@ const Items = {
         isUsable: true,
         isUsableOnPokemon: true,
         isUsableInBattle: true,
-        useOnPokemon: [heal, true]
+        useOnPokemon(mon) {
+            return heal(mon, mon.maxhp);
+        }
     },
     aguavberry: {
         category: "Berries",
