@@ -28,7 +28,7 @@ export default class MainScene extends Phaser.Scene {
         const map = this.make.tilemap({ key: 'tilemap' });
 
         for (let i in map.layers) {
-            map.crea
+            // map.crea
             console.log(i)
         }
 

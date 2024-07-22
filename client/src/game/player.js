@@ -105,7 +105,7 @@ export default class Player extends Phaser.GameObjects.Container {
         // If there is no movement, stops animation at an odd frame (when player's hands are normal)
         if (this.sprite.anims.isPlaying && velocityX === 0 && velocityY === 0) {
             const currentFrameIndex = this.sprite.anims.currentFrame.index;
-            if (currentFrameIndex % 2 == 1) {
+            if (currentFrameIndex % 2 === 1) {
                 this.sprite.anims.stop();
             }
         }

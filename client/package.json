@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "pokemon-realms-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,9 +10,12 @@
     "@types/node": "^16.18.103",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "bootstrap": "^5.3.3",
     "fontfaceobserver": "^2.3.0",
+    "framer-motion": "^11.3.8",
     "phaser": "^3.80.1",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.25.1",
     "react-scripts": "5.0.1",

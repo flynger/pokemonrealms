@@ -1,5 +1,5 @@
 import './Game.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Phaser from 'phaser';
 import FontFaceObserver from 'fontfaceobserver';
 import MainScene from './MainScene';
