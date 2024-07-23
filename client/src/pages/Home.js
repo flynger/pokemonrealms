@@ -1,7 +1,7 @@
+import "./Home.css";
 import { motion } from "framer-motion"
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
-import "./Home.css";
 import HeroParallax from "../components/Home/HeroParallax";
 import StartersImg from "../components/Home/StartersImg";
 

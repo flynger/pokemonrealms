@@ -1,10 +1,10 @@
+import "./Register.css";
+import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./Register.css";
-import { useState } from "react";
 
 function Register({ isLogin = false }) {
   const [error, setError] = useState("INSERT ERROR");

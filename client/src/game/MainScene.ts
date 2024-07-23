@@ -4,6 +4,8 @@ import Phaser from "phaser";
 const tilesets = ["gen4hgss_1", "gen4hgss_2", "kyledove", "wilsonscarloxy_indoor", "wilsonscarloxy_outdoor"];
 
 export default class MainScene extends Phaser.Scene {
+    player!: Player;
+
     constructor() {
         super({ key: 'MainScene' });
     }
@@ -29,13 +31,12 @@ export default class MainScene extends Phaser.Scene {
 
         for (let i in map.layers) {
             // map.crea
-            console.log(i)
         }
 
         Player.createAnimations(this);
 
-        this.player = new Player(this, 100, 100, 'red', null, 'flynger');
-        this.physics.add.collider(this.player);
+        this.player = new Player(this, 100, 100, 'red', 'flynger');
+        // this.physics.add.collider(this.player);
 
         this.cameras.main.startFollow(this.player, true);
 
