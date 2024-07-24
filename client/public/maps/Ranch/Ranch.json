@@ -3,8 +3,7 @@
     {
      "export":
         {
-         "format":"json",
-         "target":"..\/..\/..\/client\/public\/maps\/Ranch\/Ranch.json"
+         "format":"json"
         }
     },
  "height":22,
@@ -119,7 +118,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"..\/..\/..\/client\/public\/tilesets\/farm_exterior.png",
+         "image":"..\/..\/tilesets\/farm_exterior.png",
          "imageheight":1088,
          "imagewidth":256,
          "margin":0,
@@ -412,7 +411,7 @@
         {
          "columns":8,
          "firstgid":273,
-         "image":"..\/..\/..\/client\/public\/tilesets\/kyledove.png",
+         "image":"..\/..\/tilesets\/kyledove.png",
          "imageheight":6720,
          "imagewidth":256,
          "margin":0,

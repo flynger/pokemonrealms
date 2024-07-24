@@ -1,10 +1,10 @@
 import Player from "./Player";
-import Phaser from "phaser";
+import { Scene, Tilemaps } from "phaser";
 
-const tilesets = ["gen4hgss_1", "gen4hgss_2", "kyledove", "wilsonscarloxy_indoor", "wilsonscarloxy_outdoor"];
+const tilesets = ["kyledove", "farm_exterior"];
 
-export default class MainScene extends Phaser.Scene {
-    player!: Player;
+export default class MainScene extends Scene {
+    private player!: Player;
 
     constructor() {
         super({ key: 'MainScene' });
@@ -18,33 +18,54 @@ export default class MainScene extends Phaser.Scene {
 
         // load the PNG file
         for (const tileset of tilesets) {
-            this.load.image(tileset, 'tilesets/' + tileset + '.png');
+            this.load.image(tileset, 'tilesets/' + tileset + '_extruded.png');
         }
 
         // load the JSON file
-        this.load.tilemapTiledJSON('tilemap', 'maps/Ballet Town Town.json')
+        this.load.tilemapTiledJSON('tilemap', 'maps/Ranch/Ranch.json')
     }
 
     create() {
         // create the Tilemap
         const map = this.make.tilemap({ key: 'tilemap' });
 
-        for (let i in map.layers) {
-            // map.crea
+        // Add the tileset image(s) to the map
+        for (const tileset of tilesets) {
+            map.addTilesetImage(tileset, tileset, 32, 32, 1, 2);
         }
+
+        // const sprites = map.createFromTiles([652, 653, 654], -1);
+
+        //  Bounce the sprites just to show they're no longer tiles:
+        // this.tweens.add({
+        //     targets: sprites,
+        //     y: '-=32',
+        //     duration: 1000,
+        //     ease: 'Sine.easeInOut',
+        //     yoyo: true,
+        //     repeat: -1
+        // });
 
         Player.createAnimations(this);
 
-        this.player = new Player(this, 100, 100, 'red', 'flynger');
-        // this.physics.add.collider(this.player);
+        this.player = new Player(this, 250, 400, 'red', 'flynger');
 
-        this.cameras.main.startFollow(this.player, true);
+        for (const i in map.layers) {
+            const layer = map.createLayer('Tile Layer ' + (+i + 1), tilesets) as Tilemaps.TilemapLayer;
+            layer.setCollisionByProperty({ isCollideable: true });
+            this.physics.add.collider(this.player, layer);
+        }
+
+        this.cameras.main.startFollow(this.player, false, 0.05, 0.05);
+
+        this.physics.world.setFPS(165);
 
         // This will trigger the scene as now being ready.
         this.events.emit("READY", true);
     }
 
-    update() {
+    update(time: number, delta: number): void {
+        // Update player
         this.player.update();
     }
 }

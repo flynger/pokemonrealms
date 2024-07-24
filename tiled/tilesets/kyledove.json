@@ -10,6 +10,15 @@
  "tileheight":32,
  "tiles":[
         {
+         "id":29,
+         "properties":[
+                {
+                 "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
          "id":89,
          "probability":0.5
         }],

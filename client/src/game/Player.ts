@@ -1,6 +1,8 @@
 import { Scene, Physics, GameObjects, Input, Types, Animations } from 'phaser';
 
 export default class Player extends GameObjects.Container {
+    static readonly speed = 180;
+
     scene: Scene;
     sprite: GameObjects.Sprite;
     nameTagBackground: GameObjects.Graphics;
@@ -63,10 +65,12 @@ export default class Player extends GameObjects.Container {
         this.nameTag.setOrigin(0.5, 1);
         this.nameTag.setDepth(10);
 
-        // Enable container and physics
+        // Enable container physics
         scene.physics.world.enable(this);
         const body = this.body as Physics.Arcade.Body;
-        body.setCollideWorldBounds(true);
+        body.setSize(26, 24);
+        body.setOffset(-13, 0);
+        body.setCollideWorldBounds();
 
         // Add name tag and background to the scene (not inside the container)
         scene.add.existing(this);
@@ -87,11 +91,10 @@ export default class Player extends GameObjects.Container {
     }
 
     update() {
-        const speed = 140;
-        let velocityX = (this.cursors.left.isDown || this.wasd.A.isDown ? -speed : 0) +
-            (this.cursors.right.isDown || this.wasd.D.isDown ? speed : 0);
-        let velocityY = (this.cursors.up.isDown || this.wasd.W.isDown ? -speed : 0) +
-            (this.cursors.down.isDown || this.wasd.S.isDown ? speed : 0);
+        let velocityX = (this.cursors.left.isDown || this.wasd.A.isDown ? -Player.speed : 0) +
+            (this.cursors.right.isDown || this.wasd.D.isDown ? Player.speed : 0);
+        let velocityY = (this.cursors.up.isDown || this.wasd.W.isDown ? -Player.speed : 0) +
+            (this.cursors.down.isDown || this.wasd.S.isDown ? Player.speed : 0);
 
         // Normalize diagonal movement
         if (velocityX !== 0 && velocityY !== 0) {

@@ -11,14 +11,18 @@ export default function Game() {
         const gameConfig = {
             // width: 960,
             // height: 640,
-            // pixelArt: true,
-            // roundPixels: true,
+            // roundPixels: false,
             scale: {
                 mode: Phaser.Scale.FIT,
                 parent: "Game",
                 autoCenter: Phaser.Scale.CENTER_BOTH,
             },
-            physics: { default: "arcade" },
+            physics: {
+                default: "arcade",
+                // arcade: {
+                //     debug: true // Enable debug mode for the Arcade Physics system
+                // }
+            },
             parent: "game",
             scene: [MainScene]
         }
@@ -36,11 +40,8 @@ export default function Game() {
 async function setup() {
     // setup promises
     const font = new FontFaceObserver('Power Clear', {});
-    // $('#message-body').text("Loading fonts...");
     await font.load(null);
     // await fetch('../res/data/moves.json').then((response) => response.json()).then((json) => Moves = json);
-    // $('#message-body').text("Establishing connection to server...");
     // client.setup();
-    // $('#message-body').text("Setting up game...");
     // await setupGame();
 }
