@@ -155,8 +155,41 @@
                         }]
                 }, 
                 {
+                 "id":20,
+                 "properties":[
+                        {
+                         "name":"depthOffset",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"hasDepth",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":21,
+                 "properties":[
+                        {
+                         "name":"depthOffset",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"hasDepth",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
                  "id":28,
                  "properties":[
+                        {
+                         "name":"hasDepth",
+                         "type":"bool",
+                         "value":true
+                        }, 
                         {
                          "name":"isCollideable",
                          "type":"bool",
@@ -166,6 +199,11 @@
                 {
                  "id":29,
                  "properties":[
+                        {
+                         "name":"hasDepth",
+                         "type":"bool",
+                         "value":true
+                        }, 
                         {
                          "name":"isCollideable",
                          "type":"bool",
@@ -204,6 +242,34 @@
                  "properties":[
                         {
                          "name":"isCollideable",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":59,
+                 "properties":[
+                        {
+                         "name":"depthOffset",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"hasDepth",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":67,
+                 "properties":[
+                        {
+                         "name":"hasDepth",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"isGrass",
                          "type":"bool",
                          "value":true
                         }]
@@ -378,7 +444,8 @@
                          "type":"bool",
                          "value":true
                         }]
-                }, 
+                },
+            
                 {
                  "id":269,
                  "properties":[
@@ -432,6 +499,168 @@
                 {
                  "id":89,
                  "probability":0.5
+                }, 
+                {
+                 "id":333,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":334,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":335,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":341,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":342,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":343,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":349,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":350,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":351,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":357,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":358,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":359,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":365,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":366,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":367,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":373,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":374,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":375,
+                 "properties":[
+                        {
+                         "name":"isGrass",
+                         "type":"bool",
+                         "value":true
+                        }]
                 }],
          "tilewidth":32,
          "wangsets":[

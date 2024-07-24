@@ -49,12 +49,13 @@ export default class Player extends GameObjects.Container {
         // Create sprite
         this.sprite = scene.add.sprite(0, 0, texture);
         this.add(this.sprite);
+        this.sprite.setOrigin(0.5, 2 / 3);
 
         // Create background rectangle for the name tag
         this.nameTagBackground = scene.add.graphics();
         this.nameTagBackground.fillStyle(0x444444, 0.8); // Gray color with 50% opacity
         this.nameTagBackground.fillRoundedRect(-30, -30, 60, 20, 6); // x, y, width, height, radius
-        this.nameTagBackground.setDepth(10);
+        this.nameTagBackground.setDepth(Infinity);
 
         // Create name tag text
         this.nameTag = scene.add.text(0, -30, name, {
@@ -63,13 +64,13 @@ export default class Player extends GameObjects.Container {
             padding: { left: 2, right: 2, top: 1, bottom: 1 }
         });
         this.nameTag.setOrigin(0.5, 1);
-        this.nameTag.setDepth(10);
+        this.nameTag.setDepth(Infinity);
 
         // Enable container physics
         scene.physics.world.enable(this);
         const body = this.body as Physics.Arcade.Body;
         body.setSize(26, 24);
-        body.setOffset(-13, 0);
+        body.setOffset(-13, -12);
         body.setCollideWorldBounds();
 
         // Add name tag and background to the scene (not inside the container)
@@ -80,8 +81,8 @@ export default class Player extends GameObjects.Container {
         // handle label postupdate
         scene.events.on('postupdate', () => {
             // Update the position of the name tag and background to follow the player
-            this.nameTag.setPosition(this.x, this.y - 20);
-            this.nameTagBackground.setPosition(this.x, this.y - 8);
+            this.nameTag.setPosition(this.x, this.y - 28);
+            this.nameTagBackground.setPosition(this.x, this.y - 16);
         });
 
         // define inputs

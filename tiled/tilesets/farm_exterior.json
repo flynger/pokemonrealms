@@ -37,8 +37,41 @@
                 }]
         }, 
         {
+         "id":20,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }, 
+                {
+                 "name":"hasDepth",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":21,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }, 
+                {
+                 "name":"hasDepth",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
          "id":28,
          "properties":[
+                {
+                 "name":"hasDepth",
+                 "type":"bool",
+                 "value":true
+                }, 
                 {
                  "name":"isCollideable",
                  "type":"bool",
@@ -48,6 +81,11 @@
         {
          "id":29,
          "properties":[
+                {
+                 "name":"hasDepth",
+                 "type":"bool",
+                 "value":true
+                }, 
                 {
                  "name":"isCollideable",
                  "type":"bool",
@@ -86,6 +124,34 @@
          "properties":[
                 {
                  "name":"isCollideable",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":59,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }, 
+                {
+                 "name":"hasDepth",
+                 "type":"bool",
+                 "value":true
+                }]
+        }, 
+        {
+         "id":67,
+         "properties":[
+                {
+                 "name":"hasDepth",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"isGrass",
                  "type":"bool",
                  "value":true
                 }]
