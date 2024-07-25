@@ -40,7 +40,7 @@ export default class MainScene extends Scene {
             const tileProperties: Record<string, any> = tileset.tileProperties;
             for (const tile in tileProperties) {
                 const tileData = tileProperties[tile];
-                if (tileData.hasDepth) {
+                if ("depthOffset" in tileData) {
                     depthSortedTiles[tilesetName][+tile] = tileData;
                     depthSortArray.push(+tile + tileset.firstgid);
                 }
@@ -57,7 +57,7 @@ export default class MainScene extends Scene {
             this.physics.add.collider(this.player, layer);
             for (const sprite of map.createFromTiles(depthSortArray, -1, { useSpriteSheet: true } as any) ?? []) {
                 const tileData = depthSortedTiles[sprite.texture.key][+sprite.frame.name];
-                sprite.setDepth(sprite.y + (tileData.depthOffset ?? 0) * 32);
+                sprite.setDepth(sprite.y + tileData.depthOffset * 32);
                 if (tileData.isCollideable) {
                     this.physics.world.enable(sprite);
                     const body = sprite.body as Physics.Arcade.Body;
@@ -69,7 +69,7 @@ export default class MainScene extends Scene {
 
         //  Bounce the sprites just to show they're no longer tiles:
         // this.tweens.add({
-        //     targets: this.tileSprites,
+        //     targets: this.player,
         //     y: '-=32',
         //     duration: 1000,
         //     ease: 'Sine.easeInOut',

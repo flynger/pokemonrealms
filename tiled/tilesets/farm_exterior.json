@@ -10,8 +10,49 @@
  "tileheight":32,
  "tiles":[
         {
+         "id":1,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }]
+        }, 
+        {
+         "id":2,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }]
+        }, 
+        {
+         "id":3,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }]
+        }, 
+        {
+         "id":5,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"float",
+                 "value":0.5
+                }]
+        }, 
+        {
          "id":9,
          "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
                 {
                  "name":"isCollideable",
                  "type":"bool",
@@ -22,6 +63,11 @@
          "id":10,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
@@ -31,9 +77,23 @@
          "id":11,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
+                }]
+        }, 
+        {
+         "id":13,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"float",
+                 "value":-0.5
                 }]
         }, 
         {
@@ -43,11 +103,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":1
-                }, 
-                {
-                 "name":"hasDepth",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -57,20 +112,42 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":1
-                }, 
+                }]
+        }, 
+        {
+         "id":24,
+         "properties":[
                 {
-                 "name":"hasDepth",
-                 "type":"bool",
-                 "value":true
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }]
+        }, 
+        {
+         "id":25,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }]
+        }, 
+        {
+         "id":26,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
                 }]
         }, 
         {
          "id":28,
          "properties":[
                 {
-                 "name":"hasDepth",
-                 "type":"bool",
-                 "value":true
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
                 }, 
                 {
                  "name":"isCollideable",
@@ -82,9 +159,9 @@
          "id":29,
          "properties":[
                 {
-                 "name":"hasDepth",
-                 "type":"bool",
-                 "value":true
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
                 }, 
                 {
                  "name":"isCollideable",
@@ -96,6 +173,11 @@
          "id":32,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
@@ -105,6 +187,11 @@
          "id":33,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
                  "name":"isCollideable",
                  "type":"bool",
                  "value":true
@@ -113,6 +200,11 @@
         {
          "id":34,
          "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
                 {
                  "name":"isCollideable",
                  "type":"bool",
@@ -135,25 +227,38 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":1
-                }, 
-                {
-                 "name":"hasDepth",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
          "id":67,
          "properties":[
                 {
-                 "name":"hasDepth",
-                 "type":"bool",
-                 "value":true
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
                 }, 
                 {
                  "name":"isGrass",
                  "type":"bool",
                  "value":true
+                }]
+        }, 
+        {
+         "id":74,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":1
+                }]
+        }, 
+        {
+         "id":82,
+         "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
                 }]
         }, 
         {

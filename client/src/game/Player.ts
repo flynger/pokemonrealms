@@ -69,8 +69,8 @@ export default class Player extends GameObjects.Container {
         // Enable container physics
         scene.physics.world.enable(this);
         const body = this.body as Physics.Arcade.Body;
-        body.setSize(26, 24);
-        body.setOffset(-13, -12);
+        body.setSize(26, 16);
+        body.setOffset(-13, -4);
         body.setCollideWorldBounds();
 
         // Add name tag and background to the scene (not inside the container)

@@ -5,10 +5,10 @@
     },
     "activeFile": "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
     "expandedProjectPaths": [
+        "maps/Ranch",
         ".",
         "maps",
-        "tilesets",
-        "maps/Ranch"
+        "tilesets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -45,14 +45,17 @@
             "expandedGroupLayers": [
                 5
             ],
-            "scale": 2,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 37.75,
-                "y": 56.75
+                "x": 541.5,
+                "y": 285
             }
         },
         "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json#farm_exterior": {
+            "scaleInDock": 1
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json#kyledove": {
             "scaleInDock": 1
         },
         "maps/Ranch/Ranch.json": {
@@ -213,16 +216,14 @@
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "json",
     "openFiles": [
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
-        "tilesets/farm_exterior.json",
-        "tilesets/kyledove.json"
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json"
     ],
     "project": "pokemon-realms.tiled-project",
-    "property.type": "int",
+    "property.type": "float",
     "recentFiles": [
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
         "tilesets/kyledove.json",
         "tilesets/farm_exterior.json",
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
         "C:/Github Projects/PokemonRealms/client/public/maps/Ballet Town Town.json",
         "maps/Ranch/Ranch.json",
         "tilesets/farm_exterior_tileset_by_aveontrainer.json",
