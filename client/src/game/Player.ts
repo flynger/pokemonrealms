@@ -43,13 +43,14 @@ export default class Player extends GameObjects.Container {
 
     constructor(scene: Scene, x: number, y: number, texture: string | Phaser.Textures.Texture, name: string) {
         super(scene, x, y);
-
         this.scene = scene;
 
         // Create sprite
         this.sprite = scene.add.sprite(0, 0, texture);
         this.add(this.sprite);
         this.sprite.setOrigin(0.5, 2 / 3);
+
+        // Cover half of the sprite to hide in grass=
 
         // Create background rectangle for the name tag
         this.nameTagBackground = scene.add.graphics();
