@@ -46,15 +46,14 @@ export default class Player extends GameObjects.Container {
 
         // Create sprite
         this.headSprite = scene.add.sprite(0, 0, avatar);
+        this.headSprite.setCrop(0, 0, 32, 36);
+        this.headSprite.setOrigin(0.5, 0.5);
         this.add(this.headSprite);
-        this.headSprite.setOrigin(0.5, 2 / 3);
-        this.headSprite.setCrop(0, 0, this.headSprite.width, 2 * this.headSprite.height / 3);
 
         // Create bottom half of the sprite with alpha
         this.bodySprite = scene.add.sprite(0, 0, avatar);
-        // this.add(this.bodySprite);
-        this.bodySprite.setOrigin(0.5, 2 / 3);
-        this.bodySprite.setCrop(0, 2 * this.bodySprite.height / 3, this.bodySprite.width, this.bodySprite.height / 3);
+        this.bodySprite.setCrop(0, 36, 32, 12);
+
         // this.bodySprite.alpha = 0;
 
         // this.sprite = scene.add.sprite(0, 0, avatar);
@@ -65,25 +64,26 @@ export default class Player extends GameObjects.Container {
 
         // Create name tag text
         this.nameTag = scene.add.text(0, 0, name, {
-            font: '16px Power Clear',
+            font: '28px Power Clear',
             color: '#ffffff'
         });
         this.nameTag.setOrigin(0.5, 0);
+        this.nameTag.scale = 0.6;
         this.nameTag.setDepth(10000);
 
         // Create background rectangle for the name tag
-        const nameTagBackgroundWidth = this.nameTag.width + Player.NAME_TAG.PADDING_X;
+        const nameTagBackgroundWidth = this.nameTag.width * this.nameTag.scale + Player.NAME_TAG.PADDING_X;
         this.nameTagBackground = scene.add.graphics();
-        this.nameTagBackground.fillStyle(0x444444, 0.8); // Gray color with 80% opacity
-        this.nameTagBackground.fillRoundedRect(-nameTagBackgroundWidth / 2, -1, nameTagBackgroundWidth, 20, 6); // x, y, width, height, radius
+        this.nameTagBackground.fillStyle(0x222222, 0.8); // Gray color with 80% opacity
+        this.nameTagBackground.fillRoundedRect(-nameTagBackgroundWidth / 2, 0, nameTagBackgroundWidth, 20, 6); // x, y, width, height, radius
         this.nameTagBackground.setDepth(9999);
 
         // Enable container physics
         scene.physics.world.enable(this);
         const body = this.body as Physics.Arcade.Body;
-        body.setSize(26, 16);
-        body.setOffset(-13, -4);
-        body.setCollideWorldBounds();
+        body.setSize(26, 22);
+        body.setOffset(-13, 0);
+        // body.setCollideWorldBounds();
 
         // Add name tag and background to the scene (not inside the container)
         scene.add.existing(this);
@@ -143,8 +143,8 @@ export default class Player extends GameObjects.Container {
         }
 
         // Update depth based on y position
-        this.setDepth(this.y);
-        this.bodySprite.setDepth(this.y);
+        this.setDepth(this.y + 44);
+        this.bodySprite.setDepth(this.y + 6);
     }
 }
 

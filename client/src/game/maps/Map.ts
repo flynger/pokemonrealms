@@ -1,3 +1,5 @@
+import { Scene } from "phaser";
+
 export default class Map {
     static readonly list = ["kyledove", "farm_exterior"];
     static scene: Scene;

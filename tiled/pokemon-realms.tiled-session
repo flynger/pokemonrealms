@@ -3,12 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "tilesets/farm_exterior.json",
+    "activeFile": "maps/Ranch/Ranch.json",
     "expandedProjectPaths": [
-        "maps/Ranch",
+        "tilesets",
         "maps",
-        ".",
-        "tilesets"
+        "maps/Ranch",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -39,6 +39,23 @@
             "scaleInDock": 1
         },
         "C:/Github Projects/PokemonRealms/client/public/maps/Ballet Town Town.json#wilsonscarloxy_outdoor": {
+            "scaleInDock": 1
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch.json": {
+            "expandedGroupLayers": [
+                5
+            ],
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 378.5,
+                "y": 331
+            }
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch.json#farm_exterior": {
+            "scaleInDock": 1
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch.json#kyledove": {
             "scaleInDock": 1
         },
         "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json": {
@@ -75,6 +92,26 @@
         "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch2.json#kyledove": {
             "scaleInDock": 1
         },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json": {
+            "scale": 1.030712890625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 511.78170448623797,
+                "y": 352.1834288692027
+            }
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json#farm_exterior": {
+            "scaleInDock": 1
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json#kyledove": {
+            "scaleInDock": 1
+        },
+        "C:/Github Projects/PokemonRealms/client/tilesets/farm_exterior.json": {
+            "scaleInDock": 1
+        },
+        "C:/Github Projects/PokemonRealms/client/tilesets/kyledove.json": {
+            "scaleInDock": 1
+        },
         "maps/Ranch/Ranch.json": {
             "expandedGroupLayers": [
                 5
@@ -83,12 +120,16 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 378.5,
-                "y": 589
+                "y": 331
             }
         },
         "maps/Ranch/Ranch.json#farm_exterior": {
             "dynamicWrapping": false,
+            "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "maps/Ranch/Ranch.json#kyledove": {
+            "scaleInDock": 1
         },
         "rawMaps/cities/Ballet Town Lab.json": {
             "scale": 1.38046875,
@@ -234,23 +275,16 @@
     "map.lastUsedFormat": "json",
     "openFiles": [
         "tilesets/farm_exterior.json",
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json",
         "maps/Ranch/Ranch.json"
     ],
     "project": "pokemon-realms.tiled-project",
-    "property.type": "string",
+    "property.type": "int",
     "recentFiles": [
-        "maps/Ranch/Ranch.json",
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json",
         "tilesets/farm_exterior.json",
-        "tilesets/kyledove.json",
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch2.json",
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ballet Town Town.json",
-        "tilesets/farm_exterior_tileset_by_aveontrainer.json",
-        "tilesets/farm_interior.json",
-        "rawMaps/cities/Ballet Town Lab.json",
-        "rawMaps/cities/Ballet Town Town.json",
-        "rawMaps/cities/Ballet Town Town - Copy.json",
-        "rawMaps/cities/Ballet Town Player House 1F.json"
+        "maps/Ranch/Ranch.json",
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch.json"
     ],
     "tileset.lastUsedFilter": "JSON tileset files (*.tsj *.json)",
     "tileset.lastUsedFormat": "json"

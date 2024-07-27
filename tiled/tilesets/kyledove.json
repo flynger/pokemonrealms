@@ -27,8 +27,8 @@
          "properties":[
                 {
                  "name":"depthOffset",
-                 "type":"float",
-                 "value":-0.5
+                 "type":"int",
+                 "value":16
                 }, 
                 {
                  "name":"isGrass",
@@ -41,8 +41,8 @@
          "properties":[
                 {
                  "name":"depthOffset",
-                 "type":"float",
-                 "value":-0.5
+                 "type":"int",
+                 "value":16
                 }, 
                 {
                  "name":"isGrass",
@@ -55,8 +55,8 @@
          "properties":[
                 {
                  "name":"depthOffset",
-                 "type":"float",
-                 "value":-0.5
+                 "type":"int",
+                 "value":16
                 }, 
                 {
                  "name":"isGrass",
@@ -69,8 +69,8 @@
          "properties":[
                 {
                  "name":"depthOffset",
-                 "type":"float",
-                 "value":-0.5
+                 "type":"int",
+                 "value":16
                 }, 
                 {
                  "name":"isGrass",
@@ -83,8 +83,8 @@
          "properties":[
                 {
                  "name":"depthOffset",
-                 "type":"float",
-                 "value":-0.5
+                 "type":"int",
+                 "value":16
                 }, 
                 {
                  "name":"isGrass",
@@ -97,8 +97,8 @@
          "properties":[
                 {
                  "name":"depthOffset",
-                 "type":"float",
-                 "value":-0.5
+                 "type":"int",
+                 "value":16
                 }, 
                 {
                  "name":"isGrass",
@@ -110,6 +110,11 @@
          "id":349,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
                  "name":"isGrass",
                  "type":"bool",
                  "value":true
@@ -119,6 +124,11 @@
          "id":350,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
                  "name":"isGrass",
                  "type":"bool",
                  "value":true
@@ -127,6 +137,11 @@
         {
          "id":351,
          "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"int",
+                 "value":0
+                }, 
                 {
                  "name":"isGrass",
                  "type":"bool",

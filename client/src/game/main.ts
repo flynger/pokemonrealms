@@ -12,9 +12,10 @@ const config: Types.Core.GameConfig = {
     parent: 'game-container',
     physics: {
         default: "arcade",
-        // arcade: {
-        //     debug: true
-        // }
+        arcade: {
+            fixedStep: false,
+            // debug: true
+        }
     },
     scene: [
         MainScene

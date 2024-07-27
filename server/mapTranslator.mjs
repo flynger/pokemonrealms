@@ -40,7 +40,7 @@ const clientMap = {
                 const tileset = getTileset(tileId);
                 const id = tileId - tilesets[tileset].firstgid;
                 return { [tileset]: id };
-            } else return tileId;
+            } else return null;
         })
     )
 }
