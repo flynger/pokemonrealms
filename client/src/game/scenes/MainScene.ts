@@ -1,7 +1,6 @@
 import Player from "../entities/Player";
 import { Physics, Scene, Tilemaps } from "phaser";
 import { EventBus } from "../EventBus";
-import FontFaceObserver from "fontfaceobserver";
 
 const tilesets = ["kyledove", "farm_exterior"];
 
