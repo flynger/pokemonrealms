@@ -1,16 +1,20 @@
-import Player from "./Player";
-import { GameObjects, Physics, Scene, Tilemaps } from "phaser";
+import Player from "../entities/Player";
+import { Physics, Scene, Tilemaps } from "phaser";
+import { EventBus } from "../EventBus";
+import FontFaceObserver from "fontfaceobserver";
 
 const tilesets = ["kyledove", "farm_exterior"];
 
 export default class MainScene extends Scene {
-    private player!: Player;
+    private player: Player;
 
     constructor() {
-        super({ key: 'MainScene' });
+        super('MainScene');
     }
 
     preload() {
+        // this.load.setPath('assets');
+
         // load the player spritesheet(s)
         this.load.spritesheet('red',
             'sprites/characters/red_walk.png',
@@ -49,7 +53,7 @@ export default class MainScene extends Scene {
 
         Player.createAnimations(this);
 
-        this.player = new Player(this, 250, 400, 'red', 'flynger');
+        this.player = new Player(this, 250, 400, 'red', 'Eichardo');
 
         for (const i in map.layers) {
             const layer = map.createLayer('Tile Layer ' + (+i + 1), tilesets) as Tilemaps.TilemapLayer;
@@ -59,9 +63,7 @@ export default class MainScene extends Scene {
                 const tileData = depthSortedTiles[sprite.texture.key][+sprite.frame.name];
                 sprite.setDepth(sprite.y + tileData.depthOffset * 32);
                 if (tileData.isCollideable) {
-                    this.physics.world.enable(sprite);
-                    const body = sprite.body as Physics.Arcade.Body;
-                    body.setImmovable(true);
+                    this.physics.world.enable(sprite, Physics.Arcade.STATIC_BODY);
                     this.physics.add.collider(this.player, sprite);
                 }
             }
@@ -84,10 +86,10 @@ export default class MainScene extends Scene {
         this.physics.world.setFPS(165);
 
         // This will trigger the scene as now being ready.
-        this.events.emit("READY", true);
+        EventBus.emit('current-scene-ready', this);
     }
 
-    update(time: number, delta: number): void {
+    update() {
         // Update player
         this.player.update();
     }

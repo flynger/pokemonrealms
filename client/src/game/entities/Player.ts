@@ -2,6 +2,10 @@ import { Scene, Physics, GameObjects, Input, Types, Animations } from 'phaser';
 
 export default class Player extends GameObjects.Container {
     static readonly speed = 180;
+    static readonly NAME_TAG = {
+        OFFSET: 46,
+        PADDING_X: 16
+    } as const;
 
     scene: Scene;
     sprite: GameObjects.Sprite;
@@ -52,20 +56,20 @@ export default class Player extends GameObjects.Container {
 
         // Cover half of the sprite to hide in grass=
 
-        // Create background rectangle for the name tag
-        this.nameTagBackground = scene.add.graphics();
-        this.nameTagBackground.fillStyle(0x444444, 0.8); // Gray color with 50% opacity
-        this.nameTagBackground.fillRoundedRect(-30, -30, 60, 20, 6); // x, y, width, height, radius
-        this.nameTagBackground.setDepth(Infinity);
-
         // Create name tag text
-        this.nameTag = scene.add.text(0, -30, name, {
+        this.nameTag = scene.add.text(0, 0, name, {
             font: '16px Power Clear',
-            color: '#ffffff',
-            padding: { left: 2, right: 2, top: 1, bottom: 1 }
+            color: '#ffffff'
         });
-        this.nameTag.setOrigin(0.5, 1);
-        this.nameTag.setDepth(Infinity);
+        this.nameTag.setOrigin(0.5, 0);
+        this.nameTag.setDepth(10000);
+
+        // Create background rectangle for the name tag
+        const nameTagBackgroundWidth = this.nameTag.width + Player.NAME_TAG.PADDING_X;
+        this.nameTagBackground = scene.add.graphics();
+        this.nameTagBackground.fillStyle(0x444444, 0.8); // Gray color with 80% opacity
+        this.nameTagBackground.fillRoundedRect(-nameTagBackgroundWidth / 2, -1, nameTagBackgroundWidth, 20, 6); // x, y, width, height, radius
+        this.nameTagBackground.setDepth(9999);
 
         // Enable container physics
         scene.physics.world.enable(this);
@@ -82,8 +86,8 @@ export default class Player extends GameObjects.Container {
         // handle label postupdate
         scene.events.on('postupdate', () => {
             // Update the position of the name tag and background to follow the player
-            this.nameTag.setPosition(this.x, this.y - 28);
-            this.nameTagBackground.setPosition(this.x, this.y - 16);
+            this.nameTag.setPosition(this.x + 1, this.y - Player.NAME_TAG.OFFSET);
+            this.nameTagBackground.setPosition(this.x, this.y - Player.NAME_TAG.OFFSET);
         });
 
         // define inputs
