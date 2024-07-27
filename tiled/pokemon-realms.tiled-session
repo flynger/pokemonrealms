@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
+    "activeFile": "tilesets/farm_exterior.json",
     "expandedProjectPaths": [
         "maps/Ranch",
         "maps",
@@ -45,17 +45,34 @@
             "expandedGroupLayers": [
                 5
             ],
-            "scale": 3,
-            "selectedLayer": 1,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 201.5,
-                "y": 287.3333333333333
+                "x": 502.5,
+                "y": 354
             }
         },
         "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json#farm_exterior": {
             "scaleInDock": 1
         },
         "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json#kyledove": {
+            "scaleInDock": 1
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch2.json": {
+            "expandedGroupLayers": [
+                5
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 605.5,
+                "y": 353
+            }
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch2.json#farm_exterior": {
+            "scaleInDock": 1
+        },
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch2.json#kyledove": {
             "scaleInDock": 1
         },
         "maps/Ranch/Ranch.json": {
@@ -216,17 +233,18 @@
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "json",
     "openFiles": [
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
-        "tilesets/farm_exterior.json"
+        "tilesets/farm_exterior.json",
+        "maps/Ranch/Ranch.json"
     ],
     "project": "pokemon-realms.tiled-project",
-    "property.type": "float",
+    "property.type": "string",
     "recentFiles": [
-        "tilesets/farm_exterior.json",
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
-        "tilesets/kyledove.json",
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ballet Town Town.json",
         "maps/Ranch/Ranch.json",
+        "tilesets/farm_exterior.json",
+        "tilesets/kyledove.json",
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch.json",
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch/Ranch2.json",
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ballet Town Town.json",
         "tilesets/farm_exterior_tileset_by_aveontrainer.json",
         "tilesets/farm_interior.json",
         "rawMaps/cities/Ballet Town Lab.json",

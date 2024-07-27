@@ -1,6 +1,7 @@
 import Player from "../entities/Player";
 import { Physics, Scene, Tilemaps } from "phaser";
 import { EventBus } from "../EventBus";
+import Tileset from "../maps/Tileset";
 
 const tilesets = ["kyledove", "farm_exterior"];
 
@@ -22,10 +23,8 @@ export default class MainScene extends Scene {
             );
         }
 
-        // load the PNG file
-        for (const tileset of tilesets) {
-            this.load.spritesheet(tileset, 'tilesets/' + tileset + '_extruded.png', { frameWidth: 32, margin: 1, spacing: 2 });
-        }
+        // initialize tilesets
+        Tileset.initializeAll(this);
 
         // load the JSON file
         this.load.tilemapTiledJSON('tilemap', 'maps/Ranch/Ranch.json')
@@ -52,12 +51,14 @@ export default class MainScene extends Scene {
             }
         }
 
+        console.log(depthSortedTiles)
+
         Player.createAnimations(this);
 
         this.player = new Player(this, 100, 100, Player.avatars[Phaser.Math.Between(0, Player.avatars.length - 1)], 'Eichardo');
 
         for (const i in map.layers) {
-            const layer = map.createLayer('Tile Layer ' + (+i + 1), tilesets) as Tilemaps.TilemapLayer;
+            const layer = map.createLayer(+i, tilesets) as Tilemaps.TilemapLayer;
             layer.setCollisionByProperty({ isCollideable: true });
             this.physics.add.collider(this.player, layer);
             for (const sprite of map.createFromTiles(depthSortArray, -1, { useSpriteSheet: true } as any) ?? []) {

@@ -9,7 +9,8 @@ export default class Player extends GameObjects.Container {
     } as const;
 
     scene: Scene;
-    sprite: GameObjects.Sprite;
+    headSprite: GameObjects.Sprite;
+    bodySprite: GameObjects.Sprite;
     nameTagBackground: GameObjects.Graphics;
     nameTag: GameObjects.Text;
     cursors: Types.Input.Keyboard.CursorKeys;
@@ -41,12 +42,24 @@ export default class Player extends GameObjects.Container {
     constructor(scene: Scene, x: number, y: number, avatar: string, name: string) {
         super(scene, x, y);
         this.scene = scene;
+        this.avatar = avatar;
 
         // Create sprite
-        this.avatar = avatar;
-        this.sprite = scene.add.sprite(0, 0, avatar);
-        this.add(this.sprite);
-        this.sprite.setOrigin(0.5, 2 / 3);
+        this.headSprite = scene.add.sprite(0, 0, avatar);
+        this.add(this.headSprite);
+        this.headSprite.setOrigin(0.5, 2 / 3);
+        this.headSprite.setCrop(0, 0, this.headSprite.width, 2 * this.headSprite.height / 3);
+
+        // Create bottom half of the sprite with alpha
+        this.bodySprite = scene.add.sprite(0, 0, avatar);
+        // this.add(this.bodySprite);
+        this.bodySprite.setOrigin(0.5, 2 / 3);
+        this.bodySprite.setCrop(0, 2 * this.bodySprite.height / 3, this.bodySprite.width, this.bodySprite.height / 3);
+        // this.bodySprite.alpha = 0;
+
+        // this.sprite = scene.add.sprite(0, 0, avatar);
+        // this.add(this.sprite);
+        // this.sprite.setOrigin(0.5, 2 / 3);
 
         // Cover half of the sprite to hide in grass=
 
@@ -79,6 +92,8 @@ export default class Player extends GameObjects.Container {
 
         // handle label postupdate
         scene.events.on('postupdate', () => {
+            // Update body
+            this.bodySprite.setPosition(this.x, this.y);
             // Update the position of the name tag and background to follow the player
             this.nameTag.setPosition(this.x + 1, this.y - Player.NAME_TAG.OFFSET);
             this.nameTagBackground.setPosition(this.x, this.y - Player.NAME_TAG.OFFSET);
@@ -107,23 +122,29 @@ export default class Player extends GameObjects.Container {
 
         // Determine the animation to play based on movement
         if (velocityX < 0) {
-            this.sprite.anims.play(this.avatar + "_left", true);
+            this.headSprite.anims.play(this.avatar + "_left", true);
+            this.bodySprite.anims.play(this.avatar + "_left", true);
         } else if (velocityX > 0) {
-            this.sprite.anims.play(this.avatar + "_right", true);
+            this.headSprite.anims.play(this.avatar + "_right", true);
+            this.bodySprite.anims.play(this.avatar + "_right", true);
         } else if (velocityY < 0) {
-            this.sprite.anims.play(this.avatar + "_up", true);
+            this.headSprite.anims.play(this.avatar + "_up", true);
+            this.bodySprite.anims.play(this.avatar + "_up", true);
         } else if (velocityY > 0) {
-            this.sprite.anims.play(this.avatar + "_down", true);
-        } else if (this.sprite.anims.isPlaying) {
+            this.headSprite.anims.play(this.avatar + "_down", true);
+            this.bodySprite.anims.play(this.avatar + "_down", true);
+        } else if (this.bodySprite.anims.isPlaying) {
             // If there is no movement, stops animation at an odd frame (when player's hands are normal)
-            const currentFrame = this.sprite.anims.currentFrame as Animations.AnimationFrame;
+            const currentFrame = this.bodySprite.anims.currentFrame as Animations.AnimationFrame;
             if (currentFrame.index % 2 === 1) {
-                this.sprite.anims.stop();
+                this.headSprite.anims.stop();
+                this.bodySprite.anims.stop();
             }
         }
 
         // Update depth based on y position
         this.setDepth(this.y);
+        this.bodySprite.setDepth(this.y);
     }
 }
 

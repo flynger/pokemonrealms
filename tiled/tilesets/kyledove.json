@@ -26,6 +26,11 @@
          "id":333,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"float",
+                 "value":-0.5
+                }, 
+                {
                  "name":"isGrass",
                  "type":"bool",
                  "value":true
@@ -34,6 +39,11 @@
         {
          "id":334,
          "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"float",
+                 "value":-0.5
+                }, 
                 {
                  "name":"isGrass",
                  "type":"bool",
@@ -44,6 +54,11 @@
          "id":335,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"float",
+                 "value":-0.5
+                }, 
+                {
                  "name":"isGrass",
                  "type":"bool",
                  "value":true
@@ -52,6 +67,11 @@
         {
          "id":341,
          "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"float",
+                 "value":-0.5
+                }, 
                 {
                  "name":"isGrass",
                  "type":"bool",
@@ -62,6 +82,11 @@
          "id":342,
          "properties":[
                 {
+                 "name":"depthOffset",
+                 "type":"float",
+                 "value":-0.5
+                }, 
+                {
                  "name":"isGrass",
                  "type":"bool",
                  "value":true
@@ -70,6 +95,11 @@
         {
          "id":343,
          "properties":[
+                {
+                 "name":"depthOffset",
+                 "type":"float",
+                 "value":-0.5
+                }, 
                 {
                  "name":"isGrass",
                  "type":"bool",
