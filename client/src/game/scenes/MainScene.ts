@@ -15,10 +15,12 @@ export default class MainScene extends Scene {
         // this.load.setPath('assets');
 
         // load the player spritesheet(s)
-        this.load.spritesheet('red',
-            'sprites/characters/red_walk.png',
-            { frameWidth: 32, frameHeight: 48, spacing: 2 }
-        );
+        for (const avatar of Player.avatars) {
+            this.load.spritesheet(avatar,
+                `characters/${avatar}_walk.png`,
+                { frameWidth: 32, frameHeight: 48, spacing: 2 }
+            );
+        }
 
         // load the PNG file
         for (const tileset of tilesets) {
@@ -52,7 +54,7 @@ export default class MainScene extends Scene {
 
         Player.createAnimations(this);
 
-        this.player = new Player(this, 250, 400, 'red', 'Eichardo');
+        this.player = new Player(this, 100, 100, Player.avatars[Phaser.Math.Between(0, Player.avatars.length - 1)], 'Eichardo');
 
         for (const i in map.layers) {
             const layer = map.createLayer('Tile Layer ' + (+i + 1), tilesets) as Tilemaps.TilemapLayer;

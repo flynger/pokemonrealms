@@ -1,6 +1,7 @@
 import { Scene, Physics, GameObjects, Input, Types, Animations } from 'phaser';
 
 export default class Player extends GameObjects.Container {
+    static readonly avatars = ["red", "blue", "green", "may", "greenMay", "brendan", "oak"]; // "bug_catcher", "cloudz", "flynger"
     static readonly speed = 180;
     static readonly NAME_TAG = {
         OFFSET: 46,
@@ -13,44 +14,37 @@ export default class Player extends GameObjects.Container {
     nameTag: GameObjects.Text;
     cursors: Types.Input.Keyboard.CursorKeys;
     wasd: any;
+    avatar: string;
 
     // create anims
     static createAnimations(scene: Scene) {
-        scene.anims.create({
-            key: 'down',
-            frames: scene.anims.generateFrameNumbers('red', { start: 0, end: 3 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        scene.anims.create({
-            key: 'left',
-            frames: scene.anims.generateFrameNumbers('red', { start: 4, end: 7 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        scene.anims.create({
-            key: 'right',
-            frames: scene.anims.generateFrameNumbers('red', { start: 8, end: 11 }),
-            frameRate: 10,
-            repeat: -1
-        });
-
-        scene.anims.create({
-            key: 'up',
-            frames: scene.anims.generateFrameNumbers('red', { start: 12, end: 15 }),
-            frameRate: 10,
-            repeat: -1
-        });
+        const directions = ['down', 'left', 'right', 'up'];
+        const frameSets = [
+            { start: 0, end: 3 },
+            { start: 4, end: 7 },
+            { start: 8, end: 11 },
+            { start: 12, end: 15 }
+        ];
+        for (const avatar of Player.avatars) {
+            for (const i in directions) {
+                const direction = directions[i];
+                scene.anims.create({
+                    key: `${avatar}_${direction}`,
+                    frames: scene.anims.generateFrameNumbers(avatar, frameSets[i]),
+                    frameRate: 10,
+                    repeat: -1
+                });
+            }
+        }
     }
 
-    constructor(scene: Scene, x: number, y: number, texture: string | Phaser.Textures.Texture, name: string) {
+    constructor(scene: Scene, x: number, y: number, avatar: string, name: string) {
         super(scene, x, y);
         this.scene = scene;
 
         // Create sprite
-        this.sprite = scene.add.sprite(0, 0, texture);
+        this.avatar = avatar;
+        this.sprite = scene.add.sprite(0, 0, avatar);
         this.add(this.sprite);
         this.sprite.setOrigin(0.5, 2 / 3);
 
@@ -113,13 +107,13 @@ export default class Player extends GameObjects.Container {
 
         // Determine the animation to play based on movement
         if (velocityX < 0) {
-            this.sprite.anims.play("left", true);
+            this.sprite.anims.play(this.avatar + "_left", true);
         } else if (velocityX > 0) {
-            this.sprite.anims.play("right", true);
+            this.sprite.anims.play(this.avatar + "_right", true);
         } else if (velocityY < 0) {
-            this.sprite.anims.play("up", true);
+            this.sprite.anims.play(this.avatar + "_up", true);
         } else if (velocityY > 0) {
-            this.sprite.anims.play("down", true);
+            this.sprite.anims.play(this.avatar + "_down", true);
         } else if (this.sprite.anims.isPlaying) {
             // If there is no movement, stops animation at an odd frame (when player's hands are normal)
             const currentFrame = this.sprite.anims.currentFrame as Animations.AnimationFrame;
