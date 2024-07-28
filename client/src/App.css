@@ -26,3 +26,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}

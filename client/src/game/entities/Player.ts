@@ -4,7 +4,7 @@ export default class Player extends GameObjects.Container {
     static readonly avatars = ["red", "blue", "green", "may", "greenMay", "brendan", "oak"]; // "bug_catcher", "cloudz", "flynger"
     static readonly speed = 180;
     static readonly NAME_TAG = {
-        OFFSET: 46,
+        OFFSET: 41,
         PADDING_X: 16
     } as const;
 

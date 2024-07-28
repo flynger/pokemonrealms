@@ -7,9 +7,7 @@ function Game() {
     const phaserRef = useRef<IRefPhaserGame | null>(null);
 
     return (
-        <div id="game">
-            <PhaserGame ref={phaserRef} />
-        </div>
+        <PhaserGame ref={phaserRef} />
     );
 }
 

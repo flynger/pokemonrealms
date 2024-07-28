@@ -27,9 +27,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
         return () => {
             if (game.current) {
                 game.current.destroy(true);
-                if (game.current !== null) {
-                    game.current = null;
-                }
+                game.current = null;
             }
         }
     }, [ref]);
