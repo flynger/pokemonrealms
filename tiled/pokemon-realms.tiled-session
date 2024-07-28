@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/Ranch/Ranch.json",
+    "activeFile": "tilesets/kyledove.json",
     "expandedProjectPaths": [
         "tilesets",
         "maps",
@@ -257,7 +257,7 @@
         },
         "tilesets/kyledove.json": {
             "scaleInDock": 1,
-            "scaleInEditor": 1.5
+            "scaleInEditor": 2
         },
         "tilesets/wilsonscarloxy_indoor.json": {
             "scaleInDock": 1
@@ -274,16 +274,17 @@
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "json",
     "openFiles": [
-        "tilesets/farm_exterior.json",
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json",
-        "maps/Ranch/Ranch.json"
+        "maps/Ranch/Ranch.json",
+        "tilesets/kyledove.json",
+        "tilesets/farm_exterior.json"
     ],
     "project": "pokemon-realms.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json",
-        "tilesets/farm_exterior.json",
         "maps/Ranch/Ranch.json",
+        "tilesets/farm_exterior.json",
+        "tilesets/kyledove.json",
+        "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json",
         "C:/Github Projects/PokemonRealms/client/public/maps/Ranch.json"
     ],
     "tileset.lastUsedFilter": "JSON tileset files (*.tsj *.json)",
