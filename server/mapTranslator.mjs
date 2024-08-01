@@ -20,12 +20,18 @@ for (const tileset of tiledMap.tilesets) {
     }
 
     for (const tile of tiledTileset.tiles) {
-        if (!tile.properties) continue;
+        if (!tile.properties && !tile.objectgroup) continue;
 
         tilesets[tilesetName].tiles[tile.id] = {};
-        for (const property of tile.properties) {
-            tilesets[tilesetName].tiles[tile.id][property.name] = property.value;
-        }
+        if (tile.properties)
+            for (const property of tile.properties) {
+                tilesets[tilesetName].tiles[tile.id][property.name] = property.value;
+            }
+        if (tile.objectgroup)
+            for (const object of tile.objectgroup.objects) {
+                const { x, y, width, height } = object;
+                tilesets[tilesetName].tiles[tile.id][object.name] = { x, y, width, height };
+            }
     }
 
     jsonfile.writeFileSync(`../client/public/maps/tilesets/${tilesetName}.json`, tilesets[tilesetName].tiles);

@@ -1,87 +1,102 @@
+import GrowthRates from "./pokedex/data/growthRates";
 import Move from "./pokedex/move";
-import { Nature } from "./pokedex/nature";
+import Natures, { Nature } from "./pokedex/nature";
 import Pokedex, { AbilitySlot, Gender, Species } from "./pokedex/pokedex";
+import { createStats, randomInteger } from "./util/util";
 
-export default class Pokemon {
+export default class Pokemon implements Stats {
     static id = 1;
-    static readonly shinyChance = 1 / 8192;
-    static readonly hiddenAbilityChance = 1 / 64;
+    static readonly SHINY_CHANCE = 1 / 8192;
+    static readonly HIDDEN_ABILITY_CHANCE = 1 / 64;
 
     species: Species;
     name: string;
-    gender: Gender;
+    readonly gender: Gender;
 
-    shiny: boolean;
+    readonly shiny: boolean;
     level: number;
     xp: number;
 
-    heldItem: string;
-    nature: any;
+    heldItem?: string;
+    readonly nature: Nature;
     friendship: number;
-    abilitySlot: AbilitySlot;
+    readonly abilitySlot: AbilitySlot;
 
-    ivs: Stats;
-    evs: Stats;
-    stats: Stats;
+    /* IVs and EVs */
+    readonly ivs: Readonly<Stats>;
+    readonly evs: Stats;
+
+    /* Stats */
     currenthp: number;
+    hp: number;
+    atk: number;
+    def: number;
+    spa: number;
+    spd: number;
+    spe: number;
 
-    moves: Move[];
+    readonly moves: Move[];
 
-    caughtBall: string;
-    OT: string;
+    readonly caughtBall: string;
+    readonly OT: string;
     owner: string;
-    constructor(species, level, { name, gender, shiny, xp, heldItem, nature, friendship, abilitySlot, ivs, evs, currenthp, moves = [], originalTrainer, owner, caughtBall, hiddenAbilityChance = false }: ) {
-        this.species = species ?? "MISSINGNO";
-        this.name = name ?? "";
+
+    constructor(species: Species, level: number, { name = "", gender, shiny, xp, heldItem, nature, friendship, abilitySlot, ivs, evs, currenthp, moves, OT, owner, caughtBall, shinyChance = Pokemon.SHINY_CHANCE, hiddenAbilityChance = Pokemon.HIDDEN_ABILITY_CHANCE }: PokemonConfig) {
+        this.species = species;
+        this.name = name;
+
+        const pokedexData = Pokedex.getEntry(this.species);
 
         // gender initialization
-        if (Pokedex[species].gender) {
-            this.gender = Pokedex[species].gender;
-        } else if (!Pokedex[species].genderRatio && gender != "M" && gender != "F") {
-            this.gender = Math.random() < 0.5 ? "M" : "F";
-        } else if (Pokedex[species].genderRatio && !Pokedex[species].genderRatio.hasOwnProperty(gender)) {
-            this.gender = Math.random() < Pokedex[species].genderRatio.M ? "M" : "F";
-        } else this.gender = gender;
+        if (typeof pokedexData.gender === "string") {
+            this.gender = pokedexData.gender;
+        } else if (gender) {
+            this.gender = gender;
+        } else {
+            this.gender = Math.random() < (pokedexData.gender?.M ?? 0.5) ? "M" : "F";
+        }
 
-        this.shiny = this.shiny ?? Math.random() < Pokemon.shinyChance;
-        this.level = level ?? 1;
-        this.xp = xp ?? Pokemon.growthRates[Pokedex[species].growthRate][level];
-        this.heldItem = heldItem ?? "";
-        this.nature = nature ?? Pokemon.getRandomNature();
+        this.shiny = shiny ?? Math.random() < shinyChance;
+        this.nature = nature ?? Natures.getRandom();
         this.friendship = friendship ?? 70;
+        this.heldItem = heldItem;
+
+        this.level = level ?? 1;
+        this.xp = xp ?? GrowthRates.getXPAtLevel(pokedexData.growthRate, this.level);
 
         // ability code
-        if (abilitySlot && Pokedex[species].abilities.hasOwnProperty(abilitySlot)) {
+        if (abilitySlot && abilitySlot in pokedexData.abilities) {
             this.abilitySlot = abilitySlot;
-        } else {
-            if (hiddenAbilityChance !== 0 && Pokedex[species].abilities["H"] && randomNumber(1, hiddenAbilityChance || Pokemon.hiddenAbilityChance) == 1) {
-                this.abilitySlot = "H";
-            } else this.abilitySlot = Pokedex[species].abilities["1"] ? randomNumber(0, 1) + "" : "0";
-        }
+        } else if ("H" in pokedexData.abilities && Math.random() < hiddenAbilityChance) {
+            this.abilitySlot = "H";
+        } else this.abilitySlot = "1" in pokedexData.abilities ? randomInteger(0, 1) + "" as AbilitySlot : "0";
 
-        this.ivs = new Stats(ivs ?? Stats.stats.reduce((statsObj, stat) => {
-            statsObj[stat] = ;
-            return statsObj;
-        }, {}));
-        this.evs = new Stats(evs);
+        this.ivs = createStats(ivs ?? {}, () => randomInteger(0, 31));
+        this.evs = createStats(evs ?? {}, () => 0);
         this.calculateStats();
-        this.currenthp = this.stats.hp;
+        this.currenthp = currenthp ?? this.hp;
 
         // generate moves
-        const learnsetMoves = [];
-        for (let move in Pokedex[species].learnset.levelup) {
-            if (+move <= level)
-                learnsetMoves.push(Pokedex[species].learnset.levelup[move]);
-            else break;
+        if (moves) {
+            this.moves = moves;
+        } else {
+            this.moves = [];
+            const learnsetData = pokedexData.learnset.levelup;
+            const learnsetLevel = this.level;
+            while (this.moves.length < 4 && learnsetLevel >= 1) {
+                const moveData = learnsetData[learnsetLevel];
+                if (moveData) {
+                    if (typeof moveData === "string") this.moves.push(moveData);
+                    else this.moves.push(...moveData as Move[]);
+                }
+            }
+            this.moves.splice(4);
         }
-        while (learnsetMoves.length > 4 - moves.length) {
-            learnsetMoves.splice(randomNumber(0, learnsetMoves.length - 1), 1);
-        }
-        this.moves = [...moves, ...learnsetMoves];
-        if (originalTrainer) this.originalTrainer = originalTrainer;
+
+        if (OT) this.OT = OT;
         if (owner) {
             this.setOwner(owner);
-            this.caughtBall = caughtBall ? caughtBall : "pokeball";
+            this.caughtBall = caughtBall ?? "pokeball";
         } else if (caughtBall) this.caughtBall = caughtBall;
     }
 
@@ -108,22 +123,21 @@ export default class Pokemon {
     }
 
     calculateStats() {
-        this.stats = {};
         for (const stat in this.ivs) {
-            this.stats[stat] = this.calculateStat(stat);
+            this[stat] = this.calculateStat(stat as Stat);
         }
     }
 
-    calculateStat(stat) {
-        const baseStat = Pokedex[this.species].baseStats[stat];
+    calculateStat(stat: Stat) {
+        const baseStat = Pokedex.getEntry(this.species).baseStats[stat];
         const iv = this.ivs[stat];
         const ev = this.evs[stat];
         const level = this.level;
-        if (stat == "hp") {
+        if (stat === "hp") {
             return Math.floor((2 * baseStat + iv + Math.floor(ev / 4)) * level / 100) + level + 10;
         } else {
-            const natureData = Dex.natures.get(this.nature);
-            const natureMultiplier = natureData.plus == stat ? 1.1 : natureData.minus == stat ? 0.9 : 1;
+            const natureEntry = Natures.getEntry(this.nature);
+            const natureMultiplier = natureEntry?.increases === stat ? 1.1 : natureEntry?.decreases == stat ? 0.9 : 1;
             return Math.floor((Math.floor((2 * baseStat + iv + Math.floor(ev / 4)) * level / 100) + 5) * natureMultiplier);
         }
     }
@@ -142,9 +156,18 @@ export default class Pokemon {
     }
 }
 
+// export class Stats {
+//     atk: number;
+//     def: number;
+//     spa: number;
+//     spd: number;
+//     spe: number;
+//     hp: number;
+// }
+
 export type Stat = "hp" | "atk" | "def" | "spa" | "spd" | "spe";
 export type Stats = {
-    readonly [key in Stat]: number;
+    [key in Stat]: number;
 };
 
 type PokemonConfig = {
@@ -156,16 +179,13 @@ type PokemonConfig = {
     nature?: Nature,
     friendship?: number,
     abilitySlot?: AbilitySlot,
-    ivs?: Stats,
-    evs?: Stats,
+    ivs?: Partial<Stats>,
+    evs?: Partial<Stats>,
     currenthp?: number,
     moves?: Move[],
     OT?: string,
     owner?: string,
     caughtBall?: string,
+    shinyChance?: number,
     hiddenAbilityChance?: number
-}
-// helper functions
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

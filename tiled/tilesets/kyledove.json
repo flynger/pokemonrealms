@@ -10,223 +10,394 @@
  "tileheight":32,
  "tiles":[
         {
-         "id":29,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
          "id":89,
          "probability":0.5
         }, 
         {
          "id":333,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":4,
+             "name":"",
+             "objects":[
+                    {
+                     "height":28,
+                     "id":5,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":28,
+                     "x":4,
+                     "y":4
+                    }, 
+                    {
+                     "height":20,
+                     "id":6,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":16,
+                     "x":16,
+                     "y":12
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":16
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-20
                 }]
         }, 
         {
          "id":334,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":28,
+                     "id":1,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":32,
+                     "x":0,
+                     "y":4
+                    }, 
+                    {
+                     "height":20,
+                     "id":2,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":32,
+                     "x":0,
+                     "y":12
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":16
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-20
                 }]
         }, 
         {
          "id":335,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":28,
+                     "id":1,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":28,
+                     "x":0,
+                     "y":4
+                    }, 
+                    {
+                     "height":20,
+                     "id":2,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":16,
+                     "x":0,
+                     "y":12
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":16
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-20
                 }]
         }, 
         {
          "id":341,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":30,
+                     "x":2,
+                     "y":0
+                    }, 
+                    {
+                     "height":32,
+                     "id":2,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":16,
+                     "x":16,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":16
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-32
                 }]
         }, 
         {
          "id":342,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":32,
+                     "x":0,
+                     "y":0
+                    }, 
+                    {
+                     "height":32,
+                     "id":2,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":32,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":16
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-32
                 }]
         }, 
         {
          "id":343,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":32,
+                     "id":1,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":30,
+                     "x":0,
+                     "y":0
+                    }, 
+                    {
+                     "height":32,
+                     "id":2,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":16,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":16
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-32
                 }]
         }, 
         {
          "id":349,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":28,
+                     "id":1,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":28,
+                     "x":4,
+                     "y":0
+                    }, 
+                    {
+                     "height":20,
+                     "id":2,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":16,
+                     "x":16,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":0
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-32
                 }]
         }, 
         {
          "id":350,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":30,
+                     "id":1,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":32,
+                     "x":0,
+                     "y":0
+                    }, 
+                    {
+                     "height":20,
+                     "id":4,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":32,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":0
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-32
                 }]
         }, 
         {
          "id":351,
+         "objectgroup":
+            {
+             "draworder":"index",
+             "id":2,
+             "name":"",
+             "objects":[
+                    {
+                     "height":28,
+                     "id":1,
+                     "name":"mask",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":28,
+                     "x":0,
+                     "y":0
+                    }, 
+                    {
+                     "height":20,
+                     "id":2,
+                     "name":"grass",
+                     "rotation":0,
+                     "type":"",
+                     "visible":true,
+                     "width":16,
+                     "x":0,
+                     "y":0
+                    }],
+             "opacity":1,
+             "type":"objectgroup",
+             "visible":true,
+             "x":0,
+             "y":0
+            },
          "properties":[
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":0
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":357,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":358,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":359,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":365,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":366,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":367,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":373,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":374,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":375,
-         "properties":[
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
+                 "value":-32
                 }]
         }],
  "tilewidth":32,

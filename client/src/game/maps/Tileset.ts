@@ -1,9 +1,17 @@
 import { Scene } from "phaser";
 
+type Hitbox = {
+    x: number,
+    y: number,
+    width: number,
+    height: number
+}
 type TileProperties = {
     isCollideable?: true,
-    isGrass?: true,
-    depthOffset?: number
+    depthOffset?: number,
+    collider?: Hitbox,
+    grass?: Hitbox,
+    mask?: Hitbox
 }
 
 export default class Tileset {

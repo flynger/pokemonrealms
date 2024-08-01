@@ -1,4 +1,4 @@
-
+import './src/util/util.js';
 import express from 'express';
 // import cors from 'cors';
 import color from './util/color.js';

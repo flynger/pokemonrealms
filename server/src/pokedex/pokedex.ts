@@ -3,16 +3,21 @@ import { Type } from "./type";
 import POKEDEX_DATA from "./data/rawdex";
 import { Ability } from "./ability";
 import Move from "./move";
-import GROWTH_RATES from "./data/growthRates";
+import { GrowthRate } from "./data/growthRates";
 import { Item } from "./item";
 
 export default class Pokedex {
     private static readonly entries: Record<Species, PokedexEntry | PokedexFormEntry> = POKEDEX_DATA;
 
-    private static readonly growthRates = GROWTH_RATES;
-
-    static getEntry(species: Species) {
-        return this.entries[species];
+    static getEntry(species: Species): PokedexEntry {
+        const dexEntry = this.entries[species];
+        if ("baseSpecies" in dexEntry) {
+            return {
+                ...this.entries[dexEntry.baseSpecies],
+                ...dexEntry
+            } as PokedexEntry;
+        }
+        return dexEntry;
     }
 }
 
@@ -48,8 +53,6 @@ type Evolution = {
     readonly trade?: true;
     readonly friendship?: true;
 }
-
-type GrowthRate = keyof typeof GROWTH_RATES;
 
 type EggGroup = "Monster" | "Human-Like" | "Amorphous" | "Water 1" | "Water 2" | "Water 3" | "Bug"
     | "Flying" | "Fairy" | "Dragon" | "Grass" | "Mineral" | "Field" | "Ditto";

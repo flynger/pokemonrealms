@@ -1,4 +1,6 @@
 import { Scene, Physics, GameObjects, Input, Types, Animations } from 'phaser';
+import MainScene from '../scenes/MainScene';
+import Grass from '../tiles/Grass';
 
 export default class Player extends GameObjects.Container {
     static readonly avatars = ["red", "blue", "green", "may", "greenMay", "brendan", "oak"]; // "bug_catcher", "cloudz", "flynger"
@@ -8,7 +10,7 @@ export default class Player extends GameObjects.Container {
         PADDING_X: 16
     } as const;
 
-    scene: Scene;
+    scene: MainScene;
     headSprite: GameObjects.Sprite;
     bodySprite: GameObjects.Sprite;
     nameTagBackground: GameObjects.Graphics;
@@ -39,20 +41,32 @@ export default class Player extends GameObjects.Container {
         }
     }
 
-    constructor(scene: Scene, x: number, y: number, avatar: string, name: string) {
+    constructor(scene: MainScene, x: number, y: number, avatar: string, name: string) {
         super(scene, x, y);
         this.scene = scene;
         this.avatar = avatar;
 
         // Create sprite
         this.headSprite = scene.add.sprite(0, 0, avatar);
-        this.headSprite.setCrop(0, 0, 32, 36);
+        this.headSprite.setCrop(0, 0, 32, 36); // 32 pixels tall
         this.headSprite.setOrigin(0.5, 0.5);
         this.add(this.headSprite);
 
         // Create bottom half of the sprite with alpha
         this.bodySprite = scene.add.sprite(0, 0, avatar);
-        this.bodySprite.setCrop(0, 36, 32, 12);
+        this.bodySprite.setCrop(0, 36, 32, 12); // 12 pixels tall
+
+        // Enable container physics
+        scene.physics.world.enable(this);
+        const body = this.body as Physics.Arcade.Body;
+        body.onOverlap = true;
+        body.setSize(26, 12);
+        body.setOffset(-13, 10);
+        // scene.physics.add.overlap(this, Grass.list);
+        // scene.physics.world.on('overlap', (gameObject1: GameObjects.Sprite, gameObject2: GameObjects.Sprite) => {
+        //     this.bodySprite.setAlpha(0.3);
+        // });
+        // this.scene.add.existing(this.bodySprite);
 
         // this.bodySprite.alpha = 0;
 
@@ -69,20 +83,15 @@ export default class Player extends GameObjects.Container {
         });
         this.nameTag.setOrigin(0.5, 0);
         this.nameTag.scale = 0.6;
-        this.nameTag.setDepth(10000);
+        this.nameTag.setDepth(100000);
 
         // Create background rectangle for the name tag
         const nameTagBackgroundWidth = this.nameTag.width * this.nameTag.scale + Player.NAME_TAG.PADDING_X;
         this.nameTagBackground = scene.add.graphics();
         this.nameTagBackground.fillStyle(0x222222, 0.8); // Gray color with 80% opacity
         this.nameTagBackground.fillRoundedRect(-nameTagBackgroundWidth / 2, 0, nameTagBackgroundWidth, 20, 6); // x, y, width, height, radius
-        this.nameTagBackground.setDepth(9999);
+        this.nameTagBackground.setDepth(99999);
 
-        // Enable container physics
-        scene.physics.world.enable(this);
-        const body = this.body as Physics.Arcade.Body;
-        body.setSize(26, 22);
-        body.setOffset(-13, 0);
         // body.setCollideWorldBounds();
 
         // Add name tag and background to the scene (not inside the container)
@@ -90,7 +99,7 @@ export default class Player extends GameObjects.Container {
         scene.add.existing(this.nameTagBackground);
         scene.add.existing(this.nameTag);
 
-        // handle label postupdate
+        // handle postupdate
         scene.events.on('postupdate', () => {
             // Update body
             this.bodySprite.setPosition(this.x, this.y);
@@ -105,7 +114,7 @@ export default class Player extends GameObjects.Container {
         this.wasd = keyboard.addKeys('W,S,A,D');
     }
 
-    update() {
+    update(time: number, delta: number) {
         let velocityX = (this.cursors.left.isDown || this.wasd.A.isDown ? -Player.speed : 0) +
             (this.cursors.right.isDown || this.wasd.D.isDown ? Player.speed : 0);
         let velocityY = (this.cursors.up.isDown || this.wasd.W.isDown ? -Player.speed : 0) +
@@ -117,8 +126,15 @@ export default class Player extends GameObjects.Container {
             velocityY *= Math.SQRT1_2;
         }
 
-        if (this.body instanceof Phaser.Physics.Arcade.Body)
+        if (this.body instanceof Phaser.Physics.Arcade.Body) {
             this.body.setVelocity(velocityX, velocityY);
+            if (this.scene.physics.world.overlap(this, Grass.list)) {
+                this.bodySprite.setAlpha(0.3);
+                if (this.body.velocity.length() && time % Math.floor(1000 / delta) < 15) {
+                    this.createParticleEffect();
+                }
+            } else this.bodySprite.setAlpha(1);
+        }
 
         // Determine the animation to play based on movement
         if (velocityX < 0) {
@@ -142,9 +158,35 @@ export default class Player extends GameObjects.Container {
             }
         }
 
-        // Update depth based on y position
-        this.setDepth(this.y + 44);
+        /* Update depth */
+        this.setDepth(this.y + 6);
         this.bodySprite.setDepth(this.y + 6);
+    }
+
+    createParticleEffect() {
+        const offsetX = 8 * (this.body?.velocity.x ?? 0) / Player.speed;
+        const offsetY = 8 * (this.body?.velocity.y ?? 0) / Player.speed;
+        const emitter = this.scene.add.particles(0, 0, "yellow_leaf", {
+            x: [this.x - 8 + offsetX, this.x + offsetX, this.bodySprite.x + 8 + offsetX],
+            y: [this.bodySprite.y + 16 + offsetY, this.bodySprite.y + 20 + offsetY, this.bodySprite.y + 24 + offsetY],
+            speedY: [-50, -58, -64],  // Particles go up initially
+            gravityY: 100,                     // Gravity pulls particles down
+            lifespan: 1600,// Particle lifespan
+            quantity: 2,
+            scale: [0.7, 0.85, 1],
+            angle: { min: -10, max: 10 },      // Slight angle for a natural effect
+            speedX: [-22, -11, 11, 22],  // Random x velocity
+            tint: [0xFFFFFF, 0xD4B494, 0xF0E5D2],
+            rotate: { start: 0, end: 45 },
+            frame: [0, 1, 2, 3]
+        });
+        this.scene.time.delayedCall(1, () => {
+            emitter.stop();
+        });
+        this.scene.time.delayedCall(1001, () => {
+            emitter.destroy();
+        });
+        emitter.setDepth(2000);
     }
 }
 

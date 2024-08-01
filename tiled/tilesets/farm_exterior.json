@@ -15,7 +15,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -24,7 +24,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -33,7 +33,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":20
                 }]
         }, 
         {
@@ -52,11 +52,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }, 
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -66,11 +61,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }, 
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -79,12 +69,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":0
-                }, 
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
+                 "value":-12
                 }]
         }, 
         {
@@ -102,7 +87,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -111,7 +96,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -120,7 +105,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -129,7 +114,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -138,7 +123,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -148,11 +133,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }, 
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -162,11 +142,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }, 
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -176,11 +151,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }, 
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -190,11 +160,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }, 
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -204,20 +169,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }, 
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":40,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -226,7 +177,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -236,11 +187,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }, 
-                {
-                 "name":"isGrass",
-                 "type":"bool",
-                 "value":true
                 }]
         }, 
         {
@@ -249,7 +195,7 @@
                 {
                  "name":"depthOffset",
                  "type":"int",
-                 "value":1
+                 "value":32
                 }]
         }, 
         {
@@ -259,204 +205,6 @@
                  "name":"depthOffset",
                  "type":"int",
                  "value":0
-                }]
-        }, 
-        {
-         "id":242,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":243,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":244,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":245,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":246,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":247,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":250,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":251,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":252,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":253,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":254,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":255,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":258,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":259,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":261,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":262,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":263,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":266,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":267,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":269,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":270,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
-                }]
-        }, 
-        {
-         "id":271,
-         "properties":[
-                {
-                 "name":"isCollideable",
-                 "type":"bool",
-                 "value":true
                 }]
         }],
  "tilewidth":32,
