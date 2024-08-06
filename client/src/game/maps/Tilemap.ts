@@ -3,7 +3,7 @@ import Tile from "../tiles/Tile";
 import Tileset from "./Tileset";
 import Grass from "../tiles/Grass";
 
-type Tile = Record<string, number> | null;
+// type Tile = Record<string, number> | null;
 export default class Tilemap {
     scene: Scene;
     area: string;

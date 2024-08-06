@@ -1,6 +1,7 @@
 import { Scene, Physics, GameObjects, Input, Types, Animations } from 'phaser';
 import MainScene from '../scenes/MainScene';
 import Grass from '../tiles/Grass';
+import { EventBus } from '../EventBus';
 
 export default class Player extends GameObjects.Container {
     static readonly avatars = ["red", "blue", "green", "may", "greenMay", "brendan", "oak"]; // "bug_catcher", "cloudz", "flynger"
@@ -18,6 +19,7 @@ export default class Player extends GameObjects.Container {
     cursors: Types.Input.Keyboard.CursorKeys;
     wasd: any;
     avatar: string;
+    timeUntilEncounter: number = this.getTimeUntilNextEncounter();
 
     // create anims
     static createAnimations(scene: Scene) {
@@ -115,25 +117,38 @@ export default class Player extends GameObjects.Container {
     }
 
     update(time: number, delta: number) {
-        let velocityX = (this.cursors.left.isDown || this.wasd.A.isDown ? -Player.speed : 0) +
-            (this.cursors.right.isDown || this.wasd.D.isDown ? Player.speed : 0);
-        let velocityY = (this.cursors.up.isDown || this.wasd.W.isDown ? -Player.speed : 0) +
-            (this.cursors.down.isDown || this.wasd.S.isDown ? Player.speed : 0);
+        let velocityX = 0, velocityY = 0;
+        if (this.scene.input.keyboard?.enabled) {
+            velocityX = (this.cursors.left.isDown || this.wasd.A.isDown ? -Player.speed : 0) +
+                (this.cursors.right.isDown || this.wasd.D.isDown ? Player.speed : 0);
+            velocityY = (this.cursors.up.isDown || this.wasd.W.isDown ? -Player.speed : 0) +
+                (this.cursors.down.isDown || this.wasd.S.isDown ? Player.speed : 0);
 
-        // Normalize diagonal movement
-        if (velocityX !== 0 && velocityY !== 0) {
-            velocityX *= Math.SQRT1_2;
-            velocityY *= Math.SQRT1_2;
+            // Normalize diagonal movement
+            if (velocityX !== 0 && velocityY !== 0) {
+                velocityX *= Math.SQRT1_2;
+                velocityY *= Math.SQRT1_2;
+            }
         }
 
         if (this.body instanceof Phaser.Physics.Arcade.Body) {
             this.body.setVelocity(velocityX, velocityY);
             if (this.scene.physics.world.overlap(this, Grass.list)) {
-                this.bodySprite.setAlpha(0.3);
-                if (this.body.velocity.length() && time % Math.floor(1000 / delta) < 15) {
-                    this.createParticleEffect();
+                this.bodySprite.setAlpha(0.25);
+                this.bodySprite.setTint(0x444444);
+                if (this.body.velocity.length()) {
+                    if (time % Math.floor(1000 / delta) < 15) this.createParticleEffect();
+                    this.timeUntilEncounter -= delta / 1000;
+                    if (this.timeUntilEncounter <= 0) {
+                        EventBus.emit('startBattle');
+                        if (this.scene.input.keyboard) this.scene.input.keyboard.enabled = false;
+                        this.timeUntilEncounter = this.getTimeUntilNextEncounter();
+                    }
                 }
-            } else this.bodySprite.setAlpha(1);
+            } else if (this.bodySprite.alpha !== 1) {
+                this.bodySprite.setAlpha(1);
+                this.bodySprite.setTint(0xffffff);
+            }
         }
 
         // Determine the animation to play based on movement
@@ -171,7 +186,7 @@ export default class Player extends GameObjects.Container {
             y: [this.bodySprite.y + 16 + offsetY, this.bodySprite.y + 20 + offsetY, this.bodySprite.y + 24 + offsetY],
             speedY: [-50, -58, -64],  // Particles go up initially
             gravityY: 100,                     // Gravity pulls particles down
-            lifespan: 1600,// Particle lifespan
+            lifespan: 1000,// Particle lifespan
             quantity: 2,
             scale: [0.7, 0.85, 1],
             angle: { min: -10, max: 10 },      // Slight angle for a natural effect
@@ -180,13 +195,17 @@ export default class Player extends GameObjects.Container {
             rotate: { start: 0, end: 45 },
             frame: [0, 1, 2, 3]
         });
-        this.scene.time.delayedCall(1, () => {
+        this.scene.time.delayedCall(0, () => {
             emitter.stop();
         });
-        this.scene.time.delayedCall(1001, () => {
+        this.scene.time.delayedCall(1000, () => {
             emitter.destroy();
         });
         emitter.setDepth(2000);
+    }
+
+    getTimeUntilNextEncounter(): number {
+        return Phaser.Math.FloatBetween(1, 5);
     }
 }
 

@@ -1,0 +1,27 @@
+/* Default color */
+.hpbar-bg {
+    background-color: grey;
+    border: 0.05em solid darkslategrey;
+    width: 7em;
+    height: 0.35em;
+}
+
+.hpbar {
+    height: 100%;
+    transition: width 1s ease;
+}
+
+.hpbar.green {
+    background-color: rgb(75, 192, 106);
+    border-bottom: 0.1em solid #23a452;
+}
+
+.hpbar.yellow {
+    background-color: rgb(228, 222, 104);
+    border-bottom: 0.1em solid #9ba32a;
+}
+
+.hpbar.red {
+    background-color: rgb(224, 77, 77);
+    border-bottom: 0.1em solid #c22d2d;
+}

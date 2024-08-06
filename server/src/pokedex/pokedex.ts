@@ -1,21 +1,22 @@
 import { Stats } from "../pokemon";
 import { Type } from "./type";
-import POKEDEX_DATA from "./data/rawdex";
+import POKEDEX_DATA from "./data/pokedex";
 import { Ability } from "./ability";
 import Move from "./move";
 import { GrowthRate } from "./data/growthRates";
-import { Item } from "./item";
+import Item from "./item";
 
 export default class Pokedex {
     private static readonly entries: Record<Species, PokedexEntry | PokedexFormEntry> = POKEDEX_DATA;
 
     static getEntry(species: Species): PokedexEntry {
-        const dexEntry = this.entries[species];
+        const dexEntry: PokedexEntry | PokedexFormEntry = this.entries[species];
+        console.log(dexEntry)
         if ("baseSpecies" in dexEntry) {
             return {
-                ...this.entries[dexEntry.baseSpecies],
+                ...this.getEntry(dexEntry.baseSpecies),
                 ...dexEntry
-            } as PokedexEntry;
+            };
         }
         return dexEntry;
     }
@@ -84,8 +85,7 @@ type PokedexEntry = {
 
 type PokedexFormEntry = {
     readonly baseSpecies: Species;
-    readonly form: string;
     readonly species: Species;
 } & Partial<PokedexEntry>;
 
-console.log(Pokedex.getEntry("Bulbasaur"));
+// console.log(Pokedex.getEntry("Bulbasaur"));

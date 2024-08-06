@@ -1,0 +1,198 @@
+#battle {
+    height: 100%;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    font-family: 'Power Clear';
+    font-size: calc(16px * var(--battleScale));
+    --battleScale: 0.75;
+}
+
+#battle-container {
+    position: relative;
+    height: calc(var(--battleScale) * 100%);
+    aspect-ratio: 16/9;
+    background-image: url('assets/battle/field_bg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+    overflow: hidden;
+}
+
+#you {
+    height: 60%;
+    left: -10%;
+    bottom: -10%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+
+.info {
+    height: 0;
+    width: 30%;
+    font-size: 3em;
+    text-shadow: 0.07em 0.07em 0 #666666;
+    color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.info.you {
+    border-bottom: 3em solid rgb(0, 0, 0, 0.8);
+    border-left: 1em solid transparent;
+    /* background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0.2em 0 0 0.3em;
+    height: 3em; */
+    right: 0;
+    bottom: 35%;
+}
+
+.info.foe {
+    border-bottom: 2.25em solid rgb(0, 0, 0, 0.8);
+    border-right: 1em solid transparent;
+    left: 0;
+    top: 20%;
+}
+
+#info-you-container {
+    padding-right: 0.5em;
+    padding-left: 0.8em;
+}
+
+#info-foe-container {
+    padding-right: 0.5em;
+    padding-left: 0.8em;
+}
+
+.info-row {
+    display: flex;
+    height: 1.5em;
+    align-items: center;
+}
+
+.info-row.s {
+    height: 0.75em;
+    justify-content: end;
+}
+
+.hp {
+    font-size: 0.7em;
+}
+
+#foe {
+    height: 28%;
+    top: 30%;
+    right: 3%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+
+.base {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* .base.you {} */
+
+.base.foe {
+    image-rendering: auto;
+}
+
+.pokemon {
+    transform-origin: bottom;
+    position: absolute;
+}
+
+.pokemon.you {
+    scale: calc(800% * var(--battleScale));
+    bottom: 42%;
+}
+
+.pokemon.foe {
+    scale: calc(400% * var(--battleScale));
+    bottom: 45%;
+}
+
+/* white looks good with #666666 shadow */
+.message {
+    background-color: rgb(15, 15, 15, 0.8);
+    height: 25%;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+
+    font-size: 4em;
+    text-shadow: 0.08em 0.08em 0 #666666;
+    color: white;
+    padding-left: 2%;
+}
+
+#battle-msg {
+    cursor: pointer;
+}
+
+#battle-btns {
+    display: flex;
+}
+
+#battle-btns-message {
+    width: 50%;
+}
+
+#battle-btns-container {
+    height: 100%;
+    width: 50%;
+}
+
+.battle-btn {
+    width: 40%;
+    height: 40%;
+    margin-top: 2%;
+    margin-left: 5%;
+    font-size: 0.75em;
+    color: white;
+    text-shadow: 0.08em 0.08em 0 #888888;
+}
+
+.battle-btn.fight {
+    background-color: darkslategrey;
+}
+
+.battle-btn.bag {
+    background-color: darkslategrey;
+}
+
+.battle-btn.switch {
+    background-color: darkslategrey;
+}
+
+.battle-btn.run {
+    background-color: darkslategrey;
+}
+
+/* #battle-btns {
+    background-color: rgb(15, 15, 15, 0.8);
+    right: -4%;
+    bottom: 0;
+    position: absolute;
+    height: 30%;
+    width: 45%;
+    transform: perspective(0.75em) rotateX(1deg);
+}
+
+#battle-btns-footer {
+    background-color: rgb(15, 15, 15, 0.8);
+    left: -0.6%;
+    bottom: 0;
+    position: absolute;
+    height: 5%;
+    width: 56%;
+    transform: perspective(0.75em) rotateX(-0.8deg);
+} */

@@ -1,0 +1,19 @@
+#xpbar-bg {
+    background-color: grey;
+    background-image:
+        linear-gradient(to right, #2f4f4f 1px, transparent 1px);
+    background-position: 33%;
+    background-size: 10% 100%;
+    border: 0.05em solid darkslategrey;
+    border-right: none;
+    margin-left: -1em;
+    width: calc(100% + 1em);
+    min-height: 0.25em;
+}
+
+#xpbar {
+    background-color: rgb(96, 167, 234);
+    height: 100%;
+    border-bottom: 0.1em solid #2788d2;
+    transition-duration: 1s;
+}

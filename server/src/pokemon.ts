@@ -1,3 +1,4 @@
+import Item, { Pokeball } from "pokedex/item";
 import GrowthRates from "./pokedex/data/growthRates";
 import Move from "./pokedex/move";
 import Natures, { Nature } from "./pokedex/nature";
@@ -17,7 +18,7 @@ export default class Pokemon implements Stats {
     level: number;
     xp: number;
 
-    heldItem?: string;
+    heldItem?: Item;
     readonly nature: Nature;
     friendship: number;
     readonly abilitySlot: AbilitySlot;
@@ -28,20 +29,20 @@ export default class Pokemon implements Stats {
 
     /* Stats */
     currenthp: number;
-    hp: number;
-    atk: number;
-    def: number;
-    spa: number;
-    spd: number;
-    spe: number;
+    hp!: number;
+    atk!: number;
+    def!: number;
+    spa!: number;
+    spd!: number;
+    spe!: number;
 
     readonly moves: Move[];
 
-    readonly caughtBall: string;
-    readonly OT: string;
-    owner: string;
+    caughtBall: Pokeball;
+    OT?: string;
+    owner?: string;
 
-    constructor(species: Species, level: number, { name = "", gender, shiny, xp, heldItem, nature, friendship, abilitySlot, ivs, evs, currenthp, moves, OT, owner, caughtBall, shinyChance = Pokemon.SHINY_CHANCE, hiddenAbilityChance = Pokemon.HIDDEN_ABILITY_CHANCE }: PokemonConfig) {
+    constructor(species: Species, level: number, { name = "", gender, shiny, xp, heldItem, nature, friendship, abilitySlot, ivs = {}, evs = {}, currenthp, moves, OT = "", owner = "", caughtBall = "Poké Ball", shinyChance = Pokemon.SHINY_CHANCE, hiddenAbilityChance = Pokemon.HIDDEN_ABILITY_CHANCE }: PokemonConfig = {}) {
         this.species = species;
         this.name = name;
 
@@ -58,7 +59,7 @@ export default class Pokemon implements Stats {
 
         this.shiny = shiny ?? Math.random() < shinyChance;
         this.nature = nature ?? Natures.getRandom();
-        this.friendship = friendship ?? 70;
+        this.friendship = friendship ?? (Pokedex.getEntry(this.species).baseFriendship ?? 50);
         this.heldItem = heldItem;
 
         this.level = level ?? 1;
@@ -71,8 +72,8 @@ export default class Pokemon implements Stats {
             this.abilitySlot = "H";
         } else this.abilitySlot = "1" in pokedexData.abilities ? randomInteger(0, 1) + "" as AbilitySlot : "0";
 
-        this.ivs = createStats(ivs ?? {}, () => randomInteger(0, 31));
-        this.evs = createStats(evs ?? {}, () => 0);
+        this.ivs = createStats(ivs, () => randomInteger(0, 31));
+        this.evs = createStats(evs, () => 0);
         this.calculateStats();
         this.currenthp = currenthp ?? this.hp;
 
@@ -82,49 +83,55 @@ export default class Pokemon implements Stats {
         } else {
             this.moves = [];
             const learnsetData = pokedexData.learnset.levelup;
-            const learnsetLevel = this.level;
+            let learnsetLevel = +this.level;
             while (this.moves.length < 4 && learnsetLevel >= 1) {
                 const moveData = learnsetData[learnsetLevel];
                 if (moveData) {
                     if (typeof moveData === "string") this.moves.push(moveData);
-                    else this.moves.push(...moveData as Move[]);
+                    else this.moves.splice(0, 0, ...moveData as Move[]);
                 }
+                learnsetLevel--;
             }
             this.moves.splice(4);
         }
 
-        if (OT) this.OT = OT;
-        if (owner) {
-            this.setOwner(owner);
-            this.caughtBall = caughtBall ?? "pokeball";
-        } else if (caughtBall) this.caughtBall = caughtBall;
+        this.OT = OT;
+        this.owner = owner;
+        this.caughtBall = caughtBall;
     }
 
     getName() {
-        return this.name || Pokedex[this.species].name;
+        // FIXME: get the correct name
+        return this.name || Pokedex.getEntry(this.species).species;
     }
 
     levelUp() {
         if (this.level < 100) {
             this.level++;
-            const prevhp = this.stats.hp;
+            const prevhp = this.hp;
             this.calculateStats();
-            this.currenthp += this.stats.hp - prevhp;
-            const levelUpMove = Pokedex[this.species].learnset.levelup[this.level];
-            if (levelUpMove) {
-                this.learnMove(levelUpMove);
+            this.currenthp += this.hp - prevhp;
+            let levelUpMoves = Pokedex.getEntry(this.species).learnset.levelup[this.level];
+            if (typeof levelUpMoves === "string") {
+                levelUpMoves = [levelUpMoves];
+            }
+
+            if (levelUpMoves instanceof Array) {
+                for (const move of levelUpMoves) {
+                    this.learnMove(move);
+                }
             }
         }
     }
 
-    learnMove(move) {
+    learnMove(move: Move) {
         if (this.moves.length < 4) this.moves.push(move);
-        else throw Error("Pokemon already has 4 moves!");
+        else console.log("Pokemon already has 4 moves!");
     }
 
     calculateStats() {
         for (const stat in this.ivs) {
-            this[stat] = this.calculateStat(stat as Stat);
+            this[stat as Stat] = this.calculateStat(stat as Stat);
         }
     }
 
@@ -140,19 +147,6 @@ export default class Pokemon implements Stats {
             const natureMultiplier = natureEntry?.increases === stat ? 1.1 : natureEntry?.decreases == stat ? 0.9 : 1;
             return Math.floor((Math.floor((2 * baseStat + iv + Math.floor(ev / 4)) * level / 100) + 5) * natureMultiplier);
         }
-    }
-
-    setOwner(owner) {
-        if (!this.owner) {
-            this.id = Pokemon.id++;
-            Pokemon.entries[this.id] = this;
-            this.originalTrainer = owner;
-        }
-        this.owner = owner;
-    }
-
-    setBall(ball) {
-        this.caughtBall = ball;
     }
 }
 
@@ -170,12 +164,12 @@ export type Stats = {
     [key in Stat]: number;
 };
 
-type PokemonConfig = {
+export type PokemonConfig = {
     name?: string,
     gender?: Gender,
     shiny?: boolean,
     xp?: number,
-    heldItem?: string,
+    heldItem?: Item,
     nature?: Nature,
     friendship?: number,
     abilitySlot?: AbilitySlot,
@@ -185,7 +179,7 @@ type PokemonConfig = {
     moves?: Move[],
     OT?: string,
     owner?: string,
-    caughtBall?: string,
+    caughtBall?: Pokeball,
     shinyChance?: number,
     hiddenAbilityChance?: number
 }

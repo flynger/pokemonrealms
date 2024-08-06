@@ -1,4 +1,4 @@
-import "../util/types";
+// import "../util/types";
 import { Stat } from "../pokemon";
 
 // Define all Pokémon natures and their effects

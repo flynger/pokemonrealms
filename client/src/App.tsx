@@ -6,9 +6,6 @@ import NavBar from "./components/Navbar";
 import Home from './pages/Home';
 // import Game from './game/Game';
 import Register from './pages/Register';
-
-import { useRef } from 'react';
-import { IRefPhaserGame, PhaserGame } from './game/PhaserGame';
 import Game from './pages/Game';
 
 function App() {

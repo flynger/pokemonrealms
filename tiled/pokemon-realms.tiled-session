@@ -3,12 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "tilesets/kyledove.json",
+    "activeFile": "maps/Ranch/Ranch.json",
     "expandedProjectPaths": [
-        "tilesets",
+        ".",
         "maps",
         "maps/Ranch",
-        "."
+        "tilesets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -116,11 +116,11 @@
             "expandedGroupLayers": [
                 5
             ],
-            "scale": 1,
-            "selectedLayer": 0,
+            "scale": 2,
+            "selectedLayer": -1,
             "viewCenter": {
-                "x": 917,
-                "y": 370.5
+                "x": 496.25,
+                "y": 219
             }
         },
         "maps/Ranch/Ranch.json#farm_exterior": {
@@ -279,11 +279,11 @@
         "tilesets/kyledove.json"
     ],
     "project": "pokemon-realms.tiled-project",
-    "property.type": "object",
+    "property.type": "string",
     "recentFiles": [
-        "maps/Ranch/Ranch.json",
-        "tilesets/farm_exterior.json",
         "tilesets/kyledove.json",
+        "tilesets/farm_exterior.json",
+        "maps/Ranch/Ranch.json",
         "C:/Github Projects/PokemonRealms/client/public/maps/Ranch2.json",
         "C:/Github Projects/PokemonRealms/client/public/maps/Ranch.json"
     ],
