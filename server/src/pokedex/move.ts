@@ -1,6 +1,6 @@
-import { Stats } from "pokemon";
 import { Type } from "./type";
 import MOVE_DATA from "./data/moves";
+import { StatStages } from "battle/battleSpot";
 
 type MoveCategory = "Physical" | "Special" | "Status";
 
@@ -57,7 +57,7 @@ interface MoveEntry {
     name: Move,
     pp: number,
     flags: MoveFlags,
-    stages?: Partial<Stats>,
+    stages?: Partial<StatStages>,
     target?: MoveTarget,
     type: Type
 }

@@ -14,7 +14,7 @@ export default class Pokemon implements Stats {
     name: string;
     readonly gender: Gender;
 
-    readonly shiny: boolean;
+    readonly isShiny: boolean;
     level: number;
     xp: number;
 
@@ -42,7 +42,7 @@ export default class Pokemon implements Stats {
     OT?: string;
     owner?: string;
 
-    constructor(species: Species, level: number, { name = "", gender, shiny, xp, heldItem, nature, friendship, abilitySlot, ivs = {}, evs = {}, currenthp, moves, OT = "", owner = "", caughtBall = "Poké Ball", shinyChance = Pokemon.SHINY_CHANCE, hiddenAbilityChance = Pokemon.HIDDEN_ABILITY_CHANCE }: PokemonConfig = {}) {
+    constructor(species: Species, level: number, { name = "", gender, isShiny, xp, heldItem, nature, friendship, abilitySlot, ivs = {}, evs = {}, currenthp, moves, OT = "", owner = "", caughtBall = "Poké Ball", shinyChance = Pokemon.SHINY_CHANCE, hiddenAbilityChance = Pokemon.HIDDEN_ABILITY_CHANCE }: PokemonConfig = {}) {
         this.species = species;
         this.name = name;
 
@@ -57,9 +57,9 @@ export default class Pokemon implements Stats {
             this.gender = Math.random() < (pokedexData.gender?.M ?? 0.5) ? "M" : "F";
         }
 
-        this.shiny = shiny ?? Math.random() < shinyChance;
+        this.isShiny = isShiny ?? Math.random() < shinyChance;
         this.nature = nature ?? Natures.getRandom();
-        this.friendship = friendship ?? (Pokedex.getEntry(this.species).baseFriendship ?? 50);
+        this.friendship = friendship ?? (pokedexData.baseFriendship ?? 50);
         this.heldItem = heldItem;
 
         this.level = level ?? 1;
@@ -167,7 +167,7 @@ export type Stats = {
 export type PokemonConfig = {
     name?: string,
     gender?: Gender,
-    shiny?: boolean,
+    isShiny?: boolean,
     xp?: number,
     heldItem?: Item,
     nature?: Nature,

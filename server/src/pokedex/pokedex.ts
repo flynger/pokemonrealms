@@ -11,7 +11,6 @@ export default class Pokedex {
 
     static getEntry(species: Species): PokedexEntry {
         const dexEntry: PokedexEntry | PokedexFormEntry = this.entries[species];
-        console.log(dexEntry)
         if ("baseSpecies" in dexEntry) {
             return {
                 ...this.getEntry(dexEntry.baseSpecies),
