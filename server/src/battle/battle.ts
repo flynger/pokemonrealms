@@ -36,6 +36,7 @@ export default class Battle {
         if (!this.spots.every(spot => spot.isReady())) return;
         let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
         while (occupiedSpots.length > 0) {
+            occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
             const nextSpot = occupiedSpots.shift()!;
             const nextInput = nextSpot.nextInput!;
             const nextMon = nextSpot.mon;
@@ -50,7 +51,7 @@ export default class Battle {
                             const foeSpot = this.spots[target];
                             if (!foeSpot.mon) continue;
                             const foe = foeSpot.mon;
-                            const dmg = this.calculateDamage(nextMon.level, nextMon.atk, foe.def, moveEntry.basePower!);
+                            const dmg = this.calculateDamage(nextMon.level, nextMon.atk, foe.def, moveEntry.power!);
                             foe.currenthp -= dmg;
                             console.log(`${foe.getName()} HP${foe.currenthp}/${foe.hp}, took ${dmg} damage`);
                         }

@@ -45,28 +45,35 @@ interface MoveFlags {
     wind?: 1; // Activates the Wind Power and Wind Rider Abilities.
 }
 
-export type MoveTarget = "allAdjacentFoes";
+export type MoveTarget = "self" | "adjacentFoe" | "allAdjacentFoes";
 // 'adjacentAlly' | 'adjacentAllyOrSelf' | 'adjacentFoe' | 'all' | 'allAdjacent' | 'allAdjacentFoes' |
 // 'allies' | 'allySide' | 'allyTeam' | 'any' | 'foeSide' | 'randomNormal' | 'scripted' | 'self';
 
 interface MoveEntry {
     num: number,
-    accuracy?: number,
-    basePower?: number,
+    name?: Move,
+    type: Type,
     category: MoveCategory,
-    name: Move,
+    power?: number,
+    accuracy?: number,
     pp: number,
-    flags: MoveFlags,
     stages?: Partial<StatStages>,
-    target?: MoveTarget,
-    type: Type
+    flags: MoveFlags,
+    target?: MoveTarget
 }
 
 export class Moves {
     private static entries: Record<Move, MoveEntry> = MOVE_DATA;
 
     static get(move: Move): MoveEntry {
-        return Moves.entries[move];
+        const moveEntry: MoveEntry = {
+            name: move,
+            power: 0,
+            accuracy: 100,
+            target: "adjacentFoe",
+            ...Moves.entries[move]
+        };
+        return moveEntry;
     }
 }
 
