@@ -32,13 +32,12 @@ const dealDamage = (user: Pokemon, recipients: BattleSpot[], power: number) => {
     for (const recipient of recipients) {
         let rec = recipient.mon!;
         let dmg = calculateDamage(user!.level, user!.atk, rec.def, power);
-        console.log(`${rec.getName()} HP${rec.currenthp}/${rec.hp}, took ${Math.min(dmg, rec.currenthp)} damage`);
         rec.currenthp -= dmg;
+        if (rec.currenthp < 0) rec.currenthp = 0;
+        console.log(`${rec.getName()} HP${rec.currenthp}/${rec.hp}, took ${dmg} damage`);
 
-        //fainted
         if(rec.currenthp <= 0) {
             console.log(`${rec.getName()} fainted!`);
-            rec.currenthp = 0;
             recipient.mon = undefined;
         }
     }

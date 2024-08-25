@@ -34,12 +34,12 @@ export default class Battle {
     }
 
     nextTurn() {
-        if (!this.spots.every(spot => spot.isReady())) return;
+        if (this.isOver() || !this.spots.every(spot => spot.isReady())) return;
+
         let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
         while (occupiedSpots.length > 0) {
-            occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
             const nextSpot = occupiedSpots.shift()!;
-            if (!nextSpot.mon) continue;
+            // if (!nextSpot.mon) continue;
             const nextInput = nextSpot.nextInput!;
             const nextMon = nextSpot.mon;
             switch (nextInput.kind) {
@@ -50,23 +50,25 @@ export default class Battle {
                     throw new Error("Unknown input " + nextInput.kind + " by " + nextMon.getName());
             }
             nextSpot.nextInput = undefined;
+            
+            occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
         }
-        for (const side of this.sides) {
-            side.askForInput(Battle.INPUT_OPTIONS);
-        }
-        if (this.isSideAlive(this.sides[0]) && this.isSideAlive(this.sides[1])) {
+
+        if (this.isOver()) {
+            console.log("Battle over");
             this.nextTurn();
         } else {
-            console.log("Battle over");
-            return;
+            for (const side of this.sides) {
+                side.askForInput(Battle.INPUT_OPTIONS);
+            }
         }
+    }
+
+    isOver() {
+        return this.sides.filter(side => side.isAlive()).length <= 1;
     }
 
     isSpotWithMon(spot: BattleSpot): spot is BattleSpot & { mon: Pokemon } {
         return spot.mon !== undefined;
-    }
-
-    isSideAlive(side: Side): boolean {
-        return side.parties.some(party => party.spots.some(spot => spot.mon));
     }
 }

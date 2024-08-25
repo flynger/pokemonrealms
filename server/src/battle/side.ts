@@ -17,4 +17,8 @@ export default class Side {
             party.askForInput(input);
         }
     }
+
+    isAlive(): boolean {
+        return this.parties.some(party => party.spots.some(spot => spot.mon));
+    }
 }
