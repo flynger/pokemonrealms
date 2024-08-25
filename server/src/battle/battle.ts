@@ -37,7 +37,7 @@ export default class Battle {
         if (!this.spots.every(spot => spot.isReady())) return;
         let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
         while (occupiedSpots.length > 0) {
-            occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
+            occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
             const nextSpot = occupiedSpots.shift()!;
             const nextInput = nextSpot.nextInput!;
             const nextMon = nextSpot.mon;
@@ -48,6 +48,7 @@ export default class Battle {
                 default:
                     throw new Error("Unknown input " + nextInput.kind + " by " + nextMon.getName());
             }
+            nextSpot.nextInput = undefined;
         }
         for (const side of this.sides) {
             side.askForInput(Battle.INPUT_OPTIONS);
