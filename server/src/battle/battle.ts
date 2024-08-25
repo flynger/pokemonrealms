@@ -39,6 +39,7 @@ export default class Battle {
         while (occupiedSpots.length > 0) {
             occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
             const nextSpot = occupiedSpots.shift()!;
+            if (!nextSpot.mon) continue;
             const nextInput = nextSpot.nextInput!;
             const nextMon = nextSpot.mon;
             switch (nextInput.kind) {
@@ -53,9 +54,19 @@ export default class Battle {
         for (const side of this.sides) {
             side.askForInput(Battle.INPUT_OPTIONS);
         }
+        if (this.isSideAlive(this.sides[0]) && this.isSideAlive(this.sides[1])) {
+            this.nextTurn();
+        } else {
+            console.log("Battle over");
+            return;
+        }
     }
 
     isSpotWithMon(spot: BattleSpot): spot is BattleSpot & { mon: Pokemon } {
         return spot.mon !== undefined;
+    }
+
+    isSideAlive(side: Side): boolean {
+        return side.parties.some(party => party.spots.some(spot => spot.mon));
     }
 }
