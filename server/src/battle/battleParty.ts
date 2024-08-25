@@ -32,6 +32,6 @@ export type InputKind = "move";
 export type BattleInput = MoveInput // | SwitchInput | ItemInput | RunInput
 
 // type SwitchInput = { switchTo: 0 | 1 | 2 | 3 | 4 | 5 }
-type MoveInput = { kind: "move", id: 0 | 1 | 2 | 3, targets: number[] }
+export type MoveInput = { kind: "move", id: 0 | 1 | 2 | 3, targets: number[] }
 // type ItemInput = { useItem: Item }
 // type RunInput = { kind: "run" }
