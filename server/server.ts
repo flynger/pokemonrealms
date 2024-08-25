@@ -15,6 +15,18 @@ const party1 = battle.sides[0].parties[0];
 const party2 = battle.sides[1].parties[0];
 party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
 party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
 // console.log(battle);
 
 const app = express();

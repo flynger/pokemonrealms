@@ -4,6 +4,7 @@ import Side from "./side";
 import BattleParty, { InputKind } from "./battleParty";
 import BattleSpot from "./battleSpot";
 import Move, { Moves } from "../pokedex/move";
+import { executeMove } from "./battleMove";
 
 export interface BattleConfig {
     field?: Field,
@@ -36,33 +37,28 @@ export default class Battle {
         if (!this.spots.every(spot => spot.isReady())) return;
         let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
         while (occupiedSpots.length > 0) {
-            occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
+            occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
             const nextSpot = occupiedSpots.shift()!;
+            if (!nextSpot.mon) continue;
             const nextInput = nextSpot.nextInput!;
             const nextMon = nextSpot.mon;
             switch (nextInput.kind) {
                 case "move":
-                    const moveEntry = Moves.get(nextMon.moves[nextInput.id]);
-                    console.log(`${nextMon.getName()} used ${moveEntry.name}!`);
-                    if (moveEntry.category === "Status") {
-                        console.log(`Status move: does nothing`);
-                    } else {
-                        for (const target of nextInput.targets) {
-                            const foeSpot = this.spots[target];
-                            if (!foeSpot.mon) continue;
-                            const foe = foeSpot.mon;
-                            const dmg = this.calculateDamage(nextMon.level, nextMon.atk, foe.def, moveEntry.power!);
-                            foe.currenthp -= dmg;
-                            console.log(`${foe.getName()} HP${foe.currenthp}/${foe.hp}, took ${dmg} damage`);
-                        }
-                    }
+                    executeMove(nextInput, nextMon, this.spots);
                     break;
                 default:
                     throw new Error("Unknown input " + nextInput.kind + " by " + nextMon.getName());
             }
+            nextSpot.nextInput = undefined;
         }
         for (const side of this.sides) {
             side.askForInput(Battle.INPUT_OPTIONS);
+        }
+        if (this.isSideAlive(this.sides[0]) && this.isSideAlive(this.sides[1])) {
+            this.nextTurn();
+        } else {
+            console.log("Battle over");
+            return;
         }
     }
 
@@ -70,8 +66,7 @@ export default class Battle {
         return spot.mon !== undefined;
     }
 
-    calculateDamage(level: number, atk: number, def: number, power: number): number {
-        const dmg = Math.floor((2 * level / 5 + 2) * power * atk / def / 50 + 2);
-        return Math.max(dmg, 1);
+    isSideAlive(side: Side): boolean {
+        return side.parties.some(party => party.spots.some(spot => spot.mon));
     }
 }
