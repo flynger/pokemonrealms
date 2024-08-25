@@ -3,7 +3,7 @@ import Tile from "./Tile";
 import Tileset from "../maps/Tileset";
 
 export default class Grass extends Tile {
-    static list: Grass[];
+    static list: Grass[] = [];
     // private static graphics: GameObjects.Graphics;
     // static mask: Display.Masks.GeometryMask;
     // static layer: Display.Masks.GeometryMask;
@@ -22,13 +22,6 @@ export default class Grass extends Tile {
 
     constructor(scene: Scene, x: number, y: number, tileset: string, tile: number) {
         super(scene, x, y, tileset, tile);
-        const tileProperties = Tileset.getTileProperties(tileset, tile);
-        if (tileProperties && tileProperties.grass) {
-            scene.physics.world.enable(this);
-            const body = this.body as Physics.Arcade.Body;
-            body.setSize(tileProperties.grass.width, tileProperties.grass.height);
-            body.setOffset(tileProperties.grass.x, tileProperties.grass.y);
-        }
         Grass.list.push(this);
         // fill shape based on mask
         // const mask = {

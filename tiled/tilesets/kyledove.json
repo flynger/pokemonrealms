@@ -18,20 +18,8 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":4,
              "name":"",
              "objects":[
-                    {
-                     "height":28,
-                     "id":5,
-                     "name":"mask",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":28,
-                     "x":4,
-                     "y":4
-                    }, 
                     {
                      "height":20,
                      "id":6,
@@ -51,6 +39,11 @@
             },
          "properties":[
                 {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
+                {
                  "name":"depthOffset",
                  "type":"int",
                  "value":-20
@@ -61,20 +54,8 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
-                    {
-                     "height":28,
-                     "id":1,
-                     "name":"mask",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":32,
-                     "x":0,
-                     "y":4
-                    }, 
                     {
                      "height":20,
                      "id":2,
@@ -93,6 +74,11 @@
              "y":0
             },
          "properties":[
+                {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
                 {
                  "name":"depthOffset",
                  "type":"int",
@@ -104,20 +90,8 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
-                    {
-                     "height":28,
-                     "id":1,
-                     "name":"mask",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":28,
-                     "x":0,
-                     "y":4
-                    }, 
                     {
                      "height":20,
                      "id":2,
@@ -137,6 +111,11 @@
             },
          "properties":[
                 {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
+                {
                  "name":"depthOffset",
                  "type":"int",
                  "value":-20
@@ -147,20 +126,8 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
-                    {
-                     "height":32,
-                     "id":1,
-                     "name":"mask",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":30,
-                     "x":2,
-                     "y":0
-                    }, 
                     {
                      "height":32,
                      "id":2,
@@ -180,6 +147,11 @@
             },
          "properties":[
                 {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
+                {
                  "name":"depthOffset",
                  "type":"int",
                  "value":-32
@@ -190,24 +162,12 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
                     {
                      "height":32,
                      "id":1,
                      "name":"grass",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":32,
-                     "x":0,
-                     "y":0
-                    }, 
-                    {
-                     "height":32,
-                     "id":2,
-                     "name":"mask",
                      "rotation":0,
                      "type":"",
                      "visible":true,
@@ -223,6 +183,11 @@
             },
          "properties":[
                 {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
+                {
                  "name":"depthOffset",
                  "type":"int",
                  "value":-32
@@ -233,20 +198,8 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
-                    {
-                     "height":32,
-                     "id":1,
-                     "name":"mask",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":30,
-                     "x":0,
-                     "y":0
-                    }, 
                     {
                      "height":32,
                      "id":2,
@@ -266,6 +219,11 @@
             },
          "properties":[
                 {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
+                {
                  "name":"depthOffset",
                  "type":"int",
                  "value":-32
@@ -276,20 +234,8 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
-                    {
-                     "height":28,
-                     "id":1,
-                     "name":"mask",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":28,
-                     "x":4,
-                     "y":0
-                    }, 
                     {
                      "height":20,
                      "id":2,
@@ -309,6 +255,11 @@
             },
          "properties":[
                 {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
+                {
                  "name":"depthOffset",
                  "type":"int",
                  "value":-32
@@ -319,20 +270,8 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
-                    {
-                     "height":30,
-                     "id":1,
-                     "name":"mask",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":32,
-                     "x":0,
-                     "y":0
-                    }, 
                     {
                      "height":20,
                      "id":4,
@@ -352,6 +291,11 @@
             },
          "properties":[
                 {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
+                {
                  "name":"depthOffset",
                  "type":"int",
                  "value":-32
@@ -362,20 +306,8 @@
          "objectgroup":
             {
              "draworder":"index",
-             "id":2,
              "name":"",
              "objects":[
-                    {
-                     "height":28,
-                     "id":1,
-                     "name":"mask",
-                     "rotation":0,
-                     "type":"",
-                     "visible":true,
-                     "width":28,
-                     "x":0,
-                     "y":0
-                    }, 
                     {
                      "height":20,
                      "id":2,
@@ -394,6 +326,11 @@
              "y":0
             },
          "properties":[
+                {
+                 "name":"class",
+                 "type":"string",
+                 "value":"Grass"
+                }, 
                 {
                  "name":"depthOffset",
                  "type":"int",

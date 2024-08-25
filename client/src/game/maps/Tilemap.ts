@@ -37,8 +37,14 @@ export default class Tilemap {
                     const x = 32 * (+j % tileWidth) + 16;
                     const y = 32 * Math.floor(+j / tileWidth) + 16;
                     const tileProperties = Tileset.getTileProperties(tileset, tileId);
-                    if (tileProperties && tileProperties.grass) new Grass(this.scene, x, y, tileset, tileId);
-                    else new Tile(this.scene, x, y, tileset, tileId);
+                    const tileType = tileProperties?.class ?? "Tile";
+                    switch (tileType) {
+                        case "Grass":
+                            new Grass(this.scene, x, y, tileset, tileId);
+                            break;
+                        default:
+                            new Tile(this.scene, x, y, tileset, tileId);
+                    }
                 }
             }
         }

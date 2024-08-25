@@ -2,6 +2,7 @@ import { Scene, Physics, GameObjects, Input, Types, Animations } from 'phaser';
 import MainScene from '../scenes/MainScene';
 import Grass from '../tiles/Grass';
 import { EventBus } from '../EventBus';
+import Tile from '../tiles/Tile';
 
 export default class Player extends GameObjects.Container {
     static readonly avatars = ["red", "blue", "green", "may", "greenMay", "brendan", "oak"]; // "bug_catcher", "cloudz", "flynger"
@@ -16,10 +17,9 @@ export default class Player extends GameObjects.Container {
     bodySprite: GameObjects.Sprite;
     nameTagBackground: GameObjects.Graphics;
     nameTag: GameObjects.Text;
-    cursors: Types.Input.Keyboard.CursorKeys;
-    wasd: any;
     avatar: string;
-    timeUntilEncounter: number = this.getTimeUntilNextEncounter();
+
+    declare body: Phaser.Physics.Arcade.Body; // Assert proper type
 
     // create anims
     static createAnimations(scene: Scene) {
@@ -60,23 +60,11 @@ export default class Player extends GameObjects.Container {
 
         // Enable container physics
         scene.physics.world.enable(this);
-        const body = this.body as Physics.Arcade.Body;
-        body.onOverlap = true;
-        body.setSize(26, 12);
-        body.setOffset(-13, 10);
-        // scene.physics.add.overlap(this, Grass.list);
-        // scene.physics.world.on('overlap', (gameObject1: GameObjects.Sprite, gameObject2: GameObjects.Sprite) => {
-        //     this.bodySprite.setAlpha(0.3);
-        // });
-        // this.scene.add.existing(this.bodySprite);
+        this.body.onOverlap = true;
+        this.body.setSize(26, 12);
+        this.body.setOffset(-13, 10);
 
-        // this.bodySprite.alpha = 0;
-
-        // this.sprite = scene.add.sprite(0, 0, avatar);
-        // this.add(this.sprite);
-        // this.sprite.setOrigin(0.5, 2 / 3);
-
-        // Cover half of the sprite to hide in grass=
+        scene.physics.add.collider(this, Tile.collidingTiles);
 
         // Create name tag text
         this.nameTag = scene.add.text(0, 0, name, {
@@ -109,46 +97,21 @@ export default class Player extends GameObjects.Container {
             this.nameTag.setPosition(this.x + 1, this.y - Player.NAME_TAG.OFFSET);
             this.nameTagBackground.setPosition(this.x, this.y - Player.NAME_TAG.OFFSET);
         });
-
-        // define inputs
-        const keyboard = scene.input.keyboard as Input.Keyboard.KeyboardPlugin;
-        this.cursors = keyboard.createCursorKeys();
-        this.wasd = keyboard.addKeys('W,S,A,D');
     }
 
     update(time: number, delta: number) {
-        let velocityX = 0, velocityY = 0;
-        if (this.scene.input.keyboard?.enabled) {
-            velocityX = (this.cursors.left.isDown || this.wasd.A.isDown ? -Player.speed : 0) +
-                (this.cursors.right.isDown || this.wasd.D.isDown ? Player.speed : 0);
-            velocityY = (this.cursors.up.isDown || this.wasd.W.isDown ? -Player.speed : 0) +
-                (this.cursors.down.isDown || this.wasd.S.isDown ? Player.speed : 0);
-
-            // Normalize diagonal movement
-            if (velocityX !== 0 && velocityY !== 0) {
-                velocityX *= Math.SQRT1_2;
-                velocityY *= Math.SQRT1_2;
+        const [velocityX, velocityY] = this.getVelocity();
+        this.body.setVelocity(velocityX, velocityY);
+        if (this.scene.physics.world.overlap(this, Grass.list)) {
+            this.bodySprite.setAlpha(0.25);
+            this.bodySprite.setTint(0x444444);
+            if (this.body.velocity.length()) {
+                if (time % Math.floor(1000 / delta) < 15) this.createParticleEffect();
+                this.onGrass(delta);
             }
-        }
-
-        if (this.body instanceof Phaser.Physics.Arcade.Body) {
-            this.body.setVelocity(velocityX, velocityY);
-            if (this.scene.physics.world.overlap(this, Grass.list)) {
-                this.bodySprite.setAlpha(0.25);
-                this.bodySprite.setTint(0x444444);
-                if (this.body.velocity.length()) {
-                    if (time % Math.floor(1000 / delta) < 15) this.createParticleEffect();
-                    this.timeUntilEncounter -= delta / 1000;
-                    if (this.timeUntilEncounter <= 0) {
-                        EventBus.emit('startBattle');
-                        if (this.scene.input.keyboard) this.scene.input.keyboard.enabled = false;
-                        this.timeUntilEncounter = this.getTimeUntilNextEncounter();
-                    }
-                }
-            } else if (this.bodySprite.alpha !== 1) {
-                this.bodySprite.setAlpha(1);
-                this.bodySprite.setTint(0xffffff);
-            }
+        } else if (this.bodySprite.alpha !== 1) {
+            this.bodySprite.setAlpha(1);
+            this.bodySprite.setTint(0xffffff);
         }
 
         // Determine the animation to play based on movement
@@ -178,6 +141,12 @@ export default class Player extends GameObjects.Container {
         this.bodySprite.setDepth(this.y + 6);
     }
 
+    getVelocity(): [velocityX: number, velocityY: number] {
+        return [0, 0];
+    }
+
+    onGrass(delta: number) {}
+
     createParticleEffect() {
         const offsetX = 8 * (this.body?.velocity.x ?? 0) / Player.speed;
         const offsetY = 8 * (this.body?.velocity.y ?? 0) / Player.speed;
@@ -202,10 +171,6 @@ export default class Player extends GameObjects.Container {
             emitter.destroy();
         });
         emitter.setDepth(2000);
-    }
-
-    getTimeUntilNextEncounter(): number {
-        return Phaser.Math.FloatBetween(1, 5);
     }
 }
 

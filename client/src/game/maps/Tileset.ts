@@ -1,5 +1,6 @@
 import { Scene } from "phaser";
 
+type TileType = "Tile" | "Grass";
 type Hitbox = {
     x: number,
     y: number,
@@ -7,11 +8,10 @@ type Hitbox = {
     height: number
 }
 type TileProperties = {
+    class?: TileType,
     isCollideable?: true,
     depthOffset?: number,
-    collider?: Hitbox,
-    grass?: Hitbox,
-    mask?: Hitbox
+    collider?: Hitbox
 }
 
 export default class Tileset {
@@ -27,6 +27,10 @@ export default class Tileset {
     }
 
     static getTileProperties(tileset: string, id: number): TileProperties {
-        return this.scene.cache.json.get(`${tileset}.json`)[id];
+        const tileProperties = {
+            class: "Tile",
+            ...this.scene.cache.json.get(`${tileset}.json`)[id]
+        };
+        return tileProperties;
     }
 }

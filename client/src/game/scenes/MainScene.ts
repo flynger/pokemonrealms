@@ -4,11 +4,12 @@ import { EventBus } from "../EventBus";
 import Tileset from "../maps/Tileset";
 import Grass from "../tiles/Grass";
 import Tilemap from "../maps/Tilemap";
+import LocalPlayer from "../entities/LocalPlayer";
 
 const tilesets = ["kyledove", "farm_exterior"];
 
 export default class MainScene extends Scene {
-    private player: Player;
+    private player: LocalPlayer;
     map: Tilemap;
 
     constructor() {
@@ -43,7 +44,7 @@ export default class MainScene extends Scene {
         this.map.load();
 
         Player.createAnimations(this);
-        this.player = new Player(
+        this.player = new LocalPlayer(
             this, 500, 200, Player.avatars[Phaser.Math.Between(0, Player.avatars.length - 1)], 'Barry0524'
         );
 
@@ -59,6 +60,7 @@ export default class MainScene extends Scene {
 
         // follow player around with slight lerping
         this.cameras.main.startFollow(this.player, false);
+        this.cameras.main.setLerp(5 / 100, 5 / 100)
         this.cameras.main.setZoom(1.4);
 
         // This will trigger the scene as now being ready.
@@ -67,7 +69,7 @@ export default class MainScene extends Scene {
 
     update(time: number, delta: number) {
         // Update player
-        this.cameras.main.setLerp(delta / 100, delta / 100)
+        // this.cameras.main.setLerp(delta / 100, delta / 100)
         this.player.update(time, delta);
     }
 }
