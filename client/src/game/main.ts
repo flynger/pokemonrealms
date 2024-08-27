@@ -25,12 +25,15 @@ const config: Types.Core.GameConfig = {
     ]
 };
 
-const StartGame = (parent: string) => {
-    const font = new FontFaceObserver('Power Clear');
-    font.load();
+const StartGame = async (parent: string): Promise<Game> => {
+  const font = new FontFaceObserver('Power Clear');
 
-    return new Game({ ...config, parent });
-}
+  // Wait for the font to load
+  await font.load();
+
+  // After the font has loaded, return the new game instance
+  return new Game({ ...config, parent });
+};
 
 export default StartGame;
 

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 
 function StartersImg({ initial, inView, transition, viewport, pokemonSrc: { pokemon1Src, pokemon2Src, pokemon3Src } }) {
-    console.log(pokemon1Src)
+    // console.log(pokemon1Src)
     return (
         <Container style={{ marginBottom: "2rem" }}>
             <Row>

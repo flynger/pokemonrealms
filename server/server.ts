@@ -1,8 +1,9 @@
 import './globals/globals';
 import express from 'express';
 import color from './util/color';
-import Pokemon from './src/pokemon';
+import Pokemon from './src/pokemon'; 
 import SingleBattle from './src/battle/singleBattle';
+import { Server, Socket } from 'socket.io';
 
 const mon: Pokemon = new Pokemon("Bulbasaur", 10, { caughtBall: "Master Ball" });
 const mon2: Pokemon = new Pokemon("Mareep", 10);
@@ -33,10 +34,10 @@ const app = express();
 const port = 8000;
 const serverName = 'Pokemon Realms';
 
-const clientDirectory = './client/build';
-const clientSendOptions = { root: clientDirectory };
+// const clientDirectory = './client/build';
+// const clientSendOptions = { root: clientDirectory };
 
-app.use(express.static(clientDirectory));
+// app.use(express.static(clientDirectory));
 // app.use(
 //     cors({
 //         origin: '*',
@@ -45,6 +46,32 @@ app.use(express.static(clientDirectory));
 
 const expressServer = app.listen(port, () => console.log(color.blue, `Starting Server: ${serverName} on port ${port}`));
 
-app.get('/', (_, res) => {
-    res.sendFile('index.html', clientSendOptions);
+const io = new Server(expressServer, {
+    cors: {
+        origin: "http://localhost:3000", // Replace with your React app's URL
+        methods: ["GET", "POST"],
+        credentials: true
+    },
 });
+
+io.on('connection', (socket: Socket) => {
+  console.log(`User connected: ${socket.id}`);
+
+  // Listen for messages from the client
+  socket.on('message', (message: string) => {
+    console.log(`Received message: ${message}`);
+
+    // Broadcast the message to all clients
+    io.emit('message', message);
+  });
+
+  // Handle disconnection
+  socket.on('disconnect', () => {
+    console.log(`User disconnected: ${socket.id}`);
+  });
+});
+
+
+// app.get('/', (_, res) => {
+//     res.sendFile('index.html', clientSendOptions);
+// });

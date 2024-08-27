@@ -12,16 +12,19 @@ interface IProps {
 }
 
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame({ currentActiveScene }, ref) {
-    const game = useRef<Phaser.Game | null>(null!);
+    const game = useRef<Phaser.Game | null>(null);
 
     useLayoutEffect(() => {
         if (game.current === null) {
-            game.current = StartGame("game-container");
-            if (typeof ref === 'function') {
-                ref({ game: game.current, scene: null });
-            } else if (ref) {
-                ref.current = { game: game.current, scene: null };
-            }
+            StartGame("game-container").then(newGame => {
+                game.current = newGame;
+
+                if (typeof ref === 'function') {
+                    ref({ game: game.current, scene: null });
+                } else if (ref) {
+                    ref.current = { game: game.current, scene: null };
+                }
+            });
         }
 
         return () => {
