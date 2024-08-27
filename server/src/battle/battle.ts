@@ -4,7 +4,7 @@ import Side from "./side";
 import BattleParty, { InputKind } from "./battleParty";
 import BattleSpot from "./battleSpot";
 import Move, { Moves } from "../pokedex/move";
-import { executeMove } from "./battleMove";
+import { executeMove, executeRun } from "./battleMove";
 
 export interface BattleConfig {
     field?: Field,
@@ -46,6 +46,8 @@ export default class Battle {
                 case "move":
                     executeMove(nextInput, nextMon, this.spots);
                     break;
+                // case "run":
+                //     executeRun();
                 default:
                     throw new Error("Unknown input " + nextInput.kind + " by " + nextMon.getName());
             }

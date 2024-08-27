@@ -6,8 +6,11 @@
       "esModuleInterop": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
-      "typeRoots": ["./node_modules/@types", "./src"],
-      "baseUrl": "./src"
+      // "typeRoots": ["./node_modules/@types", "./src"],
+      "baseUrl": "./src",
+      "paths": {
+        "@/*": ["../*"]
+      }
     },
     "include": ["src", "globals"]
   }
