@@ -4,30 +4,31 @@ import Pokemon from "./src/pokemon";
 import SingleBattle from './src/battle/singleBattle';
 import { Server, Socket } from 'socket.io';
 import Player from "./src/players/player";
+import { Vector2 } from "../shared/maps/types";
 
-const mon: Pokemon = new Pokemon("Bulbasaur", 10, { caughtBall: "Master Ball" });
-const mon2: Pokemon = new Pokemon("Mareep", 10);
-console.log(mon)
-console.log(mon2)
-const p1 = [mon];
-const p2 = [mon2];
-const battle = new SingleBattle(p1, p2);
-const party1 = battle.sides[0].parties[0];
-const party2 = battle.sides[1].parties[0];
-party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+// const mon: Pokemon = new Pokemon("Bulbasaur", 10, { caughtBall: "Master Ball" });
+// const mon2: Pokemon = new Pokemon("Mareep", 10);
+// console.log(mon)
+// console.log(mon2)
+// const p1 = [mon];
+// const p2 = [mon2];
+// const battle = new SingleBattle(p1, p2);
+// const party1 = battle.sides[0].parties[0];
+// const party2 = battle.sides[1].parties[0];
+// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
+// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
 // console.log(battle);
 
 const app = express();
@@ -52,24 +53,25 @@ io.on('connection', (socket: Socket) => {
   console.log(`User connected: ${socket.id}`);
   const player = new Player();
 
-  // Listen for messages from the client
-  socket.on('startEncounter', () => {
-    // console.log(`Received message: ${message}`);
+  socket.on('movePlayer', (position: Vector2) => player.moveTo(position));
 
-    // Broadcast the message to all clients
-    // io.emit('message', message);
+  socket.on('startEncounter', () => {
+    player;
   });
 
   // Handle disconnection
   socket.on('disconnect', () => {
     console.log(`User disconnected: ${socket.id}`);
+    socket.broadcast.emit("disconnectPlayer", player.name);
   });
 
   // send initial data
-  // socket.emit()
+  socket.emit("loadMap", { player: player.getMapData() });
 });
 
 
 // app.get('/', (_, res) => {
 //     res.sendFile('index.html', clientSendOptions);
 // });
+
+export default io;

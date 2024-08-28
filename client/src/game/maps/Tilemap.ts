@@ -2,25 +2,29 @@ import { Scene } from "phaser";
 import Tile from "../tiles/Tile";
 import Tileset from "./Tileset";
 import Grass from "../tiles/Grass";
+import { MapLocation } from "@/shared/maps/types";
+import Player, { Players } from "../entities/Player";
 
 // type Tile = Record<string, number> | null;
 export default class Tilemap {
     scene: Scene;
-    area: string;
+    loc: MapLocation;
     subarea: string;
     width: number;
     height: number;
     // layers: Tile[][];
 
-    constructor(scene: Scene, area: string, subarea: string) {
-        this.area = area;
-        this.subarea = subarea;
+    constructor(scene: Scene, loc: MapLocation) {
+        this.loc = loc;
         this.scene = scene;
-        scene.load.json(`${area}/${subarea}.json`, `maps/${area}/${subarea}.json`);
+        const { map, subarea } = loc;
+        scene.load.json(`${map}/${subarea}.json`, `maps/${map}/${subarea}.json`);
     }
 
     load() {
-        const mapData = this.scene.cache.json.get(`${this.area}/${this.subarea}.json`);
+        Players.clear();
+
+        const mapData = this.scene.cache.json.get(`${this.loc.map}/${this.loc.subarea}.json`);
         this.width = mapData.width;
         this.height = mapData.height;
         const tileWidth = this.width / 32;
@@ -36,7 +40,7 @@ export default class Tilemap {
                     const tileId = tile[tileset];
                     const x = 32 * (+j % tileWidth) + 16;
                     const y = 32 * Math.floor(+j / tileWidth) + 16;
-                    console.log(tile)
+                    
                     const tileProperties = Tileset.getTileProperties(tileset, tileId);
                     const tileType = tileProperties?.class ?? "Tile";
                     switch (tileType) {

@@ -1,12 +1,13 @@
-import Player from "../entities/Player";
+import Player, { Players } from "../entities/Player";
 import { GameObjects, Physics, Scene, Tilemaps } from "phaser";
 import { EventBus } from "../EventBus";
 import Tileset from "../maps/Tileset";
 import Grass from "../tiles/Grass";
 import Tilemap from "../maps/Tilemap";
 import LocalPlayer from "../entities/LocalPlayer";
+import { InitialMapData, PlayerMovementData } from "@/shared/maps/types";
 
-const tilesets = ["kyledove", "farm_exterior"];
+// const tilesets = ["kyledove", "farm_exterior"];
 
 export default class MainScene extends Scene {
     private player: LocalPlayer;
@@ -17,6 +18,7 @@ export default class MainScene extends Scene {
     }
 
     preload() {
+        console.log("MainScene preload")
         // this.load.setPath('assets');
 
         // load the player spritesheet(s)
@@ -31,7 +33,8 @@ export default class MainScene extends Scene {
         Tileset.initializeAll(this);
 
         // load the JSON file
-        this.map = new Tilemap(this, "Ranch", "Ranch");
+        const mapData: InitialMapData = this.registry.get("mapData");
+        this.map = new Tilemap(this, mapData.player.location);
         this.load.spritesheet("yellow_leaf",
             "assets/particles/yellow_leaf_extruded.png",
             { frameWidth: 8, frameHeight: 8, spacing: 2, margin: 1 }
@@ -39,13 +42,16 @@ export default class MainScene extends Scene {
     }
 
     create() {
+        console.log("MainScene create")
         // Load map & grass
         Grass.initialize();
         this.map.load();
 
         Player.createAnimations(this);
+        const mapData: InitialMapData = this.registry.get("mapData");
+        const { position, name, avatar } = mapData.player;
         this.player = new LocalPlayer(
-            this, 500, 200, Player.avatars[Phaser.Math.Between(0, Player.avatars.length - 1)], 'Barry0524'
+            this, position.x, position.y, avatar, name
         );
 
         //  Bounce the sprites just to show they're no longer tiles:
@@ -64,12 +70,34 @@ export default class MainScene extends Scene {
         this.cameras.main.setZoom(1.4);
 
         // This will trigger the scene as now being ready.
+        this.registry.remove("mapData");
         EventBus.emit('current-scene-ready', this);
     }
 
     update(time: number, delta: number) {
         // Update player
         // this.cameras.main.setLerp(delta / 100, delta / 100)
-        this.player.update(time, delta);
+        for (const player of Players.values()) {
+            player.update(time, delta);
+        }
+    }
+
+    movePlayer({ name, avatar, position }: PlayerMovementData) {
+        if (name === this.player.name) return;
+        
+        if (!Players.has(name)) {
+            new Player(
+                this, position.x, position.y, avatar, name
+            );
+        } else {
+            const player = Players.get(name);
+            player?.tweenToPosition(position.x, position.y);
+        }
+    }
+
+    removePlayer(name: string) {
+        const player = Players.get(name);
+        player?.destroy();
+        Players.delete(name);
     }
 }

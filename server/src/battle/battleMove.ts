@@ -50,10 +50,9 @@ const dealDamage = (user: Pokemon, recipients: BattleSpot[], power: number) => {
             recipient.mon = undefined;
         }
     }
-
-    const calculateRun = (userSpe: number, foeSpe: number, runTimes: number = 1): boolean => {
-        let runChance = (userSpe*32/(foeSpe/4))+30*runTimes; 
-        return Math.random() * 255 < runChance;
-    }
 }
 
+const calculateRun = (userSpe: number, foeSpe: number, runTimes: number = 1): boolean => {
+    let runChance = (userSpe*32/(foeSpe/4))+30*runTimes; 
+    return Math.random() * 255 < runChance;
+}

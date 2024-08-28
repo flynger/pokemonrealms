@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
 import StartGame from './main';
 import { EventBus } from './EventBus';
+import { InitialMapData } from '@/shared/maps/types';
 
 export interface IRefPhaserGame {
     game: Phaser.Game | null;
@@ -9,14 +10,15 @@ export interface IRefPhaserGame {
 
 interface IProps {
     currentActiveScene?: (scene_instance: Phaser.Scene) => void
+    mapData: InitialMapData; // Accept mapData prop
 }
 
-export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame({ currentActiveScene }, ref) {
+export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame({ currentActiveScene, mapData }, ref) {
     const game = useRef<Phaser.Game | null>(null);
 
     useLayoutEffect(() => {
         if (game.current === null) {
-            StartGame("game-container").then(newGame => {
+            StartGame("game-container", mapData).then(newGame => {
                 game.current = newGame;
 
                 if (typeof ref === 'function') {

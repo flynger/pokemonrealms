@@ -1,0 +1,1 @@
+export type PlayerAvatar = "red" | "blue" | "may"; //"green", "may", "greenMay", "brendan", "oak";

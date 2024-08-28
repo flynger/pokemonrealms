@@ -1,11 +1,11 @@
 const Maps = [
     {
         map: "Ranch",
-        submap: ""
+        subarea: "Ranch"
     },
     {
         map: "Test",
-        submap: "Test"
+        subarea: "Test"
     }
 ] as const;
 

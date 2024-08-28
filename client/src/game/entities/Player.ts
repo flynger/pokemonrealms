@@ -1,23 +1,30 @@
-import { Scene, Physics, GameObjects, Input, Types, Animations } from 'phaser';
-import MainScene from '../scenes/MainScene';
+import { Scene, GameObjects, Animations } from 'phaser';
 import Grass from '../tiles/Grass';
-import { EventBus } from '../EventBus';
 import Tile from '../tiles/Tile';
+import { PlayerAvatar } from '@/shared/players/types';
+import LocalPlayer from './LocalPlayer';
+import { Vector2 } from '@/shared/maps/types';
 
 export default class Player extends GameObjects.Container {
-    static readonly avatars = ["red", "blue", "green", "may", "greenMay", "brendan", "oak"]; // "bug_catcher", "cloudz", "flynger"
+    protected static readonly POSITION_UPDATE_INTERVAL = 500;
+    static readonly avatars: PlayerAvatar[] = ["red", "blue", "may"] as const; // "bug_catcher", "cloudz", "flynger"
     static readonly speed = 180;
     static readonly NAME_TAG = {
         OFFSET: 41,
         PADDING_X: 16
     } as const;
 
-    scene: MainScene;
+    scene: Scene;
     headSprite: GameObjects.Sprite;
     bodySprite: GameObjects.Sprite;
     nameTagBackground: GameObjects.Graphics;
     nameTag: GameObjects.Text;
     avatar: string;
+    name: string;
+
+    /* For estimating velocity */
+    private prevX: number;
+    private prevY: number;
 
     declare body: Phaser.Physics.Arcade.Body; // Assert proper type
 
@@ -43,10 +50,11 @@ export default class Player extends GameObjects.Container {
         }
     }
 
-    constructor(scene: MainScene, x: number, y: number, avatar: string, name: string) {
+    constructor(scene: Scene, x: number, y: number, avatar: string, name: string) {
         super(scene, x, y);
         this.scene = scene;
         this.avatar = avatar;
+        this.name = name;
 
         // Create sprite
         this.headSprite = scene.add.sprite(0, 0, avatar);
@@ -97,11 +105,14 @@ export default class Player extends GameObjects.Container {
             this.nameTag.setPosition(this.x + 1, this.y - Player.NAME_TAG.OFFSET);
             this.nameTagBackground.setPosition(this.x, this.y - Player.NAME_TAG.OFFSET);
         });
+
+        Players.set(name, this);
+        console.log("Creating player: " + name);
     }
 
     update(time: number, delta: number) {
-        const [velocityX, velocityY] = this.getVelocity();
-        this.body.setVelocity(velocityX, velocityY);
+        const { x: velocityX, y: velocityY } = this.getVelocity(delta);
+        
         if (this.scene.physics.world.overlap(this, Grass.list)) {
             this.bodySprite.setAlpha(0.25);
             this.bodySprite.setTint(0x444444);
@@ -141,8 +152,24 @@ export default class Player extends GameObjects.Container {
         this.bodySprite.setDepth(this.y + 6);
     }
 
-    getVelocity(): [velocityX: number, velocityY: number] {
-        return [0, 0];
+    tweenToPosition(targetX: number, targetY: number, duration: number = Player.POSITION_UPDATE_INTERVAL) {
+        this.scene.tweens.add({
+            targets: this,
+            x: targetX,
+            y: targetY,
+            duration,
+            ease: Phaser.Math.Easing.Linear
+        });
+    }
+
+    getVelocity(delta: number): Vector2 {
+        const velocity = {
+            x: (this.x - this.prevX) / delta,
+            y: (this.y - this.prevY) / delta
+        };
+        this.prevX = this.x;
+        this.prevY = this.y;
+        return velocity;
     }
 
     onGrass(delta: number) {}
@@ -172,7 +199,17 @@ export default class Player extends GameObjects.Container {
         });
         emitter.setDepth(2000);
     }
+
+    destroy(fromScene?: boolean): void {
+        super.destroy(fromScene);
+        this.bodySprite.destroy();
+        this.nameTag.destroy();
+        this.nameTagBackground.destroy();
+    }
 }
+
+
+export const Players: Map<string, Player> = new Map();
 
 // class PlayerTag extends GameObjects.Text {
 //     static style = { font: '18px Power Clear', fill: '#ebebeb', backgroundColor: '#333', shadow: { offsetX: 30, offsetY: 30, color: "#666", fill: true } };
