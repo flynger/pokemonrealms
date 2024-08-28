@@ -36,6 +36,7 @@ export default class Tilemap {
                     const tileId = tile[tileset];
                     const x = 32 * (+j % tileWidth) + 16;
                     const y = 32 * Math.floor(+j / tileWidth) + 16;
+                    console.log(tile)
                     const tileProperties = Tileset.getTileProperties(tileset, tileId);
                     const tileType = tileProperties?.class ?? "Tile";
                     switch (tileType) {

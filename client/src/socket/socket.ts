@@ -7,6 +7,4 @@ const socket: Socket = io(SERVER_URL, {
     transports: ["websocket", "polling"],
 });
 
-console.log(["a","b"].random());
-
 export default socket;

@@ -1,5 +1,3 @@
-import "../shared/prototype/globals";
-
 import express from 'express';
 import color from './util/color';
 import Pokemon from "./src/pokemon";
