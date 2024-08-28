@@ -27,7 +27,7 @@ export default class BattleParty {
     }
 }
 
-export type InputKind = "move";
+export type InputKind = "move" | "run";
 
 export type BattleInput = MoveInput // | SwitchInput | ItemInput | RunInput
 

@@ -54,10 +54,10 @@ io.on('connection', (socket: Socket) => {
 
   // Listen for messages from the client
   socket.on('startEncounter', () => {
-    console.log(`Received message: ${message}`);
+    // console.log(`Received message: ${message}`);
 
     // Broadcast the message to all clients
-    io.emit('message', message);
+    // io.emit('message', message);
   });
 
   // Handle disconnection
@@ -66,7 +66,7 @@ io.on('connection', (socket: Socket) => {
   });
 
   // send initial data
-  socket.emit()
+  // socket.emit()
 });
 
 

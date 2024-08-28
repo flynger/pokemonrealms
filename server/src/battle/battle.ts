@@ -52,7 +52,7 @@ export default class Battle {
                     throw new Error("Unknown input " + nextInput.kind + " by " + nextMon.getName());
             }
             nextSpot.nextInput = undefined;
-            
+
             occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
         }
 
@@ -72,5 +72,13 @@ export default class Battle {
 
     isSpotWithMon(spot: BattleSpot): spot is BattleSpot & { mon: Pokemon } {
         return spot.mon !== undefined;
+    }
+
+    getHighestOpposingSpeed(side: Side) {
+        let livingOpposingSpots = this.sides
+            .filter(thisSide => thisSide !== side)
+            .map(thisSide => thisSide.getAliveSpots())
+            .flat()
+            .reduce((max, spot) => Math.max(max, spot.mon!.spe), 0);
     }
 }

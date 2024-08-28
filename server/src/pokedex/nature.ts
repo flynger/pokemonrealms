@@ -1,4 +1,5 @@
 // import "../util/types";
+import { randomElement } from "../../../shared/shared";
 import { Stat } from "../pokemon";
 
 // Define all Pokémon natures and their effects
@@ -45,6 +46,6 @@ export default class Natures {
     }
 
     static getRandom(): Nature {
-        return (Object.keys(Natures.entries) as Nature[]).random();
+        return randomElement((Object.keys(Natures.entries) as Nature[]));
     }
 }
