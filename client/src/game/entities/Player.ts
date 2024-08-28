@@ -2,7 +2,6 @@ import { Scene, GameObjects, Animations } from 'phaser';
 import Grass from '../tiles/Grass';
 import Tile from '../tiles/Tile';
 import { PlayerAvatar } from '@/shared/players/types';
-import LocalPlayer from './LocalPlayer';
 import { Vector2 } from '@/shared/maps/types';
 
 export default class Player extends GameObjects.Container {

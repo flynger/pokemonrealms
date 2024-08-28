@@ -16,6 +16,8 @@ function Game() {
     const [mapData, setMapData] = useState<InitialMapData | null>(null); // State to store map data
 
     useEffect(() => {
+        // FIXME: Ghost player is created (second socket connection doesnt override first)
+        //console.log("socket useEffect ran")
         socket.on('connect', () => { setIsConnected(true); console.log("Socket connected") });
         socket.on('disconnect', () => setIsConnected(false));
 
