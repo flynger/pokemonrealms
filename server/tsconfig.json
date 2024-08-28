@@ -9,8 +9,8 @@
       // "typeRoots": ["./node_modules/@types", "./src"],
       "baseUrl": "./src",
       "paths": {
-        "@/*": ["../*"]
+        "@/*": ["../../*"]
       }
     },
-    "include": ["src", "globals"]
+    "include": ["src", "../shared"]
   }

@@ -3,7 +3,8 @@ import GrowthRates from "./pokedex/data/growthRates";
 import Move from "./pokedex/move";
 import Natures, { Nature } from "./pokedex/nature";
 import Pokedex, { AbilitySlot, Gender, Species } from "./pokedex/pokedex";
-import { createStats, randomInteger } from "./util/util";
+import { createStats } from "./util/util";
+import { randomInteger } from "../../shared/shared";
 
 export default class Pokemon implements Stats {
     static id = 1;

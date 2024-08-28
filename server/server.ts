@@ -1,7 +1,9 @@
-import './globals/globals';
+import "../shared/prototype/globals";
+import "../shared/shared";
+
 import express from 'express';
 import color from './util/color';
-import Pokemon from './src/pokemon'; 
+import Pokemon from "./src/pokemon";
 import SingleBattle from './src/battle/singleBattle';
 import { Server, Socket } from 'socket.io';
 

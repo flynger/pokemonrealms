@@ -1,4 +1,5 @@
 // import React from 'react';
+import "../../shared/globals.ts";
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import socket from './socket/socket.ts';

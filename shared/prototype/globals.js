@@ -1,4 +1,5 @@
-const { randomInteger } = require("../src/util/util");
+const { randomInteger } = require("../shared");
+
 // changing Array prototype methods
 Array.prototype.remove = function (e) {
     return this.removeIndex(this.indexOf(e));

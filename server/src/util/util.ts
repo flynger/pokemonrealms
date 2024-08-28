@@ -2,13 +2,6 @@ import { StatStages } from "battle/battleSpot";
 import { Stats } from "../pokemon";
 
 /* Helper functions (Common and Recurring) */
-export function randomInteger(min: number, max: number): number {
-    if (!Number.isSafeInteger(min) || !Number.isSafeInteger(max)) throw Error("Non-integer parameters passed into randomInteger");
-    return Math.floor(randomFloat(min, max));
-}
-export function randomFloat(min: number, max: number): number {
-    return Math.random() * (max - min + 1) + min;
-}
 export function createStats(stats: Partial<Stats>, defaultValue: () => number): Stats {
     return {
         hp: stats.hp ?? defaultValue(),

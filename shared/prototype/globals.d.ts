@@ -9,5 +9,5 @@ declare global {
     }
 }
 
-/* Types (Common and Recurring) */
+/* Types */
 export type NonEmptyArray<T> = [T, ...T[]];
