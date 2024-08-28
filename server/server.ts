@@ -3,6 +3,7 @@ import color from './util/color';
 import Pokemon from "./src/pokemon";
 import SingleBattle from './src/battle/singleBattle';
 import { Server, Socket } from 'socket.io';
+import Player from "./src/players/player";
 
 const mon: Pokemon = new Pokemon("Bulbasaur", 10, { caughtBall: "Master Ball" });
 const mon2: Pokemon = new Pokemon("Mareep", 10);
@@ -45,19 +46,14 @@ const serverName = 'Pokemon Realms';
 
 const expressServer = app.listen(port, () => console.log(color.blue, `Starting Server: ${serverName} on port ${port}`));
 
-const io = new Server(expressServer, {
-    cors: {
-        origin: "http://localhost:3000", // Replace with your React app's URL
-        methods: ["GET", "POST"],
-        credentials: true
-    },
-});
+const io = new Server(expressServer);
 
 io.on('connection', (socket: Socket) => {
   console.log(`User connected: ${socket.id}`);
+  const player = new Player();
 
   // Listen for messages from the client
-  socket.on('message', (message: string) => {
+  socket.on('startEncounter', () => {
     console.log(`Received message: ${message}`);
 
     // Broadcast the message to all clients
@@ -68,6 +64,9 @@ io.on('connection', (socket: Socket) => {
   socket.on('disconnect', () => {
     console.log(`User disconnected: ${socket.id}`);
   });
+
+  // send initial data
+  socket.emit()
 });
 
 

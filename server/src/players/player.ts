@@ -1,18 +1,23 @@
+import { MapLocation } from "@/shared/maps/types";
+
 export default class Player {
     avatar: PlayerAvatar = "red";
-    loc: Location = {
+    loc: MapLocation = {
         map: "Ranch",
         submap: ""
     };
-    pos: Vector2;
+    pos: Vector2 = { x: 500, y: 200 };
+
     constructor() {
-        this.pos = { x: 0, y: 0 };
+        // this.pos = pos;
+    }
+
+    moveTo(pos: Vector2) {
+        this.pos = pos;
+        // update map
     }
 }
 
 type PlayerAvatar = "red";
-type Location = {
-    map: "Ranch",
-    submap: ""
-};
+
 type Vector2 = { x: number, y: number };
