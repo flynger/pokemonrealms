@@ -21,7 +21,7 @@
         "typescript"
     ],
     "scripts": {
-        "dev": "vite --config vite/config.dev.mjs",
+        "dev": "vite --config vite/config.dev.mjs --host",
         "build": "vite build --config vite/config.prod.mjs"
     },
     "dependencies": {

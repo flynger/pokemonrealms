@@ -6,7 +6,7 @@ import LocalPlayer from './LocalPlayer';
 import { Vector2 } from '@/shared/maps/types';
 
 export default class Player extends GameObjects.Container {
-    protected static readonly POSITION_UPDATE_INTERVAL = 500;
+    protected static readonly POSITION_UPDATE_INTERVAL = 250;
     static readonly avatars: PlayerAvatar[] = ["red", "blue", "may"] as const; // "bug_catcher", "cloudz", "flynger"
     static readonly speed = 180;
     static readonly NAME_TAG = {
