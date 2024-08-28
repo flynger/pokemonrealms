@@ -1,5 +1,4 @@
 import "../shared/prototype/globals";
-import "../shared/shared";
 
 import express from 'express';
 import color from './util/color';

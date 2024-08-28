@@ -10,7 +10,8 @@
       "baseUrl": "./src",
       "paths": {
         "@/*": ["../../*"]
-      }
+      },
+      "allowJs": true
     },
     "include": ["src", "../shared"]
   }

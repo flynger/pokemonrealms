@@ -1,4 +1,4 @@
-const { randomInteger } = require("../shared");
+import { randomInteger } from "../shared";
 
 // changing Array prototype methods
 Array.prototype.remove = function (e) {
