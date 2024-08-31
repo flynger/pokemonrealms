@@ -45,9 +45,23 @@ interface MoveFlags {
     wind?: 1; // Activates the Wind Power and Wind Rider Abilities.
 }
 
-export type MoveTarget = "self" | "adjacentFoe" | "allAdjacentFoes";
-// 'adjacentAlly' | 'adjacentAllyOrSelf' | 'adjacentFoe' | 'all' | 'allAdjacent' | 'allAdjacentFoes' |
-// 'allies' | 'allySide' | 'allyTeam' | 'any' | 'foeSide' | 'randomNormal' | 'scripted' | 'self';
+export type MoveTarget =
+    | "normal" // any adjacent target
+    // | "foe" // any adjacent foe
+    // | "randomFoe"
+    | "self" // you
+    // | "ally" // any adjacent ally
+    // | "selfOrAlly" // you or an adjacent ally
+    // | "other" // any foe or ally (Long-range)
+
+    // | "allyParties"
+
+    // | "allAllies"
+    // | "allAllies"
+
+    // | "field"
+    // | "allySide"
+    // | "foeSide"
 
 interface MoveEntry {
     num: number,
@@ -64,13 +78,27 @@ interface MoveEntry {
 
 export class Moves {
     private static entries: Record<Move, MoveEntry> = MOVE_DATA;
+    private static needsTargets = new Set([
+        "normal"
+    ]);
 
     static get(move: Move): MoveEntry {
         const moveEntry: MoveEntry = {
             name: move,
             power: 0,
             accuracy: 100,
-            target: "adjacentFoe",
+            target: "normal",
+            ...Moves.entries[move]
+        };
+        return moveEntry;
+    }
+
+    static getMoveTargets(move: Move): MoveEntry {
+        const moveEntry: MoveEntry = {
+            name: move,
+            power: 0,
+            accuracy: 100,
+            target: "normal",
             ...Moves.entries[move]
         };
         return moveEntry;

@@ -3,31 +3,26 @@ import BattleSpot from "./battleSpot";
 import Battle from "./battle";
 import Player from "players/player";
 import BattleAI from "./AI/battleAI";
+import BattleMon from "./battleMon";
 
 /* Every trainer is represented as a BattleParty */
 export default class BattleParty {
+    // Before the battle
     controller: Player | BattleAI;
-    spots: BattleSpot[];
-    battle: Battle;
-    members: Pokemon[];
+    members: BattleMon[];
 
-    constructor(battle: Battle, members: Pokemon[], spots: number, controller?: Player) {
-        this.controller = controller ?? new BattleAI();
-        this.battle = battle;
+    // After battle is created
+    spots?: BattleSpot[];
+    battle?: Battle;
+
+    constructor(members: BattleMon[], controller?: Player) {
+        this.controller = controller ?? new BattleAI(this);
         this.members = members;
-        this.spots = new Array(spots).fill(0).map((_, i) => new BattleSpot(battle, this, this.members[i]));
     }
 
-    takeInput(partyId: number, input: BattleInput) {
-        if (!this.spots[partyId].nextInput)
-            this.spots[partyId].takeInput(input);
-    }
-
-    askForInput(input: Set<InputKind>, onlyActiveSpots: boolean = true) {
-        for (const spot of this.spots) {
-            if (!onlyActiveSpots || spot.mon)
-                spot.requiredInput = input;
-        }
+    setBattle(battle: Battle, spots: BattleSpot[]) {
+        this.battle = battle;
+        this.spots = spots;
     }
 }
 
@@ -36,6 +31,6 @@ export type InputKind = "move" | "run";
 export type BattleInput = MoveInput // | SwitchInput | ItemInput | RunInput
 
 // type SwitchInput = { switchTo: 0 | 1 | 2 | 3 | 4 | 5 }
-export type MoveInput = { kind: "move", id: 0 | 1 | 2 | 3, targets: number[] }
+export type MoveInput = { kind: "move", id: 0 | 1 | 2 | 3, target?: number }
 // type ItemInput = { useItem: Item }
 // type RunInput = { kind: "run" }

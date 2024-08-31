@@ -5,30 +5,20 @@ import SingleBattle from './src/battle/singleBattle';
 import { Server, Socket } from 'socket.io';
 import Player from "./src/players/player";
 import { Vector2 } from "../shared/maps/types";
+import BattleParty from './src/battle/battleParty';
+import BattleMon from './src/battle/battleMon';
 
-// const mon: Pokemon = new Pokemon("Bulbasaur", 10, { caughtBall: "Master Ball" });
-// const mon2: Pokemon = new Pokemon("Mareep", 10);
-// console.log(mon)
-// console.log(mon2)
-// const p1 = [mon];
-// const p2 = [mon2];
-// const battle = new SingleBattle(p1, p2);
+const mon: Pokemon = new Pokemon("Bulbasaur", 10);
+const mon2: Pokemon = new Pokemon("Mareep", 10);
+const bp1 = [new BattleMon(mon)];
+const bp2 = [new BattleMon(mon2)];
+const p1 = new BattleParty(bp1);
+const p2 = new BattleParty(bp2);
+const battle = new SingleBattle(p1, p2);
 // const party1 = battle.sides[0].parties[0];
 // const party2 = battle.sides[1].parties[0];
-// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
-// party1.takeInput(0, { kind: "move", id: 0, targets: [1] });
-// party2.takeInput(0, { kind: "move", id: 0, targets: [0] });
+// party1.takeInput(0, { kind: "move", id: 0 });
+// party2.takeInput(0, { kind: "move", id: 0 });
 // console.log(battle);
 
 const app = express();
@@ -65,8 +55,7 @@ io.on('connection', (socket: Socket) => {
     socket.broadcast.emit("disconnectPlayer", player.name);
   });
 
-  // send initial data
-  socket.emit("loadMap", { player: player.getMapData() });
+  player.onConnect(socket);
 });
 
 

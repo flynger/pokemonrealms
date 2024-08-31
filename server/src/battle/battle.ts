@@ -4,7 +4,8 @@ import Side from "./side";
 import BattleParty, { InputKind } from "./battleParty";
 import BattleSpot from "./battleSpot";
 import Move, { Moves } from "../pokedex/move";
-import { executeMove, executeRun } from "./battleMove";
+// import { executeMove, executeRun } from "./battleMove";
+import BattleMon from "./battleMon";
 
 export interface BattleConfig {
     field?: Field,
@@ -26,10 +27,13 @@ export default class Battle {
     spots: BattleSpot[] = [];
     messages: unknown[] = [];
 
-    constructor(sides: Pokemon[][][], { field = new Field(), spotsPerParty = 1 }: BattleConfig = {}) {
+    constructor(sides: BattleParty[][], { field = new Field(), spotsPerParty = 1 }: BattleConfig = {}) {
         this.sides = sides.map(side => new Side(this, side, spotsPerParty));
         this.field = field;
-        console.log(this.messages)
+        // console.log(this.messages)
+        for (const spot of this.spots) {
+            spot.getTurnInput(Battle.INPUT_OPTIONS);
+        }
         this.nextTurn();
     }
 
@@ -40,28 +44,33 @@ export default class Battle {
         while (occupiedSpots.length > 0) {
             const nextSpot = occupiedSpots.shift()!;
             // if (!nextSpot.mon) continue;
-            const nextInput = nextSpot.nextInput!;
+            const turnInput = nextSpot.turnInput!;
             const nextMon = nextSpot.mon;
-            switch (nextInput.kind) {
+            switch (turnInput.kind) {
                 case "move":
-                    executeMove(nextInput, nextMon, this.spots);
+                    const move = nextMon.moves[turnInput.id];
+                    const moveEntry = Moves.get(move);
+                    
+                    // FIXME: Get proper targets (I think implement the target logic in SingleBattle, DoubleBattle, etc.)
+                    const targets = moveEntry.target === "self" ? [nextSpot] : this.spots.filter(spot => spot !== nextSpot && spot.mon);
+                    nextMon.useMove(move, targets);
                     break;
                 // case "run":
                 //     executeRun();
                 default:
-                    throw new Error("Unknown input " + nextInput.kind + " by " + nextMon.getName());
+                    throw new Error("Unknown input " + turnInput.kind + " by " + nextMon.getName());
             }
-            nextSpot.nextInput = undefined;
+            nextSpot.turnInput = undefined;
 
             occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
         }
 
         if (this.isOver()) {
             console.log("Battle over");
-            this.nextTurn();
+            // this.nextTurn();
         } else {
-            for (const side of this.sides) {
-                side.askForInput(Battle.INPUT_OPTIONS);
+            for (const spot of this.spots) {
+                spot.getTurnInput(Battle.INPUT_OPTIONS);
             }
         }
     }
@@ -70,7 +79,7 @@ export default class Battle {
         return this.sides.filter(side => side.isAlive()).length <= 1;
     }
 
-    isSpotWithMon(spot: BattleSpot): spot is BattleSpot & { mon: Pokemon } {
+    isSpotWithMon(spot: BattleSpot): spot is BattleSpot & { mon: BattleMon } {
         return spot.mon !== undefined;
     }
 

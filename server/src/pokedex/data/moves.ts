@@ -16,7 +16,7 @@ const MOVE_DATA = {
             atk: -1,
         },
         flags: { protect: 1, reflectable: 1, mirror: 1, sound: 1, bypasssub: 1, metronome: 1 },
-        target: "allAdjacentFoes",
+        // target: "allAdjacentFoes",
     },
     "Focus Energy": {
         num: 116,
