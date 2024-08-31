@@ -6,7 +6,7 @@ import BattleParty, { BattleInput, InputKind } from "./battleParty";
 /* Every spot on the field is represented as a BattleSpot */
 export default class BattleSpot {
     mon?: Pokemon;
-    controller: BattleParty;
+    party: BattleParty;
     nextInput?: BattleInput;
     requiredInput: Set<InputKind>;
 
@@ -15,9 +15,9 @@ export default class BattleSpot {
     stages: StatStages;
     flags = {};
 
-    constructor(battle: Battle, controller: BattleParty, mon?: Pokemon) {
+    constructor(battle: Battle, party: BattleParty, mon?: Pokemon) {
         this.battle = battle;
-        this.controller = controller;
+        this.party = party;
         this.id = battle.nextSpotId++;
         this.changeMon(mon);
         this.stages = createStatStages();
