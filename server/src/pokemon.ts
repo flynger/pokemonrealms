@@ -1,4 +1,4 @@
-import Item, { Pokeball } from "pokedex/item";
+import Item, { HeldItem, Pokeball } from "pokedex/item";
 import GrowthRates from "./pokedex/data/growthRates";
 import Move from "./pokedex/move";
 import Natures, { Nature } from "./pokedex/nature";
@@ -19,7 +19,7 @@ export default class Pokemon implements Stats {
     level: number;
     xp: number;
 
-    heldItem?: Item;
+    heldItem?: HeldItem;
     readonly nature: Nature;
     friendship: number;
     readonly abilitySlot: AbilitySlot;
