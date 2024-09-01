@@ -8,6 +8,8 @@ import { Vector2 } from "../shared/maps/types";
 import BattleParty from './src/battle/battleParty';
 import BattleMon from './src/battle/battleMon';
 
+const battles = {};
+
 const mon: Pokemon = new Pokemon("Bulbasaur", 10);
 const mon2: Pokemon = new Pokemon("Mareep", 10);
 const bp1 = [new BattleMon(mon)];
@@ -47,6 +49,8 @@ io.on('connection', (socket: Socket) => {
 
   socket.on('startEncounter', () => {
     player;
+    // const party1 = battle.sides[0].parties[0];
+    // const party2 = battle.sides[1].parties[0];
   });
 
   // Handle disconnection

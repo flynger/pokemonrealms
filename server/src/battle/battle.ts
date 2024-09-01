@@ -23,7 +23,7 @@ export default class Battle {
     static readonly INPUT_OPTIONS: Set<InputKind> = new Set(["move"]);
     field: Field;
     sides: Side[];
-    nextSpotId = 0;
+    currentSpotId = 0;
     spots: BattleSpot[] = [];
     messages: unknown[] = [];
 
@@ -40,34 +40,35 @@ export default class Battle {
     nextTurn() {
         if (this.isOver() || !this.spots.every(spot => spot.isReady())) return;
 
+        // gets occupied spots by move order
         let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
+
         while (occupiedSpots.length > 0) {
-            const nextSpot = occupiedSpots.shift()!;
-            // if (!nextSpot.mon) continue;
-            const turnInput = nextSpot.turnInput!;
-            const nextMon = nextSpot.mon;
+            const currentSpot = occupiedSpots.shift()!;
+            // if (!currentSpot.mon) continue;
+            const currentMon = currentSpot.mon;
+            const turnInput = currentSpot.turnInput!;
             switch (turnInput.kind) {
                 case "move":
-                    const move = nextMon.moves[turnInput.id];
+                    const move = currentMon.moves[turnInput.id];
                     const moveEntry = Moves.get(move);
                     
                     // FIXME: Get proper targets (I think implement the target logic in SingleBattle, DoubleBattle, etc.)
-                    const targets = moveEntry.target === "self" ? [nextSpot] : this.spots.filter(spot => spot !== nextSpot && spot.mon);
-                    nextMon.useMove(move, targets);
+                    const targets = moveEntry.target === "self" ? [currentSpot] : this.spots.filter(spot => spot !== currentSpot && spot.mon);
+                    currentMon.useMove(move, targets);
                     break;
                 // case "run":
                 //     executeRun();
                 default:
-                    throw new Error("Unknown input " + turnInput.kind + " by " + nextMon.getName());
+                    throw new Error("Unknown input " + turnInput.kind + " by " + currentMon.getName());
             }
-            nextSpot.turnInput = undefined;
+            currentSpot.turnInput = undefined;
 
             occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
         }
 
         if (this.isOver()) {
             console.log("Battle over");
-            // this.nextTurn();
         } else {
             for (const spot of this.spots) {
                 spot.getTurnInput(Battle.INPUT_OPTIONS);
