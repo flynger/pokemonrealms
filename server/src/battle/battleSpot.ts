@@ -19,7 +19,7 @@ export default class BattleSpot {
     constructor(battle: Battle, party: BattleParty, mon?: BattleMon) {
         this.battle = battle;
         this.party = party;
-        this.id = battle.nextSpotId++;
+        this.id = battle.currentSpotId++;
         this.changeMon(mon);
         this.stages = createStatStages();
         this.requiredInput = Battle.INPUT_OPTIONS; //new Set<InputKind>();

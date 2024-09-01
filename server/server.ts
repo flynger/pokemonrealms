@@ -8,6 +8,7 @@ import { Vector2 } from "../shared/maps/types";
 import BattleParty from './src/battle/battleParty';
 import BattleMon from './src/battle/battleMon';
 
+const users: { [key: string]: any } = {};
 const battles = {};
 
 const mon: Pokemon = new Pokemon("Bulbasaur", 10);
@@ -47,10 +48,19 @@ io.on('connection', (socket: Socket) => {
 
   socket.on('movePlayer', (position: Vector2) => player.moveTo(position));
 
+  socket.on('authenticate', (data) => {
+    users[socket.id] = { username: data.username };
+    console.log(`User authenticated: ${data.username}`);
+  });
+
   socket.on('startEncounter', () => {
-    player;
-    // const party1 = battle.sides[0].parties[0];
-    // const party2 = battle.sides[1].parties[0];
+    console.log("Starting encounter");
+    const user = users[socket.id];
+    const wildMon: Pokemon = new Pokemon("Bulbasaur", 10);
+    // TODO pull mon from user's party from a database
+    const bp1 = [new BattleMon(wildMon)];
+    const p1 = new BattleParty(bp1);
+    // const battle = new SingleBattle(p1, p2);
   });
 
   // Handle disconnection
