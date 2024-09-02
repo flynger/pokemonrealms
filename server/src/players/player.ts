@@ -4,6 +4,8 @@ import { MapLocation, PlayerMapData, PlayerMovementData, Vector2 } from "@/share
 import { randomInteger } from "../../../shared/shared";
 import { PlayerAvatar } from "../../../shared/players/types";
 import { Socket } from "socket.io";
+import BattleParty from '../battle/battleParty';
+import Battle from '../battle/battle';
 
 export default class Player {
     private static readonly entries: Map<string, Player> = new Map();
@@ -15,7 +17,9 @@ export default class Player {
     };
     position: Vector2 = { x: 500, y: 200 };
     socket?: Socket;
-
+    party?: BattleParty;
+    battle?: Battle;
+    
     constructor(name?: string) {
         while (name === undefined || Player.entries.has(name)) {
             name = "Guest " + randomInteger(1, 9999);

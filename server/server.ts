@@ -8,9 +8,6 @@ import { Vector2 } from "../shared/maps/types";
 import BattleParty from './src/battle/battleParty';
 import BattleMon from './src/battle/battleMon';
 
-const users: { [key: string]: any } = {};
-const battles = {};
-
 const mon: Pokemon = new Pokemon("Bulbasaur", 10);
 const mon2: Pokemon = new Pokemon("Mareep", 10);
 const bp1 = [new BattleMon(mon)];
@@ -45,22 +42,28 @@ const io = new Server(expressServer);
 io.on('connection', (socket: Socket) => {
   console.log(`User connected: ${socket.id}`);
   const player = new Player();
+  const playerBp = [new BattleMon(new Pokemon("Mareep", 10))];
+  player.party = new BattleParty(playerBp);
 
   socket.on('movePlayer', (position: Vector2) => player.moveTo(position));
 
   socket.on('authenticate', (data) => {
-    users[socket.id] = { username: data.username };
-    console.log(`User authenticated: ${data.username}`);
+    // users[socket.id] = { username: data.username };
+    // console.log(`User authenticated: ${data.username}`);
+  });
+
+  socket.on('battleInput', (data) => {
+    //TODO validate input
+
   });
 
   socket.on('startEncounter', () => {
     console.log("Starting encounter");
-    const user = users[socket.id];
+    if (!player || !player.party || player.battle ) return;
+    
     const wildMon: Pokemon = new Pokemon("Bulbasaur", 10);
-    // TODO pull mon from user's party from a database
     const bp1 = [new BattleMon(wildMon)];
-    const p1 = new BattleParty(bp1);
-    // const battle = new SingleBattle(p1, p2);
+    player.battle = new SingleBattle(player.party, p2);
   });
 
   // Handle disconnection
