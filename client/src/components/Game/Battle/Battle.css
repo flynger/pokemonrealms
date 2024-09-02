@@ -131,11 +131,35 @@
     font-size: 4em;
     text-shadow: 0.08em 0.08em 0 #666666;
     color: white;
-    padding-left: 2%;
 }
 
-#battle-msg {
+/* Battle message */
+#battle-dialogue {
     cursor: pointer;
+    padding-left: 2%;
+    height: 100%;
+    width: 100%;
+
+    /* height: 100%;
+    width: 100%;
+    overflow: hidden;
+    animation: type 4s steps(60, end); */
+}
+
+#battle-dialogue span {
+    opacity: 0; /* Initially hidden */
+    display: inline-block;
+    animation: typewriter 0s forwards; /* Animation fills forward to make it permanent */
+    white-space: pre; /* Preserves spaces between characters */
+}
+  
+@keyframes typewriter {
+    0% {
+        opacity: 0; /* Hidden at the start */
+    }
+    100% {
+        opacity: 1; /* Fully visible at the end */
+    }
 }
 
 #battle-btns {
