@@ -36,17 +36,20 @@ export default class BattleSpot {
 
     getTurnInput(input: Set<InputKind>) {
         this.requiredInput = input;
-        this.party.controller.getTurnInput();
+        this.party.controller.getTurnInput(this.battle.messages);
     }
 
     changeMon(mon?: BattleMon) {
         if (this.mon) {
             delete this.mon.spot;
-            console.log(`Come back, ${this.mon.getName()}!`)
+            this.battle.messages.push(`Come back, ${this.mon.getName()}!`);
+            // console.log(`Come back, ${this.mon.getName()}!`)
         }
         this.mon = mon;
         if (mon) {
-            console.log(`Go, ${mon.getName()}!`)
+            const isWild = this.party.controller.name.length === 0;
+            this.battle.messages.push(!isWild ? `Go, ${mon.getName()}!` : `A wild ${mon.getName()} appeared!`);
+            // console.log(`Go, ${mon.getName()}!`)
             mon.spot = this;
             // const switchIn = {
             //     name: mon.getName(),

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Battle.css";
 import HpBar from "./components/HpBar";
 import MonLabel from "./components/MonLabel";
 import XpBar from "./components/XpBar";
+import socket from "../../../socket/socket";
 
 type MessageState = "actions" | "fight" | "message";
 
@@ -22,7 +23,16 @@ export default function Battle() {
         shiny: false,
         hpPercent: 26
     };
-    const [messageState, setMessageState] = useState<MessageState>("message");
+    // const [messageState, setMessageState] = useState<MessageState>("message");
+    const [actions, setActions] = useState<unknown[]>([]);
+
+    useEffect(() => {
+        socket.on('nextTurn', ({ actions }: { actions: unknown[] }) => {
+            setActions(actions);
+            console.log(actions);
+        });
+    }, []);
+
     return (
         <div id="battle">
             <div id="battle-container">

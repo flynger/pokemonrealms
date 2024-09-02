@@ -43,7 +43,7 @@ io.on('connection', (socket: Socket) => {
   console.log(`User connected: ${socket.id}`);
   const player = new Player();
   const playerBp = [new BattleMon(new Pokemon("Mareep", 10))];
-  player.party = new BattleParty(playerBp);
+  player.party = new BattleParty(playerBp, player);
 
   socket.on('movePlayer', (position: Vector2) => player.moveTo(position));
 
@@ -67,7 +67,7 @@ io.on('connection', (socket: Socket) => {
     
     const wildMon: Pokemon = new Pokemon("Bulbasaur", 10);
     const bp1 = [new BattleMon(wildMon)];
-    player.battle = new SingleBattle(player.party, p2);
+    player.battle = new SingleBattle(player.party, new BattleParty(bp1));
   });
 
   // Handle disconnection

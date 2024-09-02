@@ -39,7 +39,9 @@ export default class Battle {
 
     nextTurn() {
         if (this.isOver() || !this.spots.every(spot => spot.isReady())) return;
-
+        
+        this.messages = [];
+        
         // gets occupied spots by move order
         let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
 

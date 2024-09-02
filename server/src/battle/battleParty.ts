@@ -15,8 +15,8 @@ export default class BattleParty {
     spots?: BattleSpot[];
     battle?: Battle;
 
-    constructor(members: BattleMon[], controller?: Player) {
-        this.controller = controller ?? new BattleAI(this);
+    constructor(members: BattleMon[], controller: Player | BattleAI = new BattleAI(this)) {
+        this.controller = controller;
         this.members = members;
     }
 

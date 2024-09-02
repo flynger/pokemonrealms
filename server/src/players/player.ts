@@ -51,7 +51,7 @@ export default class Player {
     }
 
     // Battle
-    getTurnInput() {
-        
+    getTurnInput(actions: unknown[]) {
+        this.socket?.emit('nextTurn', { actions });
     }
 }

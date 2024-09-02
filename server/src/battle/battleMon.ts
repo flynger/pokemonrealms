@@ -16,7 +16,8 @@ export default class BattleMon extends Pokemon {
 
     useMove = (move: Move, targets: BattleSpot[]) => {
         const moveEntry = Moves.get(move);
-        console.log(`${this.getName()} used ${moveEntry.name}!`);
+        // console.log(`${this.getName()} used ${moveEntry.name}!`);
+        this.spot?.battle.messages.push(`${this.getName()} used ${moveEntry.name}!`);
         if (targets.length === 0) {
             console.log(`But it failed!`);
         } else {
@@ -41,13 +42,21 @@ export default class BattleMon extends Pokemon {
         this.currenthp -= dmg;
         if (this.currenthp < 0) this.currenthp = 0;
 
-        console.log(`${this.getName()} HP${this.currenthp}/${this.hp}, took ${dmg} damage`);
+        // console.log(`${this.getName()} HP${this.currenthp}/${this.hp}, took ${dmg} damage`);
+        this.spot?.battle.messages.push({
+            damageHPTo: this.getHpPercent()
+        });
 
         //fainted
         if (this.currenthp <= 0) {
-            console.log(`${this.getName()} fainted!`);
+            // console.log(`${this.getName()} fainted!`);
+            this.spot?.battle.messages.push(`${this.getName()} fainted!`);
             delete this.spot?.mon;
         }
+    }
+
+    getHpPercent(): number {
+        return Math.floor(100 * this.currenthp / this.hp);
     }
 }
 

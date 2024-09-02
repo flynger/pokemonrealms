@@ -66,6 +66,7 @@ export default class LocalPlayer extends Player {
     onGrass(delta: number) {
         this.timeUntilEncounter -= delta / 1000;
         if (this.timeUntilEncounter <= 0) {
+            socket.emit('startEncounter');
             this.isInBattle = true;
             EventBus.emit('startBattle');
             this.timeUntilEncounter = this.getTimeUntilNextEncounter();
