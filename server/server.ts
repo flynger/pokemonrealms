@@ -5,7 +5,7 @@ import SingleBattle from './src/battle/singleBattle';
 import { Server, Socket } from 'socket.io';
 import Player from "./src/players/player";
 import { Vector2 } from "../shared/maps/types";
-import BattleParty from './src/battle/battleParty';
+import BattleParty, { MoveInput } from './src/battle/battleParty';
 import BattleMon from './src/battle/battleMon';
 
 const mon: Pokemon = new Pokemon("Bulbasaur", 10);
@@ -52,14 +52,18 @@ io.on('connection', (socket: Socket) => {
     // console.log(`User authenticated: ${data.username}`);
   });
 
-  socket.on('battleInput', (data) => {
+  socket.on('useMove', (moveNum: 0|1|2|3) => {
     //TODO validate input
-
+    if ( !player.battle || !player.party ) return;
+    const spotsRequiringInput = player.party.spots!.filter(spot => !spot.turnInput);
+    if (spotsRequiringInput.length === 0) return;
+    
+    spotsRequiringInput[0].takeInput({ kind: "move", id: moveNum });
   });
 
   socket.on('startEncounter', () => {
     console.log("Starting encounter");
-    if (!player || !player.party || player.battle ) return;
+    if (!player.party || player.battle ) return;
     
     const wildMon: Pokemon = new Pokemon("Bulbasaur", 10);
     const bp1 = [new BattleMon(wildMon)];
