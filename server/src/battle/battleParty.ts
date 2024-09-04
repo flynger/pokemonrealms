@@ -9,20 +9,21 @@ import BattleMon from "./battleMon";
 export default class BattleParty {
     // Before the battle
     controller: Player | BattleAI;
-    members: BattleMon[];
+    members: Pokemon[];
 
     // After battle is created
-    spots?: BattleSpot[];
-    battle?: Battle;
+    active: Pokemon[];
+    battle!: Battle;
 
-    constructor(members: BattleMon[], controller: Player | BattleAI = new BattleAI(this)) {
+    constructor(members: Pokemon[], controller: Player | BattleAI = new BattleAI(this)) {
         this.controller = controller;
         this.members = members;
+        this.active = [];
     }
 
-    setBattle(battle: Battle, spots: BattleSpot[]) {
+    joinBattle(battle: Battle, monCount: number) {
+        this.active = this.members.filter(mon => mon.hp).slice(0, monCount);
         this.battle = battle;
-        this.spots = spots;
     }
 }
 

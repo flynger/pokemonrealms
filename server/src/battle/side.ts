@@ -5,26 +5,27 @@ import BattleSpot from "./battleSpot";
 
 /* Every side of parties is represent as a Side */
 export default class Side {
-    parties: BattleParty[];
-    spots: BattleSpot[] = [];
     battle: Battle;
+    parties: BattleParty[];
 
-    constructor(battle: Battle, parties: BattleParty[], spotsPerParty: number) {
+    get active(): Pokemon[] {
+        return this.parties.map(p => p.active).flat();
+    }
+
+    constructor(battle: Battle, parties: BattleParty[], monsPerParty: number) {
         this.battle = battle;
         this.parties = parties;
+
         for (const party of parties) {
-            const partySpots = new Array(spotsPerParty).fill(0).map((_, i) => new BattleSpot(battle, party, party.members[i]));
-            party.setBattle(this.battle, partySpots);
-            this.spots.push(...partySpots);
+            party.joinBattle(this.battle, monsPerParty);
         }
-        // this.parties = parties.map(party => new BattleParty(battle, party, spotsPerParty));
     }
 
     isAlive(): boolean {
-        return this.spots.some(spot => spot.mon);
+        return this.active.some(mon => mon);
     }
 
-    getAliveSpots(): BattleSpot[] {
-        return this.spots.filter(spot => spot.mon);
+    getAliveMons(): Pokemon[] {
+        return this.active.filter(mon => mon);
     }
 }

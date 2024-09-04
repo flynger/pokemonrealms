@@ -1,7 +1,13 @@
 import BattleParty from "battle/battleParty";
 
 export default class BattleAI {
-    constructor(public party: BattleParty, public name: string = "") {}
+    party: BattleParty;
+    name: string;
+
+    constructor(party: BattleParty, name: string = "") {
+        this.party = party;
+        this.name = name;
+    }
 
     getTurnInput() {
         const spotsRequiringInput = this.party.spots!.filter(spot => !spot.turnInput);

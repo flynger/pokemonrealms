@@ -12,35 +12,33 @@ export interface BattleConfig {
     spotsPerParty?: number
 }
 
-type BattleAction = DamageAction
+type DamageOutput = {
 
-interface DamageAction {
-    user: BattleSpot,
-    recipients: BattleSpot[]
 }
 
+type BattleOutput = string | DamageOutput
+
 export default class Battle {
-    static readonly INPUT_OPTIONS: Set<InputKind> = new Set(["move"]);
     field: Field;
     sides: Side[];
     currentSpotId = 0;
     spots: BattleSpot[] = [];
-    messages: unknown[] = [];
+    output: BattleOutput[] = [];
 
     constructor(sides: BattleParty[][], { field = new Field(), spotsPerParty = 1 }: BattleConfig = {}) {
         this.sides = sides.map(side => new Side(this, side, spotsPerParty));
         this.field = field;
         // console.log(this.messages)
-        for (const spot of this.spots) {
-            spot.getTurnInput(Battle.INPUT_OPTIONS);
-        }
+        // for (const spot of this.spots) {
+        //     spot.getTurnInput(Battle.INPUT_OPTIONS);
+        // }
         this.nextTurn();
     }
 
     nextTurn() {
         if (this.isOver() || !this.spots.every(spot => spot.isReady())) return;
         
-        this.messages = [];
+        this.output = [];
         
         // gets occupied spots by move order
         let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
@@ -62,7 +60,7 @@ export default class Battle {
                 // case "run":
                 //     executeRun();
                 default:
-                    throw new Error("Unknown input " + turnInput.kind + " by " + currentMon.getName());
+                    throw new Error("Unknown input " + turnInput.kind + " by " + currentMon.name);
             }
             currentSpot.turnInput = undefined;
 
@@ -86,11 +84,11 @@ export default class Battle {
         return spot.mon !== undefined;
     }
 
-    getHighestOpposingSpeed(side: Side) {
-        let livingOpposingSpots = this.sides
-            .filter(thisSide => thisSide !== side)
-            .map(thisSide => thisSide.getAliveSpots())
-            .flat()
-            .reduce((max, spot) => Math.max(max, spot.mon!.spe), 0);
-    }
+    // getHighestOpposingSpeed(side: Side) {
+    //     let livingOpposingSpots = this.sides
+    //         .filter(thisSide => thisSide !== side)
+    //         .map(thisSide => thisSide.getAliveMons())
+    //         .flat()
+    //         .reduce((max, spot) => Math.max(max, spot.mon!.spe), 0);
+    // }
 }

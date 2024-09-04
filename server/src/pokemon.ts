@@ -5,6 +5,8 @@ import Natures, { Nature } from "./pokedex/nature";
 import Pokedex, { AbilitySlot, Gender, Species } from "./pokedex/pokedex";
 import { createStats } from "./util/util";
 import { randomInteger } from "../../shared/shared";
+import Side from "battle/side";
+import BattleParty from "battle/battleParty";
 
 export default class Pokemon implements Stats {
     static id = 1;
@@ -12,7 +14,11 @@ export default class Pokemon implements Stats {
     static readonly HIDDEN_ABILITY_CHANCE = 1 / 64;
 
     species: Species;
-    name: string;
+    private _name: string;
+    get name(): string {
+        return this.name || Pokedex.getEntry(this.species).species;
+    }
+
     readonly gender: Gender;
 
     readonly isShiny: boolean;
@@ -43,9 +49,13 @@ export default class Pokemon implements Stats {
     OT?: string;
     owner?: string;
 
+    /* Battle-only Properties */
+    side?: Side;
+    party?: BattleParty;
+
     constructor(species: Species, level: number, { name = "", gender, isShiny, xp, heldItem, nature, friendship, abilitySlot, ivs = {}, evs = {}, currenthp, moves, OT = "", owner = "", caughtBall = "Poké Ball", shinyChance = Pokemon.SHINY_CHANCE, hiddenAbilityChance = Pokemon.HIDDEN_ABILITY_CHANCE }: PokemonConfig = {}) {
         this.species = species;
-        this.name = name;
+        this._name = name;
 
         const pokedexData = Pokedex.getEntry(this.species);
 
@@ -101,11 +111,6 @@ export default class Pokemon implements Stats {
         this.caughtBall = caughtBall;
     }
 
-    getName() {
-        // FIXME: get the correct name
-        return this.name || Pokedex.getEntry(this.species).species;
-    }
-
     levelUp() {
         if (this.level < 100) {
             this.level++;
@@ -147,6 +152,26 @@ export default class Pokemon implements Stats {
             const natureEntry = Natures.getEntry(this.nature);
             const natureMultiplier = natureEntry?.increases === stat ? 1.1 : natureEntry?.decreases == stat ? 0.9 : 1;
             return Math.floor((Math.floor((2 * baseStat + iv + Math.floor(ev / 4)) * level / 100) + 5) * natureMultiplier);
+        }
+    }
+
+    // Battle code
+    get hpPercent(): number {
+        return Math.floor(100 * this.currenthp / this.hp);
+    }
+
+    serializeForBattle(hideSecret: boolean = false) {
+        const { name, species, level, isShiny, gender } = this;
+        const data = { name, species, level, isShiny, gender };
+        if (hideSecret) {
+            return {
+                ...data, hpPercent: this.hpPercent
+            }
+        } else {
+            const { hp, atk, def, spa, spd, spe, currenthp, xp } = this;
+            return {
+                ...data, currenthp, hp, xp // atk, def, spa, spd, spe, 
+            }
         }
     }
 }
