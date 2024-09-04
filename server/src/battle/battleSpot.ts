@@ -1,5 +1,5 @@
 import Pokemon, { Stats } from "../pokemon";
-import Battle from "./battle";
+import Battle from "./oldBattle";
 import { createStatStages } from "../util/util";
 import BattleParty, { BattleInput, InputKind } from "./battleParty";
 import BattleMon from "./battleMon";

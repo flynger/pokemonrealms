@@ -1,96 +1,74 @@
 import Pokemon from "pokemon";
+import BattleQueue from "./BattleQueue";
 import Field from "./field";
 import Side from "./side";
-import BattleParty, { InputKind } from "./battleParty";
-import BattleSpot from "./battleSpot";
-import Move, { Moves } from "../pokedex/move";
-// import { executeMove, executeRun } from "./battleMove";
-import BattleMon from "./battleMon";
-
-export interface BattleConfig {
-    field?: Field,
-    spotsPerParty?: number
-}
-
-type BattleAction = DamageAction
-
-interface DamageAction {
-    user: BattleSpot,
-    recipients: BattleSpot[]
-}
+import { Moves } from "pokedex/move";
+import BattleData from "./battleData";
+import BattleAction from "./battleAction";
 
 export default class Battle {
-    static readonly INPUT_OPTIONS: Set<InputKind> = new Set(["move"]);
-    field: Field;
-    sides: Side[];
-    currentSpotId = 0;
-    spots: BattleSpot[] = [];
-    messages: unknown[] = [];
+    readonly field: Field;
+    //sides[x] is an alliance, sides[x][y].team is a team, sides[x][y].team[z] is a pokemon
+    readonly sides: Side[][] = null!;
+    activePokemon: Pokemon[] = null!;
 
-    constructor(sides: BattleParty[][], { field = new Field(), spotsPerParty = 1 }: BattleConfig = {}) {
-        this.sides = sides.map(side => new Side(this, side, spotsPerParty));
-        this.field = field;
-        // console.log(this.messages)
-        for (const spot of this.spots) {
-            spot.getTurnInput(Battle.INPUT_OPTIONS);
-        }
-        this.nextTurn();
-    }
+    data: BattleData[] = [];
+    battleAction: BattleAction;
+    queue: BattleQueue;
+    turn: number;
 
-    nextTurn() {
-        if (this.isOver() || !this.spots.every(spot => spot.isReady())) return;
-        
-        this.messages = [];
-        
-        // gets occupied spots by move order
-        let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
-
-        while (occupiedSpots.length > 0) {
-            const currentSpot = occupiedSpots.shift()!;
-            // if (!currentSpot.mon) continue;
-            const currentMon = currentSpot.mon;
-            const turnInput = currentSpot.turnInput!;
-            switch (turnInput.kind) {
-                case "move":
-                    const move = currentMon.moves[turnInput.id];
-                    const moveEntry = Moves.get(move);
-                    
-                    // FIXME: Get proper targets (I think implement the target logic in SingleBattle, DoubleBattle, etc.)
-                    const targets = moveEntry.target === "self" ? [currentSpot] : this.spots.filter(spot => spot !== currentSpot && spot.mon);
-                    currentMon.useMove(move, targets);
-                    break;
-                // case "run":
-                //     executeRun();
-                default:
-                    throw new Error("Unknown input " + turnInput.kind + " by " + currentMon.getName());
-            }
-            currentSpot.turnInput = undefined;
-
-            occupiedSpots = occupiedSpots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
-        }
-
-        if (this.isOver()) {
-            console.log("Battle over");
+    constructor(sides: Side[][], field?: Field) {
+        if (field) {
+            this.field = field;
         } else {
-            for (const spot of this.spots) {
-                spot.getTurnInput(Battle.INPUT_OPTIONS);
+            this.field = new Field();
+        }
+        this.battleAction = new BattleAction(this);
+        this.queue = new BattleQueue(this);
+        this.turn = 0;
+        this.sides = sides;
+    }
+
+    startBattle(): void {
+        for (let side of this.sides) {
+            for (let team of side) {
+                team.battle = this;
+                team.team.forEach((pokemon, index) => {
+                    pokemon.battle = this;
+                });
             }
         }
     }
 
-    isOver() {
-        return this.sides.filter(side => side.isAlive()).length <= 1;
+    runTurn(): void {
+        while (!this.queue.isEmpty()) {
+            const action = this.queue.pop();
+            if (!action) {
+                throw new Error("Action is undefined");
+            }
+            switch (action.type) {
+                case "move":
+                    // getting move data
+                    const targets: Pokemon[] = action.targetLocations.map(loc => this.activePokemon[loc]);
+                    this.battleAction.useMove(action.move, action.pokemon, targets);
+                    break;
+                default:
+                    throw new Error("Unknown input " + action.type + " by " + action.pokemon.getName());
+            }
+        }
+        this.turn++;
     }
 
-    isSpotWithMon(spot: BattleSpot): spot is BattleSpot & { mon: BattleMon } {
-        return spot.mon !== undefined;
-    }
+    switchIn(index: number, target: Pokemon): void {
+        if (this.activePokemon && this.activePokemon[index]) {
+            // console.log(`${this.activePokemon[index].name} has been switched with ${target.name}`);
+            this.activePokemon[index].activeInd = -1;
+        }
 
-    getHighestOpposingSpeed(side: Side) {
-        let livingOpposingSpots = this.sides
-            .filter(thisSide => thisSide !== side)
-            .map(thisSide => thisSide.getAliveSpots())
-            .flat()
-            .reduce((max, spot) => Math.max(max, spot.mon!.spe), 0);
+        console.log(target)
+        this.activePokemon[index] = target;
+        target.activeInd = index;
     }
 }
+
+

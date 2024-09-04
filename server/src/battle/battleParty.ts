@@ -1,6 +1,6 @@
 import Pokemon from "pokemon";
 import BattleSpot from "./battleSpot";
-import Battle from "./battle";
+import Battle from "./oldBattle";
 import Player from "players/player";
 import BattleAI from "./AI/battleAI";
 import BattleMon from "./battleMon";

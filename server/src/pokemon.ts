@@ -5,6 +5,7 @@ import Natures, { Nature } from "./pokedex/nature";
 import Pokedex, { AbilitySlot, Gender, Species } from "./pokedex/pokedex";
 import { createStats } from "./util/util";
 import { randomInteger } from "../../shared/shared";
+import Battle from "battle/battle";
 
 export default class Pokemon implements Stats {
     static id = 1;
@@ -36,6 +37,9 @@ export default class Pokemon implements Stats {
     spa!: number;
     spd!: number;
     spe!: number;
+    
+    battle: Battle = null!;
+    activeInd: number = -1;
 
     readonly moves: Move[];
 
@@ -148,6 +152,10 @@ export default class Pokemon implements Stats {
             const natureMultiplier = natureEntry?.increases === stat ? 1.1 : natureEntry?.decreases == stat ? 0.9 : 1;
             return Math.floor((Math.floor((2 * baseStat + iv + Math.floor(ev / 4)) * level / 100) + 5) * natureMultiplier);
         }
+    }
+
+    getHpPercent(): number {
+        return Math.floor(100 * this.currenthp / this.hp);
     }
 }
 

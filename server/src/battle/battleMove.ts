@@ -1,6 +1,6 @@
 import Pokemon from "pokemon";
 import Field from "./field";
-import Side from "./side";
+import Side from "./oldSide";
 import BattleParty, { InputKind } from "./battleParty";
 import BattleSpot from "./battleSpot";
 import Move, { Moves, MoveTarget } from "../pokedex/move";
