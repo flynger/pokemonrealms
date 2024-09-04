@@ -14,7 +14,7 @@ export default class SingleBattle extends Battle {
     startBattle(): void {
         // sets the active pokemon to the first in the team
         this.switchIn(0, this.sides[0][0].team[0]);
-        this.switchIn(0, this.sides[0][0].team[1]);
+        this.switchIn(0, this.sides[0][1].team[0]);
 
         super.startBattle();
     }

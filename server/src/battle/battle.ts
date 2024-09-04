@@ -65,7 +65,6 @@ export default class Battle {
             this.activePokemon[index].activeInd = -1;
         }
 
-        console.log(target)
         this.activePokemon[index] = target;
         target.activeInd = index;
     }
