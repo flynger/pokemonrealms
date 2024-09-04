@@ -1,13 +1,11 @@
 import Pokemon from "pokemon";
 import Battle from "./battle";
-import { Action } from "./BattleQueue";
-import BattleAction from "./battleAction";
-import { Moves } from "../pokedex/move";
+import BattleParty from "./battleParty";
 
 export default class Side {
     readonly id: number;
-    battle: Battle;
-    parties: BattleParty[];
+    private readonly battle: Battle;
+    readonly parties: BattleParty[];
 
     get active(): Pokemon[] {
         return this.parties.map(p => p.active).flat();
@@ -29,48 +27,49 @@ export default class Side {
 
     getAliveMons(): Pokemon[] {
         return this.active.filter(mon => mon);
-
-    chooseAction(action: { type: "move", moveID: number } | { type: "switch" } | { type: "item" }, monIndex: number, targetID?: number): void {
-        if (!this.isUnderControl(monIndex)) return;
-
-        // get the pokemon that is making the action
-        let pokemon: Pokemon = this.battle.activePokemon[monIndex];
-        switch (action.type) {
-            case "move":
-                const move = pokemon.moves[action.moveID];
-                const moveEntry = Moves.get(move);
-                if (!moveEntry) throw new Error("Move not found");
-
-                const targetLocations: number[] = [];
-                if(moveEntry.target === "self") {
-                    targetLocations.push(monIndex);
-                } else if (moveEntry.target === "normal" && targetID) {
-                    targetLocations.push(targetID);
-                }
-
-                let moveAction: Action = {
-                    type: "move",
-                    priority: 0,
-                    speed: pokemon.spe,
-                    pokemon: pokemon,
-                    targetLocations: targetLocations,
-                    move: move
-                }
-
-                this.battle.queue.push(moveAction);
-                break;
-            case "switch":
-            case "item":
-        }
     }
 
-    isUnderControl(monIndex: number): boolean {
-        const existingmonIndex = this.active.findIndex((ind) => ind === monIndex);
-        if (existingmonIndex !== -1) {
-            return true;
-        } else {
-            console.log(`invalid monIndex ${monIndex} for side ${this.id}`);
-            return false;
-        }
-    }
+    // chooseAction(action: { type: "move", moveID: number } | { type: "switch" } | { type: "item" }, monIndex: number, targetID?: number): void {
+    //     if (!this.isUnderControl(monIndex)) return;
+
+    //     // get the pokemon that is making the action
+    //     let pokemon: Pokemon = this.battle.activePokemon[monIndex];
+    //     switch (action.type) {
+    //         case "move":
+    //             const move = pokemon.moves[action.moveID];
+    //             const moveEntry = Moves.get(move);
+    //             if (!moveEntry) throw new Error("Move not found");
+
+    //             const targetLocations: number[] = [];
+    //             if(moveEntry.target === "self") {
+    //                 targetLocations.push(monIndex);
+    //             } else if (moveEntry.target === "normal" && targetID) {
+    //                 targetLocations.push(targetID);
+    //             }
+
+    //             let moveAction: Action = {
+    //                 type: "move",
+    //                 priority: 0,
+    //                 speed: pokemon.spe,
+    //                 pokemon: pokemon,
+    //                 targetLocations: targetLocations,
+    //                 move: move
+    //             }
+
+    //             this.battle.queue.push(moveAction);
+    //             break;
+    //         case "switch":
+    //         case "item":
+    //     }
+    // }
+
+    // isUnderControl(monIndex: number): boolean {
+    //     const existingmonIndex = this.active.findIndex((ind) => ind === monIndex);
+    //     if (existingmonIndex !== -1) {
+    //         return true;
+    //     } else {
+    //         console.log(`invalid monIndex ${monIndex} for side ${this.id}`);
+    //         return false;
+    //     }
+    // }
 }

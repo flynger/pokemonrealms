@@ -1,104 +1,72 @@
 import Pokemon from "pokemon";
-import BattleQueue from "./BattleQueue";
 import Field from "./field";
 import Side from "./side";
-import BattleParty, { InputKind } from "./battleParty";
-import BattleSpot from "./battleSpot";
-import Move, { Moves } from "../pokedex/move";
-// import { executeMove, executeRun } from "./battleMove";
-import BattleMon from "./battleMon";
+import BattleParty from "./battleParty";
+import ActionHandler from "./actions/actionHandler";
+import ActionQueue from "./actions/actionQueue";
+import BattleOutput from "./battleOutput";
 
 export interface BattleConfig {
     field?: Field,
     spotsPerParty?: number
 }
 
-type DamageOutput = {
-
-}
-
-import { Moves } from "pokedex/move";
-import BattleData from "./battleData";
-import BattleAction from "./battleAction";
-
-type BattleOutput = string | DamageOutput
-
 export default class Battle {
     readonly field: Field;
     readonly sides: Side[];
-    output: BattleOutput[] = [];
-    readonly queue: BattleQueue;
+    
+    get active(): Pokemon[] {
+        return this.sides.map(s => s.active).flat();
+    }
+
+    actionHandler: ActionHandler;
+    readonly queue: ActionQueue;
+
     turn: number;
+    output: BattleOutput[] = [];
 
     constructor(sides: BattleParty[][], { field = new Field(), spotsPerParty = 1 }: BattleConfig = {}) {
-        this.sides = sides.map(side => new Side(this, side, spotsPerParty));
+        this.sides = sides.map((side, id) => new Side(id, this, side, spotsPerParty));
         this.field = field;
-        // console.log(this.messages)
-        // for (const spot of this.spots) {
-        //     spot.getTurnInput(Battle.INPUT_OPTIONS);
-        // }
+        this.actionHandler = new ActionHandler(this);
+        this.queue = new ActionQueue(this);
+        this.turn = 0;
+
         this.nextTurn();
     }
 
-    nextTurn() {
-        if (this.isOver() || !this.spots.every(spot => spot.isReady())) return;
-        
+    // startBattle(): void {
+    //     this.nextTurn();
+    // }
+
+    nextTurn(): void {
+        if (this.isOver()) return;
+        this.turn++;
         this.output = [];
-        
-        // gets occupied spots by move order
-        let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
-    
-
-    constructor(sides: Side[][], field?: Field) {
-        if (field) {
-            this.field = field;
-        } else {
-            this.field = new Field();
-        }
-        this.battleAction = new BattleAction(this);
-        this.queue = new BattleQueue(this);
-        this.turn = 0;
-        this.sides = sides;
-    }
-
-    startBattle(): void {
-        for (let side of this.sides) {
-            for (let team of side) {
-                team.battle = this;
-                team.team.forEach((pokemon, index) => {
-                    pokemon.battle = this;
-                });
-            }
-        }
     }
 
     runTurn(): void {
         while (!this.queue.isEmpty()) {
-            const action = this.queue.pop();
-            if (!action) {
-                throw new Error("Action is undefined");
-            }
-            switch (action.type) {
+            const action = this.queue.shift();
+            switch (action.choice) {
                 case "move":
                     // getting move data
-                    const targets: Pokemon[] = action.targetLocations.map(loc => this.activePokemon[loc]);
-                    this.battleAction.useMove(action.move, action.pokemon, targets);
+                    const targets: Pokemon[] = action.targetLocations.map(loc => this.active[loc]);
+                    this.actionHandler.useMove(action.move, action.pokemon, targets);
                     break;
                 default:
-                    // throw new Error("Unknown input " + turnInput.kind + " by " + currentMon.name);
-                    // throw new Error("Unknown input " + action.type + " by " + action.pokemon.getName());
+                    throw new Error("Unknown input " + action.choice + " by " + action.pokemon.name);
             }
         }
         this.turn++;
     }
 
-    switchIn(index: number, target: Pokemon): void {
-        if (this.activePokemon && this.activePokemon[index]) {
-            // console.log(`${this.activePokemon[index].name} has been switched with ${target.name}`);
-            this.activePokemon[index].activeInd = -1;
-        }
-
-        this.activePokemon[index] = target;
-        target.activeInd = index;
+    isOver(): boolean {
+        return this.sides.filter(side => side.isAlive()).length < 2;
     }
 }
+
+// const calculateRun = (userSpe: number, foeSpe: number, runTimes: number = 1): boolean => {
+//     let runChance = (userSpe*32/(foeSpe/4))+30*runTimes; 
+//     return Math.random() * 255 < runChance;
+// }

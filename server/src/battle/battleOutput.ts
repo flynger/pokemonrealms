@@ -1,6 +1,6 @@
 import { StatStages } from "./battleSpot";
 
-export default interface BattleData {
+export default interface BattleOutput {
     msg: string;
     // none for no need for animation like move fail (most moves can use this for now)
     // switch for switch
