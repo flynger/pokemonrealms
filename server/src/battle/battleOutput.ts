@@ -12,6 +12,6 @@ export default interface BattleOutput {
     { type: "switch", index: number} | 
     { type: "health", index: number, healthPercent: number} | 
     { type: "status", index: number, status: string } | 
-    { type: "statChange", index: number, statChangees: StatStages } | 
+    { type: "statChange", index: number, statChanges: StatStages } | 
     { type:"faint", index: number} 
 }

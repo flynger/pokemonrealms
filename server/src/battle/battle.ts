@@ -43,6 +43,7 @@ export default class Battle {
         if (this.isOver()) return;
         this.turn++;
         this.output = [];
+        this.runTurn();
     }
 
     runTurn(): void {

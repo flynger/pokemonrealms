@@ -10,7 +10,7 @@ export default class BattleAI {
     }
 
     getTurnInput() {
-        const spotsRequiringInput = this.party.spots!.filter(spot => !spot.turnInput);
+        const spotsRequiringInput = this.party.active.filter(mon => !spot.turnInput);
         if (spotsRequiringInput.length === 0) return;
 
         for (const spot of spotsRequiringInput) {
