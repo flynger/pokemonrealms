@@ -42,7 +42,10 @@ export default class BattleSpot {
     changeMon(mon?: BattleMon) {
         if (this.mon) {
             delete this.mon.spot;
-            this.battle.messages.push(`Come back, ${this.mon.getName()}!`);
+            this.battle.messages.push({
+                pos: this.id,
+                switchOut: true
+            });
             // console.log(`Come back, ${this.mon.getName()}!`)
         }
         this.mon = mon;

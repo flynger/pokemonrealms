@@ -2,20 +2,52 @@ import Pokemon from "pokemon";
 import BattleQueue from "./BattleQueue";
 import Field from "./field";
 import Side from "./side";
+import BattleParty, { InputKind } from "./battleParty";
+import BattleSpot from "./battleSpot";
+import Move, { Moves } from "../pokedex/move";
+// import { executeMove, executeRun } from "./battleMove";
+import BattleMon from "./battleMon";
+
+export interface BattleConfig {
+    field?: Field,
+    spotsPerParty?: number
+}
+
+type DamageOutput = {
+
+}
+
 import { Moves } from "pokedex/move";
 import BattleData from "./battleData";
 import BattleAction from "./battleAction";
 
+type BattleOutput = string | DamageOutput
+
 export default class Battle {
     readonly field: Field;
-    //sides[x] is an alliance, sides[x][y].team is a team, sides[x][y].team[z] is a pokemon
-    readonly sides: Side[][] = null!;
-    activePokemon: Pokemon[] = null!;
-
-    data: BattleData[] = [];
-    battleAction: BattleAction;
-    queue: BattleQueue;
+    readonly sides: Side[];
+    output: BattleOutput[] = [];
+    readonly queue: BattleQueue;
     turn: number;
+
+    constructor(sides: BattleParty[][], { field = new Field(), spotsPerParty = 1 }: BattleConfig = {}) {
+        this.sides = sides.map(side => new Side(this, side, spotsPerParty));
+        this.field = field;
+        // console.log(this.messages)
+        // for (const spot of this.spots) {
+        //     spot.getTurnInput(Battle.INPUT_OPTIONS);
+        // }
+        this.nextTurn();
+    }
+
+    nextTurn() {
+        if (this.isOver() || !this.spots.every(spot => spot.isReady())) return;
+        
+        this.output = [];
+        
+        // gets occupied spots by move order
+        let occupiedSpots = this.spots.filter(this.isSpotWithMon).sort((s1, s2) => s2.mon.spe - s1.mon.spe);
+    
 
     constructor(sides: Side[][], field?: Field) {
         if (field) {
@@ -53,7 +85,8 @@ export default class Battle {
                     this.battleAction.useMove(action.move, action.pokemon, targets);
                     break;
                 default:
-                    throw new Error("Unknown input " + action.type + " by " + action.pokemon.getName());
+                    // throw new Error("Unknown input " + turnInput.kind + " by " + currentMon.name);
+                    // throw new Error("Unknown input " + action.type + " by " + action.pokemon.getName());
             }
         }
         this.turn++;
@@ -69,5 +102,3 @@ export default class Battle {
         target.activeInd = index;
     }
 }
-
-

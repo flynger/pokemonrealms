@@ -5,21 +5,30 @@ import BattleAction from "./battleAction";
 import { Moves } from "../pokedex/move";
 
 export default class Side {
-    battle: Battle = null!;
     readonly id: number;
-    // set in battle.start()
-    foe: Side[] = null!;
-    // represents pokemon and the position in the battle
-    activeIndices: number[] = null!;
+    battle: Battle;
+    parties: BattleParty[];
 
-    team: Pokemon[];
-
-    constructor(sideID: number, team: Pokemon[], activeIndices: number[]) {
-        // this.battle = battle;
-        this.id = sideID;
-        this.team = team;
-        this.activeIndices = activeIndices;
+    get active(): Pokemon[] {
+        return this.parties.map(p => p.active).flat();
     }
+
+    constructor(id: number, battle: Battle, parties: BattleParty[], monsPerParty: number) {
+        this.id = id;
+        this.battle = battle;
+        this.parties = parties;
+
+        for (const party of parties) {
+            party.joinBattle(this.battle, monsPerParty);
+        }
+    }
+
+    isAlive(): boolean {
+        return this.active.some(mon => mon);
+    }
+
+    getAliveMons(): Pokemon[] {
+        return this.active.filter(mon => mon);
 
     chooseAction(action: { type: "move", moveID: number } | { type: "switch" } | { type: "item" }, monIndex: number, targetID?: number): void {
         if (!this.isUnderControl(monIndex)) return;
@@ -56,7 +65,7 @@ export default class Side {
     }
 
     isUnderControl(monIndex: number): boolean {
-        const existingmonIndex = this.activeIndices.findIndex((ind) => ind === monIndex);
+        const existingmonIndex = this.active.findIndex((ind) => ind === monIndex);
         if (existingmonIndex !== -1) {
             return true;
         } else {
