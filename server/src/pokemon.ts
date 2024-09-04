@@ -7,6 +7,7 @@ import { createStats } from "./util/util";
 import { randomInteger } from "../../shared/shared";
 import Side from "battle/side";
 import BattleParty from "battle/battleParty";
+import Battle from "battle/battle";
 
 export default class Pokemon implements Stats {
     static id = 1;
@@ -42,6 +43,9 @@ export default class Pokemon implements Stats {
     spa!: number;
     spd!: number;
     spe!: number;
+    
+    battle: Battle = null!;
+    activeInd: number = -1;
 
     readonly moves: Move[];
 

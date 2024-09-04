@@ -10,16 +10,22 @@ import BattleMon from './src/battle/battleMon';
 
 const mon: Pokemon = new Pokemon("Bulbasaur", 10);
 const mon2: Pokemon = new Pokemon("Mareep", 10);
-const bp1 = [new BattleMon(mon)];
-const bp2 = [new BattleMon(mon2)];
-const p1 = new BattleParty(bp1);
-const p2 = new BattleParty(bp2);
-const battle = new SingleBattle(p1, p2);
+const battle = new SingleBattle([mon], [mon2]);
+battle.startBattle();
+battle.sides[0][0].chooseAction({type: "move", moveID: 0}, 0, 1);
+battle.sides[1][0].chooseAction({type: "move", moveID: 0}, 1, 0);
+// const bp1 = [new BattleMon(mon)];
+// const bp2 = [new BattleMon(mon2)];
+// const p1 = new BattleParty(bp1);
+// const p2 = new BattleParty(bp2);
+// const battle = new SingleBattle(p1, p2);
 // const party1 = battle.sides[0].parties[0];
 // const party2 = battle.sides[1].parties[0];
 // party1.takeInput(0, { kind: "move", id: 0 });
 // party2.takeInput(0, { kind: "move", id: 0 });
 // console.log(battle);
+
+// const battle = new SingleBattle([mon], [mon2]);
 
 const app = express();
 const port = 8000;
@@ -67,7 +73,7 @@ io.on('connection', (socket: Socket) => {
     
     const wildMon: Pokemon = new Pokemon("Bulbasaur", 10);
     const bp1 = [new BattleMon(wildMon)];
-    player.battle = new SingleBattle(player.party, new BattleParty(bp1));
+    // player.battle = new SingleBattle(player.party, new BattleParty(bp1));
   });
 
   // Handle disconnection

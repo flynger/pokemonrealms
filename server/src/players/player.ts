@@ -5,7 +5,7 @@ import { randomInteger } from "../../../shared/shared";
 import { PlayerAvatar } from "../../../shared/players/types";
 import { Socket } from "socket.io";
 import BattleParty from '../battle/battleParty';
-import Battle from '../battle/battle';
+import Battle from '../battle/oldBattle';
 
 export default class Player {
     private static readonly entries: Map<string, Player> = new Map();
