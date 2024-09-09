@@ -6,8 +6,6 @@ import Pokemon from "pokemon";
 export interface MoveAction {
 	choice: "move";
 	priority: number;
-    // taken from the pokemon that used it
-	speed: number;
 	/* the pokemon doing the move */
 	pokemon: Pokemon;
 	/* location of the target, relative to pokemon's side */

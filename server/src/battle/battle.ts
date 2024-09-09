@@ -4,7 +4,7 @@ import Side from "./side";
 import BattleParty from "./battleParty";
 import ActionHandler from "./actions/actionHandler";
 import ActionQueue from "./actions/actionQueue";
-import BattleOutput from "./battleOutput";
+import { BattleOutput } from "./battleOutput";
 
 export interface BattleConfig {
     field?: Field,
@@ -19,7 +19,7 @@ export default class Battle {
         return this.sides.map(s => s.active).flat();
     }
 
-    actionHandler: ActionHandler;
+    readonly actionHandler: ActionHandler;
     readonly queue: ActionQueue;
 
     turn: number;
@@ -42,6 +42,7 @@ export default class Battle {
     nextTurn(): void {
         if (this.isOver()) return;
         this.turn++;
+        console.log(this.output);
         this.output = [];
         this.runTurn();
     }

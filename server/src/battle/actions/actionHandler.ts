@@ -1,6 +1,6 @@
 import Pokemon from "pokemon";
 import Battle from "../battle";
-import Move, { Moves } from "pokedex/move";
+import Move, { Moves } from "../../pokedex/move";
 
 export default class ActionHandler {
     readonly battle: Battle;
@@ -10,17 +10,26 @@ export default class ActionHandler {
 	}
 
     switchIn(pokemon: Pokemon, pos: number) {
-        const party = pokemon.party;
-        if(!party || pos >= party.active.length) return;
+        const { currenthp, party, side } = pokemon;
+        if(!currenthp || !party || !side || pos >= party.active.length || pos < 0) return;
 
         const oldActive = party.active[pos];
         if (oldActive) {
-            // this.battle.output.push({
-            //     side: 0,
-            //     pos: 0,
-            //     switchIn: pokemon.serializeForBattle()
-            // });
+            /* message for swapping out old mon */
+            this.battle.output.push({
+                type: "switchOut",
+                side: side.id,
+                pos
+            });
         }
+        /* replace with new mon */
+        party.active[pos] = pokemon;
+        this.battle.output.push({
+            type: "switchIn",
+            side: side.id,
+            pos,
+            mon: pokemon.serializeForBattle()
+        });
     }
 
     useMove(move: Move, pokemon: Pokemon, targets: Pokemon[]) {

@@ -73,3 +73,8 @@ export default class Side {
     //     }
     // }
 }
+
+export interface BattlePosition {
+    side: number;
+    pos: number;
+}

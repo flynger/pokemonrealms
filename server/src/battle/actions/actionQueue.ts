@@ -44,6 +44,6 @@ export default class ActionQueue {
     }
 
     sort() {
-        this.actions.sort((a, b) => b.priority - a.priority || b.speed - a.speed);
+        this.actions.sort((a, b) => b.priority - a.priority || b.pokemon.spe - a.pokemon.spe);
     }
 }

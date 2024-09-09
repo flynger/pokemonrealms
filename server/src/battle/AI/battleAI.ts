@@ -10,12 +10,12 @@ export default class BattleAI {
     }
 
     getTurnInput() {
-        const spotsRequiringInput = this.party.active.filter(mon => !spot.turnInput);
-        if (spotsRequiringInput.length === 0) return;
+        // const spotsRequiringInput = this.party.active.filter(mon => !spot.turnInput);
+        // if (spotsRequiringInput.length === 0) return;
 
-        for (const spot of spotsRequiringInput) {
-            const moves = spot.mon!.moves;
-            spot.takeInput({ kind: "move", id: 0 });
-        }
+        // for (const spot of spotsRequiringInput) {
+        //     const moves = spot.mon!.moves;
+        //     spot.takeInput({ kind: "move", id: 0 });
+        // }
     }
 }

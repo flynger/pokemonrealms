@@ -5,25 +5,18 @@ import SingleBattle from './src/battle/singleBattle';
 import { Server, Socket } from 'socket.io';
 import Player from "./src/players/player";
 import { Vector2 } from "../shared/maps/types";
-import BattleParty, { MoveInput } from './src/battle/battleParty';
-import BattleMon from './src/battle/battleMon';
+import BattleParty from './src/battle/battleParty';
 
 const mon: Pokemon = new Pokemon("Bulbasaur", 10);
 const mon2: Pokemon = new Pokemon("Mareep", 10);
-const battle = new SingleBattle([mon], [mon2]);
-battle.startBattle();
-battle.sides[0][0].chooseAction({type: "move", moveID: 0}, 0, 1);
-battle.sides[1][0].chooseAction({type: "move", moveID: 0}, 1, 0);
-// const bp1 = [new BattleMon(mon)];
-// const bp2 = [new BattleMon(mon2)];
-// const p1 = new BattleParty(bp1);
-// const p2 = new BattleParty(bp2);
-// const battle = new SingleBattle(p1, p2);
+const p1 = new BattleParty([mon]);
+const p2 = new BattleParty([mon2]);
+const battle = new SingleBattle(p1, p2);
 // const party1 = battle.sides[0].parties[0];
 // const party2 = battle.sides[1].parties[0];
 // party1.takeInput(0, { kind: "move", id: 0 });
 // party2.takeInput(0, { kind: "move", id: 0 });
-// console.log(battle);
+// console.log(battle.output);
 
 // const battle = new SingleBattle([mon], [mon2]);
 
@@ -48,8 +41,8 @@ const io = new Server(expressServer);
 io.on('connection', (socket: Socket) => {
   console.log(`User connected: ${socket.id}`);
   const player = new Player();
-  const playerBp = [new BattleMon(new Pokemon("Mareep", 10))];
-  player.party = new BattleParty(playerBp, player);
+  // const playerBp = [new BattleMon(new Pokemon("Mareep", 10))];
+  // player.party = new BattleParty(playerBp, player);
 
   socket.on('movePlayer', (position: Vector2) => player.moveTo(position));
 
@@ -61,10 +54,10 @@ io.on('connection', (socket: Socket) => {
   socket.on('useMove', (moveNum: 0|1|2|3) => {
     //TODO validate input
     if ( !player.battle || !player.party ) return;
-    const spotsRequiringInput = player.party.spots!.filter(spot => !spot.turnInput);
-    if (spotsRequiringInput.length === 0) return;
+    // const spotsRequiringInput = player.party.spots!.filter(spot => !spot.turnInput);
+    // if (spotsRequiringInput.length === 0) return;
     
-    spotsRequiringInput[0].takeInput({ kind: "move", id: moveNum });
+    // spotsRequiringInput[0].takeInput({ kind: "move", id: moveNum });
   });
 
   socket.on('startEncounter', () => {
@@ -72,7 +65,7 @@ io.on('connection', (socket: Socket) => {
     if (!player.party || player.battle ) return;
     
     const wildMon: Pokemon = new Pokemon("Bulbasaur", 10);
-    const bp1 = [new BattleMon(wildMon)];
+    // const bp1 = [new BattleMon(wildMon)];
     // player.battle = new SingleBattle(player.party, new BattleParty(bp1));
   });
 
